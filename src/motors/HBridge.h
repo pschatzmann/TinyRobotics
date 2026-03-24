@@ -110,7 +110,7 @@ class HBridge {
   /// Invert the direction logic
   void setReverse(bool reverse) { is_reverse = reverse; }
 
- private:
+ protected:
   int in1, in2, pwm;
   int minSpeed = -255;
   int maxSpeed = 255;

@@ -63,7 +63,7 @@ class VectorFromArray {
   const T* begin() const { return data.begin(); }
   const T* end() const { return data.begin() + sz; }
 
- private:
+ protected:
   std::array<T, N> data;
   std::size_t sz;
 };

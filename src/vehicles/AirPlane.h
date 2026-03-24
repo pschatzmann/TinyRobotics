@@ -76,7 +76,7 @@ class AirPlane {
     aileronRight_.setAngle(0);
   }
 
- private:
+ protected:
   HBridge motor_;
   int rudderPin_, elevatorPin_, aileronLeftPin_, aileronRightPin_;
   ServoMotor rudder_;
@@ -121,7 +121,7 @@ class AirPlaneControl {
   /** Reset all controls */
   void reset() { plane_.reset(); }
 
- private:
+ protected:
   AirPlane& plane_;
 };
 

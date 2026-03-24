@@ -80,7 +80,7 @@ class Dijkstra {
     return path;
   }
 
- private:
+ protected:
   const MapType& map;
   CostCallback cost_cb = defaultCost;
   ValidCallback valid_cb;

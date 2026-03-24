@@ -64,7 +64,7 @@ class ServoMotor {
     maxAngle = min(maxAngle, 90);
   }
 
- private:
+ protected:
   ::Servo servo;
   int minAngle = -90;
   int maxAngle = 90;

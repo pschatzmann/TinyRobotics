@@ -53,7 +53,7 @@ class MotorBoat {
     rudder_.setAngle(0);        // center rudder
   }
 
- private:
+ protected:
   HBridge motor_;
   ServoMotor rudder_;
 };

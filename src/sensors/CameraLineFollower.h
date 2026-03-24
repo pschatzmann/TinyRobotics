@@ -120,7 +120,7 @@ class CameraLineFollower {
     return {true, position, error};
   }
 
- private:
+ protected:
   uint8_t _threshold;
   int _minWidth;
   int _lastPosition;

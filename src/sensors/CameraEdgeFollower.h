@@ -80,7 +80,7 @@ class CameraEdgeFollower {
     return {true, best_x, error};
   }
 
- private:
+ protected:
   uint8_t _threshold;
 };
 

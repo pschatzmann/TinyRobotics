@@ -70,19 +70,28 @@ class Quadrotor {
     updateMotors();
   }
 
+  /** Stop all motors and reset state */
+  void reset() {
+    stop();
+    throttle_ = 0;
+    roll_ = 0;
+    pitch_ = 0;
+    yaw_ = 0;
+  }
+
+ protected:
+  HBridge motors_[4];
+  int throttle_ = 0;
+  int roll_ = 0;
+  int pitch_ = 0;
+  int yaw_ = 0;
+
   /** Stop all motors */
   void stop() {
     for (int i = 0; i < 4; ++i) {
       motors_[i].stop();
     }
   }
-
- private:
-  HBridge motors_[4];
-  int throttle_ = 0;
-  int roll_ = 0;
-  int pitch_ = 0;
-  int yaw_ = 0;
 
   /**
    * @brief Update all motors based on throttle, roll, pitch, and yaw.

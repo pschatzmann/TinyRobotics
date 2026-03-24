@@ -50,7 +50,7 @@ class CarAckerman {
   /** Stop the car (brake motor) */
   void stop() { motor_.stop(); }
 
- private:
+ protected:
   HBridge motor_;
   ServoMotor steering_;
 };

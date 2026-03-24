@@ -82,7 +82,7 @@ class CameraObstacleDetector {
     return {density > _trigger, density};
   }
 
- private:
+ protected:
   uint8_t _threshold;
   float _trigger;
 };

@@ -74,7 +74,7 @@ class Car4WD {
     m4_.stop();
   }
 
- private:
+ protected:
   HBridge m1_;
   HBridge m2_;
   HBridge m3_;
