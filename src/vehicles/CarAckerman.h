@@ -16,7 +16,7 @@
  * car.setPins(5, 6, 9, 10); // in1, in2, pwm, steeringPin
  * car.setSpeed(60);         // 60% forward
  * car.setSteering(30);      // 30 degrees left
- * car.stop();               // brake
+ * car.end();               // brake
  * @endcode
  */
 namespace tinyrobotics {
@@ -48,7 +48,10 @@ class CarAckerman {
   void setSteeringAngle(int angle) { steering_.setAngle(angle); }
 
   /** Stop the car (brake motor) */
-  void stop() { motor_.stop(); }
+  void end() {
+    motor_.stop();
+    steering_.setAngle(0);
+  }
 
  protected:
   HBridge motor_;

@@ -68,7 +68,7 @@ class AirPlane {
   }
 
   /** Reset state of all controls */
-  void reset() {
+  void end() {
     motor_.setSpeedPercent(0);  //
     rudder_.setAngle(0);
     elevator_.setAngle(0);
@@ -119,7 +119,7 @@ class AirPlaneControl {
   void setYaw(int angle) { plane_.setRudder(angle); }
 
   /** Reset all controls */
-  void reset() { plane_.reset(); }
+  void end() { plane_.end(); }
 
  protected:
   AirPlane& plane_;

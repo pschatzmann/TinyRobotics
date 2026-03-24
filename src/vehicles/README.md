@@ -27,14 +27,14 @@ car.setPins(2, 11, 12, 13); // rear left motor
 car.setPins(3, 14, 15, 16); // rear right motor
 car.setSpeed(60);
 car.setTurn(30);
-car.stop();
+car.end();
 
 // CarAckerman
 CarAckerman ack;
 ack.setPins(5, 6, 9, 10); // drive motor and steering servo
 ack.setSpeed(70);
 ack.setSteering(20);
-ack.stop();
+ack.end();
 
 // Quadrotor
 Quadrotor quad;
@@ -46,7 +46,7 @@ quad.setThrottle(50);
 quad.setRoll(10);
 quad.setPitch(-5);
 quad.setYaw(15);
-quad.stop();
+quad.end();
 
 // AirPlane
 AirPlane plane;
@@ -58,14 +58,14 @@ plane.setThrottle(70);
 plane.setRudder(20);
 plane.setElevator(-10);
 plane.setAilerons(15, -15);
-plane.reset();
+plane.end();
 
 // MotorBoat
 MotorBoat boat;
 boat.setPins(5, 6, 9, 10);
 boat.setThrottle(80);
 boat.setRudder(25);
-boat.stop();
+boat.end();
 ```
 
 ## File Overview

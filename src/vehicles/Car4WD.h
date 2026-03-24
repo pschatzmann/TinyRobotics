@@ -16,7 +16,7 @@
  *                         m3_in1, m3_in2, m3_pwm, m4_in1, m4_in2, m4_pwm);
  * car.setSpeed(60);      // 60% forward
  * car.setTurn(30);       // turn right by slowing left motors
- * car.stop();            // brake all motors
+ * car.end();            // brake all motors
  * @endcode
  */
 namespace tinyrobotics {
@@ -30,21 +30,8 @@ class Car4WD {
    * 2=rear left, 3=rear right)
    */
   void setPins(int motor, int in1, int in2, int pwm) {
-    switch (motor) {
-      case 0:
-        m1_.setPins(in1, in2, pwm);
-        break;
-      case 1:
-        m2_.setPins(in1, in2, pwm);
-        break;
-      case 2:
-        m3_.setPins(in1, in2, pwm);
-        break;
-      case 3:
-        m4_.setPins(in1, in2, pwm);
-        break;
-      default:
-        break;
+    if (motor >= 0 && motor < 4) {
+      motors_[motor].setPins(in1, in2, pwm);
     }
   }
 
@@ -66,20 +53,38 @@ class Car4WD {
     updateMotors();
   }
 
-  /** Stop all motors */
-  void stop() {
-    m1_.stop();
-    m2_.stop();
-    m3_.stop();
-    m4_.stop();
+  /**
+   * @brief Stop all motors and reset speed and turn state.
+   */
+  void end() {
+    stop();
+    speed_ = 0;
+    turn_ = 0;
+  }
+
+  /**
+   * @brief Set a calibration gain for a specific motor (default 1.0).
+   * @param motor Motor index (0=front left, 1=front right, 2=rear left, 3=rear
+   * right)
+   * @param gain  Gain factor (e.g., 1.05 for +5% output)
+   */
+  void setMotorGain(int motor, float gain) {
+    if (motor >= 0 && motor < 4) {
+      motorGain_[motor] = gain;
+    }
   }
 
  protected:
-  HBridge m1_;
-  HBridge m2_;
-  HBridge m3_;
-  HBridge m4_;
+  HBridge motors_[4];
+  float motorGain_[4] = {1.0f, 1.0f, 1.0f, 1.0f};
   int speed_, turn_;
+
+  /** Stop all motors */
+  void stop() {
+    for (int i = 0; i < 4; ++i) {
+      motors_[i].stop();
+    }
+  }
 
   /**
    * @brief Update all motors based on speed and turn.
@@ -95,10 +100,15 @@ class Car4WD {
   void updateMotors() {
     int left = speed_ - turn_;
     int right = speed_ + turn_;
-    m1_.setSpeedPercent(constrain(left, -100, 100));
-    m3_.setSpeedPercent(constrain(left, -100, 100));
-    m2_.setSpeedPercent(constrain(right, -100, 100));
-    m4_.setSpeedPercent(constrain(right, -100, 100));
+    int leftCal = static_cast<int>(left * motorGain_[0]);
+    int rightCal = static_cast<int>(right * motorGain_[1]);
+    int rearLeftCal = static_cast<int>(left * motorGain_[2]);
+    int rearRightCal = static_cast<int>(right * motorGain_[3]);
+    motors_[0].setSpeedPercent(constrain(leftCal, -100, 100));  // front left
+    motors_[2].setSpeedPercent(constrain(rearLeftCal, -100, 100));  // rear left
+    motors_[1].setSpeedPercent(constrain(rightCal, -100, 100));  // front right
+    motors_[3].setSpeedPercent(
+        constrain(rearRightCal, -100, 100));  // rear right
   }
 };
 

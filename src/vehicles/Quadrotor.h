@@ -71,7 +71,7 @@ class Quadrotor {
   }
 
   /** Stop all motors and reset state */
-  void reset() {
+  void end() {
     stop();
     throttle_ = 0;
     roll_ = 0;
@@ -79,8 +79,18 @@ class Quadrotor {
     yaw_ = 0;
   }
 
+  /**
+   * @brief Set a calibration gain for a specific motor (default 1.0).
+   * @param motor Motor index (QuadrotorMotorNo)
+   * @param gain  Gain factor (e.g., 1.05 for +5% output)
+   */
+  void setMotorGain(QuadrotorMotorNo motor, float gain) {
+    motorGain_[motor] = gain;
+  }
+
  protected:
   HBridge motors_[4];
+  float motorGain_[4] = {1.0f, 1.0f, 1.0f, 1.0f};
   int throttle_ = 0;
   int roll_ = 0;
   int pitch_ = 0;
@@ -112,7 +122,8 @@ class Quadrotor {
     m[2] = throttle_ - pitch_ + roll_ + yaw_;
     m[3] = throttle_ - pitch_ - roll_ - yaw_;
     for (int i = 0; i < 4; ++i) {
-      motors_[i].setSpeedPercent(constrain(m[i], 0, 100));
+      int calibrated = static_cast<int>(m[i] * motorGain_[i]);
+      motors_[i].setSpeedPercent(constrain(calibrated, 0, 100));
     }
   }
 };

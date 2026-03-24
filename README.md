@@ -42,6 +42,7 @@ examples/
 - **Planning**: Path representation, A* and Dijkstra algorithms for navigation and motion planning. See `src/planning/README.md`.
 - **Sensors**: Camera-based edge/line/obstacle detection, image differencing, and range sensor abstraction. See `src/sensors/README.md`.
 - **Motors**: H-Bridge and Servo motor drivers for DC and RC servo control. See `src/motors/README.md`.
+- **Vehicles**: High-level abstractions for cars (4WD, Ackerman), quadrotors, airplanes, and boats. See `src/vehicles/README.md`.
 - **Units**: Strongly-typed units for distance, time, speed, and angle.
 - **Utilities**: Logger, scheduler, serialization, and memory allocators for embedded systems.
 
@@ -52,6 +53,7 @@ examples/
 - [Planning Module](src/planning/README.md)
 - [Sensors Module](src/sensors/README.md)
 - [Motors Module](src/motors/README.md)
+- [Vehicles Module](src/vehicles/README.md)
 
 ---
 

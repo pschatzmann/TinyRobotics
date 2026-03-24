@@ -48,7 +48,7 @@ class MotorBoat {
    */
   void setRudder(int angle) { rudder_.setAngle(angle); }
 
-  void reset() {
+  void end() {
     motor_.setSpeedPercent(0);  // stop motor
     rudder_.setAngle(0);        // center rudder
   }
