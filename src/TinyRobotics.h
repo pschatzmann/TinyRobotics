@@ -6,6 +6,7 @@
 #include "sensors/Sensors.h"
 #include "utils/Utils.h"
 #include "motors/Motors.h"
+#include "vehicles/Vehicles.h"
 
 #ifdef ARDUINO
 using namespace tinyrobotics;

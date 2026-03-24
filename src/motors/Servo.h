@@ -1,6 +1,6 @@
 #pragma once
 #include <Arduino.h>
-#include <Servo.h>
+#include <ESP32Servo.h>
 
 namespace tinyrobotics {
 
@@ -47,7 +47,7 @@ class ServoMotor {
   }
 
   /** Get the last written angle (degrees) */
-  int getAngle() const {
+  int getAngle()  {
     int angle = servo.read();
     return map(angle, 0, 180, -90, 90);
   }
@@ -62,6 +62,8 @@ class ServoMotor {
 
  private:
   ::Servo servo;
+  int minAngle = -90;
+  int maxAngle = 90;
 };
 
 }  // namespace tinyrobotics

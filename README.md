@@ -35,6 +35,26 @@ examples/
 - See the `examples/` directory for practical demonstrations of key features.
 - For module overviews, see the `README.md` files in each subdirectory (e.g., `src/coordinates/README.md`).
 
+## Modules Overview
+
+- **Coordinates**: 2D/3D coordinates, GPS, frame management, and geodetic conversion. See `src/coordinates/README.md` for details.
+- **Maps**: Grid maps, path maps (graphs), and 3D point clouds for environment modeling and navigation. See `src/maps/README.md`.
+- **Planning**: Path representation, A* and Dijkstra algorithms for navigation and motion planning. See `src/planning/README.md`.
+- **Sensors**: Camera-based edge/line/obstacle detection, image differencing, and range sensor abstraction. See `src/sensors/README.md`.
+- **Motors**: H-Bridge and Servo motor drivers for DC and RC servo control. See `src/motors/README.md`.
+- **Units**: Strongly-typed units for distance, time, speed, and angle.
+- **Utilities**: Logger, scheduler, serialization, and memory allocators for embedded systems.
+
+## Quick Links to Module READMEs
+
+- [Coordinates Module](src/coordinates/README.md)
+- [Maps Module](src/maps/README.md)
+- [Planning Module](src/planning/README.md)
+- [Sensors Module](src/sensors/README.md)
+- [Motors Module](src/motors/README.md)
+
+---
+
 ## License
 
 MIT License

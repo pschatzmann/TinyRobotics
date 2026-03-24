@@ -36,20 +36,30 @@ namespace tinyrobotics {
 class HBridge {
  public:
   /**
+   * @brief Empty constructor for late pin assignment.
+   */
+  HBridge() : in1(-1), in2(-1), pwm(-1) {}
+
+  /**
    * @param pin1 First control pin (IN1)
    * @param pin2 Second control pin (IN2)
    * @param pwmPin PWM pin for speed control (optional, -1 if not used)
    */
-  HBridge(int pin1, int pin2, int pwmPin = -1, int pwmFreq = 20000)
-      : in1(pin1), in2(pin2), pwm(pwmPin) {
-    pinMode(in1, OUTPUT);
-    pinMode(in2, OUTPUT);
+  HBridge(int pin1, int pin2, int pwmPin = -1, int pwmFreq = 20000) {
+    setPins(pin1, pin2, pwmPin, pwmFreq);
+  }
+
+  /**
+   * @brief Set the pins for the HBridge after construction.
+   */
+  void setPins(int pin1, int pin2, int pwmPin = -1, int pwmFreq = 20000) {
+    in1 = pin1;
+    in2 = pin2;
+    pwm = pwmPin;
+    if (in1 != -1) pinMode(in1, OUTPUT);
+    if (in2 != -1) pinMode(in2, OUTPUT);
 #ifdef SUPPORTS_ANALOG_WRITE_FREQ
-    // Set PWM frequency to 20kHz for quieter operation
-    analogWriteFreq(pwm, pwmFreq);
-#else
-#warning \
-    "PWM frequency control not supported on this platform. Using default frequency."
+    if (pwm != -1) analogWriteFreq(pwm, pwmFreq);
 #endif
     if (pwm != -1) pinMode(pwm, OUTPUT);
     stop();
