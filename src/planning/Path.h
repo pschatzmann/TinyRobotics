@@ -1,7 +1,9 @@
 #pragma once
+
 #include "coordinates/Coordinate.h"
 #include "utils/Common.h"
 #include <optional>
+#include <algorithm>
 
 namespace tinyrobotics {
 
