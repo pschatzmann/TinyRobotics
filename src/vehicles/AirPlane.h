@@ -13,28 +13,40 @@
  *
  * Usage Example:
  * @code
- * AirPlane plane(motorPin, rudderPin, elevatorPin, aileronLeftPin,
- * aileronRightPin); plane.setThrottle(70);      // 70% throttle
- * plane.setRudder(20);        // 20 degrees left
- * plane.setElevator(-10);     // 10 degrees down
- * plane.setAilerons(15, -15); // left up, right down
+ * AirPlane plane;
+ * // setup pins
+ * plane.setPinsMotor(5, 6, 9);      // HBridge pins
+ * plane.setPinRudder(10);                         // rudder servo
+ * plane.setPinElevator(11);                     // elevator servo
+ * plane.setPinsAilerons(12, 13); // aileron servos
+ * // control airplane
+ * plane.setThrottle(70);               // 70% throttle
+ * plane.setRudder(20);                 // 20 degrees left
+ * plane.setElevator(-10);              // 10 degrees down
+ * plane.setAilerons(15, -15);          // left up, right down
  * @endcode
  */
 namespace tinyrobotics {
 
 class AirPlane {
  public:
-  AirPlane(int motorIn1, int motorIn2, int motorPwm, int rudderPin,
-           int elevatorPin, int aileronLeftPin, int aileronRightPin)
-      : motor_(motorIn1, motorIn2, motorPwm),
-        rudderPin_(rudderPin),
-        elevatorPin_(elevatorPin),
-        aileronLeftPin_(aileronLeftPin),
-        aileronRightPin_(aileronRightPin) {
-    rudder_.attach(rudderPin_);
-    elevator_.attach(elevatorPin_);
-    aileronLeft_.attach(aileronLeftPin_);
-    aileronRight_.attach(aileronRightPin_);
+  AirPlane() = default;
+
+  /** Attach the motor HBridge. */
+  void setPinsMotor(int in1, int in2, int pwm) {
+    motor_.setPins(in1, in2, pwm);
+  }
+
+  /** Attach the rudder servo. */
+  void setPinRudder(int pin) { rudder_.attach(pin); }
+
+  /** Attach the elevator servo. */
+  void setPinElevator(int pin) { elevator_.attach(pin); }
+
+  /** Attach the left aileron servo. */
+  void setPinsAilerons(int leftPin, int rightPin) {
+    aileronLeft_.attach(leftPin);
+    aileronRight_.attach(rightPin);
   }
 
   /** Set throttle (0-100%) */
