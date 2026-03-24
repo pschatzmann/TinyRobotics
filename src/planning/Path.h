@@ -4,6 +4,7 @@
 #include "utils/Common.h"
 #include <optional>
 #include <algorithm>
+#include "utils/AllocatorPSRAM.h"
 
 namespace tinyrobotics {
 
@@ -75,7 +76,7 @@ class Path {
   void clear() { waypoints.clear(); }
 
  protected:
-  std::vector<T> waypoints;
+  std::vector<T, AllocatorPSRAM<T>> waypoints;
 };
 
 }  // namespace tinyrobotics

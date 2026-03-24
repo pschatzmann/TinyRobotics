@@ -1,4 +1,5 @@
 #pragma once
+#include "utils/AllocatorPSRAM.h"
 
 namespace tinyrobotics {
 
@@ -85,8 +86,8 @@ class PathMap {
     return neighbors;
   }
 
- protected:
-  std::vector<PathSegment<Coordinate>> segments;
+protected:
+  std::vector<PathSegment<Coordinate>, tinyrobotics::AllocatorPSRAM<PathSegment<Coordinate>>> segments;
 };
 
 }  // namespace tinyrobotics

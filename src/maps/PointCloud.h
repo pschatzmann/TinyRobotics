@@ -72,14 +72,15 @@ class PointCloud {
   };
 
  public:
-  using Container = std::vector<Point3D>;
+  using Container = std::vector<Point3D, tinyrobotics::AllocatorPSRAM<Point3D>>;
 
   PointCloud(bool isliveVoxel = false) {
     resetBounds();
     setLiveVoxelGrid(isliveVoxel);
   }
 
-  /// Update the voxel grid as points are added (for real-time occupancy updates). 
+  /// Update the voxel grid as points are added (for real-time occupancy
+  /// updates).
   void setLiveVoxelGrid(bool live) { liveVocelGrid_ = live; }
 
   /// Add a single point
@@ -96,7 +97,9 @@ class PointCloud {
   }
 
   /// Add from Coordinate
-  void add(const Coordinate<DistanceM>& coord) { add(coord.x, coord.y, coord.z); }
+  void add(const Coordinate<DistanceM>& coord) {
+    add(coord.x, coord.y, coord.z);
+  }
 
   /// Clear all data
   void clear() {
@@ -180,9 +183,11 @@ class PointCloud {
  protected:
   Container points_;
   Bounds bounds_;
-  std::unordered_set<Key, KeyHash> voxelGrid_;
   DistanceM voxelSize_ = 0.0f;
   bool liveVocelGrid_ = false;
+  // voxel grid preferrably is psram
+  using PSRAMKeyAllocator = tinyrobotics::AllocatorPSRAM<Key>;
+  std::unordered_set<Key, KeyHash, std::equal_to<Key>, PSRAMKeyAllocator> voxelGrid_;
 
   void resetBounds() {
     bounds_.min = {std::numeric_limits<float>::max(),

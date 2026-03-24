@@ -4,6 +4,7 @@
 #include <vector>
 
 #include "utils/Common.h"
+#include "utils/AllocatorPSRAM.h"
 
 namespace tinyrobotics {
 
@@ -171,7 +172,7 @@ class GridMap {
       isValid;  // Optional callback for custom validity checks
 
   // Map data: e.g. 0=free, 100=occupied, -1=unknown
-  std::vector<StateType> data;
+  std::vector<StateType, AllocatorPSRAM<StateType>> data;
 
   /// Default validity check: a cell is valid if it's not occupied. This can be
   /// overridden with a custom callback for more complex logic (e.g., dynamic
