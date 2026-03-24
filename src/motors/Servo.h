@@ -1,6 +1,10 @@
 #pragma once
 #include <Arduino.h>
-#include <ESP32Servo.h>
+#ifdef ESP32
+#  include <ESP32Servo.h>
+#else
+#  include <Servo.h>
+#endif
 
 namespace tinyrobotics {
 
