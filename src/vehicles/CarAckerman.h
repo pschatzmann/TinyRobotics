@@ -45,7 +45,7 @@ class CarAckerman : public Vehicle {
     motor_.setSpeedPercent(percent);
     // publish speed as message for telemetry
     Message<float> msg(MessageContent::MotorSpeed, percent, Unit::Percent);
-    msg.source = MessgeSource::Motor;
+    msg.source = MessgeOrigin::Motor;
     sendMessage(msg);
   }
 
@@ -56,7 +56,7 @@ class CarAckerman : public Vehicle {
     steering_.setAngle(angle);
     // publish steering angle as message for telemetry
     Message<float> msg(MessageContent::SteeringAngle, angle, Unit::AngleDegree);
-    msg.source = MessgeSource::Servo;
+    msg.source = MessgeOrigin::Servo;
     sendMessage(msg);
   }
 
@@ -71,7 +71,7 @@ class CarAckerman : public Vehicle {
 
   bool onMessage(const Message<float>& msg) override {
     float angle;
-    if (msg.source != MessgeSource::RemoteControl) return false;  // Only handle RC messages
+    if (msg.source != MessgeOrigin::RemoteControl) return false;  // Only handle RC messages
     switch (msg.content) {
       case MessageContent::Throttle:
         if (msg.unit != Unit::Percent) return false;

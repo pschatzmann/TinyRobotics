@@ -1,5 +1,5 @@
+#pragma once
 #include <vector>
-
 #include "Message.h"
 #include "coordinates/Coordinates.h"
 #include "coordinates/GPSCoordinate.h"
@@ -31,7 +31,10 @@ class MessageHandler {
     TRLogger.warn("MessageHandler: Received unhandled GPSCoordinate message");
     return false;  // Default implementation does not handle Coordinate messages
   };
+};
 
+class MessageSource {
+ public:
   /**
    * @brief Add a message handler to the chain.
    *
@@ -74,5 +77,6 @@ class MessageHandler {
  protected:
   std::vector<MessageHandler*> messageHandlers_;
 };
+
 
 }  // namespace tinyrobotics

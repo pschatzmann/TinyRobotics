@@ -16,7 +16,7 @@ namespace tinyrobotics {
  * All vehicle classes (e.g., Car4WD, Quadrotor, AirPlane, MotorBoat) should
  * inherit from Vehicle.
  */
-class Vehicle : public MessageHandler {
+class Vehicle : public MessageHandler, public MessageSource {
  public:
   /**
    * @brief Reset the vehicle to a safe or neutral state (pure virtual).

@@ -57,7 +57,7 @@ class AirPlane : public Vehicle {
 
     // publish motor speed as message for telemetry
     Message<float> msg(MessageContent::MotorSpeed, percent, Unit::Percent);
-    msg.source = MessgeSource::Motor;
+    msg.source = MessgeOrigin::Motor;
     sendMessage(msg);
   }
 
@@ -67,7 +67,7 @@ class AirPlane : public Vehicle {
 
     // publish rudder update as message for telemetry
     Message<float> msg(MessageContent::Yaw, angle, Unit::AngleDegree);
-    msg.source = MessgeSource::Rudder;
+    msg.source = MessgeOrigin::Rudder;
     sendMessage(msg);
   }
 
@@ -76,7 +76,7 @@ class AirPlane : public Vehicle {
     elevator_.setAngle(angle);
     // publish elevator update as message for telemetry
     Message<float> msg(MessageContent::Pitch, angle, Unit::AngleDegree);
-    msg.source = MessgeSource::Elevator;
+    msg.source = MessgeOrigin::Elevator;
     sendMessage(msg);
   }
 
@@ -87,12 +87,12 @@ class AirPlane : public Vehicle {
 
     // publish aileron update as message for telemetry
     Message<float> msgLeft(MessageContent::Roll, leftAngle, Unit::AngleDegree);
-    msgLeft.source = MessgeSource::Aileron;
+    msgLeft.source = MessgeOrigin::Aileron;
     msgLeft.source_id = 0;  // Left aileron
     sendMessage(msgLeft);
     Message<float> msgRight(MessageContent::Roll, rightAngle,
                             Unit::AngleDegree);
-    msgRight.source = MessgeSource::Aileron;
+    msgRight.source = MessgeOrigin::Aileron;
     msgRight.source_id = 1;  // Right aileron
     sendMessage(msgRight);
   }
@@ -121,7 +121,7 @@ class AirPlane : public Vehicle {
 
   bool onMessage(const Message<float>& msg) override {
     float angle;
-    if (msg.source != MessgeSource::RemoteControl)
+    if (msg.source != MessgeOrigin::RemoteControl)
       return false;  // Only handle RC messages
     switch (msg.content) {
       case MessageContent::Throttle:

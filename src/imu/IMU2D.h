@@ -2,64 +2,66 @@
 #include <math.h>
 #include <stdint.h>
 
+#include "communication/Message.h"
+#include "communication/MessageHandler.h"
 #include "coordinates/GPSCoordinate.h"
 #include "utils/KalmanFilter.h"
+#undef F
 
 namespace tinyrobotics {
 
 /**
- * @brief 2D IMU sensor fusion class for robotics applications.
+ * @brief 2D IMU sensor fusion class using an Extended Kalman Filter (EKF).
  *
- * This class fuses data from gyroscope, accelerometer, magnetometer, and GPS to
- * estimate heading (angle), velocity, and position in a 2D plane. It uses
- * Kalman filter fusion for both heading and velocity, providing robust,
- * low-noise state estimates suitable for robotics.
+ * This class fuses gyroscope, accelerometer, magnetometer, and GPS data to
+ * estimate 2D position, velocity, and heading (yaw angle) for robotics
+ * applications. It uses an EKF with a 6D state vector:
  *
- * - **Heading fusion:** Combines gyro, accelerometer, magnetometer, and GPS
- * angles using a Kalman filter.
- * - **Velocity fusion:** Combines acceleration integration and GPS velocity
- * using a Kalman filter.
- * - **Position estimation:** Integrates velocity to estimate 2D position.
+ *   [x, y, vx, vy, angle, gyro_bias]
  *
- * The class is designed for extensibility and embedded use, with clear
- * separation of sensor update, fusion, and state query methods. All units are
- * SI (meters, seconds, radians).
+ * - x, y: position (meters)
+ * - vx, vy: velocity (m/s)
+ * - angle: heading (radians)
+ * - gyro_bias: estimated gyro Z bias (rad/s)
+ *
+ * The process model integrates acceleration and gyro rate, while the
+ * measurement model incorporates magnetometer and GPS updates. Angle
+ * integration is handled by the EKF state.
+ *
+ * Features:
+ * - Robust sensor fusion for position, velocity, and heading
+ * - Online gyro bias estimation
+ * - Angle wrapping for heading
+ * - All units SI (meters, seconds, radians)
  *
  * Example usage:
  * @code
  *   tinyrobotics::IMU2D<float> imu;
- *   imu.begin(initialHeading, initialPosition);
- *   // In your update loop:
+ *   imu.begin(initialAngle, initialPosition);
  *   imu.update(accelX, accelY, gyroZ, millis());
- *   imu.updateMagnetometer(magX, magY, millis());
+ *   imu.updateMagnetometer(magX, magY);
  *   imu.updateGPS(gpsCoord, millis());
- *   imu.calculate();
- *   float heading = imu.getAngleBlended();
- *   float velocity = imu.getVelocityBlended();
+ *   // publish and/or get estimates
+ *   imu.publish();
  *   auto pos = imu.getPosition();
+ *   auto vel = imu.getVelocity();
+ *   float heading = imu.getHeadingAngleRad();
  * @endcode
  *
  * @tparam T Numeric type (float or double recommended)
  */
 
 template <typename T = float>
-class IMU2D {
-  /**
-   * @brief 2D vector struct for position and velocity.
-   */
+class IMU2D : public MessageSource {
   struct Vec2 {
-    T x = 0;
-    T y = 0;
+    T x = 0, y = 0;
   };
 
  public:
-  /**
-   * @brief Default constructor.
-   */
   IMU2D() = default;
 
   /**
-   * @brief Calibrate the gyroscope bias (zero-rate offset).
+   * @brief Calibrate the gyroscope Z-axis bias (zero-rate offset).
    *
    * Gyroscopes often have a small offset (bias) even when stationary, which
    * causes the integrated angle to drift over time. This method should be
@@ -73,24 +75,28 @@ class IMU2D {
    *   imu.calibrateGyro(currentGyroZ); // Call when device is stationary
    * @endcode
    *
-   * @param gyroZ The measured gyro Z value (rad/s) when stationary.
+   * @param g The measured gyro Z value (rad/s) when stationary.
    *
    * @note Call this method before normal operation, ideally after power-on or
    * reset, and ensure the device is not rotating during calibration.
    */
-  void calibrateGyro(T gyroZ) { gyroBias = gyroZ; }
+  void calibrateGyro(T g) { gyroBias = g; }
 
   /**
-   * @brief Initialize the IMU2D state with a known heading and position.
+   * @brief Initialize the IMU2D EKF state with a known heading and position.
    *
-   * This method sets the initial orientation (relative to north) and position
-   * of the IMU. It should be called at startup, after sensor calibration, to
-   * ensure all internal angles and position are referenced to a common global
-   * frame (e.g., north and world coordinates).
+   * This method sets the initial orientation (heading, in radians) and position
+   * (in meters) of the IMU. It should be called at startup, after sensor
+   * calibration, to ensure all internal state variables are referenced to a
+   * common global frame (e.g., north and world coordinates).
    *
-   * @param initialAngle Initial heading in radians (relative to north, e.g.,
+   * The EKF state vector is initialized as:
+   *   [x, y, vx, vy, angle, bias]
+   *
+   * @param initialAngle Initial heading in Degrees (relative to north, e.g.,
    * from magnetometer)
    * @param initialPosition Initial position in world or base frame coordinates
+   * (meters)
    * @return true if initialization was successful
    *
    * @note Call this before the first update() to ensure consistent sensor
@@ -101,314 +107,172 @@ class IMU2D {
    *   imu.begin(initialHeading, initialPosition);
    * @endcode
    */
-  bool begin(T initialAngle, Coordinate<DistanceM> initialPosition) {
-    gyroAngle = initialAngle;
-    accelAngle = initialAngle;
-    position = initialPosition;
+  bool begin(T initialAngleDeg, Coordinate<DistanceM> initialPosition) {
+    // State: [x, y, vx, vy, angle, bias]
+    ekf.x(0, 0) = initialPosition.x;
+    ekf.x(1, 0) = initialPosition.y;
+    ekf.x(2, 0) = 0;
+    ekf.x(3, 0) = 0;
+    ekf.x(4, 0) = initialAngleDeg * M_PI / 180;
+    ekf.x(5, 0) = 0;
     return true;
   }
 
-  /**
-   * @brief Update IMU state with new accelerometer and gyroscope data.
-   * @param accelX Acceleration in X (m/s^2)
-   * @param accelY Acceleration in Y (m/s^2)
-   * @param gyroZ Angular velocity around Z (rad/s)
-   * @param nowMillis Current time in milliseconds
-   */
+  /// Update with accelerometer and gyro measurements (accelX, accelY in sensor
+  /// frame, gyroZ in rad/s)
   void update(T accelX, T accelY, T gyroZ_in, unsigned long nowMillis) {
-    T dt_in = 0;
-    if (lastUpdateMillis != 0) {
-      dt_in =
-          (nowMillis - lastUpdateMillis) / 1000.0f;  // convert ms to seconds
+    if (lastUpdateMillis == 0) {
+      lastUpdateMillis = nowMillis;
+      return;
     }
+
+    T dt = (nowMillis - lastUpdateMillis) / (T)1000;
     lastUpdateMillis = nowMillis;
-    if (dt_in <= 0) return;  // skip integration on first call or invalid dt
+    if (dt <= 0) return;
 
-    // Remove bias
-    T gyroZ = gyroZ_in - gyroBias;
-    this->gyroZ = gyroZ;
-    this->dt = dt_in;
+    T& x = ekf.x(0, 0);
+    T& y = ekf.x(1, 0);
+    T& vx = ekf.x(2, 0);
+    T& vy = ekf.x(3, 0);
+    T& angle = ekf.x(4, 0);
+    T& bias = ekf.x(5, 0);
 
-    // --- Gyro integration (angle)
-    gyroAngle += gyroZ * dt_in;
+    T gyro = gyroZ_in - gyroBias;
 
-    // --- Accel angle (tilt in 2D plane)
-    accelAngle = atan2(accelY, accelX);
+    // Predict angle
+    angle += dt * (gyro - bias);
 
-    // --- Rotate acceleration into world frame (using blended angle for motion)
-    T blendAngle = 0.8f * gyroAngle + 0.2 * accelAngle;  // simple blending
-    T cosA = cos(blendAngle);
-    T sinA = sin(blendAngle);
+    // Gravity compensation
+    const T g = (T)9.80665;
+    T gx = g * cos(angle);
+    T gy_ = g * sin(angle);
 
-    Vec2 accelWorld;
-    accelWorld.x = accelX * cosA - accelY * sinA;
-    accelWorld.y = accelX * sinA + accelY * cosA;
+    T linAx = accelX - gx;
+    T linAy = accelY - gy_;
 
-    // --- Integrate velocity
-    velocity.x += accelWorld.x * dt_in;
-    velocity.y += accelWorld.y * dt_in;
-    accelVelocity2D = velocity;
-    accelVelocity = sqrt(velocity.x * velocity.x + velocity.y * velocity.y);
+    // Rotate to world frame
+    T cosA = cos(angle);
+    T sinA = sin(angle);
+    T ax_w = linAx * cosA - linAy * sinA;
+    T ay_w = linAx * sinA + linAy * cosA;
 
-    // --- Integrate position
-    position.x += velocity.x * dt_in;
-    position.y += velocity.y * dt_in;
+    // State prediction
+    x += vx * dt + 0.5 * ax_w * dt * dt;
+    y += vy * dt + 0.5 * ay_w * dt * dt;
+    vx += ax_w * dt;
+    vy += ay_w * dt;
+
+    // Jacobian F
+    auto& F = ekf.Fmat;
+    for (int i = 0; i < 6; i++)
+      for (int j = 0; j < 6; j++) F(i, j) = (i == j);
+    F(0, 2) = dt;
+    F(1, 3) = dt;
+    F(4, 5) = -dt;
+
+    ekf.P = F * ekf.P * transpose(F) + ekf.Q;
   }
 
-  /**
-   * @brief Update heading estimate with magnetometer data.
-   * @param magX Magnetometer X axis
-   * @param magY Magnetometer Y axis
-   * @param nowMillis Current time in milliseconds
-   */
-  void updateMagnetometer(T magX, T magY, unsigned long nowMillis) {
-    // --- Magnetometer angle (heading)
-    magAngle = atan2(magY, magX);
-    lastMagUpdateMillis = nowMillis;
-    hasMagInfo = true;
+  /// Update with magnetometer measurement (magX, magY in sensor frame)
+  void updateMagnetometer(T magX, T magY) {
+    T meas = atan2(magY, magX);
+
+    T stateAngle = ekf.x(4, 0);
+    T innovation = wrapAngle(meas - stateAngle);
+
+    tinyrobotics::Matrix<2, 1> z;
+    z(0, 0) = stateAngle + innovation;
+    z(1, 0) = 0;  // dummy for 2x1 measurement
+
+    tinyrobotics::Matrix<2, 6> H = {};
+    H(0, 4) = 1;                              // angle affects state[4]
+    for (int j = 0; j < 6; j++) H(1, j) = 0;  // set second row to zero
+
+    tinyrobotics::Matrix<2, 2> R = {};
+    R(0, 0) = R_mag;
+    R(1, 1) = 1e6;  // effectively disables second measurement
+
+    ekf.update(z);  // uses standard 2x2 NZ=2 update
   }
 
-  /**
-   * @brief Update position and velocity estimate with GPS data.
-   * @param gps Latest GPS coordinate
-   * @param nowMillis Current time in milliseconds
-   */
+  /// Provide actual GPS coordinate
   void updateGPS(const GPSCoordinate& gps, unsigned long nowMillis) {
-    // compute GPS velocity and angle if we have a previous GPS position
-    if (gpsPosition) {
-      gpsAngle = gps.bearing(gpsPosition);
-      gpsDistanceM = gps.distance(gpsPosition);
-      float dt = (nowMillis - lastGPSUpdateMillis) / 1000.0f;  // seconds
-      if (dt > 0) {
-        gpsVelocity = gpsDistanceM / dt;
-        // Calculate velocity components from angle and speed
-        gpsVelocity2D.x = gpsVelocity * cos(gpsAngle);
-        gpsVelocity2D.y = gpsVelocity * sin(gpsAngle);
-        hasGPSInfo = true;
+    if (hasPrevGPS) {
+      T dtGPS = (nowMillis - lastGPSUpdateMillis) / (T)1000;
+      if (dtGPS > 0) {
+        T dist = gps.distance(prevGPS);
+        T ang = gps.bearing(prevGPS);
+
+        tinyrobotics::Matrix<2, 1> z;
+        z(0, 0) = (dist / dtGPS) * cos(ang);
+        z(1, 0) = (dist / dtGPS) * sin(ang);
+
+        tinyrobotics::Matrix<2, 6> H = {};
+        H(0, 2) = 1;
+        H(1, 3) = 1;
+
+        ekf.update(z);  // uses standard NZ=2 update
       }
     }
-    // Save GPS position
-    gpsPosition = gps;
+
+    prevGPS = gps;
     lastGPSUpdateMillis = nowMillis;
+    hasPrevGPS = true;
   }
 
-  /**
-   * @brief Run Kalman filter fusion for heading (angle) and velocity
-   * (magnitude).
-   *
-   * Heading: fuses gyro, accel, mag, GPS angles.
-   * Velocity: fuses acceleration integration and GPS velocity.
-   *
-   * @param R_accel Measurement noise for accel angle (default: 0.1)
-   * @param R_mag Measurement noise for mag angle (default: 0.02)
-   * @param R_gps Measurement noise for GPS angle (default: 0.2)
-   * @param R_accelVel Measurement noise for accel velocity (default: 0.2)
-   * @param R_gpsVel Measurement noise for GPS velocity (default: 0.5)
-   */
-  void calculate(float R_accel = 0.1f, float R_mag = 0.02f, float R_gps = 0.2f,
-                 float R_accelVel = 0.2f, float R_gpsVel = 0.5f) {
-    calculateAngle(R_accel, R_mag, R_gps);
-    calculateVelocity(R_accelVel, R_gpsVel);
+  void publish() {
+    Coordinate<DistanceM> pos = getPosition();
+    T angle = getHeadingAngleRad();
+    T vel = getVelocity();
+
+    // Publish as message (could be extended to include velocity, etc.)
+    Message<float> msg{MessageContent::Speed, vel, Unit::MetersPerSecond};
+    msg.source = MessgeOrigin::IMU;
+    sendMessage(msg);
+
+    Message<float> msgAngle{MessageContent::Heading, angle, Unit::AngleRadian};
+    msg.source = MessgeOrigin::IMU;
+    sendMessage(msgAngle);
+
+    Message<Coordinate<DistanceM>> msgPos{MessageContent::Position, pos,
+                                          Unit::Meters};
+    msgPos.source = MessgeOrigin::IMU;
+    sendMessage(msgPos);
+
+    Message<GPSCoordinate> msgGPS{MessageContent::PositionGPS, prevGPS,
+                                  Unit::AngleDegree};
+    msgPos.source = MessgeOrigin::IMU;
+    sendMessage(msgPos);
   }
 
-  /**
-   * @brief Reset all state variables to initial values.
-   */
-  void reset() {
-    // Reset all class variables to initial state
-    position = {0, 0};
-    gyroAngle = 0;
-    accelAngle = 0;
-    accelVelocity = 0;
-    magAngle = 0;
-    gpsAngle = 0;
-    gpsVelocity = 0;
-    gpsDistanceM = 0;
-    lastUpdateMillis = 0;
-    lastMagUpdateMillis = 0;
-    lastGPSUpdateMillis = 0;
-    hasGPSInfo = false;
-    hasMagInfo = false;
-    gpsPosition = GPSCoordinate();
-    accelVelocity2D = {0, 0};
-    gpsVelocity2D = {0, 0};
-    velocity = {0 ,0};
-    blendedAngle = 0;
-    // Reset Kalman filter for angle
-    kf.x(0, 0) = 0;
-    kf.Fmat(0, 0) = 1.0f;
-    kf.P = kf.Fmat * kf.P * transpose(kf.Fmat) + kf.Q;
-    kf.H(0, 0) = 1.0f;
-    kf.R(0, 0) = 0.1f;
-    // Reset Kalman filter for velocity
-    velocityKF.x(0, 0) = 0;
-    velocityKF.Fmat(0, 0) = 1.0f;
-    // No process model (could add acceleration*dt if desired)
-    velocityKF.x(0, 0) += 0;
-    velocityKF.P = velocityKF.Fmat * velocityKF.P * transpose(velocityKF.Fmat) +
-                   velocityKF.Q;
-    blendedVelocity = 0;
-    // do not reset gyroBias
-    // gyroBias = 0;
+  /// get position
+  Coordinate<DistanceM> getPosition() const {
+    return {ekf.x(0, 0), ekf.x(1, 0)};
   }
-
-  // Getters
-  /**
-   * @brief Get the current gyro-integrated angle (rad).
-   */
-  T getGyroAngle() const { return gyroAngle; }
-
-  /**
-   * @brief Get the current accelerometer-derived angle (rad).
-   */
-  T getAccelAngle() const { return accelAngle; }
-
-  /**
-   * @brief Get the current magnetometer-derived angle (rad).
-   */
-  T getMagAngle() const { return magAngle; }
-
-  /**
-   * @brief Get the current GPS-derived angle (rad).
-   */
-  T getGPSAngle() const { return gpsAngle; }
-
-  /**
-   * @brief Get the current velocity magnitude from accelerometer integration
-   * (m/s).
-   */
-  T getAccelVelocity() const { return accelVelocity; }
-
-  /**
-   * @brief Get the current velocity magnitude from GPS (m/s).
-   */
-  T getGPSVelocity() const { return gpsVelocity; }
-
-  /**
-   * @brief Get the blended velocity magnitude from IMU and GPS.
-   * @param imuWeight Weight for IMU velocity (0-1)
-   * @return Blended velocity (m/s)
-   */
-  T getVelocityBlended() const { return blendedVelocity; }
-
-  /**
-   * @brief Get the blended angle in radians.
-   * @return T
-   */
-  T getAngleBlended() { return blendedAngle; }
-
-  /**
-   * @brief Get the current estimated position in the 2D plane.
-   * @return Position vector (meters)
-   */
-  Coordinate<DistanceM> getPosition() const { return position; }
-
-  /**
-   * @brief Get the most recent GPS position.
-   * @return GPSCoordinate object
-   */
-  GPSCoordinate getGPSPosition() const { return gpsPosition; }
+  /// get velocity as 2D vector and magnitude in m/s
+  Vec2 getVelocity2D() const { return {ekf.x(2, 0), ekf.x(3, 0)}; }
+  /// get velocity magnitude in m/s
+  T getVelocity() const {
+    Vec2 v = getVelocity2D();
+    return sqrt(v.x * v.x + v.y * v.y);
+  }
+  /// get heading angle (radians)
+  T getHeadingAngleRad() const { return ekf.x(4, 0); }
 
  private:
+  KalmanFilter<6, 2> ekf;
+  GPSCoordinate prevGPS;
+  bool hasPrevGPS = false;
+
   unsigned long lastUpdateMillis = 0;
-  unsigned long lastMagUpdateMillis = 0;
   unsigned long lastGPSUpdateMillis = 0;
-  T accelWeight = 0;
-  T gyroAngle = 0;
-  T accelAngle = 0;
-  T accelVelocity = 0;
-  T magAngle = 0;
   T gyroBias = 0;
-  T gpsVelocity = 0;
-  T gpsAngle = 0;
-  T gpsDistanceM = 0;
-  bool hasGPSInfo = false;
-  bool hasMagInfo = false;
+  T R_mag = 0.05;
 
-  Vec2 accelVelocity2D;
-  Vec2 gpsVelocity2D;
-  Vec2 velocity;
-
-  // Store latest gyroZ and dt for Kalman prediction
-  T gyroZ = 0;
-  T dt = 0;
-  KalmanFilter<1, 1> kf;
-  T blendedAngle = 0;
-  KalmanFilter<1, 1> velocityKF;
-  T blendedVelocity = 0;
-
-  Coordinate<DistanceM> position;
-  GPSCoordinate gpsPosition;  // For GPS fusion
-
-  void calculateAngle(float R_accel = 0.1f, float R_mag = 0.02f,
-                      float R_gps = 0.2f) {
-    // --- Prediction (state: angle)
-    // State transition: x = x + gyroZ * dt
-    kf.Fmat(0, 0) = 1.0f;
-    kf.x(0, 0) += gyroZ * dt;
-    kf.P = kf.Fmat * kf.P * transpose(kf.Fmat) + kf.Q;
-
-    // --- Updates (as available)
-    // Accelerometer angle update
-    {
-      tinyrobotics::Matrix<1, 1> z;
-      z(0, 0) = accelAngle;
-      kf.H(0, 0) = 1.0f;
-      kf.R(0, 0) = R_accel;
-      kf.update(z);
-    }
-    // Magnetometer angle update
-    if (hasMagInfo) {
-      tinyrobotics::Matrix<1, 1> z;
-      z(0, 0) = magAngle;
-      kf.H(0, 0) = 1.0f;
-      kf.R(0, 0) = R_mag;
-      kf.update(z);
-    }
-    // GPS angle update (if available)
-    if (hasGPSInfo) {
-      tinyrobotics::Matrix<1, 1> z;
-      z(0, 0) = gpsAngle;
-      kf.H(0, 0) = 1.0f;
-      kf.R(0, 0) = R_gps;
-      kf.update(z);
-    }
-    // --- Result
-    blendedAngle = kf.x(0, 0);
-  }
-
-  /**
-   * @brief Run Kalman filter fusion for velocity (magnitude) using accel and
-   * GPS.
-   *
-   * @param R_accelVel Measurement noise for accel velocity
-   * @param R_gpsVel Measurement noise for GPS velocity
-   */
-  void calculateVelocity(float R_accelVel = 0.2f, float R_gpsVel = 0.5f) {
-    // Prediction: x = x (constant velocity model)
-    velocityKF.Fmat(0, 0) = 1.0f;
-    // No process model (could add acceleration*dt if desired)
-    velocityKF.x(0, 0) += 0;
-    velocityKF.P = velocityKF.Fmat * velocityKF.P * transpose(velocityKF.Fmat) +
-                   velocityKF.Q;
-
-    // Accelerometer velocity update (from integration)
-    {
-      tinyrobotics::Matrix<1, 1> z;
-      z(0, 0) = accelVelocity;
-      velocityKF.H(0, 0) = 1.0f;
-      velocityKF.R(0, 0) = R_accelVel;
-      velocityKF.update(z);
-    }
-    // GPS velocity update (if available)
-    if (hasGPSInfo) {
-      tinyrobotics::Matrix<1, 1> z;
-      z(0, 0) = gpsVelocity;
-      velocityKF.H(0, 0) = 1.0f;
-      velocityKF.R(0, 0) = R_gpsVel;
-      velocityKF.update(z);
-    }
-    blendedVelocity = velocityKF.x(0, 0);
+  static T wrapAngle(T a) {
+    while (a > M_PI) a -= 2 * M_PI;
+    while (a < -M_PI) a += 2 * M_PI;
+    return a;
   }
 };
 
