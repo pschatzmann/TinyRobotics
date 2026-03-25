@@ -4,6 +4,8 @@
 
 #include "communication/Message.h"
 #include "communication/MessageHandler.h"
+#include "communication/MessageSource.h"
+#include "coordinates/Coordinate.h"
 #include "coordinates/GPSCoordinate.h"
 #include "utils/KalmanFilter.h"
 #undef F

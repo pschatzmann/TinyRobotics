@@ -2,6 +2,7 @@
 
 #include "communication/Message.h"
 #include "communication/MessageHandler.h"
+#include "communication/MessageSource.h"
 
 namespace tinyrobotics {
 
