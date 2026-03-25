@@ -1,6 +1,10 @@
 #pragma once
+#include "AllocatorPSRAM.h"
+#include "BaseStream.h"
+#include "Buffers.h"
+#include "Common.h"
 #include "Config.h"
-#include "Scheduler.h"
 #include "KalmanFilter.h"
 #include "LoggerClass.h"
-#include "Common.h"
+#include "MultiOutput.h"
+#include "Scheduler.h"
