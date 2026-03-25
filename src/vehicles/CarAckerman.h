@@ -2,6 +2,7 @@
 
 #include "motors/HBridge.h"
 #include "motors/Servo.h"
+#include "Vehicle.h"
 
 /**
  * @brief Car with Ackerman steering and single drive motor.
@@ -21,7 +22,7 @@
  */
 namespace tinyrobotics {
 
-class CarAckerman {
+class CarAckerman : public Vehicle {
  public:
   CarAckerman() = default;
 
@@ -49,8 +50,12 @@ class CarAckerman {
 
   /** Stop the car (brake motor) */
   void end() {
-    motor_.stop();
+    motor_.end();
     steering_.setAngle(0);
+  }
+
+  bool isPinsSet() const {
+    return motor_.isPinsSet() && steering_.isPinsSet();
   }
 
  protected:

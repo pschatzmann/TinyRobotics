@@ -2,6 +2,7 @@
 
 #include "motors/HBridge.h"
 #include "motors/Servo.h"
+#include "Vehicle.h"
 
 /**
  * @brief Simple fixed-wing airplane model with motor, rudder, elevator, and
@@ -28,7 +29,7 @@
  */
 namespace tinyrobotics {
 
-class AirPlane {
+class AirPlane : public Vehicle {
  public:
   AirPlane() = default;
 
@@ -76,6 +77,11 @@ class AirPlane {
     aileronRight_.setAngle(0);
   }
 
+  bool isPinsSet() const {
+    return motor_.isPinsSet() && rudder_.isPinsSet() && elevator_.isPinsSet() &&
+           aileronLeft_.isPinsSet() && aileronRight_.isPinsSet();
+  }
+
  protected:
   HBridge motor_;
   int rudderPin_, elevatorPin_, aileronLeftPin_, aileronRightPin_;
@@ -120,6 +126,10 @@ class AirPlaneControl {
 
   /** Reset all controls */
   void end() { plane_.end(); }
+
+  bool isPinsSet() const {
+    return plane_.isPinsSet() ;
+  }
 
  protected:
   AirPlane& plane_;

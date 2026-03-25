@@ -2,6 +2,7 @@
 
 #include "motors/HBridge.h"
 #include "motors/Servo.h"
+#include "Vehicle.h"
 
 namespace tinyrobotics {
 
@@ -22,7 +23,7 @@ namespace tinyrobotics {
  * @endcode
  */
 
-class MotorBoat {
+class MotorBoat : public Vehicle {
  public:
   MotorBoat() = default;
 
@@ -51,6 +52,10 @@ class MotorBoat {
   void end() {
     motor_.setSpeedPercent(0);  // stop motor
     rudder_.setAngle(0);        // center rudder
+  }
+
+  bool isPinsSet() const {
+    return motor_.isPinsSet() && rudder_.isPinsSet();
   }
 
  protected:

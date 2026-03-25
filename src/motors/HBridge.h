@@ -1,6 +1,8 @@
 #pragma once
 #include <Arduino.h>
 
+#include "Motor.h"
+
 namespace tinyrobotics {
 
 /**
@@ -33,7 +35,7 @@ namespace tinyrobotics {
  * @note If your platform does not support analogWriteFreq, the default PWM
  * frequency will be used.
  */
-class HBridge {
+class HBridge : public Motor {
  public:
   /**
    * @brief Empty constructor for late pin assignment.
@@ -93,11 +95,7 @@ class HBridge {
   }
 
   /** Stop the motor (brake) */
-  void stop() {
-    digitalWrite(in1, LOW);
-    digitalWrite(in2, LOW);
-    if (pwm != -1) analogWrite(pwm, 0);
-  }
+  void end() override { stop(); }
 
   /// Constrain the speed range to a subset of -255..255. This can be used to
   /// limit the maximum speed for safety or to match the characteristics of a
@@ -110,11 +108,21 @@ class HBridge {
   /// Invert the direction logic
   void setReverse(bool reverse) { is_reverse = reverse; }
 
+  /// Check if the control pins have been set (i.e., not -1).
+  bool isPinsSet() const { return in1 != -1 && in2 != -1; }
+
  protected:
   int in1, in2, pwm;
   int minSpeed = -255;
   int maxSpeed = 255;
   bool is_reverse = false;
+
+  bool stop() {
+    digitalWrite(in1, LOW);
+    digitalWrite(in2, LOW);
+    if (pwm != -1) analogWrite(pwm, 0);
+    return true;
+  }
 };
 
 }  // namespace tinyrobotics

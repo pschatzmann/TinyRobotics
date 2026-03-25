@@ -1,6 +1,7 @@
 #pragma once
 
 #include "motors/HBridge.h"
+#include "Vehicle.h"
 
 namespace tinyrobotics {
 
@@ -34,7 +35,7 @@ enum QuadrotorMotorNo {
  * @endcode
  */
 
-class Quadrotor {
+class Quadrotor : public Vehicle {
  public:
   Quadrotor() = default;
 
@@ -72,7 +73,9 @@ class Quadrotor {
 
   /** Stop all motors and reset state */
   void end() {
-    stop();
+    for (int i = 0; i < 4; ++i) {
+      motors_[i].end();
+    }
     throttle_ = 0;
     roll_ = 0;
     pitch_ = 0;
@@ -88,6 +91,13 @@ class Quadrotor {
     motorGain_[motor] = gain;
   }
 
+  bool isPinsSet() const {
+    for (int i = 0; i < 4; ++i) {
+      if (!motors_[i].isPinsSet()) return false;
+    }
+    return true;
+  }
+
  protected:
   HBridge motors_[4];
   float motorGain_[4] = {1.0f, 1.0f, 1.0f, 1.0f};
@@ -96,12 +106,6 @@ class Quadrotor {
   int pitch_ = 0;
   int yaw_ = 0;
 
-  /** Stop all motors */
-  void stop() {
-    for (int i = 0; i < 4; ++i) {
-      motors_[i].stop();
-    }
-  }
 
   /**
    * @brief Update all motors based on throttle, roll, pitch, and yaw.

@@ -1,5 +1,6 @@
 #pragma once
 
+#include "Vehicle.h"
 #include "motors/HBridge.h"
 
 /**
@@ -21,7 +22,7 @@
  */
 namespace tinyrobotics {
 
-class Car4WD {
+class Car4WD : public Vehicle {
  public:
   Car4WD() : speed_(0), turn_(0) {}
 
@@ -56,8 +57,10 @@ class Car4WD {
   /**
    * @brief Stop all motors and reset speed and turn state.
    */
-  void end() {
-    stop();
+  void end() override {
+    for (int i = 0; i < 4; ++i) {
+      motors_[i].end();
+    }
     speed_ = 0;
     turn_ = 0;
   }
@@ -74,17 +77,18 @@ class Car4WD {
     }
   }
 
+  bool isPinsSet() const {
+    for (int i = 0; i < 4; ++i) {
+      if (!motors_[i].isPinsSet()) return false;
+    }
+    return true;
+  }
+
  protected:
   HBridge motors_[4];
   float motorGain_[4] = {1.0f, 1.0f, 1.0f, 1.0f};
   int speed_, turn_;
 
-  /** Stop all motors */
-  void stop() {
-    for (int i = 0; i < 4; ++i) {
-      motors_[i].stop();
-    }
-  }
 
   /**
    * @brief Update all motors based on speed and turn.
