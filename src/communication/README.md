@@ -21,6 +21,7 @@ Here is an overview of the most relevant communication protocols that you can ch
 This section describes the supported message formats and protocols for exchanging data between devices, modules, or systems in TinyRobotics.
 
 - **TinyRobotics Messages**: A lean remote control format
+- **JSON and XML messages**: TinyRobotics Messages can be serialized to JSON or XML and forwarded to any destination Stream
 - **NMEA**: Standard protocol for GPS and marine devices (see NMEAParser).
 - **Spektrum Satellite**: A well defined remote control protocol
 
