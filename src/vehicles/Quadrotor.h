@@ -1,7 +1,7 @@
 #pragma once
 
-#include "motors/HBridge.h"
 #include "Vehicle.h"
+#include "motors/HBridge.h"
 
 namespace tinyrobotics {
 
@@ -98,6 +98,37 @@ class Quadrotor : public Vehicle {
     return true;
   }
 
+  bool onMessage(const Message<float>& msg) override {
+    float angle;
+    if (msg.source != MessgeSource::RemoteControl) return false;  // Only handle RC messages
+    switch (msg.content) {
+      case MessageContent::Throttle:
+        if (msg.unit != Unit::Percent) return false;
+        setThrottle(static_cast<int>(msg.value));
+        return true;
+      case MessageContent::Pitch:
+        angle = msg.value;
+        if (!toAngleDegree(angle, msg.unit, angle))
+          return false;  // Invalid unit
+        setPitch(angle);
+        return true;
+      case MessageContent::Roll:
+        angle = msg.value;
+        if (!toAngleDegree(angle, msg.unit, angle))
+          return false;  // Invalid unit
+        setRoll(angle);
+        return true;
+      case MessageContent::Yaw:
+        angle = msg.value;
+        if (!toAngleDegree(angle, msg.unit, angle))
+          return false;  // Invalid unit
+        setYaw(angle);
+        return true;
+      default:
+        return false;  // Unhandled message content
+    }
+  }
+
  protected:
   HBridge motors_[4];
   float motorGain_[4] = {1.0f, 1.0f, 1.0f, 1.0f};
@@ -105,7 +136,6 @@ class Quadrotor : public Vehicle {
   int roll_ = 0;
   int pitch_ = 0;
   int yaw_ = 0;
-
 
   /**
    * @brief Update all motors based on throttle, roll, pitch, and yaw.
@@ -128,6 +158,13 @@ class Quadrotor : public Vehicle {
     for (int i = 0; i < 4; ++i) {
       int calibrated = static_cast<int>(m[i] * motorGain_[i]);
       motors_[i].setSpeedPercent(constrain(calibrated, 0, 100));
+    }
+    // publish motor speeds as messages for telemetry
+    for (int i = 0; i < 4; ++i) {
+      Message<float> msg(MessageContent::MotorSpeed, m[i], Unit::Percent);
+      msg.source = MessgeSource::Motor;
+      msg.source_id = i;  // Motor index
+      sendMessage(msg);
     }
   }
 };

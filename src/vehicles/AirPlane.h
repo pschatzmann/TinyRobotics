@@ -1,8 +1,8 @@
 #pragma once
 
+#include "Vehicle.h"
 #include "motors/HBridge.h"
 #include "motors/Servo.h"
-#include "Vehicle.h"
 
 /**
  * @brief Simple fixed-wing airplane model with motor, rudder, elevator, and
@@ -54,32 +54,101 @@ class AirPlane : public Vehicle {
   void setThrottle(int percent) {
     percent = constrain(percent, 0, 100);
     motor_.setSpeedPercent(percent);
+
+    // publish motor speed as message for telemetry
+    Message<float> msg(MessageContent::MotorSpeed, percent, Unit::Percent);
+    msg.source = MessgeSource::Motor;
+    sendMessage(msg);
   }
 
   /** Set rudder angle (degrees, -30 to 30 typical) */
-  void setRudder(int angle) { rudder_.setAngle(angle); }
+  void setRudder(int angle) {
+    rudder_.setAngle(angle);
+
+    // publish rudder update as message for telemetry
+    Message<float> msg(MessageContent::Yaw, angle, Unit::AngleDegree);
+    msg.source = MessgeSource::Rudder;
+    sendMessage(msg);
+  }
 
   /** Set elevator angle (degrees, -30 to 30 typical) */
-  void setElevator(int angle) { elevator_.setAngle(angle); }
+  void setElevator(int angle) {
+    elevator_.setAngle(angle);
+    // publish elevator update as message for telemetry
+    Message<float> msg(MessageContent::Pitch, angle, Unit::AngleDegree);
+    msg.source = MessgeSource::Elevator;
+    sendMessage(msg);
+  }
 
   /** Set aileron angles (degrees, left and right) */
   void setAilerons(int leftAngle, int rightAngle) {
     aileronLeft_.setAngle(leftAngle);
     aileronRight_.setAngle(rightAngle);
+
+    // publish aileron update as message for telemetry
+    Message<float> msgLeft(MessageContent::Roll, leftAngle, Unit::AngleDegree);
+    msgLeft.source = MessgeSource::Aileron;
+    msgLeft.source_id = 0;  // Left aileron
+    sendMessage(msgLeft);
+    Message<float> msgRight(MessageContent::Roll, rightAngle,
+                            Unit::AngleDegree);
+    msgRight.source = MessgeSource::Aileron;
+    msgRight.source_id = 1;  // Right aileron
+    sendMessage(msgRight);
   }
 
   /** Reset state of all controls */
   void end() {
-    motor_.setSpeedPercent(0);  //
-    rudder_.setAngle(0);
-    elevator_.setAngle(0);
-    aileronLeft_.setAngle(0);
-    aileronRight_.setAngle(0);
+    setThrottle(0);  
+    setRudder(0);
+    setElevator(0);
+    setAilerons(0, 0);
   }
 
   bool isPinsSet() const {
     return motor_.isPinsSet() && rudder_.isPinsSet() && elevator_.isPinsSet() &&
            aileronLeft_.isPinsSet() && aileronRight_.isPinsSet();
+  }
+
+  /** Set pitch (degrees): positive = nose up, negative = nose down */
+  void setPitch(int angle) { setElevator(angle); }
+
+  /** Set roll (degrees): positive = left wing up, negative = right wing up */
+  void setRoll(int angle) { setAilerons(angle, -angle); }
+
+  /** Set yaw (degrees): positive = nose left, negative = nose right */
+  void setYaw(int angle) { setRudder(angle); }
+
+  bool onMessage(const Message<float>& msg) override {
+    float angle;
+    if (msg.source != MessgeSource::RemoteControl)
+      return false;  // Only handle RC messages
+    switch (msg.content) {
+      case MessageContent::Throttle:
+        if (msg.unit != Unit::Percent) return false;
+        setThrottle(static_cast<int>(msg.value));
+        return true;
+      case MessageContent::Pitch:
+        angle = msg.value;
+        if (!toAngleDegree(angle, msg.unit, angle))
+          return false;  // Invalid unit
+        setPitch(angle);
+        return true;
+      case MessageContent::Roll:
+        angle = msg.value;
+        if (!toAngleDegree(angle, msg.unit, angle))
+          return false;  // Invalid unit
+        setRoll(angle);
+        return true;
+      case MessageContent::Yaw:
+        angle = msg.value;
+        if (!toAngleDegree(angle, msg.unit, angle))
+          return false;  // Invalid unit
+        setYaw(angle);
+        return true;
+      default:
+        return false;  // Unhandled message content
+    }
   }
 
  protected:
@@ -89,50 +158,6 @@ class AirPlane : public Vehicle {
   ServoMotor elevator_;
   ServoMotor aileronLeft_;
   ServoMotor aileronRight_;
-};
-
-/**
- * @brief High-level controller for AirPlane: maps pitch, roll, yaw, throttle to
- * actuators.
- *
- * Usage Example:
- * @code
- * tinyrobotics::AirPlane plane(...);
- * tinyrobotics::AirPlaneControl ctrl(plane);
- * ctrl.setThrottle(70);
- * ctrl.setPitch(-10);
- * ctrl.setRoll(15);
- * ctrl.setYaw(20);
- * @endcode
- */
-class AirPlaneControl {
- public:
-  AirPlaneControl(AirPlane& plane) : plane_(plane) {}
-
-  /** Set throttle (0-100%) */
-  void setThrottle(int percent) { plane_.setThrottle(percent); }
-
-  /** Set pitch (degrees): positive = nose up, negative = nose down */
-  void setPitch(int angle) { plane_.setElevator(angle); }
-
-  /** Set roll (degrees): positive = left wing up, negative = right wing up */
-  void setRoll(int angle) {
-    // For simple differential ailerons: left = +angle, right = -angle
-    plane_.setAilerons(angle, -angle);
-  }
-
-  /** Set yaw (degrees): positive = nose left, negative = nose right */
-  void setYaw(int angle) { plane_.setRudder(angle); }
-
-  /** Reset all controls */
-  void end() { plane_.end(); }
-
-  bool isPinsSet() const {
-    return plane_.isPinsSet() ;
-  }
-
- protected:
-  AirPlane& plane_;
 };
 
 }  // namespace tinyrobotics

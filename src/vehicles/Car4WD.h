@@ -84,11 +84,27 @@ class Car4WD : public Vehicle {
     return true;
   }
 
+  bool onMessage(const Message<float>& msg) override {
+    if (msg.source != MessgeSource::RemoteControl)
+      return false;  // Only handle RC messages
+    switch (msg.content) {
+      case MessageContent::Throttle:
+        if (msg.unit != Unit::Percent) return false;
+        setSpeed(static_cast<int>(msg.value));
+        return true;
+      case MessageContent::Turn:
+        if (msg.unit != Unit::Percent) return false;
+        setTurn(static_cast<int>(msg.value));
+        return true;
+      default:
+        return false;  // Unhandled message content
+    }
+  }
+
  protected:
   HBridge motors_[4];
   float motorGain_[4] = {1.0f, 1.0f, 1.0f, 1.0f};
   int speed_, turn_;
-
 
   /**
    * @brief Update all motors based on speed and turn.
@@ -108,11 +124,24 @@ class Car4WD : public Vehicle {
     int rightCal = static_cast<int>(right * motorGain_[1]);
     int rearLeftCal = static_cast<int>(left * motorGain_[2]);
     int rearRightCal = static_cast<int>(right * motorGain_[3]);
-    motors_[0].setSpeedPercent(constrain(leftCal, -100, 100));  // front left
-    motors_[2].setSpeedPercent(constrain(rearLeftCal, -100, 100));  // rear left
-    motors_[1].setSpeedPercent(constrain(rightCal, -100, 100));  // front right
-    motors_[3].setSpeedPercent(
-        constrain(rearRightCal, -100, 100));  // rear right
+    float speed[4];
+    speed[0] = constrain(leftCal, -100, 100);          // front left
+    speed[1] = constrain(rightCal, -100, 100);        // front right
+        speed[2] = constrain(rearLeftCal, -100, 100);  // rear left
+    speed[3] = constrain(rearRightCal, -100, 100);     // rear right
+
+    // update speed
+    for (int i = 0; i < 4; ++i) {
+      speed[i] = speed[i];
+    }
+
+    // publish motor speeds as messages for telemetry
+    for (int i = 0; i < 4; ++i) {
+      Message<float> msg(MessageContent::MotorSpeed, speed[i], Unit::Percent);
+      msg.source = MessgeSource::Motor;
+      msg.source_id = i;  // Motor index
+      sendMessage(msg);
+    }
   }
 };
 

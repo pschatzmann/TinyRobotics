@@ -1,5 +1,10 @@
 #pragma once
 
+#include "communication/Message.h"
+#include "communication/MessageHandler.h"
+
+namespace tinyrobotics {
+
 /**
  * @brief Abstract base class for all vehicle types.
  *
@@ -11,7 +16,7 @@
  * All vehicle classes (e.g., Car4WD, Quadrotor, AirPlane, MotorBoat) should
  * inherit from Vehicle.
  */
-class Vehicle {
+class Vehicle : public MessageHandler {
  public:
   /**
    * @brief Reset the vehicle to a safe or neutral state (pure virtual).
@@ -23,4 +28,7 @@ class Vehicle {
    * set (pure virtual).
    */
   virtual bool isPinsSet() const = 0;
+
 };
+
+}  // namespace tinyrobotics

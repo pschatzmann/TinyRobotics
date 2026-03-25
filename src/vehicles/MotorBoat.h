@@ -42,12 +42,24 @@ class MotorBoat : public Vehicle {
   /**
    * @brief Set throttle (percent, -100 to 100). Positive = forward.
    */
-  void setThrottle(int percent) { motor_.setSpeedPercent(percent); }
+  void setThrottle(int percent) {
+    motor_.setSpeedPercent(percent);
+    // publish throttle as message for telemetry
+    Message<float> msg(MessageContent::MotorSpeed, percent, Unit::Percent);
+    msg.source = MessgeSource::Motor;
+    sendMessage(msg);
+  }
 
   /**
    * @brief Set rudder angle (degrees, left positive, right negative).
    */
-  void setRudder(int angle) { rudder_.setAngle(angle); }
+  void setRudder(int angle) {
+    rudder_.setAngle(angle);
+    // publish rudder angle as message for telemetry
+    Message<float> msg(MessageContent::SteeringAngle, angle, Unit::AngleDegree);
+    msg.source = MessgeSource::Rudder;
+    sendMessage(msg);
+  }
 
   void end() {
     motor_.setSpeedPercent(0);  // stop motor
@@ -56,6 +68,25 @@ class MotorBoat : public Vehicle {
 
   bool isPinsSet() const {
     return motor_.isPinsSet() && rudder_.isPinsSet();
+  }
+
+  bool onMessage(const Message<float>& msg) override {
+    float angle;
+    if (msg.source != MessgeSource::RemoteControl) return false;  // Only handle RC messages
+    switch (msg.content) {
+      case MessageContent::Throttle:
+        if (msg.unit != Unit::Percent) return false;
+        setThrottle(static_cast<int>(msg.value));
+        return true;
+      case MessageContent::SteeringAngle:
+        angle = msg.value;
+        if (!toAngleDegree(angle, msg.unit, angle))
+          return false;  // Invalid unit
+        setRudder(static_cast<int>(msg.value));
+        return true;
+      default:
+        return false;  // Unhandled message content
+    }
   }
 
  protected:
