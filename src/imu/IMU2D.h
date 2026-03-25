@@ -220,6 +220,7 @@ class IMU2D : public MessageSource {
     hasPrevGPS = true;
   }
 
+  /// Publish current state as messages
   void publish() {
     Coordinate<DistanceM> pos = getPosition();
     T angle = getHeadingAngleRad();
