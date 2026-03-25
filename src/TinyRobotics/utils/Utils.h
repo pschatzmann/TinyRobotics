@@ -6,5 +6,4 @@
 #include "Config.h"
 #include "KalmanFilter.h"
 #include "LoggerClass.h"
-#include "MultiOutput.h"
 #include "Scheduler.h"
