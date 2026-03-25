@@ -105,7 +105,7 @@ class KalmanFilter {
  public:
   Matrix<NX, 1> x;   // state
   Matrix<NX, NX> P;  // covariance
-  Matrix<NX, NX> F;  // state transition
+  Matrix<NX, NX> Fmat;  // state transition
   Matrix<NX, NX> Q;  // process noise
 
   Matrix<NZ, NX> H;  // measurement matrix
@@ -115,8 +115,8 @@ class KalmanFilter {
 
   // Prediction step
   void predict() {
-    x = F * x;
-    P = F * P * transpose(F) + Q;
+  x = Fmat * x;
+  P = Fmat * P * transpose(Fmat) + Q;
   }
 
   // Update step

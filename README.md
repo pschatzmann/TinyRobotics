@@ -4,15 +4,20 @@ TinyRobotics is a modular, header-only C++ library for Arduino and embedded syst
 
 ## Features
 
+The following __base functionality__ is automatically available:
+
 - **Coordinate Systems**: 2D/3D coordinates, GPS coordinates, NMEA sentence parsing, local cartesian frames, and hierarchical frame management (SE(2)/SE(3)).
 - **Frame Management**: Manage trees of coordinate frames in 2D and 3D, with support for GPS/geodetic integration and conversion between local and global frames.
 - **Path Planning**: Generic A* and Dijkstra algorithm, path representation, and planning utilities for navigation and obstacle avoidance.
 - **Mapping**: Grid maps (occupancy/value), path maps (graph-based), and 3D point clouds for environment modeling and SLAM.
-- **Communication**: Message-based framework supporting UDP, ESPNow, Serial, LoRa, IEEE802_15_4, and more for telemetry, remote control, and inter-robot messaging.
-- **Concurrency**: Thread-safe queues, buffers, mutexes, and RTOS integration for multitasking and synchronization.
 - **Units**: Strongly-typed units for distance, time, speed, and angle to ensure type safety and clarity.
 - **Sensors**: Range sensor abstraction, sensor fusion, and scheduling utilities for periodic sensor tasks.
 - **Utilities**: Logger, scheduler, serialization, and fixed-capacity vector for embedded-friendly development.
+
+The following __extended functionality__ can be included optionally:
+
+- **Communication**: Message-based framework supporting UDP, ESPNow, Serial, LoRa, IEEE802_15_4, and more for telemetry, remote control, and inter-robot messaging.
+- **Concurrency**: Thread-safe queues, buffers, mutexes, and RTOS integration for multitasking and synchronization.
 
 ## Documentation
 
