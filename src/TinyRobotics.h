@@ -1,13 +1,13 @@
 #pragma once
-#include "units/Units.h"
-#include "coordinates/Coordinates.h"
-#include "maps/Maps.h"
-#include "planning/Planning.h"
-#include "sensors/Sensors.h"
-#include "utils/Utils.h"
-#include "motors/Motors.h"
-#include "vehicles/Vehicles.h"
-#include "communication/Communication.h"
+#include "TinyRobotics/units/Units.h"
+#include "TinyRobotics/coordinates/Coordinates.h"
+#include "TinyRobotics/maps/Maps.h"
+#include "TinyRobotics/planning/Planning.h"
+#include "TinyRobotics/sensors/Sensors.h"
+#include "TinyRobotics/utils/Utils.h"
+#include "TinyRobotics/motors/Motors.h"
+#include "TinyRobotics/vehicles/Vehicles.h"
+#include "TinyRobotics/communication/Communication.h"
 
 #ifdef ARDUINO
 using namespace tinyrobotics;
