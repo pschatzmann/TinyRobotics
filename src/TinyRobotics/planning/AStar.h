@@ -7,6 +7,7 @@
 
 #include "Path.h"
 #include "TinyRobotics/coordinates/Coordinate.h"
+#include "TinyRobotics/utils/AllocatorPSRAM.h"
 
 namespace tinyrobotics {
 
@@ -71,8 +72,13 @@ class AStar {
   /// context)
   void setReference(void* reference) { ref = reference; }
 
-  Path<Node> findPath(const MapType& map, const Node& start, const Node& goal) {
-    std::unordered_map<Node, Node> cameFrom;
+  /// Finds the optimal path from start to goal. Returns an empty path if no path
+  Path<Node> findPath(const MapType& map, const Node start, const Node goal) {
+    std::string startStr = start.toCString();
+    std::string goalStr = goal.toCString();
+    TRLogger.debug("Finding path from %s to %s", startStr.c_str(), goalStr.c_str());
+    using NodeMap = std::unordered_map<Node, Node, std::hash<Node>, std::equal_to<Node>, tinyrobotics::AllocatorPSRAM<std::pair<const Node, Node>>>;
+    NodeMap cameFrom;
     bool found = aStarSearch(map, start, goal, &cameFrom, nullptr);
     if (found) {
       return reconstructPath(cameFrom, start, goal);
@@ -85,7 +91,8 @@ class AStar {
    * If no path is found, returns start.
    */
   Node nextStep(const MapType& map, const Node& start, const Node& goal) {
-    std::unordered_map<Node, Node> cameFrom;
+    using NodeMap = std::unordered_map<Node, Node, std::hash<Node>, std::equal_to<Node>, tinyrobotics::AllocatorPSRAM<std::pair<const Node, Node>>>;
+    NodeMap cameFrom;
     bool found = aStarSearch(map, start, goal, &cameFrom, nullptr);
     if (found) {
       Path<Node> path = reconstructPath(cameFrom, start, goal);
@@ -111,12 +118,13 @@ class AStar {
   bool aStarSearch(
       const MapType& map, const Node& start,
       const Node& goal,
-      std::unordered_map<Node, Node>* cameFrom,
-      std::unordered_map<Node, float>* outCostSoFar) {
+      std::unordered_map<Node, Node, std::hash<Node>, std::equal_to<Node>, tinyrobotics::AllocatorPSRAM<std::pair<const Node, Node>>>* cameFrom,
+      std::unordered_map<Node, float, std::hash<Node>, std::equal_to<Node>, tinyrobotics::AllocatorPSRAM<std::pair<const Node, float>>>* outCostSoFar) {
+
     std::priority_queue<NodeRecord, std::vector<NodeRecord>,
                         std::greater<NodeRecord>>
         openSet;
-    std::unordered_map<Node, float> costSoFar;
+    std::unordered_map<Node, float, std::hash<Node>, std::equal_to<Node>, tinyrobotics::AllocatorPSRAM<std::pair<const Node, float>>> costSoFar;
     openSet.push({start, 0.0f, cost_cb(start, goal, ref)});
     costSoFar[start] = 0.0f;
     if (cameFrom) cameFrom->clear();
@@ -157,7 +165,7 @@ class AStar {
   }
 
   Path<Node> reconstructPath(
-      const std::unordered_map<Node, Node>& cameFrom,
+      const std::unordered_map<Node, Node, std::hash<Node>, std::equal_to<Node>, tinyrobotics::AllocatorPSRAM<std::pair<const Node, Node>>>& cameFrom,
       const Node& start, const Node& goal) {
     Path<Node> path;
     Node current = goal;

@@ -48,10 +48,14 @@ class PathSegment {
  */
 template <typename Coordinate = Coordinate<float>>
 class PathMap {
+ public:
+  PathMap() = default;
+
   void addSegment(const Coordinate& from, const Coordinate& to,
                   bool directed = false) {
     auto distance = from.distance(to);  // Example cost based on distance
-    PathSegment<Coordinate> segment{from, to, distance, directed};  // Default cost = 1.0
+    PathSegment<Coordinate> segment{from, to, distance,
+                                    directed};  // Default cost = 1.0
     segments.push_back(segment);
   }
 
@@ -86,8 +90,10 @@ class PathMap {
     return neighbors;
   }
 
-protected:
-  std::vector<PathSegment<Coordinate>, tinyrobotics::AllocatorPSRAM<PathSegment<Coordinate>>> segments;
+ protected:
+  std::vector<PathSegment<Coordinate>,
+              tinyrobotics::AllocatorPSRAM<PathSegment<Coordinate>>>
+      segments;
 };
 
 }  // namespace tinyrobotics

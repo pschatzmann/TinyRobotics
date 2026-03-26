@@ -84,7 +84,7 @@ class PointCloud {
   void setLiveVoxelGrid(bool live) { liveVocelGrid_ = live; }
 
   /// Add a single point
-  void add(DistanceM x, DistanceM y, DistanceM z=0.0f) {
+  void add(DistanceM x, DistanceM y, DistanceM z = 0.0f) {
     Point3D p{x, y, z};
     points_.push_back(p);
     updateBounds(p);
@@ -157,6 +157,11 @@ class PointCloud {
     for (const auto& p : points_) {
       addVoxel(p.x, p.y, p.z);
     }
+    TRLogger.debug("Voxel grid built with voxel size: %f, total voxels: %d",
+                   voxelSize_, (int)voxelGrid_.size());
+    for (const auto& key : voxelGrid_) {
+      TRLogger.debug("Voxel: (%d, %d, %d)", key.x, key.y, key.z);
+    }
   }
 
   /// Adds a point to the voxel grid if voxelSize_ > 0
@@ -197,35 +202,94 @@ class PointCloud {
       const Coordinate<DistanceM>& from) const {
     std::vector<Coordinate<DistanceM>> neighbors;
     if (voxelSize_ <= 0.0f) return neighbors;
+    TRLogger.debug("-------------------");
+    TRLogger.debug(
+        "Finding neighbors for: %s with bounding box min:(%f,%f,%f) / "
+        "max:(%f,%f,%f)",
+        from.toCString(), bounds_.min.x, bounds_.min.y, bounds_.min.z,
+        bounds_.max.x, bounds_.max.y, bounds_.max.z);
 
     // Compute voxel index of 'from'
     int x0 = int(std::floor(from.x / voxelSize_));
     int y0 = int(std::floor(from.y / voxelSize_));
     int z0 = int(std::floor(from.z / voxelSize_));
 
-    // 6-connectivity in 3D (face neighbors)
-    const int dx[6] = {1, -1, 0, 0, 0, 0};
-    const int dy[6] = {0, 0, 1, -1, 0, 0};
-    const int dz[6] = {0, 0, 0, 0, 1, -1};
-
-    for (int i = 0; i < 6; ++i) {
-      int nx = x0 + dx[i];
-      int ny = y0 + dy[i];
-      int nz = z0 + dz[i];
-      Key nkey{nx, ny, nz};
-      // Only add if NOT occupied (free neighbor)
-      if (voxelGrid_.find(nkey) == voxelGrid_.end()) {
+    if (is_3d) {
+      // 6-connectivity in 3D (face neighbors)
+      const int dx[6] = {1, -1, 0, 0, 0, 0};
+      const int dy[6] = {0, 0, 1, -1, 0, 0};
+      const int dz[6] = {0, 0, 0, 0, 1, -1};
+      for (int i = 0; i < 6; ++i) {
+        int nx = x0 + dx[i];
+        int ny = y0 + dy[i];
+        int nz = z0 + dz[i];
         // Convert voxel index back to coordinate (center of voxel)
         DistanceM cx = (nx + 0.5f) * voxelSize_;
         DistanceM cy = (ny + 0.5f) * voxelSize_;
         DistanceM cz = (nz + 0.5f) * voxelSize_;
-        neighbors.emplace_back(cx, cy, cz);
+        // Check bounding box
+        if (cx < bounds_.min.x || cx > bounds_.max.x || cy < bounds_.min.y ||
+            cy > bounds_.max.y || cz < bounds_.min.z || cz > bounds_.max.z) {
+          continue;
+        }
+        Key nkey{nx, ny, nz};
+        // Only add if NOT occupied (free neighbor)
+        if (voxelGrid_.find(nkey) == voxelGrid_.end()) {
+          neighbors.emplace_back(cx, cy, cz);
+        }
+      }
+    } else {
+      // 4-connectivity in 2D (z=0 plane)
+      const int dx[4] = {1, -1, 0, 0};
+      const int dy[4] = {0, 0, 1, -1};
+      for (int i = 0; i < 4; ++i) {
+        int nx = x0 + dx[i];
+        int ny = y0 + dy[i];
+        int nz = z0;  // keep z the same
+            DistanceM cx = (nx + 0.5f) * voxelSize_;
+            DistanceM cy = (ny + 0.5f) * voxelSize_;
+            DistanceM cz = 0.0f; // Always use z=0 for 2D
+        // Check bounding box (z=0 plane)
+        if (cx < bounds_.min.x || cx > bounds_.max.x || cy < bounds_.min.y ||
+            cy > bounds_.max.y) {
+          continue;
+        }
+        Key nkey{nx, ny, nz};
+        if (voxelGrid_.find(nkey) == voxelGrid_.end()) {
+          neighbors.emplace_back(cx, cy, cz);
+        }
       }
     }
+    for (auto& n : neighbors) {
+      TRLogger.debug("Neighbor: %s", n.toCString());
+    }
+    TRLogger.debug("-------------------");
+
     return neighbors;
   }
 
+  /// Convert voxel grid index (cx, cy) to world coordinate (center of voxel,
+  /// z=0)
+  Coordinate<DistanceM> toVoxel(int cx, int cy) const {
+    // This matches the logic in getNeighbors for 2D
+    DistanceM wx = (cx + 0.5f) * voxelSize_;
+    DistanceM wy = (cy + 0.5f) * voxelSize_;
+    DistanceM wz = 0.0f;
+    return Coordinate<DistanceM>(wx, wy, wz);
+  }
+
+  /// Use 3D in findNeighbors (if false, only consider z=0 plane for 2D
+  /// occupancy)
+  void set3D(bool is3d) { is_3d = is3d; }
+
+  /// Manually set the bounding box (if known in advance, can save time instead of
+  void setBounds(float minX, float minY, float minZ, float maxX, float maxY, float maxZ) {
+    bounds_.min = {minX, minY, minZ};
+    bounds_.max = {maxX, maxY, maxZ};
+  }
+
  protected:
+  bool is_3d = false;
   Container points_;
   Bounds bounds_;
   DistanceM voxelSize_ = 0.0f;

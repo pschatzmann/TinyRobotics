@@ -12,18 +12,6 @@ int grid[height][width] = {{0, 0, 0, 0, 0},
 
 PointCloud cloud;
 
-void printPath(const std::vector<Coordinate<float>>& path) {
-  Serial.println("Path:");
-  for (const auto& node : path) {
-    Serial.print("(");
-    Serial.print(node.x);
-    Serial.print(", ");
-    Serial.print(node.y);
-    Serial.print(") ");
-  }
-  Serial.println();
-}
-
 void setup() {
   Serial.begin(115200);
   delay(1000);
@@ -35,36 +23,34 @@ void setup() {
       if (grid[y][x] == 1) cloud.add(x, y);
     }
   }
+
+  // This example has no upper, left and right bounds: we want to allow the full range
+  cloud.setBounds(0, 0, 0, 5, 5, 0);
   // Build voxel grid for fast occupancy queries
-  cloud.buildVoxelGrid(0.5f);  // 50 cm unit voxels for 2D grid
+  cloud.buildVoxelGrid(1.0f);  // 1m unit voxels for 2D grid
 }
 
 void loop() {
   // Pick random start and goal
-  Coordinate<float> start(random(0, width), random(0, height));
-  Coordinate<float> goal(random(0, width), random(0, height));
+  Coordinate<float> start(0.5f, 0.5f, 0.0f);  // Center of voxel (0,0)
+  Coordinate<float> goal(4.5f, 4.5f, 0.0f);   // Center of voxel (4,4)
 
-  Serial.print("Searching from (");
-  Serial.print(start.x);
-  Serial.print(",");
-  Serial.print(start.y);
-  Serial.print(") to (");
-  Serial.print(goal.x);
-  Serial.print(",");
-  Serial.print(goal.y);
-  Serial.println(")");
+  // Find path using A*
+  AStar<PointCloud> astar;
+  auto path = astar.findPath(cloud, start, goal);
 
-  // Find path using A* (assuming PointCloud has findPathAStar)
-  std::vector<Coordinate<float>> path;
-  bool found = cloud.findPathAStar(
-      start, goal, path);  // This method must exist in your PointCloud
-
-  if (found) {
-    Serial.println("Path found!");
-    printPath(path);
-  } else {
-    Serial.println("No path found.");
+  // Check result
+  if (path.isEmpty()) {
+    Serial.println("=> No path found!");
+    return;
   }
+
+  // Print the path
+  for (auto& step : path.getWaypoints()) {
+    Serial.println(step.toCString());
+  }
+  Serial.print("Total distance: ");
+  Serial.println(path.distance());
 
   delay(2000);  // Wait before next search
 }

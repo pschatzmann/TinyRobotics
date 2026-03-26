@@ -77,14 +77,23 @@ class AllocatorPSRAM {
    * @param p Pointer to memory to deallocate
    * @param size Size of allocation (unused)
    */
-  void deallocate(pointer p, size_type) noexcept { 
+  void deallocate(pointer p, size_type) noexcept {
 #ifdef ESP32
-    heap_caps_free(p); 
+    heap_caps_free(p);
 #else
     free(p);
 #endif
-}
+  }
 
+  // Required for STL allocator compatibility
+  template <typename U>
+  bool operator==(const AllocatorPSRAM<U>&) const noexcept {
+    return true;
+  }
+  template <typename U>
+  bool operator!=(const AllocatorPSRAM<U>&) const noexcept {
+    return false;
+  }
   /**
    * @brief Rebind allocator to another type
    * @tparam U Type to rebind the allocator to
@@ -95,5 +104,4 @@ class AllocatorPSRAM {
   };
 };
 
-
-}  // namespace esp32_psram
+}  // namespace tinyrobotics
