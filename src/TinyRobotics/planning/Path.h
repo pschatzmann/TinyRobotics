@@ -33,10 +33,18 @@ class WayPointAndSpeed {
  * WayPointAndSpeed etc.
  */
 
-template <typename T = Coordinate<DistanceM>>
+template <typename T = Coordinate<DistanceM>, typename Allocator = AllocatorPSRAM<T>>
 class Path {
  public:
   Path() = default;
+
+  /// Construct a path from a variable number of waypoints
+  template <typename... Args>
+  Path(const Args&... args) {
+    addWaypoints(args...);
+  }
+
+  Path(const std::vector<T>& waypoints) : waypoints(waypoints) {}
 
   void addWaypoint(const T& waypoint) { waypoints.push_back(waypoint); }
 
@@ -52,7 +60,7 @@ class Path {
     return false;
   }
 
-  std::vector<T> getWaypoints() const { return waypoints; }
+  std::vector<T, Allocator> getWaypoints() const { return waypoints; }
 
   std::optional<T> getWaypoint(size_t index) const {
     if (index < waypoints.size()) {
@@ -68,16 +76,42 @@ class Path {
     return std::nullopt;  // No waypoints
   }
 
-  T& operator[](size_t index) const { return waypoints[index]; }
+  /// Remove the first waypoint in the path (e.g., after reaching it). Returns true if a waypoint was removed, false if the path was already empty.
+  bool removeHead() {
+    if (!waypoints.empty()) {
+      waypoints.erase(waypoints.begin());
+      return true;
+    }
+    return false;  // No waypoints to remove
+  }
+
+  // Non-const version
+  T& operator[](size_t index) { return waypoints[index]; }
+  // Const version
+  const T& operator[](size_t index) const { return waypoints[index]; }
 
   size_t size() const { return waypoints.size(); }
+
+  bool isEmpty() const { return waypoints.empty(); }
 
   void reverse() { std::reverse(waypoints.begin(), waypoints.end()); }
 
   void clear() { waypoints.clear(); }
 
+  // Helper to add multiple waypoints recursively
+  void addWaypoints() {}
+  template <typename First, typename... Rest>
+  void addWaypoints(const First& first, const Rest&... rest) {
+    addWaypoint(first);
+    addWaypoints(rest...);
+  }
+
  protected:
-  std::vector<T, AllocatorPSRAM<T>> waypoints;
+  std::vector<T, Allocator> waypoints;
+
+ private:
+
+
 };
 
 }  // namespace tinyrobotics

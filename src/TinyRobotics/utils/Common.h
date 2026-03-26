@@ -32,13 +32,13 @@ enum class Unit {
   Meters,            ///< Distance in meters
   Centimeters,       ///< Distance in centimeters
   Millimeters,       ///< Distance in millimeters
-  AngleDegree,      ///< Angle in degrees
-  AngleRadian,      ///< Angle in radians
+  AngleDegree,       ///< Angle in degrees
+  AngleRadian,       ///< Angle in radians
   TemperatureC,      ///< Temperature in Celsius
   TemperatureF,      ///< Temperature in Fahrenheit
 };
 
-/// Convert a value from the given unit to degrees. 
+/// Convert a value from the given unit to degrees.
 bool toAngleDegree(DEFAULT_TYPE in, Unit unit, AngleDeg& out) {
   switch (unit) {
     case Unit::AngleDegree:
@@ -51,5 +51,6 @@ bool toAngleDegree(DEFAULT_TYPE in, Unit unit, AngleDeg& out) {
       return false;  // Unsupported unit for angle
   }
 }
+
 
 }  // namespace tinyrobotics

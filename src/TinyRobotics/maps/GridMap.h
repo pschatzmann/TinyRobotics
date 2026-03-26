@@ -3,8 +3,8 @@
 #include <cstdint>
 #include <vector>
 
-#include "TinyRobotics/utils/Common.h"
 #include "TinyRobotics/utils/AllocatorPSRAM.h"
+#include "TinyRobotics/utils/Common.h"
 
 namespace tinyrobotics {
 
@@ -54,13 +54,11 @@ class GridMap {
     size_t cy;  // Cell Y index
   };
 
-  GridMap(int xCount, int yCount, DistanceM resolutionM,
-          Coordinate<T> origin = Coordinate<T>(0, 0))
-      : xCount(xCount),
-        yCount(yCount),
-        resolution(resolutionM),
-        origin(origin),
-        data(xCount * yCount, -1) {}
+  GridMap() = default;
+  GridMap(int xCount, int yCount, DistanceM resolutionM)
+      : resolution(resolutionM) {
+    resize(xCount, yCount);
+  }
 
   /// World to cell conversion
 
@@ -78,19 +76,20 @@ class GridMap {
   }
 
   /// Provide access to cell state by cell index
-  StateType getCell(int cx, int cy) const {
+  bool getCell(int cx, int cy, StateType& result) {
     if (cx < 0 || cx >= xCount || cy < 0 || cy >= yCount)
-      return -1;  // Out of bounds
-    return data[cy * xCount + cx];
+      return false;  // Out of bounds
+    result = data[cy * xCount + cx];
+    return true;
   }
 
   /// Provide access to cell state by coordinate
-  StateType getCell(Coordinate<T>& coord) const {
+  bool getCell(Coordinate<T>& coord, StateType& result) {
     Cell cell;
     if (worldToCell(coord.x, coord.y, cell)) {
       return getCell(cell.cx, cell.cy);
     }
-    return -1;  // Out of bounds
+    return false;  // Out of bounds
   }
 
   /// Set cell state (for initialization or manual updates)
@@ -107,59 +106,67 @@ class GridMap {
     }
   }
 
-  /// Update with sensor reading (binary Bayesian update)
-  void updateCell(int cx, int cy, bool occupied, float prob_hit = 0.7) {
-    if (cx < 0 || cx >= xCount || cy < 0 || cy >= yCount) return;
+  // /// Update with sensor reading (binary Bayesian update)
+  // void updateCell(int cx, int cy, bool occupied, float prob_hit = 0.7) {
+  //   if (cx < 0 || cx >= xCount || cy < 0 || cy >= yCount) return;
 
-    int idx = cy * xCount + cx;
-    float current_prob = data[idx] / 100.0;
+  //   int idx = cy * xCount + cx;
+  //   float current_prob = data[idx] / 100.0;
 
-    // Convert to log-odds for efficient updates
-    float log_odds = std::log(current_prob / (1.0 - current_prob));
+  //   // Convert to log-odds for efficient updates
+  //   float log_odds = std::log(current_prob / (1.0 - current_prob));
 
-    // Update based on measurement
-    float meas_prob = occupied ? prob_hit : (1.0 - prob_hit);
-    float meas_log_odds = std::log(meas_prob / (1.0 - meas_prob));
-    log_odds += meas_log_odds;
+  //   // Update based on measurement
+  //   float meas_prob = occupied ? prob_hit : (1.0 - prob_hit);
+  //   float meas_log_odds = std::log(meas_prob / (1.0 - meas_prob));
+  //   log_odds += meas_log_odds;
 
-    // Clamp and convert back
-    float new_prob = 1.0 / (1.0 + std::exp(-log_odds));
-    data[idx] = static_cast<int8_t>(std::round(new_prob * 100));
+  //   // Clamp and convert back
+  //   float new_prob = 1.0 / (1.0 + std::exp(-log_odds));
+  //   data[idx] = static_cast<int8_t>(std::round(new_prob * 100));
+  // }
+
+  /// Determine all neighboring cells (8-connected) for a given cell coordinate.
+  std::vector<Cell> getNeighborCells(const Coordinate<DistanceM> from) const {
+    Cell cell;
+    worldToCell(from.x, from.y, cell);
+    int cx = static_cast<int>(cell.cx);
+    int cy = static_cast<int>(cell.cy);
+    std::vector<Cell> neighbors;
+    if (cx < xCount - 1) neighbors.push_back({static_cast<size_t>(cx + 1), static_cast<size_t>(cy)});
+    if (cx > 0) neighbors.push_back({static_cast<size_t>(cx - 1), static_cast<size_t>(cy)});
+    if (cy < yCount - 1) neighbors.push_back({static_cast<size_t>(cx), static_cast<size_t>(cy + 1)});
+    if (cy > 0) neighbors.push_back({static_cast<size_t>(cx), static_cast<size_t>(cy - 1)});
+
+    if (cx < xCount - 1 && cy < yCount - 1)
+      neighbors.push_back({static_cast<size_t>(cx + 1), static_cast<size_t>(cy + 1)});
+    if (cx > 0 && cy < yCount - 1) neighbors.push_back({static_cast<size_t>(cx - 1), static_cast<size_t>(cy + 1)});
+    if (cx < xCount - 1 && cy > 0) neighbors.push_back({static_cast<size_t>(cx + 1), static_cast<size_t>(cy - 1)});
+    if (cx > 0 && cy > 0) neighbors.push_back({static_cast<size_t>(cx - 1), static_cast<size_t>(cy - 1)});
+    return neighbors;
   }
 
-  // /// Find all valid neighboring cells (8-connected) and return them as path
-  // /// segments
-  // std::vector<PathSegment<Coordinate>> getSegments(Coordinate& from) const {
-  //   std::vector<PathSegment<Coordinate>> result;
-  //   for (const auto& cell : getNeighborCells(from.cx, from.cy)) {
-  //     if (is_valid_cb(cell.first, cell.second, this)) {
-  //       Coordinate to(cell.first, cell.second);
-  //       float distance = to.distance(from);
-  //       result.push_back({from, to, distance, false});
-  //     }
-  //   }
-  //   return result;
-  // }
-
-  // /// Find all valid neighboring cells (8-connected) and return them as path
-  // /// segments
-  // std::vector<PathSegment<Coordinate>> getSegments(Coordinate& from) const {
-  //   std::vector<PathSegment<Coordinate>> result;
-  //   for (const auto& cell : getNeighborCells(from.cx, from.cy)) {
-  //     if (is_valid_cb(cell.first, cell.second, this)) {
-  //       Coordinate to(cell.first, cell.second);
-  //       float distance = to.distance(from);
-  //       result.push_back({from, to, distance, false});
-  //     }
-  //   }
-  //   return result;
-  // }
-
+  /// Get world coordinates of neighboring cells (for pathfinding or navigation)
+  std::vector<Coordinate<T>> getNeighbors(Coordinate<T> from) const {
+    std::vector<Coordinate<T>> neighbors;
+    for (auto& cell : getNeighborCells(from)) {
+      Coordinate neighbor;
+      cellToWorld(cell.cx, cell.cy, neighbor.x, neighbor.y);
+      neighbors.push_back(neighbor);
+    }
+    return neighbors;
+  }
 
   /// Define a custom validity callback (e.g., for dynamic obstacles or special
   /// terrain)
   void setValidityCallback(bool (*cb)(int cx, int cy, void* ref)) {
     is_valid_cb = cb;
+  }
+
+  void resize(int newXCount, int newYCount) {
+    xCount = newXCount;
+    yCount = newYCount;
+    data.resize(xCount * yCount);
   }
 
  protected:
@@ -168,7 +175,7 @@ class GridMap {
   int yCount;            // Number of cells in y direction
   float resolution;      // Meters per cell
   Coordinate<T> origin;  // World coordinate of cell (0,0)
-  bool (*is_valid_cb)(int cx, int cy) =
+  bool (*is_valid_cb)(int cx, int cy, void*) =
       isValid;  // Optional callback for custom validity checks
 
   // Map data: e.g. 0=free, 100=occupied, -1=unknown
@@ -179,23 +186,9 @@ class GridMap {
   /// obstacles, special terrain, etc.).
   static bool isValid(int cx, int cy, void* ref) {
     GridMap<StateType>* self = (GridMap<StateType>*)ref;
-    return self->getCell(cx, cy) != CellState::OCCUPIED;
-  }
-
-  /// Determine all neighboring cells (8-connected) for a given cell coordinate.
-  std::vector<Cell> getNeighborCells(int cx, int cy) const {
-    std::vector<Cell> neighbors;
-    if (cx < xCount - 1) neighbors.push_back({cx + 1, cy});
-    if (cx > 0) neighbors.push_back({cx - 1, cy});
-    if (cy < yCount - 1) neighbors.push_back({cx, cy + 1});
-    if (cy > 0) neighbors.push_back({cx, cy - 1});
-
-    if (cx < xCount - 1 && cy < yCount - 1)
-      neighbors.push_back({cx + 1, cy + 1});
-    if (cx > 0 && cy < yCount - 1) neighbors.push_back({cx - 1, cy + 1});
-    if (cx < xCount - 1 && cy > 0) neighbors.push_back({cx + 1, cy - 1});
-    if (cx > 0 && cy > 0) neighbors.push_back({cx - 1, cy - 1});
-    return neighbors;
+    StateType result;
+    if (!self->getCell(cx, cy, result)) return false;  // Out of bounds
+    return result != CellState::OCCUPIED;
   }
 };
 

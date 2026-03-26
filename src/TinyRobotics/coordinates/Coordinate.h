@@ -1,11 +1,12 @@
 #pragma once
 #include <cmath>
+#include <functional>
 #include <string>
 
-#include "TinyRobotics/units/Units.h"
-#include "TinyRobotics/utils/Config.h"
-#include "TinyRobotics/utils/Common.h"
 #include "TinyRobotics/serialize/Serializable.h"
+#include "TinyRobotics/units/Units.h"
+#include "TinyRobotics/utils/Common.h"
+#include "TinyRobotics/utils/Config.h"
 
 namespace tinyrobotics {
 
@@ -67,7 +68,7 @@ class Coordinate : public Serializable {
   /// Calculate the Euclidean distance to another coordinate, with optional unit
   /// conversion
   DistanceM distance(const Coordinate& other,
-                 DistanceUnit unit = DistanceUnit::M) const {
+                     DistanceUnit unit = DistanceUnit::M) const {
     float distM = distanceM(other);
     Distance dist(distM, DistanceUnit::M);
     return dist.getDistance(unit);
@@ -162,6 +163,14 @@ class Coordinate : public Serializable {
     z = other.z;
   }
 
+  // Equality operators for use in std::unordered_map and comparisons
+  bool operator==(const Coordinate<T>& other) const {
+    return x == other.x && y == other.y && z == other.z;
+  }
+  bool operator!=(const Coordinate<T>& other) const {
+    return !(*this == other);
+  }
+
   std::string toString() {
     char buf[100];
     snprintf(buf, sizeof(buf), "%s: %.8f, %.8f, %.2f", getTypeName(), x, y, z);
@@ -184,6 +193,12 @@ class Coordinate : public Serializable {
       z = 0;
     }
     return true;
+  }
+
+  void setValues(T newX, T newY, T newZ = 0) {
+    x = newX;
+    y = newY;
+    z = newZ;
   }
 
   const char* getTypeName() const { return "Coordinate"; }
@@ -212,3 +227,14 @@ class Coordinate : public Serializable {
 };
 
 }  // namespace tinyrobotics
+
+namespace std {
+template <typename T>
+struct hash<tinyrobotics::Coordinate<T>> {
+  std::size_t operator()(const tinyrobotics::Coordinate<T>& c) const noexcept {
+    std::size_t h1 = std::hash<T>{}(c.x);
+    std::size_t h2 = std::hash<T>{}(c.y);
+    return h1 ^ (h2 << 1);
+  }
+};
+}  // namespace std

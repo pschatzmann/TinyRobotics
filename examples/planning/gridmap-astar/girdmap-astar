@@ -1,0 +1,53 @@
+// TinyRobotics GridMap A* Example
+#include <TinyRobotics.h>
+
+// Dimensions
+const int width = 5;
+const int height = 5;
+float resolution = 1.0f;  // 1 meter per cell
+
+// Define a simple 2D grid map (5x5)
+int grid[height][width] = {{0, 0, 0, 0, 0},
+                           {0, 1, 1, 1, 0},
+                           {0, 0, 0, 1, 0},
+                           {0, 1, 0, 0, 0},
+                           {0, 0, 0, 1, 0}};
+
+// Define map
+GridMap<CellState> gridMap(width, height, resolution);
+
+
+void setup() {
+  Serial.begin(115200);
+  delay(1000);
+  Serial.println("TinyRobotics GridMap A* Example");
+
+  // Initialize the GridMap from the grid
+  for (int y = 0; y < height; ++y) {
+    for (int x = 0; x < width; ++x) {
+      gridMap.setCell(x, y, grid[y][x] == 0 ? CellState::FREE : CellState::OCCUPIED);
+    }
+  }
+}
+
+
+void loop() {
+
+  // set random start and goal
+  Coordinate<DistanceM> start(random(0, width), random(0, height));
+  Coordinate<DistanceM> goal(random(0, width), random(0, height));
+
+  // Find path using A*
+  AStar<GridMap<CellState>> astar;
+  auto path = astar.findPath(gridMap, start, goal);
+
+  if (path.isEmpty()) Serial.println("=> No path found!");
+
+  // Print the path
+  for ( auto &step : path.getWaypoints()) {
+    Serial.println(step.toCString());
+  }
+
+  delay(2000);  // Wait before next search
+}
+

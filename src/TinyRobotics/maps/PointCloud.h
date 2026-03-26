@@ -84,7 +84,7 @@ class PointCloud {
   void setLiveVoxelGrid(bool live) { liveVocelGrid_ = live; }
 
   /// Add a single point
-  void add(DistanceM x, DistanceM y, DistanceM z) {
+  void add(DistanceM x, DistanceM y, DistanceM z=0.0f) {
     Point3D p{x, y, z};
     points_.push_back(p);
     updateBounds(p);
@@ -180,6 +180,51 @@ class PointCloud {
     return voxelGrid_.find(key) != voxelGrid_.end();
   }
 
+  /**
+   * @brief Returns the free (unoccupied) neighboring coordinates of a given
+   * point in the voxel grid.
+   *
+   * If the voxel grid is built (voxelSize_ > 0), this method returns all
+   * adjacent unoccupied voxels (6-connectivity in 3D, or 4/8-connectivity in 2D
+   * if z=0). Only neighbors that are not present in the voxel grid are
+   * returned.
+   *
+   * @param from The coordinate to find neighbors for.
+   * @return std::vector<Coordinate<DistanceM>> List of free neighboring
+   * coordinates.
+   */
+  std::vector<Coordinate<DistanceM>> getNeighbors(
+      const Coordinate<DistanceM>& from) const {
+    std::vector<Coordinate<DistanceM>> neighbors;
+    if (voxelSize_ <= 0.0f) return neighbors;
+
+    // Compute voxel index of 'from'
+    int x0 = int(std::floor(from.x / voxelSize_));
+    int y0 = int(std::floor(from.y / voxelSize_));
+    int z0 = int(std::floor(from.z / voxelSize_));
+
+    // 6-connectivity in 3D (face neighbors)
+    const int dx[6] = {1, -1, 0, 0, 0, 0};
+    const int dy[6] = {0, 0, 1, -1, 0, 0};
+    const int dz[6] = {0, 0, 0, 0, 1, -1};
+
+    for (int i = 0; i < 6; ++i) {
+      int nx = x0 + dx[i];
+      int ny = y0 + dy[i];
+      int nz = z0 + dz[i];
+      Key nkey{nx, ny, nz};
+      // Only add if NOT occupied (free neighbor)
+      if (voxelGrid_.find(nkey) == voxelGrid_.end()) {
+        // Convert voxel index back to coordinate (center of voxel)
+        DistanceM cx = (nx + 0.5f) * voxelSize_;
+        DistanceM cy = (ny + 0.5f) * voxelSize_;
+        DistanceM cz = (nz + 0.5f) * voxelSize_;
+        neighbors.emplace_back(cx, cy, cz);
+      }
+    }
+    return neighbors;
+  }
+
  protected:
   Container points_;
   Bounds bounds_;
@@ -187,7 +232,8 @@ class PointCloud {
   bool liveVocelGrid_ = false;
   // voxel grid preferrably is psram
   using PSRAMKeyAllocator = tinyrobotics::AllocatorPSRAM<Key>;
-  std::unordered_set<Key, KeyHash, std::equal_to<Key>, PSRAMKeyAllocator> voxelGrid_;
+  std::unordered_set<Key, KeyHash, std::equal_to<Key>, PSRAMKeyAllocator>
+      voxelGrid_;
 
   void resetBounds() {
     bounds_.min = {std::numeric_limits<float>::max(),

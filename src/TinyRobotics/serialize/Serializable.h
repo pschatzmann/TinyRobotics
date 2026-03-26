@@ -15,6 +15,7 @@ namespace tinyrobotics {
 class Serializable {
  public:
   virtual std::string toString() = 0;
+  const char* toCString() { return toString().c_str(); }
   virtual bool fromString(const std::string& in) = 0;
   virtual bool fromString(const char* in) { return fromString(std::string(in)); }
 };
