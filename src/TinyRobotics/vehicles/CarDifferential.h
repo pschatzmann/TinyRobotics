@@ -1,20 +1,24 @@
 #pragma once
 
-#include "Vehicle.h"
 #include "TinyRobotics/motors/HBridge.h"
+#include "Vehicle.h"
 
 /**
- * @brief 4WD car model with direction control by adjusting the speed of 4
- * motors.
+ * @brief  Car model with differential modors. The direction control by
+ * adjusting the speed of the motors. Even motors are on the left side, odd
+ * motors are on the right side.
  *
  * This class abstracts a simple 4-wheel-drive car:
- *  - 4 motors (front left, front right, rear left, rear right) via HBridge
+ *  - N motors (e.g. front left, front right, rear left, rear right) via HBridge
  *  - No steering servo: direction is controlled by varying motor speeds
  *
  * Usage Example:
  * @code
- * tinyrobotics::Car4WD car(m1_in1, m1_in2, m1_pwm, m2_in1, m2_in2, m2_pwm,
- *                         m3_in1, m3_in2, m3_pwm, m4_in1, m4_in2, m4_pwm);
+ * tinyrobotics::CarDifferentialWD<4> car;
+ * car.setPins(0, 2, 3, 4); // motor 0 (front left): in1=2, in2=3, pwm=4
+ * car.setPins(1, 5, 6, 7); // motor 1 (front right): in1=5, in2=6, pwm=7
+ * car.setPins(2, 8, 9, 10); // motor 2 (rear left): in1=8, in2=9, pwm=10
+ * car.setPins(3, 11, 12, 13); // motor 3 (rear right): in1=11, in2=12, pwm=13
  * car.setSpeed(60);      // 60% forward
  * car.setTurn(30);       // turn right by slowing left motors
  * car.end();            // brake all motors
@@ -22,9 +26,10 @@
  */
 namespace tinyrobotics {
 
-class Car4WD : public Vehicle {
+template <size_t N = 4>
+class CarDifferential : public Vehicle {
  public:
-  Car4WD() : speed_(0), turn_(0) {}
+  CarDifferential() : speed_(0), turn_(0) {}
 
   /**
    * @brief Set the pins for a specific motor (0=front left, 1=front right,
@@ -102,9 +107,9 @@ class Car4WD : public Vehicle {
   }
 
  protected:
-  HBridge motors_[4];
-  float motorGain_[4] = {1.0f, 1.0f, 1.0f, 1.0f};
-  int speed_, turn_;
+  HBridge motors_[N];
+  float motorGain_[N] = {1.0f, 1.0f, 1.0f, 1.0f};
+  float speed_, turn_;
 
   /**
    * @brief Update all motors based on speed and turn.
@@ -120,19 +125,15 @@ class Car4WD : public Vehicle {
   void updateMotors() {
     int left = speed_ - turn_;
     int right = speed_ + turn_;
-    int leftCal = static_cast<int>(left * motorGain_[0]);
-    int rightCal = static_cast<int>(right * motorGain_[1]);
-    int rearLeftCal = static_cast<int>(left * motorGain_[2]);
-    int rearRightCal = static_cast<int>(right * motorGain_[3]);
     float speed[4];
-    speed[0] = constrain(leftCal, -100, 100);          // front left
-    speed[1] = constrain(rightCal, -100, 100);        // front right
-        speed[2] = constrain(rearLeftCal, -100, 100);  // rear left
-    speed[3] = constrain(rearRightCal, -100, 100);     // rear right
+    for (int i = 0; i < 4; ++i) {
+      speed[i] = (i % 2 == 0) ? left * motorGain_[i] : right * motorGain_[i];
+      speed[i] = constrain(speed[i], -100, 100);
+    }
 
     // update speed
     for (int i = 0; i < 4; ++i) {
-      speed[i] = speed[i];
+      motors_[i].setSpeedPercent(speed[i]);
     }
 
     // publish motor speeds as messages for telemetry
