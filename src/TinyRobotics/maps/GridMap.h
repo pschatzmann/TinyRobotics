@@ -75,6 +75,13 @@ class GridMap {
     wy = origin.y + (cy + 0.5) * resolution;
   }
 
+  /// Provide the workd coordinates for the cell
+  Coordinate<DistanceM> toWorld(int cx, int cy) const {
+    Coordinate<DistanceM> coord;
+    cellToWorld(cx, cy, coord.x, coord.y);
+    return coord;
+  }
+
   /// Provide access to cell state by cell index
   bool getCell(int cx, int cy, StateType& result) {
     if (cx < 0 || cx >= xCount || cy < 0 || cy >= yCount)

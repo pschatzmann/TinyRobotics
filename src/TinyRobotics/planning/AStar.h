@@ -41,7 +41,7 @@ namespace tinyrobotics {
  * Example:
  * @code
  * tinyrobotics::AStar<MyMapType> astar;
- * astar.setCostCallback([](const Coordinate<T>& from, const Coordinate<T>& to, void*) {
+ * astar.setCostCallback([](const Node& from, const Node& to, void*) {
  *   // Custom cost (e.g., Euclidean distance)
  *   return from.distance(to);
  * });
@@ -55,11 +55,11 @@ namespace tinyrobotics {
  * application requiring flexible, efficient pathfinding.
  */
 
-template <typename MapType, typename T = float>
+template <typename MapType, typename Node = Coordinate<DistanceM>>
 class AStar {
  public:
-  using CostCallback = std::function<float(const Coordinate<T>&, const Coordinate<T>&, void* ref)>;
-  using ValidCallback = std::function<bool(const Coordinate<T>&, void* ref)>;
+  using CostCallback = std::function<float(const Node&, const Node&, void* ref)>;
+  using ValidCallback = std::function<bool(const Node&, void* ref)>;
 
  public:
   /// provide a callback to determine the cost of moving from one node to
@@ -71,24 +71,24 @@ class AStar {
   /// context)
   void setReference(void* reference) { ref = reference; }
 
-  Path<Coordinate<T>> findPath(const MapType& map, const Coordinate<T>& start, const Coordinate<T>& goal) {
-    std::unordered_map<Coordinate<T>, Coordinate<T>> cameFrom;
+  Path<Node> findPath(const MapType& map, const Node& start, const Node& goal) {
+    std::unordered_map<Node, Node> cameFrom;
     bool found = aStarSearch(map, start, goal, &cameFrom, nullptr);
     if (found) {
       return reconstructPath(cameFrom, start, goal);
     }
-    return Path<Coordinate<T>>();
+    return Path<Node>();
   }
 
   /**
    * Returns the next node on the optimal path from start to goal.
    * If no path is found, returns start.
    */
-  Coordinate<T> nextStep(const MapType& map, const Coordinate<T>& start, const Coordinate<T>& goal) {
-    std::unordered_map<Coordinate<T>, Coordinate<T>> cameFrom;
+  Node nextStep(const MapType& map, const Node& start, const Node& goal) {
+    std::unordered_map<Node, Node> cameFrom;
     bool found = aStarSearch(map, start, goal, &cameFrom, nullptr);
     if (found) {
-      Path<Coordinate<T>> path = reconstructPath(cameFrom, start, goal);
+      Path<Node> path = reconstructPath(cameFrom, start, goal);
       if (path.size() >= 2) {
         return path[1];
       }
@@ -98,9 +98,9 @@ class AStar {
 
  protected:
   struct NodeRecord {
-    Coordinate<T> node;
-    float costSoFar;
-    float estimatedTotalCost;
+    Node node;
+    float costSoFar = 0;
+    float estimatedTotalCost = 0;
     bool operator>(const NodeRecord& other) const {
       return estimatedTotalCost > other.estimatedTotalCost;
     }
@@ -109,19 +109,19 @@ class AStar {
   // Core A* search logic, fills cameFrom and optionally costSoFar, returns true
   // if path found
   bool aStarSearch(
-      const MapType& map, const Coordinate<T>& start,
-      const Coordinate<T>& goal,
-      std::unordered_map<Coordinate<T>, Coordinate<T>>* cameFrom,
-      std::unordered_map<Coordinate<T>, float>* outCostSoFar) {
+      const MapType& map, const Node& start,
+      const Node& goal,
+      std::unordered_map<Node, Node>* cameFrom,
+      std::unordered_map<Node, float>* outCostSoFar) {
     std::priority_queue<NodeRecord, std::vector<NodeRecord>,
                         std::greater<NodeRecord>>
         openSet;
-    std::unordered_map<Coordinate<T>, float> costSoFar;
+    std::unordered_map<Node, float> costSoFar;
     openSet.push({start, 0.0f, cost_cb(start, goal, ref)});
     costSoFar[start] = 0.0f;
     if (cameFrom) cameFrom->clear();
     while (!openSet.empty()) {
-      Coordinate<T> current = openSet.top().node;
+      Node current = openSet.top().node;
       if (current == goal) {
         if (outCostSoFar) *outCostSoFar = costSoFar;
         return true;
@@ -147,19 +147,20 @@ class AStar {
   ValidCallback valid_cb = defaultValid;
   void* ref = this;
 
-  static float defaultCost(const Coordinate<T>& from, const Coordinate<T>& to, void* ref) {
-    return from.distance(to);
+  static float defaultCost(const Node& from, const Node& to, void* ref) {
+    float result = from.distance(to);
+    return result;
   }
 
-  static bool defaultValid(const Coordinate<T>& node, void* ref) {
+  static bool defaultValid(const Node& node, void* ref) {
     return true;  // By default, all nodes are valid
   }
 
-  Path<Coordinate<T>> reconstructPath(
-      const std::unordered_map<Coordinate<T>, Coordinate<T>>& cameFrom,
-      const Coordinate<T>& start, const Coordinate<T>& goal) {
-    Path<Coordinate<T>> path;
-    Coordinate<T> current = goal;
+  Path<Node> reconstructPath(
+      const std::unordered_map<Node, Node>& cameFrom,
+      const Node& start, const Node& goal) {
+    Path<Node> path;
+    Node current = goal;
     while (current != start) {
       path.addWaypoint(current);
       auto it = cameFrom.find(current);

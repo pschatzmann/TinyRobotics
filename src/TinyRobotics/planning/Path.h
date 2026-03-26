@@ -98,6 +98,15 @@ class Path {
 
   void clear() { waypoints.clear(); }
 
+  /// Calculate the total distance
+  float distance() const {
+    float total_distance = 0.0f;
+    for (size_t i = 1; i < waypoints.size(); ++i) {
+      total_distance += waypoints[i - 1].distance(waypoints[i]);
+    }
+    return total_distance;
+  }
+
   // Helper to add multiple waypoints recursively
   void addWaypoints() {}
   template <typename First, typename... Rest>
@@ -108,8 +117,6 @@ class Path {
 
  protected:
   std::vector<T, Allocator> waypoints;
-
- private:
 
 
 };

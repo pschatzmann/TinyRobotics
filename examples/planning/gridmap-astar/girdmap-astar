@@ -34,19 +34,24 @@ void setup() {
 void loop() {
 
   // set random start and goal
-  Coordinate<DistanceM> start(random(0, width), random(0, height));
-  Coordinate<DistanceM> goal(random(0, width), random(0, height));
+  Coordinate<DistanceM> start = gridMap.toWorld(random(0, width), random(0, height));
+  Coordinate<DistanceM> goal = gridMap.toWorld(random(0, width), random(0, height));
 
   // Find path using A*
   AStar<GridMap<CellState>> astar;
   auto path = astar.findPath(gridMap, start, goal);
 
-  if (path.isEmpty()) Serial.println("=> No path found!");
+  if (path.isEmpty()) {
+    Serial.println("=> No path found!");
+    return;
+  }
 
   // Print the path
   for ( auto &step : path.getWaypoints()) {
     Serial.println(step.toCString());
   }
+  Serial.print("Total distance: ");
+  Serial.println(path.distance());
 
   delay(2000);  // Wait before next search
 }

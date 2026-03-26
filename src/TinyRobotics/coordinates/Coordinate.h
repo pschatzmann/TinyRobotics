@@ -171,7 +171,7 @@ class Coordinate : public Serializable {
     return !(*this == other);
   }
 
-  std::string toString() {
+  std::string toString() const {
     char buf[100];
     snprintf(buf, sizeof(buf), "%s: %.8f, %.8f, %.2f", getTypeName(), x, y, z);
     return std::string(buf);
