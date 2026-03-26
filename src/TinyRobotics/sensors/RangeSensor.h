@@ -9,16 +9,57 @@
 namespace tinyrobotics {
 
 /**
- * @brief A simple range sensor class that can be used to represent a lidar or
- * ultrasonic sensor. It holds the distance measured by the sensor, the angle of
- * obstacle in degrees, and the transform from the sensor frame to the world
- * frame. The class provides methods to set the distance, field of view, and
- * transform, as well as a method to get the obstacle coordinate in the world
- * frame based on the current distance and transform. The sensor reading is
- * considered valid if the distance is greater than 0. This class can be used in
- * a robotics application to represent the data from a range sensor and to
- * calculate the position of detected obstacles in the world frame for
- * navigation and obstacle avoidance purposes.
+ * @class RangeSensor
+ * @brief Generic range sensor abstraction for LIDAR, ultrasonic, or similar
+ * sensors.
+ *
+ * This template class models a simple range sensor, such as a LIDAR or
+ * ultrasonic sensor, for robotics applications. It tracks the measured distance
+ * to an obstacle, the angle (bearing) of the obstacle relative to the sensor,
+ * and the transform from the sensor's local frame to the world frame. The class
+ * provides methods to set and retrieve the measured distance and bearing,
+ * update the sensor-to-world transform, and compute the world-frame coordinates
+ * of detected obstacles.
+ *
+ * ## Features
+ * - Supports any distance unit via template parameter (default: meters)
+ * - Publishes distance, angle, and obstacle position as messages (for
+ * integration with messaging framework)
+ * - Computes obstacle coordinates in the world frame using a 2D transform
+ * - Validity checks for sensor readings (distance > 0)
+ * - Can be used for navigation, mapping, and obstacle avoidance
+ *
+ * ## Usage Example
+ * @code
+ *   Transform2D tf = ...; // Sensor-to-world transform
+ *   RangeSensor<> sensor(tf, 0.0f); // 0 degrees = forward
+ *   sensor.setObstacleDistance(1.5f); // Set measured distance
+ *   if (sensor) {
+ *     Coordinate<DistanceM> obs;
+ *     if (sensor.getObstacleCoordinate(obs)) {
+ *       // Use obs for navigation
+ *     }
+ *   }
+ * @endcode
+ *
+ * ## Template Parameters
+ * @tparam T Distance type (default: DistanceM)
+ *
+ * ## Methods
+ * - setObstacleDirectionDegree(deg): Set obstacle bearing in degrees
+ * - setObstacleDistance(distance): Set measured distance
+ * - setObstacle(degree, distance): Set both bearing and distance
+ * - setTransform(tf): Set sensor-to-world transform
+ * - getObstacleCoordinate(result): Compute world-frame obstacle coordinate
+ * - hasObstacle(): True if a valid obstacle is detected
+ *
+ * ## Applications
+ * - LIDAR, ultrasonic, or IR range sensing
+ * - Robot navigation and mapping
+ * - Obstacle detection and avoidance
+ *
+ * @author Phil Schatzmann
+ * @copyright GPLv3
  */
 template <typename T = DistanceM>
 class RangeSensor : public MessageSource {
@@ -27,7 +68,9 @@ class RangeSensor : public MessageSource {
     setObstacleDirectionDegree(obstacleDegree);
     setTransform(tf);
   }
-  RangeSensor(float obstacleDegree = 0) { setObstacleDirectionDegree(obstacleDegree); }
+  RangeSensor(float obstacleDegree = 0) {
+    setObstacleDirectionDegree(obstacleDegree);
+  }
 
   /// Defines the angle to the obstacle in degrees: 0 means forward
   void setObstacleDirectionDegree(float deg) { obstacle_deg_ = deg; }
@@ -40,6 +83,8 @@ class RangeSensor : public MessageSource {
   /// is defined
   void setObstacleDistance(float distance) {
     this->distance = distance;
+
+    // Publish messages for distance, angle, and obstacle coordinate if valid
     Coordinate<T> obstacle;
     if (getObstacleCoordinate(obstacle)) {
       // publish distance
@@ -48,12 +93,14 @@ class RangeSensor : public MessageSource {
       sendMessage(msgDistance);
 
       // publish angle to direction of movement
-      Message<T> msgAngle(MessageContent::Angle, obstacle_deg_, Unit::AngleDegree);
+      Message<T> msgAngle(MessageContent::Angle, obstacle_deg_,
+                          Unit::AngleDegree);
       msgAngle.source = MessgeOrigin::LIDAR;
       sendMessage(msgAngle);
 
       // publish obstacle coordinate
-      Message<Coordinate<T>> msgLocation(MessageContent::Position, obstacle, Unit::Meters);
+      Message<Coordinate<T>> msgLocation(MessageContent::Position, obstacle,
+                                         Unit::Meters);
       msgLocation.source = MessgeOrigin::LIDAR;
       sendMessage(msgLocation);
     }
