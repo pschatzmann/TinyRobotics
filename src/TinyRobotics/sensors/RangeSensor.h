@@ -21,27 +21,53 @@ namespace tinyrobotics {
  * navigation and obstacle avoidance purposes.
  */
 template <typename T = DistanceM>
-class RangeSensor {
+class RangeSensor : public MessageSource {
  public:
   RangeSensor(const Transform2D& tf, float obstacleDegree = 0) {
-    setObstacleDegree(obstacleDegree);
+    setObstacleDirectionDegree(obstacleDegree);
     setTransform(tf);
   }
-  RangeSensor(float obstacleDegree = 0) { setObstacleDegree(obstacleDegree); }
+  RangeSensor(float obstacleDegree = 0) { setObstacleDirectionDegree(obstacleDegree); }
 
   /// Defines the angle to the obstacle in degrees: 0 means forward
-  void setObstacleDegree(float deg) { obstacle_deg_ = deg; }
+  void setObstacleDirectionDegree(float deg) { obstacle_deg_ = deg; }
 
   /// Get the angle of the obstacle relative to the sensor's forward direction
   /// in degrees.
-  float getObstacleDegree() const { return obstacle_deg_; }
+  float getObstacleDirectionDegree() const { return obstacle_deg_; }
 
-  /// Set the distance measured by the sensor.
-  void setDistance(float distance) { this->distance = distance; }
+  /// Set the distance measured by the sensor. Make sure that the ObstacleDegree
+  /// is defined
+  void setObstacleDistance(float distance) {
+    this->distance = distance;
+    Coordinate<T> obstacle;
+    if (getObstacleCoordinate(obstacle)) {
+      // publish distance
+      Message<T> msgDistance(MessageContent::Distance, distance, Unit::Meters);
+      msgDistance.source = MessgeOrigin::LIDAR;
+      sendMessage(msgDistance);
+
+      // publish angle to direction of movement
+      Message<T> msgAngle(MessageContent::Angle, obstacle_deg_, Unit::AngleDegree);
+      msgAngle.source = MessgeOrigin::LIDAR;
+      sendMessage(msgAngle);
+
+      // publish obstacle coordinate
+      Message<Coordinate<T>> msgLocation(MessageContent::Position, obstacle, Unit::Meters);
+      msgLocation.source = MessgeOrigin::LIDAR;
+      sendMessage(msgLocation);
+    }
+  }
 
   /// Provide the distance measured by the sensor. In a real implementation,
   /// this would
-  float getDistance() const { return distance; }
+  float getObstacleDistance() const { return distance; }
+
+  /// Convenience method to set both the obstacle bearing and distance at once.
+  void setObstacle(float degree, float distance) {
+    setObstacleDirectionDegree(degree);
+    setObstacleDistance(distance);
+  }
 
   /// Define the lidar to world transform
   void setTransform(const Transform2D& tf) {

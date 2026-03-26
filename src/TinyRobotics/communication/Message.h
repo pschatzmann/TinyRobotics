@@ -14,12 +14,14 @@ enum class MessgeOrigin {
   Aileron,        ///< Message from an aileron controller (specific to planes)
   Elevator,       ///< Message from an elevator controller (specific to planes)
   IMU,            ///< Message from an IMU sensor
+  LIDAR,          ///< Message from a LIDAR or IR distance sensor
 };
 
 /**
  * @brief Types of message content for communication between modules or devices.
  */
 enum class MessageContent {
+  Angle,          ///< Generic angle (e.g., for orientation or steering)
   Pitch,          ///< Pitch angle or command
   Roll,           ///< Roll angle or command
   Yaw,            ///< Yaw angle or command
@@ -31,6 +33,8 @@ enum class MessageContent {
   MotorSpeed,     ///< Motor speed (RPM or percent)
   Position,       ///< Position data (coordinates)
   PositionGPS,    ///< Position data from GPS (latitude, longitude)
+  Distance,       ///< Distance measurement (e.g., from a range sensor)
+  Temperature,    ///< Temperature reading (e.g., from a temperature sensor)
 };
 
 /**
