@@ -5,12 +5,48 @@
 namespace tinyrobotics {
 
 // String arrays for enums (shared by all handlers)
-constexpr const char* messageTypeStr[] = {"Unknown", "Speed", "Heading",
-                                          "Position", "PositionGPS"};
-constexpr const char* unitStr[] = {"None", "Meters", "MetersPerSecond",
-                                   "AngleRadian", "AngleDegree"};
-constexpr const char* sourceStr[] = {"Unknown",    "IMU",  "GPS",
-                                     "Controller", "User", "Other"};
+// Update this array to match all values in the MessageContent enum (see Message.h)
+constexpr const char* messageContentStr[] = {
+  "Angle",         // 0
+  "Pitch",         // 1
+  "Roll",          // 2
+  "Yaw",           // 3
+  "Throttle",      // 4
+  "Speed",         // 5
+  "SteeringAngle", // 6
+  "Turn",          // 7
+  "Heading",       // 8
+  "MotorSpeed",    // 9
+  "Position",      // 10
+  "PositionGPS",   // 11
+  "Distance",      // 12
+  "Temperature"    // 13
+};
+constexpr const char* unitStr[] = {
+  "Percent",           // 0
+  "MetersPerSecond",   // 1
+  "RadiansPerSecond",  // 2
+  "Meters",            // 3
+  "Centimeters",       // 4
+  "Millimeters",       // 5
+  "AngleDegree",       // 6
+  "AngleRadian",       // 7
+  "TemperatureC",      // 8
+  "TemperatureF"       // 9
+};
+constexpr const char* originStr[] = {
+  "RemoteControl", // 0
+  "Autonomy",      // 1
+  "Sensor",        // 2
+  "System",        // 3
+  "Motor",         // 4
+  "Servo",         // 5
+  "Rudder",        // 6
+  "Aileron",       // 7
+  "Elevator",      // 8
+  "IMU",           // 9
+  "LIDAR"          // 10
+};
 
 /**
  * @brief Message handler that prints all received messages to a Print stream.
@@ -35,19 +71,19 @@ class MessageHandlerPrint : public MessageHandler {
   MessageHandlerPrint(Print& printer) : printer_(printer) {}
   bool onMessage(const Message<float>& msg) override {
     printer_.print("[Message] Type: ");
-    printer_.print(messageTypeStr[static_cast<int>(msg.content)]);
+    printer_.print(messageContentStr[static_cast<int>(msg.content)]);
     printer_.print(", Value: ");
     printer_.print(msg.value);
-    printer_.print(", Unit: ");
+    printer_.print(" ");
     printer_.print(unitStr[static_cast<int>(msg.unit)]);
     printer_.print(", Source: ");
-    printer_.println(sourceStr[static_cast<int>(msg.source)]);
+    printer_.println(originStr[static_cast<int>(msg.source)]);
     return true;  // Indicate that the message was handled
   }
 
   bool onMessage(const Message<Coordinate<float>>& msg) override {
     printer_.print("[Message] Type: ");
-    printer_.print(messageTypeStr[static_cast<int>(msg.content)]);
+    printer_.print(messageContentStr[static_cast<int>(msg.content)]);
     printer_.print(", X: ");
     printer_.print(msg.value.x);
     printer_.print(", Y: ");
@@ -55,13 +91,13 @@ class MessageHandlerPrint : public MessageHandler {
     printer_.print(", Unit: ");
     printer_.print(unitStr[static_cast<int>(msg.unit)]);
     printer_.print(", Source: ");
-    printer_.println(sourceStr[static_cast<int>(msg.source)]);
+    printer_.println(originStr[static_cast<int>(msg.source)]);
     return true;  // Indicate that the message was handled
   }
 
   bool onMessage(const Message<GPSCoordinate>& msg) override {
     printer_.print("[Message] Type: ");
-    printer_.print(messageTypeStr[static_cast<int>(msg.content)]);
+    printer_.print(messageContentStr[static_cast<int>(msg.content)]);
     printer_.print(", Lat: ");
     printer_.print(msg.value.latitude);
     printer_.print(", Lon: ");
@@ -71,7 +107,7 @@ class MessageHandlerPrint : public MessageHandler {
     printer_.print(", Unit: ");
     printer_.print(unitStr[static_cast<int>(msg.unit)]);
     printer_.print(", Source: ");
-    printer_.println(sourceStr[static_cast<int>(msg.source)]);
+    printer_.println(originStr[static_cast<int>(msg.source)]);
     return true;  // Indicate that the message was handled
   }
 
@@ -104,24 +140,24 @@ class MessageHandlerPrintXML : public MessageHandler {
 
   bool onMessage(const Message<float>& msg) override {
     printer_.print("<Message type=\"");
-    printer_.print(messageTypeStr[static_cast<int>(msg.content)]);
+    printer_.print(messageContentStr[static_cast<int>(msg.content)]);
     printer_.print("\" unit=\"");
     printer_.print(unitStr[static_cast<int>(msg.unit)]);
     printer_.print("\" source=\"");
-    printer_.print(sourceStr[static_cast<int>(msg.source)]);
-    printer_.print("\">");
+    printer_.print(originStr[static_cast<int>(msg.source)]);
+    printer_.print("\" value=\"");
     printer_.print(msg.value);
-    printer_.println("</Message>");
+    printer_.println("\"/>");
     return true;
   }
 
   bool onMessage(const Message<Coordinate<float>>& msg) override {
     printer_.print("<Message type=\"");
-    printer_.print(messageTypeStr[static_cast<int>(msg.content)]);
+    printer_.print(messageContentStr[static_cast<int>(msg.content)]);
     printer_.print("\" unit=\"");
     printer_.print(unitStr[static_cast<int>(msg.unit)]);
     printer_.print("\" source=\"");
-    printer_.print(sourceStr[static_cast<int>(msg.source)]);
+    printer_.print(originStr[static_cast<int>(msg.source)]);
     printer_.print("\"><X>");
     printer_.print(msg.value.x);
     printer_.print("</X><Y>");
@@ -132,11 +168,11 @@ class MessageHandlerPrintXML : public MessageHandler {
 
   bool onMessage(const Message<GPSCoordinate>& msg) override {
     printer_.print("<Message type=\"");
-    printer_.print(messageTypeStr[static_cast<int>(msg.content)]);
+    printer_.print(messageContentStr[static_cast<int>(msg.content)]);
     printer_.print("\" unit=\"");
     printer_.print(unitStr[static_cast<int>(msg.unit)]);
     printer_.print("\" source=\"");
-    printer_.print(sourceStr[static_cast<int>(msg.source)]);
+    printer_.print(originStr[static_cast<int>(msg.source)]);
     printer_.print("\"><Lat>");
     printer_.print(msg.value.latitude);
     printer_.print("</Lat><Lon>");
@@ -176,20 +212,20 @@ class MessageHandlerPrintJSON : public MessageHandler {
 
   bool onMessage(const Message<float>& msg) override {
     printer_.print("{\"type\":\"");
-    printer_.print(messageTypeStr[static_cast<int>(msg.content)]);
+    printer_.print(messageContentStr[static_cast<int>(msg.content)]);
     printer_.print("\",\"value\":");
     printer_.print(msg.value);
     printer_.print(",\"unit\":\"");
     printer_.print(unitStr[static_cast<int>(msg.unit)]);
     printer_.print("\",\"source\":\"");
-    printer_.print(sourceStr[static_cast<int>(msg.source)]);
+    printer_.print(originStr[static_cast<int>(msg.source)]);
     printer_.println("\"}");
     return true;
   }
 
   bool onMessage(const Message<Coordinate<float>>& msg) override {
     printer_.print("{\"type\":\"");
-    printer_.print(messageTypeStr[static_cast<int>(msg.content)]);
+    printer_.print(messageContentStr[static_cast<int>(msg.content)]);
     printer_.print("\",\"x\":");
     printer_.print(msg.value.x);
     printer_.print(",\"y\":");
@@ -197,14 +233,14 @@ class MessageHandlerPrintJSON : public MessageHandler {
     printer_.print(",\"unit\":\"");
     printer_.print(unitStr[static_cast<int>(msg.unit)]);
     printer_.print("\",\"source\":\"");
-    printer_.print(sourceStr[static_cast<int>(msg.source)]);
+    printer_.print(originStr[static_cast<int>(msg.source)]);
     printer_.println("\"}");
     return true;
   }
 
   bool onMessage(const Message<GPSCoordinate>& msg) override {
     printer_.print("{\"type\":\"");
-    printer_.print(messageTypeStr[static_cast<int>(msg.content)]);
+    printer_.print(messageContentStr[static_cast<int>(msg.content)]);
     printer_.print("\",\"lat\":");
     printer_.print(msg.value.latitude);
     printer_.print(",\"lon\":");
@@ -214,7 +250,7 @@ class MessageHandlerPrintJSON : public MessageHandler {
     printer_.print(",\"unit\":\"");
     printer_.print(unitStr[static_cast<int>(msg.unit)]);
     printer_.print("\",\"source\":\"");
-    printer_.print(sourceStr[static_cast<int>(msg.source)]);
+    printer_.print(originStr[static_cast<int>(msg.source)]);
     printer_.println("\"}");
     return true;
   }
