@@ -20,7 +20,7 @@ This module provides high-level abstractions for controlling various types of ro
 #include <vehicles/MotorBoat.h>
 
 // Car4WD
-Car4WD car;
+CarDifferential<4> car;
 car.setPins(0, 5, 6, 9); // front left motor
 car.setPins(1, 7, 8, 10); // front right motor
 car.setPins(2, 11, 12, 13); // rear left motor
