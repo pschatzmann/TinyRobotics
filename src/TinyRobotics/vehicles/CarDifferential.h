@@ -4,11 +4,11 @@
 #include "Vehicle.h"
 
 /**
- * @brief  Car model with differential modors. The direction control by
+ * @brief  Car model with differential drive. The direction is controlled by
  * adjusting the speed of the motors. Even motors are on the left side, odd
- * motors are on the right side.
+ * motors are on the right side. 
  *
- * This class abstracts a simple 4-wheel-drive car:
+ * This class abstracts a simple N-wheel-drive car:
  *  - N motors (e.g. front left, front right, rear left, rear right) via HBridge
  *  - No steering servo: direction is controlled by varying motor speeds
  *
