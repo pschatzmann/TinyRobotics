@@ -46,7 +46,6 @@ The following external libraries are supported or recommended for advanced commu
   - Library for IEEE 802.15.4 transceiver support on ESP32, enabling mesh and sensor network communication.
 - [RadioHead](http://www.airspayce.com/mikem/arduino/RadioHead/):
   - Widely used library for wireless communication with a variety of RF modules (e.g., 433/868/915 MHz, LoRa, ASK, FSK, etc.).
-- [Rosserial Arduino Library](http://wiki.ros.org/rosserial_arduino):
-  - Library for ROS-compatible serial communication, enabling integration of Arduino devices with ROS-based systems.
+- [micro-ros-arduiono](https://github.com/micro-ROS/micro_ros_arduino) Arduino ROS integration
 
 These libraries can be integrated with TinyRobotics communication classes to extend protocol support for robotics and drone applications.

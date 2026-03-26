@@ -4,6 +4,4 @@
 #include "Buffers.h"
 #include "Common.h"
 #include "Config.h"
-#include "KalmanFilter.h"
 #include "LoggerClass.h"
-#include "Scheduler.h"

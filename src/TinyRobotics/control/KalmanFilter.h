@@ -84,29 +84,79 @@ inline Matrix<2, 2> inverse(const Matrix<2, 2>& m) {
 }
 
 /**
- * @brief This class implements a simple Kalman Filter for state estimation. It
- * maintains the state vector (x), the covariance matrix (P), the state
- * transition matrix (F), the process noise covariance (Q), the measurement
- * matrix (H), and the measurement noise covariance (R). The predict() method
- * performs the prediction step of the Kalman Filter, while the update() method
- * incorporates new measurements to refine the state estimate. This
- * implementation is designed to be simple and efficient for use in embedded
- * systems, with fixed-size matrices and basic linear algebra operations. The
- * template parameters NX and NZ allow for flexibility in the size of the state
- * and measurement vectors, making it adaptable to various applications such as
- * localization, sensor fusion, or any scenario where state estimation is needed
- * based on noisy measurements.
+ * @class KalmanFilter
+ * @brief A lightweight, fixed-size Kalman Filter for embedded state estimation.
  *
- * @tparam NX Number of state variables
- * @tparam NZ Number of measurement variables
+ * This template class implements a discrete-time, linear Kalman Filter for
+ * real-time state estimation in embedded and robotics applications. It is
+ * designed for efficiency and simplicity, using static, fixed-size matrices and
+ * minimal dynamic memory. The filter estimates the internal state of a process
+ * given noisy measurements and a mathematical model of the system dynamics.
+ *
+ * ## Features
+ * - Fixed-size, stack-allocated matrices for predictable memory usage
+ * - Suitable for microcontrollers and real-time systems
+ * - Supports arbitrary state and measurement dimensions via template parameters
+ * - Simple API: `predict()` for time update, `update(z)` for measurement update
+ *
+ * ## Mathematical Model
+ * The Kalman Filter models the system as:
+ *
+ *   x_k   = F * x_{k-1} + w      (state transition)
+ *   z_k   = H * x_k     + v      (measurement)
+ *
+ *   where:
+ *     - x: state vector (NX x 1)
+ *     - z: measurement vector (NZ x 1)
+ *     - F: state transition matrix (NX x NX)
+ *     - H: measurement matrix (NZ x NX)
+ *     - Q: process noise covariance (NX x NX)
+ *     - R: measurement noise covariance (NZ x NZ)
+ *     - w, v: process and measurement noise (zero-mean, Gaussian)
+ *
+ * ## Usage Example
+ * @code
+ *   KalmanFilter<2, 1> kf;
+ *   kf.Fmat = ...; // set state transition
+ *   kf.H = ...;    // set measurement model
+ *   kf.Q = ...;    // set process noise
+ *   kf.R = ...;    // set measurement noise
+ *   kf.x = ...;    // set initial state
+ *   kf.P = ...;    // set initial covariance
+ *   kf.predict();
+ *   kf.update(z);
+ * @endcode
+ *
+ * ## Template Parameters
+ * @tparam NX Number of state variables (state vector dimension)
+ * @tparam NZ Number of measurement variables (measurement vector dimension)
+ *
+ * ## Members
+ * - x: State estimate vector (NX x 1)
+ * - P: State covariance matrix (NX x NX)
+ * - Fmat: State transition matrix (NX x NX)
+ * - Q: Process noise covariance (NX x NX)
+ * - H: Measurement matrix (NZ x NX)
+ * - R: Measurement noise covariance (NZ x NZ)
+ * - I: Identity matrix (NX x NX)
+ *
+ * ## Methods
+ * - predict(): Performs the time update (prediction) step
+ * - update(z): Performs the measurement update (correction) step
+ *
+ * ## Applications
+ * - Sensor fusion (IMU, GPS, encoders)
+ * - Robot localization
+ * - Signal filtering and smoothing
+ * - Any scenario requiring optimal state estimation from noisy data
  */
 template <size_t NX, size_t NZ>
 class KalmanFilter {
  public:
-  Matrix<NX, 1> x;   // state
-  Matrix<NX, NX> P;  // covariance
+  Matrix<NX, 1> x;      // state
+  Matrix<NX, NX> P;     // covariance
   Matrix<NX, NX> Fmat;  // state transition
-  Matrix<NX, NX> Q;  // process noise
+  Matrix<NX, NX> Q;     // process noise
 
   Matrix<NZ, NX> H;  // measurement matrix
   Matrix<NZ, NZ> R;  // measurement noise
@@ -115,8 +165,8 @@ class KalmanFilter {
 
   // Prediction step
   void predict() {
-  x = Fmat * x;
-  P = Fmat * P * transpose(Fmat) + Q;
+    x = Fmat * x;
+    P = Fmat * P * transpose(Fmat) + Q;
   }
 
   // Update step
