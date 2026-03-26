@@ -7,16 +7,48 @@
 namespace tinyrobotics {
 
 /**
- * @brief   A simple logging class that provides methods for logging messages at
- * different levels (ERROR, WARN, INFO, DEBUG). The logger can be configured to
- * set a minimum log level, so that messages below that level will not be
- * printed. The log messages are formatted using printf-style formatting, and
- * the output includes the log level as a prefix. This class can be used for
- * debugging and monitoring the behavior of the system, allowing developers to
- * easily track important events and diagnose issues. The logger can be used in
- * both Arduino and standard C++ environments, with appropriate handling for
- * output (Serial for Arduino, printf for standard C++).
+ * @class LoggerClass
+ * @brief Simple, cross-platform logger for Arduino and C++ environments.
  *
+ * This class provides a lightweight logging facility with support for log levels (ERROR, WARN, INFO, DEBUG),
+ * printf-style formatting, and platform-adaptive output (Serial for Arduino, printf for standard C++). It is
+ * designed for embedded and robotics applications where monitoring, debugging, and event tracking are essential.
+ *
+ * ## Features
+ * - Four log levels: ERROR, WARN, INFO, DEBUG
+ * - Configurable minimum log level (messages below this are suppressed)
+ * - printf-style formatting for flexible message construction
+ * - Platform-adaptive output: uses Serial on Arduino, printf elsewhere
+ * - Thread-safe for most embedded use cases (no dynamic memory allocation)
+ * - Global logger instance (`TRLogger`) for convenience
+ *
+ * ## Usage Example
+ * @code
+ *   TRLogger.setLevel(LoggerClass::DEBUG);
+ *   TRLogger.info("System started, version: %d", version);
+ *   TRLogger.error("Failed to open file: %s", filename);
+ *   TRLogger.debug("x=%.2f, y=%.2f", x, y);
+ * @endcode
+ *
+ * ## Methods
+ * - setLevel(level): Set the minimum log level
+ * - error(fmt, ...);
+ * - warn(fmt, ...); 
+ * - info(fmt, ...);
+ * - debug(fmt, ...);
+ *
+ * ## Log Levels
+ * - ERROR: Critical errors and failures
+ * - WARN: Warnings and recoverable issues
+ * - INFO: Informational messages and status updates
+ * - DEBUG: Detailed debug output for development
+ *
+ * ## Platform Support
+ * - On Arduino, output is sent to Serial (or a user-supplied Print object)
+ * - On standard C++, output is sent to stdout via printf
+ *
+ * @author Phil Schatzmann
+ * @copyright GPLv3
  */
 class LoggerClass {
  public:
@@ -35,23 +67,6 @@ class LoggerClass {
 #endif
 
   void setLevel(Level level) { minLevel = level; }
-
-  void log(Level level, const char* fmt, ...) {
-    if (level > minLevel) return;
-    const char* levelStr = levelToString(level);
-    char buf[256];
-    va_list args;
-    va_start(args, fmt);
-    vsnprintf(buf, sizeof(buf), fmt, args);
-    va_end(args);
-#ifdef ARDUINO
-    Serial.print(levelStr);
-    Serial.print(": ");
-    Serial.println(buf);
-#else
-    printf("%s: %s\n", levelStr, buf);
-#endif
-  }
 
   void error(const char* fmt, ...) {
     va_list args;
@@ -114,6 +129,16 @@ class LoggerClass {
   }
 };
 
+
+/**
+ * @brief Global logger instance for convenience.
+ *
+ * Use `TRLogger` for simple, global logging throughout your application.
+ * Example:
+ * @code
+ *   TRLogger.info("Hello, world!");
+ * @endcode
+ */
 static LoggerClass TRLogger;
 
 }  // namespace tinyrobotics
