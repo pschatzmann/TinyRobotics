@@ -25,7 +25,7 @@ class Dijkstra {
       std::function<float(const Node&, const Node&, void* ref)>;
   using ValidCallback = std::function<bool(const Node&, void* ref)>;
 
-  Dijkstra(const MapType& map) : map(map) {}
+  Dijkstra() = default;
 
   /// provide a callback to determine the cost of moving from one node to
   /// another
@@ -42,7 +42,7 @@ class Dijkstra {
    * @param goal The goal node.
    * @return Vector of nodes representing the path (empty if no path found).
    */
-  Path<Node> findPath(const Node& start, const Node& goal) {
+  Path<Node> findPath(const MapType& map, const Node& start, const Node& goal) {
     using Pair = std::pair<float, Node>;
     std::priority_queue<Pair, std::vector<Pair>, std::greater<Pair>> open;
     std::unordered_map<Node, float> cost_so_far;
@@ -81,9 +81,8 @@ class Dijkstra {
   }
 
  protected:
-  const MapType& map;
   CostCallback cost_cb = defaultCost;
-  ValidCallback valid_cb;
+  ValidCallback valid_cb = defaultValid;
   void* ref = this;
 
   static float defaultCost(const Node& from, const Node& to, void* ref) {

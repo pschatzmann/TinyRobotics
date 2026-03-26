@@ -171,6 +171,13 @@ class Coordinate : public Serializable {
     return !(*this == other);
   }
 
+  // Lexicographical comparison for STL containers (priority_queue, set, etc.)
+  bool operator<(const Coordinate& other) const {
+    if (x != other.x) return x < other.x;
+    if (y != other.y) return y < other.y;
+    return z < other.z;
+  }
+
   std::string toString() const {
     char buf[100];
     snprintf(buf, sizeof(buf), "%s: %.8f, %.8f, %.2f", getTypeName(), x, y, z);
