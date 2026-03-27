@@ -1,7 +1,12 @@
 // A remote controlled car example using the RCGamepadMessageSource to receive
-// gamepad input and control the car accordingly.
+// gamepad input from an Android game controller and control the car accordingly.
+// For other vehicle types, just replace CarAckerman with the appropriate
+// vehicle class (e.g., CarDifferential, Boat, Drone, Plane) and set up the pins
+// accordingly.
+// You must install the VirtualGamePadArduino library and set up the Android game controller
 
 #include <WiFi.h>
+
 #include "TinyRobotics.h"
 #include "TinyRobotics/communication/RCGamepadMessageSource.h"
 
@@ -31,8 +36,8 @@ void setup() {
   Serial.println("RC Car example starting");
 
   // Set up the car pins (example for 1 drive motor and 1 steering servo)
-  car.setPins(5, 6, 9, 10); // in1, in2, pwm, steeringPin
-  rcSource.addMessageHandler(car); // Connect the car to the RC message source
+  car.setPins(5, 6, 9, 10);         // in1, in2, pwm, steeringPin
+  rcSource.addMessageHandler(car);  // Connect the car to the RC message source
 
   // Start the RC gamepad message source
   rcSource.begin(ControlScenario::Car);
