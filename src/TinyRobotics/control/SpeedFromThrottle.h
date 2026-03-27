@@ -29,17 +29,24 @@ namespace tinyrobotics {
 
 class SpeedFromThrottle {
  public:
-  SpeedFromThrottle(float maxSpeedMps) {
+  SpeedFromThrottle(float maxSpeedMps) { begin(maxSpeedMps); }
+
+  bool begin(float maxSpeedMps) {
     addSpeedCalibration(0.0f, 0.0f);           // 0% throttle = 0 m/s
     addSpeedCalibration(100.0f, maxSpeedMps);  // 100% throttle = max speed
+    addSpeedCalibation(-100.0f,
+                       maxSpeedMps);  // -100% throttle = max reverse speed
+    return true;
   }
 
+  //// Get speed as a Speed object (with units)
   Speed getSpeed(float throttlePercent) const {
     float speedMps = getSpeedMPS(throttlePercent);
     Speed speed(speedMps, SpeedUnit::MPS);
     return speed;
   }
 
+  /// Get speed in meters per second by interpolating calibration data
   float getSpeedMPS(float throttlePercent) const {
     if (calibrationData.empty()) return 0.0f;
     // Clamp below
@@ -63,6 +70,7 @@ class SpeedFromThrottle {
     return 0.0f;
   }
 
+  /// Add or update a calibration point (throttlePercent, speedMps)
   void addSpeedCalibration(float throttlePercent, float speedMps) {
     // Insert in order by throttlePercent, replace if exists
     auto it = calibrationData.begin();
@@ -75,6 +83,9 @@ class SpeedFromThrottle {
       calibrationData.insert(it, std::make_pair(throttlePercent, speedMps));
     }
   }
+
+  /// Clear all calibration data
+  void clearCalibration() { calibrationData.clear(); }
 
  protected:
   std::vector<std::pair<float, float>>
