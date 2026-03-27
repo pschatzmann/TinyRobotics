@@ -4,6 +4,7 @@
 
 namespace tinyrobotics {
 
+// from enum class MessageContent in Message.h - update this array to match all values in the MessageContent enum
 // String arrays for enums (shared by all handlers)
 // Update this array to match all values in the MessageContent enum (see Message.h)
 constexpr const char* messageContentStr[] = {
@@ -20,8 +21,12 @@ constexpr const char* messageContentStr[] = {
   "Position",      // 10
   "PositionGPS",   // 11
   "Distance",      // 12
-  "Temperature"    // 13
+  "Temperature",   // 13
+  "Error"          // 14
+  "Density"        // 15
 };
+
+// from enum class Unit in Common.h - update this array to match all values in the Unit enum
 constexpr const char* unitStr[] = {
   "Percent",           // 0
   "MetersPerSecond",   // 1
@@ -32,8 +37,11 @@ constexpr const char* unitStr[] = {
   "AngleDegree",       // 6
   "AngleRadian",       // 7
   "TemperatureC",      // 8
-  "TemperatureF"       // 9
+  "TemperatureF",      // 9
+  "Pixel"              // 10
 };
+
+// from enum class MessageOrigin in Message.h - update this array to match all values in the MessageOrigin enum
 constexpr const char* originStr[] = {
   "RemoteControl", // 0
   "Autonomy",      // 1
@@ -45,7 +53,9 @@ constexpr const char* originStr[] = {
   "Aileron",       // 7
   "Elevator",      // 8
   "IMU",           // 9
-  "LIDAR"          // 10
+  "LIDAR",         // 10
+  "Camera",        // 11
+  "GPS"            // 12
 };
 
 /**

@@ -3,6 +3,9 @@
 #include <stddef.h>
 #include <stdint.h>
 
+#include "TinyRobotics/communication/Message.h"
+#include "TinyRobotics/communication/MessageSource.h"
+
 namespace tinyrobotics {
 
 /**
@@ -20,7 +23,7 @@ namespace tinyrobotics {
  *   - Lightweight, suitable for embedded/Arduino use
  *
  * @note Expected format:
- * - The input image should be a grayscale buffer (uint8_t*) 
+ * - The input image should be a grayscale buffer (uint8_t*)
  * - The pixel intensity is expected to be in the range 0 (black) to 255
  * (white).
  * - The layout of the image buffer should be row-major (i.e., pixel at (x,y) is
@@ -37,7 +40,7 @@ namespace tinyrobotics {
  * @endcode
  */
 
-class CameraObstacleDetector {
+class CameraObstacleDetector : public MessageSource {
  public:
   struct Result {
     bool detected;
@@ -78,6 +81,11 @@ class CameraObstacleDetector {
     }
 
     float density = (total > 0) ? (float)hits / total : 0.0f;
+
+    // publish angle to direction of movement
+    Message<float> msgError(MessageContent::Density, density * 100.0f, Unit::Percent);
+    msgError.source = MessageOrigin::Camera;
+    sendMessage(msgError);
 
     return {density > _trigger, density};
   }

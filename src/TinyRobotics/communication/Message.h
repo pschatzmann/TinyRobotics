@@ -15,6 +15,8 @@ enum class MessageOrigin {
   Elevator,       ///< Message from an elevator controller (specific to planes)
   IMU,            ///< Message from an IMU sensor
   LIDAR,          ///< Message from a LIDAR or IR distance sensor
+  Camera,         ///< Message from a camera or vision sensor
+  GPS,            ///< Message from a GPS module
 };
 
 /**
@@ -35,6 +37,8 @@ enum class MessageContent {
   PositionGPS,    ///< Position data from GPS (latitude, longitude)
   Distance,       ///< Distance measurement (e.g., from a range sensor)
   Temperature,    ///< Temperature reading (e.g., from a temperature sensor)
+  Error,          ///< Error value (e.g., for PID control)
+  Density         ///< Density value (e.g., for obstacle detection)
 };
 
 /**

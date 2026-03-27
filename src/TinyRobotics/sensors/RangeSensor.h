@@ -1,6 +1,8 @@
 #pragma once
 #include <cmath>
 
+#include "TinyRobotics/communication/Message.h"
+#include "TinyRobotics/communication/MessageSource.h"
 #include "TinyRobotics/coordinates/Coordinate.h"
 #include "TinyRobotics/coordinates/FrameMgr2D.h"
 #include "TinyRobotics/units/Distance.h"

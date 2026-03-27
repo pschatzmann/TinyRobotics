@@ -2,6 +2,8 @@
 #pragma once
 #include <stddef.h>
 #include <stdint.h>
+#include "TinyRobotics/communication/Message.h"
+#include "TinyRobotics/communication/MessageSource.h"
 
 namespace tinyrobotics {
 
@@ -37,7 +39,7 @@ namespace tinyrobotics {
  * @endcode
  */
 
-class CameraLineFollower {
+class CameraLineFollower : public MessageSource {
  public:
   struct Result {
     bool found;
@@ -116,6 +118,11 @@ class CameraLineFollower {
 
     int center = width / 2;
     int error = position - center;
+
+    // publish angle to direction of movement
+    Message<float> msgError(MessageContent::Error, error, Unit::Pixel);
+    msgError.source = MessageOrigin::Camera;
+    sendMessage(msgError);
 
     return {true, position, error};
   }

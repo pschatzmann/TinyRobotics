@@ -36,6 +36,7 @@ enum class Unit {
   AngleRadian,       ///< Angle in radians
   TemperatureC,      ///< Temperature in Celsius
   TemperatureF,      ///< Temperature in Fahrenheit
+  Pixel,             ///< Pixel units (e.g., for image processing)
 };
 
 /// Convert a value from the given unit to degrees.
@@ -51,6 +52,5 @@ bool toAngleDegree(DEFAULT_TYPE in, Unit unit, AngleDeg& out) {
       return false;  // Unsupported unit for angle
   }
 }
-
 
 }  // namespace tinyrobotics

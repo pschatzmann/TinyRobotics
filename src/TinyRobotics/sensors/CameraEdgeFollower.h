@@ -3,6 +3,9 @@
 #include <stddef.h>
 #include <stdint.h>
 
+#include "TinyRobotics/communication/Message.h"
+#include "TinyRobotics/communication/MessageSource.h"
+
 namespace tinyrobotics {
 
 /**
@@ -36,8 +39,7 @@ namespace tinyrobotics {
  * @endcode
  */
 
-
-class CameraEdgeFollower {
+class CameraEdgeFollower : public MessageSource {
  public:
   struct Result {
     bool found;
@@ -76,6 +78,11 @@ class CameraEdgeFollower {
 
     int center = width / 2;
     int error = best_x - center;
+
+    // publish angle to direction of movement
+    Message<float> msgError(MessageContent::Error, error, Unit::Pixel);
+    msgError.source = MessageOrigin::Camera;
+    sendMessage(msgError);
 
     return {true, best_x, error};
   }
