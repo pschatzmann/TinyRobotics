@@ -46,7 +46,7 @@ class MotorBoat : public Vehicle {
     motor_.setSpeedPercent(percent);
     // publish throttle as message for telemetry
     Message<float> msg(MessageContent::MotorSpeed, percent, Unit::Percent);
-    msg.source = MessgeOrigin::Motor;
+    msg.source = MessageOrigin::Motor;
     sendMessage(msg);
   }
 
@@ -57,7 +57,7 @@ class MotorBoat : public Vehicle {
     rudder_.setAngle(angle);
     // publish rudder angle as message for telemetry
     Message<float> msg(MessageContent::SteeringAngle, angle, Unit::AngleDegree);
-    msg.source = MessgeOrigin::Rudder;
+    msg.source = MessageOrigin::Rudder;
     sendMessage(msg);
   }
 
@@ -72,7 +72,7 @@ class MotorBoat : public Vehicle {
 
   bool onMessage(const Message<float>& msg) override {
     float angle;
-    if (msg.source != MessgeOrigin::RemoteControl) return false;  // Only handle RC messages
+    if (msg.source != MessageOrigin::RemoteControl) return false;  // Only handle RC messages
     switch (msg.content) {
       case MessageContent::Throttle:
         if (msg.unit != Unit::Percent) return false;

@@ -57,11 +57,12 @@ class Scheduler {
  public:
   Scheduler() = default;
 
-  void begin(uint16_t repeatMs, void (*cb)(void*)) {
+  void begin(uint16_t repeatMs, void (*cb)(void*), void* ref = nullptr) {
     repeatMs_ = repeatMs;
     start_time = millis() + repeatMs;
+    reference = ref;
     setCallback(cb);
-    is_active_ = true;
+    is_active_ = repeatMs > 0 && cb != nullptr;
   }
 
   void end() { is_active_ = false; }
@@ -79,6 +80,8 @@ class Scheduler {
     }
   }
 
+  bool isActive() const { return is_active_; }
+
 #ifndef ARDUINO
   unsigned long millis() {
     // Implement a simple millis() function for non-Arduino environments
@@ -94,6 +97,7 @@ class Scheduler {
   unsigned long start_time = 0;
   bool is_active_ = false;
   void (*callback)(void*) = nullptr;
+  void *reference = nullptr;
   uint16_t repeatMs_;
 };
 

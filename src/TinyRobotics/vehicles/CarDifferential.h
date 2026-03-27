@@ -90,7 +90,7 @@ class CarDifferential : public Vehicle {
   }
 
   bool onMessage(const Message<float>& msg) override {
-    if (msg.source != MessgeOrigin::RemoteControl)
+    if (msg.source != MessageOrigin::RemoteControl)
       return false;  // Only handle RC messages
     switch (msg.content) {
       case MessageContent::Throttle:
@@ -139,7 +139,7 @@ class CarDifferential : public Vehicle {
     // publish motor speeds as messages for telemetry
     for (int i = 0; i < 4; ++i) {
       Message<float> msg(MessageContent::MotorSpeed, speed[i], Unit::Percent);
-      msg.source = MessgeOrigin::Motor;
+      msg.source = MessageOrigin::Motor;
       msg.source_id = i;  // Motor index
       sendMessage(msg);
     }

@@ -230,21 +230,21 @@ class IMU2D : public MessageSource {
 
     // Publish as message (could be extended to include velocity, etc.)
     Message<float> msg{MessageContent::Speed, vel, Unit::MetersPerSecond};
-    msg.source = MessgeOrigin::IMU;
+    msg.source = MessageOrigin::IMU;
     sendMessage(msg);
 
     Message<float> msgAngle{MessageContent::Heading, angle, Unit::AngleRadian};
-    msg.source = MessgeOrigin::IMU;
+    msg.source = MessageOrigin::IMU;
     sendMessage(msgAngle);
 
     Message<Coordinate<DistanceM>> msgPos{MessageContent::Position, pos,
                                           Unit::Meters};
-    msgPos.source = MessgeOrigin::IMU;
+    msgPos.source = MessageOrigin::IMU;
     sendMessage(msgPos);
 
     Message<GPSCoordinate> msgGPS{MessageContent::PositionGPS, prevGPS,
                                   Unit::AngleDegree};
-    msgPos.source = MessgeOrigin::IMU;
+    msgPos.source = MessageOrigin::IMU;
     sendMessage(msgPos);
   }
 
