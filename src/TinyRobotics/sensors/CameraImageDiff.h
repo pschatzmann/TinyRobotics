@@ -4,21 +4,25 @@
 #include <cmath>
 #include <cstdint>
 #include <vector>
+
 #include "TinyRobotics/utils/AllocatorPSRAM.h"
 
 namespace tinyrobotics {
 
 /**
- * @brief Computes pixel-wise differences between consecutive grayscale camera images.
+ * @brief Computes pixel-wise differences between consecutive grayscale camera
+ * images.
  *
- * This class is designed for simple motion or change detection in a sequence of grayscale images.
- * It calculates the absolute difference between the current and previous image, applies a threshold,
- * and provides methods to count the number of changed pixels globally or in image regions.
+ * This class is designed for simple motion or change detection in a sequence of
+ * grayscale images. It calculates the absolute difference between the current
+ * and previous image, applies a threshold, and provides methods to count the
+ * number of changed pixels globally or in image regions.
  *
  * Features:
  *   - Computes per-pixel absolute difference between frames
  *   - Thresholds the difference to create a binary mask of changed pixels
- *   - Counts changed pixels globally, by vertical thirds (left/center/right), or by horizontal thirds (top/center/bottom)
+ *   - Counts changed pixels globally, by vertical thirds (left/center/right),
+ * or by horizontal thirds (top/center/bottom)
  *   - Lightweight and suitable for embedded/Arduino use
  *
  * Usage Example:
@@ -118,6 +122,12 @@ class CameraImageDiff {
     diff_.resize(0);
     mask_.resize(0);
   }
+  int getWidth() const { return width_; }
+  int getHeight() const { return height_; }
+  int getPixelCount() const { return width_ * height_; }
+  /// Provides the raw difference buffer (grayscale values 0–255) for external
+  /// use or debugging.
+  uint8_t* getDiff() { return diff_.data(); }
 
  protected:
   int width_ = 0;
