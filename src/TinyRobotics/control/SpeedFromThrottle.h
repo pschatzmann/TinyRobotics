@@ -34,8 +34,7 @@ class SpeedFromThrottle {
   bool begin(float maxSpeedMps) {
     addSpeedCalibration(0.0f, 0.0f);           // 0% throttle = 0 m/s
     addSpeedCalibration(100.0f, maxSpeedMps);  // 100% throttle = max speed
-    addSpeedCalibation(-100.0f,
-                       maxSpeedMps);  // -100% throttle = max reverse speed
+    addSpeedCalibration(-100.0f, maxSpeedMps);  // -100% throttle = max reverse speed
     return true;
   }
 
