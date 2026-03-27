@@ -66,7 +66,7 @@ struct Message {
    * @param v Value
    * @param u Unit
    */
-  Message(MessageContent c, float v, Unit u) : content(c), value(v), unit(u) {}
+  Message(MessageContent c, T v, Unit u) : content(c), value(v), unit(u) {}
 };
 
 }  // namespace tinyrobotics

@@ -33,6 +33,7 @@ namespace tinyrobotics {
  * @code
  *   Transform2D tf = ...; // Sensor-to-world transform
  *   RangeSensor<> sensor(tf, 0.0f); // 0 degrees = forward
+ *   sensor.begin();
  *   sensor.setObstacleDistance(1.5f); // Set measured distance
  *   if (sensor) {
  *     Coordinate<DistanceM> obs;
@@ -72,6 +73,14 @@ class RangeSensor : public MessageSource {
     setObstacleDirectionDegree(obstacleDegree);
   }
 
+  bool begin() {
+    // In a real implementation, this might initialize hardware or start a task
+    is_active_ = true;
+    return true;
+  }
+
+  void end() { is_active_ = false; }
+
   /// Defines the angle to the obstacle in degrees: 0 means forward
   void setObstacleDirectionDegree(float deg) { obstacle_deg_ = deg; }
 
@@ -79,16 +88,23 @@ class RangeSensor : public MessageSource {
   /// in degrees.
   float getObstacleDirectionDegree() const { return obstacle_deg_; }
 
-  /// Set the distance measured by the sensor. Make sure that the ObstacleDegree
-  /// is defined
-  void setObstacleDistance(float distance) {
-    this->distance = distance;
+  /// Set the distance measured by the sensor. Make sure that the
+  /// ObstacleDegree is defined
+  bool setObstacleDistance(Distance dist) {
+    return setObstacleDistance(dist.getDistance(DistanceUnit::M));
+  }
+
+  /// Set the distance measured by the sensor. Make sure that the
+  /// ObstacleDegree is defined
+  bool setObstacleDistance(float distanceM) {
+    if (!is_active_) return false;
+    this->distanceM = distanceM;
 
     // Publish messages for distance, angle, and obstacle coordinate if valid
     Coordinate<T> obstacle;
     if (getObstacleCoordinate(obstacle)) {
       // publish distance
-      Message<T> msgDistance(MessageContent::Distance, distance, Unit::Meters);
+      Message<T> msgDistance(MessageContent::Distance, distanceM, Unit::Meters);
       msgDistance.source = MessageOrigin::LIDAR;
       sendMessage(msgDistance);
 
@@ -100,15 +116,16 @@ class RangeSensor : public MessageSource {
 
       // publish obstacle coordinate
       Message<Coordinate<T>> msgLocation(MessageContent::Position, obstacle,
-                                         Unit::Meters);
+                                          Unit::Meters);
       msgLocation.source = MessageOrigin::LIDAR;
       sendMessage(msgLocation);
     }
+    return true;
   }
 
   /// Provide the distance measured by the sensor. In a real implementation,
   /// this would
-  float getObstacleDistance() const { return distance; }
+  float getObstacleDistance() const { return distanceM; }
 
   /// Convenience method to set both the obstacle bearing and distance at once.
   void setObstacle(float degree, float distance) {
@@ -132,22 +149,24 @@ class RangeSensor : public MessageSource {
       return false;
     }
     float theta = obstacle_deg_ * M_PI / 180.0f;
-    Coordinate<T> obstacle_lidar(distance * cos(theta), distance * sin(theta));
+    Coordinate<T> obstacle_lidar(distanceM * cos(theta),
+                                 distanceM * sin(theta));
     result = lidar_to_world_tf.apply(obstacle_lidar);
     return true;
   }
 
   /// Check if the sensor reading is valid (distance > 0)
-  operator bool() const { return distance > 0; }  // Valid if distance is set
+  operator bool() const { return distanceM > 0; }  // Valid if distance is set
 
   /// Return true if there is an obstacle detected (distance > 0)
-  bool hasObstacle() const { return distance > 0; }
+  bool hasObstacle() const { return distanceM > 0; }
 
  protected:
   float obstacle_deg_ = 0;
-  float distance = 0;
+  float distanceM = 0;
   Transform2D lidar_to_world_tf;
   bool has_transform_ = false;
+  bool is_active_ = false;
 };
 
 }  // namespace tinyrobotics
