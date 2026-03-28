@@ -4,11 +4,11 @@
  *
  * Demonstrates how to set up a simple remote control for a car using ESPNow as
  * the communication stream. You can also use Serial, UDPStream, etc. by
- * changing the stream and CommunicationManager configuration.
+ * changing the stream and MessageDispatcher configuration.
  *
  * - Sets up a car and message handler for Serial output.
  * - Uses ESPNowStream for wireless communication.
- * - CommunicationManager dispatches received messages to the car.
+ * - MessageDispatcher dispatches received messages to the car.
  *
  * ## Dependencies
  * - TinyRobotics: https://github.com/pschatzmann/TinyRobotics
@@ -24,7 +24,7 @@ CarAckerman car;
 MessageHandlerPrint printer(Serial);  // forward to Serial
 ESPNowStream espnow;
 // receive messages from ESPNow and dispatch to car
-CommunicationManager mgr(car, espnow);
+MessageDispatcher mgr(car, espnow);
 
 void setup() {
   Serial.begin(115200);

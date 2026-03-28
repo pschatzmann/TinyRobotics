@@ -1,7 +1,8 @@
 #pragma once
 
-#include "CommunicationManager.h"
+#include "MessageDispatcher.h"
 #include "Message.h"
+#include "MessageBus.h"
 #include "MessageHandler.h"
 #include "MessageHandlerPrint.h"
 #include "MessageSource.h"
