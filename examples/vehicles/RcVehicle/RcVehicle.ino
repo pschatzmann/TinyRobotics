@@ -1,14 +1,41 @@
-// A remote controlled car example using the RCGamepadMessageSource to receive
-// gamepad input from an Android game controller and control the car accordingly.
-// For other vehicle types, just replace CarAckerman with the appropriate
-// vehicle class (e.g., CarDifferential, Boat, Drone, Plane) and set up the pins
-// accordingly.
-// You must install the VirtualGamePadArduino library and set up the Android game controller
+
+/**
+ * @file RcVehicle.ino
+ * @brief Example: Remote controlled vehicle using TinyRobotics and VirtualGamePadArduino.
+ * 
+ * This example demonstrates how to control a vehicle (car, boat, drone, or plane)
+ * using the RCGamepadMessageSource class to receive gamepad input from an Android
+ * device running the VirtualGamePad app. The received messages are translated into
+ * TinyRobotics messages and forwarded to the vehicle class.
+ *
+ * ## Usage
+ * - Connect your ESP32 to WiFi (update SSID and password below).
+ * - Install the VirtualGamePadArduino library:
+ *     https://github.com/pschatzmann/VirtualGamePadArduino
+ * - On your Android device, install and run the VirtualGamePad app.
+ * - Connect the app to the ESP32's IP address.
+ * - Use the gamepad controls to drive the vehicle.
+ *
+ * ## Customization
+ * - To use a different vehicle type, replace `CarAckerman` with another class
+ *   (e.g., `CarDifferential`, `Boat`, `Drone`, `Plane`) and adjust the pin setup.
+ * - The RCGamepadMessageSource supports multiple control scenarios via the
+ *   `ControlScenario` enum.
+ *
+ * ## Dependencies
+ * - TinyRobotics: https://github.com/pschatzmann/TinyRobotics
+ * - VirtualGamePadArduino: https://github.com/pschatzmann/VirtualGamePadArduino
+ *
+ * ## Pinout Example
+ *   car.setPins(5, 6, 9, 10); // in1, in2, pwm, steeringPin
+ *
+ * @author Phil Schatzmann
+ */
 
 #include <WiFi.h>
 
-#include "TinyRobotics.h"
-#include "TinyRobotics/communication/RCGamepadMessageSource.h"
+#include "TinyRobotics.h" 
+#include "TinyRobotics/communication/RCGamepadMessageSource.h" 
 
 WiFiServer server(80);
 RCGamepadMessageSource rcSource(server);

@@ -1,4 +1,19 @@
-// TinyRobotics GridMap A* Example
+/**
+ * @file girdmap-astar
+ * @brief Example: A* pathfinding on a 2D grid map using TinyRobotics.
+ *
+ * Demonstrates how to use the TinyRobotics GridMap and AStar classes to perform
+ * A* pathfinding in a 2D grid environment. Obstacles are represented as occupied cells.
+ *
+ * - Builds a 2D grid map with free and occupied cells.
+ * - Uses A* to find a path from start to goal, avoiding obstacles.
+ * - Prints the resulting path and total distance to Serial.
+ *
+ * ## Dependencies
+ * - TinyRobotics: https://github.com/pschatzmann/TinyRobotics
+ *
+ * @author Phil Schatzmann
+ */
 #include <TinyRobotics.h>
 
 // Dimensions

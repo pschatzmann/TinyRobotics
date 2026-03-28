@@ -1,4 +1,19 @@
-// TinyRobotics GridMap Dijkstra Example
+/**
+ * @file girdmap-dijkstra
+ * @brief Example: Dijkstra pathfinding on a 2D grid map using TinyRobotics.
+ *
+ * Demonstrates how to use the TinyRobotics GridMap and Dijkstra classes to perform
+ * pathfinding in a 2D grid environment. Obstacles are represented as occupied cells.
+ *
+ * - Builds a 2D grid map with free and occupied cells.
+ * - Uses Dijkstra's algorithm to find a path from start to goal, avoiding obstacles.
+ * - Prints the resulting path and total distance to Serial.
+ *
+ * ## Dependencies
+ * - TinyRobotics: https://github.com/pschatzmann/TinyRobotics
+ *
+ * @author Phil Schatzmann
+ */
 #include <TinyRobotics.h>
 
 // Dimensions

@@ -1,4 +1,23 @@
-// Example: Basic usage of RangeSensor
+/**
+ * @file RangeSensor.ino
+ * @brief Example: Basic usage of RangeSensor with frame transforms and an
+ * ultrasonic sensor.
+ *
+ * Demonstrates how to use the TinyRobotics RangeSensor class to report obstacle
+ * distances using a simulated range sensor (e.g., HC-SR04) and a 2D frame
+ * hierarchy for localization.
+ *
+ * - Uses the Ultrasonic library to simulate a real sensor.
+ * - Shows how to set up a frame hierarchy and apply transforms.
+ * - Reports measurements via MessageHandlerPrint.
+ * - Uses Scheduler to periodically trigger measurements.
+ *
+ * ## Dependencies
+ * - TinyRobotics: https://github.com/pschatzmann/TinyRobotics
+ * - Ultrasonic: https://github.com/ErickSimoes/Ultrasonic
+ *
+ * @author Phil Schatzmann
+ */
 #include <TinyRobotics.h>
 #include <Ultrasonic.h>  // use the Ultrasonic library for simulating a range sensor (e.g., HC-SR04)
 #undef CM
@@ -38,6 +57,4 @@ void processMeasurement(void*) {
   sensor.setObstacleDistance(Distance(distance_cm, DistanceUnit::CM));
 }
 
-void loop() {
-  scheduler.run();
-}
+void loop() { scheduler.run(); }

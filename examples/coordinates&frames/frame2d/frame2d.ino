@@ -1,18 +1,16 @@
 /**
  * @file frame2d.ino
- * @brief A simple example demonstrating the use of 2D frames and a range sensor
- * in a robotics context. The example defines a hierarchy of frames (world,
- * base, and lidar) and simulates a range sensor measurement to calculate the
- * obstacle's position in the world frame. This illustrates how to use the
- * FrameMgr2D class to manage coordinate frames and the RangeSensor class to
- * represent sensor data and perform coordinate transformations.
- * In addition we also demonstrate how to convert the vehiclue position to GPS
- * coordinates.
- * @version 0.1
- * @date 2026-03-23
+ * @brief Example: 2D frame management and range sensor simulation using TinyRobotics.
  *
- * @copyright Copyright (c) 2026
+ * Demonstrates how to use the TinyRobotics FrameMgr2D and RangeSensor classes to:
+ * - Define a hierarchy of 2D frames (world, base, lidar)
+ * - Simulate a range sensor and compute obstacle position in the world frame
+ * - Convert vehicle position to GPS coordinates
  *
+ * ## Dependencies
+ * - TinyRobotics: https://github.com/pschatzmann/TinyRobotics
+ *
+ * @author Phil Schatzmann
  */
 
 #include <TinyRobotics.h>
