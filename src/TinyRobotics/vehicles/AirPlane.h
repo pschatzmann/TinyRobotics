@@ -151,6 +151,12 @@ class AirPlane : public Vehicle {
     }
   }
 
+  std::vector<MessageContent> getControls() const override {
+    return {MessageContent::Throttle, MessageContent::Pitch, MessageContent::Roll,
+            MessageContent::Yaw};
+  }
+
+
  protected:
   HBridge motor_;
   int rudderPin_, elevatorPin_, aileronLeftPin_, aileronRightPin_;

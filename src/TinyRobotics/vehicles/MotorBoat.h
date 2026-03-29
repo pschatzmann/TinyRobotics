@@ -66,13 +66,12 @@ class MotorBoat : public Vehicle {
     rudder_.setAngle(0);        // center rudder
   }
 
-  bool isPinsSet() const {
-    return motor_.isPinsSet() && rudder_.isPinsSet();
-  }
+  bool isPinsSet() const { return motor_.isPinsSet() && rudder_.isPinsSet(); }
 
   bool onMessage(const Message<float>& msg) override {
     float angle;
-    if (msg.source != MessageOrigin::RemoteControl) return false;  // Only handle RC messages
+    if (msg.source != MessageOrigin::RemoteControl)
+      return false;  // Only handle RC messages
     switch (msg.content) {
       case MessageContent::Throttle:
         if (msg.unit != Unit::Percent) return false;
@@ -87,6 +86,10 @@ class MotorBoat : public Vehicle {
       default:
         return false;  // Unhandled message content
     }
+  }
+
+  std::vector<MessageContent> getControls() const override {
+    return {MessageContent::Throttle, MessageContent::SteeringAngle};
   }
 
  protected:

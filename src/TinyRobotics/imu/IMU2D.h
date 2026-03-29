@@ -255,6 +255,9 @@ class IMU2D : public MessageSource {
                                   Unit::AngleDegree};
     msgPos.source = MessageOrigin::IMU;
     sendMessage(msgPos);
+
+    // notifiy that 
+    if (onPublishedCallback) onPublishedCallback(ref);
   }
 
   /// get position
@@ -278,11 +281,18 @@ class IMU2D : public MessageSource {
     return result.getAngle(unit);
   }
 
+  void setOnPublishedCallback(void(*callback)(void*), void*ref) {
+    onPublishedCallback = callback;
+    this->ref = ref;
+  }
+
  private:
   KalmanFilter<6, 2> ekf;
   GPSCoordinate prevGPS;
   bool hasPrevGPS = false;
   bool is_active = false;
+  void(*onPublishedCallback)(void*) = nullptr;
+  void*ref = this;;
 
   unsigned long lastUpdateMillis = 0;
   unsigned long lastGPSUpdateMillis = 0;

@@ -24,44 +24,52 @@ namespace tinyrobotics {
  * - Uses Frame2D and FrameMgr2D for coordinate transforms between frames
  * - Efficiently updates the map: marks all cells between sensor and obstacle as
  * FREE, and the obstacle cell as OCCUPIED
- * - Provides exploration support via getNextFrontier() (frontier-based
- * exploration)
+ * - Provides exploration support via getNextFrontier(result) (frontier-based
+ * exploration, returns true if a frontier is found and writes coordinates to
+ * result)
  * - Supports message subscription/unsubscription for IMU and range sensor
  *
  * Typical usage:
  * @code
  *   Frame2D world, base, lidar;
  *   FrameMgr2D tf;
- *   SLAM2D slam(dx, dy, resolution, world, base, lidar); // dx, dy in
- * meters slam.subscribe(handler); // Subscribe to IMU and range sensor messages
- *   slam.begin()
- *   slam.update(accelX, accelY, gyroZ, nowMillis); // IMU update
- *   slam.publish(); // Publish IMU state and update base frame
+ *   IMU2D<float> imu;
+ *   SLAM2D slam(dx, dy, resolution, world, base, lidar, imu); // Pass IMU2D as parameter
+ *   slam.begin();
+ *   // Update IMU values (not via SLAM2D, but via the IMU2D instance)
+ *   imu.update(accelX, accelY, gyroZ, nowMillis); // IMU update
+ *   imu.publish(); // Publish IMU state and update base frame
  *   slam.addRangeMeasurement(distance, angle);    // Lidar update
  *   auto& map = slam.getMap();
+ *   Coordinate<float> frontier;
+ *   if (slam.getNextFrontier(frontier)) {
+ *     // Use frontier coordinate
+ *   }
  * @endcode
- *
- * @author Phil Schatzmann
  */
+
 template <typename T = float>
 class SLAM2D : public MessageSource {
  public:
-  /**
-   * @brief Construct a 2D SLAM object with map size in meters.
-   * @param dx Map size in x direction (meters)
-   * @param dy Map size in y direction (meters)
-   * @param resolution Cell size (meters per cell)
-   * @param world World frame
-   * @param base Base frame
-   * @param lidar Lidar frame
-   */
-  SLAM2D(T dx, T dy, T resolution, const Frame2D& world,
-         const Frame2D& base, const Frame2D& lidar)
+  SLAM2D(T dx, T dy, T resolution, const Frame2D& world, const Frame2D& base,
+         const Frame2D& lidar, IMU2D<T>& imu)
       : map_(static_cast<int>(dx / resolution),
              static_cast<int>(dy / resolution), resolution),
         world_(world),
         base_(base),
-        lidar_(lidar) {}
+        lidar_(lidar) {
+    // update position when publish is called on imu
+    imu.setOnPublishedCallback(
+        [this](void* ref) {
+          SLAM2D& self = *(SLAM2D*)ref;
+          // Update the base position
+          Transform2D t(self.imu2d_.getPosition().x,
+                        self.imu2d_.getPosition().y,
+                        self.imu2d_.getHeadingAngle(AngleUnit::DEG));
+          self.base_.setTransform(t);
+        },
+        this);
+  }
 
   /// Initialize SLAM system (IMU and range sensor)
   bool begin() {
@@ -76,25 +84,6 @@ class SLAM2D : public MessageSource {
   void end() {
     imu2d_.end();
     rangeSensor_.end();
-  }
-
-  /// update IMU with accelerometer and gyroscope data
-  void update(T accelX, T accelY, T gyroZ_in,
-              unsigned long nowMillis) {
-    imu2d_.update(accelX, accelY, gyroZ_in, nowMillis);
-  }
-  /// update IMU with magnetometer data
-  void updateMagnetometer(T magX, T magY) {
-    imu2d_.updateMagnetometer(magX, magY);
-  }
-  /// publish IMU state as messages
-  void publish() {
-    // Publish IMU state
-    imu2d_.publish();
-    // Update the base position
-    Transform2D t(imu2d_.getPosition().x, imu2d_.getPosition().y,
-                  imu2d_.getHeadingAngle(AngleUnit::DEG));
-    base_.setTransform(t);
   }
 
   /// Register Range Measurement from Lidar
@@ -113,8 +102,7 @@ class SLAM2D : public MessageSource {
       Transform2D tf_lidar2world = tf_.getTransform(lidar_, world_);
       Coordinate<T> obs_world = tf_lidar2world.apply(obs);
       // Get sensor (lidar) position in world frame
-      Coordinate<T> sensor_world =
-          tf_lidar2world.apply(Coordinate<T>(0, 0));
+      Coordinate<T> sensor_world = tf_lidar2world.apply(Coordinate<T>(0, 0));
       // Mark free cells between sensor and obstacle, and mark obstacle as
       // OCCUPIED
       markFreeCellsBetweenSensorAndObstacle(sensor_world, obs_world);
@@ -182,7 +170,7 @@ class SLAM2D : public MessageSource {
 
  protected:
   RangeSensor<T> rangeSensor_;
-  IMU2D<T> imu2d_;
+  IMU2D<T>& imu2d_;
   GridMap<CellState> map_;
   // Frame management
   Frame2D world_;
@@ -196,9 +184,8 @@ class SLAM2D : public MessageSource {
    * @param sensor_world World coordinates of the sensor
    * @param obs_world World coordinates of the obstacle
    */
-  void markFreeCellsBetweenSensorAndObstacle(
-      const Coordinate<T>& sensor_world,
-      const Coordinate<T>& obs_world) {
+  void markFreeCellsBetweenSensorAndObstacle(const Coordinate<T>& sensor_world,
+                                             const Coordinate<T>& obs_world) {
     GridMap<CellState>::Cell cell_obs, cell_sensor;
     if (map_.worldToCell(obs_world.x, obs_world.y, cell_obs) &&
         map_.worldToCell(sensor_world.x, sensor_world.y, cell_sensor)) {

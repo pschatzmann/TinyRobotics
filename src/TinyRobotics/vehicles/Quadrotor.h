@@ -129,6 +129,11 @@ class Quadrotor : public Vehicle {
     }
   }
 
+  std::vector<MessageContent> getControls() const override {
+    return {MessageContent::Throttle, MessageContent::Pitch, MessageContent::Roll,
+            MessageContent::Yaw};
+  }
+
  protected:
   HBridge motors_[4];
   float motorGain_[4] = {1.0f, 1.0f, 1.0f, 1.0f};

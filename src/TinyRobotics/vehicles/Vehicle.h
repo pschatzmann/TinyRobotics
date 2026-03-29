@@ -3,6 +3,7 @@
 #include "TinyRobotics/communication/Message.h"
 #include "TinyRobotics/communication/MessageHandler.h"
 #include "TinyRobotics/communication/MessageSource.h"
+#include <vector>
 
 namespace tinyrobotics {
 
@@ -29,6 +30,9 @@ class Vehicle : public MessageHandler, public MessageSource {
    * set (pure virtual).
    */
   virtual bool isPinsSet() const = 0;
+
+
+  virtual std::vector<MessageContent> getControls() const = 0;
 
 };
 
