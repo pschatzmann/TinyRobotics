@@ -91,8 +91,7 @@ class CarDifferential : public Vehicle {
   }
 
   bool onMessage(const Message<float>& msg) override {
-    if (msg.source != MessageOrigin::RemoteControl)
-      return false;  // Only handle RC messages
+    if (!isValidMessageSource(msg.source)) return false;  
     switch (msg.content) {
       case MessageContent::Throttle:
         if (msg.unit != Unit::Percent) return false;
