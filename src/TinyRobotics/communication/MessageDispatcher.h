@@ -25,6 +25,8 @@ namespace tinyrobotics {
 
 class MessageDispatcher {
  public:
+  MessageDispatcher() = default;
+  MessageDispatcher(MessageHandler& handler) { p_handler = &handler; }
   MessageDispatcher(MessageHandler& handler, Stream& io) {
     p_handler = &handler;
     p_stream = &io;
@@ -70,6 +72,9 @@ class MessageDispatcher {
     }
     return true;
   }
+
+  void setStream(Stream& io) { p_stream = &io; }
+  void setHandler(MessageHandler& handler) { p_handler = &handler; }
 
  protected:
   Stream* p_stream = nullptr;

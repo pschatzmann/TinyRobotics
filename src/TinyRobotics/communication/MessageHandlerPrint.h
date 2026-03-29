@@ -80,6 +80,7 @@ constexpr const char* originStr[] = {
  */
 class MessageHandlerBinary : public MessageHandler {
  public:
+  MessageHandlerBinary() : printer_(*static_cast<Print*>(nullptr)) {}
   MessageHandlerBinary(Print& printer) : printer_(printer) {}
   bool onMessage(const Message<float>& msg) override {
     size_t written = printer_.write((const uint8_t*)&msg, sizeof(msg));
@@ -95,6 +96,8 @@ class MessageHandlerBinary : public MessageHandler {
     size_t written = printer_.write((const uint8_t*)&msg, sizeof(msg));
     return written == sizeof(msg);
   }
+
+  void setOutput(Print& printer) { printer_ = printer; }
 
  protected:
   Print& printer_;
@@ -120,7 +123,9 @@ class MessageHandlerBinary : public MessageHandler {
  */
 class MessageHandlerPrint : public MessageHandler {
  public:
+  MessageHandlerPrint() : printer_(*static_cast<Print*>(nullptr)) {}
   MessageHandlerPrint(Print& printer) : printer_(printer) {}
+  void setOutput(Print& printer) { printer_ = printer; }
   bool onMessage(const Message<float>& msg) override {
     printer_.print("[Message] Type: ");
     printer_.print(messageContentStr[static_cast<int>(msg.content)]);
@@ -188,7 +193,9 @@ class MessageHandlerPrint : public MessageHandler {
  */
 class MessageHandlerPrintXML : public MessageHandler {
  public:
+  MessageHandlerPrintXML() : printer_(*static_cast<Print*>(nullptr)) {}
   MessageHandlerPrintXML(Print& printer) : printer_(printer) {}
+  void setOutput(Print& printer) { printer_ = printer; }
 
   bool onMessage(const Message<float>& msg) override {
     printer_.print("<Message type=\"");
@@ -260,7 +267,9 @@ class MessageHandlerPrintXML : public MessageHandler {
  */
 class MessageHandlerPrintJSON : public MessageHandler {
  public:
+  MessageHandlerPrintJSON() : printer_(*static_cast<Print*>(nullptr)) {}
   MessageHandlerPrintJSON(Print& printer) : printer_(printer) {}
+  void setOutput(Print& printer) { printer_ = printer; }
 
   bool onMessage(const Message<float>& msg) override {
     printer_.print("{\"type\":\"");
