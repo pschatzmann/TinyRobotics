@@ -32,8 +32,9 @@ namespace tinyrobotics {
  * @code
  *   Frame2D world, base, lidar;
  *   FrameMgr2D tf;
- *   SLAM2D slam(dx, dy, resolution, world, base, lidar, tf); // dx, dy in
+ *   SLAM2D slam(dx, dy, resolution, world, base, lidar); // dx, dy in
  * meters slam.subscribe(handler); // Subscribe to IMU and range sensor messages
+ *   slam.begin()
  *   slam.update(accelX, accelY, gyroZ, nowMillis); // IMU update
  *   slam.publish(); // Publish IMU state and update base frame
  *   slam.addRangeMeasurement(distance, angle);    // Lidar update
@@ -42,6 +43,7 @@ namespace tinyrobotics {
  *
  * @author Phil Schatzmann
  */
+template <typename T = float>
 class SLAM2D : public MessageSource {
  public:
   /**
@@ -52,24 +54,37 @@ class SLAM2D : public MessageSource {
    * @param world World frame
    * @param base Base frame
    * @param lidar Lidar frame
-   * @param tf Frame manager
    */
-  SLAM2D(float dx, float dy, float resolution, const Frame2D& world,
-         const Frame2D& base, const Frame2D& lidar, const FrameMgr2D& tf)
+  SLAM2D(T dx, T dy, T resolution, const Frame2D& world,
+         const Frame2D& base, const Frame2D& lidar)
       : map_(static_cast<int>(dx / resolution),
              static_cast<int>(dy / resolution), resolution),
         world_(world),
         base_(base),
-        lidar_(lidar),
-        tf_(tf) {}
+        lidar_(lidar) {}
 
-  /// update IMU
-  void update(float accelX, float accelY, float gyroZ_in,
+  /// Initialize SLAM system (IMU and range sensor)
+  bool begin() {
+    // update IMU
+    Transform2D& transform = base_.getTransform();
+    // Initialize IMU with the initial pose of the base frame
+    bool rcIMU = imu2d_.begin(transform.heading_deg, transform.pos);
+    bool rcSensor = rangeSensor_.begin();
+    return rcIMU && rcSensor;
+  }
+
+  void end() {
+    imu2d_.end();
+    rangeSensor_.end();
+  }
+
+  /// update IMU with accelerometer and gyroscope data
+  void update(T accelX, T accelY, T gyroZ_in,
               unsigned long nowMillis) {
     imu2d_.update(accelX, accelY, gyroZ_in, nowMillis);
   }
   /// update IMU with magnetometer data
-  void updateMagnetometer(float magX, float magY) {
+  void updateMagnetometer(T magX, T magY) {
     imu2d_.updateMagnetometer(magX, magY);
   }
   /// publish IMU state as messages
@@ -88,30 +103,30 @@ class SLAM2D : public MessageSource {
                         angle.getAngle(AngleUnit::DEG));
   }
   /// Register Range Measurement from Lidar
-  void addRangeMeasurement(float distanceM, float angleDeg) {
+  void addRangeMeasurement(T distanceM, T angleDeg) {
     rangeSensor_.setTransform(
         tf_.getTransform(lidar_, world_));  // Ensure transform is set
     rangeSensor_.setObstacle(distanceM, angleDeg);
-    Coordinate<float> obs;
+    Coordinate<T> obs;
     if (rangeSensor_.getObstacleCoordinate(obs)) {
       // Transform obstacle coordinate from lidar to world frame
       Transform2D tf_lidar2world = tf_.getTransform(lidar_, world_);
-      Coordinate<float> obs_world = tf_lidar2world.apply(obs);
+      Coordinate<T> obs_world = tf_lidar2world.apply(obs);
       // Get sensor (lidar) position in world frame
-      Coordinate<float> sensor_world =
-          tf_lidar2world.apply(Coordinate<float>(0, 0));
+      Coordinate<T> sensor_world =
+          tf_lidar2world.apply(Coordinate<T>(0, 0));
       // Mark free cells between sensor and obstacle, and mark obstacle as
       // OCCUPIED
       markFreeCellsBetweenSensorAndObstacle(sensor_world, obs_world);
     }
   }
   /**
-   * @brief Find the next frontier cell (boundary between known free and unknown
-   * space).
+   * @brief Find the next frontier cell (boundary between known free and
+   * unknown space).
    * @return World coordinates of the next frontier cell, or (0,0) if none
    * found.
    */
-   bool getNextFrontier(Coordinate<float> result) const {
+  bool getNextFrontier(Coordinate<T>& result) const {
     int xCount = map_.getXCount();
     int yCount = map_.getYCount();
     // For each cell, check if it is free and adjacent to unknown
@@ -144,7 +159,7 @@ class SLAM2D : public MessageSource {
       }
     }
     // No frontier found
-    result = Coordinate<float>(0, 0);
+    result = Coordinate<T>(0, 0);
     return false;
   }
 
@@ -152,7 +167,7 @@ class SLAM2D : public MessageSource {
   const GridMap<CellState>& getMap() const { return map_; }
 
   /// Access to IMU state
-  const IMU2D<float>& getIMU() const { return imu2d_; }
+  const IMU2D<T>& getIMU() const { return imu2d_; }
 
   /// Subscribe to imu and range sensor messages
   void subscribe(MessageHandler& handler) {
@@ -166,8 +181,8 @@ class SLAM2D : public MessageSource {
   }
 
  protected:
-  RangeSensor<float> rangeSensor_;
-  IMU2D<float> imu2d_;
+  RangeSensor<T> rangeSensor_;
+  IMU2D<T> imu2d_;
   GridMap<CellState> map_;
   // Frame management
   Frame2D world_;
@@ -176,14 +191,14 @@ class SLAM2D : public MessageSource {
   FrameMgr2D tf_;
 
   /**
-   * @brief Mark all cells between the sensor and the obstacle as FREE, and the
-   * obstacle cell as OCCUPIED.
+   * @brief Mark all cells between the sensor and the obstacle as FREE, and
+   * the obstacle cell as OCCUPIED.
    * @param sensor_world World coordinates of the sensor
    * @param obs_world World coordinates of the obstacle
    */
   void markFreeCellsBetweenSensorAndObstacle(
-      const Coordinate<float>& sensor_world,
-      const Coordinate<float>& obs_world) {
+      const Coordinate<T>& sensor_world,
+      const Coordinate<T>& obs_world) {
     GridMap<CellState>::Cell cell_obs, cell_sensor;
     if (map_.worldToCell(obs_world.x, obs_world.y, cell_obs) &&
         map_.worldToCell(sensor_world.x, sensor_world.y, cell_sensor)) {

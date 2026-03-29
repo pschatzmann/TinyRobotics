@@ -117,12 +117,18 @@ class IMU2D : public MessageSource {
     ekf.x(3, 0) = 0;
     ekf.x(4, 0) = initialAngleDeg * M_PI / 180;
     ekf.x(5, 0) = 0;
+    is_active = true;
     return true;
+  }
+
+  void end() {
+    is_active = false;
   }
 
   /// Update with accelerometer and gyro measurements (accelX, accelY in sensor
   /// frame, gyroZ in rad/s)
   void update(T accelX, T accelY, T gyroZ_in, unsigned long nowMillis) {
+    if (!is_active) return;
     if (lastUpdateMillis == 0) {
       lastUpdateMillis = nowMillis;
       return;
@@ -177,6 +183,7 @@ class IMU2D : public MessageSource {
 
   /// Update with magnetometer measurement (magX, magY in sensor frame)
   void updateMagnetometer(T magX, T magY) {
+    if (!is_active) return;
     T meas = atan2(magY, magX);
 
     T stateAngle = ekf.x(4, 0);
@@ -199,6 +206,7 @@ class IMU2D : public MessageSource {
 
   /// Provide actual GPS coordinate
   void updateGPS(const GPSCoordinate& gps, unsigned long nowMillis) {
+    if (!is_active) return;
     if (hasPrevGPS) {
       T dtGPS = (nowMillis - lastGPSUpdateMillis) / (T)1000;
       if (dtGPS > 0) {
@@ -224,6 +232,7 @@ class IMU2D : public MessageSource {
 
   /// Publish current state as messages
   void publish() {
+    if (!is_active) return;
     Coordinate<DistanceM> pos = getPosition();
     T angle = getHeadingAngleRad();
     T vel = getVelocity();
@@ -273,6 +282,7 @@ class IMU2D : public MessageSource {
   KalmanFilter<6, 2> ekf;
   GPSCoordinate prevGPS;
   bool hasPrevGPS = false;
+  bool is_active = false;
 
   unsigned long lastUpdateMillis = 0;
   unsigned long lastGPSUpdateMillis = 0;
