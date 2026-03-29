@@ -67,10 +67,8 @@ void connectToMQTT() {
 }
 
 void callback(char* topic, byte* payload, unsigned int length) {
-  MemoryStream stream(payload, length);
   MessageParser parser;
-  // Parse the message from the MQTT payload and dispatch to the JSON printer
-  parser.parse(stream, json);
+  parser.parse(payload, length, json);
 }
 
 void setup() {

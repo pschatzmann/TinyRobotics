@@ -1,3 +1,4 @@
+#pragma once
 #include "Stream.h"
 #include "stdint.h"
 

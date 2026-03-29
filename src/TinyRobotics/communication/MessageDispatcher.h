@@ -1,5 +1,7 @@
 #pragma once
 #include "Message.h"
+#include "MessageHandler.h"
+#include "MessageParser.h"
 #include "Stream.h"
 #include "TinyRobotics/utils/LoggerClass.h"
 #include "TinyRobotics/vehicles/Vehicle.h"

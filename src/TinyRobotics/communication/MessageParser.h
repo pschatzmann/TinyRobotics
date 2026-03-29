@@ -1,5 +1,7 @@
 #pragma once
 #include "Message.h"
+#include "TinyRobotics/utils/MemoryStream.h"
+
 
 namespace tinyrobotics {
 
@@ -155,7 +157,21 @@ class MessageParser {
     }
     return true;
   }
-  
+
+  /**
+   * @brief Parses a message from a raw buffer and dispatches it to the given handler.
+   *
+   * This overload wraps the buffer in a MemoryStream and calls the Stream-based parse.
+   *
+   * @param data    Pointer to the message buffer.
+   * @param len     Length of the buffer.
+   * @param handler The MessageHandler to dispatch the parsed message to.
+   * @return true if a message was successfully parsed and dispatched, false otherwise.
+   */
+  bool parse(uint8_t* data, size_t len, MessageHandler& handler) {
+    MemoryStream stream(data, len);
+    return parse(stream, handler);
+  }
 };
 
 }  // namespace tinyrobotics
