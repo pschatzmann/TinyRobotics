@@ -84,7 +84,12 @@ class QueueRTOS {
     return true;
   }
 
-  bool empty() { return size() == 0; }
+  void end() {
+    if (xQueue != nullptr) vQueueDelete(xQueue);
+    if (p_data != nullptr) allocator.deallocate((T*)p_data, allocated_size);
+  }
+
+  bool isEmpty() { return size() == 0; }
 
  protected:
   QueueHandle_t xQueue = nullptr;
@@ -109,11 +114,6 @@ class QueueRTOS {
       if (xQueue == nullptr) return false;
     }
     return true;
-  }
-
-  void end() {
-    if (xQueue != nullptr) vQueueDelete(xQueue);
-    if (p_data != nullptr) allocator.deallocate(p_data, allocated_size);
   }
 };
 

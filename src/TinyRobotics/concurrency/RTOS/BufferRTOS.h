@@ -65,8 +65,7 @@ class BufferRTOS : public BaseBuffer<T> {
 
   // reads a single value
   bool read(T &result) override {
-    T data = 0;
-    return readArray(&data, 1)==1;
+    return readArray(&result, 1)==1;
   }
 
   // reads multiple values
@@ -151,7 +150,7 @@ class BufferRTOS : public BaseBuffer<T> {
 
   void end() {
     if (xStreamBuffer != nullptr) vStreamBufferDelete(xStreamBuffer);
-    allocator.deallocate(p_data, allocated_size);
+    allocator.deallocate((T*)p_data, allocated_size);
     current_size_bytes = 0;
     p_data = nullptr;
     xStreamBuffer = nullptr;
