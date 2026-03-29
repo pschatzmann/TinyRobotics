@@ -262,6 +262,13 @@ class IMU2D : public MessageSource {
   /// get heading angle (radians)
   T getHeadingAngleRad() const { return ekf.x(4, 0); }
 
+  /// get heading angle with unit conversion
+  T getHeadingAngle(AngleUnit unit) const {
+    T angleRad = getHeadingAngleRad();
+    Angle result(angleRad, AngleUnit::RAD);
+    return result.getAngle(unit);
+  }
+
  private:
   KalmanFilter<6, 2> ekf;
   GPSCoordinate prevGPS;

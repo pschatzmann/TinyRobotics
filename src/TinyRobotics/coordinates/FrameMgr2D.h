@@ -140,9 +140,8 @@ struct Frame2D {
   const Frame2D* getParent() const { return p_parent; }
   void setParent(Frame2D& parent) { p_parent = &parent; }
   const Transform2D& getTransform() const { return tf; }
+  Transform2D& getTransform() { return tf; }
   void setTransform(const Transform2D& transform) { tf = transform; }
-  Transform2D& getTf() { return tf; }
-  const Transform2D& getTf() const { return tf; }
 
 protected:
   FrameType type;
@@ -248,14 +247,14 @@ class FrameMgr2D {
     // Compose transform from 'from' up to LCA (invert each step)
     Transform2D tf_from;
     for (int k = 0; k <= i; ++k) {
-      tf_from = from_path[k]->getTf() * tf_from;
+      tf_from = from_path[k]->getTransform() * tf_from;
     }
     tf_from = tf_from.inverse();
 
     // Compose transform from LCA down to 'to'
     Transform2D tf_to;
     for (int k = j; k >= 0; --k) {
-      tf_to = tf_to * to_path[k]->getTf();
+      tf_to = tf_to * to_path[k]->getTransform();
     }
 
     // Final transform: from → LCA (inverted) → to
