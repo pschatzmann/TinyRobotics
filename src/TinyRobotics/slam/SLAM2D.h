@@ -111,7 +111,7 @@ class SLAM2D : public MessageSource {
    * @return World coordinates of the next frontier cell, or (0,0) if none
    * found.
    */
-  Coordinate<float> getNextFrontier() const {
+   bool getNextFrontier(Coordinate<float> result) const {
     int xCount = map_.getXCount();
     int yCount = map_.getYCount();
     // For each cell, check if it is free and adjacent to unknown
@@ -138,12 +138,14 @@ class SLAM2D : public MessageSource {
         }
         if (isFrontier) {
           // Convert cell to world coordinates and return
-          return map_.toWorld(cx, cy);
+          result = map_.toWorld(cx, cy);
+          return true;
         }
       }
     }
     // No frontier found
-    return Coordinate<float>(0, 0);
+    result = Coordinate<float>(0, 0);
+    return false;
   }
 
   /// Access to map
