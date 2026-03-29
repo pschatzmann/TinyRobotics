@@ -4,6 +4,7 @@
 namespace tinyrobotics {
 
 enum class MessageOrigin {
+  Undefined = 0,
   RemoteControl,  ///< Message from a remote control interface (e.g., RC receiver)
   Autonomy,       ///< Message from an autonomous control module (e.g., path planner)
   Sensor,         ///< Message from a sensor module (e.g., IMU, GPS)
@@ -23,6 +24,7 @@ enum class MessageOrigin {
  * @brief Types of message content for communication between modules or devices.
  */
 enum class MessageContent {
+  Undefined = 0,
   Angle,          ///< Generic angle (e.g., for orientation or steering)
   Pitch,          ///< Pitch angle or command
   Roll,           ///< Roll angle or command

@@ -9,22 +9,23 @@ namespace tinyrobotics {
 // handlers) Update this array to match all values in the MessageContent enum
 // (see Message.h)
 constexpr const char* messageContentStr[] = {
-    "Angle",          // 0
-    "Pitch",          // 1
-    "Roll",           // 2
-    "Yaw",            // 3
-    "Throttle",       // 4
-    "Speed",          // 5
-    "SteeringAngle",  // 6
-    "Turn",           // 7
-    "Heading",        // 8
-    "MotorSpeed",     // 9
-    "Position",       // 10
-    "PositionGPS",    // 11
-    "Distance",       // 12
-    "Temperature",    // 13
-    "Error"           // 14
-    "Density"         // 15
+    "Undefined",      // 0
+    "Angle",          // 1
+    "Pitch",          // 2
+    "Roll",           // 3
+    "Yaw",            // 4
+    "Throttle",       // 5
+    "Speed",          // 6
+    "SteeringAngle",  // 7
+    "Turn",           // 8
+    "Heading",        // 9
+    "MotorSpeed",     // 10
+    "Position",       // 11
+    "PositionGPS",    // 12
+    "Distance",       // 13
+    "Temperature",    // 14
+    "Error",          // 15
+    "Density"         // 16
 };
 
 // from enum class Unit in Common.h - update this array to match all values in
@@ -46,19 +47,20 @@ constexpr const char* unitStr[] = {
 // from enum class MessageOrigin in Message.h - update this array to match all
 // values in the MessageOrigin enum
 constexpr const char* originStr[] = {
-    "RemoteControl",  // 0
-    "Autonomy",       // 1
-    "Sensor",         // 2
-    "System",         // 3
-    "Motor",          // 4
-    "Servo",          // 5
-    "Rudder",         // 6
-    "Aileron",        // 7
-    "Elevator",       // 8
-    "IMU",            // 9
-    "LIDAR",          // 10
-    "Camera",         // 11
-    "GPS"             // 12
+    "Undefined",      // 0
+    "RemoteControl",  // 1
+    "Autonomy",       // 2
+    "Sensor",         // 3
+    "System",         // 4
+    "Motor",          // 5
+    "Servo",          // 6
+    "Rudder",         // 7
+    "Aileron",        // 8
+    "Elevator",       // 9
+    "IMU",            // 10
+    "LIDAR",          // 11
+    "Camera",         // 12
+    "GPS"             // 13
 };
 
 /**
