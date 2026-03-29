@@ -39,4 +39,5 @@ void loop() {
   if (!queue.enqueue(msg)) {
     Serial.println("[Main] Queue full, message dropped");
   }
+  delay(5);
 }
