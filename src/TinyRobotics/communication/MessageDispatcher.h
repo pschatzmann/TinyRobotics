@@ -47,28 +47,13 @@ class MessageDispatcher {
   /// processing.
   virtual bool run() {
     if (!is_active) return false;
-    if (p_stream->available() >= sizeof(Message<float>)) {
-      // Read a message from the stream and process it
-      Message<float> msg;
-      size_t read = p_stream->readBytes((uint8_t*)&msg, sizeof(msg));
-      if (read != sizeof(msg)) {
-        // Handle invalid message size (e.g., log an error)
-        TRLogger.error(
-            "CommMgr: Incomplete message received (expected %d bytes, got %d)",
-            sizeof(msg), read);
-        return false;
-      }
-      if (memcmp(msg.prefix, "MSG", 3) != 0) {
-        // Handle invalid message prefix (e.g., log an error)
-        TRLogger.error("CommMgr: Invalid message prefix: %.*s", 3, msg.prefix);
-        return false;
-      }
-      if (!p_handler->onMessage(msg)) {
-        // Handle unprocessed message (e.g., log a warning)
-        TRLogger.warn("CommMgr: Unhandled message content: %d",
-                      static_cast<int>(msg.content));
-        return false;
-      }
+    if (!p_stream || !p_handler) return false;
+    MessageParser parser;
+    // Try to parse and dispatch a message from the stream
+    if (!parser.parse(*p_stream, *p_handler)) {
+      // Optionally log error or warning here
+      TRLogger.error("CommMgr: Failed to parse message");
+      return false;
     }
     return true;
   }

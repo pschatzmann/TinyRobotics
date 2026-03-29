@@ -5,3 +5,4 @@
 #include "Common.h"
 #include "Config.h"
 #include "LoggerClass.h"
+#include "MemoryStream.h"

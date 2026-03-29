@@ -13,7 +13,8 @@
  TinyRobotics Message<float>.
  * - Uses MessageHandlerPrintJSON to print the received message as JSON to
  Serial.
- * - Just replace MessageHandlerPrintJSON with any other MessageHandler to forward
+ * - Just replace MessageHandlerPrintJSON with any other MessageHandler to
+ forward
  *   the message to a different destination.
  *
  * Note: This approach assumes the sender publishes TinyRobotics Message<float>
@@ -66,15 +67,10 @@ void connectToMQTT() {
 }
 
 void callback(char* topic, byte* payload, unsigned int length) {
-  // Create a stream from the payload buffer
-  if (length == sizeof(Message<float>)) {
-    Message<float>* msg = reinterpret_cast<Message<float>*>(payload);
-    json.onMessage(*msg);  // Print the message as JSON
-  } else {
-    TRLogger.error(
-        "MQTT callback: Invalid message size (expected %d bytes, got %d)",
-        sizeof(Message<float>), length);
-  }
+  MemoryStream stream(payload, length);
+  MessageParser parser;
+  // Parse the message from the MQTT payload and dispatch to the JSON printer
+  parser.parse(stream, json);
 }
 
 void setup() {
