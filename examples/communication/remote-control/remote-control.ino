@@ -34,6 +34,9 @@ void setup() {
   // Log received commands
   car.subscribe(printer);
 
+  // Initialize the message dispatcher
+  mgr.begin();
+
   // Start ESPNow in receive mode
   if (!espnow.begin()) {
     TRLogger.error("Failed to initialize ESPNowStream");

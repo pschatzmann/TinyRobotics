@@ -72,7 +72,7 @@ constexpr const char* originStr[] = {
  * Example usage:
  * @code
  *   MessageHandlerBinary printer(Serial);
- *   source.addMessageHandler(printer);
+ *   source.subscribe(printer);
  * @endcode
  *
  * This is useful for efficient logging, binary protocols, or communication with

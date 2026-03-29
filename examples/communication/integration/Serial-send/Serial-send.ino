@@ -1,8 +1,22 @@
+#/**
+ * @file Serial-send.ino
+ * @brief Example: Send TinyRobotics messages as binary over Serial.
+ *
+ * Demonstrates how to use TinyRobotics to send a binary-encoded message over Serial.
+ *
+ * - Schedules a periodic message (throttle value) to be sent every 5 seconds.
+ * - Uses MessageHandlerBinary to write the message as raw binary to Serial.
+ *
+ * ## Dependencies
+ * - TinyRobotics: https://github.com/pschatzmann/TinyRobotics
+ *
+ * @author Phil Schatzmann
+ */
 #include <Arduino.h>
 #include <TinyRobotics.h>
 
 // forward binary message to Serial
-MessageHandlerObject out(Serial);
+MessageHandlerBinary out(Serial);
 Scheduler scheduler;
 
 void setup() {
@@ -11,18 +25,14 @@ void setup() {
   TRLogger.info("TinyRobotics Serial Send Example");
 
   // Schedule sendMessage to run after 5 seconds
-  scheduler.schedule(sendMessage, 5000);
+  scheduler.begin(5000, sendMessage, nullptr);
 }
 
-void sendMessage() {
-  // Create a message source and send a test message
-  Message<float> msg;
-  msg.type = MessageContent::Throttle;
-  msg.value = random(0, 100);
-  msg.unit = Unit::Percent;
-  msg.source = MessageOrigin::Controller;
-  out.sendMessage(msg);  // This will not be received by any handler since none
-                         // are subscribed
+void sendMessage(void*) {
+  // Create a message
+  Message<float> msg(MessageContent::Throttle, random(0, 100), Unit::Percent,
+                     MessageOrigin::RemoteControl);
+  out.onMessage(msg);
 }
 
 void loop() { scheduler.run(); }

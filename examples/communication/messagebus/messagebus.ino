@@ -46,9 +46,9 @@ void setup() {
   bus.add(car);
 
   // Add bus as destination for sensor messages (sensor -> bus -> handlers)
-  sensor.addMessageHandler(bus);
+  sensor.subscribe(bus);
   // Add bus as destination for vehicle messages (car -> bus -> handlers)
-  car.addMessageHandler(bus);
+  car.subscribe(bus);
 }
 
 void loop() {

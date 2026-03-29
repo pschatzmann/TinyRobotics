@@ -30,9 +30,9 @@ void setup() {
   TRLogger.info("TinyRobotics Messaging Example");
 
   // Subscribe to messages
-  car.addMessageHandler(printer);
-  car.addMessageHandler(xml_printer);
-  car.addMessageHandler(json_printer);
+  car.subscribe(printer);
+  car.subscribe(xml_printer);
+  car.subscribe(json_printer);
 }
 
 void loop() {

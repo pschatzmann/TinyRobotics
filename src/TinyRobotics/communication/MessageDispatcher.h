@@ -30,9 +30,21 @@ class MessageDispatcher {
     p_stream = &io;
   };
 
+  bool begin() {
+    if (p_stream == nullptr || p_handler == nullptr) {
+      TRLogger.error("CommMgr: Invalid stream or handler");
+      return false;
+    }
+    is_active = true;
+    return true;
+  }
+
+  void end() { is_active = false; }
+
   /// Read messages from the stream and dispatch them to the vehicle for
   /// processing.
   virtual bool run() {
+    if (!is_active) return false;
     if (p_stream->available() >= sizeof(Message<float>)) {
       // Read a message from the stream and process it
       Message<float> msg;
@@ -61,6 +73,7 @@ class MessageDispatcher {
 
  protected:
   Stream* p_stream = nullptr;
+  bool is_active = false;
   MessageHandler* p_handler = nullptr;
 };
 
