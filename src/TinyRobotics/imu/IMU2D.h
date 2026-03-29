@@ -7,7 +7,7 @@
 #include "TinyRobotics/communication/MessageSource.h"
 #include "TinyRobotics/coordinates/Coordinate.h"
 #include "TinyRobotics/coordinates/GPSCoordinate.h"
-#include "TinyRobotics/utils/KalmanFilter.h"
+#include "TinyRobotics/control/KalmanFilter.h"
 #undef F
 
 namespace tinyrobotics {

@@ -2,6 +2,7 @@
 #include "TinyRobotics/communication/Communication.h"
 #include "TinyRobotics/control/Control.h"
 #include "TinyRobotics/coordinates/Coordinates.h"
+#include "TinyRobotics/imu/IMU.h"
 #include "TinyRobotics/maps/Maps.h"
 #include "TinyRobotics/motors/Motors.h"
 #include "TinyRobotics/planning/Planning.h"
