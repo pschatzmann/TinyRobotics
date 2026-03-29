@@ -70,7 +70,7 @@ constexpr const char* originStr[] = {
  * Example usage:
  * @code
  *   MessageHandlerPrint printer(Serial);
- *   source.addMessageHandler(printer);
+ *   source.subscribe(printer);
  * @endcode
  *
  * This is useful for debugging, logging, or monitoring message traffic in a
@@ -138,7 +138,7 @@ class MessageHandlerPrint : public MessageHandler {
  * Example usage:
  * @code
  *   MessageHandlerPrintXML printer(Serial);
- *   source.addMessageHandler(printer);
+ *   source.subscribe(printer);
  * @endcode
  *
  * This is useful for logging, exporting, or integrating message traffic with
@@ -210,7 +210,7 @@ class MessageHandlerPrintXML : public MessageHandler {
  * Example usage:
  * @code
  *   MessageHandlerPrintJSON printer(Serial);
- *   source.addMessageHandler(printer);
+ *   source.subscribe(printer);
  * @endcode
  *
  * This is useful for logging, exporting, or integrating message traffic with

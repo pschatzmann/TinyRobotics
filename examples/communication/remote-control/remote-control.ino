@@ -23,7 +23,7 @@ void setup() {
   TRLogger.info("TinyRobotics Messaging Example");
 
   // Log received commands
-  car.addMessageHandler(printer);
+  car.subscribe(printer);
 
   // Start ESPNow in receive mode
   if (!espnow.begin()) {

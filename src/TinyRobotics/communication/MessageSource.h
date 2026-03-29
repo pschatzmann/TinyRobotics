@@ -21,8 +21,8 @@ namespace tinyrobotics {
  * Typical usage:
  * @code
  *   MessageSource source;
- *   source.addMessageHandler(handler1);
- *   source.addMessageHandler(handler2);
+ *   source.subscribe(handler1);
+ *   source.subscribe(handler2);
  *   source.sendMessage(msg); // Forwards to all handlers
  * @endcode
  *
@@ -37,14 +37,14 @@ class MessageSource {
    * Allows forwarding messages to additional handlers.
    * @param handler Reference to a MessageHandler to add.
    */
-  void addMessageHandler(MessageHandler& handler) {
+  void subscribe(MessageHandler& handler) {
     messageHandlers_.push_back(&handler);
   }
 
   /**
    * @brief Remove all registered message handlers.
    */
-  void clearMessageHandlers() { messageHandlers_.clear(); }
+  void unsubscribeAll() { messageHandlers_.clear(); }
 
   /**
    * @brief Publish a message to all registered handlers.

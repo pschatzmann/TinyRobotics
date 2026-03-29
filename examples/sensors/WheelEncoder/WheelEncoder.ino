@@ -14,7 +14,7 @@ void setup() {
   encoder.setWheelDiameter(0.065); // 65mm wheel
   encoder.setTicksPerRevolution(20);
   encoder.setReportingFrequencyMs(1000); // Report every 1 second
-  encoder.addMessageHandler(printer);
+  encoder.subscribe(printer);
   encoder.begin();
   // Attach interrupt to your encoder pin (example: GPIO 4)
   attachInterrupt(digitalPinToInterrupt(4), onEncoderTick, RISING);

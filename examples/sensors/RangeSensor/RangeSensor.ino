@@ -22,7 +22,7 @@ void setup() {
   Serial.begin(115200);
   // Schedule measurements every 500 ms
   scheduler.begin(500, processMeasurement, nullptr);
-  sensor.addMessageHandler(printer);
+  sensor.subscribe(printer);
   sensor.begin();
 }
 
