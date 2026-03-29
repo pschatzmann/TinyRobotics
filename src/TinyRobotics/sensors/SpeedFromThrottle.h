@@ -27,14 +27,15 @@ namespace tinyrobotics {
  * @endcode
  */
 
-class SpeedFromThrottle {
+class SpeedFromThrottle : public MessageSource, public MessageHandler {
  public:
   SpeedFromThrottle(float maxSpeedMps) { begin(maxSpeedMps); }
 
   bool begin(float maxSpeedMps) {
     addSpeedCalibration(0.0f, 0.0f);           // 0% throttle = 0 m/s
     addSpeedCalibration(100.0f, maxSpeedMps);  // 100% throttle = max speed
-    addSpeedCalibration(-100.0f, maxSpeedMps);  // -100% throttle = max reverse speed
+    addSpeedCalibration(-100.0f,
+                        maxSpeedMps);  // -100% throttle = max reverse speed
     return true;
   }
 
@@ -69,6 +70,15 @@ class SpeedFromThrottle {
     return 0.0f;
   }
 
+  /// Handle Throttle messages to update speed
+  bool onMessage(const Message<float>& msg) override {
+    if (msg.content == MessageContent::Throttle) {
+      setThrottle(msg.value);
+      return true;
+    }
+    return false;  // Not handled
+  }
+
   /// Add or update a calibration point (throttlePercent, speedMps)
   void addSpeedCalibration(float throttlePercent, float speedMps) {
     // Insert in order by throttlePercent, replace if exists
@@ -87,8 +97,14 @@ class SpeedFromThrottle {
   void clearCalibration() { calibrationData.clear(); }
 
  protected:
-  std::vector<std::pair<float, float>>
-      calibrationData;  // Optional: throttle vs speed pairs for calibration
+  std::vector<std::pair<float, float>> calibrationData;
+
+  void setThrottle(float throttlePercent) {
+    float speedMps = getSpeedMPS(throttlePercent);
+    Message<float> msg(MessageContent::Speed, speedMps, Unit::MetersPerSecond,
+                       MessageOrigin::System);
+    MessageSource::sendMessage(msg);
+  }
 };
 
 }  // namespace tinyrobotics
