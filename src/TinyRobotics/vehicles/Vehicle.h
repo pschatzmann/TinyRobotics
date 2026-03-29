@@ -34,7 +34,7 @@ class Vehicle : public MessageHandler, public MessageSource {
 
   virtual std::vector<MessageContent> getControls() const = 0;
 
-  bool isValidMessageSource(MessageOrigin origin) const override {
+  bool isValidMessageSource(MessageOrigin origin) const {
     return origin == MessageOrigin::RemoteControl ||
            origin == MessageOrigin::Autonomy;
   }
