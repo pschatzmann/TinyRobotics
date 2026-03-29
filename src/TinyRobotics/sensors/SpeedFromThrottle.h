@@ -5,26 +5,34 @@
 
 namespace tinyrobotics {
 
+
 /**
- * @brief Maps throttle percentage to speed using calibration data.
+ * @class SpeedFromThrottle
+ * @brief Estimates vehicle speed from throttle percentage using calibration data.
  *
- * This class provides a simple way to estimate the speed
- * of a vehicle based on the throttle percentage, using a piecewise linear
- * calibration curve. Calibration points can be added with
- * addSpeedCalibration(), and the speed for any throttle value is interpolated
- * between the nearest calibration points.
+ * This class provides a flexible, piecewise linear mapping from throttle percentage
+ * (e.g., -100% to 100%) to speed (in meters per second), based on user-provided calibration points.
+ * It is useful for systems where direct speed measurement is unavailable or unreliable, and a throttle-to-speed
+ * relationship can be established empirically.
  *
- * - By default, 0% throttle maps to 0 m/s and 100% throttle maps to
- * maxSpeedMps.
- * - If a calibration point for a throttle value already exists, it is replaced.
- * - The calibration data is always kept ordered by throttle percent.
+ * - By default, 0% throttle maps to 0 m/s, 100% throttle maps to maxSpeedMps, and -100% throttle maps to -maxSpeedMps.
+ * - Additional calibration points can be added with addSpeedCalibration(throttle, speed), allowing for non-linear mappings.
+ * - If a calibration point for a throttle value already exists, it is replaced; otherwise, it is inserted in order.
+ * - The class supports both direct speed queries (getSpeed, getSpeedMPS) and integration with the TinyRobotics message system.
+ * - When used as a MessageHandler, it listens for Throttle messages and emits Speed messages via MessageSource.
  *
- * Example usage:
+ * Typical usage:
  * @code
  *   SpeedFromThrottle speedMap(2.0f); // 2 m/s at 100% throttle
  *   speedMap.addSpeedCalibration(50.0f, 1.0f); // 1 m/s at 50%
- *   auto speed = speedMap.getSpeed(75.0f); // Interpolated speed
+ *   float speed = speedMap.getSpeedMPS(75.0f); // Interpolated speed
+ *   // As a message handler/source:
+ *   bus.subscribe(speedMap); // Receives Throttle messages, emits Speed messages
  * @endcode
+ *
+ * @see addSpeedCalibration, getSpeed, getSpeedMPS, onMessage
+ *
+ * @author Phil Schatzmann
  */
 
 class SpeedFromThrottle : public MessageSource, public MessageHandler {
