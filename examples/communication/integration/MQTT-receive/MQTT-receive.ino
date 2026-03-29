@@ -13,6 +13,8 @@
  TinyRobotics Message<float>.
  * - Uses MessageHandlerPrintJSON to print the received message as JSON to
  Serial.
+ * - Just replace MessageHandlerPrintJSON with any other MessageHandler to forward
+ *   the message to a different destination.
  *
  * Note: This approach assumes the sender publishes TinyRobotics Message<float>
  objects as raw binary payloads.
