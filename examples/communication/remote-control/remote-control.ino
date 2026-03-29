@@ -1,21 +1,30 @@
 /**
  * @file remote-control.ino
- * @brief Example how to set up a simple remote control using ESPNow.
- * You could also use Serial, USPStream etc. Just change the stream and the configuration of the CommunicationManager.
- * @version 0.1
- * @date 2026-03-26
- * 
- * @copyright Copyright (c) 2026
- * 
+ * @brief Example: Remote control using ESPNow and TinyRobotics.
+ *
+ * Demonstrates how to set up a simple remote control for a car using ESPNow as
+ * the communication stream. You can also use Serial, UDPStream, etc. by
+ * changing the stream and MessageDispatcher configuration.
+ *
+ * - Sets up a car and message handler for Serial output.
+ * - Uses ESPNowStream for wireless communication.
+ * - MessageDispatcher dispatches received messages to the car.
+ *
+ * ## Dependencies
+ * - TinyRobotics: https://github.com/pschatzmann/TinyRobotics
+ * - ESPNow (for ESP32 wireless communication)
+ *
+ * @author Phil Schatzmann
  */
 #include <TinyRobotics.h>
+
 #include "TinyRobotics/communication/ESPNowStream.h"
 
 CarAckerman car;
 MessageHandlerPrint printer(Serial);  // forward to Serial
 ESPNowStream espnow;
 // receive messages from ESPNow and dispatch to car
-CommunicationManager mgr(car, espnow);
+MessageDispatcher mgr(car, espnow);
 
 void setup() {
   Serial.begin(115200);

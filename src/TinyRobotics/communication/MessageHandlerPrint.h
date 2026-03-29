@@ -4,58 +4,100 @@
 
 namespace tinyrobotics {
 
-// from enum class MessageContent in Message.h - update this array to match all values in the MessageContent enum
-// String arrays for enums (shared by all handlers)
-// Update this array to match all values in the MessageContent enum (see Message.h)
+// from enum class MessageContent in Message.h - update this array to match all
+// values in the MessageContent enum String arrays for enums (shared by all
+// handlers) Update this array to match all values in the MessageContent enum
+// (see Message.h)
 constexpr const char* messageContentStr[] = {
-  "Angle",         // 0
-  "Pitch",         // 1
-  "Roll",          // 2
-  "Yaw",           // 3
-  "Throttle",      // 4
-  "Speed",         // 5
-  "SteeringAngle", // 6
-  "Turn",          // 7
-  "Heading",       // 8
-  "MotorSpeed",    // 9
-  "Position",      // 10
-  "PositionGPS",   // 11
-  "Distance",      // 12
-  "Temperature",   // 13
-  "Error"          // 14
-  "Density"        // 15
+    "Angle",          // 0
+    "Pitch",          // 1
+    "Roll",           // 2
+    "Yaw",            // 3
+    "Throttle",       // 4
+    "Speed",          // 5
+    "SteeringAngle",  // 6
+    "Turn",           // 7
+    "Heading",        // 8
+    "MotorSpeed",     // 9
+    "Position",       // 10
+    "PositionGPS",    // 11
+    "Distance",       // 12
+    "Temperature",    // 13
+    "Error"           // 14
+    "Density"         // 15
 };
 
-// from enum class Unit in Common.h - update this array to match all values in the Unit enum
+// from enum class Unit in Common.h - update this array to match all values in
+// the Unit enum
 constexpr const char* unitStr[] = {
-  "Percent",           // 0
-  "MetersPerSecond",   // 1
-  "RadiansPerSecond",  // 2
-  "Meters",            // 3
-  "Centimeters",       // 4
-  "Millimeters",       // 5
-  "AngleDegree",       // 6
-  "AngleRadian",       // 7
-  "TemperatureC",      // 8
-  "TemperatureF",      // 9
-  "Pixel"              // 10
+    "Percent",           // 0
+    "MetersPerSecond",   // 1
+    "RadiansPerSecond",  // 2
+    "Meters",            // 3
+    "Centimeters",       // 4
+    "Millimeters",       // 5
+    "AngleDegree",       // 6
+    "AngleRadian",       // 7
+    "TemperatureC",      // 8
+    "TemperatureF",      // 9
+    "Pixel"              // 10
 };
 
-// from enum class MessageOrigin in Message.h - update this array to match all values in the MessageOrigin enum
+// from enum class MessageOrigin in Message.h - update this array to match all
+// values in the MessageOrigin enum
 constexpr const char* originStr[] = {
-  "RemoteControl", // 0
-  "Autonomy",      // 1
-  "Sensor",        // 2
-  "System",        // 3
-  "Motor",         // 4
-  "Servo",         // 5
-  "Rudder",        // 6
-  "Aileron",       // 7
-  "Elevator",      // 8
-  "IMU",           // 9
-  "LIDAR",         // 10
-  "Camera",        // 11
-  "GPS"            // 12
+    "RemoteControl",  // 0
+    "Autonomy",       // 1
+    "Sensor",         // 2
+    "System",         // 3
+    "Motor",          // 4
+    "Servo",          // 5
+    "Rudder",         // 6
+    "Aileron",        // 7
+    "Elevator",       // 8
+    "IMU",            // 9
+    "LIDAR",          // 10
+    "Camera",         // 11
+    "GPS"             // 12
+};
+
+/**
+ * @brief Message handler that writes all received messages as raw binary to a
+ * Print stream.
+ *
+ * This class implements the MessageHandler interface and outputs the content of
+ * all received messages (float, Coordinate<float>, GPSCoordinate) as raw binary
+ * data to the provided Print object (e.g., Serial, file, etc).
+ *
+ * Example usage:
+ * @code
+ *   MessageHandlerBinary printer(Serial);
+ *   source.addMessageHandler(printer);
+ * @endcode
+ *
+ * This is useful for efficient logging, binary protocols, or communication with
+ * systems that expect binary-encoded messages.
+ */
+class MessageHandlerBinary : public MessageHandler {
+ public:
+  MessageHandlerBinary(Print& printer) : printer_(printer) {}
+  bool onMessage(const Message<float>& msg) override {
+    size_t written = printer_.write((const uint8_t*)&msg, sizeof(msg));
+    return written == sizeof(msg);
+  }
+
+  bool onMessage(const Message<Coordinate<float>>& msg) override {
+    size_t written = printer_.write((const uint8_t*)&msg, sizeof(msg));
+    return written == sizeof(msg);
+  }
+
+  bool onMessage(const Message<GPSCoordinate>& msg) override {
+    size_t written = printer_.write((const uint8_t*)&msg, sizeof(msg));
+    return written == sizeof(msg);
+  }
+
+ protected:
+  Print& printer_;
 };
 
 /**

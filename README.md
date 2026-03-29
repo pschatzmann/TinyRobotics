@@ -44,3 +44,11 @@ The following __extended functionality__ can be included optionally:
 - **Units**: Strongly-typed units for distance, time, speed, and angle. See [Units Module](src/TinyRobotics/units/README.md)
 - **Utilities**: Logger, scheduler, serialization, and memory allocators for embedded systems. See [Utilities Module](src/TinyRobotics/utils/README.md)
 
+## Installation
+
+For Arduino, you can download the library as zip and call include Library -> zip library. Or you can git clone this project into the Arduino libraries folder e.g. with
+
+```
+cd  ~/Documents/Arduino/libraries
+git clone https://github.com/pschatzmann/TinyRobotics.git
+```

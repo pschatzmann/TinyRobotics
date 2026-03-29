@@ -1,4 +1,20 @@
-// TinyRobotics PointCloud A* Example
+/**
+ * @file pointcloud-astar.ino
+ * @brief Example: A* pathfinding on a 2D point cloud using TinyRobotics.
+ *
+ * Demonstrates how to use the TinyRobotics PointCloud and AStar classes to perform
+ * pathfinding in a 2D grid environment. Obstacles are represented as points in the cloud.
+ *
+ * - Builds a 2D point cloud from a grid map.
+ * - Uses A* to find a path from start to goal, avoiding obstacles.
+ * - Prints the resulting path and total distance to Serial.
+ * - In real life the point cloud could come from a LIDAR or depth sensor
+ *
+ * ## Dependencies
+ * - TinyRobotics: https://github.com/pschatzmann/TinyRobotics
+ *
+ * @author Phil Schatzmann
+ */
 #include <TinyRobotics.h>
 
 // Define a larger 2D point cloud (5x5 grid)

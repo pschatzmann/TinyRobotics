@@ -1,4 +1,21 @@
-// Example: CameraLineFollower using ESP32 camera (AI-Thinker)
+/**
+ * @file CameraLineFollower.ino
+ * @brief Example: Line detection using the ESP32 camera and TinyRobotics CameraLineFollower.
+ *
+ * Demonstrates how to use the CameraLineFollower class with the ESP32-CAM (AI-Thinker)
+ * to detect a line in grayscale camera images. The example configures the camera,
+ * processes frames in grayscale, and prints the detected line position and error.
+ *
+ * - Uses the ESP32 camera API (esp_camera.h) in grayscale mode for efficient processing.
+ * - Pinout is set for the AI-Thinker ESP32-CAM; update pins if using a different module.
+ * - Uses Scheduler to periodically process camera frames.
+ *
+ * ## Dependencies
+ * - TinyRobotics: https://github.com/pschatzmann/TinyRobotics
+ * - ESP32 Arduino core (with camera support)
+ *
+ * @author Phil Schatzmann
+ */
 #include <TinyRobotics.h>
 
 #include "esp_camera.h"

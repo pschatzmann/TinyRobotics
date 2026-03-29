@@ -1,4 +1,19 @@
-// TinyRobotics PathMap A* Example (Graph-based)
+/**
+ * @file pathmap-astar.ino
+ * @brief Example: Graph-based A* pathfinding using TinyRobotics PathMap.
+ *
+ * Demonstrates how to use the TinyRobotics PathMap and AStar classes to perform
+ * A* pathfinding on a graph of 2D coordinates. Nodes and edges are defined explicitly.
+ *
+ * - Builds a graph from coordinates and segments (edges).
+ * - Uses A* to find a path between random nodes.
+ * - Prints the resulting path and total distance to Serial.
+ *
+ * ## Dependencies
+ * - TinyRobotics: https://github.com/pschatzmann/TinyRobotics
+ *
+ * @author Phil Schatzmann
+ */
 #include <TinyRobotics.h>
 #undef F
 

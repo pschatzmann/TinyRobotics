@@ -1,13 +1,19 @@
 /**
  * @file record-gps.ino
- * @brief This example demonstrates how to use the TinyRobotics library to
- * record GPS data into a path. It reads GPS data from the serial input, parses
- * it, and adds it to a path if it's different from the last recorded waypoint.
- * The GPS data is expected to be in NMEA GGA format.
- * @version 0.1
- * @date 2026-03-23
+ * @brief Example: Record GPS data into a path using TinyRobotics.
  *
- * @copyright Copyright (c) 2026
+ * Demonstrates how to use the TinyRobotics Path and GPSCoordinate classes to
+ * record GPS waypoints from serial input (NMEA GGA format) into a path. Each new
+ * waypoint is added only if it differs from the last recorded one.
+ *
+ * - Reads GPS data from serial input and parses it.
+ * - Adds new waypoints to the path if they are different from the last.
+ * - Uses a scheduler to record data at regular intervals.
+ *
+ * ## Dependencies
+ * - TinyRobotics: https://github.com/pschatzmann/TinyRobotics
+ *
+ * @author Phil Schatzmann
  */
 
 #include "TinyRobotics.h"

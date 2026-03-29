@@ -1,3 +1,18 @@
+#/**
+# * @file frame3d.ino
+# * @brief Example: 3D frame management using TinyRobotics.
+# *
+# * Demonstrates how to use the TinyRobotics FrameMgr3D class to manage a simple
+# * 3D frame hierarchy (world, base, camera) and compute transforms between frames.
+# *
+# * - Adds frames to a 3D frame manager.
+# * - Finds frame indices and computes transforms between frames.
+# *
+# * ## Dependencies
+# * - TinyRobotics: https://github.com/pschatzmann/TinyRobotics
+# *
+# * @author Phil Schatzmann
+# */
 #include <TinyRobotics.h>
 
 FrameMgr3D<3> tf;

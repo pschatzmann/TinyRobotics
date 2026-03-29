@@ -71,6 +71,7 @@ struct Message {
    * @param u Unit
    */
   Message(MessageContent c, T v, Unit u) : content(c), value(v), unit(u) {}
+  Message(MessageContent c, T v, Unit u, MessageOrigin orig) : content(c), value(v), unit(u), source(orig) {}
 };
 
 }  // namespace tinyrobotics

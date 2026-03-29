@@ -7,27 +7,26 @@
 namespace tinyrobotics {
 
 /**
- * @brief Manages communication between a vehicle and an external interface
- * (e.g., serial, network).
+ * @brief Reads stream and forwards messages to handler.
  *
- * The CommunicationManager class reads messages from a communication stream
- * (such as Serial, UDP, etc.) and dispatches them to a Vehicle instance for
- * processing. It handles message framing, validation, and error logging,
- * providing a unified interface for remote control and telemetry.
+ * The MessageDispatcher class reads messages from a communication stream
+ * (such as Serial, UDP, etc.) and dispatches them to the MessageHandler
+ * instance for processing. It handles message framing, validation, and error
+ * logging, providing a unified interface for remote control and telemetry.
  *
  * Usage Example:
  * @code
- * CommunicationManager commMgr(vehicle, Serial);
+ * MessageDispatcher commMgr(handler, Serial);
  * while (true) {
  *   commMgr.run();
  * }
  * @endcode
  */
 
-class CommunicationManager {
+class MessageDispatcher {
  public:
-  CommunicationManager(Vehicle& vehicle, Stream& io) {
-    p_vehicle = &vehicle;
+  MessageDispatcher(MessageHandler& handler, Stream& io) {
+    p_handler = &handler;
     p_stream = &io;
   };
 
@@ -50,7 +49,7 @@ class CommunicationManager {
         TRLogger.error("CommMgr: Invalid message prefix: %.*s", 3, msg.prefix);
         return false;
       }
-      if (!p_vehicle->onMessage(msg)) {
+      if (!p_handler->onMessage(msg)) {
         // Handle unprocessed message (e.g., log a warning)
         TRLogger.warn("CommMgr: Unhandled message content: %d",
                       static_cast<int>(msg.content));
@@ -62,7 +61,7 @@ class CommunicationManager {
 
  protected:
   Stream* p_stream = nullptr;
-  Vehicle* p_vehicle = nullptr;
+  MessageHandler* p_handler = nullptr;
 };
 
 }  // namespace tinyrobotics

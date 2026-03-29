@@ -1,4 +1,20 @@
-// TinyRobotics GPS Path Planning Example
+/**
+ * @file plannedpath.ino
+ * @brief Example: GPS path planning using TinyRobotics.
+ *
+ * Demonstrates how to use the TinyRobotics Path and GPSCoordinate classes to plan
+ * and print a path consisting of multiple GPS waypoints. Calculates and displays
+ * the total distance of the planned path.
+ *
+ * - Defines a sequence of GPS waypoints (latitude, longitude).
+ * - Uses Path<GPSCoordinate> to represent the route.
+ * - Prints each waypoint and the total path distance to Serial.
+ *
+ * ## Dependencies
+ * - TinyRobotics: https://github.com/pschatzmann/TinyRobotics
+ *
+ * @author Phil Schatzmann
+ */
 #include <TinyRobotics.h>
 
 // Define some GPS coordinates (latitude, longitude in degrees)
