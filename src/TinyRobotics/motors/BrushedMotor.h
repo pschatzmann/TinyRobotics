@@ -57,6 +57,7 @@ class BrushedMotor : public Motor {
     if (pwmFreq > 0) analogWriteFreq(pinPWM, pwmFreq);
 #endif
     stop();
+    return true;
   }
 
   /// Constrain the speed range to a subset of -255..255. This can be used to

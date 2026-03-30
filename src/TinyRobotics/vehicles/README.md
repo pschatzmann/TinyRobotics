@@ -74,7 +74,12 @@ boat.end();
 
 ## Notes
 
-The motor are defined as templates, so you can switch out the motor type or implement your own motor implementation.
+The motors are defined as templates, so you can switch out the motor type or implement your own motor implementation:
+
+```cpp
+Quadrotor<BrushedMotor> quadBushed;
+Quadrotor<BrushlessMotor> quadBrushless;
+```
 
 ## See Also
 

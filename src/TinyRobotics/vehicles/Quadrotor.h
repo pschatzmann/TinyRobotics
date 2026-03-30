@@ -165,7 +165,7 @@ class Quadrotor : public Vehicle {
     m[3] = throttle_ - pitch_ - roll_ - yaw_;
     for (int i = 0; i < 4; ++i) {
       int calibrated = static_cast<int>(m[i] * motorGain_[i]);
-      motors_[i].setSpeedPercent(constrain(calibrated, 0, 100));
+      motors_[i].setSpeed(constrain(calibrated, 0, 100));
     }
     // publish motor speeds as messages for telemetry
     for (int i = 0; i < 4; ++i) {
