@@ -87,6 +87,9 @@ class CarAckerman : public Vehicle {
         return false;  // Unhandled message content
     }
   }
+  
+  std::vector<MessageContent> getControls() const override {
+    return {MessageContent::Throttle, MessageContent::SteeringAngle};
 
  protected:
   HBridge motor_;
