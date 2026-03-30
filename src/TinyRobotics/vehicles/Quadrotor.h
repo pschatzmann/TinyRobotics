@@ -1,7 +1,8 @@
+
 #pragma once
 
+#include "TinyRobotics/motors/Motors.h"
 #include "Vehicle.h"
-#include "TinyRobotics/motors/HBridge.h"
 
 namespace tinyrobotics {
 
@@ -20,7 +21,6 @@ enum QuadrotorMotorNo {
  *  - 4 motors (front left, front right, rear left, rear right) via HBridge
  *  - Throttle, roll, pitch, and yaw control
  *
- *
  * Usage Example (with setPins):
  * @code
  * tinyrobotics::Quadrotor quad;
@@ -35,6 +35,7 @@ enum QuadrotorMotorNo {
  * @endcode
  */
 
+template <typename MotorT = BrushedMotor>
 class Quadrotor : public Vehicle {
  public:
   Quadrotor() = default;
@@ -45,6 +46,7 @@ class Quadrotor : public Vehicle {
    */
   void setPins(QuadrotorMotorNo motor, int in1, int in2, int pwm) {
     motors_[motor].setPins(in1, in2, pwm);
+    motors_[motor].setID((uint8_t)motor);
   }
 
   /** Set throttle (0-100%) for all motors */
@@ -100,7 +102,8 @@ class Quadrotor : public Vehicle {
 
   bool onMessage(const Message<float>& msg) override {
     float angle;
-    if (msg.source != MessageOrigin::RemoteControl) return false;  // Only handle RC messages
+    if (msg.source != MessageOrigin::RemoteControl)
+      return false;  // Only handle RC messages
     switch (msg.content) {
       case MessageContent::Throttle:
         if (msg.unit != Unit::Percent) return false;
@@ -130,7 +133,7 @@ class Quadrotor : public Vehicle {
   }
 
  protected:
-  HBridge motors_[4];
+  MotorT motors_[4];
   float motorGain_[4] = {1.0f, 1.0f, 1.0f, 1.0f};
   int throttle_ = 0;
   int roll_ = 0;

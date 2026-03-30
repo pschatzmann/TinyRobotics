@@ -1,8 +1,7 @@
 #pragma once
 
 #include "Vehicle.h"
-#include "TinyRobotics/motors/HBridge.h"
-#include "TinyRobotics/motors/Servo.h"
+#include "TinyRobotics/motors/Motors.h"
 
 /**
  * @brief Simple fixed-wing airplane model with motor, rudder, elevator, and
@@ -29,6 +28,7 @@
  */
 namespace tinyrobotics {
 
+template <typename BrushedMT = BrushedMotor, typename ServoMT = ServoMotor>
 class AirPlane : public Vehicle {
  public:
   AirPlane() = default;
@@ -152,12 +152,12 @@ class AirPlane : public Vehicle {
   }
 
  protected:
-  HBridge motor_;
+  BrushedMT motor_;
   int rudderPin_, elevatorPin_, aileronLeftPin_, aileronRightPin_;
-  ServoMotor rudder_;
-  ServoMotor elevator_;
-  ServoMotor aileronLeft_;
-  ServoMotor aileronRight_;
+  ServoMT rudder_;
+  ServoMT elevator_;
+  ServoMT aileronLeft_;
+  ServoMT aileronRight_;
 };
 
 }  // namespace tinyrobotics

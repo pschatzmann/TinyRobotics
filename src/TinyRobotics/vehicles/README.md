@@ -13,11 +13,7 @@ This module provides high-level abstractions for controlling various types of ro
 ## Example Usage
 
 ```cpp
-#include <vehicles/Car4WD.h>
-#include <vehicles/CarAckerman.h>
-#include <vehicles/Quadrotor.h>
-#include <vehicles/AirPlane.h>
-#include <vehicles/MotorBoat.h>
+#include <TinyRobots.h>
 
 // Car4WD
 CarDifferential<4> car;
@@ -75,6 +71,10 @@ boat.end();
 - `Quadrotor.h`   — Quadcopter
 - `AirPlane.h`    — Fixed-wing airplane
 - `MotorBoat.h`   — Motor boat
+
+## Notes
+
+The motor are defined as templates, so you can switch out the motor type or implement your own motor implementation.
 
 ## See Also
 
