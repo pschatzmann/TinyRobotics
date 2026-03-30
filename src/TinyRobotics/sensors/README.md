@@ -6,6 +6,28 @@ There are plenty of Arduino device libraries, so there is no need to provide thi
 
 ## Available Sensor Classes
 
+### RangeSensor
+
+Abstracts a generic range sensor (e.g., ultrasonic, infrared, or LIDAR).
+
+- Provides distance measurement and validity checking.
+- Supports callback for new data.
+
+### SpeedFromThrottle
+
+Estimates vehicle speed from throttle input using a piecewise linear mapping.
+
+- Supports direct speed queries and integration with the TinyRobotics message system.
+- Useful for simple robots without encoders or for simulation.
+
+### WheelEncoder
+
+Tracks wheel rotation and distance using encoder pulses.
+
+- Provides position, speed, and distance traveled.
+- Integrates with the TinyRobotics message system for reporting.
+
+
 ### CameraEdgeFollower
 
 Detects the strongest edge in a grayscale camera image (e.g., for line or edge following robots).
@@ -39,33 +61,11 @@ Detects motion or changes between consecutive grayscale camera images.
 - Thresholds the difference to create a binary mask of changed pixels.
 - Counts changed pixels globally, by vertical thirds (left/center/right), or by horizontal thirds (top/center/bottom).
 
-### RangeSensor
-
-Abstracts a generic range sensor (e.g., ultrasonic, infrared, or LIDAR).
-
-- Provides distance measurement and validity checking.
-- Supports callback for new data.
-
-## Image Format
-
-All camera-based classes expect grayscale (8-bit, single channel) images as a contiguous array of `uint8_t` values, in row-major order, with dimensions specified by `width` and `height`.
-
-## Example Usage
-
-```cpp
-#include "sensors/CameraLineFollower.h"
-
-CameraLineFollower follower(80, 5); // threshold=80, minWidth=5
-uint8_t image[WIDTH * HEIGHT];
-// ... fill image ...
-auto result = follower.process(image, WIDTH, HEIGHT);
-if (result.found) {
-  // Use result.position or result.error for steering
-}
-```
 
 ## Notes
 
 - These classes are designed for efficiency and minimal memory usage.
 - They are suitable for real-time robotics and embedded systems.
+- All camera-based classes expect grayscale (8-bit, single channel) images as a contiguous array of `uint8_t` values, in row-major order, with dimensions specified by `width` and `height`.
+
 - For more details, see the documentation in each header file.

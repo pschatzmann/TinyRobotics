@@ -38,7 +38,7 @@ namespace tinyrobotics {
  *
  * Example usage:
  * @code
- *   tinyrobotics::IMU2D<float> imu;
+ *   IMU2D<float> imu;
  *   imu.begin(initialAngle, initialPosition);
  *   imu.update(accelX, accelY, gyroZ, millis());
  *   imu.updateMagnetometer(magX, magY);
@@ -117,12 +117,18 @@ class IMU2D : public MessageSource {
     ekf.x(3, 0) = 0;
     ekf.x(4, 0) = initialAngleDeg * M_PI / 180;
     ekf.x(5, 0) = 0;
+    is_active = true;
     return true;
+  }
+
+  void end() {
+    is_active = false;
   }
 
   /// Update with accelerometer and gyro measurements (accelX, accelY in sensor
   /// frame, gyroZ in rad/s)
   void update(T accelX, T accelY, T gyroZ_in, unsigned long nowMillis) {
+    if (!is_active) return;
     if (lastUpdateMillis == 0) {
       lastUpdateMillis = nowMillis;
       return;
@@ -177,20 +183,21 @@ class IMU2D : public MessageSource {
 
   /// Update with magnetometer measurement (magX, magY in sensor frame)
   void updateMagnetometer(T magX, T magY) {
+    if (!is_active) return;
     T meas = atan2(magY, magX);
 
     T stateAngle = ekf.x(4, 0);
     T innovation = wrapAngle(meas - stateAngle);
 
-    tinyrobotics::Matrix<2, 1> z;
+    Matrix<2, 1> z;
     z(0, 0) = stateAngle + innovation;
     z(1, 0) = 0;  // dummy for 2x1 measurement
 
-    tinyrobotics::Matrix<2, 6> H = {};
+    Matrix<2, 6> H = {};
     H(0, 4) = 1;                              // angle affects state[4]
     for (int j = 0; j < 6; j++) H(1, j) = 0;  // set second row to zero
 
-    tinyrobotics::Matrix<2, 2> R = {};
+    Matrix<2, 2> R = {};
     R(0, 0) = R_mag;
     R(1, 1) = 1e6;  // effectively disables second measurement
 
@@ -199,17 +206,18 @@ class IMU2D : public MessageSource {
 
   /// Provide actual GPS coordinate
   void updateGPS(const GPSCoordinate& gps, unsigned long nowMillis) {
+    if (!is_active) return;
     if (hasPrevGPS) {
       T dtGPS = (nowMillis - lastGPSUpdateMillis) / (T)1000;
       if (dtGPS > 0) {
         T dist = gps.distance(prevGPS);
         T ang = gps.bearing(prevGPS);
 
-        tinyrobotics::Matrix<2, 1> z;
+        Matrix<2, 1> z;
         z(0, 0) = (dist / dtGPS) * cos(ang);
         z(1, 0) = (dist / dtGPS) * sin(ang);
 
-        tinyrobotics::Matrix<2, 6> H = {};
+        Matrix<2, 6> H = {};
         H(0, 2) = 1;
         H(1, 3) = 1;
 
@@ -224,6 +232,7 @@ class IMU2D : public MessageSource {
 
   /// Publish current state as messages
   void publish() {
+    if (!is_active) return;
     Coordinate<DistanceM> pos = getPosition();
     T angle = getHeadingAngleRad();
     T vel = getVelocity();
@@ -246,6 +255,9 @@ class IMU2D : public MessageSource {
                                   Unit::AngleDegree};
     msgPos.source = MessageOrigin::IMU;
     sendMessage(msgPos);
+
+    // notifiy that 
+    if (onPublishedCallback) onPublishedCallback(ref);
   }
 
   /// get position
@@ -262,10 +274,25 @@ class IMU2D : public MessageSource {
   /// get heading angle (radians)
   T getHeadingAngleRad() const { return ekf.x(4, 0); }
 
+  /// get heading angle with unit conversion
+  T getHeadingAngle(AngleUnit unit) const {
+    T angleRad = getHeadingAngleRad();
+    Angle result(angleRad, AngleUnit::RAD);
+    return result.getAngle(unit);
+  }
+
+  void setOnPublishedCallback(void(*callback)(void*), void*ref) {
+    onPublishedCallback = callback;
+    this->ref = ref;
+  }
+
  private:
   KalmanFilter<6, 2> ekf;
   GPSCoordinate prevGPS;
   bool hasPrevGPS = false;
+  bool is_active = false;
+  void(*onPublishedCallback)(void*) = nullptr;
+  void*ref = this;;
 
   unsigned long lastUpdateMillis = 0;
   unsigned long lastGPSUpdateMillis = 0;

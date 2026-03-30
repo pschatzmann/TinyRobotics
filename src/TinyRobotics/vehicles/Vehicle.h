@@ -1,5 +1,7 @@
 #pragma once
 
+#include <vector>
+
 #include "TinyRobotics/communication/Message.h"
 #include "TinyRobotics/communication/MessageHandler.h"
 #include "TinyRobotics/communication/MessageSource.h"
@@ -30,6 +32,12 @@ class Vehicle : public MessageHandler, public MessageSource {
    */
   virtual bool isPinsSet() const = 0;
 
+  virtual std::vector<MessageContent> getControls() const = 0;
+
+  bool isValidMessageSource(MessageOrigin origin) const {
+    return origin == MessageOrigin::RemoteControl ||
+           origin == MessageOrigin::Autonomy;
+  }
 };
 
 }  // namespace tinyrobotics

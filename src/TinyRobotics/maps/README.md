@@ -31,14 +31,14 @@ This directory contains classes and utilities for representing spatial maps and 
 #include "PointCloud.h"
 
 // Create a 2D grid map
-tinyrobotics::GridMap<> grid(100, 100, 0.1f); // 100x100 cells, 10cm resolution
+GridMap<> grid(100, 100, 0.1f); // 100x100 cells, 10cm resolution
 
 // Add a path segment to a path map
-tinyrobotics::PathMap<tinyrobotics::Coordinate<float>> pathMap;
+PathMap<Coordinate<float>> pathMap;
 pathMap.addSegment({a, b, false}); // Add undirected segment from a to b
 
 // Add a point to a point cloud
-tinyrobotics::PointCloud cloud;
+PointCloud cloud;
 cloud.add(1.0, 2.0, 0.5);
 cloud.buildVoxelGrid(0.1f); // 10cm voxels
 ```

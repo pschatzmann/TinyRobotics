@@ -92,7 +92,7 @@ class PathMap {
 
  protected:
   std::vector<PathSegment<Coordinate>,
-              tinyrobotics::AllocatorPSRAM<PathSegment<Coordinate>>>
+              AllocatorPSRAM<PathSegment<Coordinate>>>
       segments;
 };
 

@@ -61,7 +61,6 @@ class GridMap {
   }
 
   /// World to cell conversion
-
   bool worldToCell(DistanceM wx, DistanceM wy, Cell& cell) const {
     cell.cx = static_cast<int>(std::floor((wx - origin.x) / resolution));
     cell.cy = static_cast<int>(std::floor((wy - origin.y) / resolution));
@@ -89,7 +88,12 @@ class GridMap {
     result = data[cy * xCount + cx];
     return true;
   }
-
+  bool getCell(int cx, int cy, StateType& result) const {
+    if (cx < 0 || cx >= xCount || cy < 0 || cy >= yCount)
+      return false;  // Out of bounds
+    result = data[cy * xCount + cx];
+    return true;
+  }
   /// Provide access to cell state by coordinate
   bool getCell(Coordinate<T>& coord, StateType& result) {
     Cell cell;
@@ -97,6 +101,11 @@ class GridMap {
       return getCell(cell.cx, cell.cy);
     }
     return false;  // Out of bounds
+  }
+
+  void setCell(Cell& cell, StateType value) {
+    if (cell.cx >= 0 && cell.cx < xCount && cell.cy >= 0 && cell.cy < yCount)
+      data[cell.cy * xCount + cell.cx] = value;
   }
 
   /// Set cell state (for initialization or manual updates)
@@ -113,26 +122,6 @@ class GridMap {
     }
   }
 
-  // /// Update with sensor reading (binary Bayesian update)
-  // void updateCell(int cx, int cy, bool occupied, float prob_hit = 0.7) {
-  //   if (cx < 0 || cx >= xCount || cy < 0 || cy >= yCount) return;
-
-  //   int idx = cy * xCount + cx;
-  //   float current_prob = data[idx] / 100.0;
-
-  //   // Convert to log-odds for efficient updates
-  //   float log_odds = std::log(current_prob / (1.0 - current_prob));
-
-  //   // Update based on measurement
-  //   float meas_prob = occupied ? prob_hit : (1.0 - prob_hit);
-  //   float meas_log_odds = std::log(meas_prob / (1.0 - meas_prob));
-  //   log_odds += meas_log_odds;
-
-  //   // Clamp and convert back
-  //   float new_prob = 1.0 / (1.0 + std::exp(-log_odds));
-  //   data[idx] = static_cast<int8_t>(std::round(new_prob * 100));
-  // }
-
   /// Determine all neighboring cells (8-connected) for a given cell coordinate.
   std::vector<Cell> getNeighborCells(const Coordinate<DistanceM> from) const {
     Cell cell;
@@ -140,16 +129,31 @@ class GridMap {
     int cx = static_cast<int>(cell.cx);
     int cy = static_cast<int>(cell.cy);
     std::vector<Cell> neighbors;
-    if (cx < xCount - 1) neighbors.push_back({static_cast<size_t>(cx + 1), static_cast<size_t>(cy)});
-    if (cx > 0) neighbors.push_back({static_cast<size_t>(cx - 1), static_cast<size_t>(cy)});
-    if (cy < yCount - 1) neighbors.push_back({static_cast<size_t>(cx), static_cast<size_t>(cy + 1)});
-    if (cy > 0) neighbors.push_back({static_cast<size_t>(cx), static_cast<size_t>(cy - 1)});
+    if (cx < xCount - 1)
+      neighbors.push_back(
+          {static_cast<size_t>(cx + 1), static_cast<size_t>(cy)});
+    if (cx > 0)
+      neighbors.push_back(
+          {static_cast<size_t>(cx - 1), static_cast<size_t>(cy)});
+    if (cy < yCount - 1)
+      neighbors.push_back(
+          {static_cast<size_t>(cx), static_cast<size_t>(cy + 1)});
+    if (cy > 0)
+      neighbors.push_back(
+          {static_cast<size_t>(cx), static_cast<size_t>(cy - 1)});
 
     if (cx < xCount - 1 && cy < yCount - 1)
-      neighbors.push_back({static_cast<size_t>(cx + 1), static_cast<size_t>(cy + 1)});
-    if (cx > 0 && cy < yCount - 1) neighbors.push_back({static_cast<size_t>(cx - 1), static_cast<size_t>(cy + 1)});
-    if (cx < xCount - 1 && cy > 0) neighbors.push_back({static_cast<size_t>(cx + 1), static_cast<size_t>(cy - 1)});
-    if (cx > 0 && cy > 0) neighbors.push_back({static_cast<size_t>(cx - 1), static_cast<size_t>(cy - 1)});
+      neighbors.push_back(
+          {static_cast<size_t>(cx + 1), static_cast<size_t>(cy + 1)});
+    if (cx > 0 && cy < yCount - 1)
+      neighbors.push_back(
+          {static_cast<size_t>(cx - 1), static_cast<size_t>(cy + 1)});
+    if (cx < xCount - 1 && cy > 0)
+      neighbors.push_back(
+          {static_cast<size_t>(cx + 1), static_cast<size_t>(cy - 1)});
+    if (cx > 0 && cy > 0)
+      neighbors.push_back(
+          {static_cast<size_t>(cx - 1), static_cast<size_t>(cy - 1)});
     return neighbors;
   }
 
@@ -175,6 +179,12 @@ class GridMap {
     yCount = newYCount;
     data.resize(xCount * yCount);
   }
+
+  int getXCount() const { return xCount; }
+
+  int getYCount() const { return yCount; }
+
+  float getResolution() const { return resolution; }
 
  protected:
   // Grid parameters

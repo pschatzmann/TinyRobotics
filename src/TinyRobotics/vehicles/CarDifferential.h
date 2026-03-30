@@ -6,7 +6,7 @@
 /**
  * @brief  Car model with differential drive. The direction is controlled by
  * adjusting the speed of the motors. Even motors are on the left side, odd
- * motors are on the right side. 
+ * motors are on the right side.
  *
  * This class abstracts a simple N-wheel-drive car:
  *  - N motors (e.g. front left, front right, rear left, rear right) via HBridge
@@ -14,7 +14,7 @@
  *
  * Usage Example:
  * @code
- * tinyrobotics::CarDifferentialWD<4> car;
+ * CarDifferentialWD<4> car;
  * car.setPins(0, 2, 3, 4); // motor 0 (front left): in1=2, in2=3, pwm=4
  * car.setPins(1, 5, 6, 7); // motor 1 (front right): in1=5, in2=6, pwm=7
  * car.setPins(2, 8, 9, 10); // motor 2 (rear left): in1=8, in2=9, pwm=10
@@ -55,7 +55,8 @@ class CarDifferential : public Vehicle {
    * @brief Set turn (percent, -100 to 100). Positive = right, negative = left.
    * This slows down the motors on one side to turn the car.
    */
-  void setTurn(int percent) {
+  void setSteeringAgle(int angle) {
+    int percent = map(angle, -45, 45, -100, 100);  // Map angle to turn percent
     turn_ = constrain(percent, -100, 100);
     updateMotors();
   }
@@ -91,20 +92,25 @@ class CarDifferential : public Vehicle {
   }
 
   bool onMessage(const Message<float>& msg) override {
-    if (msg.source != MessageOrigin::RemoteControl)
-      return false;  // Only handle RC messages
+    if (!isValidMessageSource(msg.source)) return false;  
     switch (msg.content) {
       case MessageContent::Throttle:
         if (msg.unit != Unit::Percent) return false;
         setSpeed(static_cast<int>(msg.value));
         return true;
-      case MessageContent::Turn:
-        if (msg.unit != Unit::Percent) return false;
-        setTurn(static_cast<int>(msg.value));
+      case MessageContent::SteeringAngle:
+        float angle = msg.value;
+        if (!toAngleDegree(angle, msg.unit, angle))
+          return false;  // Invalid unit
+        this->setSteeringAgle(angle);
         return true;
       default:
         return false;  // Unhandled message content
     }
+  }
+
+  std::vector<MessageContent> getControls() const override {
+    return {MessageContent::Throttle, MessageContent::SteeringAngle};
   }
 
  protected:

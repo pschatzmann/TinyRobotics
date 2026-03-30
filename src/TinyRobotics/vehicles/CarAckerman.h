@@ -12,7 +12,7 @@
  *
  * Usage Example:
  * @code
- * tinyrobotics::CarAckerman car;
+ * CarAckerman car;
  * car.setPins(5, 6, 9, 10); // in1, in2, pwm, steeringPin
  * car.setSpeed(60);         // 60% forward
  * car.setSteering(30);      // 30 degrees left
@@ -71,7 +71,7 @@ class CarAckerman : public Vehicle {
 
   bool onMessage(const Message<float>& msg) override {
     float angle;
-    if (msg.source != MessageOrigin::RemoteControl) return false;  // Only handle RC messages
+    if (!isValidMessageSource(msg.source)) return false;  
     switch (msg.content) {
       case MessageContent::Throttle:
         if (msg.unit != Unit::Percent) return false;

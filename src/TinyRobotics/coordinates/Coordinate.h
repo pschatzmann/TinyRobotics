@@ -235,6 +235,7 @@ class Coordinate : public Serializable {
 
 }  // namespace tinyrobotics
 
+
 namespace std {
 template <typename T>
 struct hash<tinyrobotics::Coordinate<T>> {

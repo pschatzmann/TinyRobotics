@@ -72,7 +72,7 @@ class PointCloud {
   };
 
  public:
-  using Container = std::vector<Point3D, tinyrobotics::AllocatorPSRAM<Point3D>>;
+  using Container = std::vector<Point3D, AllocatorPSRAM<Point3D>>;
 
   PointCloud(bool isliveVoxel = false) {
     resetBounds();
@@ -295,7 +295,7 @@ class PointCloud {
   DistanceM voxelSize_ = 0.0f;
   bool liveVocelGrid_ = false;
   // voxel grid preferrably is psram
-  using PSRAMKeyAllocator = tinyrobotics::AllocatorPSRAM<Key>;
+  using PSRAMKeyAllocator = AllocatorPSRAM<Key>;
   std::unordered_set<Key, KeyHash, std::equal_to<Key>, PSRAMKeyAllocator>
       voxelGrid_;
 

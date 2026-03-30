@@ -31,7 +31,7 @@ enum GPSFormat {
  *
  * Example usage:
  * @code
- * tinyrobotics::NMEAParser parser(tinyrobotics::GPSFormat::GGA);
+ * NMEAParser parser(GPSFormat::GGA);
  * GPSCoordinate gps;
  * if
  * (parser.parse("$GPGGA,123519,4807.038,N,01131.000,E,1,08,0.9,545.4,M,46.9,M,,*47",

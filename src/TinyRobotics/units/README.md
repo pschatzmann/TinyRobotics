@@ -28,11 +28,11 @@ This directory provides strongly-typed units for distance, angle, speed, and tim
 #include "units/Distance.h"
 #include "units/Angle.h"
 
-tinyrobotics::Distance d1(100, tinyrobotics::DistanceUnit::CM); // 100 cm
-float meters = d1.getDistance(tinyrobotics::DistanceUnit::M);   // Convert to meters
+Distance d1(100, DistanceUnit::CM); // 100 cm
+float meters = d1.getDistance(DistanceUnit::M);   // Convert to meters
 
-tinyrobotics::Angle a1(90, tinyrobotics::AngleUnit::DEG);       // 90 degrees
-float radians = a1.getAngle(tinyrobotics::AngleUnit::RAD);      // Convert to radians
+Angle a1(90, AngleUnit::DEG);       // 90 degrees
+float radians = a1.getAngle(AngleUnit::RAD);      // Convert to radians
 ```
 
 ## See Also
