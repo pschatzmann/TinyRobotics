@@ -2,8 +2,9 @@
  * @file micro-ros.ino
  * @brief Example: micro-ROS communication with TinyRobotics
  *
- * This example demonstrates how to use the TinyRobotics MicroROSS class to connect an ESP32 (or compatible)
- * to a ROS2 system using micro-ROS. It subscribes to velocity commands and publishes odometry.
+ * This example demonstrates how to use the TinyRobotics MicroROSS class to
+ * connect an ESP32 (or compatible) to a ROS2 system using micro-ROS. It
+ * subscribes to velocity commands and publishes odometry.
  *
  * Features:
  *   - micro-ROS node setup for /cmd_vel and /odom
@@ -35,9 +36,11 @@ MessageHandlerPrint printer(Serial);  // forward to Serial
 Scheduler scheduler;
 float current_speed = 0.0;
 float current_steering = 0.0;
-const wheelbase = 0.25;  // meters
+const float wheelbase = 0.25;  // meters
+unsigned long last_time=0;
+float theta=0, pos_x=0, pos_y=0;
 
-void sendOdometry(void* ref) {
+void sendOdometryToROS(void* ref) {
   rclc_executor_spin_some(&ros.getExecutor(), RCL_MS_TO_NS(10));
   nav_msgs__msg__Odometry odom_msg;
   unsigned long now = millis();
@@ -66,6 +69,32 @@ void sendOdometry(void* ref) {
 
   ros.sendOdometry(odom_msg);
 }
+// callback
+void onDataFromROS(const void* msgin) {
+  const geometry_msgs__msg__Twist* cmd_msg =
+      static_cast<const geometry_msgs__msg__Twist*>(msgin);
+  // For simplicity, we only use linear.x and angular.z from the Twist message
+  float linear_x = cmd_msg->linear.x;
+  float angular_z = cmd_msg->angular.z;
+  TRLogger.info("Received cmd_vel: linear_x=%.2f, angular_z=%.2f", linear_x,
+                angular_z);
+
+  float v = linear_x;
+  float omega = angular_z;
+
+  // Convert Twist → Ackermann steering
+  current_steering = 0.0;
+  if (fabs(v) > 0.001) {
+    current_steering = atan(wheelbase * omega / v);
+  }
+
+  // Convert to car control commands (simple example)
+  int speed = (int)(linear_x * 100);  // Scale to PWM range
+  int steer = (int)(current_steering / M_PI *
+                    180);  // Scale to steering angle in degrees
+  car.setSpeed(speed);
+  car.setSteeringAngle(steer);
+}
 
 void setup() {
   Serial.begin(115200);
@@ -73,38 +102,15 @@ void setup() {
   TRLogger.info("TinyRobotics Messaging Example");
 
   // setup ROS using UDP
-  ros.setTransportWiFiUDP("your_ssid", "your_password", "192.168.1.39", 8888);
-  ros.setCallback([](const void* msgin) {
-    const geometry_msgs__msg__Twist* cmd_msg =
-        static_cast<const geometry_msgs__msg__Twist*>(msgin);
-    // For simplicity, we only use linear.x and angular.z from the Twist message
-    float linear_x = cmd_msg->linear.x;
-    float angular_z = cmd_msg->angular.z;
-    TRLogger.info("Received cmd_vel: linear_x=%.2f, angular_z=%.2f", linear_x,
-                  angular_z);
-
-    float v = linear_x;
-    float omega = angular_z;
-
-    // Convert Twist → Ackermann steering
-    current_steering = 0.0;
-    if (fabs(v) > 0.001) {
-      current_steering = atan(wheelbase * omega / v);
-    }
-
-    // Convert to car control commands (simple example)
-    int speed = (int)(linear_x * 100);  // Scale to PWM range
-    int steer = (int)(current_steering / M_PI * 180);  // Scale to steering angle in degrees
-    car.setSpeed(speed);
-    car.setSteeringAngle(steer);
-  });
+  ros.setTransport("your_ssid", "your_password", "192.168.1.39", 8888);
+  ros.setCallback(onDataFromROS);
   ros.begin();
 
   // Log received commands
   car.subscribe(printer);
 
   // publish odometry
-  scheduler.schedule(sendOdometry, 10);
+  scheduler.begin(10, sendOdometryToROS);
 }
 
 void loop() { scheduler.run(); }

@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Vehicle.h"
 #include "TinyRobotics/motors/Motors.h"
+#include "Vehicle.h"
 
 /**
  * @brief Car with Ackerman steering and single drive motor.
@@ -42,7 +42,7 @@ class CarAckerman : public Vehicle {
    * @brief Set drive speed (percent, -100 to 100). Positive = forward.
    */
   void setSpeed(int percent) {
-    motor_.setSpeedPercent(percent);
+    motor_.setSpeed(percent);
     // publish speed as message for telemetry
     Message<float> msg(MessageContent::MotorSpeed, percent, Unit::Percent);
     msg.source = MessageOrigin::Motor;
@@ -65,13 +65,14 @@ class CarAckerman : public Vehicle {
     setSpeed(0);
     setSteeringAngle(0);
     motor_.end();
-    steering_.end();}
+    steering_.end();
+  }
 
   bool isPinsSet() const { return motor_.isPinsSet() && steering_.isPinsSet(); }
 
   bool onMessage(const Message<float>& msg) override {
     float angle;
-    if (!isValidMessageSource(msg.source)) return false;  
+    if (!isValidMessageSource(msg.source)) return false;
     switch (msg.content) {
       case MessageContent::Throttle:
         if (msg.unit != Unit::Percent) return false;
@@ -87,9 +88,10 @@ class CarAckerman : public Vehicle {
         return false;  // Unhandled message content
     }
   }
-  
+
   std::vector<MessageContent> getControls() const override {
     return {MessageContent::Throttle, MessageContent::SteeringAngle};
+  }
 
  protected:
   BrushedMT motor_;

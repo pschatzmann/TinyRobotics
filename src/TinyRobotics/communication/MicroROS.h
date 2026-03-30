@@ -53,7 +53,7 @@ class MicroROS {
   //     is_tranport_defined = true;
   //   }
 
-  void setTranport(char* ssid, char* pwd, char* ip, int port = 8888) {
+  void setTransport(char* ssid, char* pwd, char* ip, int port = 8888) {
     set_microros_wifi_transports(ssid, pwd, ip, port);
     is_tranport_defined = true;
   }
