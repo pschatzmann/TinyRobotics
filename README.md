@@ -39,3 +39,9 @@ cd  ~/Documents/Arduino/libraries
 git clone https://github.com/pschatzmann/TinyRobotics.git
 ```
 
+## Dependencies
+
+You also need to install the follwing Arduino libraries:
+- FastAccelStepper
+- Servo
+- ESP32Servo

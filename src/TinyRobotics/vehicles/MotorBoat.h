@@ -1,7 +1,6 @@
 #pragma once
 
-#include "TinyRobotics/motors/HBridge.h"
-#include "TinyRobotics/motors/Servo.h"
+#include "TinyRobotics/motors/Motors.h"
 #include "Vehicle.h"
 
 namespace tinyrobotics {
@@ -23,6 +22,7 @@ namespace tinyrobotics {
  * @endcode
  */
 
+template <typename BrushedMT = BrushedMotor, typename ServoMT = ServoMotor>
 class MotorBoat : public Vehicle {
  public:
   MotorBoat() = default;
@@ -92,8 +92,8 @@ class MotorBoat : public Vehicle {
   }
 
  protected:
-  HBridge motor_;
-  ServoMotor rudder_;
+  BrushedMT motor_;
+  ServoMT rudder_;
 };
 
 }  // namespace tinyrobotics

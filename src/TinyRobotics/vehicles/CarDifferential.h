@@ -1,6 +1,6 @@
 #pragma once
 
-#include "TinyRobotics/motors/HBridge.h"
+#include "TinyRobotics/motors/Motors.h"
 #include "Vehicle.h"
 
 /**
@@ -26,7 +26,7 @@
  */
 namespace tinyrobotics {
 
-template <size_t N = 4>
+template <size_t N = 4, typename BrushedMT = BrushedMotor>
 class CarDifferential : public Vehicle {
  public:
   CarDifferential() : speed_(0), turn_(0) {}
@@ -38,6 +38,7 @@ class CarDifferential : public Vehicle {
   void setPins(int motor, int in1, int in2, int pwm) {
     if (motor >= 0 && motor < 4) {
       motors_[motor].setPins(in1, in2, pwm);
+      motors_[motor].setID((uint8_t)motor);
     }
   }
 
@@ -113,7 +114,7 @@ class CarDifferential : public Vehicle {
   }
 
  protected:
-  HBridge motors_[N];
+  BrushedMT motors_[N];
   float motorGain_[N] = {1.0f, 1.0f, 1.0f, 1.0f};
   float speed_, turn_;
 

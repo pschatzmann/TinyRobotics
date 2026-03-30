@@ -36,18 +36,15 @@ namespace tinyrobotics {
  */
 class ServoMotor : public Motor {
  public:
-  ServoMotor() = default;
+  ServoMotor(uint8_t id = 0) { setID(id); }
 
   /** Attach the servo to a pin */
-  void attach(int pin) {
-    servo.attach(pin);
-    is_attached_ = true;
-  }
+  void setPin(int pin) { this->pin = pin; }
 
-  /** Detach the servo */
-  void detach() {
-    servo.detach();
-    is_attached_ = false;
+  bool begin() {
+    if (pin == -1) return false;
+    servo.attach(pin);
+    return true;
   }
 
   /** Set servo angle (degrees, 90 .. -90): 0 is forward */
@@ -74,15 +71,19 @@ class ServoMotor : public Motor {
     maxAngle = min(maxAngle, 90);
   }
 
-  void end() override { setAngle(0); }
+  void end() override {
+    setAngle(0);
+    servo.detach();
+  }
 
-  bool isPinsSet() const { return is_attached_; }
+  bool isPinsSet() const { return is_pin_asssigned; }
 
  protected:
   ::Servo servo;
+  int pin = -1;
   int minAngle = -90;
   int maxAngle = 90;
-  bool is_attached_ = false;
+  bool is_pin_asssigned = false;
 };
 
 }  // namespace tinyrobotics

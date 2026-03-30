@@ -1,8 +1,7 @@
 #pragma once
 
 #include "Vehicle.h"
-#include "TinyRobotics/motors/HBridge.h"
-#include "TinyRobotics/motors/Servo.h"
+#include "TinyRobotics/motors/Motors.h"
 
 /**
  * @brief Car with Ackerman steering and single drive motor.
@@ -22,6 +21,7 @@
  */
 namespace tinyrobotics {
 
+template <typename BrushedMT = BrushedMotor, typename ServoMT = ServoMotor>
 class CarAckerman : public Vehicle {
  public:
   CarAckerman() = default;
@@ -92,8 +92,8 @@ class CarAckerman : public Vehicle {
     return {MessageContent::Throttle, MessageContent::SteeringAngle};
 
  protected:
-  HBridge motor_;
-  ServoMotor steering_;
+  BrushedMT motor_;
+  ServoMT steering_;
 };
 
 }  // namespace tinyrobotics
