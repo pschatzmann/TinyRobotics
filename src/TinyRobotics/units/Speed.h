@@ -22,6 +22,7 @@ enum class SpeedUnit { MPS, KPH, FPS, MPH };
  */
 class Speed {
  public:
+  Speed() = default;
   Speed(float speed, SpeedUnit unit) { setSpeed(speed, unit); }
 
   void setSpeed(float newSpeed, SpeedUnit newUnit) {
@@ -57,8 +58,8 @@ class Speed {
   }
 
  protected:
-  float speed;
-  SpeedUnit unit;
+  float speed = 0.0f;
+  SpeedUnit unit = SpeedUnit::MPS;
 };
 
 }  // namespace tinyrobotics

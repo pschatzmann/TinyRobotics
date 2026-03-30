@@ -22,6 +22,7 @@ enum class DistanceUnit { M, CM, MM, FEET };
  */
 class Distance {
  public:
+  Distance() = default;
   Distance(float distance, DistanceUnit unit) { setDistance(distance, unit); }
 
   void setDistance(float newDistance, DistanceUnit newUnit) {
@@ -57,8 +58,8 @@ class Distance {
   }
 
  protected:
-  float distance;
-  DistanceUnit unit;
+  float distance = 0.0f;
+  DistanceUnit unit = DistanceUnit::M;
 };
 
 }  // namespace tinyrobotics

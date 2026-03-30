@@ -29,71 +29,64 @@
  */
 #include "TinyRobotics.h"
 #include "TinyRobotics/communication/MicroROS.h"
+#include "TinyRobotics/odometry/Odometry2D.h"
+#include "TinyRobotics/odometry/SpeedFromThrottle.h"
+
 
 MicroROS ros;
 CarAckerman car;
-MessageHandlerPrint printer(Serial);  // forward to Serial
+MessageHandlerPrint printer(Serial);
 Scheduler scheduler;
-float current_speed = 0.0;
-float current_steering = 0.0;
+
+// Odometry and speed estimation
+Odometry2D odom;
+SpeedFromThrottle speedEstimator(2.0f);  // max speed 2 m/s (adjust as needed)
 const float wheelbase = 0.25;  // meters
-unsigned long last_time=0;
-float theta=0, pos_x=0, pos_y=0;
 
 void sendOdometryToROS(void* ref) {
   rclc_executor_spin_some(&ros.getExecutor(), RCL_MS_TO_NS(10));
   nav_msgs__msg__Odometry odom_msg;
-  unsigned long now = millis();
-  float dt = (now - last_time) / 1000.0;
-  last_time = now;
 
-  // ===== Kinematics =====
-  float v = current_speed;
-  float delta = current_steering;
+  // Use Odometry2D state
+  auto pos = odom.getPosition();
+  float theta = odom.getTheta();
+  float v = odom.getLinearVelocity();
+  float omega = odom.getAngularVelocity();
 
-  float omega = 0.0;
-  if (fabs(delta) > 0.001) {
-    omega = v * tan(delta) / wheelbase;
-  }
-
-  theta += omega * dt;
-  pos_x += v * cos(theta) * dt;
-  pos_y += v * sin(theta) * dt;
-
-  // ===== Odometry message =====
-  odom_msg.pose.pose.position.x = pos_x;
-  odom_msg.pose.pose.position.y = pos_y;
-
+  odom_msg.pose.pose.position.x = pos.x;
+  odom_msg.pose.pose.position.y = pos.y;
+  // Optionally set orientation (not shown)
   odom_msg.twist.twist.linear.x = v;
   odom_msg.twist.twist.angular.z = omega;
 
   ros.sendOdometry(odom_msg);
 }
-// callback
+
+// ROS callback for /cmd_vel
 void onDataFromROS(const void* msgin) {
   const geometry_msgs__msg__Twist* cmd_msg =
       static_cast<const geometry_msgs__msg__Twist*>(msgin);
-  // For simplicity, we only use linear.x and angular.z from the Twist message
   float linear_x = cmd_msg->linear.x;
   float angular_z = cmd_msg->angular.z;
   TRLogger.info("Received cmd_vel: linear_x=%.2f, angular_z=%.2f", linear_x,
                 angular_z);
 
-  float v = linear_x;
-  float omega = angular_z;
-
-  // Convert Twist → Ackermann steering
-  current_steering = 0.0;
-  if (fabs(v) > 0.001) {
-    current_steering = atan(wheelbase * omega / v);
+  // Convert Twist to Ackermann steering
+  float current_steering = 0.0;
+  if (fabs(linear_x) > 0.001) {
+    current_steering = atan(wheelbase * angular_z / linear_x);
   }
+  // Convert linear_x to throttle (simple proportional, adjust as needed)
+  float current_throttle = linear_x * 100.0f;  // -100 to 100
 
-  // Convert to car control commands (simple example)
-  int speed = (int)(linear_x * 100);  // Scale to PWM range
-  int steer = (int)(current_steering / M_PI *
-                    180);  // Scale to steering angle in degrees
-  car.setSpeed(speed);
-  car.setSteeringAngle(steer);
+  // Set car actuators
+  car.setSpeed((int)current_throttle);
+  car.setSteeringAngle((int)(current_steering / M_PI * 180));
+
+  // Update odometry using estimated speed
+  Speed speed = speedEstimator.getSpeed(current_throttle);
+  Angle steering(current_steering, AngleUnit::RAD);
+  odom.update(speed, steering);
 }
 
 void setup() {
@@ -108,6 +101,10 @@ void setup() {
 
   // Log received commands
   car.subscribe(printer);
+
+  // Initialize odometry
+  odom.begin(Coordinate<DistanceM>(0, 0), 0.0f,
+             Distance(wheelbase, DistanceUnit::M));
 
   // publish odometry
   scheduler.begin(10, sendOdometryToROS);

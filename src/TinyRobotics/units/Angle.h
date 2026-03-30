@@ -18,6 +18,7 @@ enum class AngleUnit { DEG, RAD };
  */
 class Angle {
  public:
+  Angle() = default;
   Angle(float angle, AngleUnit unit) { setAngle(angle, unit); }
 
   void setAngle(float newAngle, AngleUnit newUnit) {
@@ -77,8 +78,8 @@ class Angle {
   }
 
  protected:
-  float angle;
-  AngleUnit unit;
+  float angle = 0.0f;
+  AngleUnit unit = AngleUnit::DEG;
 };
 
 }  // namespace tinyrobotics

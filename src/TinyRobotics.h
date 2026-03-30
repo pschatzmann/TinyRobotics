@@ -11,6 +11,7 @@
 #include "TinyRobotics/units/Units.h"
 #include "TinyRobotics/utils/Utils.h"
 #include "TinyRobotics/vehicles/Vehicles.h"
+#include "TinyRobotics/odometry/Odometry.h"
 
 #ifdef ARDUINO
 using namespace tinyrobotics;

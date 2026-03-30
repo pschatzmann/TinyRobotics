@@ -22,6 +22,7 @@ enum class TimeUnit { S, MS, US, MIN, HOUR };
  */
 class Time {
  public:
+  Time() = default;
   Time(float time, TimeUnit unit) { setTime(time, unit); }
 
   void setTime(float newTime, TimeUnit newUnit) {
@@ -67,8 +68,8 @@ class Time {
   }
 
  protected:
-  float time;
-  TimeUnit unit;
+  float time = 0.0f;
+  TimeUnit unit = TimeUnit::MS;
 };
 
 }  // namespace tinyrobotics
