@@ -70,6 +70,19 @@ class Odometry2D {
  public:
   Odometry2D() = default;
 
+  /**
+   * @brief Initialize the odometry state.
+   *
+   * @param initialPosition The starting position of the robot (x, y) in meters.
+   * @param initialTheta The starting orientation (heading/yaw) in radians.
+   * Default is 0.0.
+   * @param wheelBase The wheelbase (distance between axles for Ackermann, or
+   * length to rudder for boats) in meters. Default is 0 (differential drive).
+   * @return true on success
+   *
+   * If wheelBase is set (>0), Ackermann or boat kinematics are used for heading
+   * updates. If wheelBase is zero, differential drive kinematics are used.
+   */
   bool begin(Coordinate<DistanceM> initialPosition, float initialTheta = 0.0f,
              Distance wheelBase = Distance()) {
     position = initialPosition;
@@ -80,6 +93,18 @@ class Odometry2D {
     return true;
   }
 
+  /**
+   * @brief Update the odometry state with new speed and steering angle.
+   *
+   * @param speed The current speed of the robot (with units).
+   * @param steeringAngle The current steering angle (radians for Ackermann/rudder, or angular velocity for differential drive).
+   * @param deltaTimeMs Time since last update in milliseconds.
+   *
+   * If wheelBase is set (>0), uses Ackermann/boat kinematics for heading update:
+   *   omega = v * tan(steeringAngle) / wheelBase
+   * If wheelBase is zero, uses differential drive kinematics:
+   *   deltaTheta = steeringAngle (angular velocity) * deltaTime
+   */
   void update(Speed speed, Angle steeringAngle, float deltaTimeMs) {
     this->steeringAngle = steeringAngle;
     this->speed = speed;
@@ -104,6 +129,14 @@ class Odometry2D {
     totalDistance += sqrt(deltaX * deltaX + deltaY * deltaY);
   }
 
+  /**
+   * @brief Update the odometry state with new speed and steering angle, using automatic time delta.
+   *
+   * @param speed The current speed of the robot (with units).
+   * @param steeringAngle The current steering angle (radians for Ackermann/rudder, or angular velocity for differential drive).
+   *
+   * Uses millis() to compute the time since the last update.
+   */
   void update(Speed speed, Angle steeringAngle) {
     auto now = millis();
     float deltaTimeMs = now - lastUpdateTimeMs;
