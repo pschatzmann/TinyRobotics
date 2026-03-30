@@ -25,8 +25,7 @@ This directory provides strongly-typed units for distance, angle, speed, and tim
 ## Example
 
 ```cpp
-#include "units/Distance.h"
-#include "units/Angle.h"
+#include <TinyRobotics.h>
 
 Distance d1(100, DistanceUnit::CM); // 100 cm
 float meters = d1.getDistance(DistanceUnit::M);   // Convert to meters
@@ -34,6 +33,10 @@ float meters = d1.getDistance(DistanceUnit::M);   // Convert to meters
 Angle a1(90, AngleUnit::DEG);       // 90 degrees
 float radians = a1.getAngle(AngleUnit::RAD);      // Convert to radians
 ```
+
+## See Examples
+
+- [Units Example](../../../examples/others/units/units.ino)
 
 ## See Also
 

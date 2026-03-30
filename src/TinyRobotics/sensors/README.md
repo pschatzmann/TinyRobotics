@@ -61,6 +61,12 @@ Detects motion or changes between consecutive grayscale camera images.
 - Thresholds the difference to create a binary mask of changed pixels.
 - Counts changed pixels globally, by vertical thirds (left/center/right), or by horizontal thirds (top/center/bottom).
 
+## See Examples
+
+- [Camera Line Follower](../../../examples/sensors/CameraLineFollower/CameraLineFollower.ino)
+- [Range Sensor](../../../examples/sensors/RangeSensor/RangeSensor.ino)
+- [Wheel Encoder](../../../examples/sensors/WheelEncoder/WheelEncoder.ino)
+
 
 ## Notes
 

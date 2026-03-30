@@ -42,6 +42,13 @@ PointCloud cloud;
 cloud.add(1.0, 2.0, 0.5);
 cloud.buildVoxelGrid(0.1f); // 10cm voxels
 ```
+## See Examples
+
+- [Gridmap A*](../../../examples/maps&planning/gridmap-astar/girdmap-astar.ino)
+- [Gridmap Dijkstra](../../../examples/maps&planning/gridmap-dijkstra/girdmap-dijkstra.ino)
+- [Pathmap A*](../../../examples/maps&planning/pathmap-astar/pathmap-astar.ino)
+- [Planned Path](../../../examples/maps&planning/plannedpath/plannedpath.ino)
+- [Pointcloud A*](../../../examples/maps&planning/pointcloud-astar/pointcloud-astar.ino)
 
 ## See Also
 

@@ -30,9 +30,7 @@ This directory contains classes and utilities for representing and manipulating 
 ## Example
 
 ```cpp
-#include "Coordinate.h"
-#include "GPSCoordinate.h"
-#include "FrameMgr2D.h"
+#include <TinyRobotics.h>
 
 Coordinate<float> local(1.0, 2.0, 0.5);
 GPSCoordinate gps(48.8584, 2.2945, 35); // Eiffel Tower
@@ -50,6 +48,13 @@ mgr.setGPS(world, GPSCoordinate(46.2097, 7.2572, 503));
 // Convert a local frame coordinate to GPS:
 auto gps_result = mgr.toGPS(base);
 ```
+
+## See Examples
+
+- [2D Frame Example](../../../examples/coordinates&frames/frame2d/frame2d.ino)
+- [3D Frame Example](../../../examples/coordinates&frames/frame3d/frame3d.ino)
+- [Record GPS Example](../../../examples/coordinates&frames/record-gps/record-gps.ino)
+
 
 ## See Also
 

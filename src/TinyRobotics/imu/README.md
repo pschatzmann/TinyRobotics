@@ -50,6 +50,10 @@ void loop() {
 - `getPosition()`, `getVelocity()`, `getAngle()`: Query state
 
 
+## See Examples
+
+- [IMU 2D Example](../../../examples/imu/imu2d/imu2d.ino)
+
 ## Notes
 - All units are SI (meters, seconds, radians)
 - See source code for detailed Doxygen documentation

@@ -26,8 +26,7 @@ This directory contains algorithms and utilities for path planning, motion plann
 ## Example
 
 ```cpp
-#include "AStar.h"
-#include "Path.h"
+#include <TinyRobotics.h>
 
 // Define your map or graph type (e.g., GridMap, PathMap)
 GridMap<> grid(50, 50, 0.1f);
@@ -43,6 +42,14 @@ if (!path.empty()) {
     }
 }
 ```
+
+## See Examples
+
+- [Gridmap A*](../../../examples/maps&planning/gridmap-astar/girdmap-astar.ino)
+- [Gridmap Dijkstra](../../../examples/maps&planning/gridmap-dijkstra/girdmap-dijkstra.ino)
+- [Pathmap A*](../../../examples/maps&planning/pathmap-astar/pathmap-astar.ino)
+- [Planned Path](../../../examples/maps&planning/plannedpath/plannedpath.ino)
+- [Pointcloud A*](../../../examples/maps&planning/pointcloud-astar/pointcloud-astar.ino)
 
 ## See Also
 

@@ -45,6 +45,11 @@ auto next = slam.getNextFrontier();
 - `RangeSensor`: Range/obstacle sensor abstraction
 - `Frame2D`, `FrameMgr2D`: Frame transforms
 
+## See Examples
+
+- [Pointcloud A* Example](../../../examples/maps&planning/pointcloud-astar/pointcloud-astar.ino)
+
+
 ### See Also
 - [TinyRobotics Documentation](https://github.com/pschatzmann/TinyRobotics)
 - Example sketches in the `examples/` directory
