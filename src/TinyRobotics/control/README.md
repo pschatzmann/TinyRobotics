@@ -1,4 +1,3 @@
-
 # Control Module Overview
 
 This module provides essential classes for implementing control algorithms and state estimation in robotics and embedded systems. Below is an overview of the available classes:
@@ -16,6 +15,9 @@ This module provides essential classes for implementing control algorithms and s
 
 - **Scheduler**
 	- A simple scheduler class that allows you to schedule and execute callbacks at specified intervals. Useful for periodic tasks and cooperative multitasking.
+
+- **MotionController2D**
+	- A 2D motion controller for path following and vehicle control. Integrates PID control for both speed (throttle) and steering, supports smooth acceleration/deceleration, and uses IMU feedback. Features configurable target accuracy for waypoint following and records the start coordinate for odometry or logging.
 
 ---
 
