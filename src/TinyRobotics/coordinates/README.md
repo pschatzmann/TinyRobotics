@@ -40,10 +40,15 @@ GPSCoordinate gps(48.8584, 2.2945, 35); // Eiffel Tower
 float dist = local.distance(Coordinate<float>(2.0, 3.0, 1.0));
 float bearing = local.bearing(Coordinate<float>(2.0, 3.0, 1.0));
 
+// Define a simple frame hierarchy: world -> base -> lidar
 FrameMgr2D mgr;
-// ... define frames and transforms ...
+Frame2D world{FrameType::WORLD, 0};
+Frame2D base{FrameType::BASE, 0, world, Transform2D(10, 20, 90)};
+Frame2D lidar{FrameType::LIDAR, 0, base, Transform2D(0.2, -0.1, 0)};
+mgr.setGPS(world, GPSCoordinate(46.2097, 7.2572, 503));
+
 // Convert a local frame coordinate to GPS:
-auto gps_result = mgr.toGPS(base_frame);
+auto gps_result = mgr.toGPS(base);
 ```
 
 ## See Also

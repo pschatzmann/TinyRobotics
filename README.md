@@ -10,7 +10,6 @@ TinyRobotics is a modular, header-only C++ library for Arduino and embedded syst
 The following __base functionality__ is automatically available:
 
 - [**Coordinate Systems**](src/TinyRobotics/coordinates/README.md): 2D/3D coordinates, GPS coordinates, NMEA sentence parsing, local cartesian frames, and hierarchical frame management (SE(2)/SE(3)).
-- [**Frame Management**](src/TinyRobotics/coordinates/README.md): Manage trees of coordinate frames in 2D and 3D, with support for GPS/geodetic integration and conversion between local and global frames.
 - [**Path Planning**](src/TinyRobotics/planning/README.md): Generic A* and Dijkstra algorithm, path representation, and planning utilities for navigation and obstacle avoidance.
 - [**Mapping**](src/TinyRobotics/maps/README.md): Grid maps (occupancy/value), path maps (graph-based), and 3D point clouds for environment modeling and SLAM.
 - [**Control**](src/TinyRobotics/control/README.md): Core control algorithms including PID controllers, Kalman filters, moving averages, schedulers, and the MotionController for path following and vehicle control.
