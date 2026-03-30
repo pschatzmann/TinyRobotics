@@ -15,7 +15,7 @@ namespace tinyrobotics {
  *
  * Usage Example:
  * @code
- * tinyrobotics::MotorBoat boat;
+ * MotorBoat boat;
  * boat.setPins(5, 6, 9, 10); // in1, in2, pwm, rudderPin
  * boat.setThrottle(70);      // 70% throttle
  * boat.setRudder(20);        // 20 degrees left

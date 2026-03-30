@@ -13,7 +13,7 @@
  *
  * Usage Example:
  * @code
- * tinyrobotics::CarAckerman car;
+ * CarAckerman car;
  * car.setPins(5, 6, 9, 10); // in1, in2, pwm, steeringPin
  * car.setSpeed(60);         // 60% forward
  * car.setSteering(30);      // 30 degrees left

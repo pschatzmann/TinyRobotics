@@ -19,7 +19,7 @@ This module provides sensor fusion for 2D and 3D Inertial Measurement Units (IMU
 #include <TinyRobotics.h>
 
 // Create IMU2D instance
-tinyrobotics::IMU2D<float> imu;
+IMU2D<float> imu;
 
 void setup() {
   // Calibrate gyro bias (call when stationary)

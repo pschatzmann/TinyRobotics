@@ -23,7 +23,7 @@ enum QuadrotorMotorNo {
  *
  * Usage Example (with setPins):
  * @code
- * tinyrobotics::Quadrotor quad;
+ * Quadrotor quad;
  * quad.setPins(FRONT_LEFT, m1_in1, m1_in2, m1_pwm); // front left
  * quad.setPins(FRONT_RIGHT, m2_in1, m2_in2, m2_pwm); // front right
  * quad.setPins(REAR_LEFT, m3_in1, m3_in2, m3_pwm); // rear left

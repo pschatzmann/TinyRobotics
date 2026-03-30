@@ -39,7 +39,7 @@ namespace tinyrobotics {
  *
  * Example:
  * @code
- * tinyrobotics::WheelEncoder encoder;
+ * WheelEncoder encoder;
  * encoder.setWheelDiameter(0.065); // 65mm wheel
  * encoder.setTicksPerRevolution(20);
  * encoder.begin();

@@ -24,7 +24,7 @@ namespace tinyrobotics {
  *
  * Usage Example:
  * @code
- * tinyrobotics::ServoMotor servo;
+ * ServoMotor servo;
  * servo.attach(9);           // Attach to pin 9
  * servo.setConstraints(-45, 45); // Limit range to -45..45 degrees
  * servo.setAngle(45);        // Set to 45 degrees left

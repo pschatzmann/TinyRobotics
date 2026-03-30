@@ -30,11 +30,11 @@ This directory contains algorithms and utilities for path planning, motion plann
 #include "Path.h"
 
 // Define your map or graph type (e.g., GridMap, PathMap)
-tinyrobotics::GridMap<> grid(50, 50, 0.1f);
+GridMap<> grid(50, 50, 0.1f);
 auto start = grid.worldToGrid(0.0f, 0.0f);
 auto goal = grid.worldToGrid(4.0f, 4.0f);
 
-tinyrobotics::AStar<decltype(grid)> astar(grid);
+AStar<decltype(grid)> astar(grid);
 auto path = astar.findPath(start, goal);
 
 if (!path.empty()) {

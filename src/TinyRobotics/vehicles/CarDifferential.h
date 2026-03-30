@@ -14,7 +14,7 @@
  *
  * Usage Example:
  * @code
- * tinyrobotics::CarDifferentialWD<4> car;
+ * CarDifferentialWD<4> car;
  * car.setPins(0, 2, 3, 4); // motor 0 (front left): in1=2, in2=3, pwm=4
  * car.setPins(1, 5, 6, 7); // motor 1 (front right): in1=5, in2=6, pwm=7
  * car.setPins(2, 8, 9, 10); // motor 2 (rear left): in1=8, in2=9, pwm=10

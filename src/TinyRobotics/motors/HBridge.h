@@ -19,7 +19,7 @@ namespace tinyrobotics {
  *
  * Usage Example:
  * @code
- * tinyrobotics::HBridge motor(5, 6, 9); // IN1=5, IN2=6, PWM=9
+ * HBridge motor(5, 6, 9); // IN1=5, IN2=6, PWM=9
  * motor.setConstraints(-200, 200); // Limit speed range
  * motor.setSpeed(128);        // Half speed forward
  * motor.setSpeed(-255);       // Full speed reverse

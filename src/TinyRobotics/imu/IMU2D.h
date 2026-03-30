@@ -38,7 +38,7 @@ namespace tinyrobotics {
  *
  * Example usage:
  * @code
- *   tinyrobotics::IMU2D<float> imu;
+ *   IMU2D<float> imu;
  *   imu.begin(initialAngle, initialPosition);
  *   imu.update(accelX, accelY, gyroZ, millis());
  *   imu.updateMagnetometer(magX, magY);
@@ -189,15 +189,15 @@ class IMU2D : public MessageSource {
     T stateAngle = ekf.x(4, 0);
     T innovation = wrapAngle(meas - stateAngle);
 
-    tinyrobotics::Matrix<2, 1> z;
+    Matrix<2, 1> z;
     z(0, 0) = stateAngle + innovation;
     z(1, 0) = 0;  // dummy for 2x1 measurement
 
-    tinyrobotics::Matrix<2, 6> H = {};
+    Matrix<2, 6> H = {};
     H(0, 4) = 1;                              // angle affects state[4]
     for (int j = 0; j < 6; j++) H(1, j) = 0;  // set second row to zero
 
-    tinyrobotics::Matrix<2, 2> R = {};
+    Matrix<2, 2> R = {};
     R(0, 0) = R_mag;
     R(1, 1) = 1e6;  // effectively disables second measurement
 
@@ -213,11 +213,11 @@ class IMU2D : public MessageSource {
         T dist = gps.distance(prevGPS);
         T ang = gps.bearing(prevGPS);
 
-        tinyrobotics::Matrix<2, 1> z;
+        Matrix<2, 1> z;
         z(0, 0) = (dist / dtGPS) * cos(ang);
         z(1, 0) = (dist / dtGPS) * sin(ang);
 
-        tinyrobotics::Matrix<2, 6> H = {};
+        Matrix<2, 6> H = {};
         H(0, 2) = 1;
         H(1, 3) = 1;
 
