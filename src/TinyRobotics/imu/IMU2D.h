@@ -42,7 +42,7 @@ namespace tinyrobotics {
  */
 
 template <typename T = float>
-class IMU2D : public MessageSource {
+class IMU2D : public MessageSource, public IMotionState2D {
  public:
   IMU2D() = default;
 
@@ -97,7 +97,7 @@ class IMU2D : public MessageSource {
     lastDelta = {static_cast<float>(dx), static_cast<float>(dy),
                  static_cast<float>(gyroZ_in * dt)};
     lastAngularVelocity = gyroZ_in;
-
+    timestamp = millis();
     publish();
   }
 
@@ -118,6 +118,8 @@ class IMU2D : public MessageSource {
   Speed getSpeed() const { return Speed(speedMPS, SpeedUnit::MPS); }
   ///  Get the total distance traveled
   Distance getTotalDistance() const { return Distance(totalDistanceM,DistanceUnit::M); }
+  /// Get time of last update
+  uint32_t getTimestamp() const { return timestamp; }
 
  public:
   bool is_active = false;
@@ -128,6 +130,7 @@ class IMU2D : public MessageSource {
   Delta2D lastDelta = {0.0f, 0.0f, 0.0f};
   float lastAngularVelocity = 0.0f;
   float totalDistanceM = 0.0f;
+  uint32_t timestamp = 0;
 
   void publish() {
     // Publish position as message
