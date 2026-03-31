@@ -19,6 +19,9 @@ This module provides essential classes for implementing control algorithms and s
 - **MotionController2D**
 	- A 2D motion controller for path following and vehicle control. Integrates PID control for both speed (throttle) and steering, supports smooth acceleration/deceleration, and uses IMU feedback. Features configurable target accuracy for waypoint following and records the start coordinate for odometry or logging.
 
+- **MotionController3D**
+	- A 3D motion and path controller for drones, robots, and vehicles. Uses independent PID controllers for each axis (x, y, z) and orientation (yaw, pitch, roll). Supports 3D path following, configurable on-goal actions (Stop, HoldPosition, Circle), and real-time feedback from an IMotionState3D implementation. Circle mode enables continuous circular motion around the last goal. Highly extensible and configurable for advanced 3D navigation and control.
+
 ---
 
 

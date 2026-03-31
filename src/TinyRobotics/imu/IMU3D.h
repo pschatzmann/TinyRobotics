@@ -6,6 +6,7 @@
 #include "TinyRobotics/communication/MessageHandler.h"
 #include "TinyRobotics/communication/MessageSource.h"
 #include "TinyRobotics/control/MotionState2D.h"
+#include "TinyRobotics/control/MotionState3D.h"
 #include "TinyRobotics/coordinates/Coordinate.h"
 #include "TinyRobotics/coordinates/Orientation3D.h"
 #include "TinyRobotics/units/Speed.h"
@@ -34,7 +35,7 @@ namespace tinyrobotics {
  * @tparam T Numeric type (float or double recommended)
  */
 template <typename T = float>
-class IMU3D : public MessageSource {
+class IMU3D : public MessageSource, public IMotionState3D {
  public:
   IMU3D() = default;
 
@@ -112,11 +113,20 @@ class IMU3D : public MessageSource {
   }
   /// @brief Get the current linear velocity (m/s)
   Speed3D getLinearVelocity() const { return speed; }
-  /// @brief Get the current orientation as Orientation3D (yaw, pitch, roll in
-  /// radians)
-  Orientation3D getOrientation() const { return orientation; }
-  /// @brief Get the current position
-  Coordinate<T> getPosition() const { return position; }
+  /// @brief Get the current position (IMotionState3D)
+  Coordinate<DistanceM> getPosition() const override {
+    return Coordinate<DistanceM>(static_cast<float>(position.x), static_cast<float>(position.y), static_cast<float>(position.z));
+  }
+  /// @brief Get the current orientation (IMotionState3D)
+  Orientation3D getOrientation() const override {
+    return orientation;
+  }
+  Speed3D getSpeed() const override {
+    return speed;
+  }
+  AngularVelocity3D getAngularVelocity() const override {
+    return lastAngularVelocity;
+  }
 
  protected:
   bool is_active = false;
