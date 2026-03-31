@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['airplane_0',['AirPlane',['../classAirPlane.html',1,'AirPlane'],['../classtinyrobotics_1_1AirPlane.html',1,'AirPlane&lt; BrushedMT, ServoMT &gt;']]],
+  ['airplane_0',['AirPlane',['../classtinyrobotics_1_1AirPlane.html',1,'tinyrobotics']]],
   ['allocatorpsram_1',['AllocatorPSRAM',['../classtinyrobotics_1_1AllocatorPSRAM.html',1,'tinyrobotics']]],
   ['allocatorpsram_3c_20uint8_5ft_20_3e_2',['AllocatorPSRAM&lt; uint8_t &gt;',['../classtinyrobotics_1_1AllocatorPSRAM.html',1,'tinyrobotics']]],
   ['angle_3',['Angle',['../classtinyrobotics_1_1Angle.html',1,'tinyrobotics']]],

@@ -77,15 +77,20 @@ $(function() {
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pro-attribs">Protected Attributes</a> &#124;
 <a href="classtinyrobotics_1_1CarAckerman-members.html">List of all members</a>  </div>
-  <div class="headertitle"><div class="title">CarAckerman&lt; BrushedMT, ServoMT &gt; Class Template Reference</div></div>
+  <div class="headertitle"><div class="title">CarAckerman&lt; BrushedMT, ServoMT &gt; Class Template Reference<div class="ingroups"><a class="el" href="group__main.html">TinyRobotics</a> &raquo; <a class="el" href="group__vehicles.html">Vehicles</a></div></div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Car with Ackerman steering and single drive motor.  
+ <a href="classtinyrobotics_1_1CarAckerman.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="CarAckerman_8h_source.html">CarAckerman.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for CarAckerman&lt; BrushedMT, ServoMT &gt;:</div>
 <div class="dyncontent">
 <div class="center"><img src="classtinyrobotics_1_1CarAckerman__inherit__graph.png" border="0" usemap="#aCarAckerman_3_01BrushedMT_00_01ServoMT_01_4_inherit__map" alt="Inheritance graph"/></div>
 <map name="aCarAckerman_3_01BrushedMT_00_01ServoMT_01_4_inherit__map" id="aCarAckerman_3_01BrushedMT_00_01ServoMT_01_4_inherit__map">
-<area shape="rect" title=" " alt="" coords="46,152,247,192"/>
+<area shape="rect" title="Car with Ackerman steering and single drive motor." alt="" coords="46,152,247,192"/>
 <area shape="rect" href="classtinyrobotics_1_1Vehicle.html" title="Abstract base class for all vehicle types." alt="" coords="112,79,181,104"/>
 <area shape="rect" href="classtinyrobotics_1_1MessageHandler.html" title="Interface for handling messages in the TinyRobotics framework." alt="" coords="5,5,136,31"/>
 <area shape="rect" href="classtinyrobotics_1_1MessageSource.html" title="Base class for message sources in the TinyRobotics communication framework." alt="" coords="161,5,285,31"/>
@@ -96,12 +101,12 @@ Collaboration diagram for CarAckerman&lt; BrushedMT, ServoMT &gt;:</div>
 <div class="dyncontent">
 <div class="center"><img src="classtinyrobotics_1_1CarAckerman__coll__graph.png" border="0" usemap="#aCarAckerman_3_01BrushedMT_00_01ServoMT_01_4_coll__map" alt="Collaboration graph"/></div>
 <map name="aCarAckerman_3_01BrushedMT_00_01ServoMT_01_4_coll__map" id="aCarAckerman_3_01BrushedMT_00_01ServoMT_01_4_coll__map">
-<area shape="rect" title=" " alt="" coords="189,168,390,208"/>
+<area shape="rect" title="Car with Ackerman steering and single drive motor." alt="" coords="189,168,390,208"/>
 <area shape="rect" href="classtinyrobotics_1_1Vehicle.html" title="Abstract base class for all vehicle types." alt="" coords="139,80,208,105"/>
 <area shape="rect" href="classtinyrobotics_1_1MessageHandler.html" title="Interface for handling messages in the TinyRobotics framework." alt="" coords="5,5,136,31"/>
 <area shape="rect" href="classtinyrobotics_1_1MessageSource.html" title="Base class for message sources in the TinyRobotics communication framework." alt="" coords="161,5,285,31"/>
 <area shape="rect" href="classtinyrobotics_1_1BrushedMotor.html" title="High&#45;level H&#45;Bridge motor driver class for bidirectional DC motor control." alt="" coords="233,80,346,105"/>
-<area shape="rect" href="classMotor.html" title="Abstract base class for all motor driver types." alt="" coords="325,5,385,31"/>
+<area shape="rect" href="classtinyrobotics_1_1Motor.html" title="Abstract base class for all motor driver types." alt="" coords="325,5,385,31"/>
 <area shape="rect" href="classtinyrobotics_1_1ServoMotor.html" title="High&#45;level wrapper for Arduino Servo control (RC servo motors)." alt="" coords="370,80,467,105"/>
 </map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
@@ -181,7 +186,23 @@ ServoMT&#160;</td><td class="memItemRight" valign="bottom"><b>steering_</b></td>
 std::vector&lt; <a class="el" href="classtinyrobotics_1_1MessageHandler.html">MessageHandler</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>messageHandlers_</b></td></tr>
 <tr class="separator:ae8917ae7a3eb87d29c94c514e1d5c981 inherit pro_attribs_classtinyrobotics_1_1MessageSource"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Member Function Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><div class="compoundTemplParams">template&lt;typename BrushedMT = BrushedMotor, typename ServoMT = ServoMotor&gt;<br />
+class tinyrobotics::CarAckerman&lt; BrushedMT, ServoMT &gt;</div><p>Car with Ackerman steering and single drive motor. </p>
+<p>This class abstracts a simple car:</p><ul>
+<li>1 drive motor (HBridge)</li>
+<li>1 steering servo (<a class="el" href="classtinyrobotics_1_1ServoMotor.html" title="High-level wrapper for Arduino Servo control (RC servo motors).">ServoMotor</a>)</li>
+</ul>
+<p>Usage Example: </p><div class="fragment"><div class="line"><a class="code hl_class" href="classtinyrobotics_1_1CarAckerman.html">CarAckerman</a> car;</div>
+<div class="line">car.<a class="code hl_function" href="classtinyrobotics_1_1CarAckerman.html#a679b569ee71fd92173c5bd96e3432355">setPins</a>(5, 6, 9, 10); <span class="comment">// in1, in2, pwm, steeringPin</span></div>
+<div class="line">car.<a class="code hl_function" href="classtinyrobotics_1_1CarAckerman.html#a3599eac156ea37e08b695e841649bdce">setSpeed</a>(60);         <span class="comment">// 60% forward</span></div>
+<div class="line">car.setSteering(30);      <span class="comment">// 30 degrees left</span></div>
+<div class="line">car.<a class="code hl_function" href="classtinyrobotics_1_1CarAckerman.html#aaf81d3fdaf258088d7692fa70cece087">end</a>();               <span class="comment">// brake</span></div>
+<div class="ttc" id="aclasstinyrobotics_1_1CarAckerman_html"><div class="ttname"><a href="classtinyrobotics_1_1CarAckerman.html">tinyrobotics::CarAckerman</a></div><div class="ttdoc">Car with Ackerman steering and single drive motor.</div><div class="ttdef"><b>Definition:</b> CarAckerman.h:28</div></div>
+<div class="ttc" id="aclasstinyrobotics_1_1CarAckerman_html_a3599eac156ea37e08b695e841649bdce"><div class="ttname"><a href="classtinyrobotics_1_1CarAckerman.html#a3599eac156ea37e08b695e841649bdce">tinyrobotics::CarAckerman::setSpeed</a></div><div class="ttdeci">void setSpeed(int percent)</div><div class="ttdoc">Set drive speed (percent, -100 to 100). Positive = forward.</div><div class="ttdef"><b>Definition:</b> CarAckerman.h:47</div></div>
+<div class="ttc" id="aclasstinyrobotics_1_1CarAckerman_html_a679b569ee71fd92173c5bd96e3432355"><div class="ttname"><a href="classtinyrobotics_1_1CarAckerman.html#a679b569ee71fd92173c5bd96e3432355">tinyrobotics::CarAckerman::setPins</a></div><div class="ttdeci">void setPins(int in1, int in2, int pwm, int steeringPin)</div><div class="ttdoc">Set the pins for the drive motor and steering servo.</div><div class="ttdef"><b>Definition:</b> CarAckerman.h:39</div></div>
+<div class="ttc" id="aclasstinyrobotics_1_1CarAckerman_html_aaf81d3fdaf258088d7692fa70cece087"><div class="ttname"><a href="classtinyrobotics_1_1CarAckerman.html#aaf81d3fdaf258088d7692fa70cece087">tinyrobotics::CarAckerman::end</a></div><div class="ttdeci">void end()</div><div class="ttdef"><b>Definition:</b> CarAckerman.h:67</div></div>
+</div><!-- fragment --> </div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="aaf81d3fdaf258088d7692fa70cece087" name="aaf81d3fdaf258088d7692fa70cece087"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aaf81d3fdaf258088d7692fa70cece087">&#9670;&#160;</a></span>end()</h2>
 

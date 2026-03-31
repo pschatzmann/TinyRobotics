@@ -91,7 +91,7 @@ var searchData=
   ['state3d_88',['State3D',['../structtinyrobotics_1_1Fusion3D_1_1State3D.html',1,'tinyrobotics::Fusion3D']]],
   ['stepper_89',['Stepper',['../classtinyrobotics_1_1Stepper.html',1,'tinyrobotics']]],
   ['subscribe_90',['subscribe',['../classtinyrobotics_1_1MessageSource.html#a6f644591faf6edfeceef6b7776b331df',1,'tinyrobotics::MessageSource::subscribe()'],['../classtinyrobotics_1_1SLAM2D.html#a6f644591faf6edfeceef6b7776b331df',1,'tinyrobotics::SLAM2D::subscribe()']]],
-  ['synchronizedbuffer_91',['SynchronizedBuffer',['../classSynchronizedBuffer.html',1,'']]],
+  ['synchronizedbuffer_91',['SynchronizedBuffer',['../classtinyrobotics_1_1SynchronizedBuffer.html',1,'tinyrobotics']]],
   ['synchronizedbufferrtos_92',['SynchronizedBufferRTOS',['../group__concurrency.html#gaf8c8076294cfef1804d5857a9e506492',1,'tinyrobotics']]],
   ['synchronizedqueue_93',['SynchronizedQueue',['../classtinyrobotics_1_1SynchronizedQueue.html',1,'tinyrobotics']]],
   ['synchronizedstream_94',['SynchronizedStream',['../classtinyrobotics_1_1SynchronizedStream.html',1,'tinyrobotics']]]

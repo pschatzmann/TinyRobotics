@@ -81,7 +81,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p><a class="el" href="classMotor.html" title="Abstract base class for all motor driver types.">Motor</a> boat with 1 drive motor and 1 rudder servo.  
+<p><a class="el" href="classtinyrobotics_1_1Motor.html" title="Abstract base class for all motor driver types.">Motor</a> boat with 1 drive motor and 1 rudder servo.  
  <a href="classtinyrobotics_1_1MotorBoat.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="MotorBoat_8h_source.html">MotorBoat.h</a>&gt;</code></p>
@@ -106,7 +106,7 @@ Collaboration diagram for MotorBoat&lt; BrushedMT, ServoMT &gt;:</div>
 <area shape="rect" href="classtinyrobotics_1_1MessageHandler.html" title="Interface for handling messages in the TinyRobotics framework." alt="" coords="5,5,136,31"/>
 <area shape="rect" href="classtinyrobotics_1_1MessageSource.html" title="Base class for message sources in the TinyRobotics communication framework." alt="" coords="161,5,285,31"/>
 <area shape="rect" href="classtinyrobotics_1_1BrushedMotor.html" title="High&#45;level H&#45;Bridge motor driver class for bidirectional DC motor control." alt="" coords="233,80,346,105"/>
-<area shape="rect" href="classMotor.html" title="Abstract base class for all motor driver types." alt="" coords="325,5,385,31"/>
+<area shape="rect" href="classtinyrobotics_1_1Motor.html" title="Abstract base class for all motor driver types." alt="" coords="325,5,385,31"/>
 <area shape="rect" href="classtinyrobotics_1_1ServoMotor.html" title="High&#45;level wrapper for Arduino Servo control (RC servo motors)." alt="" coords="370,80,467,105"/>
 </map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
@@ -189,7 +189,7 @@ std::vector&lt; <a class="el" href="classtinyrobotics_1_1MessageHandler.html">Me
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><div class="compoundTemplParams">template&lt;typename BrushedMT = BrushedMotor, typename ServoMT = ServoMotor&gt;<br />
-class tinyrobotics::MotorBoat&lt; BrushedMT, ServoMT &gt;</div><p><a class="el" href="classMotor.html" title="Abstract base class for all motor driver types.">Motor</a> boat with 1 drive motor and 1 rudder servo. </p>
+class tinyrobotics::MotorBoat&lt; BrushedMT, ServoMT &gt;</div><p><a class="el" href="classtinyrobotics_1_1Motor.html" title="Abstract base class for all motor driver types.">Motor</a> boat with 1 drive motor and 1 rudder servo. </p>
 <p>This class abstracts a simple motor boat:</p><ul>
 <li>1 drive motor (HBridge)</li>
 <li>1 rudder servo (<a class="el" href="classtinyrobotics_1_1ServoMotor.html" title="High-level wrapper for Arduino Servo control (RC servo motors).">ServoMotor</a>)</li>
@@ -199,10 +199,10 @@ class tinyrobotics::MotorBoat&lt; BrushedMT, ServoMT &gt;</div><p><a class="el" 
 <div class="line">boat.<a class="code hl_function" href="classtinyrobotics_1_1MotorBoat.html#ae5796296479805da98518762c69427d0">setThrottle</a>(70);      <span class="comment">// 70% throttle</span></div>
 <div class="line">boat.<a class="code hl_function" href="classtinyrobotics_1_1MotorBoat.html#ad1dc0b12cdbceec298589410750d2672">setRudder</a>(20);        <span class="comment">// 20 degrees left</span></div>
 <div class="line">boat.stop();               <span class="comment">// brake</span></div>
-<div class="ttc" id="aclasstinyrobotics_1_1MotorBoat_html"><div class="ttname"><a href="classtinyrobotics_1_1MotorBoat.html">tinyrobotics::MotorBoat</a></div><div class="ttdoc">Motor boat with 1 drive motor and 1 rudder servo.</div><div class="ttdef"><b>Definition:</b> MotorBoat.h:29</div></div>
-<div class="ttc" id="aclasstinyrobotics_1_1MotorBoat_html_ac787a164213b7fbbf7232469885e220e"><div class="ttname"><a href="classtinyrobotics_1_1MotorBoat.html#ac787a164213b7fbbf7232469885e220e">tinyrobotics::MotorBoat::setPins</a></div><div class="ttdeci">void setPins(int in1, int in2, int pwm, int rudderPin)</div><div class="ttdoc">Set the pins for the drive motor and rudder servo.</div><div class="ttdef"><b>Definition:</b> MotorBoat.h:40</div></div>
-<div class="ttc" id="aclasstinyrobotics_1_1MotorBoat_html_ad1dc0b12cdbceec298589410750d2672"><div class="ttname"><a href="classtinyrobotics_1_1MotorBoat.html#ad1dc0b12cdbceec298589410750d2672">tinyrobotics::MotorBoat::setRudder</a></div><div class="ttdeci">void setRudder(int angle)</div><div class="ttdoc">Set rudder angle (degrees, left positive, right negative).</div><div class="ttdef"><b>Definition:</b> MotorBoat.h:59</div></div>
-<div class="ttc" id="aclasstinyrobotics_1_1MotorBoat_html_ae5796296479805da98518762c69427d0"><div class="ttname"><a href="classtinyrobotics_1_1MotorBoat.html#ae5796296479805da98518762c69427d0">tinyrobotics::MotorBoat::setThrottle</a></div><div class="ttdeci">void setThrottle(int percent)</div><div class="ttdoc">Set throttle (percent, -100 to 100). Positive = forward.</div><div class="ttdef"><b>Definition:</b> MotorBoat.h:48</div></div>
+<div class="ttc" id="aclasstinyrobotics_1_1MotorBoat_html"><div class="ttname"><a href="classtinyrobotics_1_1MotorBoat.html">tinyrobotics::MotorBoat</a></div><div class="ttdoc">Motor boat with 1 drive motor and 1 rudder servo.</div><div class="ttdef"><b>Definition:</b> MotorBoat.h:28</div></div>
+<div class="ttc" id="aclasstinyrobotics_1_1MotorBoat_html_ac787a164213b7fbbf7232469885e220e"><div class="ttname"><a href="classtinyrobotics_1_1MotorBoat.html#ac787a164213b7fbbf7232469885e220e">tinyrobotics::MotorBoat::setPins</a></div><div class="ttdeci">void setPins(int in1, int in2, int pwm, int rudderPin)</div><div class="ttdoc">Set the pins for the drive motor and rudder servo.</div><div class="ttdef"><b>Definition:</b> MotorBoat.h:39</div></div>
+<div class="ttc" id="aclasstinyrobotics_1_1MotorBoat_html_ad1dc0b12cdbceec298589410750d2672"><div class="ttname"><a href="classtinyrobotics_1_1MotorBoat.html#ad1dc0b12cdbceec298589410750d2672">tinyrobotics::MotorBoat::setRudder</a></div><div class="ttdeci">void setRudder(int angle)</div><div class="ttdoc">Set rudder angle (degrees, left positive, right negative).</div><div class="ttdef"><b>Definition:</b> MotorBoat.h:58</div></div>
+<div class="ttc" id="aclasstinyrobotics_1_1MotorBoat_html_ae5796296479805da98518762c69427d0"><div class="ttname"><a href="classtinyrobotics_1_1MotorBoat.html#ae5796296479805da98518762c69427d0">tinyrobotics::MotorBoat::setThrottle</a></div><div class="ttdeci">void setThrottle(int percent)</div><div class="ttdoc">Set throttle (percent, -100 to 100). Positive = forward.</div><div class="ttdef"><b>Definition:</b> MotorBoat.h:47</div></div>
 </div><!-- fragment --> </div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="aaf81d3fdaf258088d7692fa70cece087" name="aaf81d3fdaf258088d7692fa70cece087"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aaf81d3fdaf258088d7692fa70cece087">&#9670;&#160;</a></span>end()</h2>

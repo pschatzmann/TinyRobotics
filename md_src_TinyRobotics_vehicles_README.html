@@ -77,9 +77,9 @@ $(function() {
 Supported Vehicles</h1>
 <ul>
 <li><b>Car4WD</b>: Four-wheel drive car with direction control by adjusting the speed of four motors (no steering servo).</li>
-<li><b><a class="el" href="classCarAckerman.html" title="Car with Ackerman steering and single drive motor.">CarAckerman</a></b>: Car with Ackerman steering (front wheel steering via servo) and a single drive motor.</li>
+<li><b>CarAckerman</b>: Car with Ackerman steering (front wheel steering via servo) and a single drive motor.</li>
 <li><b>Quadrotor</b>: Quadcopter with four independently controlled motors for throttle, roll, pitch, and yaw.</li>
-<li><b><a class="el" href="classAirPlane.html" title="Simple fixed-wing airplane model with motor, rudder, elevator, and aileron control.">AirPlane</a></b>: Fixed-wing airplane with motor (throttle), rudder, elevator, and ailerons.</li>
+<li><b>AirPlane</b>: Fixed-wing airplane with motor (throttle), rudder, elevator, and ailerons.</li>
 <li><b>MotorBoat</b>: Boat with a single drive motor and a rudder for steering.</li>
 </ul>
 <h1><a class="anchor" id="autotoc_md158"></a>
@@ -87,7 +87,7 @@ Example Usage</h1>
 <div class="fragment"><div class="line"><span class="preprocessor">#include &lt;TinyRobots.h&gt;</span></div>
 <div class="line"> </div>
 <div class="line"><span class="comment">// Car4WD</span></div>
-<div class="line"><a class="code hl_class" href="classCarDifferential.html">CarDifferential&lt;4&gt;</a> car;</div>
+<div class="line">CarDifferential&lt;4&gt; car;</div>
 <div class="line">car.setPins(0, 5, 6, 9); <span class="comment">// front left motor</span></div>
 <div class="line">car.setPins(1, 7, 8, 10); <span class="comment">// front right motor</span></div>
 <div class="line">car.setPins(2, 11, 12, 13); <span class="comment">// rear left motor</span></div>
@@ -97,7 +97,7 @@ Example Usage</h1>
 <div class="line">car.end();</div>
 <div class="line"> </div>
 <div class="line"><span class="comment">// CarAckerman</span></div>
-<div class="line"><a class="code hl_class" href="classCarAckerman.html">CarAckerman</a> ack;</div>
+<div class="line">CarAckerman ack;</div>
 <div class="line">ack.setPins(5, 6, 9, 10); <span class="comment">// drive motor and steering servo</span></div>
 <div class="line">ack.setSpeed(70);</div>
 <div class="line">ack.setSteering(20);</div>
@@ -116,7 +116,7 @@ Example Usage</h1>
 <div class="line">quad.end();</div>
 <div class="line"> </div>
 <div class="line"><span class="comment">// AirPlane</span></div>
-<div class="line"><a class="code hl_class" href="classAirPlane.html">AirPlane</a> plane;</div>
+<div class="line">AirPlane plane;</div>
 <div class="line">plane.setPinsMotor(5, 6, 9);      <span class="comment">// HBridge pins</span></div>
 <div class="line">plane.setPinRudder(10);                         <span class="comment">// rudder servo</span></div>
 <div class="line">plane.setPinElevator(11);                     <span class="comment">// elevator servo</span></div>
@@ -133,9 +133,6 @@ Example Usage</h1>
 <div class="line">boat.setThrottle(80);</div>
 <div class="line">boat.setRudder(25);</div>
 <div class="line">boat.end();</div>
-<div class="ttc" id="aclassAirPlane_html"><div class="ttname"><a href="classAirPlane.html">AirPlane</a></div><div class="ttdoc">Simple fixed-wing airplane model with motor, rudder, elevator, and aileron control.</div></div>
-<div class="ttc" id="aclassCarAckerman_html"><div class="ttname"><a href="classCarAckerman.html">CarAckerman</a></div><div class="ttdoc">Car with Ackerman steering and single drive motor.</div></div>
-<div class="ttc" id="aclassCarDifferential_html"><div class="ttname"><a href="classCarDifferential.html">CarDifferential</a></div><div class="ttdoc">Car model with differential drive. The direction is controlled by adjusting the speed of the motors....</div></div>
 </div><!-- fragment --><h1><a class="anchor" id="autotoc_md159"></a>
 File Overview</h1>
 <ul>
@@ -143,7 +140,7 @@ File Overview</h1>
 <li><code><a class="el" href="CarAckerman_8h_source.html">CarAckerman.h</a></code> — Ackerman steering car</li>
 <li><code><a class="el" href="Quadrotor_8h_source.html">Quadrotor.h</a></code> — Quadcopter</li>
 <li><code><a class="el" href="AirPlane_8h_source.html">AirPlane.h</a></code> — Fixed-wing airplane</li>
-<li><code><a class="el" href="MotorBoat_8h_source.html">MotorBoat.h</a></code> — <a class="el" href="classMotor.html" title="Abstract base class for all motor driver types.">Motor</a> boat</li>
+<li><code><a class="el" href="MotorBoat_8h_source.html">MotorBoat.h</a></code> — Motor boat</li>
 </ul>
 <h1><a class="anchor" id="autotoc_md160"></a>
 Notes</h1>

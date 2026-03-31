@@ -1,3 +1,8 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$classtinyrobotics_1_1BaseBuffer.html" title=" " alt="" coords="5,5,173,31"/>
+<area shape="rect" id="node1" href="$classtinyrobotics_1_1BaseBuffer.html" title="Shared functionality of all buffers." alt="" coords="5,104,136,129"/>
+<area shape="rect" id="node2" href="$classtinyrobotics_1_1BufferRTOS.html" title=" " alt="" coords="187,5,357,31"/>
+<area shape="rect" id="node3" href="$classtinyrobotics_1_1RingBuffer.html" title=" " alt="" coords="189,55,355,80"/>
+<area shape="rect" id="node4" href="$classtinyrobotics_1_1SingleBuffer.html" title=" " alt="" coords="184,104,360,129"/>
+<area shape="rect" id="node5" href="$classtinyrobotics_1_1RingBuffer.html" title="Implements a typed Ringbuffer." alt="" coords="208,153,336,179"/>
+<area shape="rect" id="node6" href="$classtinyrobotics_1_1SingleBuffer.html" title="A simple Buffer implementation which just uses a (dynamically sized) array." alt="" coords="203,203,341,228"/>
 </map>

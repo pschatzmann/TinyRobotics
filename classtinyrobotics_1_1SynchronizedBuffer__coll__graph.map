@@ -1,0 +1,5 @@
+<map id="SynchronizedBuffer&lt; T &gt;" name="SynchronizedBuffer&lt; T &gt;">
+<area shape="rect" id="node1" title="Wrapper class that can turn any Buffer into a thread save implementation." alt="" coords="21,93,208,119"/>
+<area shape="rect" id="node2" href="$classtinyrobotics_1_1BaseBuffer.html" title=" " alt="" coords="5,5,136,31"/>
+<area shape="rect" id="node3" href="$classtinyrobotics_1_1MutexBase.html" title="Empty Mutex implementation which does nothing." alt="" coords="161,5,255,31"/>
+</map>

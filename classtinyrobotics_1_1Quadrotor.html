@@ -107,7 +107,7 @@ Collaboration diagram for Quadrotor&lt; MotorT &gt;:</div>
 <area shape="rect" href="classtinyrobotics_1_1MessageHandler.html" title="Interface for handling messages in the TinyRobotics framework." alt="" coords="5,5,136,31"/>
 <area shape="rect" href="classtinyrobotics_1_1MessageSource.html" title="Base class for message sources in the TinyRobotics communication framework." alt="" coords="161,5,285,31"/>
 <area shape="rect" href="classtinyrobotics_1_1BrushedMotor.html" title="High&#45;level H&#45;Bridge motor driver class for bidirectional DC motor control." alt="" coords="282,80,395,105"/>
-<area shape="rect" href="classMotor.html" title="Abstract base class for all motor driver types." alt="" coords="309,5,369,31"/>
+<area shape="rect" href="classtinyrobotics_1_1Motor.html" title="Abstract base class for all motor driver types." alt="" coords="309,5,369,31"/>
 </map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
@@ -224,12 +224,12 @@ class tinyrobotics::Quadrotor&lt; MotorT &gt;</div><p>Simple quadrotor (quadcopt
 <div class="line">quad.<a class="code hl_function" href="classtinyrobotics_1_1Quadrotor.html#ac0ba521da16841a95b8f76f181695d08">setRoll</a>(10);     <span class="comment">// roll right</span></div>
 <div class="line">quad.<a class="code hl_function" href="classtinyrobotics_1_1Quadrotor.html#a820f2c4cf50e2584941f7080369bb487">setPitch</a>(-5);    <span class="comment">// pitch down</span></div>
 <div class="line">quad.<a class="code hl_function" href="classtinyrobotics_1_1Quadrotor.html#a6bd9a070d33f958397b768119fe09ae4">setYaw</a>(15);      <span class="comment">// yaw right</span></div>
-<div class="ttc" id="aclasstinyrobotics_1_1Quadrotor_html"><div class="ttname"><a href="classtinyrobotics_1_1Quadrotor.html">tinyrobotics::Quadrotor</a></div><div class="ttdoc">Simple quadrotor (quadcopter) model with 4-motor control.</div><div class="ttdef"><b>Definition:</b> Quadrotor.h:42</div></div>
-<div class="ttc" id="aclasstinyrobotics_1_1Quadrotor_html_a38c3d3a99c3067d1b4943f35cedd26db"><div class="ttname"><a href="classtinyrobotics_1_1Quadrotor.html#a38c3d3a99c3067d1b4943f35cedd26db">tinyrobotics::Quadrotor::setPins</a></div><div class="ttdeci">void setPins(QuadrotorMotorNo motor, int in1, int in2, int pwm)</div><div class="ttdoc">Set the pins for a specific motor (0=front left, 1=front right, 2=rear left, 3=rear right)</div><div class="ttdef"><b>Definition:</b> Quadrotor.h:50</div></div>
-<div class="ttc" id="aclasstinyrobotics_1_1Quadrotor_html_a6bd9a070d33f958397b768119fe09ae4"><div class="ttname"><a href="classtinyrobotics_1_1Quadrotor.html#a6bd9a070d33f958397b768119fe09ae4">tinyrobotics::Quadrotor::setYaw</a></div><div class="ttdeci">void setYaw(int percent)</div><div class="ttdef"><b>Definition:</b> Quadrotor.h:74</div></div>
-<div class="ttc" id="aclasstinyrobotics_1_1Quadrotor_html_a820f2c4cf50e2584941f7080369bb487"><div class="ttname"><a href="classtinyrobotics_1_1Quadrotor.html#a820f2c4cf50e2584941f7080369bb487">tinyrobotics::Quadrotor::setPitch</a></div><div class="ttdeci">void setPitch(int percent)</div><div class="ttdef"><b>Definition:</b> Quadrotor.h:68</div></div>
-<div class="ttc" id="aclasstinyrobotics_1_1Quadrotor_html_ac0ba521da16841a95b8f76f181695d08"><div class="ttname"><a href="classtinyrobotics_1_1Quadrotor.html#ac0ba521da16841a95b8f76f181695d08">tinyrobotics::Quadrotor::setRoll</a></div><div class="ttdeci">void setRoll(int percent)</div><div class="ttdef"><b>Definition:</b> Quadrotor.h:62</div></div>
-<div class="ttc" id="aclasstinyrobotics_1_1Quadrotor_html_ae5796296479805da98518762c69427d0"><div class="ttname"><a href="classtinyrobotics_1_1Quadrotor.html#ae5796296479805da98518762c69427d0">tinyrobotics::Quadrotor::setThrottle</a></div><div class="ttdeci">void setThrottle(int percent)</div><div class="ttdef"><b>Definition:</b> Quadrotor.h:56</div></div>
+<div class="ttc" id="aclasstinyrobotics_1_1Quadrotor_html"><div class="ttname"><a href="classtinyrobotics_1_1Quadrotor.html">tinyrobotics::Quadrotor</a></div><div class="ttdoc">Simple quadrotor (quadcopter) model with 4-motor control.</div><div class="ttdef"><b>Definition:</b> Quadrotor.h:41</div></div>
+<div class="ttc" id="aclasstinyrobotics_1_1Quadrotor_html_a38c3d3a99c3067d1b4943f35cedd26db"><div class="ttname"><a href="classtinyrobotics_1_1Quadrotor.html#a38c3d3a99c3067d1b4943f35cedd26db">tinyrobotics::Quadrotor::setPins</a></div><div class="ttdeci">void setPins(QuadrotorMotorNo motor, int in1, int in2, int pwm)</div><div class="ttdoc">Set the pins for a specific motor (0=front left, 1=front right, 2=rear left, 3=rear right)</div><div class="ttdef"><b>Definition:</b> Quadrotor.h:49</div></div>
+<div class="ttc" id="aclasstinyrobotics_1_1Quadrotor_html_a6bd9a070d33f958397b768119fe09ae4"><div class="ttname"><a href="classtinyrobotics_1_1Quadrotor.html#a6bd9a070d33f958397b768119fe09ae4">tinyrobotics::Quadrotor::setYaw</a></div><div class="ttdeci">void setYaw(int percent)</div><div class="ttdef"><b>Definition:</b> Quadrotor.h:73</div></div>
+<div class="ttc" id="aclasstinyrobotics_1_1Quadrotor_html_a820f2c4cf50e2584941f7080369bb487"><div class="ttname"><a href="classtinyrobotics_1_1Quadrotor.html#a820f2c4cf50e2584941f7080369bb487">tinyrobotics::Quadrotor::setPitch</a></div><div class="ttdeci">void setPitch(int percent)</div><div class="ttdef"><b>Definition:</b> Quadrotor.h:67</div></div>
+<div class="ttc" id="aclasstinyrobotics_1_1Quadrotor_html_ac0ba521da16841a95b8f76f181695d08"><div class="ttname"><a href="classtinyrobotics_1_1Quadrotor.html#ac0ba521da16841a95b8f76f181695d08">tinyrobotics::Quadrotor::setRoll</a></div><div class="ttdeci">void setRoll(int percent)</div><div class="ttdef"><b>Definition:</b> Quadrotor.h:61</div></div>
+<div class="ttc" id="aclasstinyrobotics_1_1Quadrotor_html_ae5796296479805da98518762c69427d0"><div class="ttname"><a href="classtinyrobotics_1_1Quadrotor.html#ae5796296479805da98518762c69427d0">tinyrobotics::Quadrotor::setThrottle</a></div><div class="ttdeci">void setThrottle(int percent)</div><div class="ttdef"><b>Definition:</b> Quadrotor.h:55</div></div>
 </div><!-- fragment --> </div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="aaf81d3fdaf258088d7692fa70cece087" name="aaf81d3fdaf258088d7692fa70cece087"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aaf81d3fdaf258088d7692fa70cece087">&#9670;&#160;</a></span>end()</h2>
@@ -389,7 +389,7 @@ class tinyrobotics::Quadrotor&lt; MotorT &gt;</div><p>Simple quadrotor (quadcopt
 <p>Set a calibration gain for a specific motor (default 1.0). </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">motor</td><td><a class="el" href="classMotor.html" title="Abstract base class for all motor driver types.">Motor</a> index (QuadrotorMotorNo) </td></tr>
+    <tr><td class="paramname">motor</td><td><a class="el" href="classtinyrobotics_1_1Motor.html" title="Abstract base class for all motor driver types.">Motor</a> index (QuadrotorMotorNo) </td></tr>
     <tr><td class="paramname">gain</td><td>Gain factor (e.g., 1.05 for +5% output) </td></tr>
   </table>
   </dd>

@@ -24,7 +24,7 @@ var searchData=
   ['motioncontroller3d_21',['MotionController3D',['../classtinyrobotics_1_1MotionController3D.html',1,'tinyrobotics']]],
   ['motionstate2d_22',['MotionState2D',['../classtinyrobotics_1_1MotionState2D.html',1,'tinyrobotics']]],
   ['motionstate3d_23',['MotionState3D',['../classtinyrobotics_1_1MotionState3D.html',1,'tinyrobotics']]],
-  ['motor_24',['Motor',['../classMotor.html',1,'']]],
+  ['motor_24',['Motor',['../classtinyrobotics_1_1Motor.html',1,'tinyrobotics']]],
   ['motorboat_25',['MotorBoat',['../classtinyrobotics_1_1MotorBoat.html',1,'tinyrobotics']]],
   ['movingaverage_26',['MovingAverage',['../classtinyrobotics_1_1MovingAverage.html',1,'tinyrobotics']]],
   ['multioutput_27',['MultiOutput',['../classtinyrobotics_1_1MultiOutput.html',1,'tinyrobotics']]],

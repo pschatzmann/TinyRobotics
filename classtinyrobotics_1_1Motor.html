@@ -67,24 +67,28 @@ $(function() {
 </div>
 </div>
 
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><b>tinyrobotics</b></li><li class="navelem"><a class="el" href="classtinyrobotics_1_1Motor.html">Motor</a></li>  </ul>
+</div>
 </div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pro-attribs">Protected Attributes</a> &#124;
-<a href="classMotor-members.html">List of all members</a>  </div>
+<a href="classtinyrobotics_1_1Motor-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">Motor Class Reference<span class="mlabels"><span class="mlabel">abstract</span></span><div class="ingroups"><a class="el" href="group__main.html">TinyRobotics</a> &raquo; <a class="el" href="group__motors.html">Motors</a></div></div></div>
 </div><!--header-->
 <div class="contents">
 
 <p>Abstract base class for all motor driver types.  
- <a href="classMotor.html#details">More...</a></p>
+ <a href="classtinyrobotics_1_1Motor.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="Motor_8h_source.html">Motor.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for Motor:</div>
 <div class="dyncontent">
-<div class="center"><img src="classMotor__inherit__graph.png" border="0" usemap="#aMotor_inherit__map" alt="Inheritance graph"/></div>
+<div class="center"><img src="classtinyrobotics_1_1Motor__inherit__graph.png" border="0" usemap="#aMotor_inherit__map" alt="Inheritance graph"/></div>
 <map name="aMotor_inherit__map" id="aMotor_inherit__map">
 <area shape="rect" title="Abstract base class for all motor driver types." alt="" coords="241,5,301,31"/>
 <area shape="rect" href="classtinyrobotics_1_1BrushedMotor.html" title="High&#45;level H&#45;Bridge motor driver class for bidirectional DC motor control." alt="" coords="5,79,119,104"/>
@@ -96,11 +100,11 @@ Inheritance diagram for Motor:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ae8a0d9ca63f8bb3de100e347c3f3bca4"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMotor.html#ae8a0d9ca63f8bb3de100e347c3f3bca4">begin</a> ()=0</td></tr>
+<tr class="memitem:ae8a0d9ca63f8bb3de100e347c3f3bca4"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1Motor.html#ae8a0d9ca63f8bb3de100e347c3f3bca4">begin</a> ()=0</td></tr>
 <tr class="separator:ae8a0d9ca63f8bb3de100e347c3f3bca4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa540e86022c1f72380d1014d98f38f43"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMotor.html#aa540e86022c1f72380d1014d98f38f43">end</a> ()=0</td></tr>
+<tr class="memitem:aa540e86022c1f72380d1014d98f38f43"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1Motor.html#aa540e86022c1f72380d1014d98f38f43">end</a> ()=0</td></tr>
 <tr class="separator:aa540e86022c1f72380d1014d98f38f43"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae86cd58c8b7fe96c6d1ca5dd3c2834da"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMotor.html#ae86cd58c8b7fe96c6d1ca5dd3c2834da">isPinsSet</a> () const =0</td></tr>
+<tr class="memitem:ae86cd58c8b7fe96c6d1ca5dd3c2834da"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1Motor.html#ae86cd58c8b7fe96c6d1ca5dd3c2834da">isPinsSet</a> () const =0</td></tr>
 <tr class="separator:ae86cd58c8b7fe96c6d1ca5dd3c2834da"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3266095b7a7543fe56462040b3e47a70"><td class="memItemLeft" align="right" valign="top"><a id="a3266095b7a7543fe56462040b3e47a70" name="a3266095b7a7543fe56462040b3e47a70"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>setID</b> (uint8_t id)</td></tr>
@@ -117,11 +121,11 @@ uint8_t&#160;</td><td class="memItemRight" valign="bottom"><b>id</b> = 0</td></t
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Abstract base class for all motor driver types. </p>
-<p>The <a class="el" href="classMotor.html" title="Abstract base class for all motor driver types.">Motor</a> class defines a common interface for all motor drivers in the library. It enforces the implementation of:</p><ul>
+<p>The <a class="el" href="classtinyrobotics_1_1Motor.html" title="Abstract base class for all motor driver types.">Motor</a> class defines a common interface for all motor drivers in the library. It enforces the implementation of:</p><ul>
 <li>end(): to safely stop or release the motor hardware</li>
 <li>isPinsSet(): to check if the required pins have been configured</li>
 </ul>
-<p>All specific motor driver classes (e.g., HBridge, ServoMotor) should inherit from <a class="el" href="classMotor.html" title="Abstract base class for all motor driver types.">Motor</a>. </p>
+<p>All specific motor driver classes (e.g., HBridge, <a class="el" href="classtinyrobotics_1_1ServoMotor.html" title="High-level wrapper for Arduino Servo control (RC servo motors).">ServoMotor</a>) should inherit from <a class="el" href="classtinyrobotics_1_1Motor.html" title="Abstract base class for all motor driver types.">Motor</a>. </p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="ae8a0d9ca63f8bb3de100e347c3f3bca4" name="ae8a0d9ca63f8bb3de100e347c3f3bca4"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ae8a0d9ca63f8bb3de100e347c3f3bca4">&#9670;&#160;</a></span>begin()</h2>

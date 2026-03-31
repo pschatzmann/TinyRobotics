@@ -1,3 +1,9 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$classtinyrobotics_1_1SerializeArduino.html" title="This class provides methods to serialize and deserialize objects that implement the Serializable inte..." alt="" coords="5,5,133,31"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,104,75,129"/>
+<area shape="rect" id="node2" href="$classtinyrobotics_1_1BaseStream.html" title="Base class for all Streams. It relies on write(const uint8_t *buffer, size_t size) and readBytes(uint..." alt="" coords="150,29,251,55"/>
+<area shape="rect" id="node5" href="$classtinyrobotics_1_1MemoryStream.html" title="Read&#45;only memory stream for wrapping a buffer as an Arduino Stream." alt="" coords="139,79,262,104"/>
+<area shape="rect" id="node6" href="$classtinyrobotics_1_1ReadioHeadStream.html" title="Arduino Stream which is using the RadioHead library to send and receive data. We use the river API di..." alt="" coords="127,128,275,153"/>
+<area shape="rect" id="node7" href="$classtinyrobotics_1_1SynchronizedStream.html" title="Wrapper class that can turn any Stream into a thread save implementation. This is done by adding a Mu..." alt="" coords="123,177,279,203"/>
+<area shape="rect" id="node3" href="$classtinyrobotics_1_1ESPNowStream.html" title="ESPNow as Arduino Stream. When use_send_ack is true we prevent any buffer overflows by blocking write..." alt="" coords="327,5,449,31"/>
+<area shape="rect" id="node4" href="$classtinyrobotics_1_1UDPStream.html" title="A UDP class which makes sure that we can use UDP as AudioSource and AudioSink. By default the WiFiUDP..." alt="" coords="339,55,437,80"/>
 </map>

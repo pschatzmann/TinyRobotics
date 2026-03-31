@@ -1,7 +1,7 @@
 var searchData=
 [
   ['value_0',['value',['../structtinyrobotics_1_1Message.html#a4fc7f59e3113e19697159919a5aad095',1,'tinyrobotics::Message']]],
-  ['vectorfromarray_1',['VectorFromArray',['../classVectorFromArray.html',1,'']]],
+  ['vectorfromarray_1',['VectorFromArray',['../classtinyrobotics_1_1VectorFromArray.html',1,'tinyrobotics']]],
   ['vehicle_2',['Vehicle',['../classtinyrobotics_1_1Vehicle.html',1,'tinyrobotics']]],
   ['vehicles_3',['Vehicles',['../group__vehicles.html',1,'']]],
   ['vehicles_20module_4',['Vehicles Module',['../md_src_TinyRobotics_vehicles_README.html',1,'']]],
