@@ -19,14 +19,14 @@ enum class AngleUnit { DEG, RAD };
 class Angle {
  public:
   Angle() = default;
-  Angle(float angle, AngleUnit unit) { setAngle(angle, unit); }
+  Angle(float angle, AngleUnit unit) { setValue(angle, unit); }
 
-  void setAngle(float newAngle, AngleUnit newUnit) {
+  void setValue(float newAngle, AngleUnit newUnit) {
     angle = newAngle;
     unit = newUnit;
   }
 
-  float getAngle(AngleUnit desiredUnit) const {
+  float getValue(AngleUnit desiredUnit) const {
     if (unit == desiredUnit) return angle;
     switch (unit) {
       case AngleUnit::DEG:
@@ -40,7 +40,7 @@ class Angle {
   }
 
   void add(Angle other) {
-    float otherAngle = other.getAngle(unit);
+    float otherAngle = other.getValue(unit);
     if (otherAngle >= 0) {
       angle += otherAngle;
     }
@@ -67,7 +67,7 @@ class Angle {
 
   Angle operator-(const Angle& other) const {
     Angle result = *this;
-    float otherAngle = other.getAngle(unit);
+    float otherAngle = other.getValue(unit);
     if (otherAngle >= 0) {
       result.angle -= otherAngle;
     }

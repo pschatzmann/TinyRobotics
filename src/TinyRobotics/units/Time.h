@@ -23,14 +23,14 @@ enum class TimeUnit { S, MS, US, MIN, HOUR };
 class Time {
  public:
   Time() = default;
-  Time(float time, TimeUnit unit) { setTime(time, unit); }
+  Time(float time, TimeUnit unit) { setValue(time, unit); }
 
-  void setTime(float newTime, TimeUnit newUnit) {
+  void setValue(float newTime, TimeUnit newUnit) {
     time = newTime;
     unit = newUnit;
   }
 
-  float getTime(TimeUnit desiredUnit) const {
+  float getValue(TimeUnit desiredUnit) const {
     if (unit == desiredUnit) return time;
     switch (unit) {
       case TimeUnit::S:

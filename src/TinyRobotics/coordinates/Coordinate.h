@@ -57,9 +57,9 @@ class Coordinate : public Serializable {
   Coordinate(T x, T y, T z = 0) : x(x), y(y), z(z) {}
   Coordinate(const Coordinate& other) : x(other.x), y(other.y), z(other.z) {}
   Coordinate(Distance x, Distance y, Distance z = 0)
-      : x(x.getDistance(DistanceUnit::M)),
-        y(y.getDistance(DistanceUnit::M)),
-        z(z.getDistance(DistanceUnit::M)) {}
+      : x(x.getValue(DistanceUnit::M)),
+        y(y.getValue(DistanceUnit::M)),
+        z(z.getValue(DistanceUnit::M)) {}
 
   T x = 0;
   T y = 0;
@@ -71,7 +71,7 @@ class Coordinate : public Serializable {
                      DistanceUnit unit = DistanceUnit::M) const {
     float distM = distanceM(other);
     Distance dist(distM, DistanceUnit::M);
-    return dist.getDistance(unit);
+    return dist.getValue(unit);
   }
 
   /// Calculate the horizontal bearing (heading) in degrees from this coordinate
@@ -80,7 +80,7 @@ class Coordinate : public Serializable {
                 AngleUnit unit = AngleUnit::DEG) const {
     AngleDeg bearingDeg = bearingDeg(other);
     Angle angle(bearingDeg, AngleUnit::DEG);
-    return angle.getAngle(unit);
+    return angle.getValue(unit);
   }
 
   /// Calculate the elevation angle from this coordinate to another
@@ -88,16 +88,16 @@ class Coordinate : public Serializable {
                   AngleUnit unit = AngleUnit::DEG) const {
     AngleDeg angleDeg = elevationDeg(other);
     Angle angle(angleDeg, AngleUnit::DEG);
-    return angle.getAngle(unit);
+    return angle.getValue(unit);
   }
 
   /// Navigate to a new coordinate given a distance, heading, and optional
   /// altitude change
   Coordinate navigate(Distance distance, Angle bearing,
                       Distance altDiff = 0) const {
-    AngleDeg bearingDeg = bearing.getAngle(AngleUnit::DEG);
-    DistanceM distanceM = distance.getDistance(DistanceUnit::M);
-    DistanceM altDiffM = altDiff.getDistance(DistanceUnit::M);
+    AngleDeg bearingDeg = bearing.getValue(AngleUnit::DEG);
+    DistanceM distanceM = distance.getValue(DistanceUnit::M);
+    DistanceM altDiffM = altDiff.getValue(DistanceUnit::M);
     return navigate(distanceM, bearingDeg, altDiffM);
   }
 

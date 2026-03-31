@@ -7,10 +7,17 @@ enum class AngularVelocityUnit { RadPerSecond, DegPerSecond };
 
 class AngularVelocity {
  public:
+  float angularVelocity = 0.0f;
+  AngularVelocityUnit unit = AngularVelocityUnit::RadPerSecond;
+
   AngularVelocity() = default;
   AngularVelocity(float angularVelocity, AngularVelocityUnit unit)
       : angularVelocity(angularVelocity), unit(unit) {}
 
+  void setValue(float newAngularVelocity, AngularVelocityUnit newUnit) {
+    angularVelocity = newAngularVelocity;
+    unit = newUnit;
+  } 
   float getValue(AngularVelocityUnit desiredUnit) const {
     if (unit == desiredUnit) return angularVelocity;
     switch (unit) {
@@ -25,12 +32,25 @@ class AngularVelocity {
     }
     return 0;  // Invalid conversion
   }
-
- protected:
-  float angularVelocity = 0.0f;
-  AngularVelocityUnit unit = AngularVelocityUnit::RadPerSecond;
 };
 
+/**
+ * @brief Represents a 3D angular velocity vector with unit support.
+ *
+ * This class encapsulates angular velocity in three dimensions (x, y, z),
+ * along with a unit (radians per second or degrees per second). It provides
+ * methods to retrieve each component in any supported unit, handling conversion
+ * as needed.
+ *
+ * AngularVelocity3D is useful for robotics, navigation, and simulation
+ * applications where 3D rotational motion must be represented and manipulated
+ * in a type-safe and unit-aware manner. It is compatible with the AngularVelocity
+ * class for 1D angular velocity.
+ *
+ * Example usage:
+ *   AngularVelocity3D w(0.1, 0.0, 0.0, AngularVelocityUnit::RadPerSecond); // 0.1 rad/s about x
+ *   float wx_deg = w.getX(AngularVelocityUnit::DegPerSecond);              // Convert x to deg/s
+ */
 class AngularVelocity3D {
  public:
   float x = 0.0f;

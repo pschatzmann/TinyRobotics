@@ -88,8 +88,8 @@ class SLAM2D : public MessageSource {
 
   /// Register Range Measurement from Lidar
   void addRangeMeasurement(Distance dist, Angle angle) {
-    addRangeMeasurement(dist.getDistance(DistanceUnit::M),
-                        angle.getAngle(AngleUnit::DEG));
+    addRangeMeasurement(dist.getValue(DistanceUnit::M),
+                        angle.getValue(AngleUnit::DEG));
   }
   /// Register Range Measurement from Lidar
   void addRangeMeasurement(T distanceM, T angleDeg) {

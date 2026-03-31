@@ -78,7 +78,7 @@ class WheelEncoder : public MessageSource {
    * @param wheelDiameter The wheel diameter.
    */
   void setWheelDiameter(Distance wheelDiameter) {
-    wheelDiameterM = wheelDiameter.getDistance(DistanceUnit::M);
+    wheelDiameterM = wheelDiameter.getValue(DistanceUnit::M);
   }
 
   /**
@@ -126,7 +126,7 @@ class WheelEncoder : public MessageSource {
    */
   float getDistance(DistanceUnit unit) const {
     Distance dist(distanceM, DistanceUnit::M);
-    return dist.getDistance(unit);
+    return dist.getValue(unit);
   }
 
   /**
@@ -147,7 +147,7 @@ class WheelEncoder : public MessageSource {
    */
   float getDistanceForTicks(size_t ticks, DistanceUnit unit) const {
     Distance dist(getDistanceForTicksM(ticks), DistanceUnit::M);
-    return dist.getDistance(unit);
+    return dist.getValue(unit);
   }
 
   /**

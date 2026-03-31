@@ -194,7 +194,7 @@ class Fusion2D : public MessageSource, public IMotionState2D {
   }
 
   void updateSpeed(uint32_t timeMs, Speed newSpeed) {
-    updateSpeed(timeMs, newSpeed.getSpeed(SpeedUnit::MPS));
+    updateSpeed(timeMs, newSpeed.getValue(SpeedUnit::MPS));
   }
 
   /**
@@ -219,7 +219,7 @@ class Fusion2D : public MessageSource, public IMotionState2D {
   }
 
   void updateHeading(uint32_t timeMs, Angle newHeading) {
-    updateHeading(timeMs, newHeading.getAngle(AngleUnit::RAD));
+    updateHeading(timeMs, newHeading.getValue(AngleUnit::RAD));
   }
 
   /**

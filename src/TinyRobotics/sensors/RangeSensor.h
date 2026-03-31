@@ -93,7 +93,7 @@ class RangeSensor : public MessageSource {
   /// Set the distance measured by the sensor. Make sure that the
   /// ObstacleDegree is defined
   bool setObstacleDistance(Distance dist) {
-    return setObstacleDistance(dist.getDistance(DistanceUnit::M));
+    return setObstacleDistance(dist.getValue(DistanceUnit::M));
   }
 
   /// Set the distance measured by the sensor. Make sure that the

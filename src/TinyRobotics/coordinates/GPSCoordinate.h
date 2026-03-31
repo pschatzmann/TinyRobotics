@@ -72,7 +72,7 @@ class GPSCoordinate {
                  DistanceUnit unit = DistanceUnit::M) const {
     float distM = distanceM(other);
     Distance dist(distM, DistanceUnit::M);
-    return dist.getDistance(unit);
+    return dist.getValue(unit);
   }
 
   /// Calculate the bearing (heading) in degrees from this coordinate to another
@@ -81,7 +81,7 @@ class GPSCoordinate {
                 AngleUnit unit = AngleUnit::DEG) const {
     float bearingDeg = bearingDegree(other);
     Angle angle(bearingDeg, AngleUnit::DEG);
-    return angle.getAngle(unit);
+    return angle.getValue(unit);
   }
 
   /// Calculate the elevation angle in degrees from this coordinate to another
@@ -90,7 +90,7 @@ class GPSCoordinate {
                   AngleUnit unit = AngleUnit::DEG) const {
     float angleDeg = elevationDeg(other);
     Angle angle(angleDeg, AngleUnit::DEG);
-    return angle.getAngle(unit);
+    return angle.getValue(unit);
   }
 
   /// Calculate the altitude difference in meters between this coordinate and
@@ -102,9 +102,9 @@ class GPSCoordinate {
   /// Calculate a new GPS coordinate given a distance (in meters) and bearing
   GPSCoordinate navigate(Distance distance, Angle bearing,
                          Distance altDiff) const {
-    float bearingDeg = bearing.getAngle(AngleUnit::DEG);
-    float distanceM = distance.getDistance(DistanceUnit::M);
-    float altDiffM = altDiff.getDistance(DistanceUnit::M);
+    float bearingDeg = bearing.getValue(AngleUnit::DEG);
+    float distanceM = distance.getValue(DistanceUnit::M);
+    float altDiffM = altDiff.getValue(DistanceUnit::M);
     return navigate(distanceM, bearingDeg, altDiffM);
   }
 

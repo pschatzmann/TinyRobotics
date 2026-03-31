@@ -32,9 +32,9 @@ class Orientation3D {
   }
 
   void set(Angle newYaw, Angle newPitch, Angle newRoll) {
-    yaw = newYaw.getAngle(AngleUnit::RAD);
-    pitch = newPitch.getAngle(AngleUnit::RAD);
-    roll = newRoll.getAngle(AngleUnit::RAD);
+    yaw = newYaw.getValue(AngleUnit::RAD);
+    pitch = newPitch.getValue(AngleUnit::RAD);
+    roll = newRoll.getValue(AngleUnit::RAD);
   }
 
   void wrap() {

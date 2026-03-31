@@ -23,14 +23,14 @@ enum class DistanceUnit { M, CM, MM, FEET };
 class Distance {
  public:
   Distance() = default;
-  Distance(float distance, DistanceUnit unit) { setDistance(distance, unit); }
+  Distance(float distance, DistanceUnit unit) { setValue(distance, unit); }
 
-  void setDistance(float newDistance, DistanceUnit newUnit) {
+  void setValue(float newDistance, DistanceUnit newUnit) {
     distance = newDistance;
     unit = newUnit;
   }
 
-  float getDistance(DistanceUnit desiredUnit) const {
+  float getValue(DistanceUnit desiredUnit) const {
     if (unit == desiredUnit) return distance;
     switch (unit) {
       case DistanceUnit::M:
@@ -62,6 +62,21 @@ class Distance {
   DistanceUnit unit = DistanceUnit::M;
 };
 
+/**
+ * @brief Represents a 3D distance or position vector with unit support.
+ *
+ * This class encapsulates a 3D distance measurement, storing x, y, and z components
+ * along with a unit (meters, centimeters, millimeters, or feet). It provides methods
+ * to retrieve each component in any supported unit, handling conversion as needed.
+ *
+ * Distance3D is useful for robotics, navigation, mapping, and simulation applications
+ * where 3D positions or displacements must be represented and manipulated in a type-safe
+ * and unit-aware manner. It is compatible with the Distance class for 1D distance.
+ *
+ * Example usage:
+ *   Distance3D p(1.0, 2.0, 3.0, DistanceUnit::M); // 1m, 2m, 3m in x, y, z
+ *   float x_cm = p.getX(DistanceUnit::CM);        // Convert x to centimeters
+ */
 class Distance3D {
   public:
     Distance3D() = default;
@@ -76,17 +91,17 @@ class Distance3D {
     float getX(DistanceUnit desiredUnit) const {
         if (unit == desiredUnit) return x;
         Distance tempDistance(x, unit);
-        return tempDistance.getDistance(desiredUnit);
+        return tempDistance.getValue(desiredUnit);
       }
     float getY(DistanceUnit desiredUnit) const {
         if (unit == desiredUnit) return y;
         Distance tempDistance(y, unit);
-        return tempDistance.getDistance(desiredUnit);
+        return tempDistance.getValue(desiredUnit);
       }
     float getZ(DistanceUnit desiredUnit) const {
         if (unit == desiredUnit) return z;
         Distance tempDistance(z, unit);
-        return tempDistance.getDistance(desiredUnit); 
+        return tempDistance.getValue(desiredUnit); 
     }
 };
 

@@ -104,12 +104,12 @@ class Odometry2D : public MessageSource, public IMotionState2D {
   void update(Speed speed, Angle steeringAngle, float deltaTimeMs) {
     this->steeringAngle = steeringAngle;
     this->speed = speed;
-    float speedMps = speed.getSpeed(SpeedUnit::MPS);
-    float steeringAngleRad = steeringAngle.getAngle(AngleUnit::RAD);
+    float speedMps = speed.getValue(SpeedUnit::MPS);
+    float steeringAngleRad = steeringAngle.getValue(AngleUnit::RAD);
     float deltaTheta = 0.0f;
     // Use Ackermann if wheelBase is set, else differential drive
-    if (wheelBase.getDistance(DistanceUnit::M) > 0.0f) {
-      float wb = wheelBase.getDistance(DistanceUnit::M);
+    if (wheelBase.getValue(DistanceUnit::M) > 0.0f) {
+      float wb = wheelBase.getValue(DistanceUnit::M);
       float omega = (wb > 0.0f) ? speedMps * tan(steeringAngleRad) / wb : 0.0f;
       deltaTheta = omega * deltaTimeMs / 1000.0f;
     } else {
@@ -155,10 +155,10 @@ class Odometry2D : public MessageSource, public IMotionState2D {
   /// @brief Get the current orientation (radians)
   float getTheta() const { return theta; }
   /// @brief Get the current linear velocity (meters/second)
-  float getLinearVelocity() const { return speed.getSpeed(SpeedUnit::MPS); }
+  float getLinearVelocity() const { return speed.getValue(SpeedUnit::MPS); }
   /// @brief Get the current angular velocity (radians/second)
   float getAngularVelocity() const {
-    return steeringAngle.getAngle(AngleUnit::RAD);
+    return steeringAngle.getValue(AngleUnit::RAD);
   }
   /// @brief Get the total distance traveled
   Distance getTotalDistance() const {
@@ -199,7 +199,7 @@ class Odometry2D : public MessageSource, public IMotionState2D {
 
     // Publish speed as float (meters/second)
     Message<float> msgSpeed{MessageContent::Speed,
-                            speed.getSpeed(SpeedUnit::MPS),
+                            speed.getValue(SpeedUnit::MPS),
                             Unit::MetersPerSecond};
     msgSpeed.source = MessageOrigin::System;
     sendMessage(msgSpeed);
