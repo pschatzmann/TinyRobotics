@@ -2,7 +2,11 @@
 
 namespace tinyrobotics {
 
-/// Supported distance units for conversion and representation. 
+/**
+ * @enum DistanceUnit
+ * @ingroup units
+ * @brief Supported distance units for conversion and representation.
+ */
 enum class DistanceUnit { M, CM, MM, FEET };
 
 /**
@@ -69,7 +73,7 @@ class Distance {
 
  protected:
   float distance = 0.0f;
-  DistanceUnit unit = DistanceUnit::M;
+  DistanceUnit unit = DistanceUnit::M; ///< Unit of the distance. @see DistanceUnit
 };
 
 /**
@@ -96,7 +100,7 @@ class Distance3D {
     float x = 0.0f;
     float y = 0.0f;
     float z = 0.0f;
-    DistanceUnit unit = DistanceUnit::M;  
+    DistanceUnit unit = DistanceUnit::M; ///< Unit of the 3D distance. @see DistanceUnit
 
     float getX(DistanceUnit desiredUnit) const {
         if (unit == desiredUnit) return x;

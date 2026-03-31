@@ -2,7 +2,11 @@
 
 namespace tinyrobotics {
 
-/// Supported speed units for conversion and representation. 
+/**
+ * @enum SpeedUnit
+ * @ingroup units
+ * @brief Supported speed units for conversion and representation.
+ */
 enum class SpeedUnit { MPS, KPH, FPS, MPH };
 
 /**
@@ -69,7 +73,7 @@ class Speed {
 
  protected:
   float speed = 0.0f;
-  SpeedUnit unit = SpeedUnit::MPS;
+  SpeedUnit unit = SpeedUnit::MPS; ///< Unit of the speed. @see SpeedUnit
 };
 
 using Velocity = Speed;

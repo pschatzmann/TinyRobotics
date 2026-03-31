@@ -5,7 +5,11 @@
 
 namespace tinyrobotics {
 
-/// Frame type
+/**
+ * @enum FrameType
+ * @ingroup utils
+ * @brief Frame type for coordinate systems and reference frames.
+ */
 enum class FrameType : uint8_t {
   WORLD,
   ODOMETRY,
@@ -18,7 +22,11 @@ enum class FrameType : uint8_t {
   TEMP
 };
 
-/// Cell State for occupancy grid mapping (e.g., UNKNOWN, FREE, OCCUPIED). Values can
+/**
+ * @enum CellState
+ * @ingroup utils
+ * @brief Cell state for occupancy grid mapping (e.g., UNKNOWN, FREE, OCCUPIED).
+ */
 enum class CellState : int8_t { UNKNOWN = -1, FREE = 0, OCCUPIED = 100 };
 
 /// Default numeric type for distances:  This can be changed
@@ -27,6 +35,8 @@ using DistanceM = DEFAULT_TYPE;
 using AngleDeg = DEFAULT_TYPE;
 
 /**
+ * @enum Unit
+ * @ingroup utils
  * @brief Units for message values.
  */
 enum class Unit {

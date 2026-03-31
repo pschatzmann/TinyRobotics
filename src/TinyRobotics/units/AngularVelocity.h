@@ -3,7 +3,11 @@
 
 namespace tinyrobotics {
 
-/// Supported angular velocity units for conversion and representation.
+/**
+ * @enum AngularVelocityUnit
+ * @ingroup units
+ * @brief Supported angular velocity units for conversion and representation.
+ */
 enum class AngularVelocityUnit { RadPerSecond, DegPerSecond };
 
 /**

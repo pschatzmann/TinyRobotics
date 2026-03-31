@@ -6,6 +6,8 @@
 namespace tinyrobotics {
 
 /**
+ * @enum MessageValueType
+ * @ingroup communications
  * @brief Enum to indicate the type of parsed TinyRobotics message.
  *
  * Used by MessageParser to specify which variant of the union in ParsedMessage
@@ -26,7 +28,7 @@ enum class MessageValueType {
  * @ingroup communication
  */
 struct ParsedMessage {
-  MessageValueType type;  ///< Indicates which union member is valid
+  MessageValueType type;  ///< Indicates which union member is valid. @see MessageValueType
   union {
     Message<float> floatMsg;
     Message<Coordinate<float>> coordMsg;

@@ -3,6 +3,11 @@
 
 namespace tinyrobotics {
 
+/**
+ * @enum MessageOrigin
+ * @ingroup communications
+ * @brief Source/origin of a message in the communication framework.
+ */
 enum class MessageOrigin {
   Undefined = 0,
   RemoteControl,  ///< Message from a remote control interface (e.g., RC receiver)
@@ -21,6 +26,8 @@ enum class MessageOrigin {
 };
 
 /**
+ * @enum MessageContent
+ * @ingroup communications
  * @brief Types of message content for communication between modules or devices.
  */
 enum class MessageContent {
@@ -56,9 +63,9 @@ template <typename T = float>
 struct Message {
   const char* prefix = "MSG";  ///< prefix for message identification
   uint8_t size = sizeof(Message);
-  MessageOrigin source = MessageOrigin::RemoteControl;  ///< Source of the message
+  MessageOrigin source = MessageOrigin::RemoteControl;  ///< Source of the message. @see MessageOrigin
   uint8_t source_id = 0;   /// Optional identifier for the source (e.g., sensor ID, motor ID)
-  MessageContent content;  ///< Type of message content
+  MessageContent content;  ///< Type of message content. @see MessageContent
   Unit unit;               ///< Unit of the value
   T value;                 ///< Value of the message
 
