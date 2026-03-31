@@ -4,3 +4,4 @@
 #include "TinyRobotics/units/Time.h"
 #include "TinyRobotics/units/Speed.h"
 #include "TinyRobotics/units/Angle.h"
+#include "TinyRobotics/units/AngularVelocity.h"

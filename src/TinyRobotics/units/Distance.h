@@ -62,4 +62,32 @@ class Distance {
   DistanceUnit unit = DistanceUnit::M;
 };
 
+class Distance3D {
+  public:
+    Distance3D() = default;
+    Distance3D(float x, float y, float z, DistanceUnit unit)
+        : x(x), y(y), z(z), unit(unit) {}
+  
+    float x = 0.0f;
+    float y = 0.0f;
+    float z = 0.0f;
+    DistanceUnit unit = DistanceUnit::M;  
+
+    float getX(DistanceUnit desiredUnit) const {
+        if (unit == desiredUnit) return x;
+        Distance tempDistance(x, unit);
+        return tempDistance.getDistance(desiredUnit);
+      }
+    float getY(DistanceUnit desiredUnit) const {
+        if (unit == desiredUnit) return y;
+        Distance tempDistance(y, unit);
+        return tempDistance.getDistance(desiredUnit);
+      }
+    float getZ(DistanceUnit desiredUnit) const {
+        if (unit == desiredUnit) return z;
+        Distance tempDistance(z, unit);
+        return tempDistance.getDistance(desiredUnit); 
+    }
+};
+
 }  // namespace tinyrobotics

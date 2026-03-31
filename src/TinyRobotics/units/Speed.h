@@ -62,4 +62,34 @@ class Speed {
   SpeedUnit unit = SpeedUnit::MPS;
 };
 
+class Speed3D {
+ public:
+  float x = 0.0f;
+  float y = 0.0f;
+  float z = 0.0f;
+  SpeedUnit unit = SpeedUnit::MPS;
+
+  Speed3D() = default;
+  Speed3D(float x, float y, float z, SpeedUnit unit)     : x(x), y(y), z(z), unit(unit) {}
+
+  float getX(SpeedUnit desiredUnit) const {
+    if (unit == desiredUnit) return x;
+    Speed tempSpeed(x, unit);
+    return tempSpeed.getSpeed(desiredUnit);
+  }
+  float getY(SpeedUnit desiredUnit) const {
+    if (unit == desiredUnit) return y;
+    Speed tempSpeed(y, unit);
+    return tempSpeed.getSpeed(desiredUnit);
+  }
+  float getZ(SpeedUnit desiredUnit) const {
+    if (unit == desiredUnit) return z;
+    Speed tempSpeed(z, unit);
+    return tempSpeed.getSpeed(desiredUnit);
+  }
+};
+
+using Velocity3D = Speed3D;
+using Velocity = Speed;
+
 }  // namespace tinyrobotics
