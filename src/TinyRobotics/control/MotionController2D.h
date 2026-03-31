@@ -112,6 +112,16 @@ class MotionController2D {
     sendControlMessages(distanceToTarget, headingError, currentSpeedKmh);
   }
 
+  /**
+   * @brief Set a custom callback to be called when reaching the goal. The
+   * callback should return true if it handled the goal action, or false to
+   * allow default handling.
+   */
+  void setOnGoalCallback(bool (*callback)(void*), void* ref = nullptr) {
+    onGoalCallback = callback;
+    if (ref != nullptr) onGoaldRef = ref;
+  }
+
  protected:
   IMU2D<T>& imu;
   Vehicle& vehicle;
@@ -126,6 +136,8 @@ class MotionController2D {
   Coordinate<DistanceM> startCoordinate;
   bool hasStartCoordinate = false;
   float targetAccuracyM = 0.01f;
+  bool (*onGoalCallback)(void*) = nullptr;
+  void* onGoaldRef = this;
 
   /// Calculate desired speed based on distance to target and distance from
   /// start
@@ -157,6 +169,9 @@ class MotionController2D {
       if (distanceToTarget < targetAccuracyM) {
         path.removeHead();
         if (path.isEmpty()) {
+          if (onGoalCallback) {
+            onGoalCallback(onGoaldRef);
+          }
           vehicle.end();
           return;
         }

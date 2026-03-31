@@ -11,6 +11,7 @@
 
 namespace tinyrobotics {
 
+/// Action to take when reaching the goal (last waypoint)
 enum class OnGoalAction { Stop, HoldPosition, Circle };
 
 /**
@@ -37,15 +38,10 @@ enum class OnGoalAction { Stop, HoldPosition, Circle };
  * 4. In your control loop:
  *    - Call update() to compute new commands
  *    - Use getLinearCommand() and getAngularCommand() for actuation
- *    - Call advanceWaypoint() to move to the next waypoint when reached
  *
  * ## Limitations
  * - Only the position is updated from the path; orientation, speed, and angular
  * velocity are kept from the previous target
- * - No explicit indication when the path is complete (consider adding
- * isPathComplete())
- * - No direct thrust/motor mixing for quadcopters (use as a high-level
- * controller)
  *
  * ## Example
  * @code
@@ -162,6 +158,16 @@ class MotionController3D {
     circleInitialized = false;
   }
 
+  /** 
+   * @brief Set a custom callback to be called when reaching the goal. The
+   * callback should return true if it handled the goal action, or false to
+   * allow default handling.
+   */
+  void setOnGoalCallback(bool (*callback)(void*), void* ref = nullptr) {
+    onGoalCallback = callback;
+    if (ref != nullptr) onGoaldRef = ref;
+  }
+
   /**
    * @brief Set the radius for circular motion (meters).
    */
@@ -191,6 +197,8 @@ class MotionController3D {
   Speed3D linearCmd = Speed3D(0, 0, 0, SpeedUnit::MPS);
   AngularVelocity3D angularCmd =
       AngularVelocity3D(0, 0, 0, AngularVelocityUnit::RadPerSecond);
+  bool (*onGoalCallback)(void*) = nullptr;
+  void* onGoaldRef = this;
 
   bool advanceWaypoint(float positionTolerance = 0.1f) {
     if (path.isEmpty()) return false;
@@ -231,6 +239,13 @@ class MotionController3D {
   bool circleInitialized = false;
 
   void handleOnGoalAction() {
+    // process callback
+    if (onGoalCallback) {
+      if (onGoalCallback(onGoaldRef)) {
+        // Callback handled the goal action, so we can return early
+        return;
+      }
+    }
     switch (onGoalAction) {
       case OnGoalAction::Stop:
         // Set all commands to zero and deactivate controller
