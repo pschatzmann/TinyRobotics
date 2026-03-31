@@ -1,5 +1,0 @@
-<map id="Stepper" name="Stepper">
-<area shape="rect" id="Node000001" title="Stepper motor driver using FastAccelStepper for Arduino." alt="" coords="5,79,77,104"/>
-<area shape="rect" id="Node000002" href="$classMotor.html" title="Abstract base class for all motor driver types." alt="" coords="11,5,71,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="44,44,44,79,39,79,39,44"/>
-</map>

@@ -1,8 +1,0 @@
-<map id="BufferRP2040T&lt; T &gt;" name="BufferRP2040T&lt; T &gt;">
-<area shape="rect" id="Node000001" title="Buffer implementation which is based on a RP2040 queue. This class is intended to be used to exchange..." alt="" coords="5,168,161,193"/>
-<area shape="rect" id="Node000002" href="$classtinyrobotics_1_1BaseBuffer.html" title=" " alt="" coords="13,5,143,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="82,44,86,168,80,168,76,45"/>
-<area shape="rect" id="Node000003" href="$classtinyrobotics_1_1SingleBuffer.html" title=" " alt="" coords="99,80,238,105"/>
-<area shape="poly" id="edge3_Node000003_Node000002" title=" " alt="" coords="105,37,155,77,152,82,101,41"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="149,117,97,169,93,166,145,113"/>
-</map>

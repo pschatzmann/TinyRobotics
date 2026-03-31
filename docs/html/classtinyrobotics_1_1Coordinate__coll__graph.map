@@ -1,5 +1,0 @@
-<map id="Coordinate&lt; T &gt;" name="Coordinate&lt; T &gt;">
-<area shape="rect" id="Node000001" title="A generic 3D coordinate class for robotics, navigation, and spatial calculations." alt="" coords="5,79,136,104"/>
-<area shape="rect" id="Node000002" href="$classtinyrobotics_1_1Serializable.html" title="This class defines an interface for serializable objects that can be converted to and from a string r..." alt="" coords="21,5,120,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="73,44,73,79,68,79,68,44"/>
-</map>

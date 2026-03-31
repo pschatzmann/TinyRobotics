@@ -1,7 +1,0 @@
-<map id="SpeedFromThrottle" name="SpeedFromThrottle">
-<area shape="rect" id="Node000001" title="Estimates vehicle speed from throttle percentage using calibration data." alt="" coords="70,79,217,104"/>
-<area shape="rect" id="Node000002" href="$classtinyrobotics_1_1MessageSource.html" title="Base class for message sources in the TinyRobotics communication framework." alt="" coords="5,5,129,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="91,38,133,76,129,80,88,42"/>
-<area shape="rect" id="Node000003" href="$classtinyrobotics_1_1MessageHandler.html" title="Interface for handling messages in the TinyRobotics framework." alt="" coords="154,5,285,31"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="199,42,158,80,154,76,195,38"/>
-</map>

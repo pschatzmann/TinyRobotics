@@ -1,9 +1,0 @@
-<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="Node000000" href="$classtinyrobotics_1_1Serializable.html" title="This class defines an interface for serializable objects that can be converted to and from a string r..." alt="" coords="5,55,104,80"/>
-<area shape="rect" id="Node000001" href="$classtinyrobotics_1_1Coordinate.html" title=" " alt="" coords="152,5,344,31"/>
-<area shape="poly" id="edge54_Node000000_Node000001" title=" " alt="" coords="116,49,151,39,195,28,197,33,153,45,117,54"/>
-<area shape="rect" id="Node000002" href="$classtinyrobotics_1_1Coordinate.html" title=" " alt="" coords="172,55,324,80"/>
-<area shape="poly" id="edge55_Node000000_Node000002" title=" " alt="" coords="118,65,172,65,172,70,118,70"/>
-<area shape="rect" id="Node000003" href="$classtinyrobotics_1_1Coordinate.html" title="A generic 3D coordinate class for robotics, navigation, and spatial calculations." alt="" coords="183,104,313,129"/>
-<area shape="poly" id="edge56_Node000000_Node000003" title=" " alt="" coords="118,81,198,101,197,106,117,86"/>
-</map>

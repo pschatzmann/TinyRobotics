@@ -1,5 +1,0 @@
-<map id="MessageDispatcher" name="MessageDispatcher">
-<area shape="rect" id="Node000001" title="Reads stream and forwards messages to handler." alt="" coords="5,93,156,119"/>
-<area shape="rect" id="Node000002" href="$classtinyrobotics_1_1MessageHandler.html" title="Interface for handling messages in the TinyRobotics framework." alt="" coords="15,5,146,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="83,45,83,93,78,93,78,45"/>
-</map>
