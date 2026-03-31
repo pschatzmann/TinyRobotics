@@ -3,6 +3,8 @@
 #include "Vehicle.h"
 #include "TinyRobotics/motors/Motors.h"
 
+namespace tinyrobotics {
+
 /**
  * @class AirPlane
  * @ingroup vehicles
@@ -28,7 +30,6 @@
  * plane.setAilerons(15, -15);          // left up, right down
  * @endcode
  */
-namespace tinyrobotics {
 
 template <typename BrushedMT = BrushedMotor, typename ServoMT = ServoMotor>
 class AirPlane : public Vehicle {

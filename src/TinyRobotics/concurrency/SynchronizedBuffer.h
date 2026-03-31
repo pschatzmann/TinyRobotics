@@ -4,7 +4,9 @@
 #include "TinyRobotics/utils/LoggerClass.h"
 #include "Mutex.h"
 #include "LockGuard.h"
- *
+
+ namespace tinyrobotics {
+
 /**
  * @class SynchronizedBuffer
  * @ingroup concurrency
@@ -14,8 +16,7 @@
  *
  * @tparam T
  */
- * @tparam T
- */
+
 template <typename T> 
 class SynchronizedBuffer : public BaseBuffer<T> {
 public:

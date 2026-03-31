@@ -3,6 +3,8 @@
 #include "TinyRobotics/motors/Motors.h"
 #include "Vehicle.h"
 
+namespace tinyrobotics {
+
 /**
  * @class CarAckerman
  * @ingroup vehicles
@@ -21,7 +23,6 @@
  * car.end();               // brake
  * @endcode
  */
-namespace tinyrobotics {
 
 template <typename BrushedMT = BrushedMotor, typename ServoMT = ServoMotor>
 class CarAckerman : public Vehicle {

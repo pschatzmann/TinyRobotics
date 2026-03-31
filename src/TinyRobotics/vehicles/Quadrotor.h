@@ -14,7 +14,6 @@ enum QuadrotorMotorNo {
   REAR_RIGHT = 3
 };
 
-
 /**
  * @class Quadrotor
  * @ingroup vehicles

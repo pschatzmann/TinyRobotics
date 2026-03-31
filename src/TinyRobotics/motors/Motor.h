@@ -1,5 +1,7 @@
 #pragma once
 
+namespace tinyrobotics {
+
 /**
  * @class Motor
  * @ingroup motors
@@ -25,3 +27,5 @@ class Motor {
  protected:
   uint8_t id = 0;  // Optional ID for identifying the motor
 };
+
+}  // namespace tinyrobotics

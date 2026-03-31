@@ -3,6 +3,8 @@
 #include <cstddef>
 #include <stdexcept>
 
+namespace tinyrobotics {
+
 /**
  * @brief A simple, fixed-capacity vector backed by std::array for embedded and
  * performance-critical use.
@@ -69,3 +71,5 @@ class VectorFromArray {
   std::array<T, N> data;
   std::size_t sz;
 };
+
+}  // namespace tinyrobotics

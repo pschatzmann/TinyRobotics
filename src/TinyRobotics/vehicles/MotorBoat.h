@@ -5,7 +5,6 @@
 
 namespace tinyrobotics {
 
-
 /**
  * @class MotorBoat
  * @ingroup vehicles

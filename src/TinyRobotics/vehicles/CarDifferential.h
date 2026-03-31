@@ -3,6 +3,8 @@
 #include "TinyRobotics/motors/Motors.h"
 #include "Vehicle.h"
 
+namespace tinyrobotics {
+
 /**
  * @class CarDifferential
  * @ingroup vehicles
@@ -26,7 +28,6 @@
  * car.end();            // brake all motors
  * @endcode
  */
-namespace tinyrobotics {
 
 template <size_t N = 4, typename BrushedMT = BrushedMotor>
 class CarDifferential : public Vehicle {
