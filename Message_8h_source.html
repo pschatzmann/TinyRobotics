@@ -81,68 +81,69 @@ $(function() {
 <div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
 <div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="keyword">namespace </span>tinyrobotics {</div>
 <div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span> </div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="keyword">enum class</span> MessageOrigin {</div>
-<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span>  Undefined = 0,</div>
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span>  RemoteControl,  </div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span>  Autonomy,       </div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span>  Sensor,         </div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>  System,         </div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>  Motor,          </div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>  Servo,          </div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>  Rudder,         </div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>  Aileron,        </div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>  Elevator,       </div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>  IMU,            </div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>  LIDAR,          </div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>  Camera,         </div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>  GPS,            </div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>};</div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span> </div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="keyword">enum class</span> MessageContent {</div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>  Undefined = 0,</div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>  Angle,          </div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>  Pitch,          </div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>  Roll,           </div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>  Yaw,            </div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>  Throttle,       </div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>  Speed,          </div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>  SteeringAngle,  </div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>  Turn,           </div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>  Heading,        </div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>  MotorSpeed,     </div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>  Position,       </div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>  PositionGPS,    </div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>  Distance,       </div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>  Temperature,    </div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>  Error,          </div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>  Density         </div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>};</div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span> </div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T = <span class="keywordtype">float</span>&gt;</div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno"><a class="line" href="structtinyrobotics_1_1Message.html">   56</a></span><span class="keyword">struct </span><a class="code hl_class" href="structtinyrobotics_1_1Message.html">Message</a> {</div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno"><a class="line" href="structtinyrobotics_1_1Message.html#a5b41c5ae4505891e6c53e26df197e02b">   57</a></span>  <span class="keyword">const</span> <span class="keywordtype">char</span>* <a class="code hl_variable" href="structtinyrobotics_1_1Message.html#a5b41c5ae4505891e6c53e26df197e02b">prefix</a> = <span class="stringliteral">&quot;MSG&quot;</span>;  </div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>  uint8_t size = <span class="keyword">sizeof</span>(<a class="code hl_function" href="structtinyrobotics_1_1Message.html#aad9152a5c62c08ac48d210c1b5c38459">Message</a>);</div>
-<div class="line"><a id="l00059" name="l00059"></a><span class="lineno"><a class="line" href="structtinyrobotics_1_1Message.html#afac95aff6fbfafe382acb9abf8227503">   59</a></span>  MessageOrigin <a class="code hl_variable" href="structtinyrobotics_1_1Message.html#afac95aff6fbfafe382acb9abf8227503">source</a> = MessageOrigin::RemoteControl;  </div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>  uint8_t source_id = 0;   </div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno"><a class="line" href="structtinyrobotics_1_1Message.html#a8e68387e210029af6bdfa6404d29f30f">   61</a></span>  MessageContent <a class="code hl_variable" href="structtinyrobotics_1_1Message.html#a8e68387e210029af6bdfa6404d29f30f">content</a>;  </div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno"><a class="line" href="structtinyrobotics_1_1Message.html#aaa0d61fcdf7a0b9f0f2b48c9946cbd10">   62</a></span>  Unit <a class="code hl_variable" href="structtinyrobotics_1_1Message.html#aaa0d61fcdf7a0b9f0f2b48c9946cbd10">unit</a>;               </div>
-<div class="line"><a id="l00063" name="l00063"></a><span class="lineno"><a class="line" href="structtinyrobotics_1_1Message.html#a4fc7f59e3113e19697159919a5aad095">   63</a></span>  T <a class="code hl_variable" href="structtinyrobotics_1_1Message.html#a4fc7f59e3113e19697159919a5aad095">value</a>;                 </div>
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span> </div>
-<div class="line"><a id="l00068" name="l00068"></a><span class="lineno"><a class="line" href="structtinyrobotics_1_1Message.html#aad9152a5c62c08ac48d210c1b5c38459">   68</a></span>  <a class="code hl_function" href="structtinyrobotics_1_1Message.html#aad9152a5c62c08ac48d210c1b5c38459">Message</a>() = <span class="keywordflow">default</span>;</div>
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span> </div>
-<div class="line"><a id="l00076" name="l00076"></a><span class="lineno"><a class="line" href="structtinyrobotics_1_1Message.html#a6922f44048e78979db0a8978aca08551">   76</a></span>  <a class="code hl_function" href="structtinyrobotics_1_1Message.html#a6922f44048e78979db0a8978aca08551">Message</a>(MessageContent c, T v, Unit u) : <a class="code hl_variable" href="structtinyrobotics_1_1Message.html#a8e68387e210029af6bdfa6404d29f30f">content</a>(c), <a class="code hl_variable" href="structtinyrobotics_1_1Message.html#a4fc7f59e3113e19697159919a5aad095">value</a>(v), <a class="code hl_variable" href="structtinyrobotics_1_1Message.html#aaa0d61fcdf7a0b9f0f2b48c9946cbd10">unit</a>(u) {}</div>
-<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>  <a class="code hl_function" href="structtinyrobotics_1_1Message.html#aad9152a5c62c08ac48d210c1b5c38459">Message</a>(MessageContent c, T v, Unit u, MessageOrigin orig) : <a class="code hl_variable" href="structtinyrobotics_1_1Message.html#a8e68387e210029af6bdfa6404d29f30f">content</a>(c), <a class="code hl_variable" href="structtinyrobotics_1_1Message.html#a4fc7f59e3113e19697159919a5aad095">value</a>(v), <a class="code hl_variable" href="structtinyrobotics_1_1Message.html#aaa0d61fcdf7a0b9f0f2b48c9946cbd10">unit</a>(u), <a class="code hl_variable" href="structtinyrobotics_1_1Message.html#afac95aff6fbfafe382acb9abf8227503">source</a>(orig) {}</div>
-<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>};</div>
-<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span> </div>
-<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>}  <span class="comment">// namespace tinyrobotics</span></div>
-<div class="ttc" id="astructtinyrobotics_1_1Message_html"><div class="ttname"><a href="structtinyrobotics_1_1Message.html">tinyrobotics::Message</a></div><div class="ttdoc">Generic message structure for communication, parameterized by value type.</div><div class="ttdef"><b>Definition:</b> Message.h:56</div></div>
-<div class="ttc" id="astructtinyrobotics_1_1Message_html_a4fc7f59e3113e19697159919a5aad095"><div class="ttname"><a href="structtinyrobotics_1_1Message.html#a4fc7f59e3113e19697159919a5aad095">tinyrobotics::Message::value</a></div><div class="ttdeci">T value</div><div class="ttdoc">Value of the message.</div><div class="ttdef"><b>Definition:</b> Message.h:63</div></div>
-<div class="ttc" id="astructtinyrobotics_1_1Message_html_a5b41c5ae4505891e6c53e26df197e02b"><div class="ttname"><a href="structtinyrobotics_1_1Message.html#a5b41c5ae4505891e6c53e26df197e02b">tinyrobotics::Message::prefix</a></div><div class="ttdeci">const char * prefix</div><div class="ttdoc">prefix for message identification</div><div class="ttdef"><b>Definition:</b> Message.h:57</div></div>
-<div class="ttc" id="astructtinyrobotics_1_1Message_html_a6922f44048e78979db0a8978aca08551"><div class="ttname"><a href="structtinyrobotics_1_1Message.html#a6922f44048e78979db0a8978aca08551">tinyrobotics::Message::Message</a></div><div class="ttdeci">Message(MessageContent c, T v, Unit u)</div><div class="ttdoc">Construct a message with content, value, and unit.</div><div class="ttdef"><b>Definition:</b> Message.h:76</div></div>
-<div class="ttc" id="astructtinyrobotics_1_1Message_html_a8e68387e210029af6bdfa6404d29f30f"><div class="ttname"><a href="structtinyrobotics_1_1Message.html#a8e68387e210029af6bdfa6404d29f30f">tinyrobotics::Message::content</a></div><div class="ttdeci">MessageContent content</div><div class="ttdoc">Optional identifier for the source (e.g., sensor ID, motor ID)</div><div class="ttdef"><b>Definition:</b> Message.h:61</div></div>
-<div class="ttc" id="astructtinyrobotics_1_1Message_html_aaa0d61fcdf7a0b9f0f2b48c9946cbd10"><div class="ttname"><a href="structtinyrobotics_1_1Message.html#aaa0d61fcdf7a0b9f0f2b48c9946cbd10">tinyrobotics::Message::unit</a></div><div class="ttdeci">Unit unit</div><div class="ttdoc">Unit of the value.</div><div class="ttdef"><b>Definition:</b> Message.h:62</div></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="keyword">enum class</span> MessageOrigin {</div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>  Undefined = 0,</div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>  RemoteControl,  </div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>  Autonomy,       </div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>  Sensor,         </div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>  System,         </div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>  Motor,          </div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>  Servo,          </div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>  Rudder,         </div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>  Aileron,        </div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>  Elevator,       </div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>  IMU,            </div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>  LIDAR,          </div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>  Camera,         </div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>  GPS,            </div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>};</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span> </div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span><span class="keyword">enum class</span> MessageContent {</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>  Undefined = 0,</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>  Angle,          </div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>  Pitch,          </div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>  Roll,           </div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>  Yaw,            </div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>  Throttle,       </div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>  Speed,          </div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>  SteeringAngle,  </div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>  Turn,           </div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>  Heading,        </div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>  MotorSpeed,     </div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>  Position,       </div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>  PositionGPS,    </div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>  Distance,       </div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>  Temperature,    </div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>  Error,          </div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>  Density         </div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>};</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span> </div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T = <span class="keywordtype">float</span>&gt;</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno"><a class="line" href="structtinyrobotics_1_1Message.html">   63</a></span><span class="keyword">struct </span><a class="code hl_class" href="structtinyrobotics_1_1Message.html">Message</a> {</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno"><a class="line" href="structtinyrobotics_1_1Message.html#a5b41c5ae4505891e6c53e26df197e02b">   64</a></span>  <span class="keyword">const</span> <span class="keywordtype">char</span>* <a class="code hl_variable" href="structtinyrobotics_1_1Message.html#a5b41c5ae4505891e6c53e26df197e02b">prefix</a> = <span class="stringliteral">&quot;MSG&quot;</span>;  </div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>  uint8_t size = <span class="keyword">sizeof</span>(<a class="code hl_function" href="structtinyrobotics_1_1Message.html#aad9152a5c62c08ac48d210c1b5c38459">Message</a>);</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno"><a class="line" href="structtinyrobotics_1_1Message.html#afac95aff6fbfafe382acb9abf8227503">   66</a></span>  MessageOrigin <a class="code hl_variable" href="structtinyrobotics_1_1Message.html#afac95aff6fbfafe382acb9abf8227503">source</a> = MessageOrigin::RemoteControl;  </div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>  uint8_t source_id = 0;   </div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno"><a class="line" href="structtinyrobotics_1_1Message.html#a8e68387e210029af6bdfa6404d29f30f">   68</a></span>  MessageContent <a class="code hl_variable" href="structtinyrobotics_1_1Message.html#a8e68387e210029af6bdfa6404d29f30f">content</a>;  </div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno"><a class="line" href="structtinyrobotics_1_1Message.html#aaa0d61fcdf7a0b9f0f2b48c9946cbd10">   69</a></span>  <a class="code hl_enumeration" href="group__utils.html#gabceb2331ad056e3c5ad27894199a49ed">Unit</a> <a class="code hl_variable" href="structtinyrobotics_1_1Message.html#aaa0d61fcdf7a0b9f0f2b48c9946cbd10">unit</a>;               </div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno"><a class="line" href="structtinyrobotics_1_1Message.html#a4fc7f59e3113e19697159919a5aad095">   70</a></span>  T <a class="code hl_variable" href="structtinyrobotics_1_1Message.html#a4fc7f59e3113e19697159919a5aad095">value</a>;                 </div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span> </div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno"><a class="line" href="structtinyrobotics_1_1Message.html#aad9152a5c62c08ac48d210c1b5c38459">   75</a></span>  <a class="code hl_function" href="structtinyrobotics_1_1Message.html#aad9152a5c62c08ac48d210c1b5c38459">Message</a>() = <span class="keywordflow">default</span>;</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span> </div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno"><a class="line" href="structtinyrobotics_1_1Message.html#a6922f44048e78979db0a8978aca08551">   83</a></span>  <a class="code hl_function" href="structtinyrobotics_1_1Message.html#a6922f44048e78979db0a8978aca08551">Message</a>(MessageContent c, T v, <a class="code hl_enumeration" href="group__utils.html#gabceb2331ad056e3c5ad27894199a49ed">Unit</a> u) : <a class="code hl_variable" href="structtinyrobotics_1_1Message.html#a8e68387e210029af6bdfa6404d29f30f">content</a>(c), <a class="code hl_variable" href="structtinyrobotics_1_1Message.html#a4fc7f59e3113e19697159919a5aad095">value</a>(v), <a class="code hl_variable" href="structtinyrobotics_1_1Message.html#aaa0d61fcdf7a0b9f0f2b48c9946cbd10">unit</a>(u) {}</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>  <a class="code hl_function" href="structtinyrobotics_1_1Message.html#aad9152a5c62c08ac48d210c1b5c38459">Message</a>(MessageContent c, T v, <a class="code hl_enumeration" href="group__utils.html#gabceb2331ad056e3c5ad27894199a49ed">Unit</a> u, MessageOrigin orig) : <a class="code hl_variable" href="structtinyrobotics_1_1Message.html#a8e68387e210029af6bdfa6404d29f30f">content</a>(c), <a class="code hl_variable" href="structtinyrobotics_1_1Message.html#a4fc7f59e3113e19697159919a5aad095">value</a>(v), <a class="code hl_variable" href="structtinyrobotics_1_1Message.html#aaa0d61fcdf7a0b9f0f2b48c9946cbd10">unit</a>(u), <a class="code hl_variable" href="structtinyrobotics_1_1Message.html#afac95aff6fbfafe382acb9abf8227503">source</a>(orig) {}</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>};</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span> </div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>}  <span class="comment">// namespace tinyrobotics</span></div>
+<div class="ttc" id="agroup__utils_html_gabceb2331ad056e3c5ad27894199a49ed"><div class="ttname"><a href="group__utils.html#gabceb2331ad056e3c5ad27894199a49ed">tinyrobotics::Unit</a></div><div class="ttdeci">Unit</div><div class="ttdoc">Units for message values.</div><div class="ttdef"><b>Definition:</b> Common.h:42</div></div>
+<div class="ttc" id="astructtinyrobotics_1_1Message_html"><div class="ttname"><a href="structtinyrobotics_1_1Message.html">tinyrobotics::Message</a></div><div class="ttdoc">Generic message structure for communication, parameterized by value type.</div><div class="ttdef"><b>Definition:</b> Message.h:63</div></div>
+<div class="ttc" id="astructtinyrobotics_1_1Message_html_a4fc7f59e3113e19697159919a5aad095"><div class="ttname"><a href="structtinyrobotics_1_1Message.html#a4fc7f59e3113e19697159919a5aad095">tinyrobotics::Message::value</a></div><div class="ttdeci">T value</div><div class="ttdoc">Value of the message.</div><div class="ttdef"><b>Definition:</b> Message.h:70</div></div>
+<div class="ttc" id="astructtinyrobotics_1_1Message_html_a5b41c5ae4505891e6c53e26df197e02b"><div class="ttname"><a href="structtinyrobotics_1_1Message.html#a5b41c5ae4505891e6c53e26df197e02b">tinyrobotics::Message::prefix</a></div><div class="ttdeci">const char * prefix</div><div class="ttdoc">prefix for message identification</div><div class="ttdef"><b>Definition:</b> Message.h:64</div></div>
+<div class="ttc" id="astructtinyrobotics_1_1Message_html_a6922f44048e78979db0a8978aca08551"><div class="ttname"><a href="structtinyrobotics_1_1Message.html#a6922f44048e78979db0a8978aca08551">tinyrobotics::Message::Message</a></div><div class="ttdeci">Message(MessageContent c, T v, Unit u)</div><div class="ttdoc">Construct a message with content, value, and unit.</div><div class="ttdef"><b>Definition:</b> Message.h:83</div></div>
+<div class="ttc" id="astructtinyrobotics_1_1Message_html_a8e68387e210029af6bdfa6404d29f30f"><div class="ttname"><a href="structtinyrobotics_1_1Message.html#a8e68387e210029af6bdfa6404d29f30f">tinyrobotics::Message::content</a></div><div class="ttdeci">MessageContent content</div><div class="ttdoc">Optional identifier for the source (e.g., sensor ID, motor ID)</div><div class="ttdef"><b>Definition:</b> Message.h:68</div></div>
+<div class="ttc" id="astructtinyrobotics_1_1Message_html_aaa0d61fcdf7a0b9f0f2b48c9946cbd10"><div class="ttname"><a href="structtinyrobotics_1_1Message.html#aaa0d61fcdf7a0b9f0f2b48c9946cbd10">tinyrobotics::Message::unit</a></div><div class="ttdeci">Unit unit</div><div class="ttdoc">Unit of the value.</div><div class="ttdef"><b>Definition:</b> Message.h:69</div></div>
 <div class="ttc" id="astructtinyrobotics_1_1Message_html_aad9152a5c62c08ac48d210c1b5c38459"><div class="ttname"><a href="structtinyrobotics_1_1Message.html#aad9152a5c62c08ac48d210c1b5c38459">tinyrobotics::Message::Message</a></div><div class="ttdeci">Message()=default</div><div class="ttdoc">Default constructor.</div></div>
-<div class="ttc" id="astructtinyrobotics_1_1Message_html_afac95aff6fbfafe382acb9abf8227503"><div class="ttname"><a href="structtinyrobotics_1_1Message.html#afac95aff6fbfafe382acb9abf8227503">tinyrobotics::Message::source</a></div><div class="ttdeci">MessageOrigin source</div><div class="ttdoc">Source of the message.</div><div class="ttdef"><b>Definition:</b> Message.h:59</div></div>
+<div class="ttc" id="astructtinyrobotics_1_1Message_html_afac95aff6fbfafe382acb9abf8227503"><div class="ttname"><a href="structtinyrobotics_1_1Message.html#afac95aff6fbfafe382acb9abf8227503">tinyrobotics::Message::source</a></div><div class="ttdeci">MessageOrigin source</div><div class="ttdoc">Source of the message.</div><div class="ttdef"><b>Definition:</b> Message.h:66</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

@@ -80,81 +80,84 @@ $(function() {
 <div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span> </div>
 <div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="keyword">namespace </span>tinyrobotics {</div>
 <div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span> </div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="keyword">enum class</span> DistanceUnit { M, CM, MM, FEET };</div>
-<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno"><a class="line" href="classtinyrobotics_1_1Distance.html">   33</a></span><span class="keyword">class </span><a class="code hl_class" href="classtinyrobotics_1_1Distance.html">Distance</a> {</div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span> <span class="keyword">public</span>:</div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>  <a class="code hl_class" href="classtinyrobotics_1_1Distance.html">Distance</a>() = <span class="keywordflow">default</span>;</div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>  <a class="code hl_class" href="classtinyrobotics_1_1Distance.html">Distance</a>(<span class="keywordtype">float</span> distance, DistanceUnit unit) { setValue(distance, unit); }</div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span> </div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>  <span class="keywordtype">void</span> setValue(<span class="keywordtype">float</span> newDistance, DistanceUnit newUnit) {</div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    distance = newDistance;</div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    unit = newUnit;</div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>  }</div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span> </div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>  <span class="keywordtype">float</span> getValue(DistanceUnit desiredUnit)<span class="keyword"> const </span>{</div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    <span class="keywordflow">if</span> (unit == desiredUnit) <span class="keywordflow">return</span> distance;</div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    <span class="keywordflow">switch</span> (unit) {</div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>      <span class="keywordflow">case</span> DistanceUnit::M:</div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>        <span class="keywordflow">if</span> (desiredUnit == DistanceUnit::CM) <span class="keywordflow">return</span> distance * 100;</div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>        <span class="keywordflow">if</span> (desiredUnit == DistanceUnit::MM) <span class="keywordflow">return</span> distance * 1000;</div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>        <span class="keywordflow">if</span> (desiredUnit == DistanceUnit::FEET) <span class="keywordflow">return</span> distance * 3.28084;</div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>        <span class="keywordflow">break</span>;</div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>      <span class="keywordflow">case</span> DistanceUnit::CM:</div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>        <span class="keywordflow">if</span> (desiredUnit == DistanceUnit::M) <span class="keywordflow">return</span> distance / 100;</div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>        <span class="keywordflow">if</span> (desiredUnit == DistanceUnit::MM) <span class="keywordflow">return</span> distance * 10;</div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>        <span class="keywordflow">if</span> (desiredUnit == DistanceUnit::FEET) <span class="keywordflow">return</span> distance * 0.0328084;</div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>        <span class="keywordflow">break</span>;</div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>      <span class="keywordflow">case</span> DistanceUnit::MM:</div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>        <span class="keywordflow">if</span> (desiredUnit == DistanceUnit::M) <span class="keywordflow">return</span> distance / 1000;</div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>        <span class="keywordflow">if</span> (desiredUnit == DistanceUnit::CM) <span class="keywordflow">return</span> distance / 10;</div>
-<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>        <span class="keywordflow">if</span> (desiredUnit == DistanceUnit::FEET) <span class="keywordflow">return</span> distance * 0.00328084;</div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>        <span class="keywordflow">break</span>;</div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>      <span class="keywordflow">case</span> DistanceUnit::FEET:</div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>        <span class="keywordflow">if</span> (desiredUnit == DistanceUnit::M) <span class="keywordflow">return</span> distance / 3.28084;</div>
-<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>        <span class="keywordflow">if</span> (desiredUnit == DistanceUnit::CM) <span class="keywordflow">return</span> distance / 0.0328084;</div>
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>        <span class="keywordflow">if</span> (desiredUnit == DistanceUnit::MM) <span class="keywordflow">return</span> distance / 0.00328084;</div>
-<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>        <span class="keywordflow">break</span>;</div>
-<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>    }</div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>    <span class="keywordflow">return</span> -1;  <span class="comment">// Invalid conversion</span></div>
-<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>  }</div>
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span> </div>
-<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span> <span class="keyword">protected</span>:</div>
-<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>  <span class="keywordtype">float</span> distance = 0.0f;</div>
-<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>  DistanceUnit unit = DistanceUnit::M;</div>
-<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>};</div>
-<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span> </div>
-<div class="line"><a id="l00090" name="l00090"></a><span class="lineno"><a class="line" href="classtinyrobotics_1_1Distance3D.html">   90</a></span><span class="keyword">class </span><a class="code hl_class" href="classtinyrobotics_1_1Distance3D.html">Distance3D</a> {</div>
-<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>  <span class="keyword">public</span>:</div>
-<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>    <a class="code hl_class" href="classtinyrobotics_1_1Distance3D.html">Distance3D</a>() = <span class="keywordflow">default</span>;</div>
-<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>    <a class="code hl_class" href="classtinyrobotics_1_1Distance3D.html">Distance3D</a>(<span class="keywordtype">float</span> x, <span class="keywordtype">float</span> y, <span class="keywordtype">float</span> z, DistanceUnit unit)</div>
-<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>        : x(x), y(y), z(z), unit(unit) {}</div>
-<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>  </div>
-<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>    <span class="keywordtype">float</span> x = 0.0f;</div>
-<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>    <span class="keywordtype">float</span> y = 0.0f;</div>
-<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>    <span class="keywordtype">float</span> z = 0.0f;</div>
-<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>    DistanceUnit unit = DistanceUnit::M;  </div>
-<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span> </div>
-<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>    <span class="keywordtype">float</span> getX(DistanceUnit desiredUnit)<span class="keyword"> const </span>{</div>
-<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>        <span class="keywordflow">if</span> (unit == desiredUnit) <span class="keywordflow">return</span> x;</div>
-<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>        <a class="code hl_class" href="classtinyrobotics_1_1Distance.html">Distance</a> tempDistance(x, unit);</div>
-<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>        <span class="keywordflow">return</span> tempDistance.getValue(desiredUnit);</div>
-<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>      }</div>
-<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>    <span class="keywordtype">float</span> getY(DistanceUnit desiredUnit)<span class="keyword"> const </span>{</div>
-<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>        <span class="keywordflow">if</span> (unit == desiredUnit) <span class="keywordflow">return</span> y;</div>
-<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>        <a class="code hl_class" href="classtinyrobotics_1_1Distance.html">Distance</a> tempDistance(y, unit);</div>
-<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>        <span class="keywordflow">return</span> tempDistance.getValue(desiredUnit);</div>
-<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>      }</div>
-<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>    <span class="keywordtype">float</span> getZ(DistanceUnit desiredUnit)<span class="keyword"> const </span>{</div>
-<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>        <span class="keywordflow">if</span> (unit == desiredUnit) <span class="keywordflow">return</span> z;</div>
-<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>        <a class="code hl_class" href="classtinyrobotics_1_1Distance.html">Distance</a> tempDistance(z, unit);</div>
-<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>        <span class="keywordflow">return</span> tempDistance.getValue(desiredUnit); </div>
-<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>    }</div>
-<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>};</div>
-<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span> </div>
-<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>}  <span class="comment">// namespace tinyrobotics</span></div>
-<div class="ttc" id="aclasstinyrobotics_1_1Distance3D_html"><div class="ttname"><a href="classtinyrobotics_1_1Distance3D.html">tinyrobotics::Distance3D</a></div><div class="ttdoc">Represents a 3D distance or position vector with unit support.</div><div class="ttdef"><b>Definition:</b> Distance.h:90</div></div>
-<div class="ttc" id="aclasstinyrobotics_1_1Distance_html"><div class="ttname"><a href="classtinyrobotics_1_1Distance.html">tinyrobotics::Distance</a></div><div class="ttdoc">Represents a distance measurement with unit conversion support.</div><div class="ttdef"><b>Definition:</b> Distance.h:33</div></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno"><a class="line" href="group__units.html#ga4c67a7b952f3804e2bd056cf95c4161a">   10</a></span><span class="keyword">enum class</span> <a class="code hl_enumeration" href="group__units.html#ga4c67a7b952f3804e2bd056cf95c4161a">DistanceUnit</a> { M, CM, MM, FEET };</div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span> </div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno"><a class="line" href="classtinyrobotics_1_1Distance.html">   37</a></span><span class="keyword">class </span><a class="code hl_class" href="classtinyrobotics_1_1Distance.html">Distance</a> {</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span> <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>  <a class="code hl_class" href="classtinyrobotics_1_1Distance.html">Distance</a>() = <span class="keywordflow">default</span>;</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>  <a class="code hl_class" href="classtinyrobotics_1_1Distance.html">Distance</a>(<span class="keywordtype">float</span> distance, <a class="code hl_enumeration" href="group__units.html#ga4c67a7b952f3804e2bd056cf95c4161a">DistanceUnit</a> <a class="code hl_variable" href="classtinyrobotics_1_1Distance.html#a3ff394c5507073c42739b867ccbb4afc">unit</a>) { setValue(distance, <a class="code hl_variable" href="classtinyrobotics_1_1Distance.html#a3ff394c5507073c42739b867ccbb4afc">unit</a>); }</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span> </div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>  <span class="keywordtype">void</span> setValue(<span class="keywordtype">float</span> newDistance, <a class="code hl_enumeration" href="group__units.html#ga4c67a7b952f3804e2bd056cf95c4161a">DistanceUnit</a> newUnit) {</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    distance = newDistance;</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    <a class="code hl_variable" href="classtinyrobotics_1_1Distance.html#a3ff394c5507073c42739b867ccbb4afc">unit</a> = newUnit;</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>  }</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span> </div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>  <span class="keywordtype">float</span> getValue(<a class="code hl_enumeration" href="group__units.html#ga4c67a7b952f3804e2bd056cf95c4161a">DistanceUnit</a> desiredUnit)<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    <span class="keywordflow">if</span> (<a class="code hl_variable" href="classtinyrobotics_1_1Distance.html#a3ff394c5507073c42739b867ccbb4afc">unit</a> == desiredUnit) <span class="keywordflow">return</span> distance;</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    <span class="keywordflow">switch</span> (<a class="code hl_variable" href="classtinyrobotics_1_1Distance.html#a3ff394c5507073c42739b867ccbb4afc">unit</a>) {</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>      <span class="keywordflow">case</span> DistanceUnit::M:</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>        <span class="keywordflow">if</span> (desiredUnit == DistanceUnit::CM) <span class="keywordflow">return</span> distance * 100;</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>        <span class="keywordflow">if</span> (desiredUnit == DistanceUnit::MM) <span class="keywordflow">return</span> distance * 1000;</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>        <span class="keywordflow">if</span> (desiredUnit == DistanceUnit::FEET) <span class="keywordflow">return</span> distance * 3.28084;</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>        <span class="keywordflow">break</span>;</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>      <span class="keywordflow">case</span> DistanceUnit::CM:</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>        <span class="keywordflow">if</span> (desiredUnit == DistanceUnit::M) <span class="keywordflow">return</span> distance / 100;</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>        <span class="keywordflow">if</span> (desiredUnit == DistanceUnit::MM) <span class="keywordflow">return</span> distance * 10;</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>        <span class="keywordflow">if</span> (desiredUnit == DistanceUnit::FEET) <span class="keywordflow">return</span> distance * 0.0328084;</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>        <span class="keywordflow">break</span>;</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>      <span class="keywordflow">case</span> DistanceUnit::MM:</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>        <span class="keywordflow">if</span> (desiredUnit == DistanceUnit::M) <span class="keywordflow">return</span> distance / 1000;</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>        <span class="keywordflow">if</span> (desiredUnit == DistanceUnit::CM) <span class="keywordflow">return</span> distance / 10;</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>        <span class="keywordflow">if</span> (desiredUnit == DistanceUnit::FEET) <span class="keywordflow">return</span> distance * 0.00328084;</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>        <span class="keywordflow">break</span>;</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>      <span class="keywordflow">case</span> DistanceUnit::FEET:</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>        <span class="keywordflow">if</span> (desiredUnit == DistanceUnit::M) <span class="keywordflow">return</span> distance / 3.28084;</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>        <span class="keywordflow">if</span> (desiredUnit == DistanceUnit::CM) <span class="keywordflow">return</span> distance / 0.0328084;</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>        <span class="keywordflow">if</span> (desiredUnit == DistanceUnit::MM) <span class="keywordflow">return</span> distance / 0.00328084;</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>        <span class="keywordflow">break</span>;</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>    }</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>    <span class="keywordflow">return</span> -1;  <span class="comment">// Invalid conversion</span></div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>  }</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span> </div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span> <span class="keyword">protected</span>:</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>  <span class="keywordtype">float</span> distance = 0.0f;</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno"><a class="line" href="classtinyrobotics_1_1Distance.html#a3ff394c5507073c42739b867ccbb4afc">   76</a></span>  <a class="code hl_enumeration" href="group__units.html#ga4c67a7b952f3804e2bd056cf95c4161a">DistanceUnit</a> <a class="code hl_variable" href="classtinyrobotics_1_1Distance.html#a3ff394c5507073c42739b867ccbb4afc">unit</a> = DistanceUnit::M; </div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>};</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span> </div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno"><a class="line" href="classtinyrobotics_1_1Distance3D.html">   94</a></span><span class="keyword">class </span><a class="code hl_class" href="classtinyrobotics_1_1Distance3D.html">Distance3D</a> {</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>  <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>    <a class="code hl_class" href="classtinyrobotics_1_1Distance3D.html">Distance3D</a>() = <span class="keywordflow">default</span>;</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>    <a class="code hl_class" href="classtinyrobotics_1_1Distance3D.html">Distance3D</a>(<span class="keywordtype">float</span> x, <span class="keywordtype">float</span> y, <span class="keywordtype">float</span> z, <a class="code hl_enumeration" href="group__units.html#ga4c67a7b952f3804e2bd056cf95c4161a">DistanceUnit</a> <a class="code hl_variable" href="classtinyrobotics_1_1Distance3D.html#a3ff394c5507073c42739b867ccbb4afc">unit</a>)</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>        : x(x), y(y), z(z), <a class="code hl_variable" href="classtinyrobotics_1_1Distance3D.html#a3ff394c5507073c42739b867ccbb4afc">unit</a>(<a class="code hl_variable" href="classtinyrobotics_1_1Distance3D.html#a3ff394c5507073c42739b867ccbb4afc">unit</a>) {}</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>  </div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>    <span class="keywordtype">float</span> x = 0.0f;</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>    <span class="keywordtype">float</span> y = 0.0f;</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>    <span class="keywordtype">float</span> z = 0.0f;</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno"><a class="line" href="classtinyrobotics_1_1Distance3D.html#a3ff394c5507073c42739b867ccbb4afc">  103</a></span>    <a class="code hl_enumeration" href="group__units.html#ga4c67a7b952f3804e2bd056cf95c4161a">DistanceUnit</a> <a class="code hl_variable" href="classtinyrobotics_1_1Distance3D.html#a3ff394c5507073c42739b867ccbb4afc">unit</a> = DistanceUnit::M; </div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span> </div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>    <span class="keywordtype">float</span> getX(<a class="code hl_enumeration" href="group__units.html#ga4c67a7b952f3804e2bd056cf95c4161a">DistanceUnit</a> desiredUnit)<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>        <span class="keywordflow">if</span> (<a class="code hl_variable" href="classtinyrobotics_1_1Distance3D.html#a3ff394c5507073c42739b867ccbb4afc">unit</a> == desiredUnit) <span class="keywordflow">return</span> x;</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>        <a class="code hl_class" href="classtinyrobotics_1_1Distance.html">Distance</a> tempDistance(x, <a class="code hl_variable" href="classtinyrobotics_1_1Distance3D.html#a3ff394c5507073c42739b867ccbb4afc">unit</a>);</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>        <span class="keywordflow">return</span> tempDistance.getValue(desiredUnit);</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>      }</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>    <span class="keywordtype">float</span> getY(<a class="code hl_enumeration" href="group__units.html#ga4c67a7b952f3804e2bd056cf95c4161a">DistanceUnit</a> desiredUnit)<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>        <span class="keywordflow">if</span> (<a class="code hl_variable" href="classtinyrobotics_1_1Distance3D.html#a3ff394c5507073c42739b867ccbb4afc">unit</a> == desiredUnit) <span class="keywordflow">return</span> y;</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>        <a class="code hl_class" href="classtinyrobotics_1_1Distance.html">Distance</a> tempDistance(y, <a class="code hl_variable" href="classtinyrobotics_1_1Distance3D.html#a3ff394c5507073c42739b867ccbb4afc">unit</a>);</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>        <span class="keywordflow">return</span> tempDistance.getValue(desiredUnit);</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>      }</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>    <span class="keywordtype">float</span> getZ(<a class="code hl_enumeration" href="group__units.html#ga4c67a7b952f3804e2bd056cf95c4161a">DistanceUnit</a> desiredUnit)<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>        <span class="keywordflow">if</span> (<a class="code hl_variable" href="classtinyrobotics_1_1Distance3D.html#a3ff394c5507073c42739b867ccbb4afc">unit</a> == desiredUnit) <span class="keywordflow">return</span> z;</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>        Distance tempDistance(z, <a class="code hl_variable" href="classtinyrobotics_1_1Distance3D.html#a3ff394c5507073c42739b867ccbb4afc">unit</a>);</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>        <span class="keywordflow">return</span> tempDistance.getValue(desiredUnit); </div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>    }</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>};</div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span> </div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>}  <span class="comment">// namespace tinyrobotics</span></div>
+<div class="ttc" id="aclasstinyrobotics_1_1Distance3D_html"><div class="ttname"><a href="classtinyrobotics_1_1Distance3D.html">tinyrobotics::Distance3D</a></div><div class="ttdoc">Represents a 3D distance or position vector with unit support.</div><div class="ttdef"><b>Definition:</b> Distance.h:94</div></div>
+<div class="ttc" id="aclasstinyrobotics_1_1Distance3D_html_a3ff394c5507073c42739b867ccbb4afc"><div class="ttname"><a href="classtinyrobotics_1_1Distance3D.html#a3ff394c5507073c42739b867ccbb4afc">tinyrobotics::Distance3D::unit</a></div><div class="ttdeci">DistanceUnit unit</div><div class="ttdoc">Unit of the 3D distance.</div><div class="ttdef"><b>Definition:</b> Distance.h:103</div></div>
+<div class="ttc" id="aclasstinyrobotics_1_1Distance_html"><div class="ttname"><a href="classtinyrobotics_1_1Distance.html">tinyrobotics::Distance</a></div><div class="ttdoc">Represents a distance measurement with unit conversion support.</div><div class="ttdef"><b>Definition:</b> Distance.h:37</div></div>
+<div class="ttc" id="aclasstinyrobotics_1_1Distance_html_a3ff394c5507073c42739b867ccbb4afc"><div class="ttname"><a href="classtinyrobotics_1_1Distance.html#a3ff394c5507073c42739b867ccbb4afc">tinyrobotics::Distance::unit</a></div><div class="ttdeci">DistanceUnit unit</div><div class="ttdoc">Unit of the distance.</div><div class="ttdef"><b>Definition:</b> Distance.h:76</div></div>
+<div class="ttc" id="agroup__units_html_ga4c67a7b952f3804e2bd056cf95c4161a"><div class="ttname"><a href="group__units.html#ga4c67a7b952f3804e2bd056cf95c4161a">tinyrobotics::DistanceUnit</a></div><div class="ttdeci">DistanceUnit</div><div class="ttdoc">Supported distance units for conversion and representation.</div><div class="ttdef"><b>Definition:</b> Distance.h:10</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

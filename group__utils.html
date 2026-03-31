@@ -70,7 +70,8 @@ $(function() {
 
 <div class="header">
   <div class="summary">
-<a href="#nested-classes">Classes</a>  </div>
+<a href="#nested-classes">Classes</a> &#124;
+<a href="#enum-members">Enumerations</a>  </div>
   <div class="headertitle"><div class="title">Utilities<div class="ingroups"><a class="el" href="group__main.html">TinyRobotics</a></div></div></div>
 </div><!--header-->
 <div class="contents">
@@ -114,9 +115,101 @@ size_t size) and readBytes(uint8_t *buffer, size_t length).  <a href="classtinyr
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1MemoryStream.html">MemoryStream</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read-only memory stream for wrapping a buffer as an Arduino Stream.  <a href="classtinyrobotics_1_1MemoryStream.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="enum-members" name="enum-members"></a>
+Enumerations</h2></td></tr>
+<tr class="memitem:gae63373b1147a2e480cea6083c3f9dc6c"><td class="memItemLeft" align="right" valign="top"><a id="gae63373b1147a2e480cea6083c3f9dc6c" name="gae63373b1147a2e480cea6083c3f9dc6c"></a>enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__utils.html#gae63373b1147a2e480cea6083c3f9dc6c">FrameType</a> : uint8_t { <br />
+&#160;&#160;<b>WORLD</b>
+, <b>ODOMETRY</b>
+, <b>BASE</b>
+, <b>CAMERA</b>
+, <br />
+&#160;&#160;<b>LIDAR</b>
+, <b>WHEEL</b>
+, <b>CUSTOM</b>
+, <b>OBSTACLE</b>
+, <br />
+&#160;&#160;<b>TEMP</b>
+<br />
+ }</td></tr>
+<tr class="memdesc:gae63373b1147a2e480cea6083c3f9dc6c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Frame type for coordinate systems and reference frames. <br /></td></tr>
+<tr class="separator:gae63373b1147a2e480cea6083c3f9dc6c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga8787c656e38c35a93bccad5fe9a8d7d9"><td class="memItemLeft" align="right" valign="top"><a id="ga8787c656e38c35a93bccad5fe9a8d7d9" name="ga8787c656e38c35a93bccad5fe9a8d7d9"></a>enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__utils.html#ga8787c656e38c35a93bccad5fe9a8d7d9">CellState</a> : int8_t { <b>UNKNOWN</b> = -1
+, <b>FREE</b> = 0
+, <b>OCCUPIED</b> = 100
+ }</td></tr>
+<tr class="memdesc:ga8787c656e38c35a93bccad5fe9a8d7d9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cell state for occupancy grid mapping (e.g., UNKNOWN, FREE, OCCUPIED). <br /></td></tr>
+<tr class="separator:ga8787c656e38c35a93bccad5fe9a8d7d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gabceb2331ad056e3c5ad27894199a49ed"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__utils.html#gabceb2331ad056e3c5ad27894199a49ed">Unit</a> { <br />
+&#160;&#160;<a class="el" href="group__utils.html#ggabceb2331ad056e3c5ad27894199a49edaadaaee4b22041c27198d410c68d952c9">Percent</a>
+, <a class="el" href="group__utils.html#ggabceb2331ad056e3c5ad27894199a49edaf8afbd8ccb437ab960848b9776ef3603">MetersPerSecond</a>
+, <a class="el" href="group__utils.html#ggabceb2331ad056e3c5ad27894199a49eda1b9e7a2b816b28e74c246fe29920f0a2">RadiansPerSecond</a>
+, <a class="el" href="group__utils.html#ggabceb2331ad056e3c5ad27894199a49eda80b4a3eed88aed8a1c7d8a4418b7f469">Meters</a>
+, <br />
+&#160;&#160;<a class="el" href="group__utils.html#ggabceb2331ad056e3c5ad27894199a49eda3040cc6624f5c309963dee141936b299">Centimeters</a>
+, <a class="el" href="group__utils.html#ggabceb2331ad056e3c5ad27894199a49eda3be6521a73bcafce5b38459ec548bd11">Millimeters</a>
+, <a class="el" href="group__utils.html#ggabceb2331ad056e3c5ad27894199a49eda4309434b386f3609b2c68a2077704127">AngleDegree</a>
+, <a class="el" href="group__utils.html#ggabceb2331ad056e3c5ad27894199a49eda2cbd09630c375bec07b69c0300250c66">AngleRadian</a>
+, <br />
+&#160;&#160;<a class="el" href="group__utils.html#ggabceb2331ad056e3c5ad27894199a49edadff057dcef0f9fe56ae974117af0eb21">TemperatureC</a>
+, <a class="el" href="group__utils.html#ggabceb2331ad056e3c5ad27894199a49eda3261d983cbebd8445fd2b669f9d2f8df">TemperatureF</a>
+, <a class="el" href="group__utils.html#ggabceb2331ad056e3c5ad27894199a49eda08822b3ae4e2aede0afe08abe600e9c0">Pixel</a>
+<br />
+ }</td></tr>
+<tr class="memdesc:gabceb2331ad056e3c5ad27894199a49ed"><td class="mdescLeft">&#160;</td><td class="mdescRight">Units for message values.  <a href="group__utils.html#gabceb2331ad056e3c5ad27894199a49ed">More...</a><br /></td></tr>
+<tr class="separator:gabceb2331ad056e3c5ad27894199a49ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <p>Utility classes for logging, memory, and helpers. </p>
+<h2 class="groupheader">Enumeration Type Documentation</h2>
+<a id="gabceb2331ad056e3c5ad27894199a49ed" name="gabceb2331ad056e3c5ad27894199a49ed"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gabceb2331ad056e3c5ad27894199a49ed">&#9670;&#160;</a></span>Unit</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum class <a class="el" href="group__utils.html#gabceb2331ad056e3c5ad27894199a49ed">Unit</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">strong</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Units for message values. </p>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="ggabceb2331ad056e3c5ad27894199a49edaadaaee4b22041c27198d410c68d952c9" name="ggabceb2331ad056e3c5ad27894199a49edaadaaee4b22041c27198d410c68d952c9"></a>Percent&#160;</td><td class="fielddoc"><p>Percentage (0-100) </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ggabceb2331ad056e3c5ad27894199a49edaf8afbd8ccb437ab960848b9776ef3603" name="ggabceb2331ad056e3c5ad27894199a49edaf8afbd8ccb437ab960848b9776ef3603"></a>MetersPerSecond&#160;</td><td class="fielddoc"><p><a class="el" href="classtinyrobotics_1_1Speed.html" title="Represents a speed measurement with unit conversion support.">Speed</a> in meters per second. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ggabceb2331ad056e3c5ad27894199a49eda1b9e7a2b816b28e74c246fe29920f0a2" name="ggabceb2331ad056e3c5ad27894199a49eda1b9e7a2b816b28e74c246fe29920f0a2"></a>RadiansPerSecond&#160;</td><td class="fielddoc"><p>Angular speed in radians per second. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ggabceb2331ad056e3c5ad27894199a49eda80b4a3eed88aed8a1c7d8a4418b7f469" name="ggabceb2331ad056e3c5ad27894199a49eda80b4a3eed88aed8a1c7d8a4418b7f469"></a>Meters&#160;</td><td class="fielddoc"><p><a class="el" href="classtinyrobotics_1_1Distance.html" title="Represents a distance measurement with unit conversion support.">Distance</a> in meters. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ggabceb2331ad056e3c5ad27894199a49eda3040cc6624f5c309963dee141936b299" name="ggabceb2331ad056e3c5ad27894199a49eda3040cc6624f5c309963dee141936b299"></a>Centimeters&#160;</td><td class="fielddoc"><p><a class="el" href="classtinyrobotics_1_1Distance.html" title="Represents a distance measurement with unit conversion support.">Distance</a> in centimeters. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ggabceb2331ad056e3c5ad27894199a49eda3be6521a73bcafce5b38459ec548bd11" name="ggabceb2331ad056e3c5ad27894199a49eda3be6521a73bcafce5b38459ec548bd11"></a>Millimeters&#160;</td><td class="fielddoc"><p><a class="el" href="classtinyrobotics_1_1Distance.html" title="Represents a distance measurement with unit conversion support.">Distance</a> in millimeters. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ggabceb2331ad056e3c5ad27894199a49eda4309434b386f3609b2c68a2077704127" name="ggabceb2331ad056e3c5ad27894199a49eda4309434b386f3609b2c68a2077704127"></a>AngleDegree&#160;</td><td class="fielddoc"><p><a class="el" href="classtinyrobotics_1_1Angle.html" title="Represents an angle with unit conversion and wrap-around support.">Angle</a> in degrees. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ggabceb2331ad056e3c5ad27894199a49eda2cbd09630c375bec07b69c0300250c66" name="ggabceb2331ad056e3c5ad27894199a49eda2cbd09630c375bec07b69c0300250c66"></a>AngleRadian&#160;</td><td class="fielddoc"><p><a class="el" href="classtinyrobotics_1_1Angle.html" title="Represents an angle with unit conversion and wrap-around support.">Angle</a> in radians. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ggabceb2331ad056e3c5ad27894199a49edadff057dcef0f9fe56ae974117af0eb21" name="ggabceb2331ad056e3c5ad27894199a49edadff057dcef0f9fe56ae974117af0eb21"></a>TemperatureC&#160;</td><td class="fielddoc"><p>Temperature in Celsius. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ggabceb2331ad056e3c5ad27894199a49eda3261d983cbebd8445fd2b669f9d2f8df" name="ggabceb2331ad056e3c5ad27894199a49eda3261d983cbebd8445fd2b669f9d2f8df"></a>TemperatureF&#160;</td><td class="fielddoc"><p>Temperature in Fahrenheit. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ggabceb2331ad056e3c5ad27894199a49eda08822b3ae4e2aede0afe08abe600e9c0" name="ggabceb2331ad056e3c5ad27894199a49eda08822b3ae4e2aede0afe08abe600e9c0"></a>Pixel&#160;</td><td class="fielddoc"><p>Pixel units (e.g., for image processing) </p>
+</td></tr>
+</table>
+
+</div>
+</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

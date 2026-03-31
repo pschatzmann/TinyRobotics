@@ -10,5 +10,6 @@ var searchData=
   ['distance_7',['distance',['../classtinyrobotics_1_1Coordinate.html#aee5c2b556490beb8db89af18d3565f65',1,'tinyrobotics::Coordinate::distance()'],['../classtinyrobotics_1_1GPSCoordinate.html#a333c97ec784b2b06d8d9b0a90fe2a982',1,'tinyrobotics::GPSCoordinate::distance()'],['../classtinyrobotics_1_1Path.html#a858cf934b3668c4918ca0367e04686b6',1,'tinyrobotics::Path::distance()']]],
   ['distance_8',['Distance',['../classtinyrobotics_1_1Distance.html',1,'tinyrobotics']]],
   ['distance3d_9',['Distance3D',['../classtinyrobotics_1_1Distance3D.html',1,'tinyrobotics']]],
-  ['distancem_10',['distanceM',['../classtinyrobotics_1_1GPSCoordinate.html#ad0d0b3c37a21dcefc9a66eb44d2c6f19',1,'tinyrobotics::GPSCoordinate']]]
+  ['distancem_10',['distanceM',['../classtinyrobotics_1_1GPSCoordinate.html#ad0d0b3c37a21dcefc9a66eb44d2c6f19',1,'tinyrobotics::GPSCoordinate']]],
+  ['distanceunit_11',['DistanceUnit',['../group__units.html#ga4c67a7b952f3804e2bd056cf95c4161a',1,'tinyrobotics']]]
 ];

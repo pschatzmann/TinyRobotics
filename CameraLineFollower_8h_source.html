@@ -166,7 +166,7 @@ $(function() {
 <div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>    <span class="keywordtype">int</span> error = position - center;</div>
 <div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span> </div>
 <div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>    <span class="comment">// publish angle to direction of movement</span></div>
-<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>    Message&lt;float&gt; msgError(MessageContent::Error, error, Unit::Pixel);</div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>    Message&lt;float&gt; msgError(MessageContent::Error, error, <a class="code hl_enumvalue" href="group__utils.html#ggabceb2331ad056e3c5ad27894199a49eda08822b3ae4e2aede0afe08abe600e9c0">Unit::Pixel</a>);</div>
 <div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>    msgError.source = MessageOrigin::Camera;</div>
 <div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>    <a class="code hl_function" href="classtinyrobotics_1_1MessageSource.html#a98c36b84c000f803e27b164c09d96260">sendMessage</a>(msgError);</div>
 <div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span> </div>
@@ -183,6 +183,7 @@ $(function() {
 <div class="ttc" id="aclasstinyrobotics_1_1CameraLineFollower_html"><div class="ttname"><a href="classtinyrobotics_1_1CameraLineFollower.html">tinyrobotics::CameraLineFollower</a></div><div class="ttdoc">Simple line-following algorithm for grayscale camera images.</div><div class="ttdef"><b>Definition:</b> CameraLineFollower.h:44</div></div>
 <div class="ttc" id="aclasstinyrobotics_1_1MessageSource_html"><div class="ttname"><a href="classtinyrobotics_1_1MessageSource.html">tinyrobotics::MessageSource</a></div><div class="ttdoc">Base class for message sources in the TinyRobotics communication framework.</div><div class="ttdef"><b>Definition:</b> MessageSource.h:34</div></div>
 <div class="ttc" id="aclasstinyrobotics_1_1MessageSource_html_a98c36b84c000f803e27b164c09d96260"><div class="ttname"><a href="classtinyrobotics_1_1MessageSource.html#a98c36b84c000f803e27b164c09d96260">tinyrobotics::MessageSource::sendMessage</a></div><div class="ttdeci">void sendMessage(Message&lt; float &gt; &amp;msg)</div><div class="ttdoc">Publish a message to all registered handlers.</div><div class="ttdef"><b>Definition:</b> MessageSource.h:57</div></div>
+<div class="ttc" id="agroup__utils_html_ggabceb2331ad056e3c5ad27894199a49eda08822b3ae4e2aede0afe08abe600e9c0"><div class="ttname"><a href="group__utils.html#ggabceb2331ad056e3c5ad27894199a49eda08822b3ae4e2aede0afe08abe600e9c0">tinyrobotics::Unit::Pixel</a></div><div class="ttdeci">@ Pixel</div><div class="ttdoc">Pixel units (e.g., for image processing)</div></div>
 <div class="ttc" id="astructtinyrobotics_1_1CameraLineFollower_1_1Result_html"><div class="ttname"><a href="structtinyrobotics_1_1CameraLineFollower_1_1Result.html">tinyrobotics::CameraLineFollower::Result</a></div><div class="ttdef"><b>Definition:</b> CameraLineFollower.h:46</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->

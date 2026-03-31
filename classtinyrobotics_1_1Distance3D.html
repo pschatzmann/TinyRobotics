@@ -89,16 +89,16 @@ $(function() {
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:aa9d314f4d1ad4e21af0b3deb277f1b91"><td class="memItemLeft" align="right" valign="top"><a id="aa9d314f4d1ad4e21af0b3deb277f1b91" name="aa9d314f4d1ad4e21af0b3deb277f1b91"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Distance3D</b> (float x, float y, float z, DistanceUnit unit)</td></tr>
+&#160;</td><td class="memItemRight" valign="bottom"><b>Distance3D</b> (float x, float y, float z, <a class="el" href="group__units.html#ga4c67a7b952f3804e2bd056cf95c4161a">DistanceUnit</a> <a class="el" href="classtinyrobotics_1_1Distance3D.html#a3ff394c5507073c42739b867ccbb4afc">unit</a>)</td></tr>
 <tr class="separator:aa9d314f4d1ad4e21af0b3deb277f1b91"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:add9119fa213dbf76b6fbe8a126d452c0"><td class="memItemLeft" align="right" valign="top"><a id="add9119fa213dbf76b6fbe8a126d452c0" name="add9119fa213dbf76b6fbe8a126d452c0"></a>
-float&#160;</td><td class="memItemRight" valign="bottom"><b>getX</b> (DistanceUnit desiredUnit) const</td></tr>
+float&#160;</td><td class="memItemRight" valign="bottom"><b>getX</b> (<a class="el" href="group__units.html#ga4c67a7b952f3804e2bd056cf95c4161a">DistanceUnit</a> desiredUnit) const</td></tr>
 <tr class="separator:add9119fa213dbf76b6fbe8a126d452c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3bd00a22b4835a05ebbb0fe2d0429df9"><td class="memItemLeft" align="right" valign="top"><a id="a3bd00a22b4835a05ebbb0fe2d0429df9" name="a3bd00a22b4835a05ebbb0fe2d0429df9"></a>
-float&#160;</td><td class="memItemRight" valign="bottom"><b>getY</b> (DistanceUnit desiredUnit) const</td></tr>
+float&#160;</td><td class="memItemRight" valign="bottom"><b>getY</b> (<a class="el" href="group__units.html#ga4c67a7b952f3804e2bd056cf95c4161a">DistanceUnit</a> desiredUnit) const</td></tr>
 <tr class="separator:a3bd00a22b4835a05ebbb0fe2d0429df9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afc34c2b3f740e78e756593c54220c777"><td class="memItemLeft" align="right" valign="top"><a id="afc34c2b3f740e78e756593c54220c777" name="afc34c2b3f740e78e756593c54220c777"></a>
-float&#160;</td><td class="memItemRight" valign="bottom"><b>getZ</b> (DistanceUnit desiredUnit) const</td></tr>
+float&#160;</td><td class="memItemRight" valign="bottom"><b>getZ</b> (<a class="el" href="group__units.html#ga4c67a7b952f3804e2bd056cf95c4161a">DistanceUnit</a> desiredUnit) const</td></tr>
 <tr class="separator:afc34c2b3f740e78e756593c54220c777"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
@@ -112,8 +112,8 @@ float&#160;</td><td class="memItemRight" valign="bottom"><b>y</b> = 0.0f</td></t
 <tr class="memitem:af73583b1e980b0aa03f9884812e9fd4d"><td class="memItemLeft" align="right" valign="top"><a id="af73583b1e980b0aa03f9884812e9fd4d" name="af73583b1e980b0aa03f9884812e9fd4d"></a>
 float&#160;</td><td class="memItemRight" valign="bottom"><b>z</b> = 0.0f</td></tr>
 <tr class="separator:af73583b1e980b0aa03f9884812e9fd4d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3ff394c5507073c42739b867ccbb4afc"><td class="memItemLeft" align="right" valign="top"><a id="a3ff394c5507073c42739b867ccbb4afc" name="a3ff394c5507073c42739b867ccbb4afc"></a>
-DistanceUnit&#160;</td><td class="memItemRight" valign="bottom"><b>unit</b> = DistanceUnit::M</td></tr>
+<tr class="memitem:a3ff394c5507073c42739b867ccbb4afc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__units.html#ga4c67a7b952f3804e2bd056cf95c4161a">DistanceUnit</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1Distance3D.html#a3ff394c5507073c42739b867ccbb4afc">unit</a> = DistanceUnit::M</td></tr>
+<tr class="memdesc:a3ff394c5507073c42739b867ccbb4afc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unit of the 3D distance.  <br /></td></tr>
 <tr class="separator:a3ff394c5507073c42739b867ccbb4afc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -121,7 +121,25 @@ DistanceUnit&#160;</td><td class="memItemRight" valign="bottom"><b>unit</b> = Di
 <p>This class encapsulates a 3D distance measurement, storing x, y, and z components along with a unit (meters, centimeters, millimeters, or feet). It provides methods to retrieve each component in any supported unit, handling conversion as needed.</p>
 <p><a class="el" href="classtinyrobotics_1_1Distance3D.html" title="Represents a 3D distance or position vector with unit support.">Distance3D</a> is useful for robotics, navigation, mapping, and simulation applications where 3D positions or displacements must be represented and manipulated in a type-safe and unit-aware manner. It is compatible with the <a class="el" href="classtinyrobotics_1_1Distance.html" title="Represents a distance measurement with unit conversion support.">Distance</a> class for 1D distance.</p>
 <p>Example usage: <a class="el" href="classtinyrobotics_1_1Distance3D.html" title="Represents a 3D distance or position vector with unit support.">Distance3D</a> p(1.0, 2.0, 3.0, DistanceUnit::M); // 1m, 2m, 3m in x, y, z float x_cm = p.getX(DistanceUnit::CM); // Convert x to centimeters </p>
-</div><hr/>The documentation for this class was generated from the following file:<ul>
+</div><h2 class="groupheader">Member Data Documentation</h2>
+<a id="a3ff394c5507073c42739b867ccbb4afc" name="a3ff394c5507073c42739b867ccbb4afc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3ff394c5507073c42739b867ccbb4afc">&#9670;&#160;</a></span>unit</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__units.html#ga4c67a7b952f3804e2bd056cf95c4161a">DistanceUnit</a> unit = DistanceUnit::M</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Unit of the 3D distance. </p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="group__units.html#ga4c67a7b952f3804e2bd056cf95c4161a" title="Supported distance units for conversion and representation.">DistanceUnit</a> </dd></dl>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following file:<ul>
 <li>src/TinyRobotics/units/<a class="el" href="Distance_8h_source.html">Distance.h</a></li>
 </ul>
 </div><!-- contents -->

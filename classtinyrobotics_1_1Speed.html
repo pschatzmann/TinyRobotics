@@ -89,13 +89,13 @@ $(function() {
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:ad47ebc76497526491a0e336bd605692f"><td class="memItemLeft" align="right" valign="top"><a id="ad47ebc76497526491a0e336bd605692f" name="ad47ebc76497526491a0e336bd605692f"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Speed</b> (float speed, SpeedUnit unit)</td></tr>
+&#160;</td><td class="memItemRight" valign="bottom"><b>Speed</b> (float speed, <a class="el" href="group__units.html#ga877e4fdbe9d3581dfa3431b6436b1615">SpeedUnit</a> <a class="el" href="classtinyrobotics_1_1Speed.html#a42c78ec9f79ed3b814b85f0013684b03">unit</a>)</td></tr>
 <tr class="separator:ad47ebc76497526491a0e336bd605692f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1fd4460d7753615cacaae1606d9aaa62"><td class="memItemLeft" align="right" valign="top"><a id="a1fd4460d7753615cacaae1606d9aaa62" name="a1fd4460d7753615cacaae1606d9aaa62"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setValue</b> (float newSpeed, SpeedUnit newUnit)</td></tr>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>setValue</b> (float newSpeed, <a class="el" href="group__units.html#ga877e4fdbe9d3581dfa3431b6436b1615">SpeedUnit</a> newUnit)</td></tr>
 <tr class="separator:a1fd4460d7753615cacaae1606d9aaa62"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9ad0cf0b1edf93adf861f85aee3eb23a"><td class="memItemLeft" align="right" valign="top"><a id="a9ad0cf0b1edf93adf861f85aee3eb23a" name="a9ad0cf0b1edf93adf861f85aee3eb23a"></a>
-float&#160;</td><td class="memItemRight" valign="bottom"><b>getValue</b> (SpeedUnit desiredUnit) const</td></tr>
+float&#160;</td><td class="memItemRight" valign="bottom"><b>getValue</b> (<a class="el" href="group__units.html#ga877e4fdbe9d3581dfa3431b6436b1615">SpeedUnit</a> desiredUnit) const</td></tr>
 <tr class="separator:a9ad0cf0b1edf93adf861f85aee3eb23a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
@@ -103,8 +103,8 @@ Protected Attributes</h2></td></tr>
 <tr class="memitem:a7f7e4724cf57d59513b39c5ecc81adc8"><td class="memItemLeft" align="right" valign="top"><a id="a7f7e4724cf57d59513b39c5ecc81adc8" name="a7f7e4724cf57d59513b39c5ecc81adc8"></a>
 float&#160;</td><td class="memItemRight" valign="bottom"><b>speed</b> = 0.0f</td></tr>
 <tr class="separator:a7f7e4724cf57d59513b39c5ecc81adc8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a42c78ec9f79ed3b814b85f0013684b03"><td class="memItemLeft" align="right" valign="top"><a id="a42c78ec9f79ed3b814b85f0013684b03" name="a42c78ec9f79ed3b814b85f0013684b03"></a>
-SpeedUnit&#160;</td><td class="memItemRight" valign="bottom"><b>unit</b> = SpeedUnit::MPS</td></tr>
+<tr class="memitem:a42c78ec9f79ed3b814b85f0013684b03"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__units.html#ga877e4fdbe9d3581dfa3431b6436b1615">SpeedUnit</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1Speed.html#a42c78ec9f79ed3b814b85f0013684b03">unit</a> = SpeedUnit::MPS</td></tr>
+<tr class="memdesc:a42c78ec9f79ed3b814b85f0013684b03"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unit of the speed.  <br /></td></tr>
 <tr class="separator:a42c78ec9f79ed3b814b85f0013684b03"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -119,10 +119,36 @@ SpeedUnit&#160;</td><td class="memItemRight" valign="bottom"><b>unit</b> = Speed
 <div class="line"><span class="keywordtype">float</span> mph = s.getValue(SpeedUnit::MPH); <span class="comment">// Convert to miles per hour</span></div>
 <div class="line">s.setValue(36.0, SpeedUnit::KPH);       <span class="comment">// Update value in km/h</span></div>
 <div class="line"><span class="keywordtype">float</span> mps = s.getValue(SpeedUnit::MPS); <span class="comment">// Convert back to m/s</span></div>
-<div class="ttc" id="aclasstinyrobotics_1_1Speed_html"><div class="ttname"><a href="classtinyrobotics_1_1Speed.html">tinyrobotics::Speed</a></div><div class="ttdoc">Represents a speed measurement with unit conversion support.</div><div class="ttdef"><b>Definition:</b> Speed.h:33</div></div>
+<div class="ttc" id="aclasstinyrobotics_1_1Speed_html"><div class="ttname"><a href="classtinyrobotics_1_1Speed.html">tinyrobotics::Speed</a></div><div class="ttdoc">Represents a speed measurement with unit conversion support.</div><div class="ttdef"><b>Definition:</b> Speed.h:37</div></div>
 </div><!-- fragment --><dl class="section note"><dt>Note</dt><dd>Invalid conversions return -1.0f.</dd></dl>
-<dl class="section see"><dt>See also</dt><dd>SpeedUnit </dd></dl>
-</div><hr/>The documentation for this class was generated from the following file:<ul>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="group__units.html#ga877e4fdbe9d3581dfa3431b6436b1615" title="Supported speed units for conversion and representation.">SpeedUnit</a> </dd></dl>
+</div><h2 class="groupheader">Member Data Documentation</h2>
+<a id="a42c78ec9f79ed3b814b85f0013684b03" name="a42c78ec9f79ed3b814b85f0013684b03"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a42c78ec9f79ed3b814b85f0013684b03">&#9670;&#160;</a></span>unit</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__units.html#ga877e4fdbe9d3581dfa3431b6436b1615">SpeedUnit</a> unit = SpeedUnit::MPS</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Unit of the speed. </p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="group__units.html#ga877e4fdbe9d3581dfa3431b6436b1615" title="Supported speed units for conversion and representation.">SpeedUnit</a> </dd></dl>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following file:<ul>
 <li>src/TinyRobotics/units/<a class="el" href="Speed_8h_source.html">Speed.h</a></li>
 </ul>
 </div><!-- contents -->

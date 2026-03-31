@@ -5,8 +5,9 @@ var searchData=
   ['frame3d_2',['Frame3D',['../classtinyrobotics_1_1Frame3D.html',1,'tinyrobotics']]],
   ['framemgr2d_3',['FrameMgr2D',['../classtinyrobotics_1_1FrameMgr2D.html',1,'tinyrobotics']]],
   ['framemgr3d_4',['FrameMgr3D',['../classtinyrobotics_1_1FrameMgr3D.html',1,'tinyrobotics']]],
-  ['fromstring_5',['fromString',['../classtinyrobotics_1_1GPSCoordinate.html#a90a596c64056d74e218b1a77186546d4',1,'tinyrobotics::GPSCoordinate']]],
-  ['fusion_6',['Fusion',['../group__fusion.html',1,'']]],
-  ['fusion2d_7',['Fusion2D',['../classtinyrobotics_1_1Fusion2D.html#a02761b1baa1443f52b8b0de02859af08',1,'tinyrobotics::Fusion2D::Fusion2D()'],['../classtinyrobotics_1_1Fusion2D.html',1,'Fusion2D']]],
-  ['fusion3d_8',['Fusion3D',['../classtinyrobotics_1_1Fusion3D.html',1,'tinyrobotics']]]
+  ['frametype_5',['FrameType',['../group__utils.html#gae63373b1147a2e480cea6083c3f9dc6c',1,'tinyrobotics']]],
+  ['fromstring_6',['fromString',['../classtinyrobotics_1_1GPSCoordinate.html#a90a596c64056d74e218b1a77186546d4',1,'tinyrobotics::GPSCoordinate']]],
+  ['fusion_7',['Fusion',['../group__fusion.html',1,'']]],
+  ['fusion2d_8',['Fusion2D',['../classtinyrobotics_1_1Fusion2D.html#a02761b1baa1443f52b8b0de02859af08',1,'tinyrobotics::Fusion2D::Fusion2D()'],['../classtinyrobotics_1_1Fusion2D.html',1,'Fusion2D']]],
+  ['fusion3d_9',['Fusion3D',['../classtinyrobotics_1_1Fusion3D.html',1,'tinyrobotics']]]
 ];

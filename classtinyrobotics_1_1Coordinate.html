@@ -116,12 +116,12 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a7c6c0504ed144dde6eaf0599d424ef26"><td class="memItemLeft" align="right" valign="top"><a id="a7c6c0504ed144dde6eaf0599d424ef26" name="a7c6c0504ed144dde6eaf0599d424ef26"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>Coordinate</b> (<a class="el" href="classtinyrobotics_1_1Distance.html">Distance</a> x, <a class="el" href="classtinyrobotics_1_1Distance.html">Distance</a> y, <a class="el" href="classtinyrobotics_1_1Distance.html">Distance</a> z=0)</td></tr>
 <tr class="separator:a7c6c0504ed144dde6eaf0599d424ef26"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aee5c2b556490beb8db89af18d3565f65"><td class="memItemLeft" align="right" valign="top">DistanceM&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1Coordinate.html#aee5c2b556490beb8db89af18d3565f65">distance</a> (const <a class="el" href="classtinyrobotics_1_1Coordinate.html">Coordinate</a> &amp;other, DistanceUnit unit=DistanceUnit::M) const</td></tr>
+<tr class="memitem:aee5c2b556490beb8db89af18d3565f65"><td class="memItemLeft" align="right" valign="top">DistanceM&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1Coordinate.html#aee5c2b556490beb8db89af18d3565f65">distance</a> (const <a class="el" href="classtinyrobotics_1_1Coordinate.html">Coordinate</a> &amp;other, <a class="el" href="group__units.html#ga4c67a7b952f3804e2bd056cf95c4161a">DistanceUnit</a> unit=DistanceUnit::M) const</td></tr>
 <tr class="separator:aee5c2b556490beb8db89af18d3565f65"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9e7910a97bc59d8c9d7c5dda98147795"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1Coordinate.html#a9e7910a97bc59d8c9d7c5dda98147795">bearing</a> (const <a class="el" href="classtinyrobotics_1_1Coordinate.html">Coordinate</a> &amp;other, AngleUnit unit=AngleUnit::DEG) const</td></tr>
+<tr class="memitem:a9e7910a97bc59d8c9d7c5dda98147795"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1Coordinate.html#a9e7910a97bc59d8c9d7c5dda98147795">bearing</a> (const <a class="el" href="classtinyrobotics_1_1Coordinate.html">Coordinate</a> &amp;other, <a class="el" href="group__units.html#ga70ab36d1d4920fdd314279845af152c5">AngleUnit</a> unit=AngleUnit::DEG) const</td></tr>
 <tr class="separator:a9e7910a97bc59d8c9d7c5dda98147795"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab484b552fdcb753c40bd270f9801fac1"><td class="memItemLeft" align="right" valign="top"><a id="ab484b552fdcb753c40bd270f9801fac1" name="ab484b552fdcb753c40bd270f9801fac1"></a>
-float&#160;</td><td class="memItemRight" valign="bottom"><b>elevation</b> (const <a class="el" href="classtinyrobotics_1_1Coordinate.html">Coordinate</a> &amp;other, AngleUnit unit=AngleUnit::DEG) const</td></tr>
+float&#160;</td><td class="memItemRight" valign="bottom"><b>elevation</b> (const <a class="el" href="classtinyrobotics_1_1Coordinate.html">Coordinate</a> &amp;other, <a class="el" href="group__units.html#ga70ab36d1d4920fdd314279845af152c5">AngleUnit</a> unit=AngleUnit::DEG) const</td></tr>
 <tr class="memdesc:ab484b552fdcb753c40bd270f9801fac1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculate the elevation angle from this coordinate to another. <br /></td></tr>
 <tr class="separator:ab484b552fdcb753c40bd270f9801fac1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad97ef91304509f7741f5639fc339ba76"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classtinyrobotics_1_1Coordinate.html">Coordinate</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1Coordinate.html#ad97ef91304509f7741f5639fc339ba76">navigate</a> (<a class="el" href="classtinyrobotics_1_1Distance.html">Distance</a> <a class="el" href="classtinyrobotics_1_1Coordinate.html#aee5c2b556490beb8db89af18d3565f65">distance</a>, <a class="el" href="classtinyrobotics_1_1Angle.html">Angle</a> <a class="el" href="classtinyrobotics_1_1Coordinate.html#a9e7910a97bc59d8c9d7c5dda98147795">bearing</a>, <a class="el" href="classtinyrobotics_1_1Distance.html">Distance</a> altDiff=0) const</td></tr>
@@ -283,7 +283,7 @@ class tinyrobotics::Coordinate&lt; T &gt;</div><p>A generic 3D coordinate class 
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">AngleUnit&#160;</td>
+          <td class="paramtype"><a class="el" href="group__units.html#ga70ab36d1d4920fdd314279845af152c5">AngleUnit</a>&#160;</td>
           <td class="paramname"><em>unit</em> = <code>AngleUnit::DEG</code>&#160;</td>
         </tr>
         <tr>
@@ -320,7 +320,7 @@ class tinyrobotics::Coordinate&lt; T &gt;</div><p>A generic 3D coordinate class 
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">DistanceUnit&#160;</td>
+          <td class="paramtype"><a class="el" href="group__units.html#ga4c67a7b952f3804e2bd056cf95c4161a">DistanceUnit</a>&#160;</td>
           <td class="paramname"><em>unit</em> = <code>DistanceUnit::M</code>&#160;</td>
         </tr>
         <tr>
