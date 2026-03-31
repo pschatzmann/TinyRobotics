@@ -81,7 +81,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>A simple class to represent an angle with a specific unit (degrees or radians). It provides methods to set and get the angle in different units, as well as basic arithmetic operations (addition and subtraction) that handle unit conversion and wrap-around correctly. The class can be used for various applications such as navigation, robotics, or any scenario that requires angle representation and manipulation. The internal representation of the angle is stored in the unit specified at construction, and all operations ensure that the angle remains within the valid range (0 to 360 degrees or 0 to 2π radians) depending on the unit.  
+<p>Represents an angle with unit conversion and wrap-around support.  
  <a href="classtinyrobotics_1_1Angle.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="Angle_8h_source.html">Angle.h</a>&gt;</code></p>
@@ -120,7 +120,21 @@ AngleUnit&#160;</td><td class="memItemRight" valign="bottom"><b>unit</b> = Angle
 <tr class="separator:a88e79afd0600f7f4c528b9a1754c985b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>A simple class to represent an angle with a specific unit (degrees or radians). It provides methods to set and get the angle in different units, as well as basic arithmetic operations (addition and subtraction) that handle unit conversion and wrap-around correctly. The class can be used for various applications such as navigation, robotics, or any scenario that requires angle representation and manipulation. The internal representation of the angle is stored in the unit specified at construction, and all operations ensure that the angle remains within the valid range (0 to 360 degrees or 0 to 2π radians) depending on the unit. </p>
+<div class="textblock"><p>Represents an angle with unit conversion and wrap-around support. </p>
+<p>The <a class="el" href="classtinyrobotics_1_1Angle.html" title="Represents an angle with unit conversion and wrap-around support.">Angle</a> class encapsulates an angle value and its unit, supporting degrees (DEG) and radians (RAD). It provides methods to set and retrieve the angle in any supported unit, automatically handling conversions and wrap-around (0-360° or 0-2π rad).</p>
+<ul>
+<li>Internal state is always consistent with the last set value and unit.</li>
+<li>Designed for embedded and robotics applications where unit flexibility and efficiency are required.</li>
+<li>Supports addition and subtraction with automatic wrap-around.</li>
+<li>Use getValue() to retrieve the angle in any unit; use setValue() to update the value and unit.</li>
+</ul>
+<p>Example: </p><div class="fragment"><div class="line"><a class="code hl_class" href="classtinyrobotics_1_1Angle.html">Angle</a> a(90.0, AngleUnit::DEG);</div>
+<div class="line"><span class="keywordtype">float</span> rad = a.getValue(AngleUnit::RAD); <span class="comment">// Convert to radians</span></div>
+<div class="line">a.add(<a class="code hl_class" href="classtinyrobotics_1_1Angle.html">Angle</a>(45.0, AngleUnit::DEG));    <span class="comment">// Add 45 degrees</span></div>
+<div class="line"><a class="code hl_class" href="classtinyrobotics_1_1Angle.html">Angle</a> b = a - <a class="code hl_class" href="classtinyrobotics_1_1Angle.html">Angle</a>(180.0, AngleUnit::DEG); <span class="comment">// Subtract 180 degrees</span></div>
+<div class="ttc" id="aclasstinyrobotics_1_1Angle_html"><div class="ttname"><a href="classtinyrobotics_1_1Angle.html">tinyrobotics::Angle</a></div><div class="ttdoc">Represents an angle with unit conversion and wrap-around support.</div><div class="ttdef"><b>Definition:</b> Angle.h:35</div></div>
+</div><!-- fragment --><dl class="section note"><dt>Note</dt><dd>Invalid conversions return -1.0f.</dd></dl>
+<dl class="section see"><dt>See also</dt><dd>AngleUnit </dd></dl>
 </div><hr/>The documentation for this class was generated from the following file:<ul>
 <li>src/TinyRobotics/units/<a class="el" href="Angle_8h_source.html">Angle.h</a></li>
 </ul>

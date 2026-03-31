@@ -5,7 +5,7 @@
 <area shape="rect" id="node4" href="$classtinyrobotics_1_1Coordinate.html" title=" " alt="" coords="301,80,453,105"/>
 <area shape="rect" id="node5" href="$classtinyrobotics_1_1Serializable.html" title="This class defines an interface for serializable objects that can be converted to and from a string r..." alt="" coords="327,5,426,31"/>
 <area shape="rect" id="node6" href="$structtinyrobotics_1_1Delta2D.html" title="Represents a 2D incremental motion update (dx, dy, dtheta)." alt="" coords="477,80,551,105"/>
-<area shape="rect" id="node7" href="$classtinyrobotics_1_1Angle.html" title="A simple class to represent an angle with a specific unit (degrees or radians). It provides methods t..." alt="" coords="575,80,634,105"/>
+<area shape="rect" id="node7" href="$classtinyrobotics_1_1Angle.html" title="Represents an angle with unit conversion and wrap&#45;around support." alt="" coords="575,80,634,105"/>
 <area shape="rect" id="node8" href="$classtinyrobotics_1_1Speed.html" title="Represents a speed measurement with unit conversion support." alt="" coords="699,80,761,105"/>
 <area shape="rect" id="node9" href="$classtinyrobotics_1_1Distance.html" title="Represents a distance measurement with unit conversion support." alt="" coords="785,80,864,105"/>
 </map>
