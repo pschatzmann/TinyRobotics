@@ -86,6 +86,8 @@ struct Transform3D {
 };
 
 /**
+ * @class Frame3D
+ * @ingroup coordinates
  * @brief Represents a 3D coordinate frame in a hierarchical frame tree.
  *
  * Frame3D models a reference frame in 3D space, such as a robot base, sensor,
@@ -114,6 +116,8 @@ class Frame3D {
 };
 
 /**
+ * @class FrameMgr3D
+ * @ingroup coordinates
  * @brief Manages a hierarchy of 3D coordinate frames and enables SE(3)
  * transforms.
  *

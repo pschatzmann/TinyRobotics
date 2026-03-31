@@ -4,6 +4,8 @@
 #include "Vehicle.h"
 
 /**
+ * @class CarDifferential
+ * @ingroup vehicles
  * @brief  Car model with differential drive. The direction is controlled by
  * adjusting the speed of the motors. Even motors are on the left side, odd
  * motors are on the right side.
@@ -23,7 +25,6 @@
  * car.setTurn(30);       // turn right by slowing left motors
  * car.end();            // brake all motors
  * @endcode
- * @ingroup vehicles
  */
 namespace tinyrobotics {
 

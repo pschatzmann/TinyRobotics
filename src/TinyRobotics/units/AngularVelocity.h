@@ -5,6 +5,11 @@ namespace tinyrobotics {
 
 enum class AngularVelocityUnit { RadPerSecond, DegPerSecond };
 
+/**
+ * @class AngularVelocity
+ * @ingroup units
+ * @brief Represents a 1D angular velocity with unit support.
+ */
 class AngularVelocity {
  public:
   float angularVelocity = 0.0f;
@@ -50,6 +55,11 @@ class AngularVelocity {
  * Example usage:
  *   AngularVelocity3D w(0.1, 0.0, 0.0, AngularVelocityUnit::RadPerSecond); // 0.1 rad/s about x
  *   float wx_deg = w.getX(AngularVelocityUnit::DegPerSecond);              // Convert x to deg/s
+ */
+/**
+ * @class AngularVelocity3D
+ * @ingroup units
+ * @brief Represents a 3D angular velocity vector with unit support.
  */
 class AngularVelocity3D {
  public:

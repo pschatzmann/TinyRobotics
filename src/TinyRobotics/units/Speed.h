@@ -5,6 +5,8 @@ namespace tinyrobotics {
 enum class SpeedUnit { MPS, KPH, FPS, MPH };
 
 /**
+ * @class Speed
+ * @ingroup units
  * @brief This class represents a speed measurement with a specific unit (meters
  * per second, kilometers per hour, feet per second, or miles per hour). It
  * provides methods to set and get the speed in different units, as well as
@@ -18,7 +20,6 @@ enum class SpeedUnit { MPS, KPH, FPS, MPH };
  * for updating the speed measurement with a new value and unit. The class is
  * designed to be simple and efficient for use in embedded systems, with basic
  * unit conversion logic that covers common speed units.
- *
  */
 class Speed {
  public:

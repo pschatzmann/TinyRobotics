@@ -10,6 +10,8 @@
 namespace tinyrobotics {
 
 /**
+ * @class Transform2D
+ * @ingroup coordinates
  * @brief Represents a 2D rigid body transform (SE(2)): translation and
  * rotation.
  *
@@ -151,6 +153,8 @@ protected:
 };
 
 /**
+ * @class FrameMgr2D
+ * @ingroup coordinates
  * @brief Manages a hierarchy of 2D coordinate frames and enables SE(2)
  * transforms and GPS conversion.
  *

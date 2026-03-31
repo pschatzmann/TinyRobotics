@@ -10,10 +10,10 @@
 namespace tinyrobotics {
 
 /**
- * @brief Empty Mutex implementation which does nothing
+ * @class MutexBase
  * @ingroup concurrency
+ * @brief Empty Mutex implementation which does nothing
  * @author Phil Schatzmann
-
  */
 class MutexBase {
  public:

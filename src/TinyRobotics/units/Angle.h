@@ -6,6 +6,8 @@ namespace tinyrobotics {
 enum class AngleUnit { DEG, RAD };
 
 /**
+ * @class Angle
+ * @ingroup units
  * @brief A simple class to represent an angle with a specific unit (degrees or
  * radians). It provides methods to set and get the angle in different units, as
  * well as basic arithmetic operations (addition and subtraction) that handle

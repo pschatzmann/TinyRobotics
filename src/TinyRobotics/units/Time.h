@@ -5,6 +5,8 @@ namespace tinyrobotics {
 enum class TimeUnit { S, MS, US, MIN, HOUR };
 
 /**
+ * @class Time
+ * @ingroup units
  * @brief Represents a time duration with a specific unit (seconds, milliseconds, microseconds, minutes, or hours).
  *
  * Provides methods to set and get the time in different units, as well as handle unit conversion when
@@ -17,8 +19,6 @@ enum class TimeUnit { S, MS, US, MIN, HOUR };
  * unit, while the setValue method allows for updating the time measurement with a new value and unit. The class
  * is designed to be simple and efficient for use in embedded systems, with basic unit conversion logic that covers
  * common time units.
- *
- * @ingroup units
  */
 class Time {
  public:

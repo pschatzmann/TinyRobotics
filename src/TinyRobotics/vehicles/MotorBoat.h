@@ -5,7 +5,10 @@
 
 namespace tinyrobotics {
 
+
 /**
+ * @class MotorBoat
+ * @ingroup vehicles
  * @brief Motor boat with 1 drive motor and 1 rudder servo.
  *
  * This class abstracts a simple motor boat:
@@ -20,7 +23,6 @@ namespace tinyrobotics {
  * boat.setRudder(20);        // 20 degrees left
  * boat.stop();               // brake
  * @endcode
- * @ingroup vehicles
  */
 
 template <typename BrushedMT = BrushedMotor, typename ServoMT = ServoMotor>

@@ -4,6 +4,8 @@
 #include "Vehicle.h"
 
 /**
+ * @class CarAckerman
+ * @ingroup vehicles
  * @brief Car with Ackerman steering and single drive motor.
  *
  * This class abstracts a simple car:
@@ -18,7 +20,6 @@
  * car.setSteering(30);      // 30 degrees left
  * car.end();               // brake
  * @endcode
- * @ingroup vehicles
  */
 namespace tinyrobotics {
 

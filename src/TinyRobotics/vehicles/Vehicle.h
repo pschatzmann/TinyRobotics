@@ -9,6 +9,8 @@
 namespace tinyrobotics {
 
 /**
+ * @class Vehicle
+ * @ingroup vehicles
  * @brief Abstract base class for all vehicle types.
  *
  * The Vehicle class defines a common interface for all robotic vehicles in the
@@ -18,7 +20,6 @@ namespace tinyrobotics {
  *
  * All vehicle classes (e.g., Car4WD, Quadrotor, AirPlane, MotorBoat) should
  * inherit from Vehicle.
- * @ingroup vehicles
  */
 class Vehicle : public MessageHandler, public MessageSource {
  public:

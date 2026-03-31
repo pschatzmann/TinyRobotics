@@ -14,7 +14,10 @@ enum QuadrotorMotorNo {
   REAR_RIGHT = 3
 };
 
+
 /**
+ * @class Quadrotor
+ * @ingroup vehicles
  * @brief Simple quadrotor (quadcopter) model with 4-motor control.
  *
  * This class abstracts the control of a basic quadcopter:
@@ -33,7 +36,6 @@ enum QuadrotorMotorNo {
  * quad.setPitch(-5);    // pitch down
  * quad.setYaw(15);      // yaw right
  * @endcode
- * @ingroup vehicles
  */
 
 template <typename MotorT = BrushedMotor>

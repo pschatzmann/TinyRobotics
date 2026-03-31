@@ -5,13 +5,13 @@
 namespace tinyrobotics {
 
 /**
+ * @class MemoryStream
+ * @ingroup utils
  * @brief Read-only memory stream for wrapping a buffer as an Arduino Stream.
  *
  * This class allows you to treat a memory buffer as an input Stream, enabling
  * code that expects a Stream (such as parsers or message dispatchers) to operate
  * directly on in-memory data. The stream is read-only: write() does nothing.
- *
- * @ingroup utils
  */
 class MemoryStream : public Stream {
   const uint8_t* _data;

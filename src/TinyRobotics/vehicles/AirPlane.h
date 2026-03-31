@@ -4,6 +4,8 @@
 #include "TinyRobotics/motors/Motors.h"
 
 /**
+ * @class AirPlane
+ * @ingroup vehicles
  * @brief Simple fixed-wing airplane model with motor, rudder, elevator, and
  * aileron control.
  *
@@ -25,7 +27,6 @@
  * plane.setElevator(-10);              // 10 degrees down
  * plane.setAilerons(15, -15);          // left up, right down
  * @endcode
- * @ingroup vehicles
  */
 namespace tinyrobotics {
 

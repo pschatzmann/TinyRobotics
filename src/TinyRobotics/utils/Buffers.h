@@ -18,10 +18,10 @@
 namespace tinyrobotics {
 
 /**
- * @brief Shared functionality of all buffers
+ * @class BaseBuffer
  * @ingroup utils
+ * @brief Shared functionality of all buffers
  * @author Phil Schatzmann
-
  */
 template <typename T = int16_t>
 class BaseBuffer {

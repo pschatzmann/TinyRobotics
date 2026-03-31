@@ -4,15 +4,16 @@
 #include "TinyRobotics/utils/LoggerClass.h"
 #include "Mutex.h"
 #include "LockGuard.h"
-
-namespace tinyrobotics {
-
+ *
 /**
+ * @class SynchronizedBuffer
+ * @ingroup concurrency
  * @brief Wrapper class that can turn any Buffer into a thread save
  * implementation.
- * @ingroup concurrency
  * @author Phil Schatzmann
  *
+ * @tparam T
+ */
  * @tparam T
  */
 template <typename T> 

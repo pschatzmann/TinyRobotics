@@ -8,6 +8,8 @@
 namespace tinyrobotics {
 
 /**
+ * @class GPSCoordinate
+ * @ingroup coordinates
  * @brief Represents a geodetic GPS coordinate with latitude, longitude, and
  * optional altitude.
  *

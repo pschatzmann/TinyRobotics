@@ -4,6 +4,8 @@
 namespace tinyrobotics {
 
 /**
+ * @class SerializeArduino
+ * @ingroup serialize
  * @brief This class provides methods to serialize and deserialize objects that
  * implement the Serializable interface. It can work with both Stream and Print
  * interfaces, allowing for flexible input and output options. The print()

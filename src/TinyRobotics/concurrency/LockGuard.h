@@ -4,14 +4,15 @@
 
 namespace tinyrobotics {
 
+
 /**
+ * @class LockGuard
+ * @ingroup concurrency
  * @brief RAII implementaion using a Mutex: Only a few microcontrollers provide
  * lock guards, so I decided to roll my own solution where we can just use a
  * dummy Mutex implementation that does nothing for the cases where this is not
  * needed.
- * @ingroup concurrency
  * @author Phil Schatzmann
- *
  */
 
 class LockGuard {

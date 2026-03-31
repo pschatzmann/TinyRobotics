@@ -14,6 +14,8 @@ enum GPSFormat {
 };
 
 /**
+ * @class NMEAParser
+ * @ingroup coordinates
  * @brief Parses NMEA sentences from GPS modules and extracts GPS data.
  *
  * The NMEAParser class supports parsing of common NMEA sentences such as GGA

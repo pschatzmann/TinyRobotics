@@ -8,6 +8,7 @@ namespace tinyrobotics {
 
 /**
  * @class LoggerClass
+ * @ingroup utils
  * @brief Simple, cross-platform logger for Arduino and C++ environments.
  *
  * This class provides a lightweight logging facility with support for log levels (ERROR, WARN, INFO, DEBUG),
@@ -22,7 +23,6 @@ namespace tinyrobotics {
  * - Thread-safe for most embedded use cases (no dynamic memory allocation)
  * - Global logger instance (`TRLogger`) for convenience
  * 
- * @ingroup utils
  *
  * ## Usage Example
  * @code

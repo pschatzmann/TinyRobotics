@@ -5,6 +5,8 @@
 namespace tinyrobotics {
 
 /**
+ * @class Orientation3D
+ * @ingroup coordinates
  * @brief Simple 3D orientation class (yaw, pitch, roll in radians)
  */
 class Orientation3D {

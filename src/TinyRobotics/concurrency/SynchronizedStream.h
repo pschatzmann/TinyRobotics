@@ -6,12 +6,14 @@
 
 namespace tinyrobotics {
 
+
 /**
+ * @class SynchronizedStream
+ * @ingroup concurrency
  * @brief Wrapper class that can turn any Stream into a thread save
  * implementation. This is done by adding a Mutex to the Stream. The
  * read and write operations are buffered and the access to the stream is
  * protected by the Mutex.
- * @ingroup concurrency
  * @author Phil Schatzmann
  */
 

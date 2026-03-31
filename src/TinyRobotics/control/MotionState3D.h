@@ -25,6 +25,8 @@ class IMotionState3D {
 };
 
 /**
+ * @class MotionState3D
+ * @ingroup control
  * @brief Represents the full 3D motion state of a robot or vehicle.
  *
  * Encapsulates position, orientation, linear velocity, and angular velocity in 3D space.
@@ -32,7 +34,6 @@ class IMotionState3D {
  *
  * Used throughout the TinyRobotics framework for odometry, IMU, fusion, and control logic.
  *
- * @ingroup control
  */
 class MotionState3D : public IMotionState3D {
  public:

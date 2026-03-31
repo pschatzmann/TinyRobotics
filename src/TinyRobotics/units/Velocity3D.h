@@ -6,6 +6,8 @@ namespace tinyrobotics {
 using VelocityUnit = SpeedUnit;
 
 /**
+ * @class Velocity3D
+ * @ingroup units
  * @brief Represents a 3D speed or velocity vector with unit support.
  *
  * This class encapsulates a 3D speed (or velocity) measurement, storing x, y, and z components
@@ -21,7 +23,6 @@ using VelocityUnit = SpeedUnit;
  *   Velocity3D v(1.0, 0.0, 0.0, SpeedUnit::MPS); // 1 m/s along x
  *   float vx_kph = v.getX(SpeedUnit::KPH);    // Convert x component to km/h
  * @endcode
- * @ingroup units
  */
 class Velocity3D {
  public:

@@ -11,6 +11,8 @@
 namespace tinyrobotics {
 
 /**
+ * @class Coordinate
+ * @ingroup coordinates
  * @brief A generic 3D coordinate class for robotics, navigation, and spatial
  * calculations.
  *

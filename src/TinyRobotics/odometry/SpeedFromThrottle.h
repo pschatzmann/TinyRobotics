@@ -8,6 +8,7 @@ namespace tinyrobotics {
 
 /**
  * @class SpeedFromThrottle
+ * @ingroup odometry
  * @brief Estimates vehicle speed from throttle percentage using calibration data.
  *
  * This class provides a flexible, piecewise linear mapping from throttle percentage
