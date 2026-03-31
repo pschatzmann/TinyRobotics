@@ -15,13 +15,13 @@ The following __base functionality__ is automatically available:
 - [**Control**](src/TinyRobotics/control/README.md): Core control algorithms including PID controllers, Kalman filters, moving averages, schedulers, and the MotionController for path following and vehicle control.
 - [**Units**](src/TinyRobotics/units/README.md): Strongly-typed units for distance, time, speed, and angle to ensure type safety and clarity.
 - [**Sensors**](src/TinyRobotics/sensors/README.md): Range sensor abstraction, sensor fusion, and scheduling utilities for periodic sensor tasks.
-- [**IMU**](src/TinyRobotics/imu/README.md): 2D and 3D Inertial Measurement Unit (IMU) abstraction, supporting sensor fusion, orientation estimation, and real-time motion state feedback for control and navigation.
-- [**Odometry**](src/TinyRobotics/odometry/README.md): 2D and 3D odometry modules for incremental position, orientation, and distance estimation using wheel encoders, IMU, or sensor fusion. Provides robust pose tracking for mobile robots and vehicles.
+- [**IMU**](src/TinyRobotics/imu/README.md): 2D and 3D Inertial Measurement Unit (IMU) abstraction for embedded robotics. Provides real-time access to orientation, acceleration, and angular velocity. Integrates seamlessly with control, navigation, and SLAM modules for feedback and state estimation.
+- [**Odometry**](src/TinyRobotics/odometry/README.md): 2D and 3D odometry modules for incremental position, orientation, and distance estimation. Provides robust pose tracking for mobile robots and vehicles.
 - [**Fusion**](src/TinyRobotics/fusion/README.md): Sensor fusion algorithms for combining IMU, odometry, and other sensor data to estimate robot pose, velocity, and orientation in 2D and 3D.
 - [**SLAM**](src/TinyRobotics/slam/README.md): Simultaneous Localization and Mapping (SLAM) for real-time robot pose estimation and map building. Includes frame transforms, exploration, and modular integration with sensors and vehicles.
-- [**Motors**](src/TinyRobotics/motors/README.md): Drivers and abstractions for stepper, DC, and RC servo motors. Supports H-Bridge, PWM, and advanced stepper control (FastAccelStepper), with extensible interfaces for custom motor types and feedback integration.
-- [**Vehicles**](src/TinyRobotics/vehicles/README.md): High-level abstractions for cars (4WD, Ackerman), quadrotors, airplanes, and boats.
-- [**Utilities**](src/TinyRobotics/utils/README.md): Logger, scheduler, serialization, and memory allocators for embedded systems.
+- [**Motors**](src/TinyRobotics/motors/README.md): Drivers and abstractions for stepper, DC, and RC servo motors. .
+- [**Vehicles**](src/TinyRobotics/vehicles/README.md): High-level abstractions for controlling cars (4WD, Ackerman), quadrotors, airplanes, and boats.
+- [**Utilities**](src/TinyRobotics/utils/README.md): Logger, Streams, Buffers, serialization and memory allocators for embedded systems.
 
 
 The following __extended functionality__ can be included optionally:
