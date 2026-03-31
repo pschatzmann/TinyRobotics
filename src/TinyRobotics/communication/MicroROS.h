@@ -95,6 +95,57 @@ class MicroROS {
     return rc == RCL_RET_OK;
   }
 
+  /// Publish odometry message
+  bool sendOdometry(const MotionState3D state) {
+    nav_msgs__msg__Odometry msg;
+    // Zero/init all fields
+    memset(&msg, 0, sizeof(msg));
+
+    // Position
+    msg.pose.pose.position.x = state.getPosition().x;
+    msg.pose.pose.position.y = state.getPosition().y;
+    msg.pose.pose.position.z = state.getPosition().z;
+
+    // Orientation (convert yaw/pitch/roll to quaternion)
+    float cy = cosf(state.getOrientation().yaw * 0.5f);
+    float sy = sinf(state.getOrientation().yaw * 0.5f);
+    float cp = cosf(state.getOrientation().pitch * 0.5f);
+    float sp = sinf(state.getOrientation().pitch * 0.5f);
+    float cr = cosf(state.getOrientation().roll * 0.5f);
+    float sr = sinf(state.getOrientation().roll * 0.5f);
+    msg.pose.pose.orientation.w = cr * cp * cy + sr * sp * sy;
+    msg.pose.pose.orientation.x = sr * cp * cy - cr * sp * sy;
+    msg.pose.pose.orientation.y = cr * sp * cy + sr * cp * sy;
+    msg.pose.pose.orientation.z = cr * cp * sy - sr * sp * cy;
+
+    // Linear velocity
+    msg.twist.twist.linear.x = state.getSpeed().x;
+    msg.twist.twist.linear.y = state.getSpeed().y;
+    msg.twist.twist.linear.z = state.getSpeed().z;
+
+    // Angular velocity
+    msg.twist.twist.angular.x = state.getAngularVelocity().x;
+    msg.twist.twist.angular.y = state.getAngularVelocity().y;
+    msg.twist.twist.angular.z = state.getAngularVelocity().z;
+
+    // Optionally: set frame_id, child_frame_id, covariance, etc.
+    // strncpy(msg.header.frame_id, "odom", sizeof(msg.header.frame_id));
+    // strncpy(msg.child_frame_id, "base_link", sizeof(msg.child_frame_id));
+
+    return sendOdometry(msg);
+  }
+
+  /// Publish odometry message
+  bool sendOdometry(Coordinate<DistanceM> position, Orientation3D orientation) {
+    MotionState3D state(
+        position,
+        orientation,
+        Speed3D(0, 0, 0, SpeedUnit::MPS),
+        AngularVelocity3D(0, 0, 0, AngularVelocityUnit::RadPerSecond)
+    );
+    return sendOdometry(state);
+  }
+
   rclc_executor_t& getExecutor() { return executor; }
 
  protected:
