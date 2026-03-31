@@ -5,9 +5,9 @@
 #include "TinyRobotics/communication/Message.h"
 #include "TinyRobotics/communication/MessageHandler.h"
 #include "TinyRobotics/communication/MessageSource.h"
+#include "TinyRobotics/control/MotionState2D.h"
 #include "TinyRobotics/coordinates/Coordinate.h"
 #include "TinyRobotics/coordinates/GPSCoordinate.h"
-#include "TinyRobotics/control/MotionState2D.h"
 
 namespace tinyrobotics {
 
@@ -89,14 +89,18 @@ class IMU2D : public MessageSource {
     // Integrate velocity for position
     T dx = vx * dt;
     T dy = vy * dt;
+
     position.x += dx;
     position.y += dy;
+    totalDistanceM += sqrt(dx * dx + dy * dy);
 
-    lastDelta = {static_cast<float>(dx), static_cast<float>(dy), static_cast<float>(gyroZ_in * dt)};
+    lastDelta = {static_cast<float>(dx), static_cast<float>(dy),
+                 static_cast<float>(gyroZ_in * dt)};
     lastAngularVelocity = gyroZ_in;
 
     publish();
   }
+
   /// @brief Get the last delta update (dx, dy, dtheta)
   Delta2D getLastDelta() const { return lastDelta; }
   /// @brief Get the current angular velocity (radians/second)
@@ -112,6 +116,8 @@ class IMU2D : public MessageSource {
   Angle getHeading() const { return Angle(headingRad, AngleUnit::RAD); }
   /// get speed as Speed
   Speed getSpeed() const { return Speed(speedMPS, SpeedUnit::MPS); }
+  ///  Get the total distance traveled
+  Distance getTotalDistance() const { return Distance(totalDistanceM,DistanceUnit::M); }
 
  public:
   bool is_active = false;
@@ -121,20 +127,24 @@ class IMU2D : public MessageSource {
   unsigned long lastUpdateMillis = 0;
   Delta2D lastDelta = {0.0f, 0.0f, 0.0f};
   float lastAngularVelocity = 0.0f;
+  float totalDistanceM = 0.0f;
 
   void publish() {
     // Publish position as message
-    Message<Coordinate<DistanceM>> msgPos{MessageContent::Position, position, Unit::Meters};
+    Message<Coordinate<DistanceM>> msgPos{MessageContent::Position, position,
+                                          Unit::Meters};
     msgPos.source = MessageOrigin::IMU;
     sendMessage(msgPos);
 
     // Publish heading as float (radians)
-    Message<float> msgHeading{MessageContent::Heading, headingRad, Unit::AngleRadian};
+    Message<float> msgHeading{MessageContent::Heading, headingRad,
+                              Unit::AngleRadian};
     msgHeading.source = MessageOrigin::IMU;
     sendMessage(msgHeading);
 
     // Publish speed as float (m/s)
-    Message<float> msgSpeed{MessageContent::Speed, speedMPS, Unit::MetersPerSecond};
+    Message<float> msgSpeed{MessageContent::Speed, speedMPS,
+                            Unit::MetersPerSecond};
     msgSpeed.source = MessageOrigin::IMU;
     sendMessage(msgSpeed);
   }
