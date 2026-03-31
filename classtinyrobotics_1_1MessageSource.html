@@ -77,7 +77,7 @@ $(function() {
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pro-attribs">Protected Attributes</a> &#124;
 <a href="classtinyrobotics_1_1MessageSource-members.html">List of all members</a>  </div>
-  <div class="headertitle"><div class="title">MessageSource Class Reference</div></div>
+  <div class="headertitle"><div class="title">MessageSource Class Reference<div class="ingroups"><a class="el" href="group__main.html">TinyRobotics</a> &raquo; <a class="el" href="group__communication.html">Communication</a></div></div></div>
 </div><!--header-->
 <div class="contents">
 
@@ -147,9 +147,9 @@ std::vector&lt; <a class="el" href="classtinyrobotics_1_1MessageHandler.html">Me
 <div class="line">source.<a class="code hl_function" href="classtinyrobotics_1_1MessageSource.html#a6f644591faf6edfeceef6b7776b331df">subscribe</a>(handler1);</div>
 <div class="line">source.<a class="code hl_function" href="classtinyrobotics_1_1MessageSource.html#a6f644591faf6edfeceef6b7776b331df">subscribe</a>(handler2);</div>
 <div class="line">source.<a class="code hl_function" href="classtinyrobotics_1_1MessageSource.html#a98c36b84c000f803e27b164c09d96260">sendMessage</a>(msg); <span class="comment">// Forwards to all handlers</span></div>
-<div class="ttc" id="aclasstinyrobotics_1_1MessageSource_html"><div class="ttname"><a href="classtinyrobotics_1_1MessageSource.html">tinyrobotics::MessageSource</a></div><div class="ttdoc">Base class for message sources in the TinyRobotics communication framework.</div><div class="ttdef"><b>Definition:</b> MessageSource.h:33</div></div>
-<div class="ttc" id="aclasstinyrobotics_1_1MessageSource_html_a6f644591faf6edfeceef6b7776b331df"><div class="ttname"><a href="classtinyrobotics_1_1MessageSource.html#a6f644591faf6edfeceef6b7776b331df">tinyrobotics::MessageSource::subscribe</a></div><div class="ttdeci">void subscribe(MessageHandler &amp;handler)</div><div class="ttdoc">Add a message handler to the chain.</div><div class="ttdef"><b>Definition:</b> MessageSource.h:41</div></div>
-<div class="ttc" id="aclasstinyrobotics_1_1MessageSource_html_a98c36b84c000f803e27b164c09d96260"><div class="ttname"><a href="classtinyrobotics_1_1MessageSource.html#a98c36b84c000f803e27b164c09d96260">tinyrobotics::MessageSource::sendMessage</a></div><div class="ttdeci">void sendMessage(Message&lt; float &gt; &amp;msg)</div><div class="ttdoc">Publish a message to all registered handlers.</div><div class="ttdef"><b>Definition:</b> MessageSource.h:56</div></div>
+<div class="ttc" id="aclasstinyrobotics_1_1MessageSource_html"><div class="ttname"><a href="classtinyrobotics_1_1MessageSource.html">tinyrobotics::MessageSource</a></div><div class="ttdoc">Base class for message sources in the TinyRobotics communication framework.</div><div class="ttdef"><b>Definition:</b> MessageSource.h:34</div></div>
+<div class="ttc" id="aclasstinyrobotics_1_1MessageSource_html_a6f644591faf6edfeceef6b7776b331df"><div class="ttname"><a href="classtinyrobotics_1_1MessageSource.html#a6f644591faf6edfeceef6b7776b331df">tinyrobotics::MessageSource::subscribe</a></div><div class="ttdeci">void subscribe(MessageHandler &amp;handler)</div><div class="ttdoc">Add a message handler to the chain.</div><div class="ttdef"><b>Definition:</b> MessageSource.h:42</div></div>
+<div class="ttc" id="aclasstinyrobotics_1_1MessageSource_html_a98c36b84c000f803e27b164c09d96260"><div class="ttname"><a href="classtinyrobotics_1_1MessageSource.html#a98c36b84c000f803e27b164c09d96260">tinyrobotics::MessageSource::sendMessage</a></div><div class="ttdeci">void sendMessage(Message&lt; float &gt; &amp;msg)</div><div class="ttdoc">Publish a message to all registered handlers.</div><div class="ttdef"><b>Definition:</b> MessageSource.h:57</div></div>
 </div><!-- fragment --><p>Extend this class to implement custom message-producing components (e.g., sensors, controllers) that need to broadcast messages to other system parts. </p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="a98c36b84c000f803e27b164c09d96260" name="a98c36b84c000f803e27b164c09d96260"></a>

@@ -69,12 +69,14 @@ $(function() {
 </div>
 
 <div class="header">
+  <div class="summary">
+<a href="#nested-classes">Classes</a>  </div>
   <div class="headertitle"><div class="title">Communication<div class="ingroups"><a class="el" href="group__main.html">TinyRobotics</a></div></div></div>
 </div><!--header-->
 <div class="contents">
 
 <p>Communication protocols and messaging for robotics.  
-</p>
+<a href="#details">More...</a></p>
 <div class="dynheader">
 Collaboration diagram for Communication:</div>
 <div class="dyncontent">
@@ -84,6 +86,62 @@ Collaboration diagram for Communication:</div>
 <area shape="rect" href="group__main.html" title="A powerful Robotics library (not only) for Arduino." alt="" coords="5,5,112,31"/>
 </map>
 </div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1MessageHandler.html">MessageHandler</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Interface for handling messages in the TinyRobotics framework.  <a href="classtinyrobotics_1_1MessageHandler.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1MessageHandlerBinary.html">MessageHandlerBinary</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="structtinyrobotics_1_1Message.html" title="Generic message structure for communication, parameterized by value type.">Message</a> handler that writes all received messages as raw binary to a Print stream.  <a href="classtinyrobotics_1_1MessageHandlerBinary.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1MessageHandlerPrint.html">MessageHandlerPrint</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="structtinyrobotics_1_1Message.html" title="Generic message structure for communication, parameterized by value type.">Message</a> handler that prints all received messages to a Print stream.  <a href="classtinyrobotics_1_1MessageHandlerPrint.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1MessageHandlerPrintXML.html">MessageHandlerPrintXML</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="structtinyrobotics_1_1Message.html" title="Generic message structure for communication, parameterized by value type.">Message</a> handler that prints all received messages as XML to a Print stream.  <a href="classtinyrobotics_1_1MessageHandlerPrintXML.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1MessageHandlerPrintJSON.html">MessageHandlerPrintJSON</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="structtinyrobotics_1_1Message.html" title="Generic message structure for communication, parameterized by value type.">Message</a> handler that prints all received messages as JSON to a Print stream.  <a href="classtinyrobotics_1_1MessageHandlerPrintJSON.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtinyrobotics_1_1ParsedMessage.html">ParsedMessage</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Holds a parsed TinyRobotics message of the correct type.  <a href="structtinyrobotics_1_1ParsedMessage.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1MessageParser.html">MessageParser</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parses binary TinyRobotics messages from a Stream and dispatches them by type.  <a href="classtinyrobotics_1_1MessageParser.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1ESPNowStream.html">ESPNowStream</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">ESPNow as Arduino Stream. When use_send_ack is true we prevent any buffer overflows by blocking writes until the previous packet has been confirmed. When no acknowledgments are used, you might need to throttle the send speed to prevent any buffer overflow on the receiver side.  <a href="classtinyrobotics_1_1ESPNowStream.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtinyrobotics_1_1Message.html">Message&lt; T &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generic message structure for communication, parameterized by value type.  <a href="structtinyrobotics_1_1Message.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1MessageBus.html">MessageBus</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A message handler that forwards messages to multiple registered handlers.  <a href="classtinyrobotics_1_1MessageBus.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1MessageDispatcher.html">MessageDispatcher</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads stream and forwards messages to handler.  <a href="classtinyrobotics_1_1MessageDispatcher.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1MessageSource.html">MessageSource</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Base class for message sources in the TinyRobotics communication framework.  <a href="classtinyrobotics_1_1MessageSource.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1MicroROS.html">MicroROS</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">micro-ROS interface for vehicle control and odometry on Arduino/ESP32.  <a href="classtinyrobotics_1_1MicroROS.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1MultiOutput.html">MultiOutput</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Utility class for writing output to multiple Print streams simultaneously.  <a href="classtinyrobotics_1_1MultiOutput.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1ReadioHeadStream.html">ReadioHeadStream</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Arduino Stream which is using the RadioHead library to send and receive data. We use the river API directly.  <a href="classtinyrobotics_1_1ReadioHeadStream.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1RCGamepadMessageSource.html">RCGamepadMessageSource</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="structtinyrobotics_1_1Message.html" title="Generic message structure for communication, parameterized by value type.">Message</a> source for remote control via a virtual gamepad.  <a href="classtinyrobotics_1_1RCGamepadMessageSource.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1UDPStream.html">UDPStream</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A UDP class which makes sure that we can use UDP as AudioSource and AudioSink. By default the WiFiUDP object is used and we login to wifi if the ssid and password is provided and we are not already connected.  <a href="classtinyrobotics_1_1UDPStream.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <p>Communication protocols and messaging for robotics. </p>
 </div><!-- contents -->
 <!-- start footer part -->
