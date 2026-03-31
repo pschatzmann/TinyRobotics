@@ -9,15 +9,28 @@ enum class AngleUnit { DEG, RAD };
 /**
  * @class Angle
  * @ingroup units
- * @brief A simple class to represent an angle with a specific unit (degrees or
- * radians). It provides methods to set and get the angle in different units, as
- * well as basic arithmetic operations (addition and subtraction) that handle
- * unit conversion and wrap-around correctly. The class can be used for various
- * applications such as navigation, robotics, or any scenario that requires
- * angle representation and manipulation. The internal representation of the
- * angle is stored in the unit specified at construction, and all operations
- * ensure that the angle remains within the valid range (0 to 360 degrees or 0
- * to 2π radians) depending on the unit.
+ * @brief Represents an angle with unit conversion and wrap-around support.
+ *
+ * The Angle class encapsulates an angle value and its unit, supporting degrees (DEG)
+ * and radians (RAD). It provides methods to set and retrieve the angle in any supported unit,
+ * automatically handling conversions and wrap-around (0-360° or 0-2π rad).
+ *
+ * - Internal state is always consistent with the last set value and unit.
+ * - Designed for embedded and robotics applications where unit flexibility and efficiency are required.
+ * - Supports addition and subtraction with automatic wrap-around.
+ * - Use getValue() to retrieve the angle in any unit; use setValue() to update the value and unit.
+ *
+ * Example:
+ * @code
+ *   Angle a(90.0, AngleUnit::DEG);
+ *   float rad = a.getValue(AngleUnit::RAD); // Convert to radians
+ *   a.add(Angle(45.0, AngleUnit::DEG));    // Add 45 degrees
+ *   Angle b = a - Angle(180.0, AngleUnit::DEG); // Subtract 180 degrees
+ * @endcode
+ *
+ * @note Invalid conversions return -1.0f.
+ *
+ * @see AngleUnit
  */
 class Angle {
  public:

@@ -6,19 +6,26 @@ namespace tinyrobotics {
 /**
  * @class SerializeArduino
  * @ingroup serialize
- * @brief This class provides methods to serialize and deserialize objects that
- * implement the Serializable interface. It can work with both Stream and Print
- * interfaces, allowing for flexible input and output options. The print()
- * method takes a Serializable object and writes its string representation to
- * the output stream, while the read() method reads a string from the input
- * stream and populates a Serializable object using the fromString() method.
- * This class can be used to easily save and load object state, or to transmit
- * object data over a serial connection or other stream-based interface. The
- * design allows for separation of concerns, where the Serializable interface
- * defines how objects can be converted to and from strings, and the Serialize
- * class handles the actual input/output operations, making it reusable for any
- * Serializable object.
+ * @brief Arduino-compatible serialization utility for Serializable objects.
  *
+ * The SerializeArduino class provides methods to serialize and deserialize objects
+ * implementing the Serializable interface, using Arduino's Stream and Print APIs.
+ *
+ * - Supports both input (Stream) and output (Print) for flexible I/O.
+ * - print() writes the object's string representation to the output stream.
+ * - read() reads a string from the input stream and populates the object using fromString().
+ * - Enables saving/loading object state or transmitting data over serial or other stream-based interfaces.
+ *
+ * Example:
+ * @code
+ *   SerializeArduino serializer(Serial);
+ *   serializer.print(myObject); // Write to Serial
+ *   serializer.read(myObject);  // Read from Serial
+ * @endcode
+ *
+ * @note The Serializable interface defines how objects are converted to/from strings.
+ *
+ * @see Serializable
  */
 class SerializeArduino {
  public:
