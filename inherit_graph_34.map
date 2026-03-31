@@ -1,11 +1,11 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$classtinyrobotics_1_1IMotionState2D.html" title=" " alt="" coords="9,104,132,129"/>
+<area shape="rect" id="node1" href="$classtinyrobotics_1_1IMotionState2D.html" title="Interface for representing the navigation state of a robot in 2D space." alt="" coords="9,104,132,129"/>
 <area shape="rect" id="node2" href="$classtinyrobotics_1_1IMU2D.html" title=" " alt="" coords="224,203,349,228"/>
 <area shape="rect" id="node3" href="$classtinyrobotics_1_1Fusion2D.html" title="2D sensor fusion EKF for position, heading, and speed estimation." alt="" coords="245,55,328,80"/>
 <area shape="rect" id="node4" href="$classtinyrobotics_1_1IMU2D.html" title="Basic 2D IMU dead&#45;reckoning class." alt="" coords="235,104,339,129"/>
 <area shape="rect" id="node5" href="$classtinyrobotics_1_1MotionState2D.html" title="Concrete implementation of INavigationState2D for storing and accessing 2D navigation state." alt="" coords="227,5,346,31"/>
 <area shape="rect" id="node6" href="$classtinyrobotics_1_1Odometry2D.html" title="Tracks 2D position and orientation of a robot using velocity and steering data." alt="" coords="234,153,339,179"/>
-<area shape="rect" id="node7" href="$classtinyrobotics_1_1IMotionState3D.html" title=" " alt="" coords="9,771,132,796"/>
+<area shape="rect" id="node7" href="$classtinyrobotics_1_1IMotionState3D.html" title="Interface for representing the motion state of a robot in 3D space." alt="" coords="9,771,132,796"/>
 <area shape="rect" id="node8" href="$classtinyrobotics_1_1IMU3D.html" title="Basic 3D IMU dead&#45;reckoning class." alt="" coords="235,696,339,721"/>
 <area shape="rect" id="node9" href="$classtinyrobotics_1_1MotionState3D.html" title="Represents the full 3D motion state of a robot or vehicle." alt="" coords="227,844,346,869"/>
 <area shape="rect" id="node10" href="$classtinyrobotics_1_1MessageHandler.html" title="Interface for handling messages in the TinyRobotics framework." alt="" coords="5,943,136,968"/>

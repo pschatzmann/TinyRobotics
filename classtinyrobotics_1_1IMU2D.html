@@ -92,7 +92,7 @@ Inheritance diagram for IMU2D&lt; T &gt;:</div>
 <map name="aIMU2D_3_01T_01_4_inherit__map" id="aIMU2D_3_01T_01_4_inherit__map">
 <area shape="rect" title="Basic 2D IMU dead&#45;reckoning class." alt="" coords="89,79,193,104"/>
 <area shape="rect" href="classtinyrobotics_1_1MessageSource.html" title="Base class for message sources in the TinyRobotics communication framework." alt="" coords="5,5,129,31"/>
-<area shape="rect" href="classtinyrobotics_1_1IMotionState2D.html" title=" " alt="" coords="154,5,277,31"/>
+<area shape="rect" href="classtinyrobotics_1_1IMotionState2D.html" title="Interface for representing the navigation state of a robot in 2D space." alt="" coords="154,5,277,31"/>
 </map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <div class="dynheader">
@@ -102,10 +102,10 @@ Collaboration diagram for IMU2D&lt; T &gt;:</div>
 <map name="aIMU2D_3_01T_01_4_coll__map" id="aIMU2D_3_01T_01_4_coll__map">
 <area shape="rect" title="Basic 2D IMU dead&#45;reckoning class." alt="" coords="219,168,323,193"/>
 <area shape="rect" href="classtinyrobotics_1_1MessageSource.html" title="Base class for message sources in the TinyRobotics communication framework." alt="" coords="5,80,129,105"/>
-<area shape="rect" href="classtinyrobotics_1_1IMotionState2D.html" title=" " alt="" coords="154,80,277,105"/>
+<area shape="rect" href="classtinyrobotics_1_1IMotionState2D.html" title="Interface for representing the navigation state of a robot in 2D space." alt="" coords="154,80,277,105"/>
 <area shape="rect" href="classtinyrobotics_1_1Coordinate.html" title=" " alt="" coords="301,80,493,105"/>
 <area shape="rect" href="classtinyrobotics_1_1Serializable.html" title="This class defines an interface for serializable objects that can be converted to and from a string r..." alt="" coords="347,5,446,31"/>
-<area shape="rect" href="structtinyrobotics_1_1Delta2D.html" title=" " alt="" coords="517,80,591,105"/>
+<area shape="rect" href="structtinyrobotics_1_1Delta2D.html" title="Represents a 2D incremental motion update (dx, dy, dtheta)." alt="" coords="517,80,591,105"/>
 </map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
@@ -142,7 +142,7 @@ float&#160;</td><td class="memItemRight" valign="bottom"><b>getTheta</b> () cons
 <tr class="memdesc:aa87c9152eb9af109c6050262b3bda818"><td class="mdescLeft">&#160;</td><td class="mdescRight">get heading as <a class="el" href="classtinyrobotics_1_1Angle.html" title="A simple class to represent an angle with a specific unit (degrees or radians). It provides methods t...">Angle</a>  <br /></td></tr>
 <tr class="separator:aa87c9152eb9af109c6050262b3bda818"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af4544df3566077299ecad2697fb03f93"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classtinyrobotics_1_1Speed.html">Speed</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1IMU2D.html#af4544df3566077299ecad2697fb03f93">getSpeed</a> () const</td></tr>
-<tr class="memdesc:af4544df3566077299ecad2697fb03f93"><td class="mdescLeft">&#160;</td><td class="mdescRight">get speed as <a class="el" href="classtinyrobotics_1_1Speed.html" title="This class represents a speed measurement with a specific unit (meters per second,...">Speed</a>  <br /></td></tr>
+<tr class="memdesc:af4544df3566077299ecad2697fb03f93"><td class="mdescLeft">&#160;</td><td class="mdescRight">get speed as <a class="el" href="classtinyrobotics_1_1Speed.html" title="Represents a speed measurement with unit conversion support.">Speed</a>  <br /></td></tr>
 <tr class="separator:af4544df3566077299ecad2697fb03f93"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab900940af7eed142506af4bbe217e8d9"><td class="memItemLeft" align="right" valign="top"><a id="ab900940af7eed142506af4bbe217e8d9" name="ab900940af7eed142506af4bbe217e8d9"></a>
 <a class="el" href="classtinyrobotics_1_1Distance.html">Distance</a>&#160;</td><td class="memItemRight" valign="bottom"><b>getTotalDistance</b> () const</td></tr>
@@ -173,13 +173,10 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>sendMessage</b> (cons
 void&#160;</td><td class="memItemRight" valign="bottom"><b>sendMessage</b> (const <a class="el" href="structtinyrobotics_1_1Message.html">Message</a>&lt; <a class="el" href="classtinyrobotics_1_1GPSCoordinate.html">GPSCoordinate</a> &gt; &amp;msg)</td></tr>
 <tr class="separator:a8c365effddc5ffc78b8a3532b01047b3 inherit pub_methods_classtinyrobotics_1_1MessageSource"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a78e717a30265e658d53cbc5f07dc1119"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classtinyrobotics_1_1Coordinate.html">Coordinate</a>&lt; DistanceM &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1IMotionState2D.html#a78e717a30265e658d53cbc5f07dc1119">getPosition</a> () const =0</td></tr>
-<tr class="memdesc:a78e717a30265e658d53cbc5f07dc1119"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the current position.  <br /></td></tr>
 <tr class="separator:a78e717a30265e658d53cbc5f07dc1119"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae9cb2f87ae48c11c83ba856fa8881139"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classtinyrobotics_1_1Angle.html">Angle</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1IMotionState2D.html#ae9cb2f87ae48c11c83ba856fa8881139">getHeading</a> () const =0</td></tr>
-<tr class="memdesc:ae9cb2f87ae48c11c83ba856fa8881139"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the current heading (orientation).  <br /></td></tr>
 <tr class="separator:ae9cb2f87ae48c11c83ba856fa8881139"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa9c1360776fea5ef46be0b4f9a073346"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classtinyrobotics_1_1Speed.html">Speed</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1IMotionState2D.html#aa9c1360776fea5ef46be0b4f9a073346">getSpeed</a> () const =0</td></tr>
-<tr class="memdesc:aa9c1360776fea5ef46be0b4f9a073346"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the current speed.  <br /></td></tr>
 <tr class="separator:aa9c1360776fea5ef46be0b4f9a073346"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
@@ -276,7 +273,7 @@ class tinyrobotics::IMU2D&lt; T &gt;</div><p>Basic 2D IMU dead-reckoning class. 
 
 <p>get heading as <a class="el" href="classtinyrobotics_1_1Angle.html" title="A simple class to represent an angle with a specific unit (degrees or radians). It provides methods t...">Angle</a> </p>
 
-<p>Implements <a class="el" href="classtinyrobotics_1_1IMotionState2D.html#ae9cb2f87ae48c11c83ba856fa8881139">IMotionState2D</a>.</p>
+<p>Implements <a class="el" href="classtinyrobotics_1_1IMotionState2D.html">IMotionState2D</a>.</p>
 
 </div>
 </div>
@@ -305,7 +302,7 @@ class tinyrobotics::IMU2D&lt; T &gt;</div><p>Basic 2D IMU dead-reckoning class. 
 
 <p>get position </p>
 
-<p>Implements <a class="el" href="classtinyrobotics_1_1IMotionState2D.html#a78e717a30265e658d53cbc5f07dc1119">IMotionState2D</a>.</p>
+<p>Implements <a class="el" href="classtinyrobotics_1_1IMotionState2D.html">IMotionState2D</a>.</p>
 
 </div>
 </div>
@@ -332,9 +329,9 @@ class tinyrobotics::IMU2D&lt; T &gt;</div><p>Basic 2D IMU dead-reckoning class. 
 </table>
 </div><div class="memdoc">
 
-<p>get speed as <a class="el" href="classtinyrobotics_1_1Speed.html" title="This class represents a speed measurement with a specific unit (meters per second,...">Speed</a> </p>
+<p>get speed as <a class="el" href="classtinyrobotics_1_1Speed.html" title="Represents a speed measurement with unit conversion support.">Speed</a> </p>
 
-<p>Implements <a class="el" href="classtinyrobotics_1_1IMotionState2D.html#aa9c1360776fea5ef46be0b4f9a073346">IMotionState2D</a>.</p>
+<p>Implements <a class="el" href="classtinyrobotics_1_1IMotionState2D.html">IMotionState2D</a>.</p>
 
 </div>
 </div>

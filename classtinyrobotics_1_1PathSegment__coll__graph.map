@@ -1,5 +1,5 @@
 <map id="PathSegment&lt; Coordinate &gt;" name="PathSegment&lt; Coordinate &gt;">
-<area shape="rect" id="node1" title=" " alt="" coords="5,183,215,208"/>
+<area shape="rect" id="node1" title="Represents a path segment (edge) between two coordinates in a graph." alt="" coords="5,183,215,208"/>
 <area shape="rect" id="node2" href="$classtinyrobotics_1_1Coordinate.html" title=" " alt="" coords="14,80,206,105"/>
 <area shape="rect" id="node3" href="$classtinyrobotics_1_1Serializable.html" title="This class defines an interface for serializable objects that can be converted to and from a string r..." alt="" coords="61,5,159,31"/>
 </map>

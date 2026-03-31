@@ -76,15 +76,20 @@ $(function() {
   <div class="summary">
 <a href="#pub-attribs">Public Attributes</a> &#124;
 <a href="classtinyrobotics_1_1PathSegment-members.html">List of all members</a>  </div>
-  <div class="headertitle"><div class="title">PathSegment&lt; Coordinate &gt; Class Template Reference</div></div>
+  <div class="headertitle"><div class="title">PathSegment&lt; Coordinate &gt; Class Template Reference<div class="ingroups"><a class="el" href="group__main.html">TinyRobotics</a> &raquo; <a class="el" href="group__maps.html">Maps</a></div></div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Represents a path segment (edge) between two coordinates in a graph.  
+ <a href="classtinyrobotics_1_1PathSegment.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="PathMap_8h_source.html">PathMap.h</a>&gt;</code></p>
 <div class="dynheader">
 Collaboration diagram for PathSegment&lt; Coordinate &gt;:</div>
 <div class="dyncontent">
 <div class="center"><img src="classtinyrobotics_1_1PathSegment__coll__graph.png" border="0" usemap="#aPathSegment_3_01Coordinate_01_4_coll__map" alt="Collaboration graph"/></div>
 <map name="aPathSegment_3_01Coordinate_01_4_coll__map" id="aPathSegment_3_01Coordinate_01_4_coll__map">
-<area shape="rect" title=" " alt="" coords="5,183,215,208"/>
+<area shape="rect" title="Represents a path segment (edge) between two coordinates in a graph." alt="" coords="5,183,215,208"/>
 <area shape="rect" href="classtinyrobotics_1_1Coordinate.html" title=" " alt="" coords="14,80,206,105"/>
 <area shape="rect" href="classtinyrobotics_1_1Serializable.html" title="This class defines an interface for serializable objects that can be converted to and from a string r..." alt="" coords="61,5,159,31"/>
 </map>
@@ -105,7 +110,23 @@ float&#160;</td><td class="memItemRight" valign="bottom"><b>cost</b> = 0.0</td><
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>directed</b> = false</td></tr>
 <tr class="separator:a4efffd8ad256b6649e6b2e3493046718"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<hr/>The documentation for this class was generated from the following file:<ul>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><div class="compoundTemplParams">template&lt;typename <a class="el" href="classtinyrobotics_1_1Coordinate.html">Coordinate</a> = Coordinate&lt;DistanceM&gt;&gt;<br />
+class tinyrobotics::PathSegment&lt; Coordinate &gt;</div><p>Represents a path segment (edge) between two coordinates in a graph. </p>
+<p>Each segment connects two nodes (coordinates) and can be used to define the edges in a graph for pathfinding algorithms such as A* or <a class="el" href="classtinyrobotics_1_1Dijkstra.html" title="Generic Dijkstra shortest path algorithm for graphs/maps with callback-based cost and validity.">Dijkstra</a>'s. The segment has:</p><ul>
+<li>a start node (from)</li>
+<li>an end node (to)</li>
+<li>a cost (distance, time, or any metric relevant to the problem)</li>
+<li>a directionality flag (directed or undirected)</li>
+</ul>
+<p>This class is a fundamental building block for creating a path map for navigation, motion planning, and graph-based search.</p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname"><a class="el" href="classtinyrobotics_1_1Coordinate.html" title="A generic 3D coordinate class for robotics, navigation, and spatial calculations.">Coordinate</a></td><td>The coordinate type (e.g., 2D or 3D point). </td></tr>
+  </table>
+  </dd>
+</dl>
+</div><hr/>The documentation for this class was generated from the following file:<ul>
 <li>src/TinyRobotics/maps/<a class="el" href="PathMap_8h_source.html">PathMap.h</a></li>
 </ul>
 </div><!-- contents -->

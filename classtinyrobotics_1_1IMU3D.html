@@ -93,7 +93,7 @@ Inheritance diagram for IMU3D&lt; T &gt;:</div>
 <map name="aIMU3D_3_01T_01_4_inherit__map" id="aIMU3D_3_01T_01_4_inherit__map">
 <area shape="rect" title="Basic 3D IMU dead&#45;reckoning class." alt="" coords="89,79,193,104"/>
 <area shape="rect" href="classtinyrobotics_1_1MessageSource.html" title="Base class for message sources in the TinyRobotics communication framework." alt="" coords="5,5,129,31"/>
-<area shape="rect" href="classtinyrobotics_1_1IMotionState3D.html" title=" " alt="" coords="154,5,277,31"/>
+<area shape="rect" href="classtinyrobotics_1_1IMotionState3D.html" title="Interface for representing the motion state of a robot in 3D space." alt="" coords="154,5,277,31"/>
 </map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <div class="dynheader">
@@ -103,7 +103,7 @@ Collaboration diagram for IMU3D&lt; T &gt;:</div>
 <map name="aIMU3D_3_01T_01_4_coll__map" id="aIMU3D_3_01T_01_4_coll__map">
 <area shape="rect" title="Basic 3D IMU dead&#45;reckoning class." alt="" coords="484,153,588,179"/>
 <area shape="rect" href="classtinyrobotics_1_1MessageSource.html" title="Base class for message sources in the TinyRobotics communication framework." alt="" coords="167,5,291,31"/>
-<area shape="rect" href="classtinyrobotics_1_1IMotionState3D.html" title=" " alt="" coords="168,55,291,80"/>
+<area shape="rect" href="classtinyrobotics_1_1IMotionState3D.html" title="Interface for representing the motion state of a robot in 3D space." alt="" coords="168,55,291,80"/>
 <area shape="rect" href="classtinyrobotics_1_1Orientation3D.html" title="Simple 3D orientation class (yaw, pitch, roll in radians)" alt="" coords="173,104,286,129"/>
 <area shape="rect" href="classtinyrobotics_1_1Velocity3D.html" title="Represents a 3D speed or velocity vector with unit support." alt="" coords="183,153,275,179"/>
 <area shape="rect" href="classtinyrobotics_1_1Coordinate.html" title=" " alt="" coords="153,203,305,228"/>
@@ -136,10 +136,10 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>end</b> ()</td></tr>
 <tr class="memdesc:a54c6129ed7e2d3af4f958320943dcb4c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the current linear velocity (m/s) <br /></td></tr>
 <tr class="separator:a54c6129ed7e2d3af4f958320943dcb4c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af50fa20b38e09ede921c53b9158348fe"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classtinyrobotics_1_1Coordinate.html">Coordinate</a>&lt; DistanceM &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1IMU3D.html#af50fa20b38e09ede921c53b9158348fe">getPosition</a> () const override</td></tr>
-<tr class="memdesc:af50fa20b38e09ede921c53b9158348fe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the current position (<a class="el" href="classtinyrobotics_1_1IMotionState3D.html">IMotionState3D</a>)  <br /></td></tr>
+<tr class="memdesc:af50fa20b38e09ede921c53b9158348fe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the current position (<a class="el" href="classtinyrobotics_1_1IMotionState3D.html" title="Interface for representing the motion state of a robot in 3D space.">IMotionState3D</a>)  <br /></td></tr>
 <tr class="separator:af50fa20b38e09ede921c53b9158348fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad0b7955c910b50c2993408ad1a79638b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classtinyrobotics_1_1Orientation3D.html">Orientation3D</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1IMU3D.html#ad0b7955c910b50c2993408ad1a79638b">getOrientation</a> () const override</td></tr>
-<tr class="memdesc:ad0b7955c910b50c2993408ad1a79638b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the current orientation (<a class="el" href="classtinyrobotics_1_1IMotionState3D.html">IMotionState3D</a>)  <br /></td></tr>
+<tr class="memdesc:ad0b7955c910b50c2993408ad1a79638b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the current orientation (<a class="el" href="classtinyrobotics_1_1IMotionState3D.html" title="Interface for representing the motion state of a robot in 3D space.">IMotionState3D</a>)  <br /></td></tr>
 <tr class="separator:ad0b7955c910b50c2993408ad1a79638b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac7337777e94b38a6dd1f3aebe880d399"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classtinyrobotics_1_1Velocity3D.html">Speed3D</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1IMU3D.html#ac7337777e94b38a6dd1f3aebe880d399">getSpeed</a> () const override</td></tr>
 <tr class="separator:ac7337777e94b38a6dd1f3aebe880d399"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -278,7 +278,7 @@ class tinyrobotics::IMU3D&lt; T &gt;</div><p>Basic 3D IMU dead-reckoning class. 
 </table>
 </div><div class="memdoc">
 
-<p>Get the current orientation (<a class="el" href="classtinyrobotics_1_1IMotionState3D.html">IMotionState3D</a>) </p>
+<p>Get the current orientation (<a class="el" href="classtinyrobotics_1_1IMotionState3D.html" title="Interface for representing the motion state of a robot in 3D space.">IMotionState3D</a>) </p>
 
 <p>Implements <a class="el" href="classtinyrobotics_1_1IMotionState3D.html">IMotionState3D</a>.</p>
 
@@ -307,7 +307,7 @@ class tinyrobotics::IMU3D&lt; T &gt;</div><p>Basic 3D IMU dead-reckoning class. 
 </table>
 </div><div class="memdoc">
 
-<p>Get the current position (<a class="el" href="classtinyrobotics_1_1IMotionState3D.html">IMotionState3D</a>) </p>
+<p>Get the current position (<a class="el" href="classtinyrobotics_1_1IMotionState3D.html" title="Interface for representing the motion state of a robot in 3D space.">IMotionState3D</a>) </p>
 
 <p>Implements <a class="el" href="classtinyrobotics_1_1IMotionState3D.html">IMotionState3D</a>.</p>
 

@@ -1,7 +1,7 @@
 <map id="MotionController3D" name="MotionController3D">
 <area shape="rect" id="node1" title="3D motion/path controller using PID for position and orientation." alt="" coords="819,218,968,243"/>
 <area shape="rect" id="node2" href="$classtinyrobotics_1_1Path.html" title=" " alt="" coords="499,5,713,45"/>
-<area shape="rect" id="node3" href="$classtinyrobotics_1_1IMotionState3D.html" title=" " alt="" coords="188,157,311,182"/>
+<area shape="rect" id="node3" href="$classtinyrobotics_1_1IMotionState3D.html" title="Interface for representing the motion state of a robot in 3D space." alt="" coords="188,157,311,182"/>
 <area shape="rect" id="node4" href="$classtinyrobotics_1_1MotionState3D.html" title="Represents the full 3D motion state of a robot or vehicle." alt="" coords="547,218,665,243"/>
 <area shape="rect" id="node5" href="$classtinyrobotics_1_1Coordinate.html" title=" " alt="" coords="153,101,345,126"/>
 <area shape="rect" id="node6" href="$classtinyrobotics_1_1Serializable.html" title="This class defines an interface for serializable objects that can be converted to and from a string r..." alt="" coords="5,101,104,126"/>

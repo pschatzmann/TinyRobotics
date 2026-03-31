@@ -83,117 +83,116 @@ $(function() {
 <div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span> </div>
 <div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="keyword">namespace </span>tinyrobotics {</div>
 <div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment">// Simple static matrix</span></div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="keyword">template</span> &lt;<span class="keywordtype">size_t</span> R, <span class="keywordtype">size_t</span> C&gt;</div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno"><a class="line" href="structtinyrobotics_1_1Matrix.html">   10</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structtinyrobotics_1_1Matrix.html">Matrix</a> {</div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>  std::array&lt;float, R * C&gt; data{};</div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>  <span class="keywordtype">float</span>&amp; operator()(<span class="keywordtype">size_t</span> r, <span class="keywordtype">size_t</span> c) { <span class="keywordflow">return</span> data[r * C + c]; }</div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>  <span class="keyword">const</span> <span class="keywordtype">float</span>&amp; operator()(<span class="keywordtype">size_t</span> r, <span class="keywordtype">size_t</span> c)<span class="keyword"> const </span>{ <span class="keywordflow">return</span> data[r * C + c]; }</div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span> </div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>  <span class="keyword">static</span> <a class="code hl_struct" href="structtinyrobotics_1_1Matrix.html">Matrix&lt;R, C&gt;</a> identity() {</div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>    <span class="keyword">static_assert</span>(R == C, <span class="stringliteral">&quot;Identity only for square matrices&quot;</span>);</div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>    <a class="code hl_struct" href="structtinyrobotics_1_1Matrix.html">Matrix&lt;R, C&gt;</a> m;</div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>    <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i = 0; i &lt; R; ++i) m(i, i) = 1.0f;</div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>    <span class="keywordflow">return</span> m;</div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>  }</div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>};</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="keyword">template</span> &lt;<span class="keywordtype">size_t</span> R, <span class="keywordtype">size_t</span> C&gt;</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno"><a class="line" href="structtinyrobotics_1_1Matrix.html">   22</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structtinyrobotics_1_1Matrix.html">Matrix</a> {</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>  std::array&lt;float, R * C&gt; data{};</div>
 <div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span> </div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="comment">// Matrix multiplication</span></div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="keyword">template</span> &lt;<span class="keywordtype">size_t</span> R, <span class="keywordtype">size_t</span> C, <span class="keywordtype">size_t</span> K&gt;</div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><a class="code hl_struct" href="structtinyrobotics_1_1Matrix.html">Matrix&lt;R, K&gt;</a> operator*(<span class="keyword">const</span> <a class="code hl_struct" href="structtinyrobotics_1_1Matrix.html">Matrix&lt;R, C&gt;</a>&amp; a, <span class="keyword">const</span> <a class="code hl_struct" href="structtinyrobotics_1_1Matrix.html">Matrix&lt;C, K&gt;</a>&amp; b) {</div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>  <a class="code hl_struct" href="structtinyrobotics_1_1Matrix.html">Matrix&lt;R, K&gt;</a> result;</div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>  <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i = 0; i &lt; R; ++i)</div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> j = 0; j &lt; K; ++j)</div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>      <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> k = 0; k &lt; C; ++k) result(i, j) += a(i, k) * b(k, j);</div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>  <span class="keywordflow">return</span> result;</div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>}</div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span> </div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span><span class="comment">// Matrix addition</span></div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span><span class="keyword">template</span> &lt;<span class="keywordtype">size_t</span> R, <span class="keywordtype">size_t</span> C&gt;</div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>Matrix&lt;R, C&gt; operator+(<span class="keyword">const</span> Matrix&lt;R, C&gt;&amp; a, <span class="keyword">const</span> Matrix&lt;R, C&gt;&amp; b) {</div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>  Matrix&lt;R, C&gt; result;</div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>  <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i = 0; i &lt; R * C; ++i) result.data[i] = a.data[i] + b.data[i];</div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>  <span class="keywordflow">return</span> result;</div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>}</div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span> </div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span><span class="comment">// Matrix subtraction</span></div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span><span class="keyword">template</span> &lt;<span class="keywordtype">size_t</span> R, <span class="keywordtype">size_t</span> C&gt;</div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>Matrix&lt;R, C&gt; operator-(<span class="keyword">const</span> Matrix&lt;R, C&gt;&amp; a, <span class="keyword">const</span> Matrix&lt;R, C&gt;&amp; b) {</div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>  Matrix&lt;R, C&gt; result;</div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>  <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i = 0; i &lt; R * C; ++i) result.data[i] = a.data[i] - b.data[i];</div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>  <span class="keywordflow">return</span> result;</div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>}</div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span> </div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span><span class="comment">// Transpose</span></div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span><span class="keyword">template</span> &lt;<span class="keywordtype">size_t</span> R, <span class="keywordtype">size_t</span> C&gt;</div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>Matrix&lt;C, R&gt; transpose(<span class="keyword">const</span> Matrix&lt;R, C&gt;&amp; m) {</div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>  Matrix&lt;C, R&gt; result;</div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>  <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i = 0; i &lt; R; ++i)</div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>    <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> j = 0; j &lt; C; ++j) result(j, i) = m(i, j);</div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>  <span class="keywordflow">return</span> result;</div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>}</div>
-<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span> </div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span><span class="comment">// Inverse for 1x1 and 2x2 only (embedded-friendly)</span></div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span><span class="keyword">template</span> &lt;<span class="keywordtype">size_t</span> N&gt;</div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>Matrix&lt;N, N&gt; inverse(<span class="keyword">const</span> Matrix&lt;N, N&gt;&amp; m);</div>
-<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span> </div>
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span><span class="comment">// 1x1 inverse</span></div>
-<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span><span class="keyword">template</span> &lt;&gt;</div>
-<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span><span class="keyword">inline</span> Matrix&lt;1, 1&gt; inverse(<span class="keyword">const</span> Matrix&lt;1, 1&gt;&amp; m) {</div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>  Matrix&lt;1, 1&gt; r;</div>
-<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>  r(0, 0) = 1.0f / m(0, 0);</div>
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>  <span class="keywordflow">return</span> r;</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>  <span class="keywordtype">float</span>&amp; operator()(<span class="keywordtype">size_t</span> r, <span class="keywordtype">size_t</span> c) { <span class="keywordflow">return</span> data[r * C + c]; }</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>  <span class="keyword">const</span> <span class="keywordtype">float</span>&amp; operator()(<span class="keywordtype">size_t</span> r, <span class="keywordtype">size_t</span> c)<span class="keyword"> const </span>{ <span class="keywordflow">return</span> data[r * C + c]; }</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>  <span class="keyword">static</span> <a class="code hl_struct" href="structtinyrobotics_1_1Matrix.html">Matrix&lt;R, C&gt;</a> identity() {</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    <span class="keyword">static_assert</span>(R == C, <span class="stringliteral">&quot;Identity only for square matrices&quot;</span>);</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    <a class="code hl_struct" href="structtinyrobotics_1_1Matrix.html">Matrix&lt;R, C&gt;</a> m;</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i = 0; i &lt; R; ++i) m(i, i) = 1.0f;</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    <span class="keywordflow">return</span> m;</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>  }</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>};</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span> </div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span><span class="comment">// Matrix multiplication</span></div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span><span class="keyword">template</span> &lt;<span class="keywordtype">size_t</span> R, <span class="keywordtype">size_t</span> C, <span class="keywordtype">size_t</span> K&gt;</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span><a class="code hl_struct" href="structtinyrobotics_1_1Matrix.html">Matrix&lt;R, K&gt;</a> operator*(<span class="keyword">const</span> <a class="code hl_struct" href="structtinyrobotics_1_1Matrix.html">Matrix&lt;R, C&gt;</a>&amp; a, <span class="keyword">const</span> <a class="code hl_struct" href="structtinyrobotics_1_1Matrix.html">Matrix&lt;C, K&gt;</a>&amp; b) {</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>  <a class="code hl_struct" href="structtinyrobotics_1_1Matrix.html">Matrix&lt;R, K&gt;</a> result;</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>  <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i = 0; i &lt; R; ++i)</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> j = 0; j &lt; K; ++j)</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>      <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> k = 0; k &lt; C; ++k) result(i, j) += a(i, k) * b(k, j);</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>  <span class="keywordflow">return</span> result;</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>}</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span> </div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span><span class="comment">// Matrix addition</span></div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span><span class="keyword">template</span> &lt;<span class="keywordtype">size_t</span> R, <span class="keywordtype">size_t</span> C&gt;</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>Matrix&lt;R, C&gt; operator+(<span class="keyword">const</span> Matrix&lt;R, C&gt;&amp; a, <span class="keyword">const</span> Matrix&lt;R, C&gt;&amp; b) {</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>  Matrix&lt;R, C&gt; result;</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>  <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i = 0; i &lt; R * C; ++i) result.data[i] = a.data[i] + b.data[i];</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>  <span class="keywordflow">return</span> result;</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>}</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span> </div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span><span class="comment">// Matrix subtraction</span></div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span><span class="keyword">template</span> &lt;<span class="keywordtype">size_t</span> R, <span class="keywordtype">size_t</span> C&gt;</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>Matrix&lt;R, C&gt; operator-(<span class="keyword">const</span> Matrix&lt;R, C&gt;&amp; a, <span class="keyword">const</span> Matrix&lt;R, C&gt;&amp; b) {</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>  Matrix&lt;R, C&gt; result;</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>  <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i = 0; i &lt; R * C; ++i) result.data[i] = a.data[i] - b.data[i];</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>  <span class="keywordflow">return</span> result;</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>}</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span> </div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span><span class="comment">// Transpose</span></div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span><span class="keyword">template</span> &lt;<span class="keywordtype">size_t</span> R, <span class="keywordtype">size_t</span> C&gt;</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>Matrix&lt;C, R&gt; transpose(<span class="keyword">const</span> Matrix&lt;R, C&gt;&amp; m) {</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>  Matrix&lt;C, R&gt; result;</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>  <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i = 0; i &lt; R; ++i)</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>    <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> j = 0; j &lt; C; ++j) result(j, i) = m(i, j);</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>  <span class="keywordflow">return</span> result;</div>
 <div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>}</div>
 <div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span> </div>
-<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span><span class="comment">// 2x2 inverse</span></div>
-<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span><span class="keyword">template</span> &lt;&gt;</div>
-<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span><span class="keyword">inline</span> Matrix&lt;2, 2&gt; inverse(<span class="keyword">const</span> Matrix&lt;2, 2&gt;&amp; m) {</div>
-<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>  Matrix&lt;2, 2&gt; r;</div>
-<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>  <span class="keywordtype">float</span> det = m(0, 0) * m(1, 1) - m(0, 1) * m(1, 0);</div>
-<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span> </div>
-<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>  r(0, 0) = m(1, 1) / det;</div>
-<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>  r(0, 1) = -m(0, 1) / det;</div>
-<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>  r(1, 0) = -m(1, 0) / det;</div>
-<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>  r(1, 1) = m(0, 0) / det;</div>
-<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span> </div>
-<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>  <span class="keywordflow">return</span> r;</div>
-<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>}</div>
-<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span> </div>
-<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span><span class="keyword">template</span> &lt;<span class="keywordtype">size_t</span> NX, <span class="keywordtype">size_t</span> NZ&gt;</div>
-<div class="line"><a id="l00155" name="l00155"></a><span class="lineno"><a class="line" href="classtinyrobotics_1_1KalmanFilter.html">  155</a></span><span class="keyword">class </span><a class="code hl_class" href="classtinyrobotics_1_1KalmanFilter.html">KalmanFilter</a> {</div>
-<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span> <span class="keyword">public</span>:</div>
-<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>  <a class="code hl_struct" href="structtinyrobotics_1_1Matrix.html">Matrix&lt;NX, 1&gt;</a> x;      <span class="comment">// state</span></div>
-<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>  <a class="code hl_struct" href="structtinyrobotics_1_1Matrix.html">Matrix&lt;NX, NX&gt;</a> P;     <span class="comment">// covariance</span></div>
-<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>  <a class="code hl_struct" href="structtinyrobotics_1_1Matrix.html">Matrix&lt;NX, NX&gt;</a> Fmat;  <span class="comment">// state transition</span></div>
-<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>  <a class="code hl_struct" href="structtinyrobotics_1_1Matrix.html">Matrix&lt;NX, NX&gt;</a> Q;     <span class="comment">// process noise</span></div>
-<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span> </div>
-<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>  <a class="code hl_struct" href="structtinyrobotics_1_1Matrix.html">Matrix&lt;NZ, NX&gt;</a> H;  <span class="comment">// measurement matrix</span></div>
-<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span>  <a class="code hl_struct" href="structtinyrobotics_1_1Matrix.html">Matrix&lt;NZ, NZ&gt;</a> R;  <span class="comment">// measurement noise</span></div>
-<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span> </div>
-<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span>  <a class="code hl_struct" href="structtinyrobotics_1_1Matrix.html">Matrix&lt;NX, NX&gt;</a> I = <a class="code hl_struct" href="structtinyrobotics_1_1Matrix.html">Matrix&lt;NX, NX&gt;::identity</a>();</div>
-<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span> </div>
-<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span>  <span class="comment">// Prediction step</span></div>
-<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span>  <span class="keywordtype">void</span> predict() {</div>
-<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span>    x = Fmat * x;</div>
-<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span>    P = Fmat * P * transpose(Fmat) + Q;</div>
-<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span>  }</div>
-<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span> </div>
-<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span>  <span class="comment">// Update step</span></div>
-<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span>  <span class="keywordtype">void</span> update(<span class="keyword">const</span> <a class="code hl_struct" href="structtinyrobotics_1_1Matrix.html">Matrix&lt;NZ, 1&gt;</a>&amp; z) {</div>
-<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span>    <span class="keyword">auto</span> y = z - (H * x);                    <span class="comment">// innovation</span></div>
-<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span>    <span class="keyword">auto</span> S = H * P * transpose(H) + R;       <span class="comment">// innovation covariance</span></div>
-<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span>    <span class="keyword">auto</span> K = P * transpose(H) * inverse(S);  <span class="comment">// Kalman gain</span></div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span><span class="comment">// Inverse for 1x1 and 2x2 only (embedded-friendly)</span></div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span><span class="keyword">template</span> &lt;<span class="keywordtype">size_t</span> N&gt;</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>Matrix&lt;N, N&gt; inverse(<span class="keyword">const</span> Matrix&lt;N, N&gt;&amp; m);</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span> </div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span><span class="comment">// 1x1 inverse</span></div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span><span class="keyword">template</span> &lt;&gt;</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span><span class="keyword">inline</span> Matrix&lt;1, 1&gt; inverse(<span class="keyword">const</span> Matrix&lt;1, 1&gt;&amp; m) {</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>  Matrix&lt;1, 1&gt; r;</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>  r(0, 0) = 1.0f / m(0, 0);</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>  <span class="keywordflow">return</span> r;</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>}</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span> </div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span><span class="comment">// 2x2 inverse</span></div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span><span class="keyword">template</span> &lt;&gt;</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span><span class="keyword">inline</span> Matrix&lt;2, 2&gt; inverse(<span class="keyword">const</span> Matrix&lt;2, 2&gt;&amp; m) {</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>  Matrix&lt;2, 2&gt; r;</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>  <span class="keywordtype">float</span> det = m(0, 0) * m(1, 1) - m(0, 1) * m(1, 0);</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span> </div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>  r(0, 0) = m(1, 1) / det;</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>  r(0, 1) = -m(0, 1) / det;</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>  r(1, 0) = -m(1, 0) / det;</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>  r(1, 1) = m(0, 0) / det;</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span> </div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>  <span class="keywordflow">return</span> r;</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>}</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span> </div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span><span class="keyword">template</span> &lt;<span class="keywordtype">size_t</span> NX, <span class="keywordtype">size_t</span> NZ&gt;</div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno"><a class="line" href="classtinyrobotics_1_1KalmanFilter.html">  167</a></span><span class="keyword">class </span><a class="code hl_class" href="classtinyrobotics_1_1KalmanFilter.html">KalmanFilter</a> {</div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span> <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span>  <a class="code hl_struct" href="structtinyrobotics_1_1Matrix.html">Matrix&lt;NX, 1&gt;</a> x;      <span class="comment">// state</span></div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span>  <a class="code hl_struct" href="structtinyrobotics_1_1Matrix.html">Matrix&lt;NX, NX&gt;</a> P;     <span class="comment">// covariance</span></div>
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span>  <a class="code hl_struct" href="structtinyrobotics_1_1Matrix.html">Matrix&lt;NX, NX&gt;</a> Fmat;  <span class="comment">// state transition</span></div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span>  <a class="code hl_struct" href="structtinyrobotics_1_1Matrix.html">Matrix&lt;NX, NX&gt;</a> Q;     <span class="comment">// process noise</span></div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span> </div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span>  <a class="code hl_struct" href="structtinyrobotics_1_1Matrix.html">Matrix&lt;NZ, NX&gt;</a> H;  <span class="comment">// measurement matrix</span></div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span>  <a class="code hl_struct" href="structtinyrobotics_1_1Matrix.html">Matrix&lt;NZ, NZ&gt;</a> R;  <span class="comment">// measurement noise</span></div>
+<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span> </div>
+<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span>  <a class="code hl_struct" href="structtinyrobotics_1_1Matrix.html">Matrix&lt;NX, NX&gt;</a> I = <a class="code hl_struct" href="structtinyrobotics_1_1Matrix.html">Matrix&lt;NX, NX&gt;::identity</a>();</div>
 <div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span> </div>
-<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span>    x = x + (K * y);</div>
-<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span>    P = (I - (K * H)) * P;</div>
-<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span>  }</div>
-<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span>};</div>
-<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span> </div>
-<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span>}  <span class="comment">// namespace tinyrobotics</span></div>
-<div class="ttc" id="aclasstinyrobotics_1_1KalmanFilter_html"><div class="ttname"><a href="classtinyrobotics_1_1KalmanFilter.html">tinyrobotics::KalmanFilter</a></div><div class="ttdoc">A lightweight, fixed-size Kalman Filter for embedded state estimation.</div><div class="ttdef"><b>Definition:</b> KalmanFilter.h:155</div></div>
-<div class="ttc" id="astructtinyrobotics_1_1Matrix_html"><div class="ttname"><a href="structtinyrobotics_1_1Matrix.html">tinyrobotics::Matrix</a></div><div class="ttdef"><b>Definition:</b> KalmanFilter.h:10</div></div>
+<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span>  <span class="comment">// Prediction step</span></div>
+<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span>  <span class="keywordtype">void</span> predict() {</div>
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span>    x = Fmat * x;</div>
+<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span>    P = Fmat * P * transpose(Fmat) + Q;</div>
+<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span>  }</div>
+<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span> </div>
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span>  <span class="comment">// Update step</span></div>
+<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span>  <span class="keywordtype">void</span> update(<span class="keyword">const</span> <a class="code hl_struct" href="structtinyrobotics_1_1Matrix.html">Matrix&lt;NZ, 1&gt;</a>&amp; z) {</div>
+<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span>    <span class="keyword">auto</span> y = z - (H * x);                    <span class="comment">// innovation</span></div>
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span>    <span class="keyword">auto</span> S = H * P * transpose(H) + R;       <span class="comment">// innovation covariance</span></div>
+<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span>    <span class="keyword">auto</span> K = P * transpose(H) * inverse(S);  <span class="comment">// Kalman gain</span></div>
+<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span> </div>
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span>    x = x + (K * y);</div>
+<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span>    P = (I - (K * H)) * P;</div>
+<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span>  }</div>
+<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span>};</div>
+<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span> </div>
+<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span>}  <span class="comment">// namespace tinyrobotics</span></div>
+<div class="ttc" id="aclasstinyrobotics_1_1KalmanFilter_html"><div class="ttname"><a href="classtinyrobotics_1_1KalmanFilter.html">tinyrobotics::KalmanFilter</a></div><div class="ttdoc">A lightweight, fixed-size Kalman Filter for embedded state estimation.</div><div class="ttdef"><b>Definition:</b> KalmanFilter.h:167</div></div>
+<div class="ttc" id="astructtinyrobotics_1_1Matrix_html"><div class="ttname"><a href="structtinyrobotics_1_1Matrix.html">tinyrobotics::Matrix</a></div><div class="ttdoc">Simple static matrix for linear algebra operations.</div><div class="ttdef"><b>Definition:</b> KalmanFilter.h:22</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

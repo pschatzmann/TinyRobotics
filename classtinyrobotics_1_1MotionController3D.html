@@ -94,7 +94,7 @@ Collaboration diagram for MotionController3D:</div>
 <map name="aMotionController3D_coll__map" id="aMotionController3D_coll__map">
 <area shape="rect" title="3D motion/path controller using PID for position and orientation." alt="" coords="819,218,968,243"/>
 <area shape="rect" href="classtinyrobotics_1_1Path.html" title=" " alt="" coords="499,5,713,45"/>
-<area shape="rect" href="classtinyrobotics_1_1IMotionState3D.html" title=" " alt="" coords="188,157,311,182"/>
+<area shape="rect" href="classtinyrobotics_1_1IMotionState3D.html" title="Interface for representing the motion state of a robot in 3D space." alt="" coords="188,157,311,182"/>
 <area shape="rect" href="classtinyrobotics_1_1MotionState3D.html" title="Represents the full 3D motion state of a robot or vehicle." alt="" coords="547,218,665,243"/>
 <area shape="rect" href="classtinyrobotics_1_1Coordinate.html" title=" " alt="" coords="153,101,345,126"/>
 <area shape="rect" href="classtinyrobotics_1_1Serializable.html" title="This class defines an interface for serializable objects that can be converted to and from a string r..." alt="" coords="5,101,104,126"/>
@@ -244,7 +244,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>circleInitialized</b>
 <h2><a class="anchor" id="autotoc_md22"></a>
 Features</h2>
 <ul>
-<li>Accepts a reference to an <a class="el" href="classtinyrobotics_1_1IMotionState3D.html">IMotionState3D</a> for real-time feedback</li>
+<li>Accepts a reference to an <a class="el" href="classtinyrobotics_1_1IMotionState3D.html" title="Interface for representing the motion state of a robot in 3D space.">IMotionState3D</a> for real-time feedback</li>
 <li>Supports a path of 3D waypoints (Path&lt;Coordinate&lt;DistanceM&gt;&gt;)</li>
 <li>Automatically advances to the next waypoint when the current one is reached</li>
 <li>PID gains and limits are configurable for both position and orientation</li>
@@ -254,7 +254,7 @@ Features</h2>
 <h2><a class="anchor" id="autotoc_md23"></a>
 Usage</h2>
 <ol type="1">
-<li>Create with a reference to your <a class="el" href="classtinyrobotics_1_1IMotionState3D.html">IMotionState3D</a> implementation (e.g., <a class="el" href="classtinyrobotics_1_1IMU3D.html" title="Basic 3D IMU dead-reckoning class.">IMU3D</a>)</li>
+<li>Create with a reference to your <a class="el" href="classtinyrobotics_1_1IMotionState3D.html" title="Interface for representing the motion state of a robot in 3D space.">IMotionState3D</a> implementation (e.g., <a class="el" href="classtinyrobotics_1_1IMU3D.html" title="Basic 3D IMU dead-reckoning class.">IMU3D</a>)</li>
 <li>Set a path of waypoints with setPath()</li>
 <li>Call <a class="el" href="classtinyrobotics_1_1MotionController3D.html#ab0bdf5cca484fb2ba637c39384b27fb2" title="Initialize controller and set target from first path coordinate if available.">begin()</a> to initialize the first target</li>
 <li>In your control loop:<ul>

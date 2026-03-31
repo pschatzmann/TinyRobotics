@@ -76,15 +76,20 @@ $(function() {
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="classtinyrobotics_1_1IMotionState2D-members.html">List of all members</a>  </div>
-  <div class="headertitle"><div class="title">IMotionState2D Class Reference<span class="mlabels"><span class="mlabel">abstract</span></span></div></div>
+  <div class="headertitle"><div class="title">IMotionState2D Class Reference<span class="mlabels"><span class="mlabel">abstract</span></span><div class="ingroups"><a class="el" href="group__main.html">TinyRobotics</a> &raquo; <a class="el" href="group__control.html">Control</a></div></div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Interface for representing the navigation state of a robot in 2D space.  
+ <a href="classtinyrobotics_1_1IMotionState2D.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="MotionState2D_8h_source.html">MotionState2D.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for IMotionState2D:</div>
 <div class="dyncontent">
 <div class="center"><img src="classtinyrobotics_1_1IMotionState2D__inherit__graph.png" border="0" usemap="#aIMotionState2D_inherit__map" alt="Inheritance graph"/></div>
 <map name="aIMotionState2D_inherit__map" id="aIMotionState2D_inherit__map">
-<area shape="rect" title=" " alt="" coords="252,5,375,31"/>
+<area shape="rect" title="Interface for representing the navigation state of a robot in 2D space." alt="" coords="252,5,375,31"/>
 <area shape="rect" href="classtinyrobotics_1_1IMU2D.html" title=" " alt="" coords="5,79,131,104"/>
 <area shape="rect" href="classtinyrobotics_1_1Fusion2D.html" title="2D sensor fusion EKF for position, heading, and speed estimation." alt="" coords="155,79,237,104"/>
 <area shape="rect" href="classtinyrobotics_1_1IMU2D.html" title="Basic 2D IMU dead&#45;reckoning class." alt="" coords="261,79,365,104"/>
@@ -96,16 +101,16 @@ Inheritance diagram for IMotionState2D:</div>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a78e717a30265e658d53cbc5f07dc1119"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classtinyrobotics_1_1Coordinate.html">Coordinate</a>&lt; DistanceM &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1IMotionState2D.html#a78e717a30265e658d53cbc5f07dc1119">getPosition</a> () const =0</td></tr>
-<tr class="memdesc:a78e717a30265e658d53cbc5f07dc1119"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the current position.  <br /></td></tr>
 <tr class="separator:a78e717a30265e658d53cbc5f07dc1119"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae9cb2f87ae48c11c83ba856fa8881139"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classtinyrobotics_1_1Angle.html">Angle</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1IMotionState2D.html#ae9cb2f87ae48c11c83ba856fa8881139">getHeading</a> () const =0</td></tr>
-<tr class="memdesc:ae9cb2f87ae48c11c83ba856fa8881139"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the current heading (orientation).  <br /></td></tr>
 <tr class="separator:ae9cb2f87ae48c11c83ba856fa8881139"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa9c1360776fea5ef46be0b4f9a073346"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classtinyrobotics_1_1Speed.html">Speed</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1IMotionState2D.html#aa9c1360776fea5ef46be0b4f9a073346">getSpeed</a> () const =0</td></tr>
-<tr class="memdesc:aa9c1360776fea5ef46be0b4f9a073346"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the current speed.  <br /></td></tr>
 <tr class="separator:aa9c1360776fea5ef46be0b4f9a073346"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Member Function Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Interface for representing the navigation state of a robot in 2D space. </p>
+<p>Provides access to position, heading (orientation), and speed. </p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="ae9cb2f87ae48c11c83ba856fa8881139" name="ae9cb2f87ae48c11c83ba856fa8881139"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ae9cb2f87ae48c11c83ba856fa8881139">&#9670;&#160;</a></span>getHeading()</h2>
 
@@ -129,10 +134,7 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Get the current heading (orientation). </p>
-<dl class="section return"><dt>Returns</dt><dd>The heading as an <a class="el" href="classtinyrobotics_1_1Angle.html" title="A simple class to represent an angle with a specific unit (degrees or radians). It provides methods t...">Angle</a> (radians). </dd></dl>
-
-<p>Implemented in <a class="el" href="classtinyrobotics_1_1Fusion2D.html#aa87c9152eb9af109c6050262b3bda818">Fusion2D</a>, <a class="el" href="classtinyrobotics_1_1IMU2D.html#aa87c9152eb9af109c6050262b3bda818">IMU2D&lt; T &gt;</a>, <a class="el" href="classtinyrobotics_1_1IMU2D.html#aa87c9152eb9af109c6050262b3bda818">IMU2D&lt; float &gt;</a>, <a class="el" href="classtinyrobotics_1_1Odometry2D.html#aa87c9152eb9af109c6050262b3bda818">Odometry2D</a>, and <a class="el" href="classtinyrobotics_1_1MotionState2D.html#a1e3fc7b025bff8e405fdba4f15650527">MotionState2D</a>.</p>
+<p>Implemented in <a class="el" href="classtinyrobotics_1_1IMU2D.html#aa87c9152eb9af109c6050262b3bda818">IMU2D&lt; T &gt;</a>, <a class="el" href="classtinyrobotics_1_1IMU2D.html#aa87c9152eb9af109c6050262b3bda818">IMU2D&lt; float &gt;</a>, and <a class="el" href="classtinyrobotics_1_1Odometry2D.html#aa87c9152eb9af109c6050262b3bda818">Odometry2D</a>.</p>
 
 </div>
 </div>
@@ -159,10 +161,7 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Get the current position. </p>
-<dl class="section return"><dt>Returns</dt><dd>The 2D position as a <a class="el" href="classtinyrobotics_1_1Coordinate.html" title="A generic 3D coordinate class for robotics, navigation, and spatial calculations.">Coordinate</a> (meters). </dd></dl>
-
-<p>Implemented in <a class="el" href="classtinyrobotics_1_1Fusion2D.html#affa175ca943afa63df4061bc6c88e9f5">Fusion2D</a>, <a class="el" href="classtinyrobotics_1_1IMU2D.html#affa175ca943afa63df4061bc6c88e9f5">IMU2D&lt; T &gt;</a>, <a class="el" href="classtinyrobotics_1_1IMU2D.html#affa175ca943afa63df4061bc6c88e9f5">IMU2D&lt; float &gt;</a>, <a class="el" href="classtinyrobotics_1_1Odometry2D.html#affa175ca943afa63df4061bc6c88e9f5">Odometry2D</a>, and <a class="el" href="classtinyrobotics_1_1MotionState2D.html#af50fa20b38e09ede921c53b9158348fe">MotionState2D</a>.</p>
+<p>Implemented in <a class="el" href="classtinyrobotics_1_1IMU2D.html#affa175ca943afa63df4061bc6c88e9f5">IMU2D&lt; T &gt;</a>, <a class="el" href="classtinyrobotics_1_1IMU2D.html#affa175ca943afa63df4061bc6c88e9f5">IMU2D&lt; float &gt;</a>, and <a class="el" href="classtinyrobotics_1_1Odometry2D.html#affa175ca943afa63df4061bc6c88e9f5">Odometry2D</a>.</p>
 
 </div>
 </div>
@@ -189,10 +188,7 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Get the current speed. </p>
-<dl class="section return"><dt>Returns</dt><dd>The speed as a <a class="el" href="classtinyrobotics_1_1Speed.html" title="This class represents a speed measurement with a specific unit (meters per second,...">Speed</a> (meters/second). </dd></dl>
-
-<p>Implemented in <a class="el" href="classtinyrobotics_1_1Fusion2D.html#af4544df3566077299ecad2697fb03f93">Fusion2D</a>, <a class="el" href="classtinyrobotics_1_1IMU2D.html#af4544df3566077299ecad2697fb03f93">IMU2D&lt; T &gt;</a>, <a class="el" href="classtinyrobotics_1_1IMU2D.html#af4544df3566077299ecad2697fb03f93">IMU2D&lt; float &gt;</a>, <a class="el" href="classtinyrobotics_1_1Odometry2D.html#af4544df3566077299ecad2697fb03f93">Odometry2D</a>, and <a class="el" href="classtinyrobotics_1_1MotionState2D.html#a15963758f952c15555f9fe787c9a52c1">MotionState2D</a>.</p>
+<p>Implemented in <a class="el" href="classtinyrobotics_1_1IMU2D.html#af4544df3566077299ecad2697fb03f93">IMU2D&lt; T &gt;</a>, <a class="el" href="classtinyrobotics_1_1IMU2D.html#af4544df3566077299ecad2697fb03f93">IMU2D&lt; float &gt;</a>, and <a class="el" href="classtinyrobotics_1_1Odometry2D.html#af4544df3566077299ecad2697fb03f93">Odometry2D</a>.</p>
 
 </div>
 </div>

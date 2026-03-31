@@ -81,7 +81,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>This class represents a speed measurement with a specific unit (meters per second, kilometers per hour, feet per second, or miles per hour). It provides methods to set and get the speed in different units, as well as handle unit conversion when retrieving the speed in a desired unit. The internal representation of the speed is stored in the unit specified at construction, and all operations ensure that the speed can be accurately converted between supported units. This class can be used for various applications such as navigation, robotics, or any scenario that requires speed representation and manipulation. The getSpeed method allows for easy retrieval of the speed in the desired unit, while the setSpeed method allows for updating the speed measurement with a new value and unit. The class is designed to be simple and efficient for use in embedded systems, with basic unit conversion logic that covers common speed units.  
+<p>Represents a speed measurement with unit conversion support.  
  <a href="classtinyrobotics_1_1Speed.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="Speed_8h_source.html">Speed.h</a>&gt;</code></p>
@@ -108,7 +108,20 @@ SpeedUnit&#160;</td><td class="memItemRight" valign="bottom"><b>unit</b> = Speed
 <tr class="separator:a42c78ec9f79ed3b814b85f0013684b03"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>This class represents a speed measurement with a specific unit (meters per second, kilometers per hour, feet per second, or miles per hour). It provides methods to set and get the speed in different units, as well as handle unit conversion when retrieving the speed in a desired unit. The internal representation of the speed is stored in the unit specified at construction, and all operations ensure that the speed can be accurately converted between supported units. This class can be used for various applications such as navigation, robotics, or any scenario that requires speed representation and manipulation. The getSpeed method allows for easy retrieval of the speed in the desired unit, while the setSpeed method allows for updating the speed measurement with a new value and unit. The class is designed to be simple and efficient for use in embedded systems, with basic unit conversion logic that covers common speed units. </p>
+<div class="textblock"><p>Represents a speed measurement with unit conversion support. </p>
+<p>The <a class="el" href="classtinyrobotics_1_1Speed.html" title="Represents a speed measurement with unit conversion support.">Speed</a> class encapsulates a speed value and its unit, supporting meters per second (MPS), kilometers per hour (KPH), feet per second (FPS), and miles per hour (MPH). It provides methods to set and retrieve the speed in any supported unit, automatically handling conversions.</p>
+<ul>
+<li>Internal state is always consistent with the last set value and unit.</li>
+<li>Designed for embedded and robotics applications where unit flexibility and efficiency are required.</li>
+<li>Use getValue() to retrieve the speed in any unit; use setValue() to update the value and unit.</li>
+</ul>
+<p>Example: </p><div class="fragment"><div class="line"><a class="code hl_class" href="classtinyrobotics_1_1Speed.html">Speed</a> s(10.0, SpeedUnit::MPS);</div>
+<div class="line"><span class="keywordtype">float</span> mph = s.getValue(SpeedUnit::MPH); <span class="comment">// Convert to miles per hour</span></div>
+<div class="line">s.setValue(36.0, SpeedUnit::KPH);       <span class="comment">// Update value in km/h</span></div>
+<div class="line"><span class="keywordtype">float</span> mps = s.getValue(SpeedUnit::MPS); <span class="comment">// Convert back to m/s</span></div>
+<div class="ttc" id="aclasstinyrobotics_1_1Speed_html"><div class="ttname"><a href="classtinyrobotics_1_1Speed.html">tinyrobotics::Speed</a></div><div class="ttdoc">Represents a speed measurement with unit conversion support.</div><div class="ttdef"><b>Definition:</b> Speed.h:33</div></div>
+</div><!-- fragment --><dl class="section note"><dt>Note</dt><dd>Invalid conversions return -1.0f.</dd></dl>
+<dl class="section see"><dt>See also</dt><dd>SpeedUnit </dd></dl>
 </div><hr/>The documentation for this class was generated from the following file:<ul>
 <li>src/TinyRobotics/units/<a class="el" href="Speed_8h_source.html">Speed.h</a></li>
 </ul>

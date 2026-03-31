@@ -1,5 +1,5 @@
 <map id="PointCloud" name="PointCloud">
 <area shape="rect" id="node1" title="Represents a 3D point cloud for robotics and mapping applications." alt="" coords="5,196,97,221"/>
 <area shape="rect" id="node2" title=" " alt="" coords="16,108,87,133"/>
-<area shape="rect" id="node3" href="$structtinyrobotics_1_1Point3D.html" title=" " alt="" coords="15,5,88,31"/>
+<area shape="rect" id="node3" href="$structtinyrobotics_1_1Point3D.html" title="Represents a 3D point with x, y, z coordinates (in meters)." alt="" coords="15,5,88,31"/>
 </map>

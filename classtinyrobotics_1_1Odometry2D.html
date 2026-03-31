@@ -93,7 +93,7 @@ Inheritance diagram for Odometry2D:</div>
 <map name="aOdometry2D_inherit__map" id="aOdometry2D_inherit__map">
 <area shape="rect" title="Tracks 2D position and orientation of a robot using velocity and steering data." alt="" coords="88,79,193,104"/>
 <area shape="rect" href="classtinyrobotics_1_1MessageSource.html" title="Base class for message sources in the TinyRobotics communication framework." alt="" coords="5,5,129,31"/>
-<area shape="rect" href="classtinyrobotics_1_1IMotionState2D.html" title=" " alt="" coords="154,5,277,31"/>
+<area shape="rect" href="classtinyrobotics_1_1IMotionState2D.html" title="Interface for representing the navigation state of a robot in 2D space." alt="" coords="154,5,277,31"/>
 </map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <div class="dynheader">
@@ -103,13 +103,13 @@ Collaboration diagram for Odometry2D:</div>
 <map name="aOdometry2D_coll__map" id="aOdometry2D_coll__map">
 <area shape="rect" title="Tracks 2D position and orientation of a robot using velocity and steering data." alt="" coords="457,168,563,193"/>
 <area shape="rect" href="classtinyrobotics_1_1MessageSource.html" title="Base class for message sources in the TinyRobotics communication framework." alt="" coords="5,80,129,105"/>
-<area shape="rect" href="classtinyrobotics_1_1IMotionState2D.html" title=" " alt="" coords="154,80,277,105"/>
+<area shape="rect" href="classtinyrobotics_1_1IMotionState2D.html" title="Interface for representing the navigation state of a robot in 2D space." alt="" coords="154,80,277,105"/>
 <area shape="rect" href="classtinyrobotics_1_1Coordinate.html" title=" " alt="" coords="301,80,453,105"/>
 <area shape="rect" href="classtinyrobotics_1_1Serializable.html" title="This class defines an interface for serializable objects that can be converted to and from a string r..." alt="" coords="327,5,426,31"/>
-<area shape="rect" href="structtinyrobotics_1_1Delta2D.html" title=" " alt="" coords="477,80,551,105"/>
+<area shape="rect" href="structtinyrobotics_1_1Delta2D.html" title="Represents a 2D incremental motion update (dx, dy, dtheta)." alt="" coords="477,80,551,105"/>
 <area shape="rect" href="classtinyrobotics_1_1Angle.html" title="A simple class to represent an angle with a specific unit (degrees or radians). It provides methods t..." alt="" coords="575,80,634,105"/>
-<area shape="rect" href="classtinyrobotics_1_1Speed.html" title="This class represents a speed measurement with a specific unit (meters per second,..." alt="" coords="699,80,761,105"/>
-<area shape="rect" href="classtinyrobotics_1_1Distance.html" title="This class represents a distance measurement with a specific unit (meters, centimeters,..." alt="" coords="785,80,864,105"/>
+<area shape="rect" href="classtinyrobotics_1_1Speed.html" title="Represents a speed measurement with unit conversion support." alt="" coords="699,80,761,105"/>
+<area shape="rect" href="classtinyrobotics_1_1Distance.html" title="Represents a distance measurement with unit conversion support." alt="" coords="785,80,864,105"/>
 </map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
@@ -179,13 +179,10 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>sendMessage</b> (cons
 void&#160;</td><td class="memItemRight" valign="bottom"><b>sendMessage</b> (const <a class="el" href="structtinyrobotics_1_1Message.html">Message</a>&lt; <a class="el" href="classtinyrobotics_1_1GPSCoordinate.html">GPSCoordinate</a> &gt; &amp;msg)</td></tr>
 <tr class="separator:a8c365effddc5ffc78b8a3532b01047b3 inherit pub_methods_classtinyrobotics_1_1MessageSource"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a78e717a30265e658d53cbc5f07dc1119"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classtinyrobotics_1_1Coordinate.html">Coordinate</a>&lt; DistanceM &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1IMotionState2D.html#a78e717a30265e658d53cbc5f07dc1119">getPosition</a> () const =0</td></tr>
-<tr class="memdesc:a78e717a30265e658d53cbc5f07dc1119"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the current position.  <br /></td></tr>
 <tr class="separator:a78e717a30265e658d53cbc5f07dc1119"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae9cb2f87ae48c11c83ba856fa8881139"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classtinyrobotics_1_1Angle.html">Angle</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1IMotionState2D.html#ae9cb2f87ae48c11c83ba856fa8881139">getHeading</a> () const =0</td></tr>
-<tr class="memdesc:ae9cb2f87ae48c11c83ba856fa8881139"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the current heading (orientation).  <br /></td></tr>
 <tr class="separator:ae9cb2f87ae48c11c83ba856fa8881139"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa9c1360776fea5ef46be0b4f9a073346"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classtinyrobotics_1_1Speed.html">Speed</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1IMotionState2D.html#aa9c1360776fea5ef46be0b4f9a073346">getSpeed</a> () const =0</td></tr>
-<tr class="memdesc:aa9c1360776fea5ef46be0b4f9a073346"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the current speed.  <br /></td></tr>
 <tr class="separator:aa9c1360776fea5ef46be0b4f9a073346"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-methods" name="pro-methods"></a>
@@ -237,7 +234,7 @@ Supported Kinematics</h2>
 <h2><a class="anchor" id="autotoc_md93"></a>
 Inputs</h2>
 <ul>
-<li><a class="el" href="classtinyrobotics_1_1Speed.html" title="This class represents a speed measurement with a specific unit (meters per second,...">Speed</a> (as a <a class="el" href="classtinyrobotics_1_1Speed.html" title="This class represents a speed measurement with a specific unit (meters per second,...">Speed</a> object, e.g., meters per second)</li>
+<li><a class="el" href="classtinyrobotics_1_1Speed.html" title="Represents a speed measurement with unit conversion support.">Speed</a> (as a <a class="el" href="classtinyrobotics_1_1Speed.html" title="Represents a speed measurement with unit conversion support.">Speed</a> object, e.g., meters per second)</li>
 <li>Steering angle (as an <a class="el" href="classtinyrobotics_1_1Angle.html" title="A simple class to represent an angle with a specific unit (degrees or radians). It provides methods t...">Angle</a> object, e.g., radians)</li>
 <li><a class="el" href="classtinyrobotics_1_1Time.html" title="Represents a time duration with a specific unit (seconds, milliseconds, microseconds,...">Time</a> delta (in milliseconds, or uses millis() if not provided)</li>
 </ul>
@@ -364,7 +361,7 @@ Example Usage</h2>
 
 <p>Get the current heading as an <a class="el" href="classtinyrobotics_1_1Angle.html" title="A simple class to represent an angle with a specific unit (degrees or radians). It provides methods t...">Angle</a> (radians) </p>
 
-<p>Implements <a class="el" href="classtinyrobotics_1_1IMotionState2D.html#ae9cb2f87ae48c11c83ba856fa8881139">IMotionState2D</a>.</p>
+<p>Implements <a class="el" href="classtinyrobotics_1_1IMotionState2D.html">IMotionState2D</a>.</p>
 
 </div>
 </div>
@@ -393,7 +390,7 @@ Example Usage</h2>
 
 <p>Get the current 2D position (meters) </p>
 
-<p>Implements <a class="el" href="classtinyrobotics_1_1IMotionState2D.html#a78e717a30265e658d53cbc5f07dc1119">IMotionState2D</a>.</p>
+<p>Implements <a class="el" href="classtinyrobotics_1_1IMotionState2D.html">IMotionState2D</a>.</p>
 
 </div>
 </div>
@@ -422,7 +419,7 @@ Example Usage</h2>
 
 <p>Get the current speed (meters/second) </p>
 
-<p>Implements <a class="el" href="classtinyrobotics_1_1IMotionState2D.html#aa9c1360776fea5ef46be0b4f9a073346">IMotionState2D</a>.</p>
+<p>Implements <a class="el" href="classtinyrobotics_1_1IMotionState2D.html">IMotionState2D</a>.</p>
 
 </div>
 </div>

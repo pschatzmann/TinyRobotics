@@ -1,7 +1,7 @@
 <map id="IMU3D&lt; T &gt;" name="IMU3D&lt; T &gt;">
 <area shape="rect" id="node1" title="Basic 3D IMU dead&#45;reckoning class." alt="" coords="484,153,588,179"/>
 <area shape="rect" id="node2" href="$classtinyrobotics_1_1MessageSource.html" title="Base class for message sources in the TinyRobotics communication framework." alt="" coords="167,5,291,31"/>
-<area shape="rect" id="node3" href="$classtinyrobotics_1_1IMotionState3D.html" title=" " alt="" coords="168,55,291,80"/>
+<area shape="rect" id="node3" href="$classtinyrobotics_1_1IMotionState3D.html" title="Interface for representing the motion state of a robot in 3D space." alt="" coords="168,55,291,80"/>
 <area shape="rect" id="node4" href="$classtinyrobotics_1_1Orientation3D.html" title="Simple 3D orientation class (yaw, pitch, roll in radians)" alt="" coords="173,104,286,129"/>
 <area shape="rect" id="node5" href="$classtinyrobotics_1_1Velocity3D.html" title="Represents a 3D speed or velocity vector with unit support." alt="" coords="183,153,275,179"/>
 <area shape="rect" id="node6" href="$classtinyrobotics_1_1Coordinate.html" title=" " alt="" coords="153,203,305,228"/>

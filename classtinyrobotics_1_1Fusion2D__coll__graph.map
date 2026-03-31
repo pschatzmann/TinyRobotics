@@ -1,5 +1,5 @@
 <map id="Fusion2D" name="Fusion2D">
 <area shape="rect" id="node1" title="2D sensor fusion EKF for position, heading, and speed estimation." alt="" coords="99,79,182,104"/>
 <area shape="rect" id="node2" href="$classtinyrobotics_1_1MessageSource.html" title="Base class for message sources in the TinyRobotics communication framework." alt="" coords="5,5,129,31"/>
-<area shape="rect" id="node3" href="$classtinyrobotics_1_1IMotionState2D.html" title=" " alt="" coords="154,5,277,31"/>
+<area shape="rect" id="node3" href="$classtinyrobotics_1_1IMotionState2D.html" title="Interface for representing the navigation state of a robot in 2D space." alt="" coords="154,5,277,31"/>
 </map>

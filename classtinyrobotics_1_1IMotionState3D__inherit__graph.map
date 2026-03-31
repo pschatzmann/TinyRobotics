@@ -1,5 +1,5 @@
 <map id="IMotionState3D" name="IMotionState3D">
-<area shape="rect" id="node1" title=" " alt="" coords="64,5,187,31"/>
+<area shape="rect" id="node1" title="Interface for representing the motion state of a robot in 3D space." alt="" coords="64,5,187,31"/>
 <area shape="rect" id="node2" href="$classtinyrobotics_1_1IMU3D.html" title="Basic 3D IMU dead&#45;reckoning class." alt="" coords="5,79,109,104"/>
 <area shape="rect" id="node3" href="$classtinyrobotics_1_1MotionState3D.html" title="Represents the full 3D motion state of a robot or vehicle." alt="" coords="134,79,253,104"/>
 </map>

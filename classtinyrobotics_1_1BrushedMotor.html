@@ -185,9 +185,9 @@ uint8_t&#160;</td><td class="memItemRight" valign="bottom"><b>id</b> = 0</td></t
 <p>This class provides an easy interface for controlling a DC motor using a standard H-Bridge driver (e.g., L298N, L293D, TB6612FNG). It supports:</p><ul>
 <li>Forward, reverse, and stop (brake) control</li>
 <li>PWM speed control (signed, -255 to 255 or limited by setConstraints)</li>
-<li><a class="el" href="classtinyrobotics_1_1Speed.html" title="This class represents a speed measurement with a specific unit (meters per second,...">Speed</a> setting in percent (-100 to 100)</li>
+<li><a class="el" href="classtinyrobotics_1_1Speed.html" title="Represents a speed measurement with unit conversion support.">Speed</a> setting in percent (-100 to 100)</li>
 <li>Optional PWM frequency configuration (if supported by platform)</li>
-<li><a class="el" href="classtinyrobotics_1_1Speed.html" title="This class represents a speed measurement with a specific unit (meters per second,...">Speed</a> limiting for safety or motor tuning</li>
+<li><a class="el" href="classtinyrobotics_1_1Speed.html" title="Represents a speed measurement with unit conversion support.">Speed</a> limiting for safety or motor tuning</li>
 </ul>
 <p>Usage Example: </p><div class="fragment"><div class="line">HBridge motor(5, 6, 9); <span class="comment">// IN1=5, IN2=6, PWM=9</span></div>
 <div class="line">motor.setConstraints(-200, 200); <span class="comment">// Limit speed range</span></div>
@@ -342,7 +342,7 @@ uint8_t&#160;</td><td class="memItemRight" valign="bottom"><b>id</b> = 0</td></t
 </div><div class="memdoc">
 <p>Set motor speed as a percentage (-100 to 100). </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">percent</td><td><a class="el" href="classtinyrobotics_1_1Speed.html" title="This class represents a speed measurement with a specific unit (meters per second,...">Speed</a> percentage: -100 (full reverse) to 100 (full forward) </td></tr>
+    <tr><td class="paramname">percent</td><td><a class="el" href="classtinyrobotics_1_1Speed.html" title="Represents a speed measurement with unit conversion support.">Speed</a> percentage: -100 (full reverse) to 100 (full forward) </td></tr>
   </table>
   </dd>
 </dl>
@@ -372,7 +372,7 @@ uint8_t&#160;</td><td class="memItemRight" valign="bottom"><b>id</b> = 0</td></t
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Set motor speed and direction. <a class="el" href="classtinyrobotics_1_1Speed.html" title="This class represents a speed measurement with a specific unit (meters per second,...">Speed</a>: -255 (full reverse) to 255 (full forward) </p>
+<p>Set motor speed and direction. <a class="el" href="classtinyrobotics_1_1Speed.html" title="Represents a speed measurement with unit conversion support.">Speed</a>: -255 (full reverse) to 255 (full forward) </p>
 
 </div>
 </div>

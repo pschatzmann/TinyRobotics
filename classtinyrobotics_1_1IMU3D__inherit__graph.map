@@ -1,5 +1,5 @@
 <map id="IMU3D&lt; T &gt;" name="IMU3D&lt; T &gt;">
 <area shape="rect" id="node1" title="Basic 3D IMU dead&#45;reckoning class." alt="" coords="89,79,193,104"/>
 <area shape="rect" id="node2" href="$classtinyrobotics_1_1MessageSource.html" title="Base class for message sources in the TinyRobotics communication framework." alt="" coords="5,5,129,31"/>
-<area shape="rect" id="node3" href="$classtinyrobotics_1_1IMotionState3D.html" title=" " alt="" coords="154,5,277,31"/>
+<area shape="rect" id="node3" href="$classtinyrobotics_1_1IMotionState3D.html" title="Interface for representing the motion state of a robot in 3D space." alt="" coords="154,5,277,31"/>
 </map>
