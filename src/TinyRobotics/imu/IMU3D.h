@@ -103,7 +103,7 @@ class IMU3D : public MessageSource, public IMotionState3D {
   position.z += dz;
 
   lastDelta = Distance3D(dx, dy, dz, DistanceUnit::M);
-  lastAngularVelocity = AngularVelocity3D(static_cast<float>(gyroX), static_cast<float>(gyroY), static_cast<float>(gyroZ), AngularVelocityUnit::RadPerSecond);
+  lastAngularVelocity = AngularVelocity3D(static_cast<float>(gyroX), static_cast<float>(gyroY), static_cast<float>(gyroZ), AngularVelocityUnit::RadPerSec);
     publish();
   }
 
@@ -137,7 +137,7 @@ class IMU3D : public MessageSource, public IMotionState3D {
   Coordinate<T> position;
   unsigned long lastUpdateMillis = 0;
   Distance3D lastDelta = Distance3D(0.0f, 0.0f, 0.0f, DistanceUnit::M);
-  AngularVelocity3D lastAngularVelocity = AngularVelocity3D(0.0f, 0.0f, 0.0f, AngularVelocityUnit::RadPerSecond);
+  AngularVelocity3D lastAngularVelocity = AngularVelocity3D(0.0f, 0.0f, 0.0f, AngularVelocityUnit::RadPerSec);
 
   void publish() {
     // Publish position as message

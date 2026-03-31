@@ -142,7 +142,7 @@ class MicroROS {
         position,
         orientation,
         Speed3D(0, 0, 0, SpeedUnit::MPS),
-        AngularVelocity3D(0, 0, 0, AngularVelocityUnit::RadPerSecond)
+        AngularVelocity3D(0, 0, 0, AngularVelocityUnit::RadPerSec)
     );
     return sendOdometry(state);
   }

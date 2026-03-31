@@ -101,7 +101,7 @@ class MotionController3D {
     if (!path.isEmpty()) {
       target = MotionState3D(
           path[0], target.getOrientation(), Speed3D(0, 0, 0, SpeedUnit::MPS),
-          AngularVelocity3D(0, 0, 0, AngularVelocityUnit::RadPerSecond));
+          AngularVelocity3D(0, 0, 0, AngularVelocityUnit::RadPerSec));
       is_active = true;
     }
   }
@@ -138,7 +138,7 @@ class MotionController3D {
 
     linearCmd = Speed3D(vx, vy, vz, SpeedUnit::MPS);
     angularCmd = AngularVelocity3D(vyaw, vpitch, vroll,
-                                   AngularVelocityUnit::RadPerSecond);
+                                   AngularVelocityUnit::RadPerSec);
 
     return true;
   }
@@ -198,7 +198,7 @@ class MotionController3D {
   PIDController<float> pidYaw, pidPitch, pidRoll;
   Speed3D linearCmd = Speed3D(0, 0, 0, SpeedUnit::MPS);
   AngularVelocity3D angularCmd =
-      AngularVelocity3D(0, 0, 0, AngularVelocityUnit::RadPerSecond);
+      AngularVelocity3D(0, 0, 0, AngularVelocityUnit::RadPerSec);
   bool (*onGoalCallback)(void*) = nullptr;
   void* onGoaldRef = this;
 
@@ -219,7 +219,7 @@ class MotionController3D {
           target = MotionState3D(
               path[0], target.getOrientation(),
               Speed3D(0, 0, 0, SpeedUnit::MPS),
-              AngularVelocity3D(0, 0, 0, AngularVelocityUnit::RadPerSecond));
+              AngularVelocity3D(0, 0, 0, AngularVelocityUnit::RadPerSec));
         } else {
           target =
               MotionState3D(path[0], target.getOrientation(), target.getSpeed(),
@@ -253,7 +253,7 @@ class MotionController3D {
         // Set all commands to zero and deactivate controller
         linearCmd = Speed3D(0, 0, 0, SpeedUnit::MPS);
         angularCmd =
-            AngularVelocity3D(0, 0, 0, AngularVelocityUnit::RadPerSecond);
+            AngularVelocity3D(0, 0, 0, AngularVelocityUnit::RadPerSec);
         is_active = false;
         break;
       case OnGoalAction::HoldPosition:
@@ -280,7 +280,7 @@ class MotionController3D {
         target = MotionState3D(
             Coordinate<DistanceM>(x, y, z), orientation,
             Speed3D(0, 0, 0, SpeedUnit::MPS),
-            AngularVelocity3D(0, 0, 0, AngularVelocityUnit::RadPerSecond));
+            AngularVelocity3D(0, 0, 0, AngularVelocityUnit::RadPerSec));
         break;
     }
   }

@@ -8,7 +8,7 @@ namespace tinyrobotics {
  * @ingroup units
  * @brief Supported angular velocity units for conversion and representation.
  */
-enum class AngularVelocityUnit { RadPerSecond, DegPerSecond };
+enum class AngularVelocityUnit { RadPerSec, DegPerSec };
 
 /**
  * @class AngularVelocity
@@ -18,7 +18,7 @@ enum class AngularVelocityUnit { RadPerSecond, DegPerSecond };
 class AngularVelocity {
  public:
   float angularVelocity = 0.0f;
-  AngularVelocityUnit unit = AngularVelocityUnit::RadPerSecond;
+  AngularVelocityUnit unit = AngularVelocityUnit::RadPerSec;
 
   AngularVelocity() = default;
   AngularVelocity(float angularVelocity, AngularVelocityUnit unit)
@@ -31,12 +31,12 @@ class AngularVelocity {
   float getValue(AngularVelocityUnit desiredUnit) const {
     if (unit == desiredUnit) return angularVelocity;
     switch (unit) {
-      case AngularVelocityUnit::RadPerSecond:
-        if (desiredUnit == AngularVelocityUnit::DegPerSecond)
+      case AngularVelocityUnit::RadPerSec:
+        if (desiredUnit == AngularVelocityUnit::DegPerSec)
           return angularVelocity * 180.0f / M_PI;
         break;
-      case AngularVelocityUnit::DegPerSecond:
-        if (desiredUnit == AngularVelocityUnit::RadPerSecond)
+      case AngularVelocityUnit::DegPerSec:
+        if (desiredUnit == AngularVelocityUnit::RadPerSec)
           return angularVelocity * M_PI / 180.0f;
         break;
     }
@@ -71,7 +71,7 @@ class AngularVelocity3D {
   float x = 0.0f;
   float y = 0.0f;
   float z = 0.0f;
-  AngularVelocityUnit unit = AngularVelocityUnit::RadPerSecond;
+  AngularVelocityUnit unit = AngularVelocityUnit::RadPerSec;
 
   AngularVelocity3D() = default;
   AngularVelocity3D(float x, float y, float z, AngularVelocityUnit unit)

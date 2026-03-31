@@ -99,9 +99,9 @@ class Odometry3D {
               uint32_t deltaTimeMs) {
     update(velocity.getX(SpeedUnit::MPS), velocity.getY(SpeedUnit::MPS),
       velocity.getZ(SpeedUnit::MPS),
-      angularVelocity.getX(AngularVelocityUnit::RadPerSecond),
-      angularVelocity.getY(AngularVelocityUnit::RadPerSecond),
-      angularVelocity.getZ(AngularVelocityUnit::RadPerSecond),
+      angularVelocity.getX(AngularVelocityUnit::RadPerSec),
+      angularVelocity.getY(AngularVelocityUnit::RadPerSec),
+      angularVelocity.getZ(AngularVelocityUnit::RadPerSec),
       deltaTimeMs);
   }
 
@@ -118,9 +118,9 @@ class Odometry3D {
   void update(Velocity3D velocity, AngularVelocity3D angularVelocity) {
     update(velocity.getX(SpeedUnit::MPS), velocity.getY(SpeedUnit::MPS),
       velocity.getZ(SpeedUnit::MPS),
-      angularVelocity.getX(AngularVelocityUnit::RadPerSecond),
-      angularVelocity.getY(AngularVelocityUnit::RadPerSecond),
-      angularVelocity.getZ(AngularVelocityUnit::RadPerSecond));
+      angularVelocity.getX(AngularVelocityUnit::RadPerSec),
+      angularVelocity.getY(AngularVelocityUnit::RadPerSec),
+      angularVelocity.getZ(AngularVelocityUnit::RadPerSec));
   }
 
   /// @brief Get the current 3D position (meters)
