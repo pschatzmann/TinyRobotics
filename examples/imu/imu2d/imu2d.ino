@@ -32,9 +32,6 @@ void updateIMU(void* ref) {
   // Update IMU2D with new sensor data
   imu2d.update(accel.acceleration.x, accel.acceleration.y, gyro.gyro.z,
                millis());
-  // Update with magnetometer data for heading correction
-  imu2d.updateMagnetometer(mag.magnetic.x, mag.magnetic.y);
-  imu2d.publish();
 }
 
 void setup() {

@@ -3,16 +3,11 @@
 #include <vector>
 
 #include "Arduino.h"  // for millis()
+#include "TinyRobotics/control/MotionState2D.h"
 #include "TinyRobotics/coordinates/Coordinate.h"
 #include "TinyRobotics/units/Units.h"
 
 namespace tinyrobotics {
-
-struct Delta2D {
-  float dx;
-  float dy;
-  float dtheta;
-};
 
 /**
  * @class Odometry2D
@@ -66,7 +61,7 @@ struct Delta2D {
  * @date 2026-03-30
  */
 
-class Odometry2D {
+class Odometry2D : public MessageSource, public IMotionState2D {
  public:
   Odometry2D() = default;
 
@@ -97,13 +92,14 @@ class Odometry2D {
    * @brief Update the odometry state with new speed and steering angle.
    *
    * @param speed The current speed of the robot (with units).
-   * @param steeringAngle The current steering angle (radians for Ackermann/rudder, or angular velocity for differential drive).
+   * @param steeringAngle The current steering angle (radians for
+   * Ackermann/rudder, or angular velocity for differential drive).
    * @param deltaTimeMs Time since last update in milliseconds.
    *
-   * If wheelBase is set (>0), uses Ackermann/boat kinematics for heading update:
-   *   omega = v * tan(steeringAngle) / wheelBase
-   * If wheelBase is zero, uses differential drive kinematics:
-   *   deltaTheta = steeringAngle (angular velocity) * deltaTime
+   * If wheelBase is set (>0), uses Ackermann/boat kinematics for heading
+   * update: omega = v * tan(steeringAngle) / wheelBase If wheelBase is zero,
+   * uses differential drive kinematics: deltaTheta = steeringAngle (angular
+   * velocity) * deltaTime
    */
   void update(Speed speed, Angle steeringAngle, float deltaTimeMs) {
     this->steeringAngle = steeringAngle;
@@ -127,13 +123,17 @@ class Odometry2D {
     position.y += deltaY;
     lastDelta = {deltaX, deltaY, deltaTheta};
     totalDistance += sqrt(deltaX * deltaX + deltaY * deltaY);
+
+    publish();
   }
 
   /**
-   * @brief Update the odometry state with new speed and steering angle, using automatic time delta.
+   * @brief Update the odometry state with new speed and steering angle, using
+   * automatic time delta.
    *
    * @param speed The current speed of the robot (with units).
-   * @param steeringAngle The current steering angle (radians for Ackermann/rudder, or angular velocity for differential drive).
+   * @param steeringAngle The current steering angle (radians for
+   * Ackermann/rudder, or angular velocity for differential drive).
    *
    * Uses millis() to compute the time since the last update.
    */
@@ -144,16 +144,30 @@ class Odometry2D {
     lastUpdateTimeMs = now;
   }
 
+  /// @brief Get the current 2D position (meters)
   Coordinate<DistanceM> getPosition() const { return position; }
-  float getTheta() const { return theta; }
+  /// @brief Get the current steering angle (radians or angular velocity)
   Angle getSteeringAngle() const { return steeringAngle; }
+  /// @brief Get the current heading as an Angle (radians)
+  Angle getHeading() const { return Angle(theta, AngleUnit::RAD); }
+  /// @brief Get the current speed (meters/second)
   Speed getSpeed() const { return speed; }
+  /// @brief Get the current orientation (radians)
+  float getTheta() const { return theta; }
+  /// @brief Get the current linear velocity (meters/second)
   float getLinearVelocity() const { return speed.getSpeed(SpeedUnit::MPS); }
+  /// @brief Get the current angular velocity (radians/second)
   float getAngularVelocity() const {
     return steeringAngle.getAngle(AngleUnit::RAD);
   }
-  float getTotalDistance() const { return totalDistance; }
+  /// @brief Get the total distance traveled
+  Distance getTotalDistance() const {
+    return Distance(totalDistance, DistanceUnit::M);
+  }
+  /// @brief Get the last delta update (dx, dy, dtheta)
   Delta2D getLastDelta() const { return lastDelta; }
+
+  /// @brief Set the odometry state (position and orientation)
   void setState(Coordinate<DistanceM> pos, float th) {
     position = pos;
     theta = th;
@@ -168,6 +182,28 @@ class Odometry2D {
   Angle steeringAngle;
   Speed speed;
   Distance wheelBase;
+
+  void publish() {
+    // Publish position as message
+    Message<Coordinate<float>> msgPos{MessageContent::Position,
+                                      Coordinate<float>(position.x, position.y),
+                                      Unit::Meters};
+    msgPos.source = MessageOrigin::System;
+    sendMessage(msgPos);
+
+    // Publish heading as float (radians)
+    Message<float> msgHeading{MessageContent::Heading, theta,
+                              Unit::AngleRadian};
+    msgHeading.source = MessageOrigin::System;
+    sendMessage(msgHeading);
+
+    // Publish speed as float (meters/second)
+    Message<float> msgSpeed{MessageContent::Speed,
+                            speed.getSpeed(SpeedUnit::MPS),
+                            Unit::MetersPerSecond};
+    msgSpeed.source = MessageOrigin::System;
+    sendMessage(msgSpeed);
+  }
 };
 
 }  // namespace tinyrobotics

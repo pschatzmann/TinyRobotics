@@ -1,5 +1,6 @@
 #pragma once
-#include "TinyRobotics/control/PIDController.h"
+#include "MotionState2D.h"
+#include "PIDController.h"
 #include "TinyRobotics/coordinates/Coordinate.h"
 #include "TinyRobotics/imu/IMU2D.h"
 #include "TinyRobotics/planning/Path.h"
@@ -28,8 +29,8 @@ namespace tinyrobotics {
 template <typename T = float>
 class MotionController2D {
  public:
-  MotionController2D(IMU2D<T>& imu, Vehicle& vehicle, float maxSpeedKmh = 10,
-                   float accelDistanceM = 2.0f)
+  MotionController2D(IMotionState2D& motionState, Vehicle& vehicle,
+                     float maxSpeedKmh = 10, float accelDistanceM = 2.0f)
       : imu(imu),
         vehicle(vehicle),
         accelDistanceM(accelDistanceM),
@@ -90,7 +91,8 @@ class MotionController2D {
   /// Stop the controller and the vehicle
   void end() { is_active = false; }
 
-  /// Main control loop to be called periodically (e.g., in a timer or main loop)
+  /// Main control loop to be called periodically (e.g., in a timer or main
+  /// loop)
   void update() {
     if (!is_active) return;
     if (path.isEmpty()) {
@@ -125,12 +127,14 @@ class MotionController2D {
   bool hasStartCoordinate = false;
   float targetAccuracyM = 0.01f;
 
-  /// Calculate desired speed based on distance to target and distance from start
-  void updateSpeed(float distanceFromStartM, float distanceToTarget, float currentSpeedKmh) {
+  /// Calculate desired speed based on distance to target and distance from
+  /// start
+  void updateSpeed(float distanceFromStartM, float distanceToTarget,
+                   float currentSpeedKmh) {
     // Compute a desired speed profile: slow down as you approach the target
     float minSpeed = 0.0f;
     float maxSpeed = maxSpeedKmh;
-    desiredSpeedKmh = maxSpeed; // * (distanceToTarget / accelDistanceM);
+    desiredSpeedKmh = maxSpeed;  // * (distanceToTarget / accelDistanceM);
     if (distanceToTarget < accelDistanceM) {
       desiredSpeedKmh = maxSpeed * (distanceToTarget / accelDistanceM);
     }
