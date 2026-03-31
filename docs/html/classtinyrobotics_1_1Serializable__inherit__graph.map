@@ -1,0 +1,9 @@
+<map id="Serializable" name="Serializable">
+<area shape="rect" id="Node000001" title="This class defines an interface for serializable objects that can be converted to and from a string r..." alt="" coords="248,5,347,31"/>
+<area shape="rect" id="Node000002" href="$classtinyrobotics_1_1Coordinate.html" title=" " alt="" coords="5,79,197,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="254,38,134,81,132,76,252,33"/>
+<area shape="rect" id="Node000003" href="$classtinyrobotics_1_1Coordinate.html" title=" " alt="" coords="221,79,373,104"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="300,44,300,79,295,79,295,44"/>
+<area shape="rect" id="Node000004" href="$classtinyrobotics_1_1Coordinate.html" title="A generic 3D coordinate class for robotics, navigation, and spatial calculations." alt="" coords="397,79,528,104"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="337,34,437,76,435,81,335,38"/>
+</map>

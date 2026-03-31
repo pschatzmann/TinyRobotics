@@ -1,0 +1,13 @@
+<map id="IMU2D&lt; T &gt;" name="IMU2D&lt; T &gt;">
+<area shape="rect" id="Node000001" title="Basic 2D IMU dead&#45;reckoning class." alt="" coords="219,168,323,193"/>
+<area shape="rect" id="Node000002" href="$classtinyrobotics_1_1MessageSource.html" title="Base class for message sources in the TinyRobotics communication framework." alt="" coords="5,80,129,105"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="109,108,245,165,243,170,107,113"/>
+<area shape="rect" id="Node000003" href="$classtinyrobotics_1_1IMotionState2D.html" title=" " alt="" coords="154,80,277,105"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="233,115,266,166,261,169,228,118"/>
+<area shape="rect" id="Node000004" href="$classtinyrobotics_1_1Coordinate.html" title=" " alt="" coords="301,80,493,105"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="370,115,290,170,287,166,367,111"/>
+<area shape="rect" id="Node000005" href="$classtinyrobotics_1_1Serializable.html" title="This class defines an interface for serializable objects that can be converted to and from a string r..." alt="" coords="347,5,446,31"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="399,45,399,80,394,80,394,45"/>
+<area shape="rect" id="Node000006" href="$structtinyrobotics_1_1Delta2D.html" title=" " alt="" coords="517,80,591,105"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="510,113,405,147,318,171,316,165,404,141,508,107"/>
+</map>

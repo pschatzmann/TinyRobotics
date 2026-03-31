@@ -1,0 +1,17 @@
+<map id="Vehicle" name="Vehicle">
+<area shape="rect" id="Node000001" title="Abstract base class for all vehicle types." alt="" coords="184,141,253,166"/>
+<area shape="rect" id="Node000004" href="$classtinyrobotics_1_1AirPlane.html" title=" " alt="" coords="318,5,486,45"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="233,127,261,90,300,55,322,43,325,48,303,60,265,94,237,130"/>
+<area shape="rect" id="Node000005" href="$classtinyrobotics_1_1CarAckerman.html" title=" " alt="" coords="301,69,503,109"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="263,133,300,119,335,107,337,112,302,124,265,138"/>
+<area shape="rect" id="Node000006" href="$classtinyrobotics_1_1CarDifferential.html" title=" " alt="" coords="329,133,475,173"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="267,151,328,151,328,156,267,156"/>
+<area shape="rect" id="Node000007" href="$classtinyrobotics_1_1MotorBoat.html" title="Motor boat with 1 drive motor and 1 rudder servo." alt="" coords="311,197,493,237"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="265,169,302,183,337,195,335,200,300,188,263,174"/>
+<area shape="rect" id="Node000008" href="$classtinyrobotics_1_1Quadrotor.html" title="Simple quadrotor (quadcopter) model with 4&#45;motor control." alt="" coords="321,262,483,287"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="237,176,264,213,283,232,303,247,330,260,327,264,300,252,279,236,260,217,232,179"/>
+<area shape="rect" id="Node000002" href="$classtinyrobotics_1_1MessageHandler.html" title="Interface for handling messages in the TinyRobotics framework." alt="" coords="5,115,136,141"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="150,139,184,145,183,150,149,144"/>
+<area shape="rect" id="Node000003" href="$classtinyrobotics_1_1MessageSource.html" title="Base class for message sources in the TinyRobotics communication framework." alt="" coords="9,165,133,190"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="146,162,183,156,184,162,146,168"/>
+</map>

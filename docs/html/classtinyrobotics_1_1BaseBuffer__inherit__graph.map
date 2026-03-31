@@ -1,0 +1,13 @@
+<map id="BaseBuffer&lt; T &gt;" name="BaseBuffer&lt; T &gt;">
+<area shape="rect" id="Node000001" title="Shared functionality of all buffers." alt="" coords="5,104,136,129"/>
+<area shape="rect" id="Node000002" href="$classtinyrobotics_1_1BufferRTOS.html" title=" " alt="" coords="187,5,357,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="97,93,136,66,183,40,214,28,216,33,185,44,139,70,100,97"/>
+<area shape="rect" id="Node000003" href="$classtinyrobotics_1_1RingBuffer.html" title=" " alt="" coords="189,55,355,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="136,98,219,77,220,83,137,103"/>
+<area shape="rect" id="Node000004" href="$classtinyrobotics_1_1SingleBuffer.html" title=" " alt="" coords="184,104,360,129"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="150,114,184,114,184,119,150,119"/>
+<area shape="rect" id="Node000005" href="$classtinyrobotics_1_1RingBuffer.html" title="Implements a typed Ringbuffer." alt="" coords="208,153,336,179"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="137,130,220,151,219,156,136,135"/>
+<area shape="rect" id="Node000006" href="$classtinyrobotics_1_1SingleBuffer.html" title="A simple Buffer implementation which just uses a (dynamically sized) array." alt="" coords="203,203,341,228"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="101,136,140,162,185,188,219,200,217,205,183,192,137,167,98,140"/>
+</map>

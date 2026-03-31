@@ -1,0 +1,69 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="Node000000" href="$classtinyrobotics_1_1IMotionState2D.html" title=" " alt="" coords="9,104,132,129"/>
+<area shape="rect" id="Node000001" href="$classtinyrobotics_1_1IMU2D.html" title=" " alt="" coords="224,203,349,228"/>
+<area shape="poly" id="edge10_Node000000_Node000001" title=" " alt="" coords="100,136,139,163,185,188,225,201,223,206,183,192,136,167,97,140"/>
+<area shape="rect" id="Node000007" href="$classtinyrobotics_1_1Fusion2D.html" title="2D sensor fusion EKF for position, heading, and speed estimation." alt="" coords="245,55,328,80"/>
+<area shape="poly" id="edge11_Node000000_Node000007" title=" " alt="" coords="140,98,244,74,246,79,141,103"/>
+<area shape="rect" id="Node000009" href="$classtinyrobotics_1_1IMU2D.html" title="Basic 2D IMU dead&#45;reckoning class." alt="" coords="235,104,339,129"/>
+<area shape="poly" id="edge12_Node000000_Node000009" title=" " alt="" coords="146,114,234,114,234,119,146,119"/>
+<area shape="rect" id="Node000031" href="$classtinyrobotics_1_1MotionState2D.html" title="Concrete implementation of INavigationState2D for storing and accessing 2D navigation state." alt="" coords="227,5,346,31"/>
+<area shape="poly" id="edge13_Node000000_Node000031" title=" " alt="" coords="97,93,136,65,183,40,226,26,228,31,185,44,139,70,100,97"/>
+<area shape="rect" id="Node000013" href="$classtinyrobotics_1_1Odometry2D.html" title="Tracks 2D position and orientation of a robot using velocity and steering data." alt="" coords="234,153,339,179"/>
+<area shape="poly" id="edge14_Node000000_Node000013" title=" " alt="" coords="141,130,234,152,233,157,139,135"/>
+<area shape="rect" id="Node000011" href="$classtinyrobotics_1_1IMotionState3D.html" title=" " alt="" coords="9,771,132,796"/>
+<area shape="rect" id="Node000010" href="$classtinyrobotics_1_1IMU3D.html" title="Basic 3D IMU dead&#45;reckoning class." alt="" coords="235,696,339,721"/>
+<area shape="poly" id="edge15_Node000011_Node000010" title=" " alt="" coords="108,762,183,730,234,716,235,721,185,735,110,767"/>
+<area shape="rect" id="Node000012" href="$classtinyrobotics_1_1MotionState3D.html" title="Represents the full 3D motion state of a robot or vehicle." alt="" coords="227,844,346,869"/>
+<area shape="poly" id="edge16_Node000011_Node000012" title=" " alt="" coords="112,799,185,829,228,841,227,846,183,834,110,804"/>
+<area shape="rect" id="Node000018" href="$classtinyrobotics_1_1MessageHandler.html" title="Interface for handling messages in the TinyRobotics framework." alt="" coords="5,943,136,968"/>
+<area shape="rect" id="Node000019" href="$classtinyrobotics_1_1MessageBus.html" title="A message handler that forwards messages to multiple registered handlers." alt="" coords="235,1091,339,1116"/>
+<area shape="poly" id="edge17_Node000018_Node000019" title=" " alt="" coords="89,978,129,1029,155,1055,185,1077,210,1088,235,1095,234,1100,208,1093,183,1082,152,1059,125,1032,85,981"/>
+<area shape="rect" id="Node000020" href="$classtinyrobotics_1_1MessageHandlerBinary.html" title="Message handler that writes all received messages as raw binary to a Print stream." alt="" coords="200,893,373,919"/>
+<area shape="poly" id="edge18_Node000018_Node000020" title=" " alt="" coords="139,937,230,916,231,921,141,942"/>
+<area shape="rect" id="Node000021" href="$classtinyrobotics_1_1MessageHandlerPrint.html" title="Message handler that prints all received messages to a Print stream." alt="" coords="206,943,367,968"/>
+<area shape="poly" id="edge19_Node000018_Node000021" title=" " alt="" coords="150,953,206,953,206,958,150,958"/>
+<area shape="rect" id="Node000022" href="$classtinyrobotics_1_1MessageHandlerPrintJSON.html" title="Message handler that prints all received messages as JSON to a Print stream." alt="" coords="190,992,383,1017"/>
+<area shape="poly" id="edge20_Node000018_Node000022" title=" " alt="" coords="141,968,231,989,230,995,139,974"/>
+<area shape="rect" id="Node000023" href="$classtinyrobotics_1_1MessageHandlerPrintXML.html" title="Message handler that prints all received messages as XML to a Print stream." alt="" coords="192,1041,381,1067"/>
+<area shape="poly" id="edge21_Node000018_Node000023" title=" " alt="" coords="100,975,139,1002,185,1028,218,1039,216,1044,183,1032,136,1007,97,979"/>
+<area shape="rect" id="Node000017" href="$classtinyrobotics_1_1SpeedFromThrottle.html" title="Estimates vehicle speed from throttle percentage using calibration data." alt="" coords="213,745,360,771"/>
+<area shape="poly" id="edge22_Node000018_Node000017" title=" " alt="" coords="79,928,94,894,116,854,146,814,182,780,212,765,214,770,186,784,150,817,121,857,99,897,84,931"/>
+<area shape="rect" id="Node000024" href="$classtinyrobotics_1_1Vehicle.html" title="Abstract base class for all vehicle types." alt="" coords="252,795,321,820"/>
+<area shape="poly" id="edge23_Node000018_Node000024" title=" " alt="" coords="85,930,125,878,152,852,183,829,217,815,251,808,253,813,219,820,185,834,155,856,129,882,89,933"/>
+<area shape="rect" id="Node000025" href="$classtinyrobotics_1_1AirPlane.html" title=" " alt="" coords="454,659,622,699"/>
+<area shape="poly" id="edge24_Node000024_Node000025" title=" " alt="" coords="334,800,362,793,388,780,403,764,411,746,419,727,436,709,456,697,459,702,439,713,424,730,416,748,408,766,391,784,364,798,336,805"/>
+<area shape="rect" id="Node000026" href="$classtinyrobotics_1_1CarAckerman.html" title=" " alt="" coords="437,723,639,763"/>
+<area shape="poly" id="edge25_Node000024_Node000026" title=" " alt="" coords="334,793,389,779,460,761,462,766,390,785,335,798"/>
+<area shape="rect" id="Node000027" href="$classtinyrobotics_1_1CarDifferential.html" title=" " alt="" coords="465,787,611,827"/>
+<area shape="poly" id="edge26_Node000024_Node000027" title=" " alt="" coords="335,805,464,805,464,810,335,810"/>
+<area shape="rect" id="Node000028" href="$classtinyrobotics_1_1MotorBoat.html" title="Motor boat with 1 drive motor and 1 rudder servo." alt="" coords="447,851,629,891"/>
+<area shape="poly" id="edge27_Node000024_Node000028" title=" " alt="" coords="335,815,390,829,466,849,464,854,389,834,334,821"/>
+<area shape="rect" id="Node000029" href="$classtinyrobotics_1_1Quadrotor.html" title="Simple quadrotor (quadcopter) model with 4&#45;motor control." alt="" coords="457,916,619,941"/>
+<area shape="poly" id="edge28_Node000024_Node000029" title=" " alt="" coords="336,808,364,816,391,829,408,847,416,866,423,884,439,901,463,913,460,918,436,905,419,887,411,868,404,850,388,833,362,821,334,814"/>
+<area shape="rect" id="Node000002" href="$classtinyrobotics_1_1MessageSource.html" title="Base class for message sources in the TinyRobotics communication framework." alt="" coords="9,425,133,451"/>
+<area shape="poly" id="edge29_Node000002_Node000001" title=" " alt="" coords="77,411,91,372,112,325,143,277,182,237,202,226,223,219,225,224,204,231,186,241,147,281,117,327,96,374,82,412"/>
+<area shape="poly" id="edge34_Node000002_Node000007" title=" " alt="" coords="70,412,75,346,91,260,105,213,124,168,150,126,182,89,212,72,244,65,245,70,214,77,186,93,154,129,129,170,110,215,96,261,80,347,75,412"/>
+<area shape="poly" id="edge36_Node000002_Node000009" title=" " alt="" coords="71,411,79,354,98,281,112,242,130,204,154,169,182,139,207,124,234,116,235,122,209,129,186,143,158,172,135,207,117,244,103,282,85,355,77,412"/>
+<area shape="poly" id="edge38_Node000002_Node000013" title=" " alt="" coords="74,411,84,363,105,302,136,241,157,212,182,188,207,174,233,166,235,172,209,179,186,192,161,216,141,243,110,305,90,364,79,412"/>
+<area shape="poly" id="edge37_Node000002_Node000010" title=" " alt="" coords="79,464,90,511,110,570,141,631,162,658,186,681,209,695,235,702,234,707,207,700,182,685,158,661,137,633,105,572,85,513,74,465"/>
+<area shape="poly" id="edge42_Node000002_Node000017" title=" " alt="" coords="77,464,85,520,103,592,117,630,136,667,158,701,186,731,214,747,212,751,182,735,154,704,131,670,113,632,98,594,80,521,71,465"/>
+<area shape="poly" id="edge43_Node000002_Node000024" title=" " alt="" coords="75,464,80,528,97,614,111,659,130,703,155,744,186,780,200,790,217,798,252,804,251,810,216,803,198,795,182,784,150,748,125,706,106,661,91,615,75,529,70,465"/>
+<area shape="rect" id="Node000003" href="$classtinyrobotics_1_1RangeSensor.html" title=" " alt="" coords="203,548,370,573"/>
+<area shape="poly" id="edge30_Node000002_Node000003" title=" " alt="" coords="94,459,134,497,185,533,217,545,215,550,183,538,130,501,90,463"/>
+<area shape="rect" id="Node000004" href="$classtinyrobotics_1_1CameraEdgeFollower.html" title="Simple edge&#45;following algorithm for grayscale camera images." alt="" coords="207,597,367,623"/>
+<area shape="poly" id="edge31_Node000002_Node000004" title=" " alt="" coords="86,462,125,523,153,555,185,582,211,595,209,600,183,587,149,559,121,526,82,464"/>
+<area shape="rect" id="Node000005" href="$classtinyrobotics_1_1CameraLineFollower.html" title="Simple line&#45;following algorithm for grayscale camera images." alt="" coords="209,647,364,672"/>
+<area shape="poly" id="edge32_Node000002_Node000005" title=" " alt="" coords="82,463,96,501,117,547,147,593,186,632,210,645,208,650,182,636,143,596,113,550,91,503,77,465"/>
+<area shape="rect" id="Node000006" href="$classtinyrobotics_1_1CameraObstacleDetector.html" title="Simple obstacle detection algorithm for grayscale camera images." alt="" coords="193,252,380,277"/>
+<area shape="poly" id="edge33_Node000002_Node000006" title=" " alt="" coords="82,412,120,348,149,315,183,286,205,275,208,280,185,291,152,318,125,351,86,414"/>
+<area shape="rect" id="Node000008" href="$classtinyrobotics_1_1Fusion3D.html" title="3D sensor fusion EKF for position, orientation, and velocity estimation." alt="" coords="245,301,328,327"/>
+<area shape="poly" id="edge35_Node000002_Node000008" title=" " alt="" coords="90,413,130,373,155,353,183,336,214,323,245,316,246,321,215,329,185,340,158,357,133,377,93,417"/>
+<area shape="rect" id="Node000014" href="$classtinyrobotics_1_1RCGamepadMessageSource.html" title="Message source for remote control via a virtual gamepad." alt="" coords="184,351,389,376"/>
+<area shape="poly" id="edge39_Node000002_Node000014" title=" " alt="" coords="108,417,183,385,222,373,224,379,185,390,110,422"/>
+<area shape="rect" id="Node000015" href="$classtinyrobotics_1_1RangeSensor.html" title="Generic range sensor abstraction for LIDAR, ultrasonic, or similar sensors." alt="" coords="214,400,359,425"/>
+<area shape="poly" id="edge40_Node000002_Node000015" title=" " alt="" coords="146,427,213,419,214,424,147,432"/>
+<area shape="rect" id="Node000016" href="$classtinyrobotics_1_1SLAM2D.html" title="2D Simultaneous Localization and Mapping (SLAM) with frame transforms and message integration." alt="" coords="229,449,344,475"/>
+<area shape="poly" id="edge41_Node000002_Node000016" title=" " alt="" coords="147,444,230,453,229,458,146,449"/>
+<area shape="rect" id="Node000030" href="$classtinyrobotics_1_1WheelEncoder.html" title="Measures wheel rotation and computes distance and speed using encoder ticks for mobile robots." alt="" coords="229,499,344,524"/>
+<area shape="poly" id="edge44_Node000002_Node000030" title=" " alt="" coords="112,454,185,483,230,496,228,502,183,489,110,459"/>
+</map>

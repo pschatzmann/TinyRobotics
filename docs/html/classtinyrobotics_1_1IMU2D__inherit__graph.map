@@ -1,0 +1,7 @@
+<map id="IMU2D&lt; T &gt;" name="IMU2D&lt; T &gt;">
+<area shape="rect" id="Node000001" title="Basic 2D IMU dead&#45;reckoning class." alt="" coords="89,79,193,104"/>
+<area shape="rect" id="Node000002" href="$classtinyrobotics_1_1MessageSource.html" title="Base class for message sources in the TinyRobotics communication framework." alt="" coords="5,5,129,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="91,38,131,77,127,80,87,42"/>
+<area shape="rect" id="Node000003" href="$classtinyrobotics_1_1IMotionState2D.html" title=" " alt="" coords="154,5,277,31"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="195,42,155,80,151,77,192,38"/>
+</map>

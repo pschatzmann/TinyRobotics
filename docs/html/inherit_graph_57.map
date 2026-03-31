@@ -1,0 +1,11 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="Node000000" href="$classtinyrobotics_1_1MutexBase.html" title="Empty Mutex implementation which does nothing." alt="" coords="5,80,100,105"/>
+<area shape="rect" id="Node000001" href="$classtinyrobotics_1_1MutexRP2040.html" title="Mutex API for non IRQ mutual exclusion between cores. Mutexes are application level locks usually use..." alt="" coords="173,5,285,31"/>
+<area shape="poly" id="edge49_Node000000_Node000001" title=" " alt="" coords="85,71,147,40,179,28,181,33,149,44,88,75"/>
+<area shape="rect" id="Node000002" href="$classtinyrobotics_1_1MutexRTOS.html" title="Mutex implemntation using FreeRTOS." alt="" coords="180,55,277,80"/>
+<area shape="poly" id="edge50_Node000000_Node000002" title=" " alt="" coords="114,81,179,72,180,77,114,87"/>
+<area shape="rect" id="Node000003" href="$classtinyrobotics_1_1MutexRecursiveRTOS.html" title="Recursive Mutex implemntation using FreeRTOS." alt="" coords="148,104,309,129"/>
+<area shape="poly" id="edge51_Node000000_Node000003" title=" " alt="" coords="114,98,148,103,148,108,114,104"/>
+<area shape="rect" id="Node000004" href="$classtinyrobotics_1_1NoInterruptHandler.html" title="Disable, enable interrupts (only on the actual core)" alt="" coords="155,153,302,179"/>
+<area shape="poly" id="edge52_Node000000_Node000004" title=" " alt="" coords="89,109,149,138,184,151,182,156,147,143,87,114"/>
+</map>

@@ -1,0 +1,15 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="Node000000" title=" " alt="" coords="5,104,75,129"/>
+<area shape="rect" id="Node000001" href="$classtinyrobotics_1_1BaseStream.html" title="Base class for all Streams. It relies on write(const uint8_t *buffer, size_t size) and readBytes(uint..." alt="" coords="150,29,251,55"/>
+<area shape="poly" id="edge57_Node000000_Node000001" title=" " alt="" coords="69,94,122,64,151,52,153,57,124,68,72,98"/>
+<area shape="rect" id="Node000004" href="$classtinyrobotics_1_1MemoryStream.html" title="Read&#45;only memory stream for wrapping a buffer as an Arduino Stream." alt="" coords="139,79,262,104"/>
+<area shape="poly" id="edge60_Node000000_Node000004" title=" " alt="" coords="88,107,139,98,140,104,89,112"/>
+<area shape="rect" id="Node000005" href="$classtinyrobotics_1_1ReadioHeadStream.html" title="Arduino Stream which is using the RadioHead library to send and receive data. We use the river API di..." alt="" coords="127,128,275,153"/>
+<area shape="poly" id="edge61_Node000000_Node000005" title=" " alt="" coords="89,121,127,127,126,132,88,126"/>
+<area shape="rect" id="Node000006" href="$classtinyrobotics_1_1SynchronizedStream.html" title="Wrapper class that can turn any Stream into a thread save implementation. This is done by adding a Mu..." alt="" coords="123,177,279,203"/>
+<area shape="poly" id="edge62_Node000000_Node000006" title=" " alt="" coords="74,135,124,162,156,175,154,180,122,167,71,139"/>
+<area shape="rect" id="Node000002" href="$classtinyrobotics_1_1ESPNowStream.html" title="ESPNow as Arduino Stream. When use_send_ack is true we prevent any buffer overflows by blocking write..." alt="" coords="327,5,449,31"/>
+<area shape="poly" id="edge58_Node000001_Node000002" title=" " alt="" coords="265,31,326,23,327,28,265,36"/>
+<area shape="rect" id="Node000003" href="$classtinyrobotics_1_1UDPStream.html" title="A UDP class which makes sure that we can use UDP as AudioSource and AudioSink. By default the WiFiUDP..." alt="" coords="339,55,437,80"/>
+<area shape="poly" id="edge59_Node000001_Node000003" title=" " alt="" coords="265,48,339,58,339,63,265,53"/>
+</map>

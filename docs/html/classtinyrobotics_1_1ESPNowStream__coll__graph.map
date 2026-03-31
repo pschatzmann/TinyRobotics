@@ -1,0 +1,18 @@
+<map id="ESPNowStream" name="ESPNowStream">
+<area shape="rect" id="Node000001" title="ESPNow as Arduino Stream. When use_send_ack is true we prevent any buffer overflows by blocking write..." alt="" coords="265,284,388,309"/>
+<area shape="rect" id="Node000002" href="$classtinyrobotics_1_1BaseStream.html" title="Base class for all Streams. It relies on write(const uint8_t *buffer, size_t size) and readBytes(uint..." alt="" coords="131,196,232,221"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="214,226,308,281,306,286,211,231"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="5,93,75,119"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="69,124,167,194,164,198,66,129"/>
+<area shape="rect" id="Node000004" href="$classtinyrobotics_1_1RingBuffer.html" title=" " alt="" coords="99,93,264,119"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="184,133,184,196,179,196,179,133"/>
+<area shape="rect" id="Node000005" href="$classtinyrobotics_1_1BaseBuffer.html" title="Shared functionality of all buffers." alt="" coords="117,5,248,31"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="185,45,184,93,179,93,180,45"/>
+<area shape="rect" id="Node000007" href="$classtinyrobotics_1_1BufferRTOS.html" title=" " alt="" coords="288,93,459,119"/>
+<area shape="poly" id="edge7_Node000007_Node000005" title=" " alt="" coords="222,34,349,91,346,96,220,39"/>
+<area shape="rect" id="Node000006" href="$structtinyrobotics_1_1ESPNowStreamConfig.html" title="Configuration for ESP&#45;NOW protocolö.W." alt="" coords="393,196,556,221"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="444,230,348,286,345,281,442,226"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="364,132,341,197,333,245,330,284,324,283,328,244,336,195,359,131"/>
+<area shape="rect" id="Node000008" href="$classtinyrobotics_1_1AllocatorPSRAM.html" title=" " alt="" coords="273,5,474,31"/>
+<area shape="poly" id="edge8_Node000007_Node000008" title=" " alt="" coords="376,45,376,93,371,93,371,45"/>
+</map>

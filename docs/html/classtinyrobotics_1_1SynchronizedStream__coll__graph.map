@@ -1,0 +1,11 @@
+<map id="SynchronizedStream" name="SynchronizedStream">
+<area shape="rect" id="Node000001" title="Wrapper class that can turn any Stream into a thread save implementation. This is done by adding a Mu..." alt="" coords="69,183,225,208"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,80,75,105"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="64,113,136,181,133,185,60,117"/>
+<area shape="rect" id="Node000003" href="$classtinyrobotics_1_1MutexBase.html" title="Empty Mutex implementation which does nothing." alt="" coords="99,80,194,105"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="149,119,149,183,144,183,144,119"/>
+<area shape="rect" id="Node000004" href="$classtinyrobotics_1_1SingleBuffer.html" title=" " alt="" coords="219,80,395,105"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="282,116,215,161,171,185,169,180,212,156,279,111"/>
+<area shape="rect" id="Node000005" href="$classtinyrobotics_1_1BaseBuffer.html" title="Shared functionality of all buffers." alt="" coords="241,5,372,31"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="309,45,309,80,304,80,304,45"/>
+</map>

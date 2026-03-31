@@ -1,0 +1,45 @@
+<map id="MessageSource" name="MessageSource">
+<area shape="rect" id="Node000001" title="Base class for message sources in the TinyRobotics communication framework." alt="" coords="5,376,129,401"/>
+<area shape="rect" id="Node000002" href="$classtinyrobotics_1_1IMU2D.html" title=" " alt="" coords="217,5,343,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="66,362,70,297,86,210,99,164,118,119,144,77,176,40,195,27,216,20,218,25,197,32,179,44,148,80,123,121,104,166,91,212,76,298,71,363"/>
+<area shape="rect" id="Node000003" href="$classtinyrobotics_1_1RangeSensor.html" title=" " alt="" coords="197,55,363,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="68,362,75,305,92,231,106,193,124,155,147,120,176,89,195,77,198,81,179,93,152,123,129,157,111,195,98,233,80,306,73,362"/>
+<area shape="rect" id="Node000004" href="$classtinyrobotics_1_1CameraEdgeFollower.html" title="Simple edge&#45;following algorithm for grayscale camera images." alt="" coords="200,104,360,129"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="70,362,80,314,99,253,130,191,151,163,176,139,199,125,201,130,179,143,155,167,135,194,104,255,85,315,75,363"/>
+<area shape="rect" id="Node000005" href="$classtinyrobotics_1_1CameraLineFollower.html" title="Simple line&#45;following algorithm for grayscale camera images." alt="" coords="203,153,357,179"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="73,361,86,322,107,275,137,228,176,188,201,174,204,179,179,192,141,231,112,278,91,324,78,363"/>
+<area shape="rect" id="Node000006" href="$classtinyrobotics_1_1CameraObstacleDetector.html" title="Simple obstacle detection algorithm for grayscale camera images." alt="" coords="187,203,373,228"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="78,362,115,299,143,265,176,237,198,226,201,231,179,242,146,269,119,302,82,365"/>
+<area shape="rect" id="Node000007" href="$classtinyrobotics_1_1Fusion2D.html" title="2D sensor fusion EKF for position, heading, and speed estimation." alt="" coords="239,252,321,277"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="86,364,124,324,149,303,176,286,207,274,238,267,239,272,209,279,179,291,152,308,128,328,89,367"/>
+<area shape="rect" id="Node000008" href="$classtinyrobotics_1_1Fusion3D.html" title="3D sensor fusion EKF for position, orientation, and velocity estimation." alt="" coords="239,301,321,327"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="103,367,176,335,237,319,239,324,178,341,105,372"/>
+<area shape="rect" id="Node000009" href="$classtinyrobotics_1_1IMU2D.html" title="Basic 2D IMU dead&#45;reckoning class." alt="" coords="228,351,332,376"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="143,377,228,367,228,372,143,382"/>
+<area shape="rect" id="Node000010" href="$classtinyrobotics_1_1IMU3D.html" title="Basic 3D IMU dead&#45;reckoning class." alt="" coords="228,400,332,425"/>
+<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="143,395,228,404,228,410,143,400"/>
+<area shape="rect" id="Node000011" href="$classtinyrobotics_1_1Odometry2D.html" title="Tracks 2D position and orientation of a robot using velocity and steering data." alt="" coords="227,449,333,475"/>
+<area shape="poly" id="edge10_Node000001_Node000011" title=" " alt="" coords="107,405,178,434,228,448,226,453,176,439,105,410"/>
+<area shape="rect" id="Node000012" href="$classtinyrobotics_1_1RCGamepadMessageSource.html" title="Message source for remote control via a virtual gamepad." alt="" coords="177,499,383,524"/>
+<area shape="poly" id="edge11_Node000001_Node000012" title=" " alt="" coords="90,410,129,448,179,484,210,496,208,501,176,488,125,452,87,414"/>
+<area shape="rect" id="Node000013" href="$classtinyrobotics_1_1RangeSensor.html" title="Generic range sensor abstraction for LIDAR, ultrasonic, or similar sensors." alt="" coords="207,548,353,573"/>
+<area shape="poly" id="edge12_Node000001_Node000013" title=" " alt="" coords="83,412,120,474,147,506,179,533,208,547,206,552,176,538,143,510,116,477,78,415"/>
+<area shape="rect" id="Node000014" href="$classtinyrobotics_1_1SLAM2D.html" title="2D Simultaneous Localization and Mapping (SLAM) with frame transforms and message integration." alt="" coords="223,597,337,623"/>
+<area shape="poly" id="edge13_Node000001_Node000014" title=" " alt="" coords="78,414,91,452,112,498,141,544,179,583,200,594,223,602,222,607,198,599,176,587,137,547,107,500,86,454,73,416"/>
+<area shape="rect" id="Node000015" href="$classtinyrobotics_1_1SpeedFromThrottle.html" title="Estimates vehicle speed from throttle percentage using calibration data." alt="" coords="207,647,353,672"/>
+<area shape="poly" id="edge14_Node000001_Node000015" title=" " alt="" coords="75,415,86,462,105,521,135,581,155,608,179,632,208,648,205,652,176,636,151,612,131,584,100,523,81,463,70,416"/>
+<area shape="rect" id="Node000016" href="$classtinyrobotics_1_1Vehicle.html" title="Abstract base class for all vehicle types." alt="" coords="245,696,315,721"/>
+<area shape="poly" id="edge15_Node000001_Node000016" title=" " alt="" coords="73,415,81,471,98,543,112,581,130,618,152,652,179,681,194,692,211,699,246,705,245,711,209,704,191,696,176,685,148,655,125,620,107,583,93,544,75,472,68,415"/>
+<area shape="rect" id="Node000022" href="$classtinyrobotics_1_1WheelEncoder.html" title="Measures wheel rotation and computes distance and speed using encoder ticks for mobile robots." alt="" coords="223,745,337,771"/>
+<area shape="poly" id="edge21_Node000001_Node000022" title=" " alt="" coords="71,415,76,479,91,564,105,610,124,654,148,695,179,731,199,744,223,752,221,757,197,749,176,735,144,698,119,656,100,612,86,566,71,480,66,415"/>
+<area shape="rect" id="Node000017" href="$classtinyrobotics_1_1AirPlane.html" title=" " alt="" coords="447,561,615,601"/>
+<area shape="poly" id="edge16_Node000016_Node000017" title=" " alt="" coords="328,702,355,694,381,681,397,665,404,647,412,629,429,611,449,599,452,603,432,615,417,632,409,649,401,668,384,685,357,699,329,707"/>
+<area shape="rect" id="Node000018" href="$classtinyrobotics_1_1CarAckerman.html" title=" " alt="" coords="431,625,632,665"/>
+<area shape="poly" id="edge17_Node000016_Node000018" title=" " alt="" coords="327,695,382,681,454,662,455,667,383,686,329,700"/>
+<area shape="rect" id="Node000019" href="$classtinyrobotics_1_1CarDifferential.html" title=" " alt="" coords="458,689,605,729"/>
+<area shape="poly" id="edge18_Node000016_Node000019" title=" " alt="" coords="329,706,458,706,458,711,329,711"/>
+<area shape="rect" id="Node000020" href="$classtinyrobotics_1_1MotorBoat.html" title="Motor boat with 1 drive motor and 1 rudder servo." alt="" coords="440,753,623,793"/>
+<area shape="poly" id="edge19_Node000016_Node000020" title=" " alt="" coords="329,717,383,730,459,750,458,755,382,735,327,722"/>
+<area shape="rect" id="Node000021" href="$classtinyrobotics_1_1Quadrotor.html" title="Simple quadrotor (quadcopter) model with 4&#45;motor control." alt="" coords="450,817,613,843"/>
+<area shape="poly" id="edge20_Node000016_Node000021" title=" " alt="" coords="329,710,357,717,384,731,401,749,409,768,417,786,432,803,456,815,453,820,429,807,412,789,404,770,397,752,381,735,355,722,328,715"/>
+</map>
