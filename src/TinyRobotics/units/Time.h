@@ -2,6 +2,7 @@
 
 namespace tinyrobotics {
 
+/// Supported time units for conversion and representation. 
 enum class TimeUnit { S, MS, US, MIN, HOUR };
 
 /**

@@ -3,6 +3,7 @@
 
 namespace tinyrobotics {
 
+/// Supported angle units
 enum class AngleUnit { DEG, RAD };
 
 /**

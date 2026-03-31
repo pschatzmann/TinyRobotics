@@ -5,6 +5,14 @@
 
 namespace tinyrobotics {
 
+/**
+ * @class SerializeSTL
+ * @ingroup serialize
+ * @brief STL-based serialization utility for Serializable objects.
+ *
+ * Provides methods to serialize and deserialize objects using standard C++ streams.
+ * Useful for saving/loading object state in desktop or simulation environments.
+ */
 class SerializeSTL {
  public:
   SerializeSTL(std::istream* in, std::ostream* out) : p_in(in), p_out(out) {}

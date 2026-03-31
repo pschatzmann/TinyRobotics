@@ -2,23 +2,33 @@
 
 namespace tinyrobotics {
 
+/// Supported distance units for conversion and representation. 
 enum class DistanceUnit { M, CM, MM, FEET };
 
 /**
- * @brief This class represents a distance measurement with a specific unit
- * (meters, centimeters, millimeters, or feet). It provides methods to set and
- * get the distance in different units, as well as handle unit conversion when
- * retrieving the distance in a desired unit. The internal representation of the
- * distance is stored in the unit specified at construction, and all operations
- * ensure that the distance can be accurately converted between supported units.
- * This class can be used for various applications such as navigation, robotics,
- * or any scenario that requires distance representation and manipulation. The
- * getDistance method allows for easy retrieval of the distance in the desired
- * unit, while the setDistance method allows for updating the distance
- * measurement with a new value and unit. The class is designed to be simple and
- * efficient for use in embedded systems, with basic unit conversion logic that
- * covers common distance units.
+ * @class Distance
+ * @ingroup units
+ * @brief Represents a distance measurement with unit conversion support.
  *
+ * The Distance class encapsulates a distance value and its unit, supporting meters (M),
+ * centimeters (CM), millimeters (MM), and feet (FEET). It provides methods to set and retrieve
+ * the distance in any supported unit, automatically handling conversions.
+ *
+ * - Internal state is always consistent with the last set value and unit.
+ * - Designed for embedded and robotics applications where unit flexibility and efficiency are required.
+ * - Use getValue() to retrieve the distance in any unit; use setValue() to update the value and unit.
+ *
+ * Example:
+ * @code
+ *   Distance d(1.0, DistanceUnit::M);
+ *   float feet = d.getValue(DistanceUnit::FEET); // Convert to feet
+ *   d.setValue(100.0, DistanceUnit::CM);         // Update value in centimeters
+ *   float meters = d.getValue(DistanceUnit::M);  // Convert back to meters
+ * @endcode
+ *
+ * @note Invalid conversions return -1.0f.
+ *
+ * @see DistanceUnit
  */
 class Distance {
  public:

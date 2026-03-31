@@ -5,7 +5,19 @@
 
 namespace tinyrobotics {
 
-// Simple static matrix
+/**
+ * @struct Matrix
+ * @ingroup control
+ * @brief Simple static matrix for linear algebra operations.
+ *
+ * This templated struct represents a fixed-size matrix of floats, supporting basic
+ * operations such as element access, identity matrix creation, and arithmetic. Used
+ * throughout the Kalman filter and control modules for efficient matrix computations
+ * in embedded robotics applications.
+ *
+ * @tparam R Number of rows
+ * @tparam C Number of columns
+ */
 template <size_t R, size_t C>
 struct Matrix {
   std::array<float, R * C> data{};

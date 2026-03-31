@@ -21,6 +21,24 @@ namespace tinyrobotics {
  *
  * @tparam Coordinate The coordinate type (e.g., 2D or 3D point).
  */
+/**
+ * @class PathSegment
+ * @ingroup maps
+ * @brief Represents a path segment (edge) between two coordinates in a graph.
+ *
+ * Each segment connects two nodes (coordinates) and can be used to define the
+ * edges in a graph for pathfinding algorithms such as A* or Dijkstra's. The
+ * segment has:
+ *   - a start node (from)
+ *   - an end node (to)
+ *   - a cost (distance, time, or any metric relevant to the problem)
+ *   - a directionality flag (directed or undirected)
+ *
+ * This class is a fundamental building block for creating a path map for
+ * navigation, motion planning, and graph-based search.
+ *
+ * @tparam Coordinate The coordinate type (e.g., 2D or 3D point).
+ */
 template <typename Coordinate = Coordinate<DistanceM>>
 class PathSegment {
  public:

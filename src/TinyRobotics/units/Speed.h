@@ -2,24 +2,33 @@
 
 namespace tinyrobotics {
 
+/// Supported speed units for conversion and representation. 
 enum class SpeedUnit { MPS, KPH, FPS, MPH };
 
 /**
  * @class Speed
  * @ingroup units
- * @brief This class represents a speed measurement with a specific unit (meters
- * per second, kilometers per hour, feet per second, or miles per hour). It
- * provides methods to set and get the speed in different units, as well as
- * handle unit conversion when retrieving the speed in a desired unit. The
- * internal representation of the speed is stored in the unit specified at
- * construction, and all operations ensure that the speed can be accurately
- * converted between supported units. This class can be used for various
- * applications such as navigation, robotics, or any scenario that requires
- * speed representation and manipulation. The getSpeed method allows for easy
- * retrieval of the speed in the desired unit, while the setSpeed method allows
- * for updating the speed measurement with a new value and unit. The class is
- * designed to be simple and efficient for use in embedded systems, with basic
- * unit conversion logic that covers common speed units.
+ * @brief Represents a speed measurement with unit conversion support.
+ *
+ * The Speed class encapsulates a speed value and its unit, supporting meters per second (MPS),
+ * kilometers per hour (KPH), feet per second (FPS), and miles per hour (MPH). It provides methods
+ * to set and retrieve the speed in any supported unit, automatically handling conversions.
+ *
+ * - Internal state is always consistent with the last set value and unit.
+ * - Designed for embedded and robotics applications where unit flexibility and efficiency are required.
+ * - Use getValue() to retrieve the speed in any unit; use setValue() to update the value and unit.
+ *
+ * Example:
+ * @code
+ *   Speed s(10.0, SpeedUnit::MPS);
+ *   float mph = s.getValue(SpeedUnit::MPH); // Convert to miles per hour
+ *   s.setValue(36.0, SpeedUnit::KPH);       // Update value in km/h
+ *   float mps = s.getValue(SpeedUnit::MPS); // Convert back to m/s
+ * @endcode
+ *
+ * @note Invalid conversions return -1.0f.
+ *
+ * @see SpeedUnit
  */
 class Speed {
  public:

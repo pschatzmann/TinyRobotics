@@ -9,6 +9,16 @@
 
 namespace tinyrobotics {
 
+/**
+ * @class ScheduledWayPoint
+ * @ingroup planning
+ * @brief Represents a waypoint with an associated timestamp.
+ *
+ * Used for time-based path following or trajectory execution, where each waypoint
+ * should be reached at a specific time.
+ *
+ * @tparam T Coordinate type (e.g., Coordinate, GPSCoordinate).
+ */
 template <typename T>
 class ScheduledWayPoint {
  public:
@@ -16,6 +26,16 @@ class ScheduledWayPoint {
   unsigned long timestamp;  // Time at which this waypoint should be reached
 };
 
+/**
+ * @class WayPointAndSpeed
+ * @ingroup planning
+ * @brief Represents a waypoint with an associated speed.
+ *
+ * Used for path following or trajectory execution, where each waypoint specifies
+ * the desired speed at that point.
+ *
+ * @tparam T Coordinate type (e.g., Coordinate, GPSCoordinate).
+ */
 template <typename T>
 class WayPointAndSpeed {
  public:

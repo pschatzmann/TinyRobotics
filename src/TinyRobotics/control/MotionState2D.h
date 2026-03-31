@@ -4,6 +4,14 @@
 
 namespace tinyrobotics {
 
+/**
+ * @struct Delta2D
+ * @ingroup control
+ * @brief Represents a 2D incremental motion update (dx, dy, dtheta).
+ *
+ * Used for odometry, IMU, and motion estimation to describe the change in position and orientation
+ * over a time step in 2D space.
+ */
 struct Delta2D {
   float dx;
   float dy;
@@ -17,22 +25,17 @@ struct Delta2D {
  *
  * Provides access to position, heading (orientation), and speed.
  */
+/**
+ * @class IMotionState2D
+ * @ingroup control
+ * @brief Interface for representing the navigation state of a robot in 2D space.
+ *
+ * Provides access to position, heading (orientation), and speed.
+ */
 class IMotionState2D {
   public:
-    /**
-     * @brief Get the current position.
-     * @return The 2D position as a Coordinate (meters).
-     */
     virtual Coordinate<DistanceM> getPosition() const = 0;
-    /**
-     * @brief Get the current heading (orientation).
-     * @return The heading as an Angle (radians).
-     */
     virtual Angle getHeading() const = 0;
-    /**
-     * @brief Get the current speed.
-     * @return The speed as a Speed (meters/second).
-     */
     virtual Speed getSpeed() const = 0;
 };
 

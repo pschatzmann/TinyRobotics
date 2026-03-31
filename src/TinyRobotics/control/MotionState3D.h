@@ -7,6 +7,14 @@
 
 namespace tinyrobotics {
 
+/**
+ * @struct Delta3D
+ * @ingroup control
+ * @brief Represents a 3D incremental motion update (dx, dy, dz, dyaw, dpitch, droll).
+ *
+ * Used for odometry, IMU, and motion estimation to describe the change in position and orientation
+ * over a time step in 3D space.
+ */
 struct Delta3D {
   float dx;
   float dy;
@@ -16,6 +24,13 @@ struct Delta3D {
   float droll;
 };
 
+/**
+ * @class IMotionState3D
+ * @ingroup control
+ * @brief Interface for representing the motion state of a robot in 3D space.
+ *
+ * Provides access to position, orientation, linear velocity, and angular velocity.
+ */
 class IMotionState3D {
  public:
   virtual Coordinate<DistanceM> getPosition() const = 0;

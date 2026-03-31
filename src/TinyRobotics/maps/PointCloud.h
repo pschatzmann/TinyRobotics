@@ -11,6 +11,14 @@
 #include "TinyRobotics/utils/LoggerClass.h"
 
 namespace tinyrobotics {
+/**
+ * @struct Point3D
+ * @ingroup maps
+ * @brief Represents a 3D point with x, y, z coordinates (in meters).
+ *
+ * Used throughout the mapping and robotics modules for point cloud processing, spatial queries,
+ * and geometric computations. Each coordinate is stored as a DistanceM (meters).
+ */
 struct Point3D {
   DistanceM x;
   DistanceM y;
