@@ -1,0 +1,4 @@
+<map id="MutexRP2040" name="MutexRP2040">
+<area shape="rect" id="node1" title="Mutex API for non IRQ mutual exclusion between cores. Mutexes are application level locks usually use..." alt="" coords="5,79,117,104"/>
+<area shape="rect" id="node2" href="$classtinyrobotics_1_1MutexBase.html" title="Empty Mutex implementation which does nothing." alt="" coords="14,5,109,31"/>
+</map>

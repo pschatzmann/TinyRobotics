@@ -1,0 +1,4 @@
+<map id="SingleBuffer&lt; T &gt;" name="SingleBuffer&lt; T &gt;">
+<area shape="rect" id="node1" title="A simple Buffer implementation which just uses a (dynamically sized) array." alt="" coords="5,79,144,104"/>
+<area shape="rect" id="node2" href="$classtinyrobotics_1_1BaseBuffer.html" title="Shared functionality of all buffers." alt="" coords="9,5,140,31"/>
+</map>

@@ -1,0 +1,8 @@
+<map id="IMotionState2D" name="IMotionState2D">
+<area shape="rect" id="node1" title=" " alt="" coords="252,5,375,31"/>
+<area shape="rect" id="node2" href="$classtinyrobotics_1_1IMU2D.html" title=" " alt="" coords="5,79,131,104"/>
+<area shape="rect" id="node3" href="$classtinyrobotics_1_1Fusion2D.html" title="2D sensor fusion EKF for position, heading, and speed estimation." alt="" coords="155,79,237,104"/>
+<area shape="rect" id="node4" href="$classtinyrobotics_1_1IMU2D.html" title="Basic 2D IMU dead&#45;reckoning class." alt="" coords="261,79,365,104"/>
+<area shape="rect" id="node5" href="$classtinyrobotics_1_1MotionState2D.html" title="Concrete implementation of INavigationState2D for storing and accessing 2D navigation state." alt="" coords="390,79,509,104"/>
+<area shape="rect" id="node6" href="$classtinyrobotics_1_1Odometry2D.html" title="Tracks 2D position and orientation of a robot using velocity and steering data." alt="" coords="533,79,638,104"/>
+</map>

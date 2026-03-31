@@ -1,0 +1,5 @@
+<map id="UDPStream" name="UDPStream">
+<area shape="rect" id="node1" title="A UDP class which makes sure that we can use UDP as AudioSource and AudioSink. By default the WiFiUDP..." alt="" coords="7,152,105,177"/>
+<area shape="rect" id="node2" href="$classtinyrobotics_1_1BaseStream.html" title="Base class for all Streams. It relies on write(const uint8_t *buffer, size_t size) and readBytes(uint..." alt="" coords="5,79,107,104"/>
+<area shape="rect" id="node3" title=" " alt="" coords="21,5,91,31"/>
+</map>

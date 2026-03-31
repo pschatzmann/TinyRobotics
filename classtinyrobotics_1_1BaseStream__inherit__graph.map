@@ -1,0 +1,6 @@
+<map id="BaseStream" name="BaseStream">
+<area shape="rect" id="node1" title="Base class for all Streams. It relies on write(const uint8_t *buffer, size_t size) and readBytes(uint..." alt="" coords="83,79,184,104"/>
+<area shape="rect" id="node3" href="$classtinyrobotics_1_1ESPNowStream.html" title="ESPNow as Arduino Stream. When use_send_ack is true we prevent any buffer overflows by blocking write..." alt="" coords="5,152,128,177"/>
+<area shape="rect" id="node4" href="$classtinyrobotics_1_1UDPStream.html" title="A UDP class which makes sure that we can use UDP as AudioSource and AudioSink. By default the WiFiUDP..." alt="" coords="153,152,250,177"/>
+<area shape="rect" id="node2" title=" " alt="" coords="99,5,168,31"/>
+</map>

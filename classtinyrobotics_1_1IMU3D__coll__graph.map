@@ -1,0 +1,11 @@
+<map id="IMU3D&lt; T &gt;" name="IMU3D&lt; T &gt;">
+<area shape="rect" id="node1" title="Basic 3D IMU dead&#45;reckoning class." alt="" coords="484,153,588,179"/>
+<area shape="rect" id="node2" href="$classtinyrobotics_1_1MessageSource.html" title="Base class for message sources in the TinyRobotics communication framework." alt="" coords="167,5,291,31"/>
+<area shape="rect" id="node3" href="$classtinyrobotics_1_1IMotionState3D.html" title=" " alt="" coords="168,55,291,80"/>
+<area shape="rect" id="node4" href="$classtinyrobotics_1_1Orientation3D.html" title="Simple 3D orientation class (yaw, pitch, roll in radians)" alt="" coords="173,104,286,129"/>
+<area shape="rect" id="node5" href="$classtinyrobotics_1_1Velocity3D.html" title="Represents a 3D speed or velocity vector with unit support." alt="" coords="183,153,275,179"/>
+<area shape="rect" id="node6" href="$classtinyrobotics_1_1Coordinate.html" title=" " alt="" coords="153,203,305,228"/>
+<area shape="rect" id="node7" href="$classtinyrobotics_1_1Serializable.html" title="This class defines an interface for serializable objects that can be converted to and from a string r..." alt="" coords="5,203,104,228"/>
+<area shape="rect" id="node8" href="$classtinyrobotics_1_1Distance3D.html" title="Represents a 3D distance or position vector with unit support." alt="" coords="181,252,278,277"/>
+<area shape="rect" id="node9" href="$classtinyrobotics_1_1AngularVelocity3D.html" title="Represents a 3D angular velocity vector with unit support." alt="" coords="158,301,301,327"/>
+</map>

@@ -1,0 +1,4 @@
+<map id="MessageHandlerPrint" name="MessageHandlerPrint">
+<area shape="rect" id="node1" title="Message handler that prints all received messages to a Print stream." alt="" coords="5,79,167,104"/>
+<area shape="rect" id="node2" href="$classtinyrobotics_1_1MessageHandler.html" title="Interface for handling messages in the TinyRobotics framework." alt="" coords="21,5,151,31"/>
+</map>

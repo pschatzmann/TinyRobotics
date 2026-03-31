@@ -1,0 +1,10 @@
+<map id="Vehicle" name="Vehicle">
+<area shape="rect" id="node1" title="Abstract base class for all vehicle types." alt="" coords="184,141,253,166"/>
+<area shape="rect" id="node4" href="$classtinyrobotics_1_1AirPlane.html" title=" " alt="" coords="318,5,486,45"/>
+<area shape="rect" id="node5" href="$classtinyrobotics_1_1CarAckerman.html" title=" " alt="" coords="301,69,503,109"/>
+<area shape="rect" id="node6" href="$classtinyrobotics_1_1CarDifferential.html" title=" " alt="" coords="329,133,475,173"/>
+<area shape="rect" id="node7" href="$classtinyrobotics_1_1MotorBoat.html" title="Motor boat with 1 drive motor and 1 rudder servo." alt="" coords="311,197,493,237"/>
+<area shape="rect" id="node8" href="$classtinyrobotics_1_1Quadrotor.html" title="Simple quadrotor (quadcopter) model with 4&#45;motor control." alt="" coords="321,262,483,287"/>
+<area shape="rect" id="node2" href="$classtinyrobotics_1_1MessageHandler.html" title="Interface for handling messages in the TinyRobotics framework." alt="" coords="5,115,136,141"/>
+<area shape="rect" id="node3" href="$classtinyrobotics_1_1MessageSource.html" title="Base class for message sources in the TinyRobotics communication framework." alt="" coords="9,165,133,190"/>
+</map>

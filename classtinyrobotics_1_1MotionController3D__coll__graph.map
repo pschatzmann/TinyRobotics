@@ -1,0 +1,12 @@
+<map id="MotionController3D" name="MotionController3D">
+<area shape="rect" id="node1" title="3D motion/path controller using PID for position and orientation." alt="" coords="819,218,968,243"/>
+<area shape="rect" id="node2" href="$classtinyrobotics_1_1Path.html" title=" " alt="" coords="499,5,713,45"/>
+<area shape="rect" id="node3" href="$classtinyrobotics_1_1IMotionState3D.html" title=" " alt="" coords="188,157,311,182"/>
+<area shape="rect" id="node4" href="$classtinyrobotics_1_1MotionState3D.html" title="Represents the full 3D motion state of a robot or vehicle." alt="" coords="547,218,665,243"/>
+<area shape="rect" id="node5" href="$classtinyrobotics_1_1Coordinate.html" title=" " alt="" coords="153,101,345,126"/>
+<area shape="rect" id="node6" href="$classtinyrobotics_1_1Serializable.html" title="This class defines an interface for serializable objects that can be converted to and from a string r..." alt="" coords="5,101,104,126"/>
+<area shape="rect" id="node7" href="$classtinyrobotics_1_1Orientation3D.html" title="Simple 3D orientation class (yaw, pitch, roll in radians)" alt="" coords="193,218,306,243"/>
+<area shape="rect" id="node8" href="$classtinyrobotics_1_1Velocity3D.html" title="Represents a 3D speed or velocity vector with unit support." alt="" coords="203,293,295,318"/>
+<area shape="rect" id="node9" href="$classtinyrobotics_1_1AngularVelocity3D.html" title="Represents a 3D angular velocity vector with unit support." alt="" coords="178,357,321,382"/>
+<area shape="rect" id="node10" href="$classtinyrobotics_1_1PIDController.html" title=" " alt="" coords="523,494,689,519"/>
+</map>

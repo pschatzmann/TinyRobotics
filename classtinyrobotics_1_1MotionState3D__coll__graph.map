@@ -1,0 +1,9 @@
+<map id="MotionState3D" name="MotionState3D">
+<area shape="rect" id="node1" title="Represents the full 3D motion state of a robot or vehicle." alt="" coords="366,168,485,193"/>
+<area shape="rect" id="node2" href="$classtinyrobotics_1_1IMotionState3D.html" title=" " alt="" coords="5,80,128,105"/>
+<area shape="rect" id="node3" href="$classtinyrobotics_1_1Coordinate.html" title=" " alt="" coords="152,80,344,105"/>
+<area shape="rect" id="node4" href="$classtinyrobotics_1_1Serializable.html" title="This class defines an interface for serializable objects that can be converted to and from a string r..." alt="" coords="199,5,297,31"/>
+<area shape="rect" id="node5" href="$classtinyrobotics_1_1Orientation3D.html" title="Simple 3D orientation class (yaw, pitch, roll in radians)" alt="" coords="369,80,482,105"/>
+<area shape="rect" id="node6" href="$classtinyrobotics_1_1Velocity3D.html" title="Represents a 3D speed or velocity vector with unit support." alt="" coords="506,80,598,105"/>
+<area shape="rect" id="node7" href="$classtinyrobotics_1_1AngularVelocity3D.html" title="Represents a 3D angular velocity vector with unit support." alt="" coords="622,80,765,105"/>
+</map>

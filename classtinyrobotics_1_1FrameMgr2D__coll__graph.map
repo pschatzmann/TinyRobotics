@@ -1,0 +1,8 @@
+<map id="FrameMgr2D" name="FrameMgr2D">
+<area shape="rect" id="node1" title="Manages a hierarchy of 2D coordinate frames and enables SE(2) transforms and GPS conversion." alt="" coords="199,344,305,369"/>
+<area shape="rect" id="node2" href="$structtinyrobotics_1_1Frame2D.html" title="Represents a 2D coordinate frame in a hierarchical frame tree." alt="" coords="61,256,142,281"/>
+<area shape="rect" id="node3" href="$classtinyrobotics_1_1Transform2D.html" title="Represents a 2D rigid body transform (SE(2)): translation and rotation." alt="" coords="49,168,154,193"/>
+<area shape="rect" id="node4" href="$classtinyrobotics_1_1Coordinate.html" title=" " alt="" coords="5,80,197,105"/>
+<area shape="rect" id="node5" href="$classtinyrobotics_1_1Serializable.html" title="This class defines an interface for serializable objects that can be converted to and from a string r..." alt="" coords="52,5,151,31"/>
+<area shape="rect" id="node6" href="$classtinyrobotics_1_1GPSCoordinate.html" title="Represents a geodetic GPS coordinate with latitude, longitude, and optional altitude." alt="" coords="251,256,370,281"/>
+</map>

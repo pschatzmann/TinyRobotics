@@ -1,0 +1,4 @@
+<map id="NoInterruptHandler" name="NoInterruptHandler">
+<area shape="rect" id="node1" title="Disable, enable interrupts (only on the actual core)" alt="" coords="5,79,152,104"/>
+<area shape="rect" id="node2" href="$classtinyrobotics_1_1MutexBase.html" title="Empty Mutex implementation which does nothing." alt="" coords="31,5,126,31"/>
+</map>

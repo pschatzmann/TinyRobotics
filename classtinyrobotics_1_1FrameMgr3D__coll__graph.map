@@ -1,0 +1,6 @@
+<map id="FrameMgr3D" name="FrameMgr3D">
+<area shape="rect" id="node1" title="Manages a hierarchy of 3D coordinate frames and enables SE(3) transforms." alt="" coords="142,181,249,207"/>
+<area shape="rect" id="node2" href="$classtinyrobotics_1_1Frame3D.html" title="Represents a 3D coordinate frame in a hierarchical frame tree." alt="" coords="17,93,99,119"/>
+<area shape="rect" id="node3" href="$structtinyrobotics_1_1Transform3D.html" title="Represents a 3D rigid body transform: translation (tx, ty, tz) and quaternion rotation (qx,..." alt="" coords="5,5,111,31"/>
+<area shape="rect" id="node4" href="$classtinyrobotics_1_1GPSCoordinate.html" title="Represents a geodetic GPS coordinate with latitude, longitude, and optional altitude." alt="" coords="193,93,312,119"/>
+</map>

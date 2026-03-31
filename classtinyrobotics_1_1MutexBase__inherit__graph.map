@@ -1,0 +1,7 @@
+<map id="MutexBase" name="MutexBase">
+<area shape="rect" id="node1" title="Empty Mutex implementation which does nothing." alt="" coords="219,5,314,31"/>
+<area shape="rect" id="node2" href="$classtinyrobotics_1_1MutexRP2040.html" title="Mutex API for non IRQ mutual exclusion between cores. Mutexes are application level locks usually use..." alt="" coords="5,79,117,104"/>
+<area shape="rect" id="node3" href="$classtinyrobotics_1_1MutexRTOS.html" title="Mutex implemntation using FreeRTOS." alt="" coords="142,79,239,104"/>
+<area shape="rect" id="node4" href="$classtinyrobotics_1_1MutexRecursiveRTOS.html" title="Recursive Mutex implemntation using FreeRTOS." alt="" coords="263,79,425,104"/>
+<area shape="rect" id="node5" href="$classtinyrobotics_1_1NoInterruptHandler.html" title="Disable, enable interrupts (only on the actual core)" alt="" coords="449,79,596,104"/>
+</map>

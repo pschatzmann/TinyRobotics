@@ -1,0 +1,10 @@
+<map id="ESPNowStream" name="ESPNowStream">
+<area shape="rect" id="node1" title="ESPNow as Arduino Stream. When use_send_ack is true we prevent any buffer overflows by blocking write..." alt="" coords="265,284,388,309"/>
+<area shape="rect" id="node2" href="$classtinyrobotics_1_1BaseStream.html" title="Base class for all Streams. It relies on write(const uint8_t *buffer, size_t size) and readBytes(uint..." alt="" coords="131,196,232,221"/>
+<area shape="rect" id="node3" title=" " alt="" coords="5,93,75,119"/>
+<area shape="rect" id="node4" href="$classtinyrobotics_1_1RingBuffer.html" title=" " alt="" coords="99,93,264,119"/>
+<area shape="rect" id="node5" href="$classtinyrobotics_1_1BaseBuffer.html" title="Shared functionality of all buffers." alt="" coords="117,5,248,31"/>
+<area shape="rect" id="node7" href="$classtinyrobotics_1_1BufferRTOS.html" title=" " alt="" coords="288,93,459,119"/>
+<area shape="rect" id="node6" href="$structtinyrobotics_1_1ESPNowStreamConfig.html" title="Configuration for ESP&#45;NOW protocolö.W." alt="" coords="393,196,556,221"/>
+<area shape="rect" id="node8" href="$classtinyrobotics_1_1AllocatorPSRAM.html" title=" " alt="" coords="273,5,474,31"/>
+</map>

@@ -1,0 +1,6 @@
+<map id="BaseStream" name="BaseStream">
+<area shape="rect" id="node1" title="Base class for all Streams. It relies on write(const uint8_t *buffer, size_t size) and readBytes(uint..." alt="" coords="35,183,136,208"/>
+<area shape="rect" id="node2" title=" " alt="" coords="5,80,75,105"/>
+<area shape="rect" id="node3" href="$classtinyrobotics_1_1RingBuffer.html" title=" " alt="" coords="99,80,264,105"/>
+<area shape="rect" id="node4" href="$classtinyrobotics_1_1BaseBuffer.html" title="Shared functionality of all buffers." alt="" coords="116,5,247,31"/>
+</map>

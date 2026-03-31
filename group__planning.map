@@ -1,0 +1,4 @@
+<map id="Planning" name="Planning">
+<area shape="rect" id="node1" href="$group__main.html" title="A powerful Robotics library (not only) for Arduino." alt="" coords="5,5,112,31"/>
+<area shape="rect" id="node2" title="Path planning and search algorithms (A*, Dijkstra, etc.)" alt="" coords="160,5,239,31"/>
+</map>

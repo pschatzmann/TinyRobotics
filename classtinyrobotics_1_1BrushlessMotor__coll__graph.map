@@ -1,0 +1,4 @@
+<map id="BrushlessMotor" name="BrushlessMotor">
+<area shape="rect" id="node1" title="Simple brushless DC motor (ESC) driver using Servo library for Arduino/ESP32." alt="" coords="5,79,128,104"/>
+<area shape="rect" id="node2" href="$classMotor.html" title="Abstract base class for all motor driver types." alt="" coords="37,5,97,31"/>
+</map>

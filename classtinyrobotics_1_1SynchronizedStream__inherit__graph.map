@@ -1,0 +1,4 @@
+<map id="SynchronizedStream" name="SynchronizedStream">
+<area shape="rect" id="node1" title="Wrapper class that can turn any Stream into a thread save implementation. This is done by adding a Mu..." alt="" coords="5,79,161,104"/>
+<area shape="rect" id="node2" title=" " alt="" coords="49,5,118,31"/>
+</map>
