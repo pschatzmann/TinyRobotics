@@ -16,6 +16,15 @@ This directory provides strongly-typed units for distance, angle, speed, and tim
 - **Time.h**  
   Defines the `Time` class for representing durations and time points in seconds, milliseconds, etc.
 
+- **Distance3D**  
+  Represents a 3D distance or position vector with unit support. Provides methods to retrieve each component in any supported unit.
+
+- **Speed3D / Velocity3D**  
+  Represents a 3D speed or velocity vector with unit support. Provides methods to retrieve each component in any supported unit.
+
+- **AngularVelocity3D**  
+  Represents a 3D angular velocity vector with unit support. Provides methods to retrieve each component in any supported unit.
+
 ## Typical Usage
 
 - Represent and convert distances, angles, speeds, and times in a type-safe way.
@@ -28,10 +37,19 @@ This directory provides strongly-typed units for distance, angle, speed, and tim
 #include <TinyRobotics.h>
 
 Distance d1(100, DistanceUnit::CM); // 100 cm
-float meters = d1.getDistance(DistanceUnit::M);   // Convert to meters
+float meters = d1.getValue(DistanceUnit::M);   // Convert to meters
 
 Angle a1(90, AngleUnit::DEG);       // 90 degrees
-float radians = a1.getAngle(AngleUnit::RAD);      // Convert to radians
+float radians = a1.getValue(AngleUnit::RAD);      // Convert to radians
+
+Distance3D pos(1, 2, 3, DistanceUnit::M); // 3D position in meters
+float xInCm = pos.getX(DistanceUnit::CM); // Convert X component to centimeters
+
+Speed3D vel(10, 20, 30, SpeedUnit::KMH); // 3D velocity in km/h
+float zInMS = vel.getZ(SpeedUnit::MPS); // Convert Z component to m/s
+
+AngularVelocity3D angVel(45, 90, 180, AngularVelocityUnit::DEG_S); // 3D angular velocity in degrees per second
+float yInRadS = angVel.getY(AngularVelocityUnit::RAD_S); // Convert Y component to rad/s
 ```
 
 ## See Examples
