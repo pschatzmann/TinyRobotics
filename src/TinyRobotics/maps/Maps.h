@@ -2,6 +2,7 @@
  /**
  * @defgroup maps Maps
  * @ingroup main
+ * @brief Map and grid data structures
  */
 
 #include "TinyRobotics/maps/GridMap.h"

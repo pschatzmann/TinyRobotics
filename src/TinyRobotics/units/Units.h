@@ -2,6 +2,7 @@
  /**
  * @defgroup units Units of measure
  * @ingroup main
+ * @brief Units of measure for robotics (distance, angle, speed, time, etc.)
  */
 
 #include "TinyRobotics/units/Distance.h"

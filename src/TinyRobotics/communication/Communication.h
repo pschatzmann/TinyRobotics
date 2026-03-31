@@ -2,7 +2,7 @@
 /**
  * @defgroup communication Communication
  * @ingroup main
- * @brief 
+ * @brief Communication protocols and messaging for robotics
  */
 
 #include "Message.h"

@@ -2,6 +2,7 @@
  /**
  * @defgroup control Control
  * @ingroup main
+ * @brief Control algorithms and state estimation (PID, Kalman, etc.)
  */
 
 #include "KalmanFilter.h"

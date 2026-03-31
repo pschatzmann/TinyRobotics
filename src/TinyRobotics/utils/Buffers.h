@@ -15,12 +15,6 @@
 #define TRACED()
 #endif
 
-/**
- * @defgroup buffers Buffers
- * @ingroup utils
- * @brief Different Buffer Implementations
- */
-
 namespace tinyrobotics {
 
 /**

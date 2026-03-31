@@ -11,6 +11,7 @@
  /**
  * @defgroup concurrency Concurrency
  * @ingroup main
+ * @brief Concurrency and cooperative multitasking utilities
  */
 
 #include "TinyRobotics/communication/Communication.h"

@@ -2,6 +2,7 @@
  /**
  * @defgroup serialize Serialize
  * @ingroup main
+ * @brief Serialization and deserialization utilities
  */
 
 #include "Serializable.h"

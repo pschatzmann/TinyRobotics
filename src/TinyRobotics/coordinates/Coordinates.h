@@ -2,6 +2,7 @@
  /**
  * @defgroup coordinates Coordinates
  * @ingroup main
+ * @brief Coordinate systems, frames, and GPS utilities
  */
 #include "TinyRobotics/coordinates/Coordinate.h"
 #include "TinyRobotics/coordinates/GPSCoordinate.h"

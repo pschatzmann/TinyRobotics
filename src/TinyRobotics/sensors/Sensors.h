@@ -2,6 +2,7 @@
  /**
  * @defgroup sensors Sensors
  * @ingroup main
+ * @brief Sensor abstraction and integration
  */
 
 #include "CameraEdgeFollower.h"

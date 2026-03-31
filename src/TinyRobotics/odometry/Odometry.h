@@ -1,8 +1,8 @@
-
 #pragma once
  /**
  * @defgroup odometry Odometry
  * @ingroup main
+ * @brief Odometry and pose estimation modules
  */
 
 #include "SpeedFromThrottle.h"

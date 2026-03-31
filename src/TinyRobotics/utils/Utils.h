@@ -2,6 +2,7 @@
  /**
  * @defgroup utils Utilities
  * @ingroup main
+ * @brief Utility classes for logging, memory, and helpers
  */
 
 #include "AllocatorPSRAM.h"
