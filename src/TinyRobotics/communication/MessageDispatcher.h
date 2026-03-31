@@ -9,6 +9,8 @@
 namespace tinyrobotics {
 
 /**
+ * @class MessageDispatcher
+ * @ingroup communication
  * @brief Reads stream and forwards messages to handler.
  *
  * The MessageDispatcher class reads messages from a communication stream
@@ -23,7 +25,6 @@ namespace tinyrobotics {
  *   commMgr.run();
  * }
  * @endcode
- * @ingroup communications
  */
 
 class MessageDispatcher {

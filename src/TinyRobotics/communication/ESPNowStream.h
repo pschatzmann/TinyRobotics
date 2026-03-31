@@ -98,6 +98,8 @@ struct ESPNowStreamConfig {
 };
 
 /**
+ * @class ESPNowStream
+ * @ingroup communication
  * @brief ESPNow as Arduino Stream. When use_send_ack is true we prevent any
  * buffer overflows by blocking writes until the previous packet has been
  * confirmed. When no acknowledgments are used, you might need to throttle the
@@ -106,9 +108,7 @@ struct ESPNowStreamConfig {
  * @note If multiple receivers are in range, only the first one which sends an
  * acknowledgment will be used as coordinator.
  *
- * @ingroup communications
  * @author Phil Schatzmann
-
  */
 class ESPNowStream : public BaseStream {
  public:

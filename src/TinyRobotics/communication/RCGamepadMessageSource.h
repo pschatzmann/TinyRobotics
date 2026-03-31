@@ -13,6 +13,8 @@ namespace tinyrobotics {
 enum class ControlScenario { Car, Boat, Drone, Plane };
 
 /**
+ * @class RCGamepadMessageSource
+ * @ingroup communication
  * @brief Message source for remote control via a virtual gamepad.
  *
  * @note This class depends on the VirtualGamePadArduino library:

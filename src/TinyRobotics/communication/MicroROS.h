@@ -13,7 +13,7 @@ namespace tinyrobotics {
 
 /**
  * @class MicroROS
- * @ingroup communications
+ * @ingroup communication
  * @brief micro-ROS interface for vehicle control and odometry on
  * Arduino/ESP32.
  *

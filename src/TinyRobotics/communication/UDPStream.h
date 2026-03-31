@@ -9,13 +9,13 @@
 namespace tinyrobotics {
 
 /**
+ * @class UDPStream
+ * @ingroup communication
  * @brief A UDP class which makes sure that we can use UDP as
  * AudioSource and AudioSink. By default the WiFiUDP object is used and we login
  * to wifi if the ssid and password is provided and we are not already
  * connected.
- * @ingroup communications
  * @author Phil Schatzmann
-
  */
 
 class UDPStream : public BaseStream {
