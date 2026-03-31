@@ -12,6 +12,8 @@
 namespace tinyrobotics {
 
 /**
+ * @class Dijkstra
+ * @ingroup planning
  * @brief Generic Dijkstra shortest path algorithm for graphs/maps with
  * callback-based cost and validity.
  *

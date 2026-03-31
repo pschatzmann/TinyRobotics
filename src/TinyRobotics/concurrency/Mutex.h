@@ -13,7 +13,7 @@ namespace tinyrobotics {
  * @brief Empty Mutex implementation which does nothing
  * @ingroup concurrency
  * @author Phil Schatzmann
- * @copyright GPLv3
+
  */
 class MutexBase {
  public:
@@ -58,7 +58,7 @@ class SpinLock : public MutexBase {
  * @brief Mutex implemntation based on std::mutex
  * @ingroup concurrency
  * @author Phil Schatzmann
- * @copyright GPLv3
+
  */
 class StdMutex : public MutexBase {
  public:
@@ -73,7 +73,7 @@ class StdMutex : public MutexBase {
  * @brief Mutex implemntation based on std::mutex
  * @ingroup concurrency
  * @author Phil Schatzmann
- * @copyright GPLv3
+
  */
 class StdRecursiveMutex : public MutexBase {
  public:

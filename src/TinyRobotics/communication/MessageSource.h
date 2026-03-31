@@ -28,6 +28,7 @@ namespace tinyrobotics {
  *
  * Extend this class to implement custom message-producing components (e.g.,
  * sensors, controllers) that need to broadcast messages to other system parts.
+ * @ingroup communications
  */
 class MessageSource {
  public:

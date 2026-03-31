@@ -11,6 +11,8 @@ struct Delta2D {
 };
 
 /**
+ * @class MotionState2D
+ * @ingroup control
  * @brief Interface for representing the navigation state of a robot in 2D space.
  *
  * Provides access to position, heading (orientation), and speed.

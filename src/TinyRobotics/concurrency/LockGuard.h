@@ -11,7 +11,7 @@ namespace tinyrobotics {
  * needed.
  * @ingroup concurrency
  * @author Phil Schatzmann
- * @copyright GPLv3 *
+ *
  */
 
 class LockGuard {

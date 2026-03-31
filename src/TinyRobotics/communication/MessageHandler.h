@@ -11,6 +11,7 @@ namespace tinyrobotics {
  *
  * MessageHandler provides a base interface for classes that process messages.
  * It also supports chaining multiple handlers for flexible message routing.
+ * @ingroup communications
  */
 class MessageHandler {
  public:

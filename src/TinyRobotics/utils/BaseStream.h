@@ -12,8 +12,9 @@ namespace tinyrobotics {
 /**
  * @brief Base class for all Streams. It relies on write(const uint8_t *buffer,
  * size_t size) and readBytes(uint8_t *buffer, size_t length).
+ * @ingroup utils
  * @author Phil Schatzmann
- * @copyright GPLv3
+
  */
 class BaseStream : public Stream {
  public:

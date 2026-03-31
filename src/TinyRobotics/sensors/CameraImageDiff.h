@@ -10,6 +10,8 @@
 namespace tinyrobotics {
 
 /**
+ * @class CameraImageDiff
+ * @ingroup sensors
  * @brief Computes pixel-wise differences between consecutive grayscale camera
  * images.
  *

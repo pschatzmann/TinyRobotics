@@ -17,7 +17,7 @@
 
 /**
  * @defgroup buffers Buffers
- * @ingroup tools
+ * @ingroup utils
  * @brief Different Buffer Implementations
  */
 
@@ -25,9 +25,9 @@ namespace tinyrobotics {
 
 /**
  * @brief Shared functionality of all buffers
- * @ingroup buffers
+ * @ingroup utils
  * @author Phil Schatzmann
- * @copyright GPLv3
+
  */
 template <typename T = int16_t>
 class BaseBuffer {
@@ -134,9 +134,9 @@ class BaseBuffer {
 /**
  * @brief A simple Buffer implementation which just uses a (dynamically sized)
  * array
- * @ingroup buffers
+ * @ingroup utils
  * @author Phil Schatzmann
- * @copyright GPLv3
+
  */
 
 template <typename T = int16_t>
@@ -304,7 +304,7 @@ class SingleBuffer : public BaseBuffer<T> {
 
 /**
  * @brief Implements a typed Ringbuffer
- * @ingroup buffers
+ * @ingroup utils
  * @tparam T
  */
 template <typename T = int16_t>

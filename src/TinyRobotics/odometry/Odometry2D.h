@@ -11,6 +11,7 @@ namespace tinyrobotics {
 
 /**
  * @class Odometry2D
+ * @ingroup odometry
  * @brief Tracks 2D position and orientation of a robot using velocity and
  * steering data.
  *

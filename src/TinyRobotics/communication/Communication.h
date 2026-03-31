@@ -1,4 +1,9 @@
 #pragma once
+/**
+ * @defgroup communication Communication
+ * @ingroup main
+ * @brief 
+ */
 
 #include "Message.h"
 #include "MessageBus.h"

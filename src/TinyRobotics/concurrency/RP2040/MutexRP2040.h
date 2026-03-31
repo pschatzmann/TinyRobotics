@@ -7,7 +7,7 @@ namespace tinyrobotics {
  * @brief Disable, enable interrupts (only on the actual core)
  * @ingroup concurrency
  * @author Phil Schatzmann
- * @copyright GPLv3 *
+ *
  */
 class NoInterruptHandler : public MutexBase {
  public:
@@ -28,7 +28,7 @@ class NoInterruptHandler : public MutexBase {
  * an acquired mutex.
  * @ingroup concurrency
  * @author Phil Schatzmann
- * @copyright GPLv3 
+ 
  */
 
 class MutexRP2040 : public MutexBase {

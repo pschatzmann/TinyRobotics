@@ -1,4 +1,9 @@
 #pragma once
+ /**
+ * @defgroup sensors Sensors
+ * @ingroup main
+ */
+
 #include "CameraEdgeFollower.h"
 #include "CameraImageDiff.h"
 #include "CameraLineFollower.h"

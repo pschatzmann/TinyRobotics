@@ -17,8 +17,11 @@ using VelocityUnit = SpeedUnit;
  * class for 1D speed and can be used interchangeably with Velocity3D.
  *
  * Example usage:
+ * @code
  *   Velocity3D v(1.0, 0.0, 0.0, SpeedUnit::MPS); // 1 m/s along x
  *   float vx_kph = v.getX(SpeedUnit::KPH);    // Convert x component to km/h
+ * @endcode
+ * @ingroup units
  */
 class Velocity3D {
  public:

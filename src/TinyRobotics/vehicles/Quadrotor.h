@@ -33,6 +33,7 @@ enum QuadrotorMotorNo {
  * quad.setPitch(-5);    // pitch down
  * quad.setYaw(15);      // yaw right
  * @endcode
+ * @ingroup vehicles
  */
 
 template <typename MotorT = BrushedMotor>

@@ -11,6 +11,7 @@ namespace tinyrobotics {
 
 /**
  * @class WheelEncoder
+ * @ingroup sensors
  * @brief Measures wheel rotation and computes distance and speed using encoder
  * ticks for mobile robots.
  *

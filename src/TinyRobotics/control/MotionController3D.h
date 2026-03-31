@@ -15,6 +15,8 @@ namespace tinyrobotics {
 enum class OnGoalAction { Stop, HoldPosition, Circle };
 
 /**
+ * @class MotionController3D
+ * @ingroup control
  * @brief 3D motion/path controller using PID for position and orientation.
  *
  * This class provides high-level 3D path following and pose control for robots,

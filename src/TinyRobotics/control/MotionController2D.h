@@ -10,6 +10,7 @@ namespace tinyrobotics {
 
 /**
  * @class MotionController2D
+ * @ingroup control
  * @brief 2D motion controller for path following and vehicle control.
  *
  * This class implements a 2D motion controller for robotic vehicles using PID

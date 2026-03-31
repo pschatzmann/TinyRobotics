@@ -12,6 +12,7 @@ namespace tinyrobotics {
 
 /**
  * @class RangeSensor
+ * @ingroup sensors
  * @brief Generic range sensor abstraction for LIDAR, ultrasonic, or similar
  * sensors.
  *
@@ -62,7 +63,7 @@ namespace tinyrobotics {
  * - Obstacle detection and avoidance
  *
  * @author Phil Schatzmann
- * @copyright GPLv3
+
  */
 template <typename T = DistanceM>
 class RangeSensor : public MessageSource {

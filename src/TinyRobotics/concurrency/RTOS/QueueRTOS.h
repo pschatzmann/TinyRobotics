@@ -21,7 +21,7 @@ namespace tinyrobotics {
  * @ingroup collections
  * @ingroup concurrency
  * @author Phil Schatzmann
- * @copyright GPLv3
+
  * @tparam T
  */
 template <class T, class TAllocator = AllocatorPSRAM<T>>

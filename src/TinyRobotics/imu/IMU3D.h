@@ -16,6 +16,8 @@
 namespace tinyrobotics {
 
 /**
+ * @class IMU3D
+ * @ingroup imu
  * @brief Basic 3D IMU dead-reckoning class.
  *
  * This class estimates 3D position, velocity, and orientation (yaw, pitch,

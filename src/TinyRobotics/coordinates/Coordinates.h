@@ -1,4 +1,8 @@
 #pragma once
+ /**
+ * @defgroup coordinates Coordinates
+ * @ingroup main
+ */
 #include "TinyRobotics/coordinates/Coordinate.h"
 #include "TinyRobotics/coordinates/GPSCoordinate.h"
 #include "TinyRobotics/coordinates/NMEAParser.h"

@@ -48,6 +48,7 @@ namespace tinyrobotics {
  * This class is suitable for use in path planning, SLAM, mapping, sensor
  * fusion, and any application requiring 2D or 3D spatial representation and
  * geometric calculations.
+ * @ingroup coordinates
  */
 
 template <typename T = DistanceM>

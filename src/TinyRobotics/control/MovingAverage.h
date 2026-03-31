@@ -6,6 +6,7 @@ namespace tinyrobotics {
 
 /**
  * @class MovingAverage
+ * @ingroup control
  * @brief Computes the moving average of a sequence of values.
  *
  * This template class maintains a fixed-size window of the most recent values and efficiently computes
@@ -28,7 +29,7 @@ namespace tinyrobotics {
  * @tparam N Numeric type of the values (e.g., float, int)
  *
  * @author Phil Schatzmann
- * @copyright GPLv3
+
  */
 
 template <class N = float>

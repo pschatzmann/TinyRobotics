@@ -186,6 +186,7 @@ protected:
  *
  * This class is suitable for embedded and desktop robotics systems that require
  * flexible, hierarchical frame management and integration with GPS.
+ * @ingroup coordinates
  */
 class FrameMgr2D {
  public:

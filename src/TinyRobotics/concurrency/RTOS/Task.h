@@ -16,7 +16,7 @@ namespace tinyrobotics {
  * @brief FreeRTOS task
  * @ingroup concurrency
  * @author Phil Schatzmann
- * @copyright GPLv3 *
+ *
  */
 class Task {
  public:

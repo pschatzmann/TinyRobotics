@@ -15,7 +15,7 @@ namespace tinyrobotics {
  * connected.
  * @ingroup communications
  * @author Phil Schatzmann
- * @copyright GPLv3
+
  */
 
 class UDPStream : public BaseStream {

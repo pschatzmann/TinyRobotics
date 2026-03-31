@@ -9,7 +9,7 @@ namespace tinyrobotics {
  * receive data. We use the river API directly.
  * @ingroup communications
  * @author Phil Schatzmann
- * @copyright GPLv3
+
  */
 class ReadioHeadStream : public Stream {
  public:

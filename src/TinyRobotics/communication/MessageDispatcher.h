@@ -23,6 +23,7 @@ namespace tinyrobotics {
  *   commMgr.run();
  * }
  * @endcode
+ * @ingroup communications
  */
 
 class MessageDispatcher {

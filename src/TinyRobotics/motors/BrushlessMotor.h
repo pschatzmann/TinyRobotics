@@ -14,6 +14,7 @@ namespace tinyrobotics {
 
 /**
  * @class BrushlessMotor
+ * @ingroup motors
  * @brief Simple brushless DC motor (ESC) driver using Servo library for
  * Arduino/ESP32.
  *

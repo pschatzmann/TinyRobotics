@@ -10,10 +10,9 @@ namespace tinyrobotics {
 /**
  * @brief Wrapper class that can turn any Buffer into a thread save
  * implementation.
- * @ingroup buffers
  * @ingroup concurrency
  * @author Phil Schatzmann
- * @copyright GPLv3 *
+ *
  * @tparam T
  */
 template <typename T> 

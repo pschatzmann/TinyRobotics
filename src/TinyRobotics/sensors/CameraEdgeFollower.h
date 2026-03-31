@@ -9,6 +9,8 @@
 namespace tinyrobotics {
 
 /**
+ * @class CameraEdgeFollower
+ * @ingroup sensors
  * @brief Simple edge-following algorithm for grayscale camera images.
  *
  * This class scans a horizontal row of a grayscale image (e.g., from a line or

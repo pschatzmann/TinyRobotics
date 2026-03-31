@@ -1,6 +1,8 @@
 #pragma once
 
 /**
+ * @class Motor
+ * @ingroup motors
  * @brief Abstract base class for all motor driver types.
  *
  * The Motor class defines a common interface for all motor drivers in the

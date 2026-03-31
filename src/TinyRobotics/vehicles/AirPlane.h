@@ -25,6 +25,7 @@
  * plane.setElevator(-10);              // 10 degrees down
  * plane.setAilerons(15, -15);          // left up, right down
  * @endcode
+ * @ingroup vehicles
  */
 namespace tinyrobotics {
 

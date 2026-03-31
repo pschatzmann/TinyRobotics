@@ -14,6 +14,8 @@
 namespace tinyrobotics {
 
 /**
+ * @class Fusion2D
+ * @ingroup fusion
  * @brief 2D sensor fusion EKF for position, heading, and speed estimation.
  *
  * Supports optional sensors:

@@ -1,4 +1,18 @@
 #pragma once
+
+/**
+ * @defgroup main TinyRobotics
+ * @brief A powerful Robotics library (not only) for Arduino
+ * @file TinyRobotics.h
+ * @author Phil Schatzmann
+ * @copyright MIT License
+ */
+
+ /**
+ * @defgroup concurrency Concurrency
+ * @ingroup main
+ */
+
 #include "TinyRobotics/communication/Communication.h"
 #include "TinyRobotics/control/Control.h"
 #include "TinyRobotics/coordinates/Coordinates.h"

@@ -38,7 +38,7 @@ static const uint8_t BROADCAST_MAC[6] = {0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF};
 /**
  * @brief Configuration for ESP-NOW protocolö.W
  * @author Phil Schatzmann
- * @copyright GPLv3
+
  */
 struct ESPNowStreamConfig {
   /// WiFi mode (station or access point). Default: WIFI_STA
@@ -108,7 +108,7 @@ struct ESPNowStreamConfig {
  *
  * @ingroup communications
  * @author Phil Schatzmann
- * @copyright GPLv3
+
  */
 class ESPNowStream : public BaseStream {
  public:

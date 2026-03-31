@@ -11,6 +11,7 @@ namespace tinyrobotics {
 
 /**
  * @class Odometry3D
+ * @ingroup odometry
  * @brief Tracks 3D position and orientation of a robot using velocity and
  * angular rates.
  *

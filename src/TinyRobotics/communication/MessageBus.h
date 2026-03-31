@@ -7,6 +7,7 @@ namespace tinyrobotics {
 
 /**
  * @class MessageBus
+ * @ingroup communications
  * @brief A message handler that forwards messages to multiple registered
  * handlers.
  *

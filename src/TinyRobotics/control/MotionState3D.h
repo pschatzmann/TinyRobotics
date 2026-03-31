@@ -24,6 +24,16 @@ class IMotionState3D {
   virtual AngularVelocity3D getAngularVelocity() const = 0;
 };
 
+/**
+ * @brief Represents the full 3D motion state of a robot or vehicle.
+ *
+ * Encapsulates position, orientation, linear velocity, and angular velocity in 3D space.
+ * Provides a unified interface for state estimation, control, and sensor fusion modules.
+ *
+ * Used throughout the TinyRobotics framework for odometry, IMU, fusion, and control logic.
+ *
+ * @ingroup control
+ */
 class MotionState3D : public IMotionState3D {
  public:
   MotionState3D(const Coordinate<DistanceM>& position,

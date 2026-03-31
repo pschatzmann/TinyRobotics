@@ -11,7 +11,6 @@
 #include "TinyRobotics/utils/LoggerClass.h"
 
 namespace tinyrobotics {
-
 struct Point3D {
   DistanceM x;
   DistanceM y;
@@ -19,6 +18,8 @@ struct Point3D {
 };
 
 /**
+ * @class PointCloud 
+ * @ingroup maps
  * @brief Represents a 3D point cloud for robotics and mapping applications.
  *
  * The PointCloud class manages a collection of 3D points and provides:

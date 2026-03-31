@@ -1,4 +1,9 @@
 #pragma once
+ /**
+ * @defgroup utils Utilities
+ * @ingroup main
+ */
+
 #include "AllocatorPSRAM.h"
 #include "BaseStream.h"
 #include "Buffers.h"

@@ -24,7 +24,7 @@ namespace tinyrobotics {
  * @ingroup buffers
  * @ingroup concurrency
  * @author Phil Schatzmann
- * @copyright GPLv3 *
+ *
  * @tparam T
  */
 template <typename T>

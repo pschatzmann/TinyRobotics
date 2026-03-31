@@ -24,6 +24,8 @@ class WayPointAndSpeed {
 };
 
 /**
+ * @class Path
+ * @ingroup planning
  * @brief A simple path class that holds a sequence of waypoints. Each waypoint
  * is e.g. a coordinate (e.g., x,y,z) that the robot should follow. The path can
  * be used for navigation, motion planning, or trajectory execution. It provides

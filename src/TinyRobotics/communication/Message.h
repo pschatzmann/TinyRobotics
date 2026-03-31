@@ -45,7 +45,7 @@ enum class MessageContent {
 
 /**
  * @brief Generic message structure for communication, parameterized by value type.
- *
+ * @ingroup communications
  * @tparam T Type of the value (default: float)
  *
  * @note When using Message in function signatures (e.g., virtual functions), always use Message<float> explicitly.

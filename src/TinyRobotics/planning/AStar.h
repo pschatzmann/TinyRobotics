@@ -11,7 +11,9 @@
 
 namespace tinyrobotics {
 
-/***
+/**
+ * @class AStar
+ * @ingroup planning
  * @brief Generic, flexible A* pathfinding algorithm for arbitrary graphs,
  * grids, or maps.
  *

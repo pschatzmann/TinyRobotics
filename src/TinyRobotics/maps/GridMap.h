@@ -9,6 +9,8 @@
 namespace tinyrobotics {
 
 /**
+ * @class GridMap
+ * @ingroup maps
  * @brief A grid map for spatial representation, navigation, and planning.
  *
  * The GridMap class models the environment as a regular grid of cells, each

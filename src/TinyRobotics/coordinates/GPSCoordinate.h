@@ -45,6 +45,7 @@ namespace tinyrobotics {
  *
  * This class is suitable for robotics, mapping, navigation, and geospatial
  * applications on embedded or desktop systems.
+ * @ingroup coordinates
  */
 
 class GPSCoordinate {

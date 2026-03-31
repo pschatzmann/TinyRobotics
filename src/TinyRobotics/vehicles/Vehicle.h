@@ -18,6 +18,7 @@ namespace tinyrobotics {
  *
  * All vehicle classes (e.g., Car4WD, Quadrotor, AirPlane, MotorBoat) should
  * inherit from Vehicle.
+ * @ingroup vehicles
  */
 class Vehicle : public MessageHandler, public MessageSource {
  public:

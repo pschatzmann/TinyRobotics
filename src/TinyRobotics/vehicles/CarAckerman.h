@@ -18,6 +18,7 @@
  * car.setSteering(30);      // 30 degrees left
  * car.end();               // brake
  * @endcode
+ * @ingroup vehicles
  */
 namespace tinyrobotics {
 

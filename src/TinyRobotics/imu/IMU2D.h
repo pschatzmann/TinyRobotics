@@ -12,6 +12,8 @@
 namespace tinyrobotics {
 
 /**
+ * @class IMU2D
+ * @ingroup imu
  * @brief Basic 2D IMU dead-reckoning class.
  *
  * This class estimates 2D position, velocity, and heading (yaw angle) for

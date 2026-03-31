@@ -20,6 +20,7 @@ namespace tinyrobotics {
  * boat.setRudder(20);        // 20 degrees left
  * boat.stop();               // brake
  * @endcode
+ * @ingroup vehicles
  */
 
 template <typename BrushedMT = BrushedMotor, typename ServoMT = ServoMotor>

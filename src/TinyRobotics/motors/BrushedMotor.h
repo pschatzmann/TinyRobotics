@@ -6,6 +6,8 @@
 namespace tinyrobotics {
 
 /**
+ * @class BrushedMotor
+ * @ingroup motors
  * @brief High-level H-Bridge motor driver class for bidirectional DC motor
  * control.
  *

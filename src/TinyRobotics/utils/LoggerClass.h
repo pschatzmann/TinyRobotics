@@ -21,6 +21,8 @@ namespace tinyrobotics {
  * - Platform-adaptive output: uses Serial on Arduino, printf elsewhere
  * - Thread-safe for most embedded use cases (no dynamic memory allocation)
  * - Global logger instance (`TRLogger`) for convenience
+ * 
+ * @ingroup utils
  *
  * ## Usage Example
  * @code
@@ -48,7 +50,7 @@ namespace tinyrobotics {
  * - On standard C++, output is sent to stdout via printf
  *
  * @author Phil Schatzmann
- * @copyright GPLv3
+
  */
 class LoggerClass {
  public:

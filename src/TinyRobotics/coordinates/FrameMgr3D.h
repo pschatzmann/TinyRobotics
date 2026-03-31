@@ -133,6 +133,7 @@ class Frame3D {
  * Transform3D{0.1,0,0.2,0,0,0,1}); Transform3D tf = mgr.getTransform(camera,
  * world);
  * @endcode
+ * @ingroup coordinates
  */
 class FrameMgr3D {
  public:

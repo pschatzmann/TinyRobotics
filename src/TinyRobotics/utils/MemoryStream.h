@@ -11,11 +11,7 @@ namespace tinyrobotics {
  * code that expects a Stream (such as parsers or message dispatchers) to operate
  * directly on in-memory data. The stream is read-only: write() does nothing.
  *
- * Example usage:
- *   const uint8_t* data = ...;
- *   size_t len = ...;
- *   MemoryStream stream(data, len);
- *   parser.parse(stream, handler);
+ * @ingroup utils
  */
 class MemoryStream : public Stream {
   const uint8_t* _data;

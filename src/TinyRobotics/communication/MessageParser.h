@@ -23,6 +23,7 @@ enum class MessageValueType {
  *
  * The type field indicates which member of the union is valid after parsing.
  * Used as an output parameter for MessageParser::parse().
+ * @ingroup communications
  */
 struct ParsedMessage {
   MessageValueType type;  ///< Indicates which union member is valid
@@ -58,15 +59,20 @@ struct ParsedMessage {
  * GPSCoordinate). It then reads the value and remaining fields accordingly.
  *
  * Usage (manual type inspection):
+ * @code
  *   MessageParser parser;
  *   ParsedMessage parsed;
  *   if (parser.parse(stream, parsed)) {
  *     switch (parsed.type) { ... }
  *   }
- *
+ * @endcode
+ * 
  * Usage (automatic dispatch):
+ * @code
  *   MessageParser parser;
  *   parser.parse(stream, handler); // handler is a MessageHandler subclass
+ * @endcode
+ * @ingroup communications
  */
 class MessageParser {
  public:

@@ -39,6 +39,7 @@ enum GPSFormat {
  *   // gps now contains parsed data
  * }
  * @endcode
+ * @ingroup coordinates
  */
 
 class NMEAParser {

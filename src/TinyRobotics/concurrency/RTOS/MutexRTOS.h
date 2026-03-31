@@ -17,7 +17,7 @@ namespace tinyrobotics {
  * @brief Mutex implemntation using FreeRTOS
  * @ingroup concurrency
  * @author Phil Schatzmann
- * @copyright GPLv3 *
+ *
  */
 class MutexRTOS : public MutexBase {
 public:
@@ -43,7 +43,7 @@ protected:
  * @brief Recursive Mutex implemntation using FreeRTOS
  * @ingroup concurrency
  * @author Phil Schatzmann
- * @copyright GPLv3 *
+ *
  */
 
 class MutexRecursiveRTOS : public MutexBase {

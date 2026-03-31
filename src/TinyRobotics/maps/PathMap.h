@@ -4,6 +4,8 @@
 namespace tinyrobotics {
 
 /**
+ * @class PathMap
+ * @ingroup maps
  * @brief Represents a path segment (edge) between two coordinates in a graph.
  *
  * Each segment connects two nodes (coordinates) and can be used to define the

@@ -10,6 +10,7 @@ namespace tinyrobotics {
 
 /**
  * @class Scheduler
+ * @ingroup control
  * @brief Simple periodic task scheduler for embedded and Arduino environments.
  *
  * This class provides a lightweight, non-blocking scheduler for executing a
@@ -50,7 +51,7 @@ namespace tinyrobotics {
  * - Cooperative multitasking in embedded systems
  *
  * @author Phil Schatzmann
- * @copyright GPLv3
+
  */
 
 class Scheduler {

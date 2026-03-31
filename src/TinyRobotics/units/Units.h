@@ -1,4 +1,8 @@
 #pragma once
+ /**
+ * @defgroup units Units of measure
+ * @ingroup main
+ */
 
 #include "TinyRobotics/units/Distance.h"
 #include "TinyRobotics/units/Time.h"

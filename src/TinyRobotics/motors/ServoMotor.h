@@ -11,6 +11,8 @@
 namespace tinyrobotics {
 
 /**
+ * @class ServoMotor
+ * @ingroup motors
  * @brief High-level wrapper for Arduino Servo control (RC servo motors).
  *
  * This class provides an easy interface for controlling standard RC servo

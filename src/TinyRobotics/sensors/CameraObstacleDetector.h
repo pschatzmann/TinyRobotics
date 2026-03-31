@@ -9,6 +9,8 @@
 namespace tinyrobotics {
 
 /**
+ * @class CameraObstacleDetector
+ * @ingroup sensors
  * @brief Simple obstacle detection algorithm for grayscale camera images.
  *
  * This class scans a central region of a grayscale image (e.g., from a camera

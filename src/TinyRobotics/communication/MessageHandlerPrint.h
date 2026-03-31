@@ -79,6 +79,7 @@ constexpr const char* originStr[] = {
  *
  * This is useful for efficient logging, binary protocols, or communication with
  * systems that expect binary-encoded messages.
+ * @ingroup communications
  */
 class MessageHandlerBinary : public MessageHandler {
  public:
@@ -122,6 +123,7 @@ class MessageHandlerBinary : public MessageHandler {
  *
  * This is useful for debugging, logging, or monitoring message traffic in a
  * robotics system.
+ * @ingroup communications
  */
 class MessageHandlerPrint : public MessageHandler {
  public:
@@ -192,6 +194,7 @@ class MessageHandlerPrint : public MessageHandler {
  *
  * This is useful for logging, exporting, or integrating message traffic with
  * systems that consume XML data.
+ * @ingroup communications
  */
 class MessageHandlerPrintXML : public MessageHandler {
  public:
@@ -266,6 +269,7 @@ class MessageHandlerPrintXML : public MessageHandler {
  *
  * This is useful for logging, exporting, or integrating message traffic with
  * systems that consume JSON data.
+ * @ingroup communications
  */
 class MessageHandlerPrintJSON : public MessageHandler {
  public:

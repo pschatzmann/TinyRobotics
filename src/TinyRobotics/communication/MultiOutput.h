@@ -23,6 +23,7 @@ namespace tinyrobotics {
  *
  * This is useful for logging, debugging, or mirroring output to multiple
  * destinations in embedded systems.
+ * @ingroup communications
  */
 class MultiOutput : public Print {
  public:

@@ -23,6 +23,7 @@
  * car.setTurn(30);       // turn right by slowing left motors
  * car.end();            // brake all motors
  * @endcode
+ * @ingroup vehicles
  */
 namespace tinyrobotics {
 

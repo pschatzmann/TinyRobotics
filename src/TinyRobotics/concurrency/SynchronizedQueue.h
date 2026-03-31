@@ -10,9 +10,9 @@ namespace tinyrobotics {
 /**
  * @brief FIFO Queue which is based on a List that is thread 
  * save.
- * @ingroup collections
+ * @ingroup concurrency
  * @author Phil Schatzmann
- * @copyright GPLv3
+
  * @tparam T
  * @tparam TMutex
  * @tparam TAllocator Allocator type for the underlying list (default: AllocatorPSRAM<T>)

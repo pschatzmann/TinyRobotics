@@ -25,6 +25,8 @@
  * use)
  *   - No erase, insert, or dynamic resizing
  *
+ * @ingroup utils
+ * 
  * Example usage:
  * @code
  * VectorFromArray<int, 8> v;

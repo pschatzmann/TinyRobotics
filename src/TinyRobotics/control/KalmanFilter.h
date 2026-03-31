@@ -85,6 +85,7 @@ inline Matrix<2, 2> inverse(const Matrix<2, 2>& m) {
 
 /**
  * @class KalmanFilter
+ * @ingroup control
  * @brief A lightweight, fixed-size Kalman Filter for embedded state estimation.
  *
  * This template class implements a discrete-time, linear Kalman Filter for

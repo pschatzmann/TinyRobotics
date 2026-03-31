@@ -6,6 +6,7 @@ namespace tinyrobotics {
 
 /**
  * @class PIDController
+ * @ingroup control
  * @brief Implements a simple, header-only Proportional-Integral-Derivative
  * (PID) controller.
  *

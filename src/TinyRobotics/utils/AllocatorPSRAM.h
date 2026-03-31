@@ -8,6 +8,7 @@ namespace tinyrobotics {
 
 /**
  * @class AllocatorPSRAM
+ * @ingroup utils
  * @brief Custom allocator that uses ESP32's PSRAM for memory allocation
  * @tparam T Type of elements to allocate
  *

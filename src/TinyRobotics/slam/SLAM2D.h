@@ -8,6 +8,7 @@ namespace tinyrobotics {
 
 /**
  * @class SLAM2D
+ * @ingroup slam
  * @brief 2D Simultaneous Localization and Mapping (SLAM) with frame transforms
  * and message integration.
  *
