@@ -76,14 +76,60 @@ $(function() {
   <div class="headertitle"><div class="title">PIDController.h</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#pragma once</span></div>
+<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#</span><span class="preprocessor">pragma</span> <span class="preprocessor">once</span></div>
 <div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span> </div>
-<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &lt;cmath&gt;</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#</span><span class="preprocessor">include</span> <span class="preprocessor">&lt;</span><span class="preprocessor">cmath</span><span class="preprocessor">&gt;</span></div>
 <div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span> </div>
-<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="keyword">namespace </span>tinyrobotics {</div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="keyword">namespace</span> tinyrobotics {</div>
 <div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment">/**</span></div>
+<div class="line"><span class="lineno">    8</span><span class="comment"> * @class PIDController</span></div>
+<div class="line"><span class="lineno">    9</span><span class="comment"> * @ingroup control</span></div>
+<div class="line"><span class="lineno">   10</span><span class="comment"> * @brief Implements a simple, header-only Proportional-Integral-Derivative</span></div>
+<div class="line"><span class="lineno">   11</span><span class="comment"> * (PID) controller.</span></div>
+<div class="line"><span class="lineno">   12</span><span class="comment"> *</span></div>
+<div class="line"><span class="lineno">   13</span><span class="comment"> * This class provides a basic PID controller for closed-loop control of</span></div>
+<div class="line"><span class="lineno">   14</span><span class="comment"> * processes such as motors, temperature, position, and more. The controller</span></div>
+<div class="line"><span class="lineno">   15</span><span class="comment"> * computes a control output based on the error between a target setpoint and a</span></div>
+<div class="line"><span class="lineno">   16</span><span class="comment"> * measured process value, using configurable proportional, integral, and</span></div>
+<div class="line"><span class="lineno">   17</span><span class="comment"> * derivative gains.</span></div>
+<div class="line"><span class="lineno">   18</span><span class="comment"> *</span></div>
+<div class="line"><span class="lineno">   19</span><span class="comment"> * ## Features</span></div>
+<div class="line"><span class="lineno">   20</span><span class="comment"> * - Simple API: `begin()` to configure, `calculate()` to compute control output</span></div>
+<div class="line"><span class="lineno">   21</span><span class="comment"> * - Supports output clamping (min/max)</span></div>
+<div class="line"><span class="lineno">   22</span><span class="comment"> * - Suitable for real-time and embedded systems</span></div>
+<div class="line"><span class="lineno">   23</span><span class="comment"> * - All state is internal; no dynamic memory allocation</span></div>
+<div class="line"><span class="lineno">   24</span><span class="comment"> *</span></div>
+<div class="line"><span class="lineno">   25</span><span class="comment"> * ## Usage Example</span></div>
+<div class="line"><span class="lineno">   26</span><span class="comment"> * @code</span></div>
+<div class="line"><span class="lineno">   27</span><span class="comment"> *   PIDController pid;</span></div>
+<div class="line"><span class="lineno">   28</span><span class="comment"> *   pid.begin(0.01, 255, 0, 1.0, 0.5, 0.1); // dt, max, min, kp, ki, kd</span></div>
+<div class="line"><span class="lineno">   29</span><span class="comment"> *   N control = pid.calculate(target, measured);</span></div>
+<div class="line"><span class="lineno">   30</span><span class="comment"> * @endcode</span></div>
+<div class="line"><span class="lineno">   31</span><span class="comment"> *</span></div>
+<div class="line"><span class="lineno">   32</span><span class="comment"> * ## Parameters</span></div>
+<div class="line"><span class="lineno">   33</span><span class="comment"> * - dt: Loop interval time (seconds)</span></div>
+<div class="line"><span class="lineno">   34</span><span class="comment"> * - max: Maximum output value</span></div>
+<div class="line"><span class="lineno">   35</span><span class="comment"> * - min: Minimum output value</span></div>
+<div class="line"><span class="lineno">   36</span><span class="comment"> * - kp: Proportional gain</span></div>
+<div class="line"><span class="lineno">   37</span><span class="comment"> * - ki: Integral gain</span></div>
+<div class="line"><span class="lineno">   38</span><span class="comment"> * - kd: Derivative gain</span></div>
+<div class="line"><span class="lineno">   39</span><span class="comment"> *</span></div>
+<div class="line"><span class="lineno">   40</span><span class="comment"> * ## Methods</span></div>
+<div class="line"><span class="lineno">   41</span><span class="comment"> * - begin(dt, max, min, kp, ki, kd): Initialize controller parameters</span></div>
+<div class="line"><span class="lineno">   42</span><span class="comment"> * - calculate(target, measured): Compute control output for current error</span></div>
+<div class="line"><span class="lineno">   43</span><span class="comment"> *</span></div>
+<div class="line"><span class="lineno">   44</span><span class="comment"> * ## Applications</span></div>
+<div class="line"><span class="lineno">   45</span><span class="comment"> * - Motor speed and position control</span></div>
+<div class="line"><span class="lineno">   46</span><span class="comment"> * - Temperature regulation</span></div>
+<div class="line"><span class="lineno">   47</span><span class="comment"> * - Robotics and automation</span></div>
+<div class="line"><span class="lineno">   48</span><span class="comment"> * - Any process requiring feedback control</span></div>
+<div class="line"><span class="lineno">   49</span><span class="comment"> *</span></div>
+<div class="line"><span class="lineno">   50</span><span class="comment"> * @author Phil Schatzmann</span></div>
+<div class="line"><span class="lineno">   51</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span> </div>
 <div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span><span class="keyword">template</span> &lt;<span class="keyword">class</span> N = <span class="keywordtype">float</span>&gt;</div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno"><a class="line" href="classtinyrobotics_1_1PIDController.html">   54</a></span><span class="keyword">class </span><a class="code hl_class" href="classtinyrobotics_1_1PIDController.html">PIDController</a> {</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span><span class="keyword">class</span> <a class="code hl_class" href="classtinyrobotics_1_1PIDController.html">PIDController</a> {</div>
 <div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span> <span class="keyword">public</span>:</div>
 <div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>  <span class="comment">// dt -  loop interval time</span></div>
 <div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>  <span class="comment">// max - maximum value of manipulated variable</span></div>
@@ -92,12 +138,12 @@ $(function() {
 <div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>  <span class="comment">// ki -  Integral gain</span></div>
 <div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>  <span class="comment">// kd -  derivative gain</span></div>
 <div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>  <span class="keywordtype">bool</span> begin(N dt, N max, N min, N kp, N ki, N kd) {</div>
-<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>    this-&gt;dt = dt;</div>
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>    this-&gt;max = max;</div>
-<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>    this-&gt;min = min;</div>
-<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>    this-&gt;kp = kp;</div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>    this-&gt;kd = kd;</div>
-<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>    this-&gt;ki = ki;</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>    <span class="keyword">this</span>-&gt;dt = dt;</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>    <span class="keyword">this</span>-&gt;max = max;</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>    <span class="keyword">this</span>-&gt;min = min;</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>    <span class="keyword">this</span>-&gt;kp = kp;</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>    <span class="keyword">this</span>-&gt;kd = kd;</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>    <span class="keyword">this</span>-&gt;ki = ki;</div>
 <div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
 <div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>  }</div>
 <div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span> </div>

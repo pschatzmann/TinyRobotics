@@ -76,11 +76,11 @@ $(function() {
   <div class="headertitle"><div class="title">MessageHandlerPrint.h</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#pragma once</span></div>
-<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#include &quot;MessageHandler.h&quot;</span></div>
-<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &quot;Print.h&quot;</span></div>
+<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#</span><span class="preprocessor">pragma</span> <span class="preprocessor">once</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#</span><span class="preprocessor">include</span> <a class="code" href="MessageHandler_8h.html">&quot;MessageHandler.h&quot;</a></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#</span><span class="preprocessor">include</span> <span class="preprocessor">&quot;Print.h&quot;</span></div>
 <div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span> </div>
-<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="keyword">namespace </span>tinyrobotics {</div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="keyword">namespace</span> tinyrobotics {</div>
 <div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
 <div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment">// from enum class MessageContent in Message.h - update this array to match all</span></div>
 <div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment">// values in the MessageContent enum String arrays for enums (shared by all</span></div>
@@ -141,22 +141,40 @@ $(function() {
 <div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>    <span class="stringliteral">&quot;GPS&quot;</span>             <span class="comment">// 13</span></div>
 <div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>};</div>
 <div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span> </div>
-<div class="line"><a id="l00084" name="l00084"></a><span class="lineno"><a class="line" href="classtinyrobotics_1_1MessageHandlerBinary.html">   84</a></span><span class="keyword">class </span><a class="code hl_class" href="classtinyrobotics_1_1MessageHandlerBinary.html">MessageHandlerBinary</a> : <span class="keyword">public</span> <a class="code hl_class" href="classtinyrobotics_1_1MessageHandler.html">MessageHandler</a> {</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span><span class="comment">/**</span></div>
+<div class="line"><span class="lineno">   67</span><span class="comment"> * @brief Message handler that writes all received messages as raw binary to a</span></div>
+<div class="line"><span class="lineno">   68</span><span class="comment"> * Print stream.</span></div>
+<div class="line"><span class="lineno">   69</span><span class="comment"> *</span></div>
+<div class="line"><span class="lineno">   70</span><span class="comment"> * This class implements the MessageHandler interface and outputs the content of</span></div>
+<div class="line"><span class="lineno">   71</span><span class="comment"> * all received messages (float, Coordinate&lt;float&gt;, GPSCoordinate) as raw binary</span></div>
+<div class="line"><span class="lineno">   72</span><span class="comment"> * data to the provided Print object (e.g., Serial, file, etc).</span></div>
+<div class="line"><span class="lineno">   73</span><span class="comment"> *</span></div>
+<div class="line"><span class="lineno">   74</span><span class="comment"> * Example usage:</span></div>
+<div class="line"><span class="lineno">   75</span><span class="comment"> * @code</span></div>
+<div class="line"><span class="lineno">   76</span><span class="comment"> *   MessageHandlerBinary printer(Serial);</span></div>
+<div class="line"><span class="lineno">   77</span><span class="comment"> *   source.subscribe(printer);</span></div>
+<div class="line"><span class="lineno">   78</span><span class="comment"> * @endcode</span></div>
+<div class="line"><span class="lineno">   79</span><span class="comment"> *</span></div>
+<div class="line"><span class="lineno">   80</span><span class="comment"> * This is useful for efficient logging, binary protocols, or communication with</span></div>
+<div class="line"><span class="lineno">   81</span><span class="comment"> * systems that expect binary-encoded messages.</span></div>
+<div class="line"><span class="lineno">   82</span><span class="comment"> * @ingroup communication</span></div>
+<div class="line"><span class="lineno">   83</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span><span class="keyword">class</span> <a class="code hl_class" href="classtinyrobotics_1_1MessageHandlerBinary.html">MessageHandlerBinary</a> : <span class="keyword">public</span> <a class="code hl_class" href="classtinyrobotics_1_1MessageHandler.html">MessageHandler</a> {</div>
 <div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span> <span class="keyword">public</span>:</div>
-<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>  <a class="code hl_class" href="classtinyrobotics_1_1MessageHandlerBinary.html">MessageHandlerBinary</a>() : printer_(*<span class="keyword">static_cast&lt;</span>Print*<span class="keyword">&gt;</span>(<span class="keyword">nullptr</span>)) {}</div>
-<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>  <a class="code hl_class" href="classtinyrobotics_1_1MessageHandlerBinary.html">MessageHandlerBinary</a>(Print&amp; printer) : printer_(printer) {}</div>
-<div class="line"><a id="l00088" name="l00088"></a><span class="lineno"><a class="line" href="classtinyrobotics_1_1MessageHandlerBinary.html#ab78c06b51db5e63c8f7a84c54baf3842">   88</a></span>  <span class="keywordtype">bool</span> <a class="code hl_function" href="classtinyrobotics_1_1MessageHandlerBinary.html#ab78c06b51db5e63c8f7a84c54baf3842">onMessage</a>(<span class="keyword">const</span> <a class="code hl_class" href="structtinyrobotics_1_1Message.html">Message&lt;float&gt;</a>&amp; msg)<span class="keyword"> override </span>{</div>
-<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>    <span class="keywordtype">size_t</span> written = printer_.write((<span class="keyword">const</span> uint8_t*)&amp;msg, <span class="keyword">sizeof</span>(msg));</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>  MessageHandlerBinary() : printer_(*<span class="keyword">static_cast</span>&lt;Print*&gt;(<span class="keywordtype">nullptr</span>)) {}</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>  MessageHandlerBinary(Print&amp; printer) : printer_(printer) {}</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>  <span class="keywordtype">bool</span> <a class="code hl_function" href="classtinyrobotics_1_1MessageHandlerBinary.html#ab78c06b51db5e63c8f7a84c54baf3842">onMessage</a>(<span class="keyword">const</span> <a class="code hl_class" href="structtinyrobotics_1_1Message.html">Message</a>&lt;<span class="keywordtype">float</span>&gt;&amp; msg) <span class="keyword">override</span> {</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>    size_t written = printer_.write((<span class="keyword">const</span> uint8_t*)&amp;msg, <span class="keyword">sizeof</span>(msg));</div>
 <div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>    <span class="keywordflow">return</span> written == <span class="keyword">sizeof</span>(msg);</div>
 <div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>  }</div>
 <div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span> </div>
-<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>  <span class="keywordtype">bool</span> <a class="code hl_function" href="classtinyrobotics_1_1MessageHandlerBinary.html#ab78c06b51db5e63c8f7a84c54baf3842">onMessage</a>(<span class="keyword">const</span> <a class="code hl_class" href="structtinyrobotics_1_1Message.html">Message</a>&lt;<a class="code hl_class" href="classtinyrobotics_1_1Coordinate.html">Coordinate&lt;float&gt;</a>&gt;&amp; msg)<span class="keyword"> override </span>{</div>
-<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>    <span class="keywordtype">size_t</span> written = printer_.write((<span class="keyword">const</span> uint8_t*)&amp;msg, <span class="keyword">sizeof</span>(msg));</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>  <span class="keywordtype">bool</span> onMessage(<span class="keyword">const</span> <a class="code hl_class" href="structtinyrobotics_1_1Message.html">Message</a>&lt;<a class="code hl_class" href="classtinyrobotics_1_1Coordinate.html">Coordinate</a>&lt;<span class="keywordtype">float</span>&gt;&gt;&amp; msg) <span class="keyword">override</span> {</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>    size_t written = printer_.write((<span class="keyword">const</span> uint8_t*)&amp;msg, <span class="keyword">sizeof</span>(msg));</div>
 <div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>    <span class="keywordflow">return</span> written == <span class="keyword">sizeof</span>(msg);</div>
 <div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>  }</div>
 <div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span> </div>
-<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>  <span class="keywordtype">bool</span> <a class="code hl_function" href="classtinyrobotics_1_1MessageHandlerBinary.html#ab78c06b51db5e63c8f7a84c54baf3842">onMessage</a>(<span class="keyword">const</span> Message&lt;GPSCoordinate&gt;&amp; msg)<span class="keyword"> override </span>{</div>
-<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>    <span class="keywordtype">size_t</span> written = printer_.write((<span class="keyword">const</span> uint8_t*)&amp;msg, <span class="keyword">sizeof</span>(msg));</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>  <span class="keywordtype">bool</span> onMessage(<span class="keyword">const</span> <a class="code hl_class" href="structtinyrobotics_1_1Message.html">Message</a>&lt;<a class="code hl_class" href="classtinyrobotics_1_1GPSCoordinate.html">GPSCoordinate</a>&gt;&amp; msg) <span class="keyword">override</span> {</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>    size_t written = printer_.write((<span class="keyword">const</span> uint8_t*)&amp;msg, <span class="keyword">sizeof</span>(msg));</div>
 <div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>    <span class="keywordflow">return</span> written == <span class="keyword">sizeof</span>(msg);</div>
 <div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>  }</div>
 <div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span> </div>
@@ -166,40 +184,59 @@ $(function() {
 <div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>  Print&amp; printer_;</div>
 <div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>};</div>
 <div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span> </div>
-<div class="line"><a id="l00128" name="l00128"></a><span class="lineno"><a class="line" href="classtinyrobotics_1_1MessageHandlerPrint.html">  128</a></span><span class="keyword">class </span><a class="code hl_class" href="classtinyrobotics_1_1MessageHandlerPrint.html">MessageHandlerPrint</a> : <span class="keyword">public</span> <a class="code hl_class" href="classtinyrobotics_1_1MessageHandler.html">MessageHandler</a> {</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span><span class="comment">/**</span></div>
+<div class="line"><span class="lineno">  110</span><span class="comment"> * @brief Message handler that prints all received messages to a Print stream.</span></div>
+<div class="line"><span class="lineno">  111</span><span class="comment"> *</span></div>
+<div class="line"><span class="lineno">  112</span><span class="comment"> * This class implements the MessageHandler interface and outputs the content of</span></div>
+<div class="line"><span class="lineno">  113</span><span class="comment"> * all received messages (float, Coordinate&lt;float&gt;, GPSCoordinate) in a</span></div>
+<div class="line"><span class="lineno">  114</span><span class="comment"> * human-readable format to the provided Print object (e.g., Serial, file, etc).</span></div>
+<div class="line"><span class="lineno">  115</span><span class="comment"> * It uses string arrays to print the message type, unit, and source as readable</span></div>
+<div class="line"><span class="lineno">  116</span><span class="comment"> * text.</span></div>
+<div class="line"><span class="lineno">  117</span><span class="comment"> *</span></div>
+<div class="line"><span class="lineno">  118</span><span class="comment"> * Example usage:</span></div>
+<div class="line"><span class="lineno">  119</span><span class="comment"> * @code</span></div>
+<div class="line"><span class="lineno">  120</span><span class="comment"> *   MessageHandlerPrint printer(Serial);</span></div>
+<div class="line"><span class="lineno">  121</span><span class="comment"> *   source.subscribe(printer);</span></div>
+<div class="line"><span class="lineno">  122</span><span class="comment"> * @endcode</span></div>
+<div class="line"><span class="lineno">  123</span><span class="comment"> *</span></div>
+<div class="line"><span class="lineno">  124</span><span class="comment"> * This is useful for debugging, logging, or monitoring message traffic in a</span></div>
+<div class="line"><span class="lineno">  125</span><span class="comment"> * robotics system.</span></div>
+<div class="line"><span class="lineno">  126</span><span class="comment"> * @ingroup communication</span></div>
+<div class="line"><span class="lineno">  127</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span><span class="keyword">class</span> <a class="code hl_class" href="classtinyrobotics_1_1MessageHandlerPrint.html">MessageHandlerPrint</a> : <span class="keyword">public</span> <a class="code hl_class" href="classtinyrobotics_1_1MessageHandler.html">MessageHandler</a> {</div>
 <div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span> <span class="keyword">public</span>:</div>
-<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>  <a class="code hl_class" href="classtinyrobotics_1_1MessageHandlerPrint.html">MessageHandlerPrint</a>() : printer_(*<span class="keyword">static_cast&lt;</span>Print*<span class="keyword">&gt;</span>(<span class="keyword">nullptr</span>)) {}</div>
-<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>  <a class="code hl_class" href="classtinyrobotics_1_1MessageHandlerPrint.html">MessageHandlerPrint</a>(Print&amp; printer) : printer_(printer) {}</div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>  MessageHandlerPrint() : printer_(*<span class="keyword">static_cast</span>&lt;Print*&gt;(<span class="keywordtype">nullptr</span>)) {}</div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>  MessageHandlerPrint(Print&amp; printer) : printer_(printer) {}</div>
 <div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>  <span class="keywordtype">void</span> setOutput(Print&amp; printer) { printer_ = printer; }</div>
-<div class="line"><a id="l00133" name="l00133"></a><span class="lineno"><a class="line" href="classtinyrobotics_1_1MessageHandlerPrint.html#ab78c06b51db5e63c8f7a84c54baf3842">  133</a></span>  <span class="keywordtype">bool</span> <a class="code hl_function" href="classtinyrobotics_1_1MessageHandlerPrint.html#ab78c06b51db5e63c8f7a84c54baf3842">onMessage</a>(<span class="keyword">const</span> <a class="code hl_class" href="structtinyrobotics_1_1Message.html">Message&lt;float&gt;</a>&amp; msg)<span class="keyword"> override </span>{</div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>  <span class="keywordtype">bool</span> <a class="code hl_function" href="classtinyrobotics_1_1MessageHandlerPrint.html#ab78c06b51db5e63c8f7a84c54baf3842">onMessage</a>(<span class="keyword">const</span> <a class="code hl_class" href="structtinyrobotics_1_1Message.html">Message</a>&lt;<span class="keywordtype">float</span>&gt;&amp; msg) <span class="keyword">override</span> {</div>
 <div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>    printer_.print(<span class="stringliteral">&quot;[Message] Type: &quot;</span>);</div>
-<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>    printer_.print(messageContentStr[<span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(msg.<a class="code hl_variable" href="structtinyrobotics_1_1Message.html#a8e68387e210029af6bdfa6404d29f30f">content</a>)]);</div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>    printer_.print(messageContentStr[<span class="keyword">static_cast</span>&lt;<span class="keywordtype">int</span>&gt;(msg.content)]);</div>
 <div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>    printer_.print(<span class="stringliteral">&quot;, Value: &quot;</span>);</div>
-<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>    printer_.print(msg.<a class="code hl_variable" href="structtinyrobotics_1_1Message.html#a4fc7f59e3113e19697159919a5aad095">value</a>);</div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>    printer_.print(msg.value);</div>
 <div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>    printer_.print(<span class="stringliteral">&quot; &quot;</span>);</div>
-<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>    printer_.print(unitStr[<span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(msg.<a class="code hl_variable" href="structtinyrobotics_1_1Message.html#aaa0d61fcdf7a0b9f0f2b48c9946cbd10">unit</a>)]);</div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>    printer_.print(unitStr[<span class="keyword">static_cast</span>&lt;<span class="keywordtype">int</span>&gt;(msg.unit)]);</div>
 <div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span>    printer_.print(<span class="stringliteral">&quot;, Source: &quot;</span>);</div>
-<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span>    printer_.println(originStr[<span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(msg.<a class="code hl_variable" href="structtinyrobotics_1_1Message.html#afac95aff6fbfafe382acb9abf8227503">source</a>)]);</div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span>    printer_.println(originStr[<span class="keyword">static_cast</span>&lt;<span class="keywordtype">int</span>&gt;(msg.source)]);</div>
 <div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span>    <span class="keywordflow">return</span> <span class="keyword">true</span>;  <span class="comment">// Indicate that the message was handled</span></div>
 <div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span>  }</div>
 <div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span> </div>
-<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span>  <span class="keywordtype">bool</span> <a class="code hl_function" href="classtinyrobotics_1_1MessageHandlerPrint.html#ab78c06b51db5e63c8f7a84c54baf3842">onMessage</a>(<span class="keyword">const</span> <a class="code hl_class" href="structtinyrobotics_1_1Message.html">Message</a>&lt;<a class="code hl_class" href="classtinyrobotics_1_1Coordinate.html">Coordinate&lt;float&gt;</a>&gt;&amp; msg)<span class="keyword"> override </span>{</div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span>  <span class="keywordtype">bool</span> onMessage(<span class="keyword">const</span> <a class="code hl_class" href="structtinyrobotics_1_1Message.html">Message</a>&lt;<a class="code hl_class" href="classtinyrobotics_1_1Coordinate.html">Coordinate</a>&lt;<span class="keywordtype">float</span>&gt;&gt;&amp; msg) <span class="keyword">override</span> {</div>
 <div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>    printer_.print(<span class="stringliteral">&quot;[Message] Type: &quot;</span>);</div>
-<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>    printer_.print(messageContentStr[<span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(msg.content)]);</div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>    printer_.print(messageContentStr[<span class="keyword">static_cast</span>&lt;<span class="keywordtype">int</span>&gt;(msg.content)]);</div>
 <div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>    printer_.print(<span class="stringliteral">&quot;, X: &quot;</span>);</div>
 <div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>    printer_.print(msg.value.x);</div>
 <div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>    printer_.print(<span class="stringliteral">&quot;, Y: &quot;</span>);</div>
 <div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>    printer_.print(msg.value.y);</div>
 <div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>    printer_.print(<span class="stringliteral">&quot;, Unit: &quot;</span>);</div>
-<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>    printer_.print(unitStr[<span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(msg.unit)]);</div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>    printer_.print(unitStr[<span class="keyword">static_cast</span>&lt;<span class="keywordtype">int</span>&gt;(msg.unit)]);</div>
 <div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>    printer_.print(<span class="stringliteral">&quot;, Source: &quot;</span>);</div>
-<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>    printer_.println(originStr[<span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(msg.source)]);</div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>    printer_.println(originStr[<span class="keyword">static_cast</span>&lt;<span class="keywordtype">int</span>&gt;(msg.source)]);</div>
 <div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>    <span class="keywordflow">return</span> <span class="keyword">true</span>;  <span class="comment">// Indicate that the message was handled</span></div>
 <div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>  }</div>
 <div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span> </div>
-<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>  <span class="keywordtype">bool</span> <a class="code hl_function" href="classtinyrobotics_1_1MessageHandlerPrint.html#ab78c06b51db5e63c8f7a84c54baf3842">onMessage</a>(<span class="keyword">const</span> Message&lt;GPSCoordinate&gt;&amp; msg)<span class="keyword"> override </span>{</div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>  <span class="keywordtype">bool</span> onMessage(<span class="keyword">const</span> <a class="code hl_class" href="structtinyrobotics_1_1Message.html">Message</a>&lt;<a class="code hl_class" href="classtinyrobotics_1_1GPSCoordinate.html">GPSCoordinate</a>&gt;&amp; msg) <span class="keyword">override</span> {</div>
 <div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>    printer_.print(<span class="stringliteral">&quot;[Message] Type: &quot;</span>);</div>
-<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span>    printer_.print(messageContentStr[<span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(msg.content)]);</div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span>    printer_.print(messageContentStr[<span class="keyword">static_cast</span>&lt;<span class="keywordtype">int</span>&gt;(msg.content)]);</div>
 <div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>    printer_.print(<span class="stringliteral">&quot;, Lat: &quot;</span>);</div>
 <div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span>    printer_.print(msg.value.latitude);</div>
 <div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span>    printer_.print(<span class="stringliteral">&quot;, Lon: &quot;</span>);</div>
@@ -207,9 +244,9 @@ $(function() {
 <div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span>    printer_.print(<span class="stringliteral">&quot;, Alt: &quot;</span>);</div>
 <div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span>    printer_.print(msg.value.altitude);</div>
 <div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span>    printer_.print(<span class="stringliteral">&quot;, Unit: &quot;</span>);</div>
-<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span>    printer_.print(unitStr[<span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(msg.unit)]);</div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span>    printer_.print(unitStr[<span class="keyword">static_cast</span>&lt;<span class="keywordtype">int</span>&gt;(msg.unit)]);</div>
 <div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span>    printer_.print(<span class="stringliteral">&quot;, Source: &quot;</span>);</div>
-<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span>    printer_.println(originStr[<span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(msg.source)]);</div>
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span>    printer_.println(originStr[<span class="keyword">static_cast</span>&lt;<span class="keywordtype">int</span>&gt;(msg.source)]);</div>
 <div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span>    <span class="keywordflow">return</span> <span class="keyword">true</span>;  <span class="comment">// Indicate that the message was handled</span></div>
 <div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span>  }</div>
 <div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span> </div>
@@ -217,32 +254,52 @@ $(function() {
 <div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span>  Print&amp; printer_;</div>
 <div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span>};</div>
 <div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span> </div>
-<div class="line"><a id="l00199" name="l00199"></a><span class="lineno"><a class="line" href="classtinyrobotics_1_1MessageHandlerPrintXML.html">  199</a></span><span class="keyword">class </span><a class="code hl_class" href="classtinyrobotics_1_1MessageHandlerPrintXML.html">MessageHandlerPrintXML</a> : <span class="keyword">public</span> <a class="code hl_class" href="classtinyrobotics_1_1MessageHandler.html">MessageHandler</a> {</div>
+<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span><span class="comment">/**</span></div>
+<div class="line"><span class="lineno">  180</span><span class="comment"> * @brief Message handler that prints all received messages as XML to a Print</span></div>
+<div class="line"><span class="lineno">  181</span><span class="comment"> * stream.</span></div>
+<div class="line"><span class="lineno">  182</span><span class="comment"> *</span></div>
+<div class="line"><span class="lineno">  183</span><span class="comment"> * This class implements the MessageHandler interface and outputs the content of</span></div>
+<div class="line"><span class="lineno">  184</span><span class="comment"> * all received messages (float, Coordinate&lt;float&gt;, GPSCoordinate) in XML format</span></div>
+<div class="line"><span class="lineno">  185</span><span class="comment"> * to the provided Print object (e.g., Serial, file, etc). It uses the same</span></div>
+<div class="line"><span class="lineno">  186</span><span class="comment"> * string arrays as MessageHandlerPrint to print the message type, unit, and</span></div>
+<div class="line"><span class="lineno">  187</span><span class="comment"> * source as readable text.</span></div>
+<div class="line"><span class="lineno">  188</span><span class="comment"> *</span></div>
+<div class="line"><span class="lineno">  189</span><span class="comment"> * Example usage:</span></div>
+<div class="line"><span class="lineno">  190</span><span class="comment"> * @code</span></div>
+<div class="line"><span class="lineno">  191</span><span class="comment"> *   MessageHandlerPrintXML printer(Serial);</span></div>
+<div class="line"><span class="lineno">  192</span><span class="comment"> *   source.subscribe(printer);</span></div>
+<div class="line"><span class="lineno">  193</span><span class="comment"> * @endcode</span></div>
+<div class="line"><span class="lineno">  194</span><span class="comment"> *</span></div>
+<div class="line"><span class="lineno">  195</span><span class="comment"> * This is useful for logging, exporting, or integrating message traffic with</span></div>
+<div class="line"><span class="lineno">  196</span><span class="comment"> * systems that consume XML data.</span></div>
+<div class="line"><span class="lineno">  197</span><span class="comment"> * @ingroup communication</span></div>
+<div class="line"><span class="lineno">  198</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span><span class="keyword">class</span> <a class="code hl_class" href="classtinyrobotics_1_1MessageHandlerPrintXML.html">MessageHandlerPrintXML</a> : <span class="keyword">public</span> <a class="code hl_class" href="classtinyrobotics_1_1MessageHandler.html">MessageHandler</a> {</div>
 <div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span> <span class="keyword">public</span>:</div>
-<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span>  <a class="code hl_class" href="classtinyrobotics_1_1MessageHandlerPrintXML.html">MessageHandlerPrintXML</a>() : printer_(*<span class="keyword">static_cast&lt;</span>Print*<span class="keyword">&gt;</span>(<span class="keyword">nullptr</span>)) {}</div>
-<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span>  <a class="code hl_class" href="classtinyrobotics_1_1MessageHandlerPrintXML.html">MessageHandlerPrintXML</a>(Print&amp; printer) : printer_(printer) {}</div>
+<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span>  MessageHandlerPrintXML() : printer_(*<span class="keyword">static_cast</span>&lt;Print*&gt;(<span class="keywordtype">nullptr</span>)) {}</div>
+<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span>  MessageHandlerPrintXML(Print&amp; printer) : printer_(printer) {}</div>
 <div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span>  <span class="keywordtype">void</span> setOutput(Print&amp; printer) { printer_ = printer; }</div>
 <div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span> </div>
-<div class="line"><a id="l00205" name="l00205"></a><span class="lineno"><a class="line" href="classtinyrobotics_1_1MessageHandlerPrintXML.html#ab78c06b51db5e63c8f7a84c54baf3842">  205</a></span>  <span class="keywordtype">bool</span> <a class="code hl_function" href="classtinyrobotics_1_1MessageHandlerPrintXML.html#ab78c06b51db5e63c8f7a84c54baf3842">onMessage</a>(<span class="keyword">const</span> <a class="code hl_class" href="structtinyrobotics_1_1Message.html">Message&lt;float&gt;</a>&amp; msg)<span class="keyword"> override </span>{</div>
+<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span>  <span class="keywordtype">bool</span> <a class="code hl_function" href="classtinyrobotics_1_1MessageHandlerPrintXML.html#ab78c06b51db5e63c8f7a84c54baf3842">onMessage</a>(<span class="keyword">const</span> <a class="code hl_class" href="structtinyrobotics_1_1Message.html">Message</a>&lt;<span class="keywordtype">float</span>&gt;&amp; msg) <span class="keyword">override</span> {</div>
 <div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span>    printer_.print(<span class="stringliteral">&quot;&lt;Message type=\&quot;&quot;</span>);</div>
-<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span>    printer_.print(messageContentStr[<span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(msg.<a class="code hl_variable" href="structtinyrobotics_1_1Message.html#a8e68387e210029af6bdfa6404d29f30f">content</a>)]);</div>
+<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span>    printer_.print(messageContentStr[<span class="keyword">static_cast</span>&lt;<span class="keywordtype">int</span>&gt;(msg.content)]);</div>
 <div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span>    printer_.print(<span class="stringliteral">&quot;\&quot; unit=\&quot;&quot;</span>);</div>
-<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span>    printer_.print(unitStr[<span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(msg.<a class="code hl_variable" href="structtinyrobotics_1_1Message.html#aaa0d61fcdf7a0b9f0f2b48c9946cbd10">unit</a>)]);</div>
+<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span>    printer_.print(unitStr[<span class="keyword">static_cast</span>&lt;<span class="keywordtype">int</span>&gt;(msg.unit)]);</div>
 <div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span>    printer_.print(<span class="stringliteral">&quot;\&quot; source=\&quot;&quot;</span>);</div>
-<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span>    printer_.print(originStr[<span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(msg.<a class="code hl_variable" href="structtinyrobotics_1_1Message.html#afac95aff6fbfafe382acb9abf8227503">source</a>)]);</div>
+<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span>    printer_.print(originStr[<span class="keyword">static_cast</span>&lt;<span class="keywordtype">int</span>&gt;(msg.source)]);</div>
 <div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span>    printer_.print(<span class="stringliteral">&quot;\&quot; value=\&quot;&quot;</span>);</div>
-<div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span>    printer_.print(msg.<a class="code hl_variable" href="structtinyrobotics_1_1Message.html#a4fc7f59e3113e19697159919a5aad095">value</a>);</div>
+<div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span>    printer_.print(msg.value);</div>
 <div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span>    printer_.println(<span class="stringliteral">&quot;\&quot;/&gt;&quot;</span>);</div>
 <div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span>    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
 <div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span>  }</div>
 <div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span> </div>
-<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span>  <span class="keywordtype">bool</span> <a class="code hl_function" href="classtinyrobotics_1_1MessageHandlerPrintXML.html#ab78c06b51db5e63c8f7a84c54baf3842">onMessage</a>(<span class="keyword">const</span> <a class="code hl_class" href="structtinyrobotics_1_1Message.html">Message</a>&lt;<a class="code hl_class" href="classtinyrobotics_1_1Coordinate.html">Coordinate&lt;float&gt;</a>&gt;&amp; msg)<span class="keyword"> override </span>{</div>
+<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span>  <span class="keywordtype">bool</span> onMessage(<span class="keyword">const</span> <a class="code hl_class" href="structtinyrobotics_1_1Message.html">Message</a>&lt;<a class="code hl_class" href="classtinyrobotics_1_1Coordinate.html">Coordinate</a>&lt;<span class="keywordtype">float</span>&gt;&gt;&amp; msg) <span class="keyword">override</span> {</div>
 <div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span>    printer_.print(<span class="stringliteral">&quot;&lt;Message type=\&quot;&quot;</span>);</div>
-<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span>    printer_.print(messageContentStr[<span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(msg.content)]);</div>
+<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span>    printer_.print(messageContentStr[<span class="keyword">static_cast</span>&lt;<span class="keywordtype">int</span>&gt;(msg.content)]);</div>
 <div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span>    printer_.print(<span class="stringliteral">&quot;\&quot; unit=\&quot;&quot;</span>);</div>
-<div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span>    printer_.print(unitStr[<span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(msg.unit)]);</div>
+<div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span>    printer_.print(unitStr[<span class="keyword">static_cast</span>&lt;<span class="keywordtype">int</span>&gt;(msg.unit)]);</div>
 <div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span>    printer_.print(<span class="stringliteral">&quot;\&quot; source=\&quot;&quot;</span>);</div>
-<div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span>    printer_.print(originStr[<span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(msg.source)]);</div>
+<div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span>    printer_.print(originStr[<span class="keyword">static_cast</span>&lt;<span class="keywordtype">int</span>&gt;(msg.source)]);</div>
 <div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span>    printer_.print(<span class="stringliteral">&quot;\&quot;&gt;&lt;X&gt;&quot;</span>);</div>
 <div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span>    printer_.print(msg.value.x);</div>
 <div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span>    printer_.print(<span class="stringliteral">&quot;&lt;/X&gt;&lt;Y&gt;&quot;</span>);</div>
@@ -251,13 +308,13 @@ $(function() {
 <div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span>    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
 <div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span>  }</div>
 <div class="line"><a id="l00232" name="l00232"></a><span class="lineno">  232</span> </div>
-<div class="line"><a id="l00233" name="l00233"></a><span class="lineno">  233</span>  <span class="keywordtype">bool</span> <a class="code hl_function" href="classtinyrobotics_1_1MessageHandlerPrintXML.html#ab78c06b51db5e63c8f7a84c54baf3842">onMessage</a>(<span class="keyword">const</span> Message&lt;GPSCoordinate&gt;&amp; msg)<span class="keyword"> override </span>{</div>
+<div class="line"><a id="l00233" name="l00233"></a><span class="lineno">  233</span>  <span class="keywordtype">bool</span> onMessage(<span class="keyword">const</span> <a class="code hl_class" href="structtinyrobotics_1_1Message.html">Message</a>&lt;<a class="code hl_class" href="classtinyrobotics_1_1GPSCoordinate.html">GPSCoordinate</a>&gt;&amp; msg) <span class="keyword">override</span> {</div>
 <div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span>    printer_.print(<span class="stringliteral">&quot;&lt;Message type=\&quot;&quot;</span>);</div>
-<div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span>    printer_.print(messageContentStr[<span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(msg.content)]);</div>
+<div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span>    printer_.print(messageContentStr[<span class="keyword">static_cast</span>&lt;<span class="keywordtype">int</span>&gt;(msg.content)]);</div>
 <div class="line"><a id="l00236" name="l00236"></a><span class="lineno">  236</span>    printer_.print(<span class="stringliteral">&quot;\&quot; unit=\&quot;&quot;</span>);</div>
-<div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span>    printer_.print(unitStr[<span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(msg.unit)]);</div>
+<div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span>    printer_.print(unitStr[<span class="keyword">static_cast</span>&lt;<span class="keywordtype">int</span>&gt;(msg.unit)]);</div>
 <div class="line"><a id="l00238" name="l00238"></a><span class="lineno">  238</span>    printer_.print(<span class="stringliteral">&quot;\&quot; source=\&quot;&quot;</span>);</div>
-<div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span>    printer_.print(originStr[<span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(msg.source)]);</div>
+<div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span>    printer_.print(originStr[<span class="keyword">static_cast</span>&lt;<span class="keywordtype">int</span>&gt;(msg.source)]);</div>
 <div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span>    printer_.print(<span class="stringliteral">&quot;\&quot;&gt;&lt;Lat&gt;&quot;</span>);</div>
 <div class="line"><a id="l00241" name="l00241"></a><span class="lineno">  241</span>    printer_.print(msg.value.latitude);</div>
 <div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span>    printer_.print(<span class="stringliteral">&quot;&lt;/Lat&gt;&lt;Lon&gt;&quot;</span>);</div>
@@ -272,43 +329,63 @@ $(function() {
 <div class="line"><a id="l00251" name="l00251"></a><span class="lineno">  251</span>  Print&amp; printer_;</div>
 <div class="line"><a id="l00252" name="l00252"></a><span class="lineno">  252</span>};</div>
 <div class="line"><a id="l00253" name="l00253"></a><span class="lineno">  253</span> </div>
-<div class="line"><a id="l00274" name="l00274"></a><span class="lineno"><a class="line" href="classtinyrobotics_1_1MessageHandlerPrintJSON.html">  274</a></span><span class="keyword">class </span><a class="code hl_class" href="classtinyrobotics_1_1MessageHandlerPrintJSON.html">MessageHandlerPrintJSON</a> : <span class="keyword">public</span> <a class="code hl_class" href="classtinyrobotics_1_1MessageHandler.html">MessageHandler</a> {</div>
+<div class="line"><a id="l00254" name="l00254"></a><span class="lineno">  254</span><span class="comment">/**</span></div>
+<div class="line"><span class="lineno">  255</span><span class="comment"> * @brief Message handler that prints all received messages as JSON to a Print</span></div>
+<div class="line"><span class="lineno">  256</span><span class="comment"> * stream.</span></div>
+<div class="line"><span class="lineno">  257</span><span class="comment"> *</span></div>
+<div class="line"><span class="lineno">  258</span><span class="comment"> * This class implements the MessageHandler interface and outputs the content of</span></div>
+<div class="line"><span class="lineno">  259</span><span class="comment"> * all received messages (float, Coordinate&lt;float&gt;, GPSCoordinate) in JSON</span></div>
+<div class="line"><span class="lineno">  260</span><span class="comment"> * format to the provided Print object (e.g., Serial, file, etc). It uses the</span></div>
+<div class="line"><span class="lineno">  261</span><span class="comment"> * shared string arrays to print the message type, unit, and source as readable</span></div>
+<div class="line"><span class="lineno">  262</span><span class="comment"> * text.</span></div>
+<div class="line"><span class="lineno">  263</span><span class="comment"> *</span></div>
+<div class="line"><span class="lineno">  264</span><span class="comment"> * Example usage:</span></div>
+<div class="line"><span class="lineno">  265</span><span class="comment"> * @code</span></div>
+<div class="line"><span class="lineno">  266</span><span class="comment"> *   MessageHandlerPrintJSON printer(Serial);</span></div>
+<div class="line"><span class="lineno">  267</span><span class="comment"> *   source.subscribe(printer);</span></div>
+<div class="line"><span class="lineno">  268</span><span class="comment"> * @endcode</span></div>
+<div class="line"><span class="lineno">  269</span><span class="comment"> *</span></div>
+<div class="line"><span class="lineno">  270</span><span class="comment"> * This is useful for logging, exporting, or integrating message traffic with</span></div>
+<div class="line"><span class="lineno">  271</span><span class="comment"> * systems that consume JSON data.</span></div>
+<div class="line"><span class="lineno">  272</span><span class="comment"> * @ingroup communication</span></div>
+<div class="line"><span class="lineno">  273</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00274" name="l00274"></a><span class="lineno">  274</span><span class="keyword">class</span> <a class="code hl_class" href="classtinyrobotics_1_1MessageHandlerPrintJSON.html">MessageHandlerPrintJSON</a> : <span class="keyword">public</span> <a class="code hl_class" href="classtinyrobotics_1_1MessageHandler.html">MessageHandler</a> {</div>
 <div class="line"><a id="l00275" name="l00275"></a><span class="lineno">  275</span> <span class="keyword">public</span>:</div>
-<div class="line"><a id="l00276" name="l00276"></a><span class="lineno">  276</span>  <a class="code hl_class" href="classtinyrobotics_1_1MessageHandlerPrintJSON.html">MessageHandlerPrintJSON</a>() : printer_(*<span class="keyword">static_cast&lt;</span>Print*<span class="keyword">&gt;</span>(<span class="keyword">nullptr</span>)) {}</div>
-<div class="line"><a id="l00277" name="l00277"></a><span class="lineno">  277</span>  <a class="code hl_class" href="classtinyrobotics_1_1MessageHandlerPrintJSON.html">MessageHandlerPrintJSON</a>(Print&amp; printer) : printer_(printer) {}</div>
+<div class="line"><a id="l00276" name="l00276"></a><span class="lineno">  276</span>  MessageHandlerPrintJSON() : printer_(*<span class="keyword">static_cast</span>&lt;Print*&gt;(<span class="keywordtype">nullptr</span>)) {}</div>
+<div class="line"><a id="l00277" name="l00277"></a><span class="lineno">  277</span>  MessageHandlerPrintJSON(Print&amp; printer) : printer_(printer) {}</div>
 <div class="line"><a id="l00278" name="l00278"></a><span class="lineno">  278</span>  <span class="keywordtype">void</span> setOutput(Print&amp; printer) { printer_ = printer; }</div>
 <div class="line"><a id="l00279" name="l00279"></a><span class="lineno">  279</span> </div>
-<div class="line"><a id="l00280" name="l00280"></a><span class="lineno"><a class="line" href="classtinyrobotics_1_1MessageHandlerPrintJSON.html#ab78c06b51db5e63c8f7a84c54baf3842">  280</a></span>  <span class="keywordtype">bool</span> <a class="code hl_function" href="classtinyrobotics_1_1MessageHandlerPrintJSON.html#ab78c06b51db5e63c8f7a84c54baf3842">onMessage</a>(<span class="keyword">const</span> <a class="code hl_class" href="structtinyrobotics_1_1Message.html">Message&lt;float&gt;</a>&amp; msg)<span class="keyword"> override </span>{</div>
+<div class="line"><a id="l00280" name="l00280"></a><span class="lineno">  280</span>  <span class="keywordtype">bool</span> <a class="code hl_function" href="classtinyrobotics_1_1MessageHandlerPrintJSON.html#ab78c06b51db5e63c8f7a84c54baf3842">onMessage</a>(<span class="keyword">const</span> <a class="code hl_class" href="structtinyrobotics_1_1Message.html">Message</a>&lt;<span class="keywordtype">float</span>&gt;&amp; msg) <span class="keyword">override</span> {</div>
 <div class="line"><a id="l00281" name="l00281"></a><span class="lineno">  281</span>    printer_.print(<span class="stringliteral">&quot;{\&quot;type\&quot;:\&quot;&quot;</span>);</div>
-<div class="line"><a id="l00282" name="l00282"></a><span class="lineno">  282</span>    printer_.print(messageContentStr[<span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(msg.<a class="code hl_variable" href="structtinyrobotics_1_1Message.html#a8e68387e210029af6bdfa6404d29f30f">content</a>)]);</div>
+<div class="line"><a id="l00282" name="l00282"></a><span class="lineno">  282</span>    printer_.print(messageContentStr[<span class="keyword">static_cast</span>&lt;<span class="keywordtype">int</span>&gt;(msg.content)]);</div>
 <div class="line"><a id="l00283" name="l00283"></a><span class="lineno">  283</span>    printer_.print(<span class="stringliteral">&quot;\&quot;,\&quot;value\&quot;:&quot;</span>);</div>
-<div class="line"><a id="l00284" name="l00284"></a><span class="lineno">  284</span>    printer_.print(msg.<a class="code hl_variable" href="structtinyrobotics_1_1Message.html#a4fc7f59e3113e19697159919a5aad095">value</a>);</div>
+<div class="line"><a id="l00284" name="l00284"></a><span class="lineno">  284</span>    printer_.print(msg.value);</div>
 <div class="line"><a id="l00285" name="l00285"></a><span class="lineno">  285</span>    printer_.print(<span class="stringliteral">&quot;,\&quot;unit\&quot;:\&quot;&quot;</span>);</div>
-<div class="line"><a id="l00286" name="l00286"></a><span class="lineno">  286</span>    printer_.print(unitStr[<span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(msg.<a class="code hl_variable" href="structtinyrobotics_1_1Message.html#aaa0d61fcdf7a0b9f0f2b48c9946cbd10">unit</a>)]);</div>
+<div class="line"><a id="l00286" name="l00286"></a><span class="lineno">  286</span>    printer_.print(unitStr[<span class="keyword">static_cast</span>&lt;<span class="keywordtype">int</span>&gt;(msg.unit)]);</div>
 <div class="line"><a id="l00287" name="l00287"></a><span class="lineno">  287</span>    printer_.print(<span class="stringliteral">&quot;\&quot;,\&quot;source\&quot;:\&quot;&quot;</span>);</div>
-<div class="line"><a id="l00288" name="l00288"></a><span class="lineno">  288</span>    printer_.print(originStr[<span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(msg.<a class="code hl_variable" href="structtinyrobotics_1_1Message.html#afac95aff6fbfafe382acb9abf8227503">source</a>)]);</div>
+<div class="line"><a id="l00288" name="l00288"></a><span class="lineno">  288</span>    printer_.print(originStr[<span class="keyword">static_cast</span>&lt;<span class="keywordtype">int</span>&gt;(msg.source)]);</div>
 <div class="line"><a id="l00289" name="l00289"></a><span class="lineno">  289</span>    printer_.println(<span class="stringliteral">&quot;\&quot;}&quot;</span>);</div>
 <div class="line"><a id="l00290" name="l00290"></a><span class="lineno">  290</span>    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
 <div class="line"><a id="l00291" name="l00291"></a><span class="lineno">  291</span>  }</div>
 <div class="line"><a id="l00292" name="l00292"></a><span class="lineno">  292</span> </div>
-<div class="line"><a id="l00293" name="l00293"></a><span class="lineno">  293</span>  <span class="keywordtype">bool</span> <a class="code hl_function" href="classtinyrobotics_1_1MessageHandlerPrintJSON.html#ab78c06b51db5e63c8f7a84c54baf3842">onMessage</a>(<span class="keyword">const</span> <a class="code hl_class" href="structtinyrobotics_1_1Message.html">Message</a>&lt;<a class="code hl_class" href="classtinyrobotics_1_1Coordinate.html">Coordinate&lt;float&gt;</a>&gt;&amp; msg)<span class="keyword"> override </span>{</div>
+<div class="line"><a id="l00293" name="l00293"></a><span class="lineno">  293</span>  <span class="keywordtype">bool</span> onMessage(<span class="keyword">const</span> <a class="code hl_class" href="structtinyrobotics_1_1Message.html">Message</a>&lt;<a class="code hl_class" href="classtinyrobotics_1_1Coordinate.html">Coordinate</a>&lt;<span class="keywordtype">float</span>&gt;&gt;&amp; msg) <span class="keyword">override</span> {</div>
 <div class="line"><a id="l00294" name="l00294"></a><span class="lineno">  294</span>    printer_.print(<span class="stringliteral">&quot;{\&quot;type\&quot;:\&quot;&quot;</span>);</div>
-<div class="line"><a id="l00295" name="l00295"></a><span class="lineno">  295</span>    printer_.print(messageContentStr[<span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(msg.content)]);</div>
+<div class="line"><a id="l00295" name="l00295"></a><span class="lineno">  295</span>    printer_.print(messageContentStr[<span class="keyword">static_cast</span>&lt;<span class="keywordtype">int</span>&gt;(msg.content)]);</div>
 <div class="line"><a id="l00296" name="l00296"></a><span class="lineno">  296</span>    printer_.print(<span class="stringliteral">&quot;\&quot;,\&quot;x\&quot;:&quot;</span>);</div>
 <div class="line"><a id="l00297" name="l00297"></a><span class="lineno">  297</span>    printer_.print(msg.value.x);</div>
 <div class="line"><a id="l00298" name="l00298"></a><span class="lineno">  298</span>    printer_.print(<span class="stringliteral">&quot;,\&quot;y\&quot;:&quot;</span>);</div>
 <div class="line"><a id="l00299" name="l00299"></a><span class="lineno">  299</span>    printer_.print(msg.value.y);</div>
 <div class="line"><a id="l00300" name="l00300"></a><span class="lineno">  300</span>    printer_.print(<span class="stringliteral">&quot;,\&quot;unit\&quot;:\&quot;&quot;</span>);</div>
-<div class="line"><a id="l00301" name="l00301"></a><span class="lineno">  301</span>    printer_.print(unitStr[<span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(msg.unit)]);</div>
+<div class="line"><a id="l00301" name="l00301"></a><span class="lineno">  301</span>    printer_.print(unitStr[<span class="keyword">static_cast</span>&lt;<span class="keywordtype">int</span>&gt;(msg.unit)]);</div>
 <div class="line"><a id="l00302" name="l00302"></a><span class="lineno">  302</span>    printer_.print(<span class="stringliteral">&quot;\&quot;,\&quot;source\&quot;:\&quot;&quot;</span>);</div>
-<div class="line"><a id="l00303" name="l00303"></a><span class="lineno">  303</span>    printer_.print(originStr[<span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(msg.source)]);</div>
+<div class="line"><a id="l00303" name="l00303"></a><span class="lineno">  303</span>    printer_.print(originStr[<span class="keyword">static_cast</span>&lt;<span class="keywordtype">int</span>&gt;(msg.source)]);</div>
 <div class="line"><a id="l00304" name="l00304"></a><span class="lineno">  304</span>    printer_.println(<span class="stringliteral">&quot;\&quot;}&quot;</span>);</div>
 <div class="line"><a id="l00305" name="l00305"></a><span class="lineno">  305</span>    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
 <div class="line"><a id="l00306" name="l00306"></a><span class="lineno">  306</span>  }</div>
 <div class="line"><a id="l00307" name="l00307"></a><span class="lineno">  307</span> </div>
-<div class="line"><a id="l00308" name="l00308"></a><span class="lineno">  308</span>  <span class="keywordtype">bool</span> <a class="code hl_function" href="classtinyrobotics_1_1MessageHandlerPrintJSON.html#ab78c06b51db5e63c8f7a84c54baf3842">onMessage</a>(<span class="keyword">const</span> Message&lt;GPSCoordinate&gt;&amp; msg)<span class="keyword"> override </span>{</div>
+<div class="line"><a id="l00308" name="l00308"></a><span class="lineno">  308</span>  <span class="keywordtype">bool</span> onMessage(<span class="keyword">const</span> <a class="code hl_class" href="structtinyrobotics_1_1Message.html">Message</a>&lt;<a class="code hl_class" href="classtinyrobotics_1_1GPSCoordinate.html">GPSCoordinate</a>&gt;&amp; msg) <span class="keyword">override</span> {</div>
 <div class="line"><a id="l00309" name="l00309"></a><span class="lineno">  309</span>    printer_.print(<span class="stringliteral">&quot;{\&quot;type\&quot;:\&quot;&quot;</span>);</div>
-<div class="line"><a id="l00310" name="l00310"></a><span class="lineno">  310</span>    printer_.print(messageContentStr[<span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(msg.content)]);</div>
+<div class="line"><a id="l00310" name="l00310"></a><span class="lineno">  310</span>    printer_.print(messageContentStr[<span class="keyword">static_cast</span>&lt;<span class="keywordtype">int</span>&gt;(msg.content)]);</div>
 <div class="line"><a id="l00311" name="l00311"></a><span class="lineno">  311</span>    printer_.print(<span class="stringliteral">&quot;\&quot;,\&quot;lat\&quot;:&quot;</span>);</div>
 <div class="line"><a id="l00312" name="l00312"></a><span class="lineno">  312</span>    printer_.print(msg.value.latitude);</div>
 <div class="line"><a id="l00313" name="l00313"></a><span class="lineno">  313</span>    printer_.print(<span class="stringliteral">&quot;,\&quot;lon\&quot;:&quot;</span>);</div>
@@ -316,9 +393,9 @@ $(function() {
 <div class="line"><a id="l00315" name="l00315"></a><span class="lineno">  315</span>    printer_.print(<span class="stringliteral">&quot;,\&quot;alt\&quot;:&quot;</span>);</div>
 <div class="line"><a id="l00316" name="l00316"></a><span class="lineno">  316</span>    printer_.print(msg.value.altitude);</div>
 <div class="line"><a id="l00317" name="l00317"></a><span class="lineno">  317</span>    printer_.print(<span class="stringliteral">&quot;,\&quot;unit\&quot;:\&quot;&quot;</span>);</div>
-<div class="line"><a id="l00318" name="l00318"></a><span class="lineno">  318</span>    printer_.print(unitStr[<span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(msg.unit)]);</div>
+<div class="line"><a id="l00318" name="l00318"></a><span class="lineno">  318</span>    printer_.print(unitStr[<span class="keyword">static_cast</span>&lt;<span class="keywordtype">int</span>&gt;(msg.unit)]);</div>
 <div class="line"><a id="l00319" name="l00319"></a><span class="lineno">  319</span>    printer_.print(<span class="stringliteral">&quot;\&quot;,\&quot;source\&quot;:\&quot;&quot;</span>);</div>
-<div class="line"><a id="l00320" name="l00320"></a><span class="lineno">  320</span>    printer_.print(originStr[<span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(msg.source)]);</div>
+<div class="line"><a id="l00320" name="l00320"></a><span class="lineno">  320</span>    printer_.print(originStr[<span class="keyword">static_cast</span>&lt;<span class="keywordtype">int</span>&gt;(msg.source)]);</div>
 <div class="line"><a id="l00321" name="l00321"></a><span class="lineno">  321</span>    printer_.println(<span class="stringliteral">&quot;\&quot;}&quot;</span>);</div>
 <div class="line"><a id="l00322" name="l00322"></a><span class="lineno">  322</span>    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
 <div class="line"><a id="l00323" name="l00323"></a><span class="lineno">  323</span>  }</div>
@@ -329,6 +406,7 @@ $(function() {
 <div class="line"><a id="l00328" name="l00328"></a><span class="lineno">  328</span> </div>
 <div class="line"><a id="l00329" name="l00329"></a><span class="lineno">  329</span>}  <span class="comment">// namespace tinyrobotics</span></div>
 <div class="ttc" id="aclasstinyrobotics_1_1Coordinate_html"><div class="ttname"><a href="classtinyrobotics_1_1Coordinate.html">tinyrobotics::Coordinate</a></div><div class="ttdoc">A generic 3D coordinate class for robotics, navigation, and spatial calculations.</div><div class="ttdef"><b>Definition:</b> Coordinate.h:57</div></div>
+<div class="ttc" id="aclasstinyrobotics_1_1GPSCoordinate_html"><div class="ttname"><a href="classtinyrobotics_1_1GPSCoordinate.html">tinyrobotics::GPSCoordinate</a></div><div class="ttdoc">Represents a geodetic GPS coordinate with latitude, longitude, and optional altitude.</div><div class="ttdef"><b>Definition:</b> GPSCoordinate.h:53</div></div>
 <div class="ttc" id="aclasstinyrobotics_1_1MessageHandlerBinary_html"><div class="ttname"><a href="classtinyrobotics_1_1MessageHandlerBinary.html">tinyrobotics::MessageHandlerBinary</a></div><div class="ttdoc">Message handler that writes all received messages as raw binary to a Print stream.</div><div class="ttdef"><b>Definition:</b> MessageHandlerPrint.h:84</div></div>
 <div class="ttc" id="aclasstinyrobotics_1_1MessageHandlerBinary_html_ab78c06b51db5e63c8f7a84c54baf3842"><div class="ttname"><a href="classtinyrobotics_1_1MessageHandlerBinary.html#ab78c06b51db5e63c8f7a84c54baf3842">tinyrobotics::MessageHandlerBinary::onMessage</a></div><div class="ttdeci">bool onMessage(const Message&lt; float &gt; &amp;msg) override</div><div class="ttdoc">Handle an incoming message (pure virtual).</div><div class="ttdef"><b>Definition:</b> MessageHandlerPrint.h:88</div></div>
 <div class="ttc" id="aclasstinyrobotics_1_1MessageHandlerPrintJSON_html"><div class="ttname"><a href="classtinyrobotics_1_1MessageHandlerPrintJSON.html">tinyrobotics::MessageHandlerPrintJSON</a></div><div class="ttdoc">Message handler that prints all received messages as JSON to a Print stream.</div><div class="ttdef"><b>Definition:</b> MessageHandlerPrint.h:274</div></div>
@@ -339,10 +417,6 @@ $(function() {
 <div class="ttc" id="aclasstinyrobotics_1_1MessageHandlerPrint_html_ab78c06b51db5e63c8f7a84c54baf3842"><div class="ttname"><a href="classtinyrobotics_1_1MessageHandlerPrint.html#ab78c06b51db5e63c8f7a84c54baf3842">tinyrobotics::MessageHandlerPrint::onMessage</a></div><div class="ttdeci">bool onMessage(const Message&lt; float &gt; &amp;msg) override</div><div class="ttdoc">Handle an incoming message (pure virtual).</div><div class="ttdef"><b>Definition:</b> MessageHandlerPrint.h:133</div></div>
 <div class="ttc" id="aclasstinyrobotics_1_1MessageHandler_html"><div class="ttname"><a href="classtinyrobotics_1_1MessageHandler.html">tinyrobotics::MessageHandler</a></div><div class="ttdoc">Interface for handling messages in the TinyRobotics framework.</div><div class="ttdef"><b>Definition:</b> MessageHandler.h:16</div></div>
 <div class="ttc" id="astructtinyrobotics_1_1Message_html"><div class="ttname"><a href="structtinyrobotics_1_1Message.html">tinyrobotics::Message</a></div><div class="ttdoc">Generic message structure for communication, parameterized by value type.</div><div class="ttdef"><b>Definition:</b> Message.h:63</div></div>
-<div class="ttc" id="astructtinyrobotics_1_1Message_html_a4fc7f59e3113e19697159919a5aad095"><div class="ttname"><a href="structtinyrobotics_1_1Message.html#a4fc7f59e3113e19697159919a5aad095">tinyrobotics::Message::value</a></div><div class="ttdeci">T value</div><div class="ttdoc">Value of the message.</div><div class="ttdef"><b>Definition:</b> Message.h:70</div></div>
-<div class="ttc" id="astructtinyrobotics_1_1Message_html_a8e68387e210029af6bdfa6404d29f30f"><div class="ttname"><a href="structtinyrobotics_1_1Message.html#a8e68387e210029af6bdfa6404d29f30f">tinyrobotics::Message::content</a></div><div class="ttdeci">MessageContent content</div><div class="ttdoc">Optional identifier for the source (e.g., sensor ID, motor ID)</div><div class="ttdef"><b>Definition:</b> Message.h:68</div></div>
-<div class="ttc" id="astructtinyrobotics_1_1Message_html_aaa0d61fcdf7a0b9f0f2b48c9946cbd10"><div class="ttname"><a href="structtinyrobotics_1_1Message.html#aaa0d61fcdf7a0b9f0f2b48c9946cbd10">tinyrobotics::Message::unit</a></div><div class="ttdeci">Unit unit</div><div class="ttdoc">Unit of the value.</div><div class="ttdef"><b>Definition:</b> Message.h:69</div></div>
-<div class="ttc" id="astructtinyrobotics_1_1Message_html_afac95aff6fbfafe382acb9abf8227503"><div class="ttname"><a href="structtinyrobotics_1_1Message.html#afac95aff6fbfafe382acb9abf8227503">tinyrobotics::Message::source</a></div><div class="ttdeci">MessageOrigin source</div><div class="ttdoc">Source of the message.</div><div class="ttdef"><b>Definition:</b> Message.h:66</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

@@ -76,23 +76,89 @@ $(function() {
   <div class="headertitle"><div class="title">Stepper.h</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#pragma once</span></div>
-<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#include &quot;FastAccelStepper.h&quot;</span></div>
-<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#ifdef AVR</span></div>
-<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &quot;AVRStepperPins.h&quot;</span>  <span class="comment">// Only required for AVR controllers</span></div>
-<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#endif</span></div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &quot;Motor.h&quot;</span></div>
+<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#</span><span class="preprocessor">pragma</span> <span class="preprocessor">once</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#</span><span class="preprocessor">include</span> <span class="preprocessor">&quot;FastAccelStepper.h&quot;</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#</span><span class="preprocessor">ifdef</span> <span class="preprocessor">AVR</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#</span><span class="preprocessor">include</span> <span class="stringliteral">&quot;AVRStepperPins.h&quot;</span>  <span class="comment">// Only required for AVR controllers</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#</span><span class="preprocessor">endif</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#</span><span class="preprocessor">include</span> <a class="code" href="Motor_8h.html">&quot;Motor.h&quot;</a></div>
 <div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="keyword">namespace </span>tinyrobotics {</div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="keyword">namespace</span> tinyrobotics {</div>
 <div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
-<div class="line"><a id="l00076" name="l00076"></a><span class="lineno"><a class="line" href="classtinyrobotics_1_1Stepper.html">   76</a></span><span class="keyword">class </span><a class="code hl_class" href="classtinyrobotics_1_1Stepper.html">Stepper</a> : <span class="keyword">public</span> <a class="code hl_class" href="classtinyrobotics_1_1Motor.html">Motor</a> {</div>
-<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>  <a class="code hl_class" href="classtinyrobotics_1_1Stepper.html">Stepper</a>(uint8_t <span class="keywordtype">id</span> = 0) { setID(<span class="keywordtype">id</span>); }</div>
-<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>  <a class="code hl_class" href="classtinyrobotics_1_1Stepper.html">Stepper</a>(uint8_t <span class="keywordtype">id</span>, uint16_t stepsPerRevolution, uint16_t maxSpeedStepsPerSec,</div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="comment">/**</span></div>
+<div class="line"><span class="lineno">   11</span><span class="comment"> * @class Stepper</span></div>
+<div class="line"><span class="lineno">   12</span><span class="comment"> * @ingroup motors</span></div>
+<div class="line"><span class="lineno">   13</span><span class="comment"> * @brief Stepper motor driver using FastAccelStepper for Arduino.</span></div>
+<div class="line"><span class="lineno">   14</span><span class="comment"> *</span></div>
+<div class="line"><span class="lineno">   15</span><span class="comment"> * This class provides an interface to control stepper motors with acceleration</span></div>
+<div class="line"><span class="lineno">   16</span><span class="comment"> * and speed control. It supports:</span></div>
+<div class="line"><span class="lineno">   17</span><span class="comment"> *   - Continuous speed mode: setSpeed(percent) for indefinite movement at a</span></div>
+<div class="line"><span class="lineno">   18</span><span class="comment"> * given speed and direction.</span></div>
+<div class="line"><span class="lineno">   19</span><span class="comment"> *   - Relative movement: moveRevolutions(revolutions, speedPercent, callback,</span></div>
+<div class="line"><span class="lineno">   20</span><span class="comment"> * ref) to move a specific number of revolutions, with optional callback on</span></div>
+<div class="line"><span class="lineno">   21</span><span class="comment"> * completion.</span></div>
+<div class="line"><span class="lineno">   22</span><span class="comment"> *   - Distance-based movement: moveDistance(distance, wheelDiameter,</span></div>
+<div class="line"><span class="lineno">   23</span><span class="comment"> * speedPercent, callback, ref) to move a specific physical distance (using</span></div>
+<div class="line"><span class="lineno">   24</span><span class="comment"> * wheel diameter), with optional callback.</span></div>
+<div class="line"><span class="lineno">   25</span><span class="comment"> *</span></div>
+<div class="line"><span class="lineno">   26</span><span class="comment"> * You can set pins, maximum speed, acceleration, and steps per revolution. The</span></div>
+<div class="line"><span class="lineno">   27</span><span class="comment"> * motor can be started, stopped, or moved by distance or revolutions.</span></div>
+<div class="line"><span class="lineno">   28</span><span class="comment"> * Acceleration is handled automatically based on the configured accelerationMs.</span></div>
+<div class="line"><span class="lineno">   29</span><span class="comment"> *</span></div>
+<div class="line"><span class="lineno">   30</span><span class="comment"> * The class uses FastAccelStepper&#39;s continuous mode for setSpeed(), and</span></div>
+<div class="line"><span class="lineno">   31</span><span class="comment"> * supports asynchronous notification via callback for move operations.</span></div>
+<div class="line"><span class="lineno">   32</span><span class="comment"> *</span></div>
+<div class="line"><span class="lineno">   33</span><span class="comment"> * @dependencies</span></div>
+<div class="line"><span class="lineno">   34</span><span class="comment"> * - Requires the FastAccelStepper library:</span></div>
+<div class="line"><span class="lineno">   35</span><span class="comment"> * https://github.com/ESP32DIYer/FastAccelStepper (Install via Arduino Library</span></div>
+<div class="line"><span class="lineno">   36</span><span class="comment"> * Manager or PlatformIO)</span></div>
+<div class="line"><span class="lineno">   37</span><span class="comment"> * - Uses Arduino core functions (e.g., constrain, map)</span></div>
+<div class="line"><span class="lineno">   38</span><span class="comment"> *</span></div>
+<div class="line"><span class="lineno">   39</span><span class="comment"> * Main methods:</span></div>
+<div class="line"><span class="lineno">   40</span><span class="comment"> * - setPins(stepPin, dirPin, enablePin): Assigns the control pins for the</span></div>
+<div class="line"><span class="lineno">   41</span><span class="comment"> * stepper driver.</span></div>
+<div class="line"><span class="lineno">   42</span><span class="comment"> * - setMaxSpeed(stepsPerSec): Sets the maximum speed in steps per second.</span></div>
+<div class="line"><span class="lineno">   43</span><span class="comment"> * - setStepsPerRevolution(steps): Sets the number of steps per full revolution.</span></div>
+<div class="line"><span class="lineno">   44</span><span class="comment"> * - setAccelerationMs(ms): Sets the time in milliseconds to reach max speed</span></div>
+<div class="line"><span class="lineno">   45</span><span class="comment"> * (acceleration).</span></div>
+<div class="line"><span class="lineno">   46</span><span class="comment"> * - begin(): Initializes the stepper hardware and prepares for movement.</span></div>
+<div class="line"><span class="lineno">   47</span><span class="comment"> * - setSpeed(percent): Starts continuous movement at the given speed percentage</span></div>
+<div class="line"><span class="lineno">   48</span><span class="comment"> * (-100 to 100) using continuous mode.</span></div>
+<div class="line"><span class="lineno">   49</span><span class="comment"> * - moveRevolutions(revolutions, speedPercent, callback, ref): Move the stepper</span></div>
+<div class="line"><span class="lineno">   50</span><span class="comment"> * by a given number of revolutions at a specified speed, with optional</span></div>
+<div class="line"><span class="lineno">   51</span><span class="comment"> * callback.</span></div>
+<div class="line"><span class="lineno">   52</span><span class="comment"> * - moveDistance(distance, wheelDiameter, speedPercent, callback, ref): Move</span></div>
+<div class="line"><span class="lineno">   53</span><span class="comment"> * the stepper by a physical distance (using wheel diameter), at a specified</span></div>
+<div class="line"><span class="lineno">   54</span><span class="comment"> * speed, with optional callback.</span></div>
+<div class="line"><span class="lineno">   55</span><span class="comment"> * - end(): Stops the stepper motor.</span></div>
+<div class="line"><span class="lineno">   56</span><span class="comment"> *</span></div>
+<div class="line"><span class="lineno">   57</span><span class="comment"> * Usage notes:</span></div>
+<div class="line"><span class="lineno">   58</span><span class="comment"> * - Call begin() after setting pins and speed parameters.</span></div>
+<div class="line"><span class="lineno">   59</span><span class="comment"> * - Use setSpeed(percent) to start or change continuous movement. Use</span></div>
+<div class="line"><span class="lineno">   60</span><span class="comment"> * setSpeed(0) to stop.</span></div>
+<div class="line"><span class="lineno">   61</span><span class="comment"> * - Acceleration is set in setSpeed() based on the configured accelerationMs.</span></div>
+<div class="line"><span class="lineno">   62</span><span class="comment"> *</span></div>
+<div class="line"><span class="lineno">   63</span><span class="comment"> * Example usage:</span></div>
+<div class="line"><span class="lineno">   64</span><span class="comment"> * @code</span></div>
+<div class="line"><span class="lineno">   65</span><span class="comment"> * Stepper stepper;</span></div>
+<div class="line"><span class="lineno">   66</span><span class="comment"> * stepper.setPins(2, 3, 4);</span></div>
+<div class="line"><span class="lineno">   67</span><span class="comment"> * stepper.setMaxSpeed(1000);</span></div>
+<div class="line"><span class="lineno">   68</span><span class="comment"> * stepper.setStepsPerRevolution(200);</span></div>
+<div class="line"><span class="lineno">   69</span><span class="comment"> * stepper.setAccelerationMs(2000);</span></div>
+<div class="line"><span class="lineno">   70</span><span class="comment"> * stepper.begin();</span></div>
+<div class="line"><span class="lineno">   71</span><span class="comment"> * stepper.setSpeed(50); // Move at 50% of max speed (continuous mode)</span></div>
+<div class="line"><span class="lineno">   72</span><span class="comment"> * stepper.setSpeed(0);  // Stop</span></div>
+<div class="line"><span class="lineno">   73</span><span class="comment"> * stepper.end();        // Ensure motor is stopped</span></div>
+<div class="line"><span class="lineno">   74</span><span class="comment"> * @endcode</span></div>
+<div class="line"><span class="lineno">   75</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span><span class="keyword">class</span> <a class="code hl_class" href="classtinyrobotics_1_1Stepper.html">Stepper</a> : <span class="keyword">public</span> <a class="code hl_class" href="classtinyrobotics_1_1Motor.html">Motor</a> {</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>  Stepper(uint8_t id = 0) { setID(id); }</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>  Stepper(uint8_t id, uint16_t stepsPerRevolution, uint16_t maxSpeedStepsPerSec,</div>
 <div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>          uint16_t accelerationMs) {</div>
-<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>    setID(<span class="keywordtype">id</span>);</div>
-<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>    <a class="code hl_function" href="classtinyrobotics_1_1Stepper.html#a056d982dc5a5649ee760b339feacbeae">setMaxSpeed</a>(maxSpeedStepsPerSec);</div>
-<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>    <a class="code hl_function" href="classtinyrobotics_1_1Stepper.html#af01feebe51d589b137e1dba921befdc7">setAccelerationMs</a>(accelerationMs);</div>
-<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>    <a class="code hl_function" href="classtinyrobotics_1_1Stepper.html#a718b6f52fedb967c38529fa4f3def228">setStepsPerRevolution</a>(stepsPerRevolution);</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>    setID(id);</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>    setMaxSpeed(maxSpeedStepsPerSec);</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>    setAccelerationMs(accelerationMs);</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>    setStepsPerRevolution(stepsPerRevolution);</div>
 <div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>  }</div>
 <div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span> </div>
 <div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span> <span class="keyword">public</span>:</div>
@@ -103,15 +169,22 @@ $(function() {
 <div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>    is_pins_set = <span class="keyword">true</span>;</div>
 <div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>  }</div>
 <div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span> </div>
-<div class="line"><a id="l00096" name="l00096"></a><span class="lineno"><a class="line" href="classtinyrobotics_1_1Stepper.html#a056d982dc5a5649ee760b339feacbeae">   96</a></span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classtinyrobotics_1_1Stepper.html#a056d982dc5a5649ee760b339feacbeae">setMaxSpeed</a>(uint16_t stepsPerSec) {</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>  <span class="comment">/// Set maximum speed in steps per second (e.g., 500 for 1.8 degree stepper,</span></div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>  <span class="comment">/// 1000</span></div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classtinyrobotics_1_1Stepper.html#a056d982dc5a5649ee760b339feacbeae">setMaxSpeed</a>(uint16_t stepsPerSec) {</div>
 <div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>    maxSpeedHz = stepsPerSec;</div>
 <div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>  }</div>
 <div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span> </div>
-<div class="line"><a id="l00101" name="l00101"></a><span class="lineno"><a class="line" href="classtinyrobotics_1_1Stepper.html#af01feebe51d589b137e1dba921befdc7">  101</a></span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classtinyrobotics_1_1Stepper.html#af01feebe51d589b137e1dba921befdc7">setAccelerationMs</a>(uint16_t ms) { accelerationMs = ms; }</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>  <span class="comment">/// Set acceleration time in milliseconds to reach max speed (e.g., 2000 ms)</span></div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classtinyrobotics_1_1Stepper.html#af01feebe51d589b137e1dba921befdc7">setAccelerationMs</a>(uint16_t ms) { accelerationMs = ms; }</div>
 <div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span> </div>
-<div class="line"><a id="l00105" name="l00105"></a><span class="lineno"><a class="line" href="classtinyrobotics_1_1Stepper.html#a718b6f52fedb967c38529fa4f3def228">  105</a></span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classtinyrobotics_1_1Stepper.html#a718b6f52fedb967c38529fa4f3def228">setStepsPerRevolution</a>(<span class="keywordtype">int</span> steps) { stepsPerRevolution = steps; }</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>  <span class="comment">/// Set the number of steps per full revolution (e.g., 200 for 1.8 degree</span></div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>  <span class="comment">/// stepper)</span></div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classtinyrobotics_1_1Stepper.html#a718b6f52fedb967c38529fa4f3def228">setStepsPerRevolution</a>(<span class="keywordtype">int</span> steps) { stepsPerRevolution = steps; }</div>
 <div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span> </div>
-<div class="line"><a id="l00109" name="l00109"></a><span class="lineno"><a class="line" href="classtinyrobotics_1_1Stepper.html#a601fb7cf1fc15db50c71a826f084f934">  109</a></span>  <span class="keywordtype">bool</span> <a class="code hl_function" href="classtinyrobotics_1_1Stepper.html#a601fb7cf1fc15db50c71a826f084f934">begin</a>() {</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>  <span class="comment">/// Initialize the stepper hardware. Must be called after setting pins and</span></div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>  <span class="comment">/// speed parameters.</span></div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>  <span class="keywordtype">bool</span> <a class="code hl_function" href="classtinyrobotics_1_1Stepper.html#a601fb7cf1fc15db50c71a826f084f934">begin</a>() {</div>
 <div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>    <span class="keywordflow">if</span> (!is_pins_set) <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
 <div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>    engine.init();</div>
 <div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>    stepper = engine.stepperConnectToPin(pinStep);</div>
@@ -120,10 +193,12 @@ $(function() {
 <div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>      <span class="keywordflow">if</span> (pinEnable != -1) stepper-&gt;setEnablePin(pinEnable);</div>
 <div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>      stepper-&gt;setAutoEnable(<span class="keyword">true</span>);</div>
 <div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>    }</div>
-<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>    <span class="keywordflow">return</span> stepper != <span class="keyword">nullptr</span>;</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>    <span class="keywordflow">return</span> stepper != <span class="keywordtype">nullptr</span>;</div>
 <div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>  }</div>
 <div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span> </div>
-<div class="line"><a id="l00123" name="l00123"></a><span class="lineno"><a class="line" href="classtinyrobotics_1_1Stepper.html#a3d45de3f120eb5346db3e91c46960d01">  123</a></span>  <span class="keywordtype">bool</span> <a class="code hl_function" href="classtinyrobotics_1_1Stepper.html#a3d45de3f120eb5346db3e91c46960d01">setSpeed</a>(int8_t percent) {</div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>  <span class="comment">/// Set continuous speed as a percentage (-100 to 100). Positive for forward,</span></div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>  <span class="comment">/// negative for backward.</span></div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>  <span class="keywordtype">bool</span> <a class="code hl_function" href="classtinyrobotics_1_1Stepper.html#a3d45de3f120eb5346db3e91c46960d01">setSpeed</a>(int8_t percent) {</div>
 <div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>    <span class="keywordflow">if</span> (!stepper) <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
 <div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>    setSpeedPercent(percent);</div>
 <div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>    <span class="keywordflow">if</span> (percent &gt;= 0) {</div>
@@ -157,17 +232,18 @@ $(function() {
 <div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span><span class="comment">//     return moveRevolutions(revolutions, speedPercent, callback, ref);</span></div>
 <div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span><span class="comment">//   }</span></div>
 <div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span> </div>
-<div class="line"><a id="l00158" name="l00158"></a><span class="lineno"><a class="line" href="classtinyrobotics_1_1Stepper.html#a64e9fa75beda50a9e8400ee0d4e61984">  158</a></span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classtinyrobotics_1_1Stepper.html#a64e9fa75beda50a9e8400ee0d4e61984">end</a>()<span class="keyword"> override </span>{</div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>  <span class="comment">/// Stop the stepper motor.</span></div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classtinyrobotics_1_1Stepper.html#a64e9fa75beda50a9e8400ee0d4e61984">end</a>() <span class="keyword">override</span> {</div>
 <div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>    <span class="keywordflow">if</span> (stepper) {</div>
 <div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>      stepper-&gt;stopMove();</div>
 <div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span>    }</div>
 <div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>  }</div>
 <div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span> </div>
-<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span>  <span class="keywordtype">bool</span> isPinsSet()<span class="keyword"> const override </span>{ <span class="keywordflow">return</span> is_pins_set; }</div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span>  <span class="keywordtype">bool</span> isPinsSet() <span class="keyword">const</span> <span class="keyword">override</span> { <span class="keywordflow">return</span> is_pins_set; }</div>
 <div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span> </div>
 <div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span><span class="keyword">protected</span>:</div>
 <div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span>  FastAccelStepperEngine engine;</div>
-<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span>  FastAccelStepper* stepper = NULL;</div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span>  FastAccelStepper* stepper = <a class="code hl_class" href="classtinyrobotics_1_1Stepper.html">NULL</a>;</div>
 <div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span>  <span class="keywordtype">int</span> pinStep = -1;</div>
 <div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span>  <span class="keywordtype">int</span> pinDir = -1;</div>
 <div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span>  <span class="keywordtype">int</span> pinEnable = -1;</div>
@@ -180,8 +256,8 @@ $(function() {
 <div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span>  <span class="comment">// typical values: 200 for 1.8 degree stepper, 400 for 0.9 degree stepper,</span></div>
 <div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span>  <span class="comment">// etc.</span></div>
 <div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span>  uint16_t stepsPerRevolution = 200;</div>
-<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span>  <span class="keywordtype">void</span>* ref = <span class="keyword">nullptr</span>;</div>
-<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span>  void (*callback)(<span class="keywordtype">void</span>*) = <span class="keyword">nullptr</span>;</div>
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span>  <span class="keywordtype">void</span>* ref = <span class="keywordtype">nullptr</span>;</div>
+<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span>  <span class="keywordtype">void</span> (*callback)(<span class="keywordtype">void</span>*) = <span class="keywordtype">nullptr</span>;</div>
 <div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span> </div>
 <div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span>  <span class="keywordtype">void</span> callbackFastAccel(FastAccelStepper* s) {</div>
 <div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span>    <span class="keywordflow">if</span> (callback) {</div>

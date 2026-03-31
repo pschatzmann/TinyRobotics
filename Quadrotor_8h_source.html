@@ -77,13 +77,14 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 <div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span> </div>
-<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#pragma once</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#</span><span class="preprocessor">pragma</span> <span class="preprocessor">once</span></div>
 <div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
-<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &quot;TinyRobotics/motors/Motors.h&quot;</span></div>
-<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &quot;Vehicle.h&quot;</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#</span><span class="preprocessor">include</span> <span class="preprocessor">&quot;TinyRobotics/motors/Motors.h&quot;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#</span><span class="preprocessor">include</span> <a class="code" href="Vehicle_8h.html">&quot;Vehicle.h&quot;</a></div>
 <div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
-<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="keyword">namespace </span>tinyrobotics {</div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="keyword">namespace</span> tinyrobotics {</div>
 <div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="comment">/// @brief Enum for quadrotor motor indexing</span></div>
 <div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="keyword">enum</span> QuadrotorMotorNo {</div>
 <div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>  FRONT_LEFT = 0,</div>
 <div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>  FRONT_RIGHT = 1,</div>
@@ -91,37 +92,69 @@ $(function() {
 <div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>  REAR_RIGHT = 3</div>
 <div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>};</div>
 <div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span> </div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> MotorT = BrushedMotor&gt;</div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno"><a class="line" href="classtinyrobotics_1_1Quadrotor.html">   41</a></span><span class="keyword">class </span><a class="code hl_class" href="classtinyrobotics_1_1Quadrotor.html">Quadrotor</a> : <span class="keyword">public</span> <a class="code hl_class" href="classtinyrobotics_1_1Vehicle.html">Vehicle</a> {</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="comment">/**</span></div>
+<div class="line"><span class="lineno">   18</span><span class="comment"> * @class Quadrotor</span></div>
+<div class="line"><span class="lineno">   19</span><span class="comment"> * @ingroup vehicles</span></div>
+<div class="line"><span class="lineno">   20</span><span class="comment"> * @brief Simple quadrotor (quadcopter) model with 4-motor control.</span></div>
+<div class="line"><span class="lineno">   21</span><span class="comment"> *</span></div>
+<div class="line"><span class="lineno">   22</span><span class="comment"> * This class abstracts the control of a basic quadcopter:</span></div>
+<div class="line"><span class="lineno">   23</span><span class="comment"> *  - 4 motors (front left, front right, rear left, rear right) via HBridge</span></div>
+<div class="line"><span class="lineno">   24</span><span class="comment"> *  - Throttle, roll, pitch, and yaw control</span></div>
+<div class="line"><span class="lineno">   25</span><span class="comment"> *</span></div>
+<div class="line"><span class="lineno">   26</span><span class="comment"> * Usage Example (with setPins):</span></div>
+<div class="line"><span class="lineno">   27</span><span class="comment"> * @code</span></div>
+<div class="line"><span class="lineno">   28</span><span class="comment"> * Quadrotor quad;</span></div>
+<div class="line"><span class="lineno">   29</span><span class="comment"> * quad.setPins(FRONT_LEFT, m1_in1, m1_in2, m1_pwm); // front left</span></div>
+<div class="line"><span class="lineno">   30</span><span class="comment"> * quad.setPins(FRONT_RIGHT, m2_in1, m2_in2, m2_pwm); // front right</span></div>
+<div class="line"><span class="lineno">   31</span><span class="comment"> * quad.setPins(REAR_LEFT, m3_in1, m3_in2, m3_pwm); // rear left</span></div>
+<div class="line"><span class="lineno">   32</span><span class="comment"> * quad.setPins(REAR_RIGHT, m4_in1, m4_in2, m4_pwm); // rear right</span></div>
+<div class="line"><span class="lineno">   33</span><span class="comment"> * quad.setThrottle(60); // 60% throttle</span></div>
+<div class="line"><span class="lineno">   34</span><span class="comment"> * quad.setRoll(10);     // roll right</span></div>
+<div class="line"><span class="lineno">   35</span><span class="comment"> * quad.setPitch(-5);    // pitch down</span></div>
+<div class="line"><span class="lineno">   36</span><span class="comment"> * quad.setYaw(15);      // yaw right</span></div>
+<div class="line"><span class="lineno">   37</span><span class="comment"> * @endcode</span></div>
+<div class="line"><span class="lineno">   38</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span> </div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> MotorT = <a class="code hl_class" href="classtinyrobotics_1_1BrushedMotor.html">BrushedMotor</a>&gt;</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span><span class="keyword">class</span> <a class="code hl_class" href="classtinyrobotics_1_1Quadrotor.html">Quadrotor</a> : <span class="keyword">public</span> <a class="code hl_class" href="classtinyrobotics_1_1Vehicle.html">Vehicle</a> {</div>
 <div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span> <span class="keyword">public</span>:</div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>  <a class="code hl_class" href="classtinyrobotics_1_1Quadrotor.html">Quadrotor</a>() = <span class="keywordflow">default</span>;</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>  Quadrotor() = <span class="keywordflow">default</span>;</div>
 <div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span> </div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno"><a class="line" href="classtinyrobotics_1_1Quadrotor.html#a38c3d3a99c3067d1b4943f35cedd26db">   49</a></span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classtinyrobotics_1_1Quadrotor.html#a38c3d3a99c3067d1b4943f35cedd26db">setPins</a>(QuadrotorMotorNo motor, <span class="keywordtype">int</span> in1, <span class="keywordtype">int</span> in2, <span class="keywordtype">int</span> pwm) {</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>  <span class="comment">/**</span></div>
+<div class="line"><span class="lineno">   46</span><span class="comment">   * @brief Set the pins for a specific motor (0=front left, 1=front right,</span></div>
+<div class="line"><span class="lineno">   47</span><span class="comment">   * 2=rear left, 3=rear right)</span></div>
+<div class="line"><span class="lineno">   48</span><span class="comment">   */</span></div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classtinyrobotics_1_1Quadrotor.html#a38c3d3a99c3067d1b4943f35cedd26db">setPins</a>(QuadrotorMotorNo motor, <span class="keywordtype">int</span> in1, <span class="keywordtype">int</span> in2, <span class="keywordtype">int</span> pwm) {</div>
 <div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    motors_[motor].setPins(in1, in2, pwm);</div>
 <div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    motors_[motor].setID((uint8_t)motor);</div>
 <div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>  }</div>
 <div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span> </div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno"><a class="line" href="classtinyrobotics_1_1Quadrotor.html#ae5796296479805da98518762c69427d0">   55</a></span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classtinyrobotics_1_1Quadrotor.html#ae5796296479805da98518762c69427d0">setThrottle</a>(<span class="keywordtype">int</span> percent) {</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>  <span class="comment">/** Set throttle (0-100%) for all motors */</span></div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classtinyrobotics_1_1Quadrotor.html#ae5796296479805da98518762c69427d0">setThrottle</a>(<span class="keywordtype">int</span> percent) {</div>
 <div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>    throttle_ = constrain(percent, 0, 100);</div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>    <a class="code hl_function" href="classtinyrobotics_1_1Quadrotor.html#a807a87c5df438fde21c1e8213906695b">updateMotors</a>();</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>    <a class="code hl_function" href="classtinyrobotics_1_1Quadrotor.html#a807a87c5df438fde21c1e8213906695b">updateMotors</a><a class="code hl_function" href="classtinyrobotics_1_1Quadrotor.html#a807a87c5df438fde21c1e8213906695b">(</a><a class="code hl_function" href="classtinyrobotics_1_1Quadrotor.html#a807a87c5df438fde21c1e8213906695b">)</a>;</div>
 <div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>  }</div>
 <div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span> </div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno"><a class="line" href="classtinyrobotics_1_1Quadrotor.html#ac0ba521da16841a95b8f76f181695d08">   61</a></span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classtinyrobotics_1_1Quadrotor.html#ac0ba521da16841a95b8f76f181695d08">setRoll</a>(<span class="keywordtype">int</span> percent) {</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>  <span class="comment">/** Set roll (-100 to 100): positive = right, negative = left */</span></div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classtinyrobotics_1_1Quadrotor.html#ac0ba521da16841a95b8f76f181695d08">setRoll</a>(<span class="keywordtype">int</span> percent) {</div>
 <div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    roll_ = constrain(percent, -100, 100);</div>
-<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>    <a class="code hl_function" href="classtinyrobotics_1_1Quadrotor.html#a807a87c5df438fde21c1e8213906695b">updateMotors</a>();</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>    <a class="code hl_function" href="classtinyrobotics_1_1Quadrotor.html#a807a87c5df438fde21c1e8213906695b">updateMotors</a><a class="code hl_function" href="classtinyrobotics_1_1Quadrotor.html#a807a87c5df438fde21c1e8213906695b">(</a><a class="code hl_function" href="classtinyrobotics_1_1Quadrotor.html#a807a87c5df438fde21c1e8213906695b">)</a>;</div>
 <div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>  }</div>
 <div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span> </div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno"><a class="line" href="classtinyrobotics_1_1Quadrotor.html#a820f2c4cf50e2584941f7080369bb487">   67</a></span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classtinyrobotics_1_1Quadrotor.html#a820f2c4cf50e2584941f7080369bb487">setPitch</a>(<span class="keywordtype">int</span> percent) {</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>  <span class="comment">/** Set pitch (-100 to 100): positive = forward, negative = backward */</span></div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classtinyrobotics_1_1Quadrotor.html#a820f2c4cf50e2584941f7080369bb487">setPitch</a>(<span class="keywordtype">int</span> percent) {</div>
 <div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>    pitch_ = constrain(percent, -100, 100);</div>
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>    <a class="code hl_function" href="classtinyrobotics_1_1Quadrotor.html#a807a87c5df438fde21c1e8213906695b">updateMotors</a>();</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>    <a class="code hl_function" href="classtinyrobotics_1_1Quadrotor.html#a807a87c5df438fde21c1e8213906695b">updateMotors</a><a class="code hl_function" href="classtinyrobotics_1_1Quadrotor.html#a807a87c5df438fde21c1e8213906695b">(</a><a class="code hl_function" href="classtinyrobotics_1_1Quadrotor.html#a807a87c5df438fde21c1e8213906695b">)</a>;</div>
 <div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>  }</div>
 <div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span> </div>
-<div class="line"><a id="l00073" name="l00073"></a><span class="lineno"><a class="line" href="classtinyrobotics_1_1Quadrotor.html#a6bd9a070d33f958397b768119fe09ae4">   73</a></span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classtinyrobotics_1_1Quadrotor.html#a6bd9a070d33f958397b768119fe09ae4">setYaw</a>(<span class="keywordtype">int</span> percent) {</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>  <span class="comment">/** Set yaw (-100 to 100): positive = right, negative = left */</span></div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classtinyrobotics_1_1Quadrotor.html#a6bd9a070d33f958397b768119fe09ae4">setYaw</a>(<span class="keywordtype">int</span> percent) {</div>
 <div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>    yaw_ = constrain(percent, -100, 100);</div>
-<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>    <a class="code hl_function" href="classtinyrobotics_1_1Quadrotor.html#a807a87c5df438fde21c1e8213906695b">updateMotors</a>();</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>    <a class="code hl_function" href="classtinyrobotics_1_1Quadrotor.html#a807a87c5df438fde21c1e8213906695b">updateMotors</a><a class="code hl_function" href="classtinyrobotics_1_1Quadrotor.html#a807a87c5df438fde21c1e8213906695b">(</a><a class="code hl_function" href="classtinyrobotics_1_1Quadrotor.html#a807a87c5df438fde21c1e8213906695b">)</a>;</div>
 <div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>  }</div>
 <div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span> </div>
-<div class="line"><a id="l00079" name="l00079"></a><span class="lineno"><a class="line" href="classtinyrobotics_1_1Quadrotor.html#aaf81d3fdaf258088d7692fa70cece087">   79</a></span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classtinyrobotics_1_1Quadrotor.html#aaf81d3fdaf258088d7692fa70cece087">end</a>() {</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>  <span class="comment">/** Stop all motors and reset state */</span></div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classtinyrobotics_1_1Quadrotor.html#aaf81d3fdaf258088d7692fa70cece087">end</a>() {</div>
 <div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; 4; ++i) {</div>
 <div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>      motors_[i].end();</div>
 <div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>    }</div>
@@ -131,50 +164,55 @@ $(function() {
 <div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>    yaw_ = 0;</div>
 <div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>  }</div>
 <div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span> </div>
-<div class="line"><a id="l00094" name="l00094"></a><span class="lineno"><a class="line" href="classtinyrobotics_1_1Quadrotor.html#a125c12f0c08f0128268587dc8f83274e">   94</a></span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classtinyrobotics_1_1Quadrotor.html#a125c12f0c08f0128268587dc8f83274e">setMotorGain</a>(QuadrotorMotorNo motor, <span class="keywordtype">float</span> gain) {</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>  <span class="comment">/**</span></div>
+<div class="line"><span class="lineno">   90</span><span class="comment">   * @brief Set a calibration gain for a specific motor (default 1.0).</span></div>
+<div class="line"><span class="lineno">   91</span><span class="comment">   * @param motor Motor index (QuadrotorMotorNo)</span></div>
+<div class="line"><span class="lineno">   92</span><span class="comment">   * @param gain  Gain factor (e.g., 1.05 for +5% output)</span></div>
+<div class="line"><span class="lineno">   93</span><span class="comment">   */</span></div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classtinyrobotics_1_1Quadrotor.html#a125c12f0c08f0128268587dc8f83274e">setMotorGain</a>(QuadrotorMotorNo motor, <span class="keywordtype">float</span> gain) {</div>
 <div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>    motorGain_[motor] = gain;</div>
 <div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>  }</div>
 <div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span> </div>
-<div class="line"><a id="l00098" name="l00098"></a><span class="lineno"><a class="line" href="classtinyrobotics_1_1Quadrotor.html#aab121fc05ce8562504b0970668fe3f3f">   98</a></span>  <span class="keywordtype">bool</span> <a class="code hl_function" href="classtinyrobotics_1_1Quadrotor.html#aab121fc05ce8562504b0970668fe3f3f">isPinsSet</a>()<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>  <span class="keywordtype">bool</span> <a class="code hl_function" href="classtinyrobotics_1_1Quadrotor.html#aab121fc05ce8562504b0970668fe3f3f">isPinsSet</a>() <span class="keyword">const</span> {</div>
 <div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; 4; ++i) {</div>
-<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>      <span class="keywordflow">if</span> (!motors_[i].<a class="code hl_function" href="classtinyrobotics_1_1Quadrotor.html#aab121fc05ce8562504b0970668fe3f3f">isPinsSet</a>()) <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>      <span class="keywordflow">if</span> (!motors_[i].isPinsSet()) <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
 <div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>    }</div>
 <div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
 <div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>  }</div>
 <div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span> </div>
-<div class="line"><a id="l00105" name="l00105"></a><span class="lineno"><a class="line" href="classtinyrobotics_1_1Quadrotor.html#ab78c06b51db5e63c8f7a84c54baf3842">  105</a></span>  <span class="keywordtype">bool</span> <a class="code hl_function" href="classtinyrobotics_1_1Quadrotor.html#ab78c06b51db5e63c8f7a84c54baf3842">onMessage</a>(<span class="keyword">const</span> <a class="code hl_class" href="structtinyrobotics_1_1Message.html">Message&lt;float&gt;</a>&amp; msg)<span class="keyword"> override </span>{</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>  <span class="keywordtype">bool</span> <a class="code hl_function" href="classtinyrobotics_1_1Quadrotor.html#ab78c06b51db5e63c8f7a84c54baf3842">onMessage</a>(<span class="keyword">const</span> <a class="code hl_class" href="structtinyrobotics_1_1Message.html">Message</a>&lt;<span class="keywordtype">float</span>&gt;&amp; msg) <span class="keyword">override</span> {</div>
 <div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>    <span class="keywordtype">float</span> angle;</div>
-<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>    <span class="keywordflow">if</span> (msg.<a class="code hl_variable" href="structtinyrobotics_1_1Message.html#afac95aff6fbfafe382acb9abf8227503">source</a> != MessageOrigin::RemoteControl)</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>    <span class="keywordflow">if</span> (msg.source != MessageOrigin::RemoteControl)</div>
 <div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>      <span class="keywordflow">return</span> <span class="keyword">false</span>;  <span class="comment">// Only handle RC messages</span></div>
-<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>    <span class="keywordflow">switch</span> (msg.<a class="code hl_variable" href="structtinyrobotics_1_1Message.html#a8e68387e210029af6bdfa6404d29f30f">content</a>) {</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>    <span class="keywordflow">switch</span> (msg.content) {</div>
 <div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>      <span class="keywordflow">case</span> MessageContent::Throttle:</div>
-<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>        <span class="keywordflow">if</span> (msg.<a class="code hl_variable" href="structtinyrobotics_1_1Message.html#aaa0d61fcdf7a0b9f0f2b48c9946cbd10">unit</a> != <a class="code hl_enumvalue" href="group__utils.html#ggabceb2331ad056e3c5ad27894199a49edaadaaee4b22041c27198d410c68d952c9">Unit::Percent</a>) <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>        <a class="code hl_function" href="classtinyrobotics_1_1Quadrotor.html#ae5796296479805da98518762c69427d0">setThrottle</a>(<span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(msg.<a class="code hl_variable" href="structtinyrobotics_1_1Message.html#a4fc7f59e3113e19697159919a5aad095">value</a>));</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>        <span class="keywordflow">if</span> (msg.unit != Unit::Percent) <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>        setThrottle(<span class="keyword">static_cast</span>&lt;<span class="keywordtype">int</span>&gt;(msg.value));</div>
 <div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
 <div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>      <span class="keywordflow">case</span> MessageContent::Pitch:</div>
-<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>        angle = msg.<a class="code hl_variable" href="structtinyrobotics_1_1Message.html#a4fc7f59e3113e19697159919a5aad095">value</a>;</div>
-<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>        <span class="keywordflow">if</span> (!toAngleDegree(angle, msg.<a class="code hl_variable" href="structtinyrobotics_1_1Message.html#aaa0d61fcdf7a0b9f0f2b48c9946cbd10">unit</a>, angle))</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>        angle = msg.value;</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>        <span class="keywordflow">if</span> (!toAngleDegree(angle, msg.unit, angle))</div>
 <div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>          <span class="keywordflow">return</span> <span class="keyword">false</span>;  <span class="comment">// Invalid unit</span></div>
-<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>        <a class="code hl_function" href="classtinyrobotics_1_1Quadrotor.html#a820f2c4cf50e2584941f7080369bb487">setPitch</a>(angle);</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>        setPitch(angle);</div>
 <div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
 <div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>      <span class="keywordflow">case</span> MessageContent::Roll:</div>
-<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>        angle = msg.<a class="code hl_variable" href="structtinyrobotics_1_1Message.html#a4fc7f59e3113e19697159919a5aad095">value</a>;</div>
-<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>        <span class="keywordflow">if</span> (!toAngleDegree(angle, msg.<a class="code hl_variable" href="structtinyrobotics_1_1Message.html#aaa0d61fcdf7a0b9f0f2b48c9946cbd10">unit</a>, angle))</div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>        angle = msg.value;</div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>        <span class="keywordflow">if</span> (!toAngleDegree(angle, msg.unit, angle))</div>
 <div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>          <span class="keywordflow">return</span> <span class="keyword">false</span>;  <span class="comment">// Invalid unit</span></div>
-<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>        <a class="code hl_function" href="classtinyrobotics_1_1Quadrotor.html#ac0ba521da16841a95b8f76f181695d08">setRoll</a>(angle);</div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>        setRoll(angle);</div>
 <div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
 <div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>      <span class="keywordflow">case</span> MessageContent::Yaw:</div>
-<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>        angle = msg.<a class="code hl_variable" href="structtinyrobotics_1_1Message.html#a4fc7f59e3113e19697159919a5aad095">value</a>;</div>
-<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>        <span class="keywordflow">if</span> (!toAngleDegree(angle, msg.<a class="code hl_variable" href="structtinyrobotics_1_1Message.html#aaa0d61fcdf7a0b9f0f2b48c9946cbd10">unit</a>, angle))</div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>        angle = msg.value;</div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>        <span class="keywordflow">if</span> (!toAngleDegree(angle, msg.unit, angle))</div>
 <div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>          <span class="keywordflow">return</span> <span class="keyword">false</span>;  <span class="comment">// Invalid unit</span></div>
-<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>        <a class="code hl_function" href="classtinyrobotics_1_1Quadrotor.html#a6bd9a070d33f958397b768119fe09ae4">setYaw</a>(angle);</div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>        setYaw(angle);</div>
 <div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
 <div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>      <span class="keywordflow">default</span>:</div>
 <div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>        <span class="keywordflow">return</span> <span class="keyword">false</span>;  <span class="comment">// Unhandled message content</span></div>
 <div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>    }</div>
 <div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>  }</div>
 <div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span> </div>
-<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>  std::vector&lt;MessageContent&gt; getControls()<span class="keyword"> const override </span>{</div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>  std::vector&lt;MessageContent&gt; getControls() <span class="keyword">const</span> <span class="keyword">override</span> {</div>
 <div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>    <span class="keywordflow">return</span> {MessageContent::Throttle, MessageContent::Pitch, MessageContent::Roll,</div>
 <div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>            MessageContent::Yaw};</div>
 <div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span>  }</div>
@@ -187,7 +225,18 @@ $(function() {
 <div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>  <span class="keywordtype">int</span> pitch_ = 0;</div>
 <div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>  <span class="keywordtype">int</span> yaw_ = 0;</div>
 <div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span> </div>
-<div class="line"><a id="l00161" name="l00161"></a><span class="lineno"><a class="line" href="classtinyrobotics_1_1Quadrotor.html#a807a87c5df438fde21c1e8213906695b">  161</a></span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classtinyrobotics_1_1Quadrotor.html#a807a87c5df438fde21c1e8213906695b">updateMotors</a>() {</div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>  <span class="comment">/**</span></div>
+<div class="line"><span class="lineno">  151</span><span class="comment">   * @brief Update all motors based on throttle, roll, pitch, and yaw.</span></div>
+<div class="line"><span class="lineno">  152</span><span class="comment">   *</span></div>
+<div class="line"><span class="lineno">  153</span><span class="comment">   * This is a simple mixer for an X-configuration quadrotor:</span></div>
+<div class="line"><span class="lineno">  154</span><span class="comment">   *  - m1: front left</span></div>
+<div class="line"><span class="lineno">  155</span><span class="comment">   *  - m2: front right</span></div>
+<div class="line"><span class="lineno">  156</span><span class="comment">   *  - m3: rear left</span></div>
+<div class="line"><span class="lineno">  157</span><span class="comment">   *  - m4: rear right</span></div>
+<div class="line"><span class="lineno">  158</span><span class="comment">   *</span></div>
+<div class="line"><span class="lineno">  159</span><span class="comment">   * Each control input is in percent (-100 to 100).</span></div>
+<div class="line"><span class="lineno">  160</span><span class="comment">   */</span></div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classtinyrobotics_1_1Quadrotor.html#a807a87c5df438fde21c1e8213906695b">updateMotors</a>() {</div>
 <div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>    <span class="comment">// Basic mixing: throttle + pitch/roll/yaw</span></div>
 <div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span>    <span class="keywordtype">int</span> m[4];</div>
 <div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span>    m[0] = throttle_ + pitch_ + roll_ - yaw_;</div>
@@ -195,21 +244,21 @@ $(function() {
 <div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span>    m[2] = throttle_ - pitch_ + roll_ + yaw_;</div>
 <div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span>    m[3] = throttle_ - pitch_ - roll_ - yaw_;</div>
 <div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; 4; ++i) {</div>
-<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span>      <span class="keywordtype">int</span> calibrated = <span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(m[i] * motorGain_[i]);</div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span>      <span class="keywordtype">int</span> calibrated = <span class="keyword">static_cast</span>&lt;<span class="keywordtype">int</span>&gt;(m[i] * motorGain_[i]);</div>
 <div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span>      motors_[i].setSpeed(constrain(calibrated, 0, 100));</div>
 <div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span>    }</div>
 <div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span>    <span class="comment">// publish motor speeds as messages for telemetry</span></div>
 <div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; 4; ++i) {</div>
-<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span>      <a class="code hl_class" href="structtinyrobotics_1_1Message.html">Message&lt;float&gt;</a> msg(MessageContent::MotorSpeed, m[i], <a class="code hl_enumvalue" href="group__utils.html#ggabceb2331ad056e3c5ad27894199a49edaadaaee4b22041c27198d410c68d952c9">Unit::Percent</a>);</div>
-<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span>      msg.<a class="code hl_variable" href="structtinyrobotics_1_1Message.html#afac95aff6fbfafe382acb9abf8227503">source</a> = MessageOrigin::Motor;</div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span>      <a class="code hl_class" href="structtinyrobotics_1_1Message.html">Message</a>&lt;<span class="keywordtype">float</span>&gt; msg(MessageContent::MotorSpeed, m[i], Unit::Percent);</div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span>      msg.source = MessageOrigin::Motor;</div>
 <div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span>      msg.source_id = i;  <span class="comment">// Motor index</span></div>
-<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span>      <a class="code hl_function" href="classtinyrobotics_1_1MessageSource.html#a98c36b84c000f803e27b164c09d96260">sendMessage</a>(msg);</div>
+<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span>      sendMessage(msg);</div>
 <div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span>    }</div>
 <div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span>  }</div>
 <div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span>};</div>
 <div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span> </div>
 <div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span>}  <span class="comment">// namespace tinyrobotics</span></div>
-<div class="ttc" id="aclasstinyrobotics_1_1MessageSource_html_a98c36b84c000f803e27b164c09d96260"><div class="ttname"><a href="classtinyrobotics_1_1MessageSource.html#a98c36b84c000f803e27b164c09d96260">tinyrobotics::MessageSource::sendMessage</a></div><div class="ttdeci">void sendMessage(Message&lt; float &gt; &amp;msg)</div><div class="ttdoc">Publish a message to all registered handlers.</div><div class="ttdef"><b>Definition:</b> MessageSource.h:57</div></div>
+<div class="ttc" id="aclasstinyrobotics_1_1BrushedMotor_html"><div class="ttname"><a href="classtinyrobotics_1_1BrushedMotor.html">tinyrobotics::BrushedMotor</a></div><div class="ttdoc">High-level H-Bridge motor driver class for bidirectional DC motor control.</div><div class="ttdef"><b>Definition:</b> BrushedMotor.h:34</div></div>
 <div class="ttc" id="aclasstinyrobotics_1_1Quadrotor_html"><div class="ttname"><a href="classtinyrobotics_1_1Quadrotor.html">tinyrobotics::Quadrotor</a></div><div class="ttdoc">Simple quadrotor (quadcopter) model with 4-motor control.</div><div class="ttdef"><b>Definition:</b> Quadrotor.h:41</div></div>
 <div class="ttc" id="aclasstinyrobotics_1_1Quadrotor_html_a125c12f0c08f0128268587dc8f83274e"><div class="ttname"><a href="classtinyrobotics_1_1Quadrotor.html#a125c12f0c08f0128268587dc8f83274e">tinyrobotics::Quadrotor::setMotorGain</a></div><div class="ttdeci">void setMotorGain(QuadrotorMotorNo motor, float gain)</div><div class="ttdoc">Set a calibration gain for a specific motor (default 1.0).</div><div class="ttdef"><b>Definition:</b> Quadrotor.h:94</div></div>
 <div class="ttc" id="aclasstinyrobotics_1_1Quadrotor_html_a38c3d3a99c3067d1b4943f35cedd26db"><div class="ttname"><a href="classtinyrobotics_1_1Quadrotor.html#a38c3d3a99c3067d1b4943f35cedd26db">tinyrobotics::Quadrotor::setPins</a></div><div class="ttdeci">void setPins(QuadrotorMotorNo motor, int in1, int in2, int pwm)</div><div class="ttdoc">Set the pins for a specific motor (0=front left, 1=front right, 2=rear left, 3=rear right)</div><div class="ttdef"><b>Definition:</b> Quadrotor.h:49</div></div>
@@ -222,12 +271,7 @@ $(function() {
 <div class="ttc" id="aclasstinyrobotics_1_1Quadrotor_html_ac0ba521da16841a95b8f76f181695d08"><div class="ttname"><a href="classtinyrobotics_1_1Quadrotor.html#ac0ba521da16841a95b8f76f181695d08">tinyrobotics::Quadrotor::setRoll</a></div><div class="ttdeci">void setRoll(int percent)</div><div class="ttdef"><b>Definition:</b> Quadrotor.h:61</div></div>
 <div class="ttc" id="aclasstinyrobotics_1_1Quadrotor_html_ae5796296479805da98518762c69427d0"><div class="ttname"><a href="classtinyrobotics_1_1Quadrotor.html#ae5796296479805da98518762c69427d0">tinyrobotics::Quadrotor::setThrottle</a></div><div class="ttdeci">void setThrottle(int percent)</div><div class="ttdef"><b>Definition:</b> Quadrotor.h:55</div></div>
 <div class="ttc" id="aclasstinyrobotics_1_1Vehicle_html"><div class="ttname"><a href="classtinyrobotics_1_1Vehicle.html">tinyrobotics::Vehicle</a></div><div class="ttdoc">Abstract base class for all vehicle types.</div><div class="ttdef"><b>Definition:</b> Vehicle.h:24</div></div>
-<div class="ttc" id="agroup__utils_html_ggabceb2331ad056e3c5ad27894199a49edaadaaee4b22041c27198d410c68d952c9"><div class="ttname"><a href="group__utils.html#ggabceb2331ad056e3c5ad27894199a49edaadaaee4b22041c27198d410c68d952c9">tinyrobotics::Unit::Percent</a></div><div class="ttdeci">@ Percent</div><div class="ttdoc">Percentage (0-100)</div></div>
 <div class="ttc" id="astructtinyrobotics_1_1Message_html"><div class="ttname"><a href="structtinyrobotics_1_1Message.html">tinyrobotics::Message</a></div><div class="ttdoc">Generic message structure for communication, parameterized by value type.</div><div class="ttdef"><b>Definition:</b> Message.h:63</div></div>
-<div class="ttc" id="astructtinyrobotics_1_1Message_html_a4fc7f59e3113e19697159919a5aad095"><div class="ttname"><a href="structtinyrobotics_1_1Message.html#a4fc7f59e3113e19697159919a5aad095">tinyrobotics::Message::value</a></div><div class="ttdeci">T value</div><div class="ttdoc">Value of the message.</div><div class="ttdef"><b>Definition:</b> Message.h:70</div></div>
-<div class="ttc" id="astructtinyrobotics_1_1Message_html_a8e68387e210029af6bdfa6404d29f30f"><div class="ttname"><a href="structtinyrobotics_1_1Message.html#a8e68387e210029af6bdfa6404d29f30f">tinyrobotics::Message::content</a></div><div class="ttdeci">MessageContent content</div><div class="ttdoc">Optional identifier for the source (e.g., sensor ID, motor ID)</div><div class="ttdef"><b>Definition:</b> Message.h:68</div></div>
-<div class="ttc" id="astructtinyrobotics_1_1Message_html_aaa0d61fcdf7a0b9f0f2b48c9946cbd10"><div class="ttname"><a href="structtinyrobotics_1_1Message.html#aaa0d61fcdf7a0b9f0f2b48c9946cbd10">tinyrobotics::Message::unit</a></div><div class="ttdeci">Unit unit</div><div class="ttdoc">Unit of the value.</div><div class="ttdef"><b>Definition:</b> Message.h:69</div></div>
-<div class="ttc" id="astructtinyrobotics_1_1Message_html_afac95aff6fbfafe382acb9abf8227503"><div class="ttname"><a href="structtinyrobotics_1_1Message.html#afac95aff6fbfafe382acb9abf8227503">tinyrobotics::Message::source</a></div><div class="ttdeci">MessageOrigin source</div><div class="ttdoc">Source of the message.</div><div class="ttdef"><b>Definition:</b> Message.h:66</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

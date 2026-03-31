@@ -76,36 +76,56 @@ $(function() {
   <div class="headertitle"><div class="title">Dijkstra.h</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#pragma once</span></div>
-<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#include &lt;functional&gt;</span></div>
-<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &lt;limits&gt;</span></div>
-<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &lt;queue&gt;</span></div>
-<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &lt;unordered_map&gt;</span></div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#</span><span class="preprocessor">pragma</span> <span class="preprocessor">once</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#</span><span class="preprocessor">include</span> <span class="preprocessor">&lt;</span><span class="preprocessor">functional</span><span class="preprocessor">&gt;</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#</span><span class="preprocessor">include</span> <span class="preprocessor">&lt;</span><span class="preprocessor">limits</span><span class="preprocessor">&gt;</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#</span><span class="preprocessor">include</span> <span class="preprocessor">&lt;</span><span class="preprocessor">queue</span><span class="preprocessor">&gt;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#</span><span class="preprocessor">include</span> <span class="preprocessor">&lt;</span><span class="preprocessor">unordered_map</span><span class="preprocessor">&gt;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#</span><span class="preprocessor">include</span> <span class="preprocessor">&lt;</span><span class="preprocessor">vector</span><span class="preprocessor">&gt;</span></div>
 <div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &quot;TinyRobotics/coordinates/Coordinate.h&quot;</span></div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &quot;TinyRobotics/planning/Path.h&quot;</span></div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &quot;TinyRobotics/utils/Common.h&quot;</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#</span><span class="preprocessor">include</span> <span class="preprocessor">&quot;TinyRobotics/coordinates/Coordinate.h&quot;</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#</span><span class="preprocessor">include</span> <span class="preprocessor">&quot;TinyRobotics/planning/Path.h&quot;</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#</span><span class="preprocessor">include</span> <span class="preprocessor">&quot;TinyRobotics/utils/Common.h&quot;</span></div>
 <div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span> </div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="keyword">namespace </span>tinyrobotics {</div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="keyword">namespace</span> tinyrobotics {</div>
 <div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span> </div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> MapType, <span class="keyword">typename</span> Node = Coordinate&lt;DistanceM&gt;&gt;</div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno"><a class="line" href="classtinyrobotics_1_1Dijkstra.html">   24</a></span><span class="keyword">class </span><a class="code hl_class" href="classtinyrobotics_1_1Dijkstra.html">Dijkstra</a> {</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="comment">/**</span></div>
+<div class="line"><span class="lineno">   15</span><span class="comment"> * @class Dijkstra</span></div>
+<div class="line"><span class="lineno">   16</span><span class="comment"> * @ingroup planning</span></div>
+<div class="line"><span class="lineno">   17</span><span class="comment"> * @brief Generic Dijkstra shortest path algorithm for graphs/maps with</span></div>
+<div class="line"><span class="lineno">   18</span><span class="comment"> * callback-based cost and validity.</span></div>
+<div class="line"><span class="lineno">   19</span><span class="comment"> *</span></div>
+<div class="line"><span class="lineno">   20</span><span class="comment"> * @tparam MapType Must provide:</span></div>
+<div class="line"><span class="lineno">   21</span><span class="comment"> *   - std::vector&lt;Node&gt; getNeighbors(const Node&amp; node) const</span></div>
+<div class="line"><span class="lineno">   22</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> MapType, <span class="keyword">typename</span> Node = <a class="code hl_class" href="classtinyrobotics_1_1Coordinate.html">Coordinate</a>&lt;DistanceM&gt;&gt;</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="keyword">class</span> <a class="code hl_class" href="classtinyrobotics_1_1Dijkstra.html">Dijkstra</a> {</div>
 <div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span> <span class="keyword">public</span>:</div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>  <span class="keyword">using </span>CostCallback =</div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>      std::function&lt;float(<span class="keyword">const</span> Node&amp;, <span class="keyword">const</span> Node&amp;, <span class="keywordtype">void</span>* ref)&gt;;</div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>  <span class="keyword">using </span>ValidCallback = std::function&lt;bool(<span class="keyword">const</span> Node&amp;, <span class="keywordtype">void</span>* ref)&gt;;</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>  <span class="keyword">using</span> CostCallback =</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>      std::function&lt;<span class="keywordtype">float</span>(<span class="keyword">const</span> Node&amp;, <span class="keyword">const</span> Node&amp;, <span class="keywordtype">void</span>* ref)&gt;;</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>  <span class="keyword">using</span> ValidCallback = std::function&lt;<span class="keywordtype">bool</span>(<span class="keyword">const</span> Node&amp;, <span class="keywordtype">void</span>* ref)&gt;;</div>
 <div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span> </div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>  <a class="code hl_class" href="classtinyrobotics_1_1Dijkstra.html">Dijkstra</a>() = <span class="keywordflow">default</span>;</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>  Dijkstra() = <span class="keywordflow">default</span>;</div>
 <div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno"><a class="line" href="classtinyrobotics_1_1Dijkstra.html#af46f0f54f7bd50991ba10c2468d683fb">   34</a></span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classtinyrobotics_1_1Dijkstra.html#af46f0f54f7bd50991ba10c2468d683fb">setCostCallback</a>(CostCallback cb) { cost_cb = cb; }</div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno"><a class="line" href="classtinyrobotics_1_1Dijkstra.html#ae5f7c99bd9954accb45e76503e1e53d7">   36</a></span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classtinyrobotics_1_1Dijkstra.html#ae5f7c99bd9954accb45e76503e1e53d7">setValidCallback</a>(ValidCallback cb) { valid_cb = cb; }</div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno"><a class="line" href="classtinyrobotics_1_1Dijkstra.html#af18f354e3db7c08b67f6751e63b76245">   39</a></span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classtinyrobotics_1_1Dijkstra.html#af18f354e3db7c08b67f6751e63b76245">setReference</a>(<span class="keywordtype">void</span>* reference) { ref = reference; }</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>  <span class="comment">/// provide a callback to determine the cost of moving from one node to</span></div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>  <span class="comment">/// another</span></div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classtinyrobotics_1_1Dijkstra.html#af46f0f54f7bd50991ba10c2468d683fb">setCostCallback</a>(CostCallback cb) { cost_cb = cb; }</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>  <span class="comment">/// provide a callback to determine if a node is valid (e.g., not an obstacle)</span></div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classtinyrobotics_1_1Dijkstra.html#ae5f7c99bd9954accb45e76503e1e53d7">setValidCallback</a>(ValidCallback cb) { valid_cb = cb; }</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>  <span class="comment">/// provide reference for callbacks (e.g., to access map data or other</span></div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>  <span class="comment">/// context)</span></div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classtinyrobotics_1_1Dijkstra.html#af18f354e3db7c08b67f6751e63b76245">setReference</a>(<span class="keywordtype">void</span>* reference) { ref = reference; }</div>
 <div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span> </div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno"><a class="line" href="classtinyrobotics_1_1Dijkstra.html#a2183d5d1a2f1f1ac416328c2146d65fa">   47</a></span>  <a class="code hl_class" href="classtinyrobotics_1_1Path.html">Path&lt;Node&gt;</a> <a class="code hl_function" href="classtinyrobotics_1_1Dijkstra.html#a2183d5d1a2f1f1ac416328c2146d65fa">findPath</a>(<span class="keyword">const</span> MapType&amp; map, <span class="keyword">const</span> Node&amp; start, <span class="keyword">const</span> Node&amp; goal) {</div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    <span class="keyword">using </span>Pair = std::pair&lt;float, Node&gt;;</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>  <span class="comment">/**</span></div>
+<div class="line"><span class="lineno">   42</span><span class="comment">   * @brief Finds the shortest path from start to goal.</span></div>
+<div class="line"><span class="lineno">   43</span><span class="comment">   * @param start The starting node.</span></div>
+<div class="line"><span class="lineno">   44</span><span class="comment">   * @param goal The goal node.</span></div>
+<div class="line"><span class="lineno">   45</span><span class="comment">   * @return Vector of nodes representing the path (empty if no path found).</span></div>
+<div class="line"><span class="lineno">   46</span><span class="comment">   */</span></div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>  <a class="code hl_function" href="classtinyrobotics_1_1Dijkstra.html#a2183d5d1a2f1f1ac416328c2146d65fa">Path</a>&lt;<a class="code hl_function" href="classtinyrobotics_1_1Dijkstra.html#a2183d5d1a2f1f1ac416328c2146d65fa">Node</a>&gt; <a class="code hl_function" href="classtinyrobotics_1_1Dijkstra.html#a2183d5d1a2f1f1ac416328c2146d65fa">findPath</a>(<span class="keyword">const</span> <a class="code hl_function" href="classtinyrobotics_1_1Dijkstra.html#a2183d5d1a2f1f1ac416328c2146d65fa">MapType</a>&amp; <a class="code hl_function" href="classtinyrobotics_1_1Dijkstra.html#a2183d5d1a2f1f1ac416328c2146d65fa">map</a>, <span class="keyword">const</span> <a class="code hl_function" href="classtinyrobotics_1_1Dijkstra.html#a2183d5d1a2f1f1ac416328c2146d65fa">Node</a>&amp; <a class="code hl_function" href="classtinyrobotics_1_1Dijkstra.html#a2183d5d1a2f1f1ac416328c2146d65fa">start</a>, <span class="keyword">const</span> <a class="code hl_function" href="classtinyrobotics_1_1Dijkstra.html#a2183d5d1a2f1f1ac416328c2146d65fa">Node</a>&amp; <a class="code hl_function" href="classtinyrobotics_1_1Dijkstra.html#a2183d5d1a2f1f1ac416328c2146d65fa">goal</a>) {</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    <span class="keyword">using</span> Pair = std::pair&lt;<span class="keywordtype">float</span>, Node&gt;;</div>
 <div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    std::priority_queue&lt;Pair, std::vector&lt;Pair&gt;, std::greater&lt;Pair&gt;&gt; open;</div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    std::unordered_map&lt;Node, float&gt; cost_so_far;</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    std::unordered_map&lt;Node, <span class="keywordtype">float</span>&gt; cost_so_far;</div>
 <div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    std::unordered_map&lt;Node, Node&gt; came_from;</div>
 <div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span> </div>
 <div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    open.emplace(0.0f, start);</div>
@@ -130,7 +150,7 @@ $(function() {
 <div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>    }</div>
 <div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span> </div>
 <div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>    <span class="comment">// Reconstruct path</span></div>
-<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>    <a class="code hl_class" href="classtinyrobotics_1_1Path.html">Path&lt;Node&gt;</a> path;</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>    Path&lt;Node&gt; path;</div>
 <div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>    <span class="keywordflow">if</span> (!came_from.count(goal)) <span class="keywordflow">return</span> path;</div>
 <div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>    <span class="keywordflow">for</span> (Node at = goal; at != start; at = came_from[at]) {</div>
 <div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>      path.addWaypoint(at);</div>
@@ -146,7 +166,7 @@ $(function() {
 <div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>  <span class="keywordtype">void</span>* ref = <span class="keyword">this</span>;</div>
 <div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span> </div>
 <div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>  <span class="keyword">static</span> <span class="keywordtype">float</span> defaultCost(<span class="keyword">const</span> Node&amp; from, <span class="keyword">const</span> Node&amp; to, <span class="keywordtype">void</span>* ref) {</div>
-<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>    <span class="keywordflow">return</span> from.<a class="code hl_function" href="classtinyrobotics_1_1Path.html#a858cf934b3668c4918ca0367e04686b6">distance</a>(to);</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>    <span class="keywordflow">return</span> from.distance(to);</div>
 <div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>  }</div>
 <div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span> </div>
 <div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>  <span class="keyword">static</span> <span class="keywordtype">bool</span> defaultValid(<span class="keyword">const</span> Node&amp; node, <span class="keywordtype">void</span>* ref) {</div>
@@ -155,13 +175,12 @@ $(function() {
 <div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>};</div>
 <div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span> </div>
 <div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>}  <span class="comment">// namespace tinyrobotics</span></div>
+<div class="ttc" id="aclasstinyrobotics_1_1Coordinate_html"><div class="ttname"><a href="classtinyrobotics_1_1Coordinate.html">tinyrobotics::Coordinate</a></div><div class="ttdoc">A generic 3D coordinate class for robotics, navigation, and spatial calculations.</div><div class="ttdef"><b>Definition:</b> Coordinate.h:57</div></div>
 <div class="ttc" id="aclasstinyrobotics_1_1Dijkstra_html"><div class="ttname"><a href="classtinyrobotics_1_1Dijkstra.html">tinyrobotics::Dijkstra</a></div><div class="ttdoc">Generic Dijkstra shortest path algorithm for graphs/maps with callback-based cost and validity.</div><div class="ttdef"><b>Definition:</b> Dijkstra.h:24</div></div>
 <div class="ttc" id="aclasstinyrobotics_1_1Dijkstra_html_a2183d5d1a2f1f1ac416328c2146d65fa"><div class="ttname"><a href="classtinyrobotics_1_1Dijkstra.html#a2183d5d1a2f1f1ac416328c2146d65fa">tinyrobotics::Dijkstra::findPath</a></div><div class="ttdeci">Path&lt; Node &gt; findPath(const MapType &amp;map, const Node &amp;start, const Node &amp;goal)</div><div class="ttdoc">Finds the shortest path from start to goal.</div><div class="ttdef"><b>Definition:</b> Dijkstra.h:47</div></div>
 <div class="ttc" id="aclasstinyrobotics_1_1Dijkstra_html_ae5f7c99bd9954accb45e76503e1e53d7"><div class="ttname"><a href="classtinyrobotics_1_1Dijkstra.html#ae5f7c99bd9954accb45e76503e1e53d7">tinyrobotics::Dijkstra::setValidCallback</a></div><div class="ttdeci">void setValidCallback(ValidCallback cb)</div><div class="ttdoc">provide a callback to determine if a node is valid (e.g., not an obstacle)</div><div class="ttdef"><b>Definition:</b> Dijkstra.h:36</div></div>
 <div class="ttc" id="aclasstinyrobotics_1_1Dijkstra_html_af18f354e3db7c08b67f6751e63b76245"><div class="ttname"><a href="classtinyrobotics_1_1Dijkstra.html#af18f354e3db7c08b67f6751e63b76245">tinyrobotics::Dijkstra::setReference</a></div><div class="ttdeci">void setReference(void *reference)</div><div class="ttdef"><b>Definition:</b> Dijkstra.h:39</div></div>
 <div class="ttc" id="aclasstinyrobotics_1_1Dijkstra_html_af46f0f54f7bd50991ba10c2468d683fb"><div class="ttname"><a href="classtinyrobotics_1_1Dijkstra.html#af46f0f54f7bd50991ba10c2468d683fb">tinyrobotics::Dijkstra::setCostCallback</a></div><div class="ttdeci">void setCostCallback(CostCallback cb)</div><div class="ttdef"><b>Definition:</b> Dijkstra.h:34</div></div>
-<div class="ttc" id="aclasstinyrobotics_1_1Path_html"><div class="ttname"><a href="classtinyrobotics_1_1Path.html">tinyrobotics::Path</a></div><div class="ttdoc">A simple path class that holds a sequence of waypoints. Each waypoint is e.g. a coordinate (e....</div><div class="ttdef"><b>Definition:</b> Path.h:59</div></div>
-<div class="ttc" id="aclasstinyrobotics_1_1Path_html_a858cf934b3668c4918ca0367e04686b6"><div class="ttname"><a href="classtinyrobotics_1_1Path.html#a858cf934b3668c4918ca0367e04686b6">tinyrobotics::Path::distance</a></div><div class="ttdeci">float distance() const</div><div class="ttdoc">Calculate the total distance.</div><div class="ttdef"><b>Definition:</b> Path.h:124</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

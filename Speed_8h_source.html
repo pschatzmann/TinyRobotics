@@ -76,44 +76,74 @@ $(function() {
   <div class="headertitle"><div class="title">Speed.h</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#pragma once</span></div>
+<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#</span><span class="preprocessor">pragma</span> <span class="preprocessor">once</span></div>
 <div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span> </div>
-<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="keyword">namespace </span>tinyrobotics {</div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="keyword">namespace</span> tinyrobotics {</div>
 <div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span> </div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno"><a class="line" href="group__units.html#ga877e4fdbe9d3581dfa3431b6436b1615">   10</a></span><span class="keyword">enum class</span> <a class="code hl_enumeration" href="group__units.html#ga877e4fdbe9d3581dfa3431b6436b1615">SpeedUnit</a> { MPS, KPH, FPS, MPH };</div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment">/**</span></div>
+<div class="line"><span class="lineno">    6</span><span class="comment"> * @enum SpeedUnit</span></div>
+<div class="line"><span class="lineno">    7</span><span class="comment"> * @ingroup units</span></div>
+<div class="line"><span class="lineno">    8</span><span class="comment"> * @brief Supported speed units for conversion and representation.</span></div>
+<div class="line"><span class="lineno">    9</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="keyword">enum</span> <span class="keyword">class</span> <a class="code hl_enumeration" href="group__units.html#ga877e4fdbe9d3581dfa3431b6436b1615">SpeedUnit</a> { MPS, KPH, FPS, MPH };</div>
 <div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span> </div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno"><a class="line" href="classtinyrobotics_1_1Speed.html">   37</a></span><span class="keyword">class </span><a class="code hl_class" href="classtinyrobotics_1_1Speed.html">Speed</a> {</div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="comment">/**</span></div>
+<div class="line"><span class="lineno">   13</span><span class="comment"> * @class Speed</span></div>
+<div class="line"><span class="lineno">   14</span><span class="comment"> * @ingroup units</span></div>
+<div class="line"><span class="lineno">   15</span><span class="comment"> * @brief Represents a speed measurement with unit conversion support.</span></div>
+<div class="line"><span class="lineno">   16</span><span class="comment"> *</span></div>
+<div class="line"><span class="lineno">   17</span><span class="comment"> * The Speed class encapsulates a speed value and its unit, supporting meters per second (MPS),</span></div>
+<div class="line"><span class="lineno">   18</span><span class="comment"> * kilometers per hour (KPH), feet per second (FPS), and miles per hour (MPH). It provides methods</span></div>
+<div class="line"><span class="lineno">   19</span><span class="comment"> * to set and retrieve the speed in any supported unit, automatically handling conversions.</span></div>
+<div class="line"><span class="lineno">   20</span><span class="comment"> *</span></div>
+<div class="line"><span class="lineno">   21</span><span class="comment"> * - Internal state is always consistent with the last set value and unit.</span></div>
+<div class="line"><span class="lineno">   22</span><span class="comment"> * - Designed for embedded and robotics applications where unit flexibility and efficiency are required.</span></div>
+<div class="line"><span class="lineno">   23</span><span class="comment"> * - Use getValue() to retrieve the speed in any unit; use setValue() to update the value and unit.</span></div>
+<div class="line"><span class="lineno">   24</span><span class="comment"> *</span></div>
+<div class="line"><span class="lineno">   25</span><span class="comment"> * Example:</span></div>
+<div class="line"><span class="lineno">   26</span><span class="comment"> * @code</span></div>
+<div class="line"><span class="lineno">   27</span><span class="comment"> *   Speed s(10.0, SpeedUnit::MPS);</span></div>
+<div class="line"><span class="lineno">   28</span><span class="comment"> *   float mph = s.getValue(SpeedUnit::MPH); // Convert to miles per hour</span></div>
+<div class="line"><span class="lineno">   29</span><span class="comment"> *   s.setValue(36.0, SpeedUnit::KPH);       // Update value in km/h</span></div>
+<div class="line"><span class="lineno">   30</span><span class="comment"> *   float mps = s.getValue(SpeedUnit::MPS); // Convert back to m/s</span></div>
+<div class="line"><span class="lineno">   31</span><span class="comment"> * @endcode</span></div>
+<div class="line"><span class="lineno">   32</span><span class="comment"> *</span></div>
+<div class="line"><span class="lineno">   33</span><span class="comment"> * @note Invalid conversions return -1.0f.</span></div>
+<div class="line"><span class="lineno">   34</span><span class="comment"> *</span></div>
+<div class="line"><span class="lineno">   35</span><span class="comment"> * @see SpeedUnit</span></div>
+<div class="line"><span class="lineno">   36</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span><span class="keyword">class</span> <a class="code hl_class" href="classtinyrobotics_1_1Speed.html">Speed</a> {</div>
 <div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span> <span class="keyword">public</span>:</div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>  <a class="code hl_class" href="classtinyrobotics_1_1Speed.html">Speed</a>() = <span class="keywordflow">default</span>;</div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>  <a class="code hl_class" href="classtinyrobotics_1_1Speed.html">Speed</a>(<span class="keywordtype">float</span> speed, <a class="code hl_enumeration" href="group__units.html#ga877e4fdbe9d3581dfa3431b6436b1615">SpeedUnit</a> <a class="code hl_variable" href="classtinyrobotics_1_1Speed.html#a42c78ec9f79ed3b814b85f0013684b03">unit</a>) { setValue(speed, <a class="code hl_variable" href="classtinyrobotics_1_1Speed.html#a42c78ec9f79ed3b814b85f0013684b03">unit</a>); }</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>  Speed() = <span class="keywordflow">default</span>;</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>  Speed(<span class="keywordtype">float</span> speed, <a class="code hl_enumeration" href="group__units.html#ga877e4fdbe9d3581dfa3431b6436b1615">SpeedUnit</a> unit) { setValue(speed, unit); }</div>
 <div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span> </div>
 <div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>  <span class="keywordtype">void</span> setValue(<span class="keywordtype">float</span> newSpeed, <a class="code hl_enumeration" href="group__units.html#ga877e4fdbe9d3581dfa3431b6436b1615">SpeedUnit</a> newUnit) {</div>
 <div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    speed = newSpeed;</div>
 <div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    <a class="code hl_variable" href="classtinyrobotics_1_1Speed.html#a42c78ec9f79ed3b814b85f0013684b03">unit</a> = newUnit;</div>
 <div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>  }</div>
 <div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span> </div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>  <span class="keywordtype">float</span> getValue(<a class="code hl_enumeration" href="group__units.html#ga877e4fdbe9d3581dfa3431b6436b1615">SpeedUnit</a> desiredUnit)<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>  <span class="keywordtype">float</span> getValue(<a class="code hl_enumeration" href="group__units.html#ga877e4fdbe9d3581dfa3431b6436b1615">SpeedUnit</a> desiredUnit) <span class="keyword">const</span> {</div>
 <div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    <span class="keywordflow">if</span> (<a class="code hl_variable" href="classtinyrobotics_1_1Speed.html#a42c78ec9f79ed3b814b85f0013684b03">unit</a> == desiredUnit) <span class="keywordflow">return</span> speed;</div>
 <div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    <span class="keywordflow">switch</span> (<a class="code hl_variable" href="classtinyrobotics_1_1Speed.html#a42c78ec9f79ed3b814b85f0013684b03">unit</a>) {</div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>      <span class="keywordflow">case</span> SpeedUnit::MPS:</div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>        <span class="keywordflow">if</span> (desiredUnit == SpeedUnit::KPH) <span class="keywordflow">return</span> speed * 3.6;</div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>        <span class="keywordflow">if</span> (desiredUnit == SpeedUnit::FPS) <span class="keywordflow">return</span> speed * 3.28084;</div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>        <span class="keywordflow">if</span> (desiredUnit == SpeedUnit::MPH) <span class="keywordflow">return</span> speed * 2.23694;</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>      <span class="keywordflow">case</span> <a class="code hl_enumeration" href="group__units.html#ga877e4fdbe9d3581dfa3431b6436b1615">SpeedUnit</a>::MPS:</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>        <span class="keywordflow">if</span> (desiredUnit == <a class="code hl_enumeration" href="group__units.html#ga877e4fdbe9d3581dfa3431b6436b1615">SpeedUnit</a>::KPH) <span class="keywordflow">return</span> speed * 3.6;</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>        <span class="keywordflow">if</span> (desiredUnit == <a class="code hl_enumeration" href="group__units.html#ga877e4fdbe9d3581dfa3431b6436b1615">SpeedUnit</a>::FPS) <span class="keywordflow">return</span> speed * 3.28084;</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>        <span class="keywordflow">if</span> (desiredUnit == <a class="code hl_enumeration" href="group__units.html#ga877e4fdbe9d3581dfa3431b6436b1615">SpeedUnit</a>::MPH) <span class="keywordflow">return</span> speed * 2.23694;</div>
 <div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>        <span class="keywordflow">break</span>;</div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>      <span class="keywordflow">case</span> SpeedUnit::KPH:</div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>        <span class="keywordflow">if</span> (desiredUnit == SpeedUnit::MPS) <span class="keywordflow">return</span> speed / 3.6;</div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>        <span class="keywordflow">if</span> (desiredUnit == SpeedUnit::FPS) <span class="keywordflow">return</span> speed * 0.911344;</div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>        <span class="keywordflow">if</span> (desiredUnit == SpeedUnit::MPH) <span class="keywordflow">return</span> speed * 0.621371;</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>      <span class="keywordflow">case</span> <a class="code hl_enumeration" href="group__units.html#ga877e4fdbe9d3581dfa3431b6436b1615">SpeedUnit</a>::KPH:</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>        <span class="keywordflow">if</span> (desiredUnit == <a class="code hl_enumeration" href="group__units.html#ga877e4fdbe9d3581dfa3431b6436b1615">SpeedUnit</a>::MPS) <span class="keywordflow">return</span> speed / 3.6;</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>        <span class="keywordflow">if</span> (desiredUnit == <a class="code hl_enumeration" href="group__units.html#ga877e4fdbe9d3581dfa3431b6436b1615">SpeedUnit</a>::FPS) <span class="keywordflow">return</span> speed * 0.911344;</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>        <span class="keywordflow">if</span> (desiredUnit == <a class="code hl_enumeration" href="group__units.html#ga877e4fdbe9d3581dfa3431b6436b1615">SpeedUnit</a>::MPH) <span class="keywordflow">return</span> speed * 0.621371;</div>
 <div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>        <span class="keywordflow">break</span>;</div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>      <span class="keywordflow">case</span> SpeedUnit::FPS:</div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>        <span class="keywordflow">if</span> (desiredUnit == SpeedUnit::MPS) <span class="keywordflow">return</span> speed / 3.28084;</div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>        <span class="keywordflow">if</span> (desiredUnit == SpeedUnit::KPH) <span class="keywordflow">return</span> speed * 1.09728;</div>
-<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>        <span class="keywordflow">if</span> (desiredUnit == SpeedUnit::MPH) <span class="keywordflow">return</span> speed * 0.681818;</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>      <span class="keywordflow">case</span> <a class="code hl_enumeration" href="group__units.html#ga877e4fdbe9d3581dfa3431b6436b1615">SpeedUnit</a>::FPS:</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>        <span class="keywordflow">if</span> (desiredUnit == <a class="code hl_enumeration" href="group__units.html#ga877e4fdbe9d3581dfa3431b6436b1615">SpeedUnit</a>::MPS) <span class="keywordflow">return</span> speed / 3.28084;</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>        <span class="keywordflow">if</span> (desiredUnit == <a class="code hl_enumeration" href="group__units.html#ga877e4fdbe9d3581dfa3431b6436b1615">SpeedUnit</a>::KPH) <span class="keywordflow">return</span> speed * 1.09728;</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>        <span class="keywordflow">if</span> (desiredUnit == <a class="code hl_enumeration" href="group__units.html#ga877e4fdbe9d3581dfa3431b6436b1615">SpeedUnit</a>::MPH) <span class="keywordflow">return</span> speed * 0.681818;</div>
 <div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>        <span class="keywordflow">break</span>;</div>
-<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>      <span class="keywordflow">case</span> SpeedUnit::MPH:</div>
-<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>        <span class="keywordflow">if</span> (desiredUnit == SpeedUnit::MPS) <span class="keywordflow">return</span> speed / 2.23694;</div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>        <span class="keywordflow">if</span> (desiredUnit == SpeedUnit::KPH) <span class="keywordflow">return</span> speed * 1.60934;</div>
-<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>        <span class="keywordflow">if</span> (desiredUnit == SpeedUnit::FPS) <span class="keywordflow">return</span> speed * 1.46667;</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>      <span class="keywordflow">case</span> <a class="code hl_enumeration" href="group__units.html#ga877e4fdbe9d3581dfa3431b6436b1615">SpeedUnit</a>::MPH:</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>        <span class="keywordflow">if</span> (desiredUnit == <a class="code hl_enumeration" href="group__units.html#ga877e4fdbe9d3581dfa3431b6436b1615">SpeedUnit</a>::MPS) <span class="keywordflow">return</span> speed / 2.23694;</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>        <span class="keywordflow">if</span> (desiredUnit == <a class="code hl_enumeration" href="group__units.html#ga877e4fdbe9d3581dfa3431b6436b1615">SpeedUnit</a>::KPH) <span class="keywordflow">return</span> speed * 1.60934;</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>        <span class="keywordflow">if</span> (desiredUnit == <a class="code hl_enumeration" href="group__units.html#ga877e4fdbe9d3581dfa3431b6436b1615">SpeedUnit</a>::FPS) <span class="keywordflow">return</span> speed * 1.46667;</div>
 <div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>        <span class="keywordflow">break</span>;</div>
 <div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>    }</div>
 <div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>    <span class="keywordflow">return</span> -1;  <span class="comment">// Invalid conversion</span></div>
@@ -121,10 +151,10 @@ $(function() {
 <div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span> </div>
 <div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span> <span class="keyword">protected</span>:</div>
 <div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>  <span class="keywordtype">float</span> speed = 0.0f;</div>
-<div class="line"><a id="l00076" name="l00076"></a><span class="lineno"><a class="line" href="classtinyrobotics_1_1Speed.html#a42c78ec9f79ed3b814b85f0013684b03">   76</a></span>  <a class="code hl_enumeration" href="group__units.html#ga877e4fdbe9d3581dfa3431b6436b1615">SpeedUnit</a> <a class="code hl_variable" href="classtinyrobotics_1_1Speed.html#a42c78ec9f79ed3b814b85f0013684b03">unit</a> = SpeedUnit::MPS; </div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>  <a class="code hl_enumeration" href="group__units.html#ga877e4fdbe9d3581dfa3431b6436b1615">SpeedUnit</a> <a class="code hl_variable" href="classtinyrobotics_1_1Speed.html#a42c78ec9f79ed3b814b85f0013684b03">unit</a> = <a class="code hl_enumeration" href="group__units.html#ga877e4fdbe9d3581dfa3431b6436b1615">SpeedUnit</a>::MPS; <span class="comment">///&lt; Unit of the speed. @see SpeedUnit</span></div>
 <div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>};</div>
 <div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span> </div>
-<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span><span class="keyword">using </span><a class="code hl_class" href="classtinyrobotics_1_1Speed.html">Velocity</a> = <a class="code hl_class" href="classtinyrobotics_1_1Speed.html">Speed</a>;</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span><span class="keyword">using</span> Velocity = <a class="code hl_class" href="classtinyrobotics_1_1Speed.html">Speed</a>;</div>
 <div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span> </div>
 <div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>}  <span class="comment">// namespace tinyrobotics</span></div>
 <div class="ttc" id="aclasstinyrobotics_1_1Speed_html"><div class="ttname"><a href="classtinyrobotics_1_1Speed.html">tinyrobotics::Speed</a></div><div class="ttdoc">Represents a speed measurement with unit conversion support.</div><div class="ttdef"><b>Definition:</b> Speed.h:37</div></div>

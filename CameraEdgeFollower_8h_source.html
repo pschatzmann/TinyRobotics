@@ -77,37 +77,70 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 <div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span> </div>
-<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#pragma once</span></div>
-<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &lt;stddef.h&gt;</span></div>
-<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &lt;stdint.h&gt;</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#</span><span class="preprocessor">pragma</span> <span class="preprocessor">once</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#</span><span class="preprocessor">include</span> <span class="preprocessor">&lt;</span><span class="preprocessor">stddef</span><span class="preprocessor">.</span><span class="preprocessor">h</span><span class="preprocessor">&gt;</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#</span><span class="preprocessor">include</span> <span class="preprocessor">&lt;</span><span class="preprocessor">stdint</span><span class="preprocessor">.</span><span class="preprocessor">h</span><span class="preprocessor">&gt;</span></div>
 <div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span> </div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &quot;TinyRobotics/communication/Message.h&quot;</span></div>
-<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &quot;TinyRobotics/communication/MessageSource.h&quot;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#</span><span class="preprocessor">include</span> <span class="preprocessor">&quot;TinyRobotics/communication/Message.h&quot;</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#</span><span class="preprocessor">include</span> <span class="preprocessor">&quot;TinyRobotics/communication/MessageSource.h&quot;</span></div>
 <div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="keyword">namespace </span>tinyrobotics {</div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="keyword">namespace</span> tinyrobotics {</div>
 <div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno"><a class="line" href="classtinyrobotics_1_1CameraEdgeFollower.html">   44</a></span><span class="keyword">class </span><a class="code hl_class" href="classtinyrobotics_1_1CameraEdgeFollower.html">CameraEdgeFollower</a> : <span class="keyword">public</span> <a class="code hl_class" href="classtinyrobotics_1_1MessageSource.html">MessageSource</a> {</div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="comment">/**</span></div>
+<div class="line"><span class="lineno">   12</span><span class="comment"> * @class CameraEdgeFollower</span></div>
+<div class="line"><span class="lineno">   13</span><span class="comment"> * @ingroup sensors</span></div>
+<div class="line"><span class="lineno">   14</span><span class="comment"> * @brief Simple edge-following algorithm for grayscale camera images.</span></div>
+<div class="line"><span class="lineno">   15</span><span class="comment"> *</span></div>
+<div class="line"><span class="lineno">   16</span><span class="comment"> * This class scans a horizontal row of a grayscale image (e.g., from a line or</span></div>
+<div class="line"><span class="lineno">   17</span><span class="comment"> * edge sensor) to detect the strongest edge (sharpest intensity change) using a</span></div>
+<div class="line"><span class="lineno">   18</span><span class="comment"> * threshold. It is useful for basic line-following or edge-detection robots.</span></div>
+<div class="line"><span class="lineno">   19</span><span class="comment"> *</span></div>
+<div class="line"><span class="lineno">   20</span><span class="comment"> * Features:</span></div>
+<div class="line"><span class="lineno">   21</span><span class="comment"> *   - Scans a row near the bottom of the image for the most prominent edge</span></div>
+<div class="line"><span class="lineno">   22</span><span class="comment"> *   - Returns the x position of the detected edge and error from image center</span></div>
+<div class="line"><span class="lineno">   23</span><span class="comment"> *   - Configurable edge threshold for noise rejection</span></div>
+<div class="line"><span class="lineno">   24</span><span class="comment"> *   - Lightweight, suitable for embedded/Arduino use</span></div>
+<div class="line"><span class="lineno">   25</span><span class="comment"> *</span></div>
+<div class="line"><span class="lineno">   26</span><span class="comment"> * @note Expected format:</span></div>
+<div class="line"><span class="lineno">   27</span><span class="comment"> * - The input image should be a grayscale buffer (uint8_t*)</span></div>
+<div class="line"><span class="lineno">   28</span><span class="comment"> * - The pixel intensity is expected to be in the range 0 (black) to 255</span></div>
+<div class="line"><span class="lineno">   29</span><span class="comment"> * (white).</span></div>
+<div class="line"><span class="lineno">   30</span><span class="comment"> * - The layout of the image buffer should be row-major (i.e., pixel at (x,y) is</span></div>
+<div class="line"><span class="lineno">   31</span><span class="comment"> * at index y*width + x).</span></div>
+<div class="line"><span class="lineno">   32</span><span class="comment"> * - on ESP32 e.g. PIXFORMAT_GRAYSCALE, FRAMESIZE_QVGA (320 x 240)</span></div>
+<div class="line"><span class="lineno">   33</span><span class="comment"> *</span></div>
+<div class="line"><span class="lineno">   34</span><span class="comment"> * Usage Example:</span></div>
+<div class="line"><span class="lineno">   35</span><span class="comment"> * @code</span></div>
+<div class="line"><span class="lineno">   36</span><span class="comment"> * CameraEdgeFollower follower(30); // threshold = 30</span></div>
+<div class="line"><span class="lineno">   37</span><span class="comment"> * auto result = follower.process(image, width, height);</span></div>
+<div class="line"><span class="lineno">   38</span><span class="comment"> * if (result.found) {</span></div>
+<div class="line"><span class="lineno">   39</span><span class="comment"> *   // Use result.position or result.error for steering</span></div>
+<div class="line"><span class="lineno">   40</span><span class="comment"> * }</span></div>
+<div class="line"><span class="lineno">   41</span><span class="comment"> * @endcode</span></div>
+<div class="line"><span class="lineno">   42</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span> </div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span><span class="keyword">class</span> <a class="code hl_class" href="classtinyrobotics_1_1CameraEdgeFollower.html">CameraEdgeFollower</a> : <span class="keyword">public</span> <a class="code hl_class" href="classtinyrobotics_1_1MessageSource.html">MessageSource</a> {</div>
 <div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span> <span class="keyword">public</span>:</div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno"><a class="line" href="structtinyrobotics_1_1CameraEdgeFollower_1_1Result.html">   46</a></span>  <span class="keyword">struct </span><a class="code hl_struct" href="structtinyrobotics_1_1CameraEdgeFollower_1_1Result.html">Result</a> {</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>  <span class="keyword">struct</span> <a class="code hl_struct" href="structtinyrobotics_1_1CameraEdgeFollower_1_1Result.html">Result</a> {</div>
 <div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    <span class="keywordtype">bool</span> found;</div>
 <div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    <span class="keywordtype">int</span> position;  <span class="comment">// x position of edge</span></div>
 <div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    <span class="keywordtype">int</span> error;     <span class="comment">// deviation from center</span></div>
 <div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>  };</div>
 <div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span> </div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>  <a class="code hl_class" href="classtinyrobotics_1_1CameraEdgeFollower.html">CameraEdgeFollower</a>(uint8_t threshold = 20) : _threshold(threshold) {}</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>  CameraEdgeFollower(uint8_t threshold = 20) : _threshold(threshold) {}</div>
 <div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span> </div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>  Result process(<span class="keyword">const</span> uint8_t* image, <span class="keywordtype">size_t</span> width, <span class="keywordtype">size_t</span> height) {</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>  <a class="code hl_struct" href="structtinyrobotics_1_1CameraEdgeFollower_1_1Result.html">Result</a> process(<span class="keyword">const</span> uint8_t* image, size_t width, size_t height) {</div>
 <div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    <span class="keywordflow">if</span> (!image || width &lt; 2 || height == 0) {</div>
 <div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>      <span class="keywordflow">return</span> {<span class="keyword">false</span>, 0, 0};</div>
 <div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>    }</div>
 <div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span> </div>
 <div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>    <span class="comment">// Scan one row near bottom (where obstacles are closer)</span></div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    <span class="keywordtype">size_t</span> y = (height * 3) / 4;</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    size_t y = (height * 3) / 4;</div>
 <div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span> </div>
 <div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    <span class="keywordtype">int</span> best_x = -1;</div>
 <div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>    <span class="keywordtype">int</span> max_edge = 0;</div>
 <div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span> </div>
-<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>    <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> x = 0; x &lt; width - 1; x++) {</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>    <span class="keywordflow">for</span> (size_t x = 0; x &lt; width - 1; x++) {</div>
 <div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>      uint8_t p1 = image[y * width + x];</div>
 <div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>      uint8_t p2 = image[y * width + x + 1];</div>
 <div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span> </div>
@@ -127,9 +160,9 @@ $(function() {
 <div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>    <span class="keywordtype">int</span> error = best_x - center;</div>
 <div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span> </div>
 <div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>    <span class="comment">// publish angle to direction of movement</span></div>
-<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>    Message&lt;float&gt; msgError(MessageContent::Error, error, <a class="code hl_enumvalue" href="group__utils.html#ggabceb2331ad056e3c5ad27894199a49eda08822b3ae4e2aede0afe08abe600e9c0">Unit::Pixel</a>);</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>    <a class="code hl_class" href="structtinyrobotics_1_1Message.html">Message</a>&lt;<span class="keywordtype">float</span>&gt; msgError(MessageContent::Error, error, Unit::Pixel);</div>
 <div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>    msgError.source = MessageOrigin::Camera;</div>
-<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>    <a class="code hl_function" href="classtinyrobotics_1_1MessageSource.html#a98c36b84c000f803e27b164c09d96260">sendMessage</a>(msgError);</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>    sendMessage(msgError);</div>
 <div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span> </div>
 <div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>    <span class="keywordflow">return</span> {<span class="keyword">true</span>, best_x, error};</div>
 <div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>  }</div>
@@ -141,9 +174,8 @@ $(function() {
 <div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>}  <span class="comment">// namespace tinyrobotics</span></div>
 <div class="ttc" id="aclasstinyrobotics_1_1CameraEdgeFollower_html"><div class="ttname"><a href="classtinyrobotics_1_1CameraEdgeFollower.html">tinyrobotics::CameraEdgeFollower</a></div><div class="ttdoc">Simple edge-following algorithm for grayscale camera images.</div><div class="ttdef"><b>Definition:</b> CameraEdgeFollower.h:44</div></div>
 <div class="ttc" id="aclasstinyrobotics_1_1MessageSource_html"><div class="ttname"><a href="classtinyrobotics_1_1MessageSource.html">tinyrobotics::MessageSource</a></div><div class="ttdoc">Base class for message sources in the TinyRobotics communication framework.</div><div class="ttdef"><b>Definition:</b> MessageSource.h:34</div></div>
-<div class="ttc" id="aclasstinyrobotics_1_1MessageSource_html_a98c36b84c000f803e27b164c09d96260"><div class="ttname"><a href="classtinyrobotics_1_1MessageSource.html#a98c36b84c000f803e27b164c09d96260">tinyrobotics::MessageSource::sendMessage</a></div><div class="ttdeci">void sendMessage(Message&lt; float &gt; &amp;msg)</div><div class="ttdoc">Publish a message to all registered handlers.</div><div class="ttdef"><b>Definition:</b> MessageSource.h:57</div></div>
-<div class="ttc" id="agroup__utils_html_ggabceb2331ad056e3c5ad27894199a49eda08822b3ae4e2aede0afe08abe600e9c0"><div class="ttname"><a href="group__utils.html#ggabceb2331ad056e3c5ad27894199a49eda08822b3ae4e2aede0afe08abe600e9c0">tinyrobotics::Unit::Pixel</a></div><div class="ttdeci">@ Pixel</div><div class="ttdoc">Pixel units (e.g., for image processing)</div></div>
 <div class="ttc" id="astructtinyrobotics_1_1CameraEdgeFollower_1_1Result_html"><div class="ttname"><a href="structtinyrobotics_1_1CameraEdgeFollower_1_1Result.html">tinyrobotics::CameraEdgeFollower::Result</a></div><div class="ttdef"><b>Definition:</b> CameraEdgeFollower.h:46</div></div>
+<div class="ttc" id="astructtinyrobotics_1_1Message_html"><div class="ttname"><a href="structtinyrobotics_1_1Message.html">tinyrobotics::Message</a></div><div class="ttdoc">Generic message structure for communication, parameterized by value type.</div><div class="ttdef"><b>Definition:</b> Message.h:63</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
