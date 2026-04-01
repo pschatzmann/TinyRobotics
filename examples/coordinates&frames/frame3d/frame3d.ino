@@ -1,36 +1,50 @@
 #/**
 # * @file frame3d.ino
-# * @brief Example: 3D frame management using TinyRobotics.
+# * @brief Example: 3D frame management and GPS conversion using TinyRobotics.
 # *
-# * Demonstrates how to use the TinyRobotics FrameMgr3D class to manage a simple
-# * 3D frame hierarchy (world, base, camera) and compute transforms between frames.
-# *
-# * - Adds frames to a 3D frame manager.
-# * - Finds frame indices and computes transforms between frames.
+# * Demonstrates how to use the TinyRobotics FrameMgr3D and Frame3D classes to:
+# * - Define a hierarchy of 3D frames (world, base, camera)
+# * - Compute transforms between frames
+# * - Convert vehicle position to GPS coordinates
 # *
 # * ## Dependencies
 # * - TinyRobotics: https://github.com/pschatzmann/TinyRobotics
 # *
 # * @author Phil Schatzmann
 # */
+
 #include <TinyRobotics.h>
 
-FrameMgr3D<3> tf;
+// Define a simple frame hierarchy: world -> base -> camera
+Frame3D world(FrameType::WORLD, 0);
+// Vehicle is at (10, 20, 1) facing up (yaw=90 deg, pitch=0, roll=0)
+Transform3D base_tf{10, 20, 1, 0, 0, 0.7071f, 0.7071f}; // 90 deg yaw (z)
+Frame3D base(FrameType::BASE, 0, &world, base_tf);
+// Camera is 20cm forward, 10cm right, 30cm up, facing forward
+Transform3D cam_tf{0.2f, -0.1f, 0.3f, 0, 0, 0, 1};
+Frame3D camera(FrameType::CAMERA, 0, &base, cam_tf);
 
+FrameMgr3D tf;
 
 void setup() {
-  FrameId world{FrameType::WORLD, 0};
-  FrameId base{FrameType::BASE_LINK, 0 };
-  FrameId cam{FrameType::CAMERA, 0};
+  Serial.begin(115200);
+  // Set GPS coordinates for the world frame
+  tf.setGPS(world, GPSCoordinate(46.2097, 7.2572, 503));
 
-  tf.add(world, -1);  // root
-  tf.add(base, 0);    // base -> world
-  tf.add(cam, 1);     // cam -> base
+  // Print transform from camera to world
+  Transform3D tf_cam2world = tf.getTransform(camera, world);
+  Serial.print("Camera->World translation: ");
+  Serial.print(tf_cam2world.tx, 3); Serial.print(", ");
+  Serial.print(tf_cam2world.ty, 3); Serial.print(", ");
+  Serial.println(tf_cam2world.tz, 3);
+
+  // Convert base position to GPS
+  std::array<float, 3> base_local = {0, 0, 0};
+  GPSCoordinate base_gps = tf.toGPS(base, base_local);
+  Serial.print("Base GPS: ");
+  Serial.println(base_gps.toString().c_str());
 }
 
 void loop() {
-  int8_t cam = tf.find({FrameType::CAMERA, 0});
-  int8_t world = tf.find({FrameType::WORLD, 0});
-
-  Transform t = tf.get(cam, world);
+  // Nothing to do in loop for this demo
 }

@@ -36,13 +36,16 @@ void setup() {
 void processLidar() {
   auto tf_lidar2world = tf.getTransform(lidar, world);
   // Set the sensor's transform to world frame
-  sensor.setTransform(tf_cam2world);
+  sensor.setTransform(tf_lidar2world);
   // Simulate a random distance measurement between 10 and 50 cm
-  sensor.setDistance(random(0.1, 0.5));
+  sensor.setObstacleDistance(random(0.1, 0.5));
 
   // Get the obstacle coordinate in world coordinates
-  Serial.print("Obstacle at (world frame): ");
-  Serial.print(sensor.getObstacleCoordinate().toString().c_str());
+  Coordinate<float> obs;
+  if (sensor.getObstacleCoordinate(obs)) {
+    Serial.print("Obstacle at (world frame): ");
+    Serial.print(obs.toString().c_str());
+  }
 }
 
 void processGPS() {
