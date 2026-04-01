@@ -118,6 +118,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a706c9d3ef6f8bb22ef5f54cd97bfdef6"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1Odometry2D.html#a706c9d3ef6f8bb22ef5f54cd97bfdef6">begin</a> (<a class="el" href="classtinyrobotics_1_1Coordinate.html">Coordinate</a>&lt; DistanceM &gt; initialPosition, float initialTheta=0.0f, <a class="el" href="classtinyrobotics_1_1Distance.html">Distance</a> wheelBase=<a class="el" href="classtinyrobotics_1_1Distance.html">Distance</a>())</td></tr>
 <tr class="memdesc:a706c9d3ef6f8bb22ef5f54cd97bfdef6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize the odometry state.  <br /></td></tr>
 <tr class="separator:a706c9d3ef6f8bb22ef5f54cd97bfdef6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaa16fed000a3e3c08909beca00f0c9db"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1Odometry2D.html#aaa16fed000a3e3c08909beca00f0c9db">begin</a> (const <a class="el" href="structtinyrobotics_1_1Frame2D.html">Frame2D</a> &amp;frame, <a class="el" href="classtinyrobotics_1_1Distance.html">Distance</a> wheelBase=<a class="el" href="classtinyrobotics_1_1Distance.html">Distance</a>())</td></tr>
+<tr class="memdesc:aaa16fed000a3e3c08909beca00f0c9db"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize the odometry state from a <a class="el" href="structtinyrobotics_1_1Frame2D.html" title="Represents a 2D coordinate frame in a hierarchical frame tree.">Frame2D</a>.  <br /></td></tr>
+<tr class="separator:aaa16fed000a3e3c08909beca00f0c9db"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aff5ccb8954d32d3e22d57ea0d25db587"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1Odometry2D.html#aff5ccb8954d32d3e22d57ea0d25db587">update</a> (<a class="el" href="classtinyrobotics_1_1Speed.html">Speed</a> speed, <a class="el" href="classtinyrobotics_1_1Angle.html">Angle</a> steeringAngle, float deltaTimeMs)</td></tr>
 <tr class="memdesc:aff5ccb8954d32d3e22d57ea0d25db587"><td class="mdescLeft">&#160;</td><td class="mdescRight">Update the odometry state with new speed and steering angle.  <br /></td></tr>
 <tr class="separator:aff5ccb8954d32d3e22d57ea0d25db587"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -276,14 +279,60 @@ Example Usage</h2>
 <div class="line">Serial.printf(<span class="stringliteral">&quot;x=%.2f, y=%.2f\n&quot;</span>, pos.x, pos.y);</div>
 <div class="ttc" id="aclasstinyrobotics_1_1Coordinate_html"><div class="ttname"><a href="classtinyrobotics_1_1Coordinate.html">tinyrobotics::Coordinate</a></div><div class="ttdoc">A generic 3D coordinate class for robotics, navigation, and spatial calculations.</div><div class="ttdef"><b>Definition:</b> Coordinate.h:57</div></div>
 <div class="ttc" id="aclasstinyrobotics_1_1Odometry2D_html"><div class="ttname"><a href="classtinyrobotics_1_1Odometry2D.html">tinyrobotics::Odometry2D</a></div><div class="ttdoc">Tracks 2D position and orientation of a robot using velocity and steering data.</div><div class="ttdef"><b>Definition:</b> Odometry2D.h:65</div></div>
-<div class="ttc" id="aclasstinyrobotics_1_1Odometry2D_html_a706c9d3ef6f8bb22ef5f54cd97bfdef6"><div class="ttname"><a href="classtinyrobotics_1_1Odometry2D.html#a706c9d3ef6f8bb22ef5f54cd97bfdef6">tinyrobotics::Odometry2D::begin</a></div><div class="ttdeci">bool begin(Coordinate&lt; DistanceM &gt; initialPosition, float initialTheta=0.0f, Distance wheelBase=Distance())</div><div class="ttdoc">Initialize the odometry state.</div><div class="ttdef"><b>Definition:</b> Odometry2D.h:82</div></div>
-<div class="ttc" id="aclasstinyrobotics_1_1Odometry2D_html_aff5ccb8954d32d3e22d57ea0d25db587"><div class="ttname"><a href="classtinyrobotics_1_1Odometry2D.html#aff5ccb8954d32d3e22d57ea0d25db587">tinyrobotics::Odometry2D::update</a></div><div class="ttdeci">void update(Speed speed, Angle steeringAngle, float deltaTimeMs)</div><div class="ttdoc">Update the odometry state with new speed and steering angle.</div><div class="ttdef"><b>Definition:</b> Odometry2D.h:105</div></div>
-<div class="ttc" id="aclasstinyrobotics_1_1Odometry2D_html_affa175ca943afa63df4061bc6c88e9f5"><div class="ttname"><a href="classtinyrobotics_1_1Odometry2D.html#affa175ca943afa63df4061bc6c88e9f5">tinyrobotics::Odometry2D::getPosition</a></div><div class="ttdeci">Coordinate&lt; DistanceM &gt; getPosition() const</div><div class="ttdoc">Get the current 2D position (meters)</div><div class="ttdef"><b>Definition:</b> Odometry2D.h:149</div></div>
+<div class="ttc" id="aclasstinyrobotics_1_1Odometry2D_html_a706c9d3ef6f8bb22ef5f54cd97bfdef6"><div class="ttname"><a href="classtinyrobotics_1_1Odometry2D.html#a706c9d3ef6f8bb22ef5f54cd97bfdef6">tinyrobotics::Odometry2D::begin</a></div><div class="ttdeci">bool begin(Coordinate&lt; DistanceM &gt; initialPosition, float initialTheta=0.0f, Distance wheelBase=Distance())</div><div class="ttdoc">Initialize the odometry state.</div><div class="ttdef"><b>Definition:</b> Odometry2D.h:83</div></div>
+<div class="ttc" id="aclasstinyrobotics_1_1Odometry2D_html_aff5ccb8954d32d3e22d57ea0d25db587"><div class="ttname"><a href="classtinyrobotics_1_1Odometry2D.html#aff5ccb8954d32d3e22d57ea0d25db587">tinyrobotics::Odometry2D::update</a></div><div class="ttdeci">void update(Speed speed, Angle steeringAngle, float deltaTimeMs)</div><div class="ttdoc">Update the odometry state with new speed and steering angle.</div><div class="ttdef"><b>Definition:</b> Odometry2D.h:121</div></div>
+<div class="ttc" id="aclasstinyrobotics_1_1Odometry2D_html_affa175ca943afa63df4061bc6c88e9f5"><div class="ttname"><a href="classtinyrobotics_1_1Odometry2D.html#affa175ca943afa63df4061bc6c88e9f5">tinyrobotics::Odometry2D::getPosition</a></div><div class="ttdeci">Coordinate&lt; DistanceM &gt; getPosition() const</div><div class="ttdoc">Get the current 2D position (meters)</div><div class="ttdef"><b>Definition:</b> Odometry2D.h:165</div></div>
 </div><!-- fragment --><dl class="section author"><dt>Author</dt><dd>TinyRobotics contributors </dd></dl>
 <dl class="section date"><dt>Date</dt><dd>2026-03-30 </dd></dl>
 </div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="aaa16fed000a3e3c08909beca00f0c9db" name="aaa16fed000a3e3c08909beca00f0c9db"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaa16fed000a3e3c08909beca00f0c9db">&#9670;&#160;</a></span>begin() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool begin </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structtinyrobotics_1_1Frame2D.html">Frame2D</a> &amp;&#160;</td>
+          <td class="paramname"><em>frame</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classtinyrobotics_1_1Distance.html">Distance</a>&#160;</td>
+          <td class="paramname"><em>wheelBase</em> = <code><a class="el" href="classtinyrobotics_1_1Distance.html">Distance</a>()</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Initialize the odometry state from a <a class="el" href="structtinyrobotics_1_1Frame2D.html" title="Represents a 2D coordinate frame in a hierarchical frame tree.">Frame2D</a>. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">frame</td><td>The <a class="el" href="structtinyrobotics_1_1Frame2D.html" title="Represents a 2D coordinate frame in a hierarchical frame tree.">Frame2D</a> containing the initial position and orientation. </td></tr>
+    <tr><td class="paramname">wheelBase</td><td>The wheelbase (optional, default 0). </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true on success </dd></dl>
+
+</div>
+</div>
 <a id="a706c9d3ef6f8bb22ef5f54cd97bfdef6" name="a706c9d3ef6f8bb22ef5f54cd97bfdef6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a706c9d3ef6f8bb22ef5f54cd97bfdef6">&#9670;&#160;</a></span>begin()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a706c9d3ef6f8bb22ef5f54cd97bfdef6">&#9670;&#160;</a></span>begin() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">

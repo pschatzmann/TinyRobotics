@@ -91,17 +91,15 @@ Collaboration diagram for MotionController2D&lt; T &gt;:</div>
 <div class="dyncontent">
 <div class="center"><img src="classtinyrobotics_1_1MotionController2D__coll__graph.png" border="0" usemap="#aMotionController2D_3_01T_01_4_coll__map" alt="Collaboration graph"/></div>
 <map name="aMotionController2D_3_01T_01_4_coll__map" id="aMotionController2D_3_01T_01_4_coll__map">
-<area shape="rect" title="2D motion controller for path following and vehicle control." alt="" coords="801,172,988,197"/>
-<area shape="rect" href="classtinyrobotics_1_1IMU2D.html" title=" " alt="" coords="502,109,627,135"/>
-<area shape="rect" href="classtinyrobotics_1_1MessageSource.html" title="Base class for message sources in the TinyRobotics communication framework." alt="" coords="187,165,311,191"/>
-<area shape="rect" href="classtinyrobotics_1_1Vehicle.html" title="Abstract base class for all vehicle types." alt="" coords="530,172,599,197"/>
-<area shape="rect" href="classtinyrobotics_1_1IMotionState2D.html" title="Interface for representing the navigation state of a robot in 2D space." alt="" coords="188,64,311,89"/>
-<area shape="rect" href="classtinyrobotics_1_1Coordinate.html" title=" " alt="" coords="153,5,345,31"/>
-<area shape="rect" href="classtinyrobotics_1_1Serializable.html" title="This class defines an interface for serializable objects that can be converted to and from a string r..." alt="" coords="5,5,104,31"/>
-<area shape="rect" href="structtinyrobotics_1_1Delta2D.html" title="Represents a 2D incremental motion update (dx, dy, dtheta)." alt="" coords="212,113,287,139"/>
-<area shape="rect" href="classtinyrobotics_1_1MessageHandler.html" title="Interface for handling messages in the TinyRobotics framework." alt="" coords="184,220,315,245"/>
-<area shape="rect" href="classtinyrobotics_1_1Path.html" title=" " alt="" coords="457,222,672,262"/>
-<area shape="rect" href="classtinyrobotics_1_1PIDController.html" title=" " alt="" coords="481,288,648,313"/>
+<area shape="rect" title="2D motion controller for path following and vehicle control." alt="" coords="577,111,764,136"/>
+<area shape="rect" href="classtinyrobotics_1_1IMotionState2D.html" title="Interface for representing the navigation state of a robot in 2D space." alt="" coords="231,5,354,31"/>
+<area shape="rect" href="classtinyrobotics_1_1Vehicle.html" title="Abstract base class for all vehicle types." alt="" coords="258,55,327,80"/>
+<area shape="rect" href="classtinyrobotics_1_1MessageHandler.html" title="Interface for handling messages in the TinyRobotics framework." alt="" coords="5,31,136,56"/>
+<area shape="rect" href="classtinyrobotics_1_1MessageSource.html" title="Base class for message sources in the TinyRobotics communication framework." alt="" coords="9,80,133,105"/>
+<area shape="rect" href="classtinyrobotics_1_1Path.html" title=" " alt="" coords="185,105,400,145"/>
+<area shape="rect" href="classtinyrobotics_1_1PIDController.html" title=" " alt="" coords="209,171,376,196"/>
+<area shape="rect" href="classtinyrobotics_1_1Coordinate.html" title=" " alt="" coords="197,220,389,245"/>
+<area shape="rect" href="classtinyrobotics_1_1Serializable.html" title="This class defines an interface for serializable objects that can be converted to and from a string r..." alt="" coords="21,220,120,245"/>
 </map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
@@ -136,15 +134,24 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>end</b> ()</td></tr>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>setOnGoalCallback</b> (bool(*callback)(void *), void *ref=nullptr)</td></tr>
 <tr class="memdesc:ae620eb48b5fcaad75334028e807074e4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set a custom callback to be called when reaching the goal. The callback should return true if it handled the goal action, or false to allow default handling. <br /></td></tr>
 <tr class="separator:ae620eb48b5fcaad75334028e807074e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abf47a4b1ba948aa37e02d95cf8971c25"><td class="memItemLeft" align="right" valign="top"><a id="abf47a4b1ba948aa37e02d95cf8971c25" name="abf47a4b1ba948aa37e02d95cf8971c25"></a>
+float&#160;</td><td class="memItemRight" valign="bottom"><b>getThrottlePercent</b> () const</td></tr>
+<tr class="separator:abf47a4b1ba948aa37e02d95cf8971c25"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2f62201e21f46f747280a46609c7b14c"><td class="memItemLeft" align="right" valign="top"><a id="a2f62201e21f46f747280a46609c7b14c" name="a2f62201e21f46f747280a46609c7b14c"></a>
+float&#160;</td><td class="memItemRight" valign="bottom"><b>getSteeringAngleDeg</b> () const</td></tr>
+<tr class="separator:a2f62201e21f46f747280a46609c7b14c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3ee00f59434f682b87ae5577484a4d2e"><td class="memItemLeft" align="right" valign="top"><a id="a3ee00f59434f682b87ae5577484a4d2e" name="a3ee00f59434f682b87ae5577484a4d2e"></a>
+<a class="el" href="classtinyrobotics_1_1Angle.html">Angle</a>&#160;</td><td class="memItemRight" valign="bottom"><b>getSteeringAngle</b> () const</td></tr>
+<tr class="separator:a3ee00f59434f682b87ae5577484a4d2e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-methods" name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
 <tr class="memitem:a6a8aa05bb9adab1d1cf74d30287278b1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1MotionController2D.html#a6a8aa05bb9adab1d1cf74d30287278b1">updateSpeed</a> (float distanceFromStartM, float distanceToTarget, float currentSpeedKmh)</td></tr>
 <tr class="separator:a6a8aa05bb9adab1d1cf74d30287278b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8e0d6e92b882f49785eb4e7020a37939"><td class="memItemLeft" align="right" valign="top"><a id="a8e0d6e92b882f49785eb4e7020a37939" name="a8e0d6e92b882f49785eb4e7020a37939"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>handleWaypoint</b> (const <a class="el" href="classtinyrobotics_1_1Coordinate.html">Coordinate</a>&lt; DistanceM &gt; &amp;currentPos, <a class="el" href="classtinyrobotics_1_1Coordinate.html">Coordinate</a>&lt; DistanceM &gt; &amp;targetPos, float &amp;distanceToTarget, float &amp;desiredHeading)</td></tr>
-<tr class="memdesc:a8e0d6e92b882f49785eb4e7020a37939"><td class="mdescLeft">&#160;</td><td class="mdescRight">Handle the current waypoint: calculate distance and desired heading. <br /></td></tr>
-<tr class="separator:a8e0d6e92b882f49785eb4e7020a37939"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab41934208e3c81352c4823f770f0f2b9"><td class="memItemLeft" align="right" valign="top"><a id="ab41934208e3c81352c4823f770f0f2b9" name="ab41934208e3c81352c4823f770f0f2b9"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>handleWaypoint</b> (const <a class="el" href="classtinyrobotics_1_1Coordinate.html">Coordinate</a>&lt; DistanceM &gt; &amp;currentPos, <a class="el" href="classtinyrobotics_1_1Coordinate.html">Coordinate</a>&lt; DistanceM &gt; &amp;targetPos, float &amp;distanceToTargetM, float &amp;desiredHeadingDeg)</td></tr>
+<tr class="memdesc:ab41934208e3c81352c4823f770f0f2b9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Handle the current waypoint: calculate distance and desired heading. <br /></td></tr>
+<tr class="separator:ab41934208e3c81352c4823f770f0f2b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad3481ebd8379b81869785d6a47b9e1a0"><td class="memItemLeft" align="right" valign="top"><a id="ad3481ebd8379b81869785d6a47b9e1a0" name="ad3481ebd8379b81869785d6a47b9e1a0"></a>
 float&#160;</td><td class="memItemRight" valign="bottom"><b>computeHeadingError</b> (float desiredHeading, float currentHeading)</td></tr>
 <tr class="separator:ad3481ebd8379b81869785d6a47b9e1a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -154,9 +161,9 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>sendControlMessages</
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
-<tr class="memitem:a0c6b2d3391ff5fdbce6749896448eee0"><td class="memItemLeft" align="right" valign="top"><a id="a0c6b2d3391ff5fdbce6749896448eee0" name="a0c6b2d3391ff5fdbce6749896448eee0"></a>
-<a class="el" href="classtinyrobotics_1_1IMU2D.html">IMU2D</a>&lt; T &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>imu</b></td></tr>
-<tr class="separator:a0c6b2d3391ff5fdbce6749896448eee0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6a656bbe5556d80493fd770e3253ccc7"><td class="memItemLeft" align="right" valign="top"><a id="a6a656bbe5556d80493fd770e3253ccc7" name="a6a656bbe5556d80493fd770e3253ccc7"></a>
+<a class="el" href="classtinyrobotics_1_1IMotionState2D.html">IMotionState2D</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>motionStateSource</b></td></tr>
+<tr class="separator:a6a656bbe5556d80493fd770e3253ccc7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa4d8d8ac3da84ae479cd339e95c3bc86"><td class="memItemLeft" align="right" valign="top"><a id="aa4d8d8ac3da84ae479cd339e95c3bc86" name="aa4d8d8ac3da84ae479cd339e95c3bc86"></a>
 <a class="el" href="classtinyrobotics_1_1Vehicle.html">Vehicle</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>vehicle</b></td></tr>
 <tr class="separator:aa4d8d8ac3da84ae479cd339e95c3bc86"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -199,6 +206,12 @@ bool(*&#160;</td><td class="memItemRight" valign="bottom"><b>onGoalCallback</b> 
 <tr class="memitem:abcdf58f3c622a7f3b90ef011ea96c76b"><td class="memItemLeft" align="right" valign="top"><a id="abcdf58f3c622a7f3b90ef011ea96c76b" name="abcdf58f3c622a7f3b90ef011ea96c76b"></a>
 void *&#160;</td><td class="memItemRight" valign="bottom"><b>onGoaldRef</b> = this</td></tr>
 <tr class="separator:abcdf58f3c622a7f3b90ef011ea96c76b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a61b6a4c3b1f5999a3c7c4060f4e06d64"><td class="memItemLeft" align="right" valign="top"><a id="a61b6a4c3b1f5999a3c7c4060f4e06d64" name="a61b6a4c3b1f5999a3c7c4060f4e06d64"></a>
+float&#160;</td><td class="memItemRight" valign="bottom"><b>resultThrottlePercent</b> = 0.0f</td></tr>
+<tr class="separator:a61b6a4c3b1f5999a3c7c4060f4e06d64"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ace0f314ed82d48becc3e40c5ba81889b"><td class="memItemLeft" align="right" valign="top"><a id="ace0f314ed82d48becc3e40c5ba81889b" name="ace0f314ed82d48becc3e40c5ba81889b"></a>
+float&#160;</td><td class="memItemRight" valign="bottom"><b>resultStreeringAngleDeg</b> = 0.0f</td></tr>
+<tr class="separator:ace0f314ed82d48becc3e40c5ba81889b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><div class="compoundTemplParams">template&lt;typename T = float&gt;<br />
