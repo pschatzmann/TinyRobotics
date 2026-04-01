@@ -116,7 +116,7 @@ $(function() {
 <div class="line"><span class="lineno">   38</span><span class="comment">   */</span></div>
 <div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classtinyrobotics_1_1CarAckerman.html#a679b569ee71fd92173c5bd96e3432355">setPins</a>(<span class="keywordtype">int</span> in1, <span class="keywordtype">int</span> in2, <span class="keywordtype">int</span> pwm, <span class="keywordtype">int</span> steeringPin) {</div>
 <div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    motor_.setPins(in1, in2, pwm);</div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    steering_.attach(steeringPin);</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    steering_.setPin(steeringPin);</div>
 <div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>  }</div>
 <div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span> </div>
 <div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>  <span class="comment">/**</span></div>
