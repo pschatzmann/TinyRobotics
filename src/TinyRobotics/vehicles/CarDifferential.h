@@ -13,7 +13,7 @@ namespace tinyrobotics {
  * motors are on the right side.
  *
  * This class abstracts a simple N-wheel-drive car:
- *  - N motors (e.g. front left, front right, rear left, rear right) via HBridge
+ *  - N motor count (e.g. 4: front left, front right, rear left, rear right) via HBridge
  *  - No steering servo: direction is controlled by varying motor speeds
  *
  * Usage Example:
