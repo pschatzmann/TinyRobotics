@@ -120,8 +120,8 @@ Example Usage</h1>
 <div class="line"><span class="keywordtype">void</span> setup() {</div>
 <div class="line">    servo.attach(9);           <span class="comment">// Attach to pin 9</span></div>
 <div class="line">    servo.<a class="code hl_function" href="classtinyrobotics_1_1ServoMotor.html#a45ae9b8e37c4c25dbacc230772bed168">setConstraints</a>(-45, 45); <span class="comment">// Limit range to -45..45 degrees</span></div>
-<div class="line">    servo.<a class="code hl_function" href="classtinyrobotics_1_1ServoMotor.html#a87f027a00a40a9592a208261f8d3395b">setAngle</a>(45);        <span class="comment">// Set to 45 degrees left</span></div>
-<div class="line">    <span class="keywordtype">int</span> angle = servo.<a class="code hl_function" href="classtinyrobotics_1_1ServoMotor.html#ae71094a2b50726fbec9d9475b2c92e01">getAngle</a>(); <span class="comment">// Read last angle</span></div>
+<div class="line">    servo.<a class="code hl_function" href="classtinyrobotics_1_1ServoMotor.html#a7103642ee5456bfc478e19dd33eaa52e">setAngle</a>(45);        <span class="comment">// Set to 45 degrees left</span></div>
+<div class="line">    <span class="keywordtype">int</span> angle = servo.<a class="code hl_function" href="classtinyrobotics_1_1ServoMotor.html#a36459042a0cf20a8c10c020370e7f4ae">getAngle</a>(); <span class="comment">// Read last angle</span></div>
 <div class="line">    servo.detach();            <span class="comment">// Detach when done</span></div>
 <div class="line">}</div>
 <div class="line"> </div>
@@ -130,9 +130,9 @@ Example Usage</h1>
 <div class="line">}</div>
 <div class="ttc" id="aTinyRobotics_8h_html"><div class="ttname"><a href="TinyRobotics_8h.html">TinyRobotics.h</a></div></div>
 <div class="ttc" id="aclasstinyrobotics_1_1ServoMotor_html"><div class="ttname"><a href="classtinyrobotics_1_1ServoMotor.html">tinyrobotics::ServoMotor</a></div><div class="ttdoc">High-level wrapper for Arduino Servo control (RC servo motors).</div><div class="ttdef"><b>Definition:</b> ServoMotor.h:39</div></div>
+<div class="ttc" id="aclasstinyrobotics_1_1ServoMotor_html_a36459042a0cf20a8c10c020370e7f4ae"><div class="ttname"><a href="classtinyrobotics_1_1ServoMotor.html#a36459042a0cf20a8c10c020370e7f4ae">tinyrobotics::ServoMotor::getAngle</a></div><div class="ttdeci">int8_t getAngle()</div><div class="ttdef"><b>Definition:</b> ServoMotor.h:62</div></div>
 <div class="ttc" id="aclasstinyrobotics_1_1ServoMotor_html_a45ae9b8e37c4c25dbacc230772bed168"><div class="ttname"><a href="classtinyrobotics_1_1ServoMotor.html#a45ae9b8e37c4c25dbacc230772bed168">tinyrobotics::ServoMotor::setConstraints</a></div><div class="ttdeci">void setConstraints(int minAngle, int maxAngle)</div><div class="ttdef"><b>Definition:</b> ServoMotor.h:71</div></div>
-<div class="ttc" id="aclasstinyrobotics_1_1ServoMotor_html_a87f027a00a40a9592a208261f8d3395b"><div class="ttname"><a href="classtinyrobotics_1_1ServoMotor.html#a87f027a00a40a9592a208261f8d3395b">tinyrobotics::ServoMotor::setAngle</a></div><div class="ttdeci">void setAngle(int rosAngleDegrees)</div><div class="ttdef"><b>Definition:</b> ServoMotor.h:53</div></div>
-<div class="ttc" id="aclasstinyrobotics_1_1ServoMotor_html_ae71094a2b50726fbec9d9475b2c92e01"><div class="ttname"><a href="classtinyrobotics_1_1ServoMotor.html#ae71094a2b50726fbec9d9475b2c92e01">tinyrobotics::ServoMotor::getAngle</a></div><div class="ttdeci">int getAngle()</div><div class="ttdef"><b>Definition:</b> ServoMotor.h:62</div></div>
+<div class="ttc" id="aclasstinyrobotics_1_1ServoMotor_html_a7103642ee5456bfc478e19dd33eaa52e"><div class="ttname"><a href="classtinyrobotics_1_1ServoMotor.html#a7103642ee5456bfc478e19dd33eaa52e">tinyrobotics::ServoMotor::setAngle</a></div><div class="ttdeci">void setAngle(int8_t rosAngleDegrees)</div><div class="ttdef"><b>Definition:</b> ServoMotor.h:53</div></div>
 </div><!-- fragment --> <h1><a class="anchor" id="autotoc_md89"></a>
 Dependencies</h1>
 <ul>

@@ -14,8 +14,9 @@ var searchData=
   ['speedfromthrottle_11',['SpeedFromThrottle',['../classtinyrobotics_1_1SpeedFromThrottle.html',1,'tinyrobotics']]],
   ['state2d_12',['State2D',['../structtinyrobotics_1_1Fusion2D_1_1State2D.html',1,'tinyrobotics::Fusion2D']]],
   ['state3d_13',['State3D',['../structtinyrobotics_1_1Fusion3D_1_1State3D.html',1,'tinyrobotics::Fusion3D']]],
-  ['stepper_14',['Stepper',['../classtinyrobotics_1_1Stepper.html',1,'tinyrobotics']]],
-  ['synchronizedbuffer_15',['SynchronizedBuffer',['../classtinyrobotics_1_1SynchronizedBuffer.html',1,'tinyrobotics']]],
-  ['synchronizedqueue_16',['SynchronizedQueue',['../classtinyrobotics_1_1SynchronizedQueue.html',1,'tinyrobotics']]],
-  ['synchronizedstream_17',['SynchronizedStream',['../classtinyrobotics_1_1SynchronizedStream.html',1,'tinyrobotics']]]
+  ['stepper_14',['Stepper',['../classStepper.html',1,'']]],
+  ['steppermotor_15',['StepperMotor',['../classtinyrobotics_1_1StepperMotor.html',1,'tinyrobotics']]],
+  ['synchronizedbuffer_16',['SynchronizedBuffer',['../classtinyrobotics_1_1SynchronizedBuffer.html',1,'tinyrobotics']]],
+  ['synchronizedqueue_17',['SynchronizedQueue',['../classtinyrobotics_1_1SynchronizedQueue.html',1,'tinyrobotics']]],
+  ['synchronizedstream_18',['SynchronizedStream',['../classtinyrobotics_1_1SynchronizedStream.html',1,'tinyrobotics']]]
 ];

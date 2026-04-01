@@ -1,7 +1,8 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$classtinyrobotics_1_1Motor.html" title="Abstract base class for all motor driver types." alt="" coords="5,80,65,105"/>
+<area shape="rect" id="node1" href="$classtinyrobotics_1_1Motor.html" title="Abstract base class for all motor driver types." alt="" coords="5,104,65,129"/>
 <area shape="rect" id="node2" href="$classtinyrobotics_1_1BrushedMotor.html" title="High&#45;level H&#45;Bridge motor driver class for bidirectional DC motor control." alt="" coords="118,5,231,31"/>
 <area shape="rect" id="node3" href="$classtinyrobotics_1_1BrushlessMotor.html" title="Simple brushless DC motor (ESC) driver using Servo library for Arduino/ESP32." alt="" coords="113,55,236,80"/>
-<area shape="rect" id="node4" href="$classtinyrobotics_1_1ServoMotor.html" title="High&#45;level wrapper for Arduino Servo control (RC servo motors)." alt="" coords="126,104,223,129"/>
-<area shape="rect" id="node5" href="$classtinyrobotics_1_1Stepper.html" title="Stepper motor driver using FastAccelStepper for Arduino." alt="" coords="139,153,211,179"/>
+<area shape="rect" id="node4" href="$classtinyrobotics_1_1GenericMotor.html" title="Motor abstraction for integrating external/custom motor drivers using callbacks." alt="" coords="119,104,230,129"/>
+<area shape="rect" id="node5" href="$classtinyrobotics_1_1ServoMotor.html" title="High&#45;level wrapper for Arduino Servo control (RC servo motors)." alt="" coords="126,153,223,179"/>
+<area shape="rect" id="node6" href="$classtinyrobotics_1_1StepperMotor.html" title=" " alt="" coords="119,203,230,228"/>
 </map>
