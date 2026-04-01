@@ -207,7 +207,7 @@ std::vector&lt; <a class="el" href="classtinyrobotics_1_1MessageHandler.html">Me
 <div class="textblock"><div class="compoundTemplParams">template&lt;size_t N = 4, typename BrushedMT = BrushedMotor&gt;<br />
 class tinyrobotics::CarDifferential&lt; N, BrushedMT &gt;</div><p>Car model with differential drive. The direction is controlled by adjusting the speed of the motors. Even motors are on the left side, odd motors are on the right side. </p>
 <p>This class abstracts a simple N-wheel-drive car:</p><ul>
-<li>N motors (e.g. front left, front right, rear left, rear right) via HBridge</li>
+<li>N motor count (e.g. 4: front left, front right, rear left, rear right) via HBridge</li>
 <li>No steering servo: direction is controlled by varying motor speeds</li>
 </ul>
 <p>Usage Example: </p><div class="fragment"><div class="line">CarDifferentialWD&lt;4&gt; car;</div>
