@@ -38,7 +38,7 @@ class CarAckerman : public Vehicle {
    */
   void setPins(int in1, int in2, int pwm, int steeringPin) {
     motor_.setPins(in1, in2, pwm);
-    steering_.attach(steeringPin);
+    steering_.setPin(steeringPin);
   }
 
   /**

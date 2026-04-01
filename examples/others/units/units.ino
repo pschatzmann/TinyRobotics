@@ -31,42 +31,42 @@ void setup() {
   Distance d4(3.28084, DistanceUnit::FEET);  // ~1 meter in feet
 
   Serial.print("d1 in meters: ");
-  Serial.println(d1.getDistance(DistanceUnit::M));
+  Serial.println(d1.getValue(DistanceUnit::M));
   Serial.print("d2 in meters: ");
-  Serial.println(d2.getDistance(DistanceUnit::M));
+  Serial.println(d2.getValue(DistanceUnit::M));
   Serial.print("d3 in meters: ");
-  Serial.println(d3.getDistance(DistanceUnit::M));
+  Serial.println(d3.getValue(DistanceUnit::M));
   Serial.print("d4 in meters: ");
-  Serial.println(d4.getDistance(DistanceUnit::M));
+  Serial.println(d4.getValue(DistanceUnit::M));
 
   // Angle
   Angle a1(90.0, AngleUnit::DEG);
   Angle a2(3.14159f / 2, AngleUnit::RAD);
   Serial.print("a1 in degrees: ");
-  Serial.println(a1.getAngle(AngleUnit::DEG));
+  Serial.println(a1.getValue(AngleUnit::DEG));
   Serial.print("a1 in radians: ");
-  Serial.println(a1.getAngle(AngleUnit::RAD));
+  Serial.println(a1.getValue(AngleUnit::RAD));
   Serial.print("a2 in radians: ");
-  Serial.println(a2.getAngle(AngleUnit::RAD));
+  Serial.println(a2.getValue(AngleUnit::RAD));
   Serial.print("a2 in degrees: ");
-  Serial.println(a2.getAngle(AngleUnit::DEG));
+  Serial.println(a2.getValue(AngleUnit::DEG));
 
   // Speed
   Speed s1(2.5, SpeedUnit::MPS);  // 2.5 meters per second
   Serial.print("Speed: ");
-  Serial.print(s1.getSpeed(SpeedUnit::MPS));
+  Serial.print(s1.getValue(SpeedUnit::MPS));
   Serial.println(" m/s");
   Serial.print("Speed: ");
-  Serial.print(s1.getSpeed(SpeedUnit::KPH));
+  Serial.print(s1.getValue(SpeedUnit::KPH));
   Serial.println(" km/h");
 
   // Time
   Time t1(60.0, TimeUnit::S);
   Time t2(60000.0, TimeUnit::MS);
   Serial.print("t1 in seconds: ");
-  Serial.println(t1.getTime(TimeUnit::S));
+  Serial.println(t1.getValue(TimeUnit::S));
   Serial.print("t2 in seconds: ");
-  Serial.println(t2.getTime(TimeUnit::S));
+  Serial.println(t2.getValue(TimeUnit::S));
 }
 
 void loop() {

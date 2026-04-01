@@ -1,0 +1,10 @@
+Compiling ./others/compile/compile.ino for rp2040:rp2040:rpipico:os=freertos...
+Sketch uses 65848 bytes (3%) of program storage space. Maximum is 2093056 bytes.
+Global variables use 17592 bytes (6%) of dynamic memory, leaving 244552 bytes for local variables. Maximum is 262144 bytes.
+SUCCESS: ./others/compile/compile.ino (rp2040:rp2040:rpipico:os=freertos)
+-----------------------------
+Compiling ./others/compile/compile.ino for esp32:esp32:esp32...
+Sketch uses 266192 bytes (20%) of program storage space. Maximum is 1310720 bytes.
+Global variables use 22060 bytes (6%) of dynamic memory, leaving 305620 bytes for local variables. Maximum is 327680 bytes.
+SUCCESS: ./others/compile/compile.ino (esp32:esp32:esp32)
+-----------------------------

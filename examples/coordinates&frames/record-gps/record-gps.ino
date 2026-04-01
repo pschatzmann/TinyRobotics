@@ -30,15 +30,15 @@ void recordGPS(void*) {
   // Reading GPS data from serial
   auto str = Serial.readStringUntil('\n');
   gpsParser.parse(str, gps);
-  Serial.println(gps.toString());
+  Serial.println(gps.toString().c_str());
 
   // Add to path if different from last waypoint
-  auto last = gpsPath.getLastWaypoint();
+  auto last = gpsTimedPath.getLastWaypoint();
   if (!last) {
-    gpsPath.addWaypoint(gps);
+    gpsTimedPath.addWaypoint(gps);
     Serial.println("- Added first entry to path");
   } else if (!last.value().equals(gps, 0.0001)) {
-    gpsPath.addWaypoint(gps);
+    gpsTimedPath.addWaypoint(gps);
     Serial.println("- Added to path");
   } else {
     Serial.println("- Same as last waypoint");

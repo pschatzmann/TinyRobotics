@@ -17,7 +17,7 @@
 
 WheelEncoder encoder;
 MessageHandlerPrint printer(Serial); // print info on Serial
-const int pin = 4 
+const int pin = 4;
 
 void IRAM_ATTR onEncoderTick() {
   encoder.setTick();

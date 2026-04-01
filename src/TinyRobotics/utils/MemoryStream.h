@@ -23,7 +23,7 @@ class MemoryStream : public Stream {
   int peek() override { return (_pos < _len) ? _data[_pos] : -1; }
   void flush() override {}
   size_t write(uint8_t) override { return 0; } // Read-only
-  size_t readBytes(char* buf, size_t n) override {
+  size_t readBytes(char* buf, size_t n)  {
     size_t toRead = (_pos + n > _len) ? (_len - _pos) : n;
     memcpy(buf, _data + _pos, toRead);
     _pos += toRead;

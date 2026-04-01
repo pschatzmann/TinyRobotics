@@ -1,4 +1,5 @@
 #pragma once
+#include "TinyRobotics/utils/Config.h"
 #include "FastAccelStepper.h"
 #ifdef AVR
 #include "AVRStepperPins.h"  // Only required for AVR controllers
