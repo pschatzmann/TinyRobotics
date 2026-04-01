@@ -51,8 +51,7 @@ SpeedFromThrottle speedEstimator(2.0f);  // max speed 2 m/s (adjust as needed)
 int maxSpeedKmh = 5;
 float accelDistanceM = 0.5;
 float wheelBase = 0.3f;  // distance between front and rear axles in meters
-MotionController2D<float> controller(odometry, car, maxSpeedKmh,
-                                     accelDistanceM);
+MotionController2D<float> controller(odometry, maxSpeedKmh, accelDistanceM);
 
 Scheduler controllerScheduler;
 
@@ -67,6 +66,7 @@ void buildMap() {
 }
 
 void updateController(void*) {
+  // Move to next waypoint
   controller.update();
   // estimate speed from throttle
   float speed = speedEstimator.getSpeedMPS(controller.getThrottlePercent());
@@ -82,6 +82,7 @@ void setup() {
   // find path using A*
   auto path = astar.findPath(pathMap, start, goal);
   if (path.size() > 1) {
+    controller.subscribe(car);  // subscribe to control messages from the controller
     controller.setPath(path);
     controller.begin();
     odometry.begin(base, Distance(wheelBase, DistanceUnit::M));

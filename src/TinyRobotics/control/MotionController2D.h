@@ -4,7 +4,6 @@
 #include "TinyRobotics/coordinates/Coordinate.h"
 #include "TinyRobotics/imu/IMU2D.h"
 #include "TinyRobotics/planning/Path.h"
-#include "TinyRobotics/vehicles/Vehicle.h"
 
 namespace tinyrobotics {
 
@@ -22,18 +21,18 @@ namespace tinyrobotics {
  * - Accepts a path (sequence of waypoints) and drives the vehicle to follow it.
  * - Automatically slows down as the vehicle approaches the goal.
  * - Designed for modular use with different vehicle types and IMU sensors.
+ * - Vehicle needs to suscribe to receive control messages (throttle and steering angle).
  *
  * @tparam T Numeric type for calculations (default: float)
  *
  * @author Phil Schatzmann
  */
 template <typename T = float>
-class MotionController2D {
+class MotionController2D : public MessageSource {
  public:
-  MotionController2D(IMotionState2D& motionState, Vehicle& vehicle,
-                     float maxSpeedKmh = 10, float accelDistanceM = 2.0f)
+  MotionController2D(IMotionState2D& motionState, float maxSpeedKmh = 10,
+                     float accelDistanceM = 2.0f)
       : motionStateSource(motionState),
-        vehicle(vehicle),
         accelDistanceM(accelDistanceM),
         maxSpeedKmh(maxSpeedKmh) {
     configureSteeringPID(0.1f, 30.0f, -30.0f, 1.0f, 0.0f,
@@ -81,7 +80,6 @@ class MotionController2D {
   /// Start the controller and initialize state
   bool begin() {
     is_active = true;
-    controls = vehicle.getControls();
     if (!hasStartCoordinate) {
       startCoordinate = motionStateSource.getPosition();
       hasStartCoordinate = true;
@@ -96,19 +94,18 @@ class MotionController2D {
   /// loop)
   void update() {
     if (!is_active) return;
-    if (path.isEmpty()) {
-      vehicle.end();
-      return;
-    }
     Coordinate<DistanceM> currentPos = motionStateSource.getPosition();
     Coordinate<DistanceM> targetPos = path[0];
-    float currentHeading = motionStateSource.getHeading().getValue(AngleUnit::DEG);
+    float currentHeading =
+        motionStateSource.getHeading().getValue(AngleUnit::DEG);
     float distanceToTarget = 0;
     float desiredHeading = 0;
     handleWaypoint(currentPos, targetPos, distanceToTarget, desiredHeading);
     float headingError = computeHeadingError(desiredHeading, currentHeading);
-    float currentSpeedKmh = motionStateSource.getSpeed().getValue(SpeedUnit::KPH);
-    float distanceFromStartM = startCoordinate.distance(currentPos, DistanceUnit::M);
+    float currentSpeedKmh =
+        motionStateSource.getSpeed().getValue(SpeedUnit::KPH);
+    float distanceFromStartM =
+        startCoordinate.distance(currentPos, DistanceUnit::M);
     updateSpeed(distanceFromStartM, distanceToTarget, currentSpeedKmh);
 
     sendControlMessages(distanceToTarget, headingError, currentSpeedKmh);
@@ -126,13 +123,13 @@ class MotionController2D {
 
   float getThrottlePercent() const { return resultThrottlePercent; }
   float getSteeringAngleDeg() const { return resultStreeringAngleDeg; }
-  Angle getSteeringAngle() const { return Angle(resultStreeringAngleDeg, AngleUnit::DEG); }
+  Angle getSteeringAngle() const {
+    return Angle(resultStreeringAngleDeg, AngleUnit::DEG);
+  }
 
-  protected:
+ protected:
   IMotionState2D& motionStateSource;
-  Vehicle& vehicle;
   Path<Coordinate<DistanceM>> path;
-  std::vector<MessageContent> controls;
   bool is_active = false;
   float accelDistanceM = 2.0f;
   float maxSpeedKmh = 10.0f;
@@ -156,7 +153,11 @@ class MotionController2D {
     float maxSpeedKmh = maxSpeedKmh;
     desiredSpeedKmh = maxSpeedKmh;  // * (distanceToTarget / accelDistanceM);
     if (distanceToTarget < accelDistanceM) {
-      desiredSpeedKmh = maxSpeedKmh * (distanceToTarget / accelDistanceM);
+      if (distanceToTarget < targetAccuracyM) {
+        desiredSpeedKmh = 0.0f;  // Stop at the target
+      } else {  
+        desiredSpeedKmh = maxSpeedKmh * (distanceToTarget / accelDistanceM);
+      }
     }
     if (distanceFromStartM < accelDistanceM) {
       desiredSpeedKmh = maxSpeedKmh * (distanceFromStartM / accelDistanceM);
@@ -167,8 +168,8 @@ class MotionController2D {
 
   /// Handle the current waypoint: calculate distance and desired heading
   void handleWaypoint(const Coordinate<DistanceM>& currentPos,
-                      Coordinate<DistanceM>& targetPos, float& distanceToTargetM,
-                      float& desiredHeadingDeg) {
+                      Coordinate<DistanceM>& targetPos,
+                      float& distanceToTargetM, float& desiredHeadingDeg) {
     // Use class variable targetAccuracyM
     distanceToTargetM = 0;
     while (distanceToTargetM < targetAccuracyM) {
@@ -180,7 +181,6 @@ class MotionController2D {
           if (onGoalCallback) {
             onGoalCallback(onGoaldRef);
           }
-          vehicle.end();
           return;
         }
         targetPos = path[0];
@@ -197,24 +197,17 @@ class MotionController2D {
 
   void sendControlMessages(float distanceToTarget, float headingError,
                            float currentSpeedKmh) {
-    for (auto control : controls) {
-      Message<float> msg;
-      msg.source = MessageOrigin::Autonomy;
-      switch (control) {
-        case MessageContent::Throttle:
-          msg.content = MessageContent::Throttle;
-          // Use PID to map speed to throttle
-          msg.value = resultThrottlePercent = pidSpeed_.calculate(desiredSpeedKmh, currentSpeedKmh);
-          break;
-        case MessageContent::SteeringAngle:
-          msg.content = MessageContent::SteeringAngle;
-          msg.value = resultStreeringAngleDeg = pidSteering_.calculate(0.0f, headingError);
-          break;
-        default:
-          continue;
-      }
-      vehicle.sendMessage(msg);
-    }
+    Message<float> msg;
+    msg.source = MessageOrigin::Autonomy;
+    msg.content = MessageContent::Throttle;
+    // Use PID to map speed to throttle
+    msg.value = resultThrottlePercent =
+        pidSpeed_.calculate(desiredSpeedKmh, currentSpeedKmh);
+    sendMessage(msg);
+    msg.content = MessageContent::SteeringAngle;
+    msg.value = resultStreeringAngleDeg =
+        pidSteering_.calculate(0.0f, headingError);
+    sendMessage(msg);
   }
 };
 
