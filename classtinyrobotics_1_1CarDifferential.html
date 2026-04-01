@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.6"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>TinyRobotics: CarDifferential&lt; N, BrushedMT &gt; Class Template Reference</title>
+<title>TinyRobotics: CarDifferential&lt; N, MotorMT &gt; Class Template Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -78,7 +78,7 @@ $(function() {
 <a href="#pro-methods">Protected Member Functions</a> &#124;
 <a href="#pro-attribs">Protected Attributes</a> &#124;
 <a href="classtinyrobotics_1_1CarDifferential-members.html">List of all members</a>  </div>
-  <div class="headertitle"><div class="title">CarDifferential&lt; N, BrushedMT &gt; Class Template Reference<div class="ingroups"><a class="el" href="group__main.html">TinyRobotics</a> &raquo; <a class="el" href="group__vehicles.html">Vehicles</a></div></div></div>
+  <div class="headertitle"><div class="title">CarDifferential&lt; N, MotorMT &gt; Class Template Reference<div class="ingroups"><a class="el" href="group__main.html">TinyRobotics</a> &raquo; <a class="el" href="group__vehicles.html">Vehicles</a></div></div></div>
 </div><!--header-->
 <div class="contents">
 
@@ -87,10 +87,10 @@ $(function() {
 
 <p><code>#include &lt;<a class="el" href="CarDifferential_8h_source.html">CarDifferential.h</a>&gt;</code></p>
 <div class="dynheader">
-Inheritance diagram for CarDifferential&lt; N, BrushedMT &gt;:</div>
+Inheritance diagram for CarDifferential&lt; N, MotorMT &gt;:</div>
 <div class="dyncontent">
-<div class="center"><img src="classtinyrobotics_1_1CarDifferential__inherit__graph.png" border="0" usemap="#aCarDifferential_3_01N_00_01BrushedMT_01_4_inherit__map" alt="Inheritance graph"/></div>
-<map name="aCarDifferential_3_01N_00_01BrushedMT_01_4_inherit__map" id="aCarDifferential_3_01N_00_01BrushedMT_01_4_inherit__map">
+<div class="center"><img src="classtinyrobotics_1_1CarDifferential__inherit__graph.png" border="0" usemap="#aCarDifferential_3_01N_00_01MotorMT_01_4_inherit__map" alt="Inheritance graph"/></div>
+<map name="aCarDifferential_3_01N_00_01MotorMT_01_4_inherit__map" id="aCarDifferential_3_01N_00_01MotorMT_01_4_inherit__map">
 <area shape="rect" title="Car model with differential drive. The direction is controlled by adjusting the speed of the motors...." alt="" coords="73,152,220,192"/>
 <area shape="rect" href="classtinyrobotics_1_1Vehicle.html" title="Abstract base class for all vehicle types." alt="" coords="112,79,181,104"/>
 <area shape="rect" href="classtinyrobotics_1_1MessageHandler.html" title="Interface for handling messages in the TinyRobotics framework." alt="" coords="5,5,136,31"/>
@@ -98,10 +98,10 @@ Inheritance diagram for CarDifferential&lt; N, BrushedMT &gt;:</div>
 </map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <div class="dynheader">
-Collaboration diagram for CarDifferential&lt; N, BrushedMT &gt;:</div>
+Collaboration diagram for CarDifferential&lt; N, MotorMT &gt;:</div>
 <div class="dyncontent">
-<div class="center"><img src="classtinyrobotics_1_1CarDifferential__coll__graph.png" border="0" usemap="#aCarDifferential_3_01N_00_01BrushedMT_01_4_coll__map" alt="Collaboration graph"/></div>
-<map name="aCarDifferential_3_01N_00_01BrushedMT_01_4_coll__map" id="aCarDifferential_3_01N_00_01BrushedMT_01_4_coll__map">
+<div class="center"><img src="classtinyrobotics_1_1CarDifferential__coll__graph.png" border="0" usemap="#aCarDifferential_3_01N_00_01MotorMT_01_4_coll__map" alt="Collaboration graph"/></div>
+<map name="aCarDifferential_3_01N_00_01MotorMT_01_4_coll__map" id="aCarDifferential_3_01N_00_01MotorMT_01_4_coll__map">
 <area shape="rect" title="Car model with differential drive. The direction is controlled by adjusting the speed of the motors...." alt="" coords="207,168,353,208"/>
 <area shape="rect" href="classtinyrobotics_1_1Vehicle.html" title="Abstract base class for all vehicle types." alt="" coords="188,80,257,105"/>
 <area shape="rect" href="classtinyrobotics_1_1MessageHandler.html" title="Interface for handling messages in the TinyRobotics framework." alt="" coords="5,5,136,31"/>
@@ -142,6 +142,9 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>setSteeringAngle</b> 
 <tr class="separator:ab78c06b51db5e63c8f7a84c54baf3842"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aac4a1a9f00fc95194bb922b6158de52d"><td class="memItemLeft" align="right" valign="top">std::vector&lt; MessageContent &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1CarDifferential.html#aac4a1a9f00fc95194bb922b6158de52d">getControls</a> () const override</td></tr>
 <tr class="separator:aac4a1a9f00fc95194bb922b6158de52d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8e0c07fe2f1b2cfe0a6dbdbea2a0c7d3"><td class="memItemLeft" align="right" valign="top"><a id="a8e0c07fe2f1b2cfe0a6dbdbea2a0c7d3" name="a8e0c07fe2f1b2cfe0a6dbdbea2a0c7d3"></a>
+MotorMT &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getMotor</b> (size_t index)</td></tr>
+<tr class="separator:a8e0c07fe2f1b2cfe0a6dbdbea2a0c7d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classtinyrobotics_1_1Vehicle"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classtinyrobotics_1_1Vehicle')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classtinyrobotics_1_1Vehicle.html">Vehicle</a></td></tr>
 <tr class="memitem:aa540e86022c1f72380d1014d98f38f43 inherit pub_methods_classtinyrobotics_1_1Vehicle"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1Vehicle.html#aa540e86022c1f72380d1014d98f38f43">end</a> ()=0</td></tr>
 <tr class="memdesc:aa540e86022c1f72380d1014d98f38f43 inherit pub_methods_classtinyrobotics_1_1Vehicle"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reset the vehicle to a safe or neutral state (pure virtual).  <br /></td></tr>
@@ -189,9 +192,9 @@ Protected Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
-<tr class="memitem:a59ea97fa509152a3e426f6b5224bfcac"><td class="memItemLeft" align="right" valign="top"><a id="a59ea97fa509152a3e426f6b5224bfcac" name="a59ea97fa509152a3e426f6b5224bfcac"></a>
-BrushedMT&#160;</td><td class="memItemRight" valign="bottom"><b>motors_</b> [N]</td></tr>
-<tr class="separator:a59ea97fa509152a3e426f6b5224bfcac"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a921cce5162897ffac45f3af0eefffb3b"><td class="memItemLeft" align="right" valign="top"><a id="a921cce5162897ffac45f3af0eefffb3b" name="a921cce5162897ffac45f3af0eefffb3b"></a>
+MotorMT&#160;</td><td class="memItemRight" valign="bottom"><b>motors_</b> [N]</td></tr>
+<tr class="separator:a921cce5162897ffac45f3af0eefffb3b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af1c84c3368d7407ba184b034eb59c56e"><td class="memItemLeft" align="right" valign="top"><a id="af1c84c3368d7407ba184b034eb59c56e" name="af1c84c3368d7407ba184b034eb59c56e"></a>
 float&#160;</td><td class="memItemRight" valign="bottom"><b>motorGain_</b> [N] = {1.0f, 1.0f, 1.0f, 1.0f}</td></tr>
 <tr class="separator:af1c84c3368d7407ba184b034eb59c56e"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -207,8 +210,8 @@ std::vector&lt; <a class="el" href="classtinyrobotics_1_1MessageHandler.html">Me
 <tr class="separator:ae8917ae7a3eb87d29c94c514e1d5c981 inherit pro_attribs_classtinyrobotics_1_1MessageSource"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><div class="compoundTemplParams">template&lt;size_t N = 4, typename BrushedMT = BrushedMotor&gt;<br />
-class tinyrobotics::CarDifferential&lt; N, BrushedMT &gt;</div><p>Car model with differential drive. The direction is controlled by adjusting the speed of the motors. Even motors are on the left side, odd motors are on the right side. </p>
+<div class="textblock"><div class="compoundTemplParams">template&lt;size_t N = 4, typename MotorMT = BrushedMotor&gt;<br />
+class tinyrobotics::CarDifferential&lt; N, MotorMT &gt;</div><p>Car model with differential drive. The direction is controlled by adjusting the speed of the motors. Even motors are on the left side, odd motors are on the right side. </p>
 <p>This class abstracts a simple N-wheel-drive car:</p><ul>
 <li>N motor count (e.g. 4: front left, front right, rear left, rear right) via HBridge</li>
 <li>No steering servo: direction is controlled by varying motor speeds</li>

@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.6"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>TinyRobotics: AirPlane&lt; BrushedMT, ServoMT &gt; Class Template Reference</title>
+<title>TinyRobotics: AirPlane&lt; MotorMT, ServoMT &gt; Class Template Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -74,10 +74,11 @@ $(function() {
 </div><!-- top -->
 <div class="header">
   <div class="summary">
+<a href="#pub-types">Public Types</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pro-attribs">Protected Attributes</a> &#124;
 <a href="classtinyrobotics_1_1AirPlane-members.html">List of all members</a>  </div>
-  <div class="headertitle"><div class="title">AirPlane&lt; BrushedMT, ServoMT &gt; Class Template Reference<div class="ingroups"><a class="el" href="group__main.html">TinyRobotics</a> &raquo; <a class="el" href="group__vehicles.html">Vehicles</a></div></div></div>
+  <div class="headertitle"><div class="title">AirPlane&lt; MotorMT, ServoMT &gt; Class Template Reference<div class="ingroups"><a class="el" href="group__main.html">TinyRobotics</a> &raquo; <a class="el" href="group__vehicles.html">Vehicles</a></div></div></div>
 </div><!--header-->
 <div class="contents">
 
@@ -86,31 +87,43 @@ $(function() {
 
 <p><code>#include &lt;<a class="el" href="AirPlane_8h_source.html">AirPlane.h</a>&gt;</code></p>
 <div class="dynheader">
-Inheritance diagram for AirPlane&lt; BrushedMT, ServoMT &gt;:</div>
+Inheritance diagram for AirPlane&lt; MotorMT, ServoMT &gt;:</div>
 <div class="dyncontent">
-<div class="center"><img src="classtinyrobotics_1_1AirPlane__inherit__graph.png" border="0" usemap="#aAirPlane_3_01BrushedMT_00_01ServoMT_01_4_inherit__map" alt="Inheritance graph"/></div>
-<map name="aAirPlane_3_01BrushedMT_00_01ServoMT_01_4_inherit__map" id="aAirPlane_3_01BrushedMT_00_01ServoMT_01_4_inherit__map">
-<area shape="rect" title="Simple fixed&#45;wing airplane model with motor, rudder, elevator, and aileron control." alt="" coords="63,152,231,192"/>
+<div class="center"><img src="classtinyrobotics_1_1AirPlane__inherit__graph.png" border="0" usemap="#aAirPlane_3_01MotorMT_00_01ServoMT_01_4_inherit__map" alt="Inheritance graph"/></div>
+<map name="aAirPlane_3_01MotorMT_00_01ServoMT_01_4_inherit__map" id="aAirPlane_3_01MotorMT_00_01ServoMT_01_4_inherit__map">
+<area shape="rect" title="Simple fixed&#45;wing airplane model with motor, rudder, elevator, and aileron control." alt="" coords="70,152,223,192"/>
 <area shape="rect" href="classtinyrobotics_1_1Vehicle.html" title="Abstract base class for all vehicle types." alt="" coords="112,79,181,104"/>
 <area shape="rect" href="classtinyrobotics_1_1MessageHandler.html" title="Interface for handling messages in the TinyRobotics framework." alt="" coords="5,5,136,31"/>
 <area shape="rect" href="classtinyrobotics_1_1MessageSource.html" title="Base class for message sources in the TinyRobotics communication framework." alt="" coords="161,5,285,31"/>
 </map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <div class="dynheader">
-Collaboration diagram for AirPlane&lt; BrushedMT, ServoMT &gt;:</div>
+Collaboration diagram for AirPlane&lt; MotorMT, ServoMT &gt;:</div>
 <div class="dyncontent">
-<div class="center"><img src="classtinyrobotics_1_1AirPlane__coll__graph.png" border="0" usemap="#aAirPlane_3_01BrushedMT_00_01ServoMT_01_4_coll__map" alt="Collaboration graph"/></div>
-<map name="aAirPlane_3_01BrushedMT_00_01ServoMT_01_4_coll__map" id="aAirPlane_3_01BrushedMT_00_01ServoMT_01_4_coll__map">
-<area shape="rect" title="Simple fixed&#45;wing airplane model with motor, rudder, elevator, and aileron control." alt="" coords="205,212,373,252"/>
-<area shape="rect" href="classtinyrobotics_1_1Vehicle.html" title="Abstract base class for all vehicle types." alt="" coords="139,80,208,105"/>
+<div class="center"><img src="classtinyrobotics_1_1AirPlane__coll__graph.png" border="0" usemap="#aAirPlane_3_01MotorMT_00_01ServoMT_01_4_coll__map" alt="Collaboration graph"/></div>
+<map name="aAirPlane_3_01MotorMT_00_01ServoMT_01_4_coll__map" id="aAirPlane_3_01MotorMT_00_01ServoMT_01_4_coll__map">
+<area shape="rect" title="Simple fixed&#45;wing airplane model with motor, rudder, elevator, and aileron control." alt="" coords="203,168,357,208"/>
+<area shape="rect" href="classtinyrobotics_1_1Vehicle.html" title="Abstract base class for all vehicle types." alt="" coords="188,80,257,105"/>
 <area shape="rect" href="classtinyrobotics_1_1MessageHandler.html" title="Interface for handling messages in the TinyRobotics framework." alt="" coords="5,5,136,31"/>
 <area shape="rect" href="classtinyrobotics_1_1MessageSource.html" title="Base class for message sources in the TinyRobotics communication framework." alt="" coords="161,5,285,31"/>
-<area shape="rect" href="classtinyrobotics_1_1BrushedMotor.html" title="High&#45;level H&#45;Bridge motor driver class for bidirectional DC motor control." alt="" coords="233,80,346,105"/>
-<area shape="rect" href="classtinyrobotics_1_1Motor.html" title="Abstract base class for all motor driver types." alt="" coords="325,5,385,31"/>
-<area shape="rect" href="classtinyrobotics_1_1ServoMotor.html" title="High&#45;level wrapper for Arduino Servo control (RC servo motors)." alt="" coords="370,80,467,105"/>
+<area shape="rect" href="classtinyrobotics_1_1BrushedMotor.html" title="High&#45;level H&#45;Bridge motor driver class for bidirectional DC motor control." alt="" coords="282,80,395,105"/>
+<area shape="rect" href="classtinyrobotics_1_1Motor.html" title="Abstract base class for all motor driver types." alt="" coords="309,5,369,31"/>
 </map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-types" name="pub-types"></a>
+Public Types</h2></td></tr>
+<tr class="memitem:a93682de148ddfc92f9abbd761d8e4f34"><td class="memItemLeft" align="right" valign="top"><a id="a93682de148ddfc92f9abbd761d8e4f34" name="a93682de148ddfc92f9abbd761d8e4f34"></a>enum &#160;</td><td class="memItemRight" valign="bottom"><b>ControlSurface</b> { <br />
+&#160;&#160;<b>Rudder</b> = 0
+, <b>Elevator</b> = 1
+, <b>AileronLeft</b> = 2
+, <b>AileronRight</b> = 3
+, <br />
+&#160;&#160;<b>NumSurfaces</b> = 4
+<br />
+ }</td></tr>
+<tr class="separator:a93682de148ddfc92f9abbd761d8e4f34"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:aa8b9c2911b7371e664f3f8dad6900017"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1AirPlane.html#aa8b9c2911b7371e664f3f8dad6900017">setPinsMotor</a> (int in1, int in2, int pwm)</td></tr>
@@ -145,6 +158,12 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:ab78c06b51db5e63c8f7a84c54baf3842"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aac4a1a9f00fc95194bb922b6158de52d"><td class="memItemLeft" align="right" valign="top">std::vector&lt; MessageContent &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1AirPlane.html#aac4a1a9f00fc95194bb922b6158de52d">getControls</a> () const override</td></tr>
 <tr class="separator:aac4a1a9f00fc95194bb922b6158de52d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a448d28e52dbd3e305edc6dabdc5116c8"><td class="memItemLeft" align="right" valign="top"><a id="a448d28e52dbd3e305edc6dabdc5116c8" name="a448d28e52dbd3e305edc6dabdc5116c8"></a>
+MotorMT &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getMotor</b> ()</td></tr>
+<tr class="separator:a448d28e52dbd3e305edc6dabdc5116c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a744ddcadf2c836bffbbfb116719a125f"><td class="memItemLeft" align="right" valign="top"><a id="a744ddcadf2c836bffbbfb116719a125f" name="a744ddcadf2c836bffbbfb116719a125f"></a>
+ServoMT &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getServo</b> (ControlSurface surface)</td></tr>
+<tr class="separator:a744ddcadf2c836bffbbfb116719a125f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classtinyrobotics_1_1Vehicle"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classtinyrobotics_1_1Vehicle')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classtinyrobotics_1_1Vehicle.html">Vehicle</a></td></tr>
 <tr class="memitem:aa540e86022c1f72380d1014d98f38f43 inherit pub_methods_classtinyrobotics_1_1Vehicle"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1Vehicle.html#aa540e86022c1f72380d1014d98f38f43">end</a> ()=0</td></tr>
 <tr class="memdesc:aa540e86022c1f72380d1014d98f38f43 inherit pub_methods_classtinyrobotics_1_1Vehicle"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reset the vehicle to a safe or neutral state (pure virtual).  <br /></td></tr>
@@ -186,41 +205,23 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>sendMessage</b> (cons
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
-<tr class="memitem:a08b64e1a03bc5552d4b6071e06dd32f5"><td class="memItemLeft" align="right" valign="top"><a id="a08b64e1a03bc5552d4b6071e06dd32f5" name="a08b64e1a03bc5552d4b6071e06dd32f5"></a>
-BrushedMT&#160;</td><td class="memItemRight" valign="bottom"><b>motor_</b></td></tr>
-<tr class="separator:a08b64e1a03bc5552d4b6071e06dd32f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2733f495f492a16243fe7b56753a7f41"><td class="memItemLeft" align="right" valign="top"><a id="a2733f495f492a16243fe7b56753a7f41" name="a2733f495f492a16243fe7b56753a7f41"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>rudderPin_</b></td></tr>
-<tr class="separator:a2733f495f492a16243fe7b56753a7f41"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab11fd177de96e701a85727a8b85e15fb"><td class="memItemLeft" align="right" valign="top"><a id="ab11fd177de96e701a85727a8b85e15fb" name="ab11fd177de96e701a85727a8b85e15fb"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>elevatorPin_</b></td></tr>
-<tr class="separator:ab11fd177de96e701a85727a8b85e15fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0f67fb330e7d5362c6cdbdeb9a23bdc8"><td class="memItemLeft" align="right" valign="top"><a id="a0f67fb330e7d5362c6cdbdeb9a23bdc8" name="a0f67fb330e7d5362c6cdbdeb9a23bdc8"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>aileronLeftPin_</b></td></tr>
-<tr class="separator:a0f67fb330e7d5362c6cdbdeb9a23bdc8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a821a475254a566d47b390c55d21ca185"><td class="memItemLeft" align="right" valign="top"><a id="a821a475254a566d47b390c55d21ca185" name="a821a475254a566d47b390c55d21ca185"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>aileronRightPin_</b></td></tr>
-<tr class="separator:a821a475254a566d47b390c55d21ca185"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8f4b75a3e09212703b518fed474485c3"><td class="memItemLeft" align="right" valign="top"><a id="a8f4b75a3e09212703b518fed474485c3" name="a8f4b75a3e09212703b518fed474485c3"></a>
-ServoMT&#160;</td><td class="memItemRight" valign="bottom"><b>rudder_</b></td></tr>
-<tr class="separator:a8f4b75a3e09212703b518fed474485c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7fbb540d130af31a7598978c778b823c"><td class="memItemLeft" align="right" valign="top"><a id="a7fbb540d130af31a7598978c778b823c" name="a7fbb540d130af31a7598978c778b823c"></a>
-ServoMT&#160;</td><td class="memItemRight" valign="bottom"><b>elevator_</b></td></tr>
-<tr class="separator:a7fbb540d130af31a7598978c778b823c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a05624a069f2d5418de04d1f717d8cebf"><td class="memItemLeft" align="right" valign="top"><a id="a05624a069f2d5418de04d1f717d8cebf" name="a05624a069f2d5418de04d1f717d8cebf"></a>
-ServoMT&#160;</td><td class="memItemRight" valign="bottom"><b>aileronLeft_</b></td></tr>
-<tr class="separator:a05624a069f2d5418de04d1f717d8cebf"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0428664a1d0177e08562d3de794449e9"><td class="memItemLeft" align="right" valign="top"><a id="a0428664a1d0177e08562d3de794449e9" name="a0428664a1d0177e08562d3de794449e9"></a>
-ServoMT&#160;</td><td class="memItemRight" valign="bottom"><b>aileronRight_</b></td></tr>
-<tr class="separator:a0428664a1d0177e08562d3de794449e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a64a7f8341883b0bffbac7bf3297bb3fc"><td class="memItemLeft" align="right" valign="top"><a id="a64a7f8341883b0bffbac7bf3297bb3fc" name="a64a7f8341883b0bffbac7bf3297bb3fc"></a>
+MotorMT&#160;</td><td class="memItemRight" valign="bottom"><b>motor_</b></td></tr>
+<tr class="separator:a64a7f8341883b0bffbac7bf3297bb3fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6cef85d124d39b206473fd2df0a1aab0"><td class="memItemLeft" align="right" valign="top"><a id="a6cef85d124d39b206473fd2df0a1aab0" name="a6cef85d124d39b206473fd2df0a1aab0"></a>
+std::vector&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>pins_</b> = std::vector&lt;int&gt;(NumSurfaces, -1)</td></tr>
+<tr class="separator:a6cef85d124d39b206473fd2df0a1aab0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aff17b454855c048db4d624e1ab7758a1"><td class="memItemLeft" align="right" valign="top"><a id="aff17b454855c048db4d624e1ab7758a1" name="aff17b454855c048db4d624e1ab7758a1"></a>
+std::vector&lt; ServoMT &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>servos_</b> = std::vector&lt;ServoMT&gt;(NumSurfaces, ServoMT())</td></tr>
+<tr class="separator:aff17b454855c048db4d624e1ab7758a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_attribs_classtinyrobotics_1_1MessageSource"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_classtinyrobotics_1_1MessageSource')"><img src="closed.png" alt="-"/>&#160;Protected Attributes inherited from <a class="el" href="classtinyrobotics_1_1MessageSource.html">MessageSource</a></td></tr>
 <tr class="memitem:ae8917ae7a3eb87d29c94c514e1d5c981 inherit pro_attribs_classtinyrobotics_1_1MessageSource"><td class="memItemLeft" align="right" valign="top"><a id="ae8917ae7a3eb87d29c94c514e1d5c981" name="ae8917ae7a3eb87d29c94c514e1d5c981"></a>
 std::vector&lt; <a class="el" href="classtinyrobotics_1_1MessageHandler.html">MessageHandler</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>messageHandlers_</b></td></tr>
 <tr class="separator:ae8917ae7a3eb87d29c94c514e1d5c981 inherit pro_attribs_classtinyrobotics_1_1MessageSource"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><div class="compoundTemplParams">template&lt;typename BrushedMT = BrushedMotor, typename ServoMT = ServoMotor&gt;<br />
-class tinyrobotics::AirPlane&lt; BrushedMT, ServoMT &gt;</div><p>Simple fixed-wing airplane model with motor, rudder, elevator, and aileron control. </p>
+<div class="textblock"><div class="compoundTemplParams">template&lt;typename MotorMT = BrushedMotor, typename ServoMT = ServoMotor&gt;<br />
+class tinyrobotics::AirPlane&lt; MotorMT, ServoMT &gt;</div><p>Simple fixed-wing airplane model with motor, rudder, elevator, and aileron control. </p>
 <p>This class abstracts the control of a basic RC airplane:</p><ul>
 <li><a class="el" href="classtinyrobotics_1_1Motor.html" title="Abstract base class for all motor driver types.">Motor</a> (throttle) via <a class="el" href="classtinyrobotics_1_1ServoMotor.html" title="High-level wrapper for Arduino Servo control (RC servo motors).">ServoMotor</a> (ESC)</li>
 <li>Rudder (yaw), Elevator (pitch), and Ailerons (roll) via <a class="el" href="classtinyrobotics_1_1ServoMotor.html" title="High-level wrapper for Arduino Servo control (RC servo motors).">ServoMotor</a></li>
@@ -237,14 +238,14 @@ class tinyrobotics::AirPlane&lt; BrushedMT, ServoMT &gt;</div><p>Simple fixed-wi
 <div class="line">plane.<a class="code hl_function" href="classtinyrobotics_1_1AirPlane.html#aa9f6fd69525e11e130b03df992adebd3">setElevator</a>(-10);              <span class="comment">// 10 degrees down</span></div>
 <div class="line">plane.<a class="code hl_function" href="classtinyrobotics_1_1AirPlane.html#a7a7a65afeb939777ea6002032999ea4f">setAilerons</a>(15, -15);          <span class="comment">// left up, right down</span></div>
 <div class="ttc" id="aclasstinyrobotics_1_1AirPlane_html"><div class="ttname"><a href="classtinyrobotics_1_1AirPlane.html">tinyrobotics::AirPlane</a></div><div class="ttdoc">Simple fixed-wing airplane model with motor, rudder, elevator, and aileron control.</div><div class="ttdef"><b>Definition:</b> AirPlane.h:35</div></div>
-<div class="ttc" id="aclasstinyrobotics_1_1AirPlane_html_a02a21c0ff333022756296b191d8f2134"><div class="ttname"><a href="classtinyrobotics_1_1AirPlane.html#a02a21c0ff333022756296b191d8f2134">tinyrobotics::AirPlane::setPinsAilerons</a></div><div class="ttdeci">void setPinsAilerons(int leftPin, int rightPin)</div><div class="ttdef"><b>Definition:</b> AirPlane.h:51</div></div>
-<div class="ttc" id="aclasstinyrobotics_1_1AirPlane_html_a0b0d2782b9f2d7877151c28f2f0a54a2"><div class="ttname"><a href="classtinyrobotics_1_1AirPlane.html#a0b0d2782b9f2d7877151c28f2f0a54a2">tinyrobotics::AirPlane::setPinElevator</a></div><div class="ttdeci">void setPinElevator(int pin)</div><div class="ttdef"><b>Definition:</b> AirPlane.h:48</div></div>
-<div class="ttc" id="aclasstinyrobotics_1_1AirPlane_html_a7a7a65afeb939777ea6002032999ea4f"><div class="ttname"><a href="classtinyrobotics_1_1AirPlane.html#a7a7a65afeb939777ea6002032999ea4f">tinyrobotics::AirPlane::setAilerons</a></div><div class="ttdeci">void setAilerons(int leftAngle, int rightAngle)</div><div class="ttdef"><b>Definition:</b> AirPlane.h:87</div></div>
-<div class="ttc" id="aclasstinyrobotics_1_1AirPlane_html_aa8b9c2911b7371e664f3f8dad6900017"><div class="ttname"><a href="classtinyrobotics_1_1AirPlane.html#aa8b9c2911b7371e664f3f8dad6900017">tinyrobotics::AirPlane::setPinsMotor</a></div><div class="ttdeci">void setPinsMotor(int in1, int in2, int pwm)</div><div class="ttdef"><b>Definition:</b> AirPlane.h:40</div></div>
-<div class="ttc" id="aclasstinyrobotics_1_1AirPlane_html_aa9f6fd69525e11e130b03df992adebd3"><div class="ttname"><a href="classtinyrobotics_1_1AirPlane.html#aa9f6fd69525e11e130b03df992adebd3">tinyrobotics::AirPlane::setElevator</a></div><div class="ttdeci">void setElevator(int angle)</div><div class="ttdef"><b>Definition:</b> AirPlane.h:78</div></div>
-<div class="ttc" id="aclasstinyrobotics_1_1AirPlane_html_ad1dc0b12cdbceec298589410750d2672"><div class="ttname"><a href="classtinyrobotics_1_1AirPlane.html#ad1dc0b12cdbceec298589410750d2672">tinyrobotics::AirPlane::setRudder</a></div><div class="ttdeci">void setRudder(int angle)</div><div class="ttdef"><b>Definition:</b> AirPlane.h:68</div></div>
-<div class="ttc" id="aclasstinyrobotics_1_1AirPlane_html_ae3b70a0bf18812be704fdb26e1d21475"><div class="ttname"><a href="classtinyrobotics_1_1AirPlane.html#ae3b70a0bf18812be704fdb26e1d21475">tinyrobotics::AirPlane::setPinRudder</a></div><div class="ttdeci">void setPinRudder(int pin)</div><div class="ttdef"><b>Definition:</b> AirPlane.h:45</div></div>
-<div class="ttc" id="aclasstinyrobotics_1_1AirPlane_html_ae5796296479805da98518762c69427d0"><div class="ttname"><a href="classtinyrobotics_1_1AirPlane.html#ae5796296479805da98518762c69427d0">tinyrobotics::AirPlane::setThrottle</a></div><div class="ttdeci">void setThrottle(int percent)</div><div class="ttdef"><b>Definition:</b> AirPlane.h:57</div></div>
+<div class="ttc" id="aclasstinyrobotics_1_1AirPlane_html_a02a21c0ff333022756296b191d8f2134"><div class="ttname"><a href="classtinyrobotics_1_1AirPlane.html#a02a21c0ff333022756296b191d8f2134">tinyrobotics::AirPlane::setPinsAilerons</a></div><div class="ttdeci">void setPinsAilerons(int leftPin, int rightPin)</div><div class="ttdef"><b>Definition:</b> AirPlane.h:66</div></div>
+<div class="ttc" id="aclasstinyrobotics_1_1AirPlane_html_a0b0d2782b9f2d7877151c28f2f0a54a2"><div class="ttname"><a href="classtinyrobotics_1_1AirPlane.html#a0b0d2782b9f2d7877151c28f2f0a54a2">tinyrobotics::AirPlane::setPinElevator</a></div><div class="ttdeci">void setPinElevator(int pin)</div><div class="ttdef"><b>Definition:</b> AirPlane.h:60</div></div>
+<div class="ttc" id="aclasstinyrobotics_1_1AirPlane_html_a7a7a65afeb939777ea6002032999ea4f"><div class="ttname"><a href="classtinyrobotics_1_1AirPlane.html#a7a7a65afeb939777ea6002032999ea4f">tinyrobotics::AirPlane::setAilerons</a></div><div class="ttdeci">void setAilerons(int leftAngle, int rightAngle)</div><div class="ttdef"><b>Definition:</b> AirPlane.h:103</div></div>
+<div class="ttc" id="aclasstinyrobotics_1_1AirPlane_html_aa8b9c2911b7371e664f3f8dad6900017"><div class="ttname"><a href="classtinyrobotics_1_1AirPlane.html#aa8b9c2911b7371e664f3f8dad6900017">tinyrobotics::AirPlane::setPinsMotor</a></div><div class="ttdeci">void setPinsMotor(int in1, int in2, int pwm)</div><div class="ttdef"><b>Definition:</b> AirPlane.h:49</div></div>
+<div class="ttc" id="aclasstinyrobotics_1_1AirPlane_html_aa9f6fd69525e11e130b03df992adebd3"><div class="ttname"><a href="classtinyrobotics_1_1AirPlane.html#aa9f6fd69525e11e130b03df992adebd3">tinyrobotics::AirPlane::setElevator</a></div><div class="ttdeci">void setElevator(int angle)</div><div class="ttdef"><b>Definition:</b> AirPlane.h:94</div></div>
+<div class="ttc" id="aclasstinyrobotics_1_1AirPlane_html_ad1dc0b12cdbceec298589410750d2672"><div class="ttname"><a href="classtinyrobotics_1_1AirPlane.html#ad1dc0b12cdbceec298589410750d2672">tinyrobotics::AirPlane::setRudder</a></div><div class="ttdeci">void setRudder(int angle)</div><div class="ttdef"><b>Definition:</b> AirPlane.h:85</div></div>
+<div class="ttc" id="aclasstinyrobotics_1_1AirPlane_html_ae3b70a0bf18812be704fdb26e1d21475"><div class="ttname"><a href="classtinyrobotics_1_1AirPlane.html#ae3b70a0bf18812be704fdb26e1d21475">tinyrobotics::AirPlane::setPinRudder</a></div><div class="ttdeci">void setPinRudder(int pin)</div><div class="ttdef"><b>Definition:</b> AirPlane.h:54</div></div>
+<div class="ttc" id="aclasstinyrobotics_1_1AirPlane_html_ae5796296479805da98518762c69427d0"><div class="ttname"><a href="classtinyrobotics_1_1AirPlane.html#ae5796296479805da98518762c69427d0">tinyrobotics::AirPlane::setThrottle</a></div><div class="ttdeci">void setThrottle(int percent)</div><div class="ttdef"><b>Definition:</b> AirPlane.h:74</div></div>
 </div><!-- fragment --> </div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="aaf81d3fdaf258088d7692fa70cece087" name="aaf81d3fdaf258088d7692fa70cece087"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aaf81d3fdaf258088d7692fa70cece087">&#9670;&#160;</a></span>end()</h2>
@@ -518,7 +519,7 @@ class tinyrobotics::AirPlane&lt; BrushedMT, ServoMT &gt;</div><p>Simple fixed-wi
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Attach the left aileron servo. </p>
+<p>Attach the aileron servos. </p>
 
 </div>
 </div>

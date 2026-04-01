@@ -1,4 +1,4 @@
-<map id="CarDifferential&lt; N, BrushedMT &gt;" name="CarDifferential&lt; N, BrushedMT &gt;">
+<map id="CarDifferential&lt; N, MotorMT &gt;" name="CarDifferential&lt; N, MotorMT &gt;">
 <area shape="rect" id="node1" title="Car model with differential drive. The direction is controlled by adjusting the speed of the motors...." alt="" coords="207,168,353,208"/>
 <area shape="rect" id="node2" href="$classtinyrobotics_1_1Vehicle.html" title="Abstract base class for all vehicle types." alt="" coords="188,80,257,105"/>
 <area shape="rect" id="node3" href="$classtinyrobotics_1_1MessageHandler.html" title="Interface for handling messages in the TinyRobotics framework." alt="" coords="5,5,136,31"/>

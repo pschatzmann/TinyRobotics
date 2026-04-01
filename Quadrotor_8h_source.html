@@ -217,53 +217,55 @@ $(function() {
 <div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>            MessageContent::Yaw};</div>
 <div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span>  }</div>
 <div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span> </div>
-<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span> <span class="keyword">protected</span>:</div>
-<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span>  MotorT motors_[4];</div>
-<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span>  <span class="keywordtype">float</span> motorGain_[4] = {1.0f, 1.0f, 1.0f, 1.0f};</div>
-<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span>  <span class="keywordtype">int</span> throttle_ = 0;</div>
-<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>  <span class="keywordtype">int</span> roll_ = 0;</div>
-<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>  <span class="keywordtype">int</span> pitch_ = 0;</div>
-<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>  <span class="keywordtype">int</span> yaw_ = 0;</div>
-<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span> </div>
-<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>  <span class="comment">/**</span></div>
-<div class="line"><span class="lineno">  151</span><span class="comment">   * @brief Update all motors based on throttle, roll, pitch, and yaw.</span></div>
-<div class="line"><span class="lineno">  152</span><span class="comment">   *</span></div>
-<div class="line"><span class="lineno">  153</span><span class="comment">   * This is a simple mixer for an X-configuration quadrotor:</span></div>
-<div class="line"><span class="lineno">  154</span><span class="comment">   *  - m1: front left</span></div>
-<div class="line"><span class="lineno">  155</span><span class="comment">   *  - m2: front right</span></div>
-<div class="line"><span class="lineno">  156</span><span class="comment">   *  - m3: rear left</span></div>
-<div class="line"><span class="lineno">  157</span><span class="comment">   *  - m4: rear right</span></div>
-<div class="line"><span class="lineno">  158</span><span class="comment">   *</span></div>
-<div class="line"><span class="lineno">  159</span><span class="comment">   * Each control input is in percent (-100 to 100).</span></div>
-<div class="line"><span class="lineno">  160</span><span class="comment">   */</span></div>
-<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classtinyrobotics_1_1Quadrotor.html#a807a87c5df438fde21c1e8213906695b">updateMotors</a>() {</div>
-<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>    <span class="comment">// Basic mixing: throttle + pitch/roll/yaw</span></div>
-<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span>    <span class="keywordtype">int</span> m[4];</div>
-<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span>    m[0] = throttle_ + pitch_ + roll_ - yaw_;</div>
-<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span>    m[1] = throttle_ + pitch_ - roll_ + yaw_;</div>
-<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span>    m[2] = throttle_ - pitch_ + roll_ + yaw_;</div>
-<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span>    m[3] = throttle_ - pitch_ - roll_ - yaw_;</div>
-<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; 4; ++i) {</div>
-<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span>      <span class="keywordtype">int</span> calibrated = <span class="keyword">static_cast</span>&lt;<span class="keywordtype">int</span>&gt;(m[i] * motorGain_[i]);</div>
-<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span>      motors_[i].setSpeed(constrain(calibrated, 0, 100));</div>
-<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span>    }</div>
-<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span>    <span class="comment">// publish motor speeds as messages for telemetry</span></div>
-<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; 4; ++i) {</div>
-<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span>      <a class="code hl_class" href="structtinyrobotics_1_1Message.html">Message</a>&lt;<span class="keywordtype">float</span>&gt; msg(MessageContent::MotorSpeed, m[i], Unit::Percent);</div>
-<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span>      msg.source = MessageOrigin::Motor;</div>
-<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span>      msg.source_id = i;  <span class="comment">// Motor index</span></div>
-<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span>      sendMessage(msg);</div>
-<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span>    }</div>
-<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span>  }</div>
-<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span>};</div>
-<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span> </div>
-<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span>}  <span class="comment">// namespace tinyrobotics</span></div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span>  MotorT&amp; getMotor(QuadrotorMotorNo motor) { <span class="keywordflow">return</span> motors_[motor]; }</div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span> </div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span> <span class="keyword">protected</span>:</div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span>  MotorT motors_[4];</div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>  <span class="keywordtype">float</span> motorGain_[4] = {1.0f, 1.0f, 1.0f, 1.0f};</div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>  <span class="keywordtype">int</span> throttle_ = 0;</div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>  <span class="keywordtype">int</span> roll_ = 0;</div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>  <span class="keywordtype">int</span> pitch_ = 0;</div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>  <span class="keywordtype">int</span> yaw_ = 0;</div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span> </div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>  <span class="comment">/**</span></div>
+<div class="line"><span class="lineno">  153</span><span class="comment">   * @brief Update all motors based on throttle, roll, pitch, and yaw.</span></div>
+<div class="line"><span class="lineno">  154</span><span class="comment">   *</span></div>
+<div class="line"><span class="lineno">  155</span><span class="comment">   * This is a simple mixer for an X-configuration quadrotor:</span></div>
+<div class="line"><span class="lineno">  156</span><span class="comment">   *  - m1: front left</span></div>
+<div class="line"><span class="lineno">  157</span><span class="comment">   *  - m2: front right</span></div>
+<div class="line"><span class="lineno">  158</span><span class="comment">   *  - m3: rear left</span></div>
+<div class="line"><span class="lineno">  159</span><span class="comment">   *  - m4: rear right</span></div>
+<div class="line"><span class="lineno">  160</span><span class="comment">   *</span></div>
+<div class="line"><span class="lineno">  161</span><span class="comment">   * Each control input is in percent (-100 to 100).</span></div>
+<div class="line"><span class="lineno">  162</span><span class="comment">   */</span></div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classtinyrobotics_1_1Quadrotor.html#a807a87c5df438fde21c1e8213906695b">updateMotors</a>() {</div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span>    <span class="comment">// Basic mixing: throttle + pitch/roll/yaw</span></div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span>    <span class="keywordtype">int</span> m[4];</div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span>    m[0] = throttle_ + pitch_ + roll_ - yaw_;</div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span>    m[1] = throttle_ + pitch_ - roll_ + yaw_;</div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span>    m[2] = throttle_ - pitch_ + roll_ + yaw_;</div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span>    m[3] = throttle_ - pitch_ - roll_ - yaw_;</div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; 4; ++i) {</div>
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span>      <span class="keywordtype">int</span> calibrated = <span class="keyword">static_cast</span>&lt;<span class="keywordtype">int</span>&gt;(m[i] * motorGain_[i]);</div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span>      motors_[i].setSpeed(constrain(calibrated, 0, 100));</div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span>    }</div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span>    <span class="comment">// publish motor speeds as messages for telemetry</span></div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; 4; ++i) {</div>
+<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span>      <a class="code hl_class" href="structtinyrobotics_1_1Message.html">Message</a>&lt;<span class="keywordtype">float</span>&gt; msg(MessageContent::MotorSpeed, m[i], Unit::Percent);</div>
+<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span>      msg.source = MessageOrigin::Motor;</div>
+<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span>      msg.source_id = i;  <span class="comment">// Motor index</span></div>
+<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span>      sendMessage(msg);</div>
+<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span>    }</div>
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span>  }</div>
+<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span>};</div>
+<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span> </div>
+<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span>}  <span class="comment">// namespace tinyrobotics</span></div>
 <div class="ttc" id="aclasstinyrobotics_1_1BrushedMotor_html"><div class="ttname"><a href="classtinyrobotics_1_1BrushedMotor.html">tinyrobotics::BrushedMotor</a></div><div class="ttdoc">High-level H-Bridge motor driver class for bidirectional DC motor control.</div><div class="ttdef"><b>Definition:</b> BrushedMotor.h:34</div></div>
 <div class="ttc" id="aclasstinyrobotics_1_1Quadrotor_html"><div class="ttname"><a href="classtinyrobotics_1_1Quadrotor.html">tinyrobotics::Quadrotor</a></div><div class="ttdoc">Simple quadrotor (quadcopter) model with 4-motor control.</div><div class="ttdef"><b>Definition:</b> Quadrotor.h:41</div></div>
 <div class="ttc" id="aclasstinyrobotics_1_1Quadrotor_html_a125c12f0c08f0128268587dc8f83274e"><div class="ttname"><a href="classtinyrobotics_1_1Quadrotor.html#a125c12f0c08f0128268587dc8f83274e">tinyrobotics::Quadrotor::setMotorGain</a></div><div class="ttdeci">void setMotorGain(QuadrotorMotorNo motor, float gain)</div><div class="ttdoc">Set a calibration gain for a specific motor (default 1.0).</div><div class="ttdef"><b>Definition:</b> Quadrotor.h:94</div></div>
 <div class="ttc" id="aclasstinyrobotics_1_1Quadrotor_html_a38c3d3a99c3067d1b4943f35cedd26db"><div class="ttname"><a href="classtinyrobotics_1_1Quadrotor.html#a38c3d3a99c3067d1b4943f35cedd26db">tinyrobotics::Quadrotor::setPins</a></div><div class="ttdeci">void setPins(QuadrotorMotorNo motor, int in1, int in2, int pwm)</div><div class="ttdoc">Set the pins for a specific motor (0=front left, 1=front right, 2=rear left, 3=rear right)</div><div class="ttdef"><b>Definition:</b> Quadrotor.h:49</div></div>
 <div class="ttc" id="aclasstinyrobotics_1_1Quadrotor_html_a6bd9a070d33f958397b768119fe09ae4"><div class="ttname"><a href="classtinyrobotics_1_1Quadrotor.html#a6bd9a070d33f958397b768119fe09ae4">tinyrobotics::Quadrotor::setYaw</a></div><div class="ttdeci">void setYaw(int percent)</div><div class="ttdef"><b>Definition:</b> Quadrotor.h:73</div></div>
-<div class="ttc" id="aclasstinyrobotics_1_1Quadrotor_html_a807a87c5df438fde21c1e8213906695b"><div class="ttname"><a href="classtinyrobotics_1_1Quadrotor.html#a807a87c5df438fde21c1e8213906695b">tinyrobotics::Quadrotor::updateMotors</a></div><div class="ttdeci">void updateMotors()</div><div class="ttdoc">Update all motors based on throttle, roll, pitch, and yaw.</div><div class="ttdef"><b>Definition:</b> Quadrotor.h:161</div></div>
+<div class="ttc" id="aclasstinyrobotics_1_1Quadrotor_html_a807a87c5df438fde21c1e8213906695b"><div class="ttname"><a href="classtinyrobotics_1_1Quadrotor.html#a807a87c5df438fde21c1e8213906695b">tinyrobotics::Quadrotor::updateMotors</a></div><div class="ttdeci">void updateMotors()</div><div class="ttdoc">Update all motors based on throttle, roll, pitch, and yaw.</div><div class="ttdef"><b>Definition:</b> Quadrotor.h:163</div></div>
 <div class="ttc" id="aclasstinyrobotics_1_1Quadrotor_html_a820f2c4cf50e2584941f7080369bb487"><div class="ttname"><a href="classtinyrobotics_1_1Quadrotor.html#a820f2c4cf50e2584941f7080369bb487">tinyrobotics::Quadrotor::setPitch</a></div><div class="ttdeci">void setPitch(int percent)</div><div class="ttdef"><b>Definition:</b> Quadrotor.h:67</div></div>
 <div class="ttc" id="aclasstinyrobotics_1_1Quadrotor_html_aab121fc05ce8562504b0970668fe3f3f"><div class="ttname"><a href="classtinyrobotics_1_1Quadrotor.html#aab121fc05ce8562504b0970668fe3f3f">tinyrobotics::Quadrotor::isPinsSet</a></div><div class="ttdeci">bool isPinsSet() const</div><div class="ttdoc">Check if the necessary pins for the vehicle's actuators have been set (pure virtual).</div><div class="ttdef"><b>Definition:</b> Quadrotor.h:98</div></div>
 <div class="ttc" id="aclasstinyrobotics_1_1Quadrotor_html_aaf81d3fdaf258088d7692fa70cece087"><div class="ttname"><a href="classtinyrobotics_1_1Quadrotor.html#aaf81d3fdaf258088d7692fa70cece087">tinyrobotics::Quadrotor::end</a></div><div class="ttdeci">void end()</div><div class="ttdef"><b>Definition:</b> Quadrotor.h:79</div></div>

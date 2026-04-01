@@ -1,5 +1,5 @@
-<map id="CarAckerman&lt; BrushedMT, ServoMT &gt;" name="CarAckerman&lt; BrushedMT, ServoMT &gt;">
-<area shape="rect" id="node1" title="Car with Ackerman steering and single drive motor." alt="" coords="189,168,390,208"/>
+<map id="CarAckerman&lt; MotorMT, ServoMT &gt;" name="CarAckerman&lt; MotorMT, ServoMT &gt;">
+<area shape="rect" id="node1" title="Car with Ackerman steering and single drive motor." alt="" coords="196,168,383,208"/>
 <area shape="rect" id="node2" href="$classtinyrobotics_1_1Vehicle.html" title="Abstract base class for all vehicle types." alt="" coords="139,80,208,105"/>
 <area shape="rect" id="node3" href="$classtinyrobotics_1_1MessageHandler.html" title="Interface for handling messages in the TinyRobotics framework." alt="" coords="5,5,136,31"/>
 <area shape="rect" id="node4" href="$classtinyrobotics_1_1MessageSource.html" title="Base class for message sources in the TinyRobotics communication framework." alt="" coords="161,5,285,31"/>

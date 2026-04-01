@@ -17,9 +17,9 @@
 <area shape="rect" id="node16" href="$classtinyrobotics_1_1SpeedFromThrottle.html" title="Estimates vehicle speed from throttle percentage using calibration data." alt="" coords="207,696,353,721"/>
 <area shape="rect" id="node17" href="$classtinyrobotics_1_1Vehicle.html" title="Abstract base class for all vehicle types." alt="" coords="245,745,315,771"/>
 <area shape="rect" id="node23" href="$classtinyrobotics_1_1WheelEncoder.html" title="Measures wheel rotation and computes distance and speed using encoder ticks for mobile robots." alt="" coords="223,795,337,820"/>
-<area shape="rect" id="node18" href="$classtinyrobotics_1_1AirPlane.html" title="Simple fixed&#45;wing airplane model with motor, rudder, elevator, and aileron control." alt="" coords="447,610,615,650"/>
-<area shape="rect" id="node19" href="$classtinyrobotics_1_1CarAckerman.html" title="Car with Ackerman steering and single drive motor." alt="" coords="431,674,632,714"/>
-<area shape="rect" id="node20" href="$classtinyrobotics_1_1CarDifferential.html" title="Car model with differential drive. The direction is controlled by adjusting the speed of the motors...." alt="" coords="458,738,605,778"/>
-<area shape="rect" id="node21" href="$classtinyrobotics_1_1MotorBoat.html" title="Motor boat with 1 drive motor and 1 rudder servo." alt="" coords="440,802,623,842"/>
-<area shape="rect" id="node22" href="$classtinyrobotics_1_1Quadrotor.html" title="Simple quadrotor (quadcopter) model with 4&#45;motor control." alt="" coords="450,867,613,892"/>
+<area shape="rect" id="node18" href="$classtinyrobotics_1_1AirPlane.html" title="Simple fixed&#45;wing airplane model with motor, rudder, elevator, and aileron control." alt="" coords="447,610,601,650"/>
+<area shape="rect" id="node19" href="$classtinyrobotics_1_1CarAckerman.html" title="Car with Ackerman steering and single drive motor." alt="" coords="431,674,617,714"/>
+<area shape="rect" id="node20" href="$classtinyrobotics_1_1CarDifferential.html" title="Car model with differential drive. The direction is controlled by adjusting the speed of the motors...." alt="" coords="451,738,597,778"/>
+<area shape="rect" id="node21" href="$classtinyrobotics_1_1MotorBoat.html" title="Motor boat with 1 drive motor and 1 rudder servo." alt="" coords="441,802,607,842"/>
+<area shape="rect" id="node22" href="$classtinyrobotics_1_1Quadrotor.html" title="Simple quadrotor (quadcopter) model with 4&#45;motor control." alt="" coords="443,867,605,892"/>
 </map>
