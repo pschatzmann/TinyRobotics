@@ -1,6 +1,6 @@
 #pragma once
-#include "TinyRobotics/utils/Config.h"
 #include "FastAccelStepper.h"
+#include "TinyRobotics/utils/Config.h"
 #ifdef AVR
 #include "AVRStepperPins.h"  // Only required for AVR controllers
 #endif
@@ -74,17 +74,17 @@ namespace tinyrobotics {
  * stepper.end();        // Ensure motor is stopped
  * @endcode
  */
-class Stepper : public Motor {
-  Stepper(uint8_t id = 0) { setID(id); }
-  Stepper(uint8_t id, uint16_t stepsPerRevolution, uint16_t maxSpeedStepsPerSec,
-          uint16_t accelerationMs) {
+class StepperMotor : public Motor {
+ public:
+  StepperMotor(uint8_t id = 0) { setID(id); }
+  StepperMotor(uint8_t id, uint16_t stepsPerRevolution,
+               uint16_t maxSpeedStepsPerSec, uint16_t accelerationMs) {
     setID(id);
     setMaxSpeed(maxSpeedStepsPerSec);
     setAccelerationMs(accelerationMs);
     setStepsPerRevolution(stepsPerRevolution);
   }
 
- public:
   void setPins(int stepPin, int dirPin, int enablePin = -1) {
     pinStep = stepPin;
     pinDir = dirPin;
@@ -94,9 +94,7 @@ class Stepper : public Motor {
 
   /// Set maximum speed in steps per second (e.g., 500 for 1.8 degree stepper,
   /// 1000
-  void setMaxSpeed(uint16_t stepsPerSec) {
-    maxSpeedHz = stepsPerSec;
-  }
+  void setMaxSpeed(uint16_t stepsPerSec) { maxSpeedHz = stepsPerSec; }
 
   /// Set acceleration time in milliseconds to reach max speed (e.g., 2000 ms)
   void setAccelerationMs(uint16_t ms) { accelerationMs = ms; }
@@ -132,28 +130,30 @@ class Stepper : public Motor {
     return true;
   }
 
-//   /// Move the stepper by n revolutions (positive or negative) and optionally
-//   /// call a callback when done.
-//   bool moveRevolutions(float revolutions, int8_t speedPercent,
-//                        void* ref = nullptr) {
-//     if (!stepper) return false;
-//     setSpeedPercent(speedPercent);
-//     int steps = revolutions * stepsPerRevolution;
-//     this->callback = callback;
-//     this->ref = ref;
-//     stepper->setNotifyCallback(callbackFastAccel);
-//     stepper->move(steps);
-//   }
+  //   /// Move the stepper by n revolutions (positive or negative) and
+  //   optionally
+  //   /// call a callback when done.
+  //   bool moveRevolutions(float revolutions, int8_t speedPercent,
+  //                        void* ref = nullptr) {
+  //     if (!stepper) return false;
+  //     setSpeedPercent(speedPercent);
+  //     int steps = revolutions * stepsPerRevolution;
+  //     this->callback = callback;
+  //     this->ref = ref;
+  //     stepper->setNotifyCallback(callbackFastAccel);
+  //     stepper->move(steps);
+  //   }
 
-//   /// Move the stepper by a specific distance (in units of length) based on the
-//   bool moveDistance(Distance distance, Distance wheelDiameter,
-//                     int8_t speedPercent, void (*callback)(void*) = nullptr,
-//                     void* ref = nullptr) {
-//     if (!stepper) return false;
-//     float circumferenceM = PI * wheelDiameter.getDistance(DistanceUnit::M);
-//     float revolutions = distance.getDistance(DistanceUnit::M) / circumferenceM;
-//     return moveRevolutions(revolutions, speedPercent, callback, ref);
-//   }
+  //   /// Move the stepper by a specific distance (in units of length) based on
+  //   the bool moveDistance(Distance distance, Distance wheelDiameter,
+  //                     int8_t speedPercent, void (*callback)(void*) = nullptr,
+  //                     void* ref = nullptr) {
+  //     if (!stepper) return false;
+  //     float circumferenceM = PI * wheelDiameter.getDistance(DistanceUnit::M);
+  //     float revolutions = distance.getDistance(DistanceUnit::M) /
+  //     circumferenceM; return moveRevolutions(revolutions, speedPercent,
+  //     callback, ref);
+  //   }
 
   /// Stop the stepper motor.
   void end() override {
@@ -164,7 +164,7 @@ class Stepper : public Motor {
 
   bool isPinsSet() const override { return is_pins_set; }
 
-protected:
+ protected:
   FastAccelStepperEngine engine;
   FastAccelStepper* stepper = NULL;
   int pinStep = -1;
@@ -192,7 +192,8 @@ protected:
     percent = constrain(percent, -100, 100);
     int speed = map(percent, -100, 100, -maxSpeedHz, maxSpeedHz);
 
-    // Calculate acceleration in steps/sec^2 based on the time to reach max speed
+    // Calculate acceleration in steps/sec^2 based on the time to reach max
+    // speed
     int acceleration = (maxSpeedHz * 1000) / accelerationMs;  // steps/sec^2
     stepper->setAcceleration(acceleration);
 

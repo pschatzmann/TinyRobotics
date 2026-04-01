@@ -50,16 +50,16 @@ class ServoMotor : public Motor {
   }
 
   /** Set servo angle (degrees, 90 .. -90): 0 is forward */
-  void setAngle(int rosAngleDegrees) {
+  void setAngle(int8_t rosAngleDegrees) {
     // potentially constrain the angles
     if (rosAngleDegrees < minAngle) rosAngleDegrees = minAngle;
     if (rosAngleDegrees > maxAngle) rosAngleDegrees = maxAngle;
-    int angle = map(rosAngleDegrees, -90, 90, 0, 180);
+    int8_t angle = map(rosAngleDegrees, -90, 90, 0, 180);
     servo.write(constrain(angle, 0, 180));
   }
 
   /** Get the last written angle (degrees) */
-  int getAngle() {
+  int8_t getAngle() {
     int angle = servo.read();
     return map(angle, 0, 180, -90, 90);
   }

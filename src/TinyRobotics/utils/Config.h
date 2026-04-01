@@ -23,3 +23,8 @@
 #ifndef USE_SERVO_LIBRARY
 #define USE_SERVO_LIBRARY true
 #endif
+
+// use the generic MotorCB callback-based motors by default
+#ifndef USE_MOTOR_CB
+#define USE_MOTOR_CB true
+#endif
