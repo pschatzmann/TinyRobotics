@@ -31,17 +31,17 @@ void setup() {
   // Brushed Motor
   brushed.setPins(5, 6, 9);  // Example pins
   brushed.begin();
-  brushed.setSpeed(100);
+  brushed.setSpeed(50); // Percent
 
   // Brushless Motor
   brushless.setPin(10);  // Example pin
   brushless.begin();
-  brushless.setSpeed(50);
+  brushless.setSpeed(50); // Percent
 
   // Servo Motor
   servo.setPin(11);  // Example pin
   servo.begin();
-  servo.setAngle(45);
+  servo.setAngle(45); // Set servo to 45 degrees to the left
 
   // Stepper Motor
   stepper.setPins(2, 3, 4); // Example pins: step, dir, enable
