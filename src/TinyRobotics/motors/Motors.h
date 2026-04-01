@@ -7,7 +7,7 @@
 
 #include "GenericMotor.h"
 #include "BrushedMotor.h"
-#if (USE_SERVO_MOTOR)
+#if (USE_SERVO_LIBRARY)
 #include "BrushlessMotor.h"
 #include "ServoMotor.h"
 #else

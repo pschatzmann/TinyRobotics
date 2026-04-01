@@ -23,16 +23,12 @@
 #define USE_EXTERNAL_MOTOR_LIBRARIES true
 #endif
 
-// use servo library for motor control by default, can be overridden by defining
+// use servo library for motor control 
 #ifndef USE_SERVO_LIBRARY
 #define USE_SERVO_LIBRARY USE_EXTERNAL_MOTOR_LIBRARIES
 #endif
 
-// use the generic MotorCB callback-based motors by default
+// Use FastAccel Stepper Library
 #ifndef USE_FASTACCEL_STEPPER
 #define USE_FASTACCEL_STEPPER USE_EXTERNAL_MOTOR_LIBRARIES
-#endif
-
-#ifndef USE_SERVO_MOTOR
-#define USE_SERVO_MOTOR USE_EXTERNAL_MOTOR_LIBRARIES
 #endif
