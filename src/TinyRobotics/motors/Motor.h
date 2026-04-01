@@ -1,4 +1,5 @@
 #pragma once
+#include "TinyRobotics/utils/Config.h"
 
 namespace tinyrobotics {
 

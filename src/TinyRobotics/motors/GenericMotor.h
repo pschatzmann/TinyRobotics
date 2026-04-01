@@ -42,7 +42,8 @@ namespace tinyrobotics {
 
 class GenericMotor : public Motor {
  public:
-  GenericMotor(uint8_t id = 0, void* motor = nullptr) {
+  GenericMotor() = default;
+  GenericMotor(uint8_t id, void* motor = nullptr) {
     setID(id);
     this->motor = motor;
   }
