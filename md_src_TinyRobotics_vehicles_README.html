@@ -73,7 +73,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><p>This module provides high-level abstractions for controlling various types of robotic vehicles using the TinyRobotics library. Each vehicle class encapsulates the logic for its drive and steering mechanisms, making it easy to control different vehicle types with a unified interface.</p>
-<h1><a class="anchor" id="autotoc_md157"></a>
+<h1><a class="anchor" id="autotoc_md160"></a>
 Supported Vehicles</h1>
 <ul>
 <li><b>Car4WD</b>: Four-wheel drive car with direction control by adjusting the speed of four motors (no steering servo).</li>
@@ -82,7 +82,7 @@ Supported Vehicles</h1>
 <li><b>AirPlane</b>: Fixed-wing airplane with motor (throttle), rudder, elevator, and ailerons.</li>
 <li><b>MotorBoat</b>: Boat with a single drive motor and a rudder for steering.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md158"></a>
+<h1><a class="anchor" id="autotoc_md161"></a>
 Example Usage</h1>
 <div class="fragment"><div class="line"><span class="preprocessor">#include &lt;TinyRobots.h&gt;</span></div>
 <div class="line"> </div>
@@ -133,7 +133,7 @@ Example Usage</h1>
 <div class="line">boat.setThrottle(80);</div>
 <div class="line">boat.setRudder(25);</div>
 <div class="line">boat.end();</div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md159"></a>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md162"></a>
 File Overview</h1>
 <ul>
 <li><code>Car4WD.h</code> — Four-wheel drive car</li>
@@ -142,12 +142,12 @@ File Overview</h1>
 <li><code><a class="el" href="AirPlane_8h_source.html">AirPlane.h</a></code> — Fixed-wing airplane</li>
 <li><code><a class="el" href="MotorBoat_8h_source.html">MotorBoat.h</a></code> — Motor boat</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md160"></a>
+<h1><a class="anchor" id="autotoc_md163"></a>
 Notes</h1>
 <p>The motors are defined as templates, so you can switch out the motor type or implement your own motor implementation:</p>
 <div class="fragment"><div class="line">Quadrotor&lt;BrushedMotor&gt; quadBushed;</div>
 <div class="line">Quadrotor&lt;BrushlessMotor&gt; quadBrushless;</div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md161"></a>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md164"></a>
 See Also</h1>
 <ul>
 <li><a class="el" href="md_src_TinyRobotics_motors_README.html">motors/README.md</a></li>

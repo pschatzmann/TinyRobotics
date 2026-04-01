@@ -74,72 +74,129 @@ $(function() {
 <div class="contents">
 <div class="textblock"><h1><a class="anchor" id="autotoc_md84"></a>
 Overview</h1>
-<p>This module provides classes and utilities for controlling DC motors (via H-Bridge drivers) and standard RC servo motors. It is designed for embedded and Arduino environments.</p>
-<h1><a class="anchor" id="autotoc_md85"></a>
-Features</h1>
-<h1><a class="anchor" id="autotoc_md86"></a>
-Features</h1>
+<p>The TinyRobotics Motors module is a flexible and extensible framework for controlling a wide variety of motor types in embedded and Arduino environments. It provides unified abstractions and drivers for:</p>
 <ul>
-<li>Support for DC motors using H-Bridge drivers (e.g., L298N, L293D, TB6612FNG)</li>
-<li>Support for standard RC servo motors</li>
-<li>PWM and direction control for H-Bridge</li>
-<li>Angle and pulse width control for servos</li>
-<li>Motor base class for extensibility</li>
+<li><b>Brushed DC motors</b> (via H-Bridge drivers such as L298N, L293D, TB6612FNG)</li>
+<li><b>Brushless DC motors</b> (ESC-based, using servo signals)</li>
+<li><b>Standard RC servo motors</b> (using Arduino Servo or ESP32Servo libraries)</li>
+<li><b><a class="el" href="classStepper.html" title="Stepper motor driver using FastAccelStepper for Arduino.">Stepper</a> motors</b> (with optional FastAccelStepper integration)</li>
+<li><b>Custom and external motor drivers</b> (via the GenericMotor class and user-defined callbacks)</li>
+</ul>
+<p>Key features include:</p><ul>
+<li>Consistent API for all supported motor types</li>
+<li>PWM and direction control for brushed and brushless motors</li>
+<li>Angle and pulse width control for servos and brushless motors</li>
+<li><a class="el" href="classStepper.html" title="Stepper motor driver using FastAccelStepper for Arduino.">Stepper</a> motor support with acceleration and speed control</li>
+<li>Easy integration of custom motor drivers without external dependencies</li>
+<li>Modular design for use in robots, vehicles, and automation projects</li>
+</ul>
+<p>The module is designed for portability and can be configured to use or avoid external libraries as needed. All motor drivers inherit from a common base class, making it easy to swap implementations or extend functionality for new hardware.</p>
+<h1><a class="anchor" id="autotoc_md85"></a>
+Motor Configuration (utils/Config.h)</h1>
+<p>Motor-specific settings can be adjusted in <code><a class="el" href="Config_8h_source.html">src/TinyRobotics/utils/Config.h</a></code>:</p>
+<ul>
+<li><code>USE_EXTERNAL_MOTOR_LIBRARIES</code> (default: <code>true</code>): Enables use of external libraries for motor control.</li>
+<li><code>USE_SERVO_LIBRARY</code> (default: <code>USE_EXTERNAL_MOTOR_LIBRARIES</code>): Use Arduino Servo/ESP32Servo for servo motors.</li>
+<li><code>USE_FASTACCEL_STEPPER</code> (default: <code>USE_EXTERNAL_MOTOR_LIBRARIES</code>): Use FastAccelStepper for stepper motors.</li>
+</ul>
+<p>You can override these macros before including TinyRobotics to customize which motor drivers are enabled.</p>
+<p>Example: </p><div class="fragment"><div class="line"><span class="preprocessor">#define USE_SERVO_LIBRARY false</span></div>
+<div class="line"><span class="preprocessor">#include &lt;<a class="code" href="TinyRobotics_8h.html">TinyRobotics.h</a>&gt;</span></div>
+<div class="ttc" id="aTinyRobotics_8h_html"><div class="ttname"><a href="TinyRobotics_8h.html">TinyRobotics.h</a></div></div>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md86"></a>
+Motor Classes</h1>
+<ul>
+<li><code>Motor</code>: Abstract base class for all motor types. Defines the common interface for all motors.</li>
+<li><code>BrushedMotor</code>: High-level H-Bridge DC motor driver for bidirectional DC motors (L298N, L293D, TB6612FNG, etc.).</li>
+<li><code>BrushlessMotor</code>: Interface for brushless DC motors (ESC-based, uses servo signal).</li>
+<li><code>ServoMotor</code>: High-level wrapper for standard RC servo motors (uses Arduino Servo or ESP32Servo library).</li>
+<li><code>GenericMotor</code>: Flexible abstraction for integrating custom/external motor drivers using callbacks.</li>
+<li><code>StepperMotor</code>: Interface for stepper motors (uses FastAccelStepper library if enabled).</li>
 </ul>
 <h1><a class="anchor" id="autotoc_md87"></a>
-Key Classes</h1>
-<ul>
-<li><code>Motor</code>: Abstract base class for all motor types</li>
-<li><code>HBridge</code>: High-level H-Bridge DC motor driver</li>
-<li><code>ServoMotor</code>: High-level wrapper for Arduino Servo control</li>
-<li><code>Motors</code>: Utility for managing multiple motors</li>
-</ul>
-<h1><a class="anchor" id="autotoc_md88"></a>
 Example Usage</h1>
-<div class="fragment"><div class="line"><span class="comment">// Example: Control a DC motor with H-Bridge</span></div>
-<div class="line"><span class="preprocessor">#include &lt;<a class="code" href="TinyRobotics_8h.html">TinyRobotics.h</a>&gt;</span></div>
+<h2><a class="anchor" id="autotoc_md88"></a>
+DC Motor (H-Bridge)</h2>
+<div class="fragment"><div class="line"><span class="preprocessor">#include &lt;<a class="code" href="TinyRobotics_8h.html">TinyRobotics.h</a>&gt;</span></div>
 <div class="line"> </div>
-<div class="line">tinyrobotics::HBridge motor(5, 6, 9); <span class="comment">// IN1=5, IN2=6, PWM=9</span></div>
+<div class="line">HBridge motor(1); <span class="comment">// #1</span></div>
 <div class="line"> </div>
 <div class="line"><span class="keywordtype">void</span> setup() {</div>
-<div class="line">    motor.setSpeed(128); <span class="comment">// Half speed forward</span></div>
-<div class="line">    motor.setSpeed(-255); <span class="comment">// Full speed reverse</span></div>
-<div class="line">    motor.setSpeedPercent(50); <span class="comment">// 50% forward</span></div>
-<div class="line">    motor.stop(); <span class="comment">// Brake</span></div>
+<div class="line">  motor.setPins(5, 6, 9); <span class="comment">// IN1=5, IN2=6, PWM=9)</span></div>
+<div class="line">  motor.begin();</div>
+<div class="line">  motor.setSpeed(50); <span class="comment">// Half speed forward</span></div>
+<div class="line">  motor.setSpeed(-50); <span class="comment">// Half speed reverse</span></div>
+<div class="line">  motor.end(); <span class="comment">// Brake</span></div>
 <div class="line">}</div>
 <div class="line"> </div>
 <div class="line"><span class="keywordtype">void</span> loop() {</div>
-<div class="line">    <span class="comment">// Your control logic here</span></div>
+<div class="line">  <span class="comment">// Your control logic here</span></div>
 <div class="line">}</div>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md89"></a>
+Servo Motor</h2>
+<div class="fragment"><div class="line"><span class="preprocessor">#include &lt;<a class="code" href="TinyRobotics_8h.html">TinyRobotics.h</a>&gt;</span></div>
 <div class="line"> </div>
-<div class="line"><span class="comment">// Example: Control a Servo motor</span></div>
-<div class="line"><span class="preprocessor">#include &lt;<a class="code" href="TinyRobotics_8h.html">TinyRobotics.h</a>&gt;</span></div>
-<div class="line"> </div>
-<div class="line"><a class="code hl_class" href="classtinyrobotics_1_1ServoMotor.html">tinyrobotics::ServoMotor</a> servo;</div>
+<div class="line">ServoMotor servo(2); <span class="comment">// #2</span></div>
 <div class="line"> </div>
 <div class="line"><span class="keywordtype">void</span> setup() {</div>
-<div class="line">    servo.attach(9);           <span class="comment">// Attach to pin 9</span></div>
-<div class="line">    servo.<a class="code hl_function" href="classtinyrobotics_1_1ServoMotor.html#a45ae9b8e37c4c25dbacc230772bed168">setConstraints</a>(-45, 45); <span class="comment">// Limit range to -45..45 degrees</span></div>
-<div class="line">    servo.<a class="code hl_function" href="classtinyrobotics_1_1ServoMotor.html#a7103642ee5456bfc478e19dd33eaa52e">setAngle</a>(45);        <span class="comment">// Set to 45 degrees left</span></div>
-<div class="line">    <span class="keywordtype">int</span> angle = servo.<a class="code hl_function" href="classtinyrobotics_1_1ServoMotor.html#a36459042a0cf20a8c10c020370e7f4ae">getAngle</a>(); <span class="comment">// Read last angle</span></div>
-<div class="line">    servo.detach();            <span class="comment">// Detach when done</span></div>
+<div class="line">  servo.setPin(9);           <span class="comment">// Attach to pin 9</span></div>
+<div class="line">  servo.begin()</div>
+<div class="line">  <span class="comment">//servo.setConstraints(-45, 45); // Limit range to -45..45 degrees</span></div>
+<div class="line">  servo.setAngle(45);        <span class="comment">// Set to 45 degrees left</span></div>
+<div class="line">  <span class="keywordtype">int</span> angle = servo.getAngle(); <span class="comment">// Read last angle</span></div>
+<div class="line">  servo.end();            <span class="comment">// Detach when done</span></div>
 <div class="line">}</div>
 <div class="line"> </div>
 <div class="line"><span class="keywordtype">void</span> loop() {</div>
-<div class="line">    <span class="comment">// Your control logic here</span></div>
+<div class="line">  <span class="comment">// Your control logic here</span></div>
 <div class="line">}</div>
-<div class="ttc" id="aTinyRobotics_8h_html"><div class="ttname"><a href="TinyRobotics_8h.html">TinyRobotics.h</a></div></div>
-<div class="ttc" id="aclasstinyrobotics_1_1ServoMotor_html"><div class="ttname"><a href="classtinyrobotics_1_1ServoMotor.html">tinyrobotics::ServoMotor</a></div><div class="ttdoc">High-level wrapper for Arduino Servo control (RC servo motors).</div><div class="ttdef"><b>Definition:</b> ServoMotor.h:39</div></div>
-<div class="ttc" id="aclasstinyrobotics_1_1ServoMotor_html_a36459042a0cf20a8c10c020370e7f4ae"><div class="ttname"><a href="classtinyrobotics_1_1ServoMotor.html#a36459042a0cf20a8c10c020370e7f4ae">tinyrobotics::ServoMotor::getAngle</a></div><div class="ttdeci">int8_t getAngle()</div><div class="ttdef"><b>Definition:</b> ServoMotor.h:62</div></div>
-<div class="ttc" id="aclasstinyrobotics_1_1ServoMotor_html_a45ae9b8e37c4c25dbacc230772bed168"><div class="ttname"><a href="classtinyrobotics_1_1ServoMotor.html#a45ae9b8e37c4c25dbacc230772bed168">tinyrobotics::ServoMotor::setConstraints</a></div><div class="ttdeci">void setConstraints(int minAngle, int maxAngle)</div><div class="ttdef"><b>Definition:</b> ServoMotor.h:71</div></div>
-<div class="ttc" id="aclasstinyrobotics_1_1ServoMotor_html_a7103642ee5456bfc478e19dd33eaa52e"><div class="ttname"><a href="classtinyrobotics_1_1ServoMotor.html#a7103642ee5456bfc478e19dd33eaa52e">tinyrobotics::ServoMotor::setAngle</a></div><div class="ttdeci">void setAngle(int8_t rosAngleDegrees)</div><div class="ttdef"><b>Definition:</b> ServoMotor.h:53</div></div>
-</div><!-- fragment --> <h1><a class="anchor" id="autotoc_md89"></a>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md90"></a>
+Generic Motor (Custom Driver)</h2>
+<div class="fragment"><div class="line"><span class="preprocessor">#include &lt;<a class="code" href="TinyRobotics_8h.html">TinyRobotics.h</a>&gt;</span></div>
+<div class="line"> </div>
+<div class="line">MyMotorDriver driver;</div>
+<div class="line">GenericMotor motor(3, &amp;driver); <span class="comment">// #3</span></div>
+<div class="line"><span class="keywordtype">void</span> setup() {</div>
+<div class="line">  motor.setValueCallback([](int8_t value, GenericMotor&amp; m) {</div>
+<div class="line">    MyMotorDriver* drv = m.getMotor&lt;MyMotorDriver&gt;();</div>
+<div class="line">    drv-&gt;setPWM(value);</div>
+<div class="line">  });</div>
+<div class="line">  <span class="comment">// Optional: custom logic for begin and end</span></div>
+<div class="line">  motor.setBeginCallback([](GenericMotor&amp; m) {</div>
+<div class="line">    <span class="comment">// Custom start logic (e.g., enable power)</span></div>
+<div class="line">    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line">  });</div>
+<div class="line"><span class="comment">//   motor.setEndCallback([](GenericMotor&amp; m) {</span></div>
+<div class="line"><span class="comment">//     // Custom stop logic (e.g., disable power)</span></div>
+<div class="line"><span class="comment">//   });</span></div>
+<div class="line">  motor.begin();</div>
+<div class="line">  motor.setSpeed(50); <span class="comment">// Half speed forward</span></div>
+<div class="line">  motor.setSpeed(-50); <span class="comment">// Half speed reverse</span></div>
+<div class="line">  motor.end();</div>
+<div class="line">}</div>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md91"></a>
+Stepper Motor (if enabled)</h2>
+<div class="fragment"><div class="line"><span class="preprocessor">#include &lt;<a class="code" href="TinyRobotics_8h.html">TinyRobotics.h</a>&gt;</span></div>
+<div class="line"> </div>
+<div class="line">StepperMotor stepper;</div>
+<div class="line"><span class="keywordtype">void</span> setup() {</div>
+<div class="line">  stepper.<a class="code hl_function" href="classtinyrobotics_1_1GenericMotor.html#a6460c640ace6f5e09db29cd079c756f4">setPins</a>(2, 3, 4);</div>
+<div class="line">  stepper.setMaxSpeed(1000);</div>
+<div class="line">  stepper.setStepsPerRevolution(200);</div>
+<div class="line">  stepper.begin();</div>
+<div class="line">  motor.setSpeed(50); <span class="comment">// Half speed forward</span></div>
+<div class="line">  motor.setSpeed(-50); <span class="comment">// Half speed reverse</span></div>
+<div class="line">  stepper.end();</div>
+<div class="line">}</div>
+<div class="ttc" id="aclasstinyrobotics_1_1GenericMotor_html_a6460c640ace6f5e09db29cd079c756f4"><div class="ttname"><a href="classtinyrobotics_1_1GenericMotor.html#a6460c640ace6f5e09db29cd079c756f4">tinyrobotics::GenericMotor::setPins</a></div><div class="ttdeci">void setPins(int pin1, int pin2, int pwmPin=-1, int pwmFreq=20000)</div><div class="ttdoc">Not supported.</div><div class="ttdef"><b>Definition:</b> GenericMotor.h:115</div></div>
+</div><!-- fragment --> <h1><a class="anchor" id="autotoc_md92"></a>
 Dependencies</h1>
 <ul>
 <li><a href="https://github.com/jkb-git/ESP32Servo">ESP32Servo</a></li>
 <li><a href="https://docs.arduino.cc/libraries/servo/">Servo</a></li>
+<li><a href="https://github.com/ESP32DIYer/FastAccelStepper">FastAccelStepper</a> (for StepperMotor support)</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md90"></a>
+<h1><a class="anchor" id="autotoc_md93"></a>
 See Also</h1>
 <ul>
 <li><a class="el" href="md_src_TinyRobotics_control_README.html">Control Module</a></li>
