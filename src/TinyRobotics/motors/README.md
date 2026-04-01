@@ -1,63 +1,141 @@
 # TinyRobotics Motors Module
 
 ## Overview
-This module provides classes and utilities for controlling DC motors (via H-Bridge drivers) and standard RC servo motors. It is designed for embedded and Arduino environments.
+The TinyRobotics Motors module is a flexible and extensible framework for controlling a wide variety of motor types in embedded and Arduino environments. It provides unified abstractions and drivers for:
 
-## Features
+- **Brushed DC motors** (via H-Bridge drivers such as L298N, L293D, TB6612FNG)
+- **Brushless DC motors** (ESC-based, using servo signals)
+- **Standard RC servo motors** (using Arduino Servo or ESP32Servo libraries)
+- **Stepper motors** (with optional FastAccelStepper integration)
+- **Custom and external motor drivers** (via the GenericMotor class and user-defined callbacks)
 
-## Features
-- Support for DC motors using H-Bridge drivers (e.g., L298N, L293D, TB6612FNG)
-- Support for standard RC servo motors
-- PWM and direction control for H-Bridge
-- Angle and pulse width control for servos
-- Motor base class for extensibility
+Key features include:
+- Consistent API for all supported motor types
+- PWM and direction control for brushed and brushless motors
+- Angle and pulse width control for servos and brushless motors
+- Stepper motor support with acceleration and speed control
+- Easy integration of custom motor drivers without external dependencies
+- Modular design for use in robots, vehicles, and automation projects
 
-## Key Classes
-- `Motor`: Abstract base class for all motor types
-- `HBridge`: High-level H-Bridge DC motor driver
-- `ServoMotor`: High-level wrapper for Arduino Servo control
-- `Motors`: Utility for managing multiple motors
+The module is designed for portability and can be configured to use or avoid external libraries as needed. All motor drivers inherit from a common base class, making it easy to swap implementations or extend functionality for new hardware.
+
+
+## Motor Configuration (utils/Config.h)
+
+Motor-specific settings can be adjusted in `src/TinyRobotics/utils/Config.h`:
+
+- `USE_EXTERNAL_MOTOR_LIBRARIES` (default: `true`): Enables use of external libraries for motor control.
+- `USE_SERVO_LIBRARY` (default: `USE_EXTERNAL_MOTOR_LIBRARIES`): Use Arduino Servo/ESP32Servo for servo motors.
+- `USE_FASTACCEL_STEPPER` (default: `USE_EXTERNAL_MOTOR_LIBRARIES`): Use FastAccelStepper for stepper motors.
+
+You can override these macros before including TinyRobotics to customize which motor drivers are enabled.
+
+Example:
+```cpp
+#define USE_SERVO_LIBRARY false
+#include <TinyRobotics.h>
+```
+
+## Motor Classes
+
+- `Motor`: Abstract base class for all motor types. Defines the common interface for all motors.
+- `BrushedMotor`: High-level H-Bridge DC motor driver for bidirectional DC motors (L298N, L293D, TB6612FNG, etc.).
+- `BrushlessMotor`: Interface for brushless DC motors (ESC-based, uses servo signal).
+- `ServoMotor`: High-level wrapper for standard RC servo motors (uses Arduino Servo or ESP32Servo library).
+- `GenericMotor`: Flexible abstraction for integrating custom/external motor drivers using callbacks.
+- `StepperMotor`: Interface for stepper motors (uses FastAccelStepper library if enabled).
 
 ## Example Usage
+
+### DC Motor (H-Bridge)
+
 ```cpp
-// Example: Control a DC motor with H-Bridge
 #include <TinyRobotics.h>
 
-tinyrobotics::HBridge motor(5, 6, 9); // IN1=5, IN2=6, PWM=9
+HBridge motor(1); // #1
 
 void setup() {
-	motor.setSpeed(128); // Half speed forward
-	motor.setSpeed(-255); // Full speed reverse
-	motor.setSpeedPercent(50); // 50% forward
-	motor.stop(); // Brake
+  motor.setPins(5, 6, 9); // IN1=5, IN2=6, PWM=9)
+  motor.begin();
+  motor.setSpeed(50); // Half speed forward
+  motor.setSpeed(-50); // Half speed reverse
+  motor.end(); // Brake
 }
 
 void loop() {
-	// Your control logic here
+  // Your control logic here
 }
+```
 
-// Example: Control a Servo motor
+### Servo Motor
+
+```cpp
 #include <TinyRobotics.h>
 
-tinyrobotics::ServoMotor servo;
+ServoMotor servo(2); // #2
 
 void setup() {
-	servo.attach(9);           // Attach to pin 9
-	servo.setConstraints(-45, 45); // Limit range to -45..45 degrees
-	servo.setAngle(45);        // Set to 45 degrees left
-	int angle = servo.getAngle(); // Read last angle
-	servo.detach();            // Detach when done
+  servo.setPin(9);           // Attach to pin 9
+  servo.begin()
+  //servo.setConstraints(-45, 45); // Limit range to -45..45 degrees
+  servo.setAngle(45);        // Set to 45 degrees left
+  int angle = servo.getAngle(); // Read last angle
+  servo.end();            // Detach when done
 }
 
 void loop() {
-	// Your control logic here
+  // Your control logic here
 }
+```
 
+### Generic Motor (Custom Driver)
+
+```cpp
+#include <TinyRobotics.h>
+
+MyMotorDriver driver;
+GenericMotor motor(3, &driver); // #3
+void setup() {
+  motor.setValueCallback([](int8_t value, GenericMotor& m) {
+    MyMotorDriver* drv = m.getMotor<MyMotorDriver>();
+    drv->setPWM(value);
+  });
+  // Optional: custom logic for begin and end
+  motor.setBeginCallback([](GenericMotor& m) {
+    // Custom start logic (e.g., enable power)
+    return true;
+  });
+//   motor.setEndCallback([](GenericMotor& m) {
+//     // Custom stop logic (e.g., disable power)
+//   });
+  motor.begin();
+  motor.setSpeed(50); // Half speed forward
+  motor.setSpeed(-50); // Half speed reverse
+  motor.end();
+}
+```
+
+### Stepper Motor (if enabled)
+
+```cpp
+#include <TinyRobotics.h>
+
+StepperMotor stepper;
+void setup() {
+  stepper.setPins(2, 3, 4);
+  stepper.setMaxSpeed(1000);
+  stepper.setStepsPerRevolution(200);
+  stepper.begin();
+  motor.setSpeed(50); // Half speed forward
+  motor.setSpeed(-50); // Half speed reverse
+  stepper.end();
+}
 ```
 ## Dependencies
 
 - [ESP32Servo](https://github.com/jkb-git/ESP32Servo)
 - [Servo](https://docs.arduino.cc/libraries/servo/)
+- [FastAccelStepper](https://github.com/ESP32DIYer/FastAccelStepper) (for StepperMotor support)
 
 ## See Also
 
