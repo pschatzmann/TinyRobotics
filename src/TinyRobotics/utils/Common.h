@@ -11,15 +11,15 @@ namespace tinyrobotics {
  * @brief Frame type for coordinate systems and reference frames.
  */
 enum class FrameType : uint8_t {
-  WORLD,
-  ODOMETRY,
-  BASE,
-  CAMERA,
-  LIDAR,
-  WHEEL,
-  CUSTOM,
-  OBSTACLE,
-  TEMP
+  WORLD,     ///< World/global reference frame (fixed, absolute)
+  ODOMETRY,  ///< Odometry frame (incremental, mobile robot pose)
+  BASE,      ///< Robot or vehicle base frame (body frame)
+  CAMERA,    ///< Camera sensor frame
+  LIDAR,     ///< LIDAR sensor frame
+  WHEEL,     ///< Wheel or actuator frame
+  CUSTOM,    ///< Custom user-defined frame
+  OBSTACLE,  ///< Obstacle or object frame
+  TEMP       ///< Temporary or auxiliary frame
 };
 
 /**
@@ -54,7 +54,7 @@ enum class Unit {
 };
 
 /// Convert a value from the given unit to degrees.
-bool toAngleDegree(DEFAULT_TYPE in, Unit unit, AngleDeg& out) {
+inline bool toAngleDegree(DEFAULT_TYPE in, Unit unit, AngleDeg& out) {
   switch (unit) {
     case Unit::AngleDegree:
       out = in;
