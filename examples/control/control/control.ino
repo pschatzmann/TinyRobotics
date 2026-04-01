@@ -49,7 +49,7 @@ CarAckerman<BrushedMotor, ServoMotor> car;
 Odometry2D odometry;
 SpeedFromThrottle speedEstimator(2.0f);  // max speed 2 m/s (adjust as needed)
 int maxSpeedKmh = 5;
-float accelDistanceM = 0.5;
+float accelDistanceM = 0.5; // distance to start decelerating in meters
 float wheelBase = 0.3f;  // distance between front and rear axles in meters
 MotionController2D<float> controller(odometry, maxSpeedKmh, accelDistanceM);
 
