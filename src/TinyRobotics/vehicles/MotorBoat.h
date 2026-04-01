@@ -63,6 +63,10 @@ class MotorBoat : public Vehicle {
     sendMessage(msg);
   }
 
+  void setRudder(Angle angle){
+    setRudder(static_cast<int>(angle.getValue(AngleUnit::DEG)));
+  }
+
   void end() {
     motor_.setSpeedPercent(0);  // stop motor
     rudder_.setAngle(0);        // center rudder

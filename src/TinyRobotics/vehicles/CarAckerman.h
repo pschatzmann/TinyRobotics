@@ -63,6 +63,10 @@ class CarAckerman : public Vehicle {
     sendMessage(msg);
   }
 
+  void setSteeringAngle(Angle angle){
+    setSteeringAngle(static_cast<int>(angle.getValue(AngleUnit::DEG)));
+  }
+
   /** Stop the car (brake motor) */
   void end() {
     setSpeed(0);

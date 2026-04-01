@@ -64,6 +64,10 @@ class CarDifferential : public Vehicle {
     updateMotors();
   }
 
+  void setSteeringAngle(Angle angle){
+    setSteeringAngle(static_cast<int>(angle.getValue(AngleUnit::DEG)));
+  }
+
   /**
    * @brief Stop all motors and reset speed and turn state.
    */

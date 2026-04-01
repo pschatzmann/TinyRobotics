@@ -37,8 +37,8 @@ void setup() {
 
 void loop() {
   // Simulate publishing messages from the car
-  car.setSpeed(1.5f, DistanceUnit::MPS, MessageSource::Controller);
-  car.setSteeringAngle(15.0f, AngleUnit::DEG, MessageSource::Controller);
+  car.setSpeed(1.5f, SpeedUnit::MPS, MessageOrigin::RemoteControl);
+  car.setSteeringAngle(15.0f, AngleUnit::DEG, MessageOrigin::RemoteControl);
 
   delay(5000);  // Wait before publishing next set of messages
 }

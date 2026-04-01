@@ -1,7 +1,33 @@
-// TinyRobotics SLAM2D Example with LDS Lidar, CarAckerman, and
-// MotionController2D
-#include <LDS.h>  // Assumes LDS library is installed and provides LDS lidar interface
-#include <TinyRobotics.h>
+/*
+ * TinyRobotics SLAM2D Example
+ *
+ * Demonstrates Simultaneous Localization and Mapping (SLAM) using:
+ *   - LDS Lidar sensor (requires LDS library)
+ *   - Adafruit ICM20948 IMU
+ *   - CarAckerman vehicle model
+ *   - MotionController2D for path following
+ *
+ * Features:
+ *   - Real-time SLAM with 2D Lidar and IMU fusion
+ *   - Path planning using A* algorithm
+ *   - Waypoint navigation and vehicle control
+ *
+ * Hardware:
+ *   - Compatible with Arduino boards
+ *   - Connect LDS Lidar and ICM20948 IMU as per their documentation
+ *   - CarAckerman: specify motor/steering pins as needed
+ *
+ * Usage:
+ *   - Upload to your Arduino-compatible board
+ *   - Monitor Serial output for pose and navigation info
+ *   - Adjust waypoints and parameters as needed
+ * 
+ * Dependency:
+ * - https://github.com/kaiaai/LDS
+ * - Adafruit_ICM20X
+ */
+
+#include <LDS.h>  // https://github.com/kaiaai/LDS
 #include <Adafruit_ICM20948.h>
 
 // SLAM2D instance
