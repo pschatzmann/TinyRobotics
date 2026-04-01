@@ -1,5 +1,5 @@
 <map id="MessageSource" name="MessageSource">
-<area shape="rect" id="node1" title="Base class for message sources in the TinyRobotics communication framework." alt="" coords="5,376,129,401"/>
+<area shape="rect" id="node1" title="Base class for message sources in the TinyRobotics communication framework." alt="" coords="5,400,129,425"/>
 <area shape="rect" id="node2" href="$classtinyrobotics_1_1IMU2D.html" title=" " alt="" coords="217,5,343,31"/>
 <area shape="rect" id="node3" href="$classtinyrobotics_1_1RangeSensor.html" title=" " alt="" coords="197,55,363,80"/>
 <area shape="rect" id="node4" href="$classtinyrobotics_1_1CameraEdgeFollower.html" title="Simple edge&#45;following algorithm for grayscale camera images." alt="" coords="200,104,360,129"/>
@@ -9,16 +9,17 @@
 <area shape="rect" id="node8" href="$classtinyrobotics_1_1Fusion3D.html" title="3D sensor fusion EKF for position, orientation, and velocity estimation." alt="" coords="239,301,321,327"/>
 <area shape="rect" id="node9" href="$classtinyrobotics_1_1IMU2D.html" title="Basic 2D IMU dead&#45;reckoning class." alt="" coords="228,351,332,376"/>
 <area shape="rect" id="node10" href="$classtinyrobotics_1_1IMU3D.html" title="Basic 3D IMU dead&#45;reckoning class." alt="" coords="228,400,332,425"/>
-<area shape="rect" id="node11" href="$classtinyrobotics_1_1Odometry2D.html" title="Tracks 2D position and orientation of a robot using velocity and steering data." alt="" coords="227,449,333,475"/>
-<area shape="rect" id="node12" href="$classtinyrobotics_1_1RCGamepadMessageSource.html" title="Message source for remote control via a virtual gamepad." alt="" coords="177,499,383,524"/>
-<area shape="rect" id="node13" href="$classtinyrobotics_1_1RangeSensor.html" title="Generic range sensor abstraction for LIDAR, ultrasonic, or similar sensors." alt="" coords="207,548,353,573"/>
-<area shape="rect" id="node14" href="$classtinyrobotics_1_1SLAM2D.html" title="2D Simultaneous Localization and Mapping (SLAM) with frame transforms and message integration." alt="" coords="223,597,337,623"/>
-<area shape="rect" id="node15" href="$classtinyrobotics_1_1SpeedFromThrottle.html" title="Estimates vehicle speed from throttle percentage using calibration data." alt="" coords="207,647,353,672"/>
-<area shape="rect" id="node16" href="$classtinyrobotics_1_1Vehicle.html" title="Abstract base class for all vehicle types." alt="" coords="245,696,315,721"/>
-<area shape="rect" id="node22" href="$classtinyrobotics_1_1WheelEncoder.html" title="Measures wheel rotation and computes distance and speed using encoder ticks for mobile robots." alt="" coords="223,745,337,771"/>
-<area shape="rect" id="node17" href="$classtinyrobotics_1_1AirPlane.html" title="Simple fixed&#45;wing airplane model with motor, rudder, elevator, and aileron control." alt="" coords="447,561,615,601"/>
-<area shape="rect" id="node18" href="$classtinyrobotics_1_1CarAckerman.html" title="Car with Ackerman steering and single drive motor." alt="" coords="431,625,632,665"/>
-<area shape="rect" id="node19" href="$classtinyrobotics_1_1CarDifferential.html" title="Car model with differential drive. The direction is controlled by adjusting the speed of the motors...." alt="" coords="458,689,605,729"/>
-<area shape="rect" id="node20" href="$classtinyrobotics_1_1MotorBoat.html" title="Motor boat with 1 drive motor and 1 rudder servo." alt="" coords="440,753,623,793"/>
-<area shape="rect" id="node21" href="$classtinyrobotics_1_1Quadrotor.html" title="Simple quadrotor (quadcopter) model with 4&#45;motor control." alt="" coords="450,817,613,843"/>
+<area shape="rect" id="node11" href="$classtinyrobotics_1_1MotionController2D.html" title="2D motion controller for path following and vehicle control." alt="" coords="187,449,373,475"/>
+<area shape="rect" id="node12" href="$classtinyrobotics_1_1Odometry2D.html" title="Tracks 2D position and orientation of a robot using velocity and steering data." alt="" coords="227,499,333,524"/>
+<area shape="rect" id="node13" href="$classtinyrobotics_1_1RCGamepadMessageSource.html" title="Message source for remote control via a virtual gamepad." alt="" coords="177,548,383,573"/>
+<area shape="rect" id="node14" href="$classtinyrobotics_1_1RangeSensor.html" title="Generic range sensor abstraction for LIDAR, ultrasonic, or similar sensors." alt="" coords="207,597,353,623"/>
+<area shape="rect" id="node15" href="$classtinyrobotics_1_1SLAM2D.html" title="2D Simultaneous Localization and Mapping (SLAM) with frame transforms and message integration." alt="" coords="223,647,337,672"/>
+<area shape="rect" id="node16" href="$classtinyrobotics_1_1SpeedFromThrottle.html" title="Estimates vehicle speed from throttle percentage using calibration data." alt="" coords="207,696,353,721"/>
+<area shape="rect" id="node17" href="$classtinyrobotics_1_1Vehicle.html" title="Abstract base class for all vehicle types." alt="" coords="245,745,315,771"/>
+<area shape="rect" id="node23" href="$classtinyrobotics_1_1WheelEncoder.html" title="Measures wheel rotation and computes distance and speed using encoder ticks for mobile robots." alt="" coords="223,795,337,820"/>
+<area shape="rect" id="node18" href="$classtinyrobotics_1_1AirPlane.html" title="Simple fixed&#45;wing airplane model with motor, rudder, elevator, and aileron control." alt="" coords="447,610,615,650"/>
+<area shape="rect" id="node19" href="$classtinyrobotics_1_1CarAckerman.html" title="Car with Ackerman steering and single drive motor." alt="" coords="431,674,632,714"/>
+<area shape="rect" id="node20" href="$classtinyrobotics_1_1CarDifferential.html" title="Car model with differential drive. The direction is controlled by adjusting the speed of the motors...." alt="" coords="458,738,605,778"/>
+<area shape="rect" id="node21" href="$classtinyrobotics_1_1MotorBoat.html" title="Motor boat with 1 drive motor and 1 rudder servo." alt="" coords="440,802,623,842"/>
+<area shape="rect" id="node22" href="$classtinyrobotics_1_1Quadrotor.html" title="Simple quadrotor (quadcopter) model with 4&#45;motor control." alt="" coords="450,867,613,892"/>
 </map>

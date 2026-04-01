@@ -87,27 +87,34 @@ $(function() {
 
 <p><code>#include &lt;<a class="el" href="MotionController2D_8h_source.html">MotionController2D.h</a>&gt;</code></p>
 <div class="dynheader">
+Inheritance diagram for MotionController2D&lt; T &gt;:</div>
+<div class="dyncontent">
+<div class="center"><img src="classtinyrobotics_1_1MotionController2D__inherit__graph.png" border="0" usemap="#aMotionController2D_3_01T_01_4_inherit__map" alt="Inheritance graph"/></div>
+<map name="aMotionController2D_3_01T_01_4_inherit__map" id="aMotionController2D_3_01T_01_4_inherit__map">
+<area shape="rect" title="2D motion controller for path following and vehicle control." alt="" coords="5,79,192,104"/>
+<area shape="rect" href="classtinyrobotics_1_1MessageSource.html" title="Base class for message sources in the TinyRobotics communication framework." alt="" coords="37,5,161,31"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
+<div class="dynheader">
 Collaboration diagram for MotionController2D&lt; T &gt;:</div>
 <div class="dyncontent">
 <div class="center"><img src="classtinyrobotics_1_1MotionController2D__coll__graph.png" border="0" usemap="#aMotionController2D_3_01T_01_4_coll__map" alt="Collaboration graph"/></div>
 <map name="aMotionController2D_3_01T_01_4_coll__map" id="aMotionController2D_3_01T_01_4_coll__map">
-<area shape="rect" title="2D motion controller for path following and vehicle control." alt="" coords="577,111,764,136"/>
-<area shape="rect" href="classtinyrobotics_1_1IMotionState2D.html" title="Interface for representing the navigation state of a robot in 2D space." alt="" coords="231,5,354,31"/>
-<area shape="rect" href="classtinyrobotics_1_1Vehicle.html" title="Abstract base class for all vehicle types." alt="" coords="258,55,327,80"/>
-<area shape="rect" href="classtinyrobotics_1_1MessageHandler.html" title="Interface for handling messages in the TinyRobotics framework." alt="" coords="5,31,136,56"/>
-<area shape="rect" href="classtinyrobotics_1_1MessageSource.html" title="Base class for message sources in the TinyRobotics communication framework." alt="" coords="9,80,133,105"/>
-<area shape="rect" href="classtinyrobotics_1_1Path.html" title=" " alt="" coords="185,105,400,145"/>
-<area shape="rect" href="classtinyrobotics_1_1PIDController.html" title=" " alt="" coords="209,171,376,196"/>
-<area shape="rect" href="classtinyrobotics_1_1Coordinate.html" title=" " alt="" coords="197,220,389,245"/>
-<area shape="rect" href="classtinyrobotics_1_1Serializable.html" title="This class defines an interface for serializable objects that can be converted to and from a string r..." alt="" coords="21,220,120,245"/>
+<area shape="rect" title="2D motion controller for path following and vehicle control." alt="" coords="545,111,732,136"/>
+<area shape="rect" href="classtinyrobotics_1_1MessageSource.html" title="Base class for message sources in the TinyRobotics communication framework." alt="" coords="199,5,323,31"/>
+<area shape="rect" href="classtinyrobotics_1_1IMotionState2D.html" title="Interface for representing the navigation state of a robot in 2D space." alt="" coords="199,55,322,80"/>
+<area shape="rect" href="classtinyrobotics_1_1Path.html" title=" " alt="" coords="153,105,368,145"/>
+<area shape="rect" href="classtinyrobotics_1_1PIDController.html" title=" " alt="" coords="177,171,344,196"/>
+<area shape="rect" href="classtinyrobotics_1_1Coordinate.html" title=" " alt="" coords="165,220,357,245"/>
+<area shape="rect" href="classtinyrobotics_1_1Serializable.html" title="This class defines an interface for serializable objects that can be converted to and from a string r..." alt="" coords="5,220,104,245"/>
 </map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ae4bfd6134614d219a27fb6da49ff4707"><td class="memItemLeft" align="right" valign="top"><a id="ae4bfd6134614d219a27fb6da49ff4707" name="ae4bfd6134614d219a27fb6da49ff4707"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>MotionController2D</b> (<a class="el" href="classtinyrobotics_1_1IMotionState2D.html">IMotionState2D</a> &amp;motionState, <a class="el" href="classtinyrobotics_1_1Vehicle.html">Vehicle</a> &amp;vehicle, float maxSpeedKmh=10, float accelDistanceM=2.0f)</td></tr>
-<tr class="separator:ae4bfd6134614d219a27fb6da49ff4707"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeabe2e4efad41dedfc3482b7e0efd302"><td class="memItemLeft" align="right" valign="top"><a id="aeabe2e4efad41dedfc3482b7e0efd302" name="aeabe2e4efad41dedfc3482b7e0efd302"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>MotionController2D</b> (<a class="el" href="classtinyrobotics_1_1IMotionState2D.html">IMotionState2D</a> &amp;motionState, float maxSpeedKmh=10, float accelDistanceM=2.0f)</td></tr>
+<tr class="separator:aeabe2e4efad41dedfc3482b7e0efd302"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a261f575a9b0286c7cfb88d0377e1f271"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1MotionController2D.html#a261f575a9b0286c7cfb88d0377e1f271">configureSpeedPID</a> (float dt, float maxOut, float minOut, float kp, float ki, float kd)</td></tr>
 <tr class="memdesc:a261f575a9b0286c7cfb88d0377e1f271"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configure the PID controller for speed-to-throttle mapping.  <br /></td></tr>
 <tr class="separator:a261f575a9b0286c7cfb88d0377e1f271"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -143,6 +150,23 @@ float&#160;</td><td class="memItemRight" valign="bottom"><b>getSteeringAngleDeg<
 <tr class="memitem:a3ee00f59434f682b87ae5577484a4d2e"><td class="memItemLeft" align="right" valign="top"><a id="a3ee00f59434f682b87ae5577484a4d2e" name="a3ee00f59434f682b87ae5577484a4d2e"></a>
 <a class="el" href="classtinyrobotics_1_1Angle.html">Angle</a>&#160;</td><td class="memItemRight" valign="bottom"><b>getSteeringAngle</b> () const</td></tr>
 <tr class="separator:a3ee00f59434f682b87ae5577484a4d2e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_classtinyrobotics_1_1MessageSource"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classtinyrobotics_1_1MessageSource')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classtinyrobotics_1_1MessageSource.html">MessageSource</a></td></tr>
+<tr class="memitem:a6f644591faf6edfeceef6b7776b331df inherit pub_methods_classtinyrobotics_1_1MessageSource"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1MessageSource.html#a6f644591faf6edfeceef6b7776b331df">subscribe</a> (<a class="el" href="classtinyrobotics_1_1MessageHandler.html">MessageHandler</a> &amp;handler)</td></tr>
+<tr class="memdesc:a6f644591faf6edfeceef6b7776b331df inherit pub_methods_classtinyrobotics_1_1MessageSource"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add a message handler to the chain.  <br /></td></tr>
+<tr class="separator:a6f644591faf6edfeceef6b7776b331df inherit pub_methods_classtinyrobotics_1_1MessageSource"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a452ef8a62219e36235175becfc72dc61 inherit pub_methods_classtinyrobotics_1_1MessageSource"><td class="memItemLeft" align="right" valign="top"><a id="a452ef8a62219e36235175becfc72dc61" name="a452ef8a62219e36235175becfc72dc61"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>unsubscribeAll</b> ()</td></tr>
+<tr class="memdesc:a452ef8a62219e36235175becfc72dc61 inherit pub_methods_classtinyrobotics_1_1MessageSource"><td class="mdescLeft">&#160;</td><td class="mdescRight">Remove all registered message handlers. <br /></td></tr>
+<tr class="separator:a452ef8a62219e36235175becfc72dc61 inherit pub_methods_classtinyrobotics_1_1MessageSource"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a98c36b84c000f803e27b164c09d96260 inherit pub_methods_classtinyrobotics_1_1MessageSource"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1MessageSource.html#a98c36b84c000f803e27b164c09d96260">sendMessage</a> (<a class="el" href="structtinyrobotics_1_1Message.html">Message</a>&lt; float &gt; &amp;msg)</td></tr>
+<tr class="memdesc:a98c36b84c000f803e27b164c09d96260 inherit pub_methods_classtinyrobotics_1_1MessageSource"><td class="mdescLeft">&#160;</td><td class="mdescRight">Publish a message to all registered handlers.  <br /></td></tr>
+<tr class="separator:a98c36b84c000f803e27b164c09d96260 inherit pub_methods_classtinyrobotics_1_1MessageSource"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acca83780d0920c0777c5ed4801644878 inherit pub_methods_classtinyrobotics_1_1MessageSource"><td class="memItemLeft" align="right" valign="top"><a id="acca83780d0920c0777c5ed4801644878" name="acca83780d0920c0777c5ed4801644878"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>sendMessage</b> (const <a class="el" href="structtinyrobotics_1_1Message.html">Message</a>&lt; <a class="el" href="classtinyrobotics_1_1Coordinate.html">Coordinate</a>&lt; float &gt; &gt; &amp;msg)</td></tr>
+<tr class="separator:acca83780d0920c0777c5ed4801644878 inherit pub_methods_classtinyrobotics_1_1MessageSource"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8c365effddc5ffc78b8a3532b01047b3 inherit pub_methods_classtinyrobotics_1_1MessageSource"><td class="memItemLeft" align="right" valign="top"><a id="a8c365effddc5ffc78b8a3532b01047b3" name="a8c365effddc5ffc78b8a3532b01047b3"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>sendMessage</b> (const <a class="el" href="structtinyrobotics_1_1Message.html">Message</a>&lt; <a class="el" href="classtinyrobotics_1_1GPSCoordinate.html">GPSCoordinate</a> &gt; &amp;msg)</td></tr>
+<tr class="separator:a8c365effddc5ffc78b8a3532b01047b3 inherit pub_methods_classtinyrobotics_1_1MessageSource"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-methods" name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
@@ -164,15 +188,9 @@ Protected Attributes</h2></td></tr>
 <tr class="memitem:a6a656bbe5556d80493fd770e3253ccc7"><td class="memItemLeft" align="right" valign="top"><a id="a6a656bbe5556d80493fd770e3253ccc7" name="a6a656bbe5556d80493fd770e3253ccc7"></a>
 <a class="el" href="classtinyrobotics_1_1IMotionState2D.html">IMotionState2D</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>motionStateSource</b></td></tr>
 <tr class="separator:a6a656bbe5556d80493fd770e3253ccc7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa4d8d8ac3da84ae479cd339e95c3bc86"><td class="memItemLeft" align="right" valign="top"><a id="aa4d8d8ac3da84ae479cd339e95c3bc86" name="aa4d8d8ac3da84ae479cd339e95c3bc86"></a>
-<a class="el" href="classtinyrobotics_1_1Vehicle.html">Vehicle</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>vehicle</b></td></tr>
-<tr class="separator:aa4d8d8ac3da84ae479cd339e95c3bc86"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5351b8462b50dc19dab61beb8f65c107"><td class="memItemLeft" align="right" valign="top"><a id="a5351b8462b50dc19dab61beb8f65c107" name="a5351b8462b50dc19dab61beb8f65c107"></a>
 <a class="el" href="classtinyrobotics_1_1Path.html">Path</a>&lt; <a class="el" href="classtinyrobotics_1_1Coordinate.html">Coordinate</a>&lt; DistanceM &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>path</b></td></tr>
 <tr class="separator:a5351b8462b50dc19dab61beb8f65c107"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab2b179a6b84c9304ec66fc42577b790b"><td class="memItemLeft" align="right" valign="top"><a id="ab2b179a6b84c9304ec66fc42577b790b" name="ab2b179a6b84c9304ec66fc42577b790b"></a>
-std::vector&lt; MessageContent &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>controls</b></td></tr>
-<tr class="separator:ab2b179a6b84c9304ec66fc42577b790b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a407c3efba665d276a38229f905bef352"><td class="memItemLeft" align="right" valign="top"><a id="a407c3efba665d276a38229f905bef352" name="a407c3efba665d276a38229f905bef352"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>is_active</b> = false</td></tr>
 <tr class="separator:a407c3efba665d276a38229f905bef352"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -212,6 +230,10 @@ float&#160;</td><td class="memItemRight" valign="bottom"><b>resultThrottlePercen
 <tr class="memitem:ace0f314ed82d48becc3e40c5ba81889b"><td class="memItemLeft" align="right" valign="top"><a id="ace0f314ed82d48becc3e40c5ba81889b" name="ace0f314ed82d48becc3e40c5ba81889b"></a>
 float&#160;</td><td class="memItemRight" valign="bottom"><b>resultStreeringAngleDeg</b> = 0.0f</td></tr>
 <tr class="separator:ace0f314ed82d48becc3e40c5ba81889b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pro_attribs_classtinyrobotics_1_1MessageSource"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_classtinyrobotics_1_1MessageSource')"><img src="closed.png" alt="-"/>&#160;Protected Attributes inherited from <a class="el" href="classtinyrobotics_1_1MessageSource.html">MessageSource</a></td></tr>
+<tr class="memitem:ae8917ae7a3eb87d29c94c514e1d5c981 inherit pro_attribs_classtinyrobotics_1_1MessageSource"><td class="memItemLeft" align="right" valign="top"><a id="ae8917ae7a3eb87d29c94c514e1d5c981" name="ae8917ae7a3eb87d29c94c514e1d5c981"></a>
+std::vector&lt; <a class="el" href="classtinyrobotics_1_1MessageHandler.html">MessageHandler</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>messageHandlers_</b></td></tr>
+<tr class="separator:ae8917ae7a3eb87d29c94c514e1d5c981 inherit pro_attribs_classtinyrobotics_1_1MessageSource"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><div class="compoundTemplParams">template&lt;typename T = float&gt;<br />
@@ -223,6 +245,7 @@ class tinyrobotics::MotionController2D&lt; T &gt;</div><p>2D motion controller f
 <li>Accepts a path (sequence of waypoints) and drives the vehicle to follow it.</li>
 <li>Automatically slows down as the vehicle approaches the goal.</li>
 <li>Designed for modular use with different vehicle types and IMU sensors.</li>
+<li><a class="el" href="classtinyrobotics_1_1Vehicle.html" title="Abstract base class for all vehicle types.">Vehicle</a> needs to suscribe to receive control messages (throttle and steering angle).</li>
 </ul>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
