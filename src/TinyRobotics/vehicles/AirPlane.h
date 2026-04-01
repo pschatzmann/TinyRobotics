@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Vehicle.h"
 #include "TinyRobotics/motors/Motors.h"
+#include "Vehicle.h"
 
 namespace tinyrobotics {
 
@@ -31,8 +31,17 @@ namespace tinyrobotics {
  * @endcode
  */
 
-template <typename BrushedMT = BrushedMotor, typename ServoMT = ServoMotor>
+template <typename MotorMT = BrushedMotor, typename ServoMT = ServoMotor>
 class AirPlane : public Vehicle {
+ public:
+  enum ControlSurface {
+    Rudder = 0,
+    Elevator = 1,
+    AileronLeft = 2,
+    AileronRight = 3,
+    NumSurfaces = 4
+  };
+
  public:
   AirPlane() = default;
 
@@ -42,15 +51,23 @@ class AirPlane : public Vehicle {
   }
 
   /** Attach the rudder servo. */
-  void setPinRudder(int pin) { rudder_.attach(pin); }
+  void setPinRudder(int pin) {
+    pins_[Rudder] = pin;
+    servos_[Rudder].setPin(pin);
+  }
 
   /** Attach the elevator servo. */
-  void setPinElevator(int pin) { elevator_.attach(pin); }
+  void setPinElevator(int pin) {
+    pins_[Elevator] = pin;
+    servos_[Elevator].setPin(pin);
+  }
 
-  /** Attach the left aileron servo. */
+  /** Attach the aileron servos. */
   void setPinsAilerons(int leftPin, int rightPin) {
-    aileronLeft_.attach(leftPin);
-    aileronRight_.attach(rightPin);
+    pins_[AileronLeft] = leftPin;
+    pins_[AileronRight] = rightPin;
+    servos_[AileronLeft].setPin(leftPin);
+    servos_[AileronRight].setPin(rightPin);
   }
 
   /** Set throttle (0-100%) */
@@ -66,8 +83,7 @@ class AirPlane : public Vehicle {
 
   /** Set rudder angle (degrees, -30 to 30 typical) */
   void setRudder(int angle) {
-    rudder_.setAngle(angle);
-
+    servos_[Rudder].setAngle(angle);
     // publish rudder update as message for telemetry
     Message<float> msg(MessageContent::Yaw, angle, Unit::AngleDegree);
     msg.source = MessageOrigin::Rudder;
@@ -76,7 +92,7 @@ class AirPlane : public Vehicle {
 
   /** Set elevator angle (degrees, -30 to 30 typical) */
   void setElevator(int angle) {
-    elevator_.setAngle(angle);
+    servos_[Elevator].setAngle(angle);
     // publish elevator update as message for telemetry
     Message<float> msg(MessageContent::Pitch, angle, Unit::AngleDegree);
     msg.source = MessageOrigin::Elevator;
@@ -85,9 +101,8 @@ class AirPlane : public Vehicle {
 
   /** Set aileron angles (degrees, left and right) */
   void setAilerons(int leftAngle, int rightAngle) {
-    aileronLeft_.setAngle(leftAngle);
-    aileronRight_.setAngle(rightAngle);
-
+    servos_[AileronLeft].setAngle(leftAngle);
+    servos_[AileronRight].setAngle(rightAngle);
     // publish aileron update as message for telemetry
     Message<float> msgLeft(MessageContent::Roll, leftAngle, Unit::AngleDegree);
     msgLeft.source = MessageOrigin::Aileron;
@@ -102,15 +117,18 @@ class AirPlane : public Vehicle {
 
   /** Reset state of all controls */
   void end() {
-    setThrottle(0);  
+    setThrottle(0);
     setRudder(0);
     setElevator(0);
     setAilerons(0, 0);
   }
 
   bool isPinsSet() const {
-    return motor_.isPinsSet() && rudder_.isPinsSet() && elevator_.isPinsSet() &&
-           aileronLeft_.isPinsSet() && aileronRight_.isPinsSet();
+    if (!motor_.isPinsSet()) return false;
+    for (const auto& s : servos_) {
+      if (!s.isPinsSet()) return false;
+    }
+    return true;
   }
 
   /** Set pitch (degrees): positive = nose up, negative = nose down */
@@ -124,7 +142,7 @@ class AirPlane : public Vehicle {
 
   bool onMessage(const Message<float>& msg) override {
     float angle;
-    if (!isValidMessageSource(msg.source)) return false;  
+    if (!isValidMessageSource(msg.source)) return false;
     switch (msg.content) {
       case MessageContent::Throttle:
         if (msg.unit != Unit::Percent) return false;
@@ -154,18 +172,17 @@ class AirPlane : public Vehicle {
   }
 
   std::vector<MessageContent> getControls() const override {
-    return {MessageContent::Throttle, MessageContent::Pitch, MessageContent::Roll,
-            MessageContent::Yaw};
+    return {MessageContent::Throttle, MessageContent::Pitch,
+            MessageContent::Roll, MessageContent::Yaw};
   }
 
+  MotorMT& getMotor() { return motor_; }
+  ServoMT& getServo(ControlSurface surface) { return servos_[surface]; }
 
  protected:
-  BrushedMT motor_;
-  int rudderPin_, elevatorPin_, aileronLeftPin_, aileronRightPin_;
-  ServoMT rudder_;
-  ServoMT elevator_;
-  ServoMT aileronLeft_;
-  ServoMT aileronRight_;
+  MotorMT motor_;
+  std::vector<int> pins_ = std::vector<int>(NumSurfaces, -1);
+  std::vector<ServoMT> servos_ = std::vector<ServoMT>(NumSurfaces, ServoMT());
 };
 
 }  // namespace tinyrobotics

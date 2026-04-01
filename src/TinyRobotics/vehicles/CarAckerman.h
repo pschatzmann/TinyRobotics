@@ -24,7 +24,7 @@ namespace tinyrobotics {
  * @endcode
  */
 
-template <typename BrushedMT = BrushedMotor, typename ServoMT = ServoMotor>
+template <typename MotorMT = BrushedMotor, typename ServoMT = ServoMotor>
 class CarAckerman : public Vehicle {
  public:
   CarAckerman() = default;
@@ -100,8 +100,11 @@ class CarAckerman : public Vehicle {
     return {MessageContent::Throttle, MessageContent::SteeringAngle};
   }
 
+  MotorMT& getMotor() { return motor_; }
+  ServoMT& getServo() { return steering_; }
+
  protected:
-  BrushedMT motor_;
+  MotorMT motor_;
   ServoMT steering_;
 };
 

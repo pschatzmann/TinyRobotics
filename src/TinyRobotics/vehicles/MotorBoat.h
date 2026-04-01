@@ -24,7 +24,7 @@ namespace tinyrobotics {
  * @endcode
  */
 
-template <typename BrushedMT = BrushedMotor, typename ServoMT = ServoMotor>
+template <typename MotorMT = BrushedMotor, typename ServoMT = ServoMotor>
 class MotorBoat : public Vehicle {
  public:
   MotorBoat() = default;
@@ -97,8 +97,11 @@ class MotorBoat : public Vehicle {
     return {MessageContent::Throttle, MessageContent::SteeringAngle};
   }
 
+  MotorMT& getMotor() { return motor_; }
+  ServoMT& getServo() { return rudder_; }
+
  protected:
-  BrushedMT motor_;
+  MotorMT motor_;
   ServoMT rudder_;
 };
 

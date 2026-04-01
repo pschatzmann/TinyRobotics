@@ -4,19 +4,22 @@
 
 namespace tinyrobotics {
 
-
 /**
  * @class GenericMotor
  * @ingroup motors
- * @brief Motor abstraction for integrating external/custom motor drivers using callbacks.
+ * @brief Motor abstraction for integrating external/custom motor drivers using
+ * callbacks.
  *
- * This class provides a flexible interface for controlling motors that do not fit the standard
- * interface. The user supplies an external motor object (as a void pointer) and callback functions
- * for starting/stopping the motor and for setting the speed or angle. This allows integration of
- * custom motor drivers or hardware with the TinyRobotics framework.
+ * This class provides a flexible interface for controlling motors that do not
+ * fit the standard interface. The user supplies an external motor object (as a
+ * void pointer) and callback functions for starting/stopping the motor and for
+ * setting the speed or angle. This allows integration of custom motor drivers
+ * or hardware with the TinyRobotics framework.
  *
- * - The @c valueCB callback is mandatory and is called with the desired speed or angle value.
- * - The @c beginCB and @c endCB callbacks are optional and can be used to define custom start/stop logic.
+ * - The @c valueCB callback is mandatory and is called with the desired speed
+ * or angle value.
+ * - The @c beginCB and @c endCB callbacks are optional and can be used to
+ * define custom start/stop logic.
  * - The user motor object can be accessed via @c getMotor<T>().
  *
  * Example usage:
@@ -39,9 +42,9 @@ namespace tinyrobotics {
 
 class GenericMotor : public Motor {
  public:
-  GenericMotor(uint8_t id = 0, void* motor=nullptr) {
+  GenericMotor(uint8_t id = 0, void* motor = nullptr) {
     setID(id);
-    this->motor = motor;  
+    this->motor = motor;
   }
 
   bool begin() override {
@@ -93,7 +96,9 @@ class GenericMotor : public Motor {
   }
 
   /// Optional callback to define end behavior
-  void setEndCallback(void (*endCB)(GenericMotor& motor)) { this->endCB = endCB; }
+  void setEndCallback(void (*endCB)(GenericMotor& motor)) {
+    this->endCB = endCB;
+  }
 
   /// Provides the user motor object
   template <typename T>
@@ -101,8 +106,16 @@ class GenericMotor : public Motor {
     return *static_cast<T*>(motor);
   }
 
-  /// Not applicable for generic callback motors, as pin configuration is user-defined. Always return true.
-  bool isPinsSet() const override { return true;}
+  /// Not supported
+  bool isPinsSet() const override { return true; }
+  /// Not supported
+  void setPin(int pin) { notSupported(); }
+  /// Not supported
+  void setPins(int pin1, int pin2, int pwmPin = -1, int pwmFreq = 20000) {
+    notSupported();
+  }
+  /// Not supported
+  void setPins(int stepPin, int dirPin, int enablePin = -1) { notSupported(); }
 
  protected:
   void* motor = nullptr;  // Optional pointer to user motor object for callbacks
@@ -116,6 +129,9 @@ class GenericMotor : public Motor {
   static void defaultEnd(GenericMotor& motor) {
     motor.setSpeed(
         0);  // Default behavior: stop the motor by setting speed to 0
+  }
+  void notSupported() {
+    TRLogger.error("This method is not supported for GenericMotor");
   }
 };
 

@@ -13,7 +13,8 @@ namespace tinyrobotics {
  * motors are on the right side.
  *
  * This class abstracts a simple N-wheel-drive car:
- *  - N motor count (e.g. 4: front left, front right, rear left, rear right) via HBridge
+ *  - N motor count (e.g. 4: front left, front right, rear left, rear right) via
+ * HBridge
  *  - No steering servo: direction is controlled by varying motor speeds
  *
  * Usage Example:
@@ -29,7 +30,7 @@ namespace tinyrobotics {
  * @endcode
  */
 
-template <size_t N = 4, typename BrushedMT = BrushedMotor>
+template <size_t N = 4, typename MotorMT = BrushedMotor>
 class CarDifferential : public Vehicle {
  public:
   CarDifferential() : speed_(0), turn_(0) {}
@@ -64,7 +65,7 @@ class CarDifferential : public Vehicle {
     updateMotors();
   }
 
-  void setSteeringAngle(Angle angle){
+  void setSteeringAngle(Angle angle) {
     setSteeringAngle(static_cast<int>(angle.getValue(AngleUnit::DEG)));
   }
 
@@ -99,7 +100,7 @@ class CarDifferential : public Vehicle {
   }
 
   bool onMessage(const Message<float>& msg) override {
-    if (!isValidMessageSource(msg.source)) return false;  
+    if (!isValidMessageSource(msg.source)) return false;
     switch (msg.content) {
       case MessageContent::Throttle:
         if (msg.unit != Unit::Percent) return false;
@@ -120,8 +121,10 @@ class CarDifferential : public Vehicle {
     return {MessageContent::Throttle, MessageContent::SteeringAngle};
   }
 
+  MotorMT& getMotor(size_t index) { return motors_[index % N]; }
+
  protected:
-  BrushedMT motors_[N];
+  MotorMT motors_[N];
   float motorGain_[N] = {1.0f, 1.0f, 1.0f, 1.0f};
   float speed_, turn_;
 

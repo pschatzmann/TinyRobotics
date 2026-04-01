@@ -139,6 +139,8 @@ class Quadrotor : public Vehicle {
             MessageContent::Yaw};
   }
 
+  MotorT& getMotor(QuadrotorMotorNo motor) { return motors_[motor]; }
+
  protected:
   MotorT motors_[4];
   float motorGain_[4] = {1.0f, 1.0f, 1.0f, 1.0f};
