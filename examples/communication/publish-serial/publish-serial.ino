@@ -16,6 +16,7 @@
  *
  * @author Phil Schatzmann
  */
+
 #include <TinyRobotics.h>
 
 CarAckerman car;
@@ -37,8 +38,8 @@ void setup() {
 
 void loop() {
   // Simulate publishing messages from the car
-  car.setSpeed(1.5f, SpeedUnit::MPS, MessageOrigin::RemoteControl);
-  car.setSteeringAngle(15.0f, AngleUnit::DEG, MessageOrigin::RemoteControl);
+  car.setSpeed(10); // percent
+  car.setSteeringAngle(15); // degree
 
   delay(5000);  // Wait before publishing next set of messages
 }

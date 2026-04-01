@@ -81,8 +81,8 @@ class Coordinate : public Serializable {
   /// to another
   float bearing(const Coordinate& other,
                 AngleUnit unit = AngleUnit::DEG) const {
-    AngleDeg bearingDeg = bearingDeg(other);
-    Angle angle(bearingDeg, AngleUnit::DEG);
+    AngleDeg bearingDegValue = bearingDeg(other);
+    Angle angle(bearingDegValue, AngleUnit::DEG);
     return angle.getValue(unit);
   }
 
@@ -166,15 +166,16 @@ class Coordinate : public Serializable {
     z = other.z;
   }
 
-  // Equality operators for use in std::unordered_map and comparisons
+  /// Equality operators for use in std::unordered_map and comparisons
   bool operator==(const Coordinate<T>& other) const {
     return x == other.x && y == other.y && z == other.z;
   }
+
   bool operator!=(const Coordinate<T>& other) const {
     return !(*this == other);
   }
 
-  // Lexicographical comparison for STL containers (priority_queue, set, etc.)
+  /// Lexicographical comparison for STL containers (priority_queue, set, etc.)
   bool operator<(const Coordinate& other) const {
     if (x != other.x) return x < other.x;
     if (y != other.y) return y < other.y;
@@ -213,7 +214,8 @@ class Coordinate : public Serializable {
 
   const char* getTypeName() const { return "Coordinate"; }
 
- protected:
+protected:
+
   AngleDeg bearingDeg(const Coordinate& other) const {
     float dx = other.x - x;
     float dy = other.y - y;

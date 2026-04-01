@@ -146,75 +146,29 @@ Global variables use 77152 bytes (23%) of dynamic memory, leaving 250528 bytes f
 SUCCESS: ./communication/micro-ros/micro-ros.ino
 -----------------------------
 Compiling ./communication/publish-serial/publish-serial.ino...
-/home/pschatzmann/Development/Arduino/libraries/TinyRobotics/examples/communication/publish-serial/publish-serial.ino: In function 'void loop()':
-/home/pschatzmann/Development/Arduino/libraries/TinyRobotics/examples/communication/publish-serial/publish-serial.ino:40:36: error: 'MPS' is not a member of 'tinyrobotics::DistanceUnit'
-   40 |   car.setSpeed(1.5f, DistanceUnit::MPS, MessageSource::Controller);
-      |                                    ^~~
-/home/pschatzmann/Development/Arduino/libraries/TinyRobotics/examples/communication/publish-serial/publish-serial.ino:40:56: error: 'Controller' is not a member of 'tinyrobotics::MessageSource'
-   40 |   car.setSpeed(1.5f, DistanceUnit::MPS, MessageSource::Controller);
-      |                                                        ^~~~~~~~~~
-/home/pschatzmann/Development/Arduino/libraries/TinyRobotics/examples/communication/publish-serial/publish-serial.ino:41:62: error: 'Controller' is not a member of 'tinyrobotics::MessageSource'
-   41 |   car.setSteeringAngle(15.0f, AngleUnit::DEG, MessageSource::Controller);
-      |                                                              ^~~~~~~~~~
-
-[92mUsed library[0m     [92mVersion[0m [90mPath[0m
-[93mTinyRobotics[0m     0.1.0   [90m/home/pschatzmann/Development/Arduino/libraries/TinyRobotics[0m
-[93mESP32Servo[0m       3.1.3   [90m/home/pschatzmann/Development/Arduino/libraries/ESP32Servo[0m
-[93mFastAccelStepper[0m 1.2.5   [90m/home/pschatzmann/Development/Arduino/libraries/FastAccelStepper[0m
-
-[92mUsed platform[0m [92mVersion[0m [90mPath[0m
-[93mesp32:esp32[0m   3.3.7   [90m/home/pschatzmann/.arduino15/packages/esp32/hardware/esp32/3.3.7[0m
-Error during build: exit status 1
-FAIL: ./communication/publish-serial/publish-serial.ino
+Sketch uses 300031 bytes (22%) of program storage space. Maximum is 1310720 bytes.
+Global variables use 22552 bytes (6%) of dynamic memory, leaving 305128 bytes for local variables. Maximum is 327680 bytes.
+SUCCESS: ./communication/publish-serial/publish-serial.ino
 -----------------------------
 Compiling ./communication/messagebus/messagebus.ino...
 Sketch uses 930598 bytes (70%) of program storage space. Maximum is 1310720 bytes.
 Global variables use 47712 bytes (14%) of dynamic memory, leaving 279968 bytes for local variables. Maximum is 327680 bytes.
 SUCCESS: ./communication/messagebus/messagebus.ino
 -----------------------------
-Compiling ./control/slam/slam.ino...
-/home/pschatzmann/Development/Arduino/libraries/TinyRobotics/examples/control/slam/slam.ino:3:10: fatal error: LDS.h: No such file or directory
-    3 | #include <LDS.h>  // Assumes LDS library is installed and provides LDS lidar interface
-      |          ^~~~~~~
-compilation terminated.
-
-[92mUsed platform[0m [92mVersion[0m [90mPath[0m
-[93mesp32:esp32[0m   3.3.7   [90m/home/pschatzmann/.arduino15/packages/esp32/hardware/esp32/3.3.7[0m
-Error during build: exit status 1
-FAIL: ./control/slam/slam.ino
------------------------------
 Compiling ./control/control/control.ino...
-/home/pschatzmann/Development/Arduino/libraries/TinyRobotics/examples/control/control/control.ino:45:29: error: macro "F" passed 2 arguments, but takes just 1
-   45 | Coordinate<DistanceM> F(4, 1);
-      |                             ^
-In file included from /home/pschatzmann/.arduino15/packages/esp32/hardware/esp32/3.3.7/cores/esp32/Arduino.h:194,
-                 from /home/pschatzmann/.cache/arduino/sketches/6F1A38B210B1DB81AA7220764768CE76/sketch/control.ino.cpp:1:
-/home/pschatzmann/.arduino15/packages/esp32/hardware/esp32/3.3.7/cores/esp32/WString.h:40:9: note: macro "F" defined here
-   40 | #define F(string_literal)  (FPSTR(PSTR(string_literal)))
-      |         ^
-
-[92mUsed library[0m            [92mVersion[0m [90mPath[0m
-[93mAdafruit ICM20X[0m         2.0.7   [90m/home/pschatzmann/Development/Arduino/libraries/Adafruit_ICM20X[0m
-[93mAdafruit BusIO[0m          1.17.4  [90m/home/pschatzmann/Development/Arduino/libraries/Adafruit_BusIO[0m
-[93mWire[0m                    3.3.7   [90m/home/pschatzmann/.arduino15/packages/esp32/hardware/esp32/3.3.7/libraries/Wire[0m
-[93mSPI[0m                     3.3.7   [90m/home/pschatzmann/.arduino15/packages/esp32/hardware/esp32/3.3.7/libraries/SPI[0m
-[93mAdafruit Unified Sensor[0m 1.1.15  [90m/home/pschatzmann/Development/Arduino/libraries/Adafruit_Unified_Sensor[0m
-[93mTinyRobotics[0m            0.1.0   [90m/home/pschatzmann/Development/Arduino/libraries/TinyRobotics[0m
-[93mESP32Servo[0m              3.1.3   [90m/home/pschatzmann/Development/Arduino/libraries/ESP32Servo[0m
-[93mFastAccelStepper[0m        1.2.5   [90m/home/pschatzmann/Development/Arduino/libraries/FastAccelStepper[0m
-
-[92mUsed platform[0m [92mVersion[0m [90mPath[0m
-[93mesp32:esp32[0m   3.3.7   [90m/home/pschatzmann/.arduino15/packages/esp32/hardware/esp32/3.3.7[0m
-Error during build: exit status 1
-FAIL: ./control/control/control.ino
+Sketch uses 323959 bytes (24%) of program storage space. Maximum is 1310720 bytes.
+Global variables use 23056 bytes (7%) of dynamic memory, leaving 304624 bytes for local variables. Maximum is 327680 bytes.
+SUCCESS: ./control/control/control.ino
 -----------------------------
-Compiling ./maps&planning/gridmap-dijkstra/girdmap-dijkstra.ino...
-Can't open sketch: main file missing from sketch: /home/pschatzmann/Development/Arduino/libraries/TinyRobotics/examples/maps&planning/gridmap-dijkstra/gridmap-dijkstra.ino
-FAIL: ./maps&planning/gridmap-dijkstra/girdmap-dijkstra.ino
+Compiling ./maps&planning/gridmap-dijkstra/gridmap-dijkstra.ino...
+Sketch uses 298447 bytes (22%) of program storage space. Maximum is 1310720 bytes.
+Global variables use 22316 bytes (6%) of dynamic memory, leaving 305364 bytes for local variables. Maximum is 327680 bytes.
+SUCCESS: ./maps&planning/gridmap-dijkstra/gridmap-dijkstra.ino
 -----------------------------
-Compiling ./maps&planning/gridmap-astar/girdmap-astar.ino...
-Can't open sketch: main file missing from sketch: /home/pschatzmann/Development/Arduino/libraries/TinyRobotics/examples/maps&planning/gridmap-astar/gridmap-astar.ino
-FAIL: ./maps&planning/gridmap-astar/girdmap-astar.ino
+Compiling ./maps&planning/gridmap-astar/gridmap-astar.ino...
+Sketch uses 300843 bytes (22%) of program storage space. Maximum is 1310720 bytes.
+Global variables use 22324 bytes (6%) of dynamic memory, leaving 305356 bytes for local variables. Maximum is 327680 bytes.
+SUCCESS: ./maps&planning/gridmap-astar/gridmap-astar.ino
 -----------------------------
 Compiling ./maps&planning/plannedpath/plannedpath.ino...
 Sketch uses 287404 bytes (21%) of program storage space. Maximum is 1310720 bytes.

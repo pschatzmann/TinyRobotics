@@ -50,6 +50,9 @@ class Transform2D {
   Coordinate<DistanceM> pos;     ///< Position (x, y) in meters
   float heading_deg;  ///< Heading in degrees (0 = x axis)
 
+  /// Get heading in specified unit (degrees or radians)
+  float getHeading(AngleUnit unit) const { return Angle(heading_deg,AngleUnit::DEG).getValue(unit); }
+
   /**
    * @brief  Applies this transform to a local coordinate, returning the
    * coordinate in the global frame. The local coordinate is first rotated by

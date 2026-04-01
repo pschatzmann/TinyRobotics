@@ -32,7 +32,7 @@ class MotionController2D {
  public:
   MotionController2D(IMotionState2D& motionState, Vehicle& vehicle,
                      float maxSpeedKmh = 10, float accelDistanceM = 2.0f)
-      : imu(imu),
+      : motionStateSource(motionState),
         vehicle(vehicle),
         accelDistanceM(accelDistanceM),
         maxSpeedKmh(maxSpeedKmh) {
@@ -83,7 +83,7 @@ class MotionController2D {
     is_active = true;
     controls = vehicle.getControls();
     if (!hasStartCoordinate) {
-      startCoordinate = imu.getPosition();
+      startCoordinate = motionStateSource.getPosition();
       hasStartCoordinate = true;
     }
     return true;
@@ -100,16 +100,17 @@ class MotionController2D {
       vehicle.end();
       return;
     }
-    Coordinate<DistanceM> currentPos = imu.getPosition();
+    Coordinate<DistanceM> currentPos = motionStateSource.getPosition();
     Coordinate<DistanceM> targetPos = path[0];
-    float currentHeading = imu.getHeadingAngleDeg();
+    float currentHeading = motionStateSource.getHeading().getValue(AngleUnit::DEG);
     float distanceToTarget = 0;
     float desiredHeading = 0;
     handleWaypoint(currentPos, targetPos, distanceToTarget, desiredHeading);
     float headingError = computeHeadingError(desiredHeading, currentHeading);
-    float currentSpeedKmh = imu.getSpeedKmh();
-    float distanceFromStartM = startCoordinate.distanceM(currentPos);
+    float currentSpeedKmh = motionStateSource.getSpeed().getValue(SpeedUnit::KPH);
+    float distanceFromStartM = startCoordinate.distance(currentPos, DistanceUnit::M);
     updateSpeed(distanceFromStartM, distanceToTarget, currentSpeedKmh);
+
     sendControlMessages(distanceToTarget, headingError, currentSpeedKmh);
   }
 
@@ -123,8 +124,12 @@ class MotionController2D {
     if (ref != nullptr) onGoaldRef = ref;
   }
 
- protected:
-  IMU2D<T>& imu;
+  float getThrottlePercent() const { return resultThrottlePercent; }
+  float getSteeringAngleDeg() const { return resultStreeringAngleDeg; }
+  Angle getSteeringAngle() const { return Angle(resultStreeringAngleDeg, AngleUnit::DEG); }
+
+  protected:
+  IMotionState2D& motionStateSource;
   Vehicle& vehicle;
   Path<Coordinate<DistanceM>> path;
   std::vector<MessageContent> controls;
@@ -139,35 +144,37 @@ class MotionController2D {
   float targetAccuracyM = 0.01f;
   bool (*onGoalCallback)(void*) = nullptr;
   void* onGoaldRef = this;
+  float resultThrottlePercent = 0.0f;
+  float resultStreeringAngleDeg = 0.0f;
 
   /// Calculate desired speed based on distance to target and distance from
   /// start
   void updateSpeed(float distanceFromStartM, float distanceToTarget,
                    float currentSpeedKmh) {
     // Compute a desired speed profile: slow down as you approach the target
-    float minSpeed = 0.0f;
-    float maxSpeed = maxSpeedKmh;
-    desiredSpeedKmh = maxSpeed;  // * (distanceToTarget / accelDistanceM);
+    float minSpeedKmh = 0.0f;
+    float maxSpeedKmh = maxSpeedKmh;
+    desiredSpeedKmh = maxSpeedKmh;  // * (distanceToTarget / accelDistanceM);
     if (distanceToTarget < accelDistanceM) {
-      desiredSpeedKmh = maxSpeed * (distanceToTarget / accelDistanceM);
+      desiredSpeedKmh = maxSpeedKmh * (distanceToTarget / accelDistanceM);
     }
     if (distanceFromStartM < accelDistanceM) {
-      desiredSpeedKmh = maxSpeed * (distanceFromStartM / accelDistanceM);
+      desiredSpeedKmh = maxSpeedKmh * (distanceFromStartM / accelDistanceM);
     }
-    if (desiredSpeedKmh > maxSpeed) desiredSpeedKmh = maxSpeed;
-    if (desiredSpeedKmh < minSpeed) desiredSpeedKmh = minSpeed;
+    if (desiredSpeedKmh > maxSpeedKmh) desiredSpeedKmh = maxSpeedKmh;
+    if (desiredSpeedKmh < minSpeedKmh) desiredSpeedKmh = minSpeedKmh;
   }
 
   /// Handle the current waypoint: calculate distance and desired heading
   void handleWaypoint(const Coordinate<DistanceM>& currentPos,
-                      Coordinate<DistanceM>& targetPos, float& distanceToTarget,
-                      float& desiredHeading) {
+                      Coordinate<DistanceM>& targetPos, float& distanceToTargetM,
+                      float& desiredHeadingDeg) {
     // Use class variable targetAccuracyM
-    distanceToTarget = 0;
-    while (distanceToTarget < targetAccuracyM) {
-      desiredHeading = currentPos.bearingDeg(targetPos);
-      distanceToTarget = currentPos.distanceM(targetPos);
-      if (distanceToTarget < targetAccuracyM) {
+    distanceToTargetM = 0;
+    while (distanceToTargetM < targetAccuracyM) {
+      desiredHeadingDeg = currentPos.bearing(targetPos, AngleUnit::DEG);
+      distanceToTargetM = currentPos.distance(targetPos, DistanceUnit::M);
+      if (distanceToTargetM < targetAccuracyM) {
         path.removeHead();
         if (path.isEmpty()) {
           if (onGoalCallback) {
@@ -197,11 +204,11 @@ class MotionController2D {
         case MessageContent::Throttle:
           msg.content = MessageContent::Throttle;
           // Use PID to map speed to throttle
-          msg.value = pidSpeed_.calculate(desiredSpeedKmh, currentSpeedKmh);
+          msg.value = resultThrottlePercent = pidSpeed_.calculate(desiredSpeedKmh, currentSpeedKmh);
           break;
         case MessageContent::SteeringAngle:
           msg.content = MessageContent::SteeringAngle;
-          msg.value = pidSteering_.calculate(0.0f, headingError);
+          msg.value = resultStreeringAngleDeg = pidSteering_.calculate(0.0f, headingError);
           break;
         default:
           continue;
