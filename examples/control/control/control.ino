@@ -86,6 +86,8 @@ void setup() {
     controller.setPath(path);
     controller.begin();
     odometry.begin(base, Distance(wheelBase, DistanceUnit::M));
+
+    // update every 100ms (adjust as needed)
     controllerScheduler.begin(100, updateController);
   } else {
     Serial.println("No path found!");
