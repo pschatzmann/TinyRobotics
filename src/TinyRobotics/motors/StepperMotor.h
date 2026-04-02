@@ -9,7 +9,7 @@
 namespace tinyrobotics {
 
 /**
- * @class Stepper
+ * @class StepperMotor
  * @ingroup motors
  * @brief Stepper motor driver using FastAccelStepper for Arduino.
  *
