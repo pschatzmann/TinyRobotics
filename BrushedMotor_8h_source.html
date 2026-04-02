@@ -132,10 +132,10 @@ $(function() {
 <div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>  <span class="keywordtype">bool</span> begin() {</div>
 <div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    <span class="keywordflow">if</span> (!<a class="code hl_function" href="classtinyrobotics_1_1BrushedMotor.html#aab121fc05ce8562504b0970668fe3f3f">isPinsSet</a><a class="code hl_function" href="classtinyrobotics_1_1BrushedMotor.html#aab121fc05ce8562504b0970668fe3f3f">(</a><a class="code hl_function" href="classtinyrobotics_1_1BrushedMotor.html#aab121fc05ce8562504b0970668fe3f3f">)</a>) <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
 <div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span> </div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>    pinMode(pinIn1, <a class="code hl_define" href="Arduino_8h.html#a61a3c9a18380aafb6e430e79bf596557">OUTPUT</a>);</div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>    pinMode(pinIn2, <a class="code hl_define" href="Arduino_8h.html#a61a3c9a18380aafb6e430e79bf596557">OUTPUT</a>);</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>    pinMode(pinIn1, OUTPUT);</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>    pinMode(pinIn2, OUTPUT);</div>
 <div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span> </div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    pinMode(pinPWM, <a class="code hl_define" href="Arduino_8h.html#a61a3c9a18380aafb6e430e79bf596557">OUTPUT</a>);</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    pinMode(pinPWM, OUTPUT);</div>
 <div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span><span class="preprocessor">#</span><span class="preprocessor">ifdef</span> <span class="preprocessor">SUPPORTS_ANALOG_WRITE_FREQ</span></div>
 <div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    <span class="keywordflow">if</span> (pwmFreq &gt; 0) analogWriteFreq(pinPWM, pwmFreq);</div>
 <div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span><span class="preprocessor">#</span><span class="preprocessor">endif</span></div>
@@ -182,8 +182,8 @@ $(function() {
 <div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>  <span class="keywordtype">bool</span> is_reverse = <span class="keyword">false</span>;</div>
 <div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span> </div>
 <div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>  <span class="keywordtype">bool</span> stop() {</div>
-<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>    digitalWrite(pinIn1, <a class="code hl_define" href="Arduino_8h.html#ab811d8c6ff3a505312d3276590444289">LOW</a>);</div>
-<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>    digitalWrite(pinIn2, <a class="code hl_define" href="Arduino_8h.html#ab811d8c6ff3a505312d3276590444289">LOW</a>);</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>    digitalWrite(pinIn1, LOW);</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>    digitalWrite(pinIn2, LOW);</div>
 <div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>    <span class="keywordflow">if</span> (pinPWM != -1) analogWrite(pinPWM, 0);</div>
 <div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
 <div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>  }</div>
@@ -193,12 +193,12 @@ $(function() {
 <div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classtinyrobotics_1_1BrushedMotor.html#ac1711bd1cf3c938878217312b88cd319">setSpeedValue</a>(<span class="keywordtype">int</span> speed) {</div>
 <div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>    speed = constrain(speed, minSpeed, maxSpeed);</div>
 <div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>    <span class="keywordflow">if</span> (speed &gt; 0) {</div>
-<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>      digitalWrite(pinIn1, is_reverse ? <a class="code hl_define" href="Arduino_8h.html#ab811d8c6ff3a505312d3276590444289">LOW</a> : <a class="code hl_define" href="Arduino_8h.html#a5bb885982ff66a2e0a0a45a8ee9c35e2">HIGH</a>);</div>
-<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>      digitalWrite(pinIn2, is_reverse ? <a class="code hl_define" href="Arduino_8h.html#a5bb885982ff66a2e0a0a45a8ee9c35e2">HIGH</a> : <a class="code hl_define" href="Arduino_8h.html#ab811d8c6ff3a505312d3276590444289">LOW</a>);</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>      digitalWrite(pinIn1, is_reverse ? LOW : HIGH);</div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>      digitalWrite(pinIn2, is_reverse ? HIGH : LOW);</div>
 <div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>      <span class="keywordflow">if</span> (pinPWM != -1) analogWrite(pinPWM, speed);</div>
 <div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>    } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (speed &lt; 0) {</div>
-<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>      digitalWrite(pinIn1, is_reverse ? <a class="code hl_define" href="Arduino_8h.html#a5bb885982ff66a2e0a0a45a8ee9c35e2">HIGH</a> : <a class="code hl_define" href="Arduino_8h.html#ab811d8c6ff3a505312d3276590444289">LOW</a>);</div>
-<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>      digitalWrite(pinIn2, is_reverse ? <a class="code hl_define" href="Arduino_8h.html#ab811d8c6ff3a505312d3276590444289">LOW</a> : <a class="code hl_define" href="Arduino_8h.html#a5bb885982ff66a2e0a0a45a8ee9c35e2">HIGH</a>);</div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>      digitalWrite(pinIn1, is_reverse ? HIGH : LOW);</div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>      digitalWrite(pinIn2, is_reverse ? LOW : HIGH);</div>
 <div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>      <span class="keywordflow">if</span> (pinPWM != -1) analogWrite(pinPWM, -speed);</div>
 <div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>    } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (speed == 0) {</div>
 <div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>      stop();</div>
@@ -207,10 +207,7 @@ $(function() {
 <div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>};</div>
 <div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span> </div>
 <div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>}  <span class="comment">// namespace tinyrobotics</span></div>
-<div class="ttc" id="aArduino_8h_html_a5bb885982ff66a2e0a0a45a8ee9c35e2"><div class="ttname"><a href="Arduino_8h.html#a5bb885982ff66a2e0a0a45a8ee9c35e2">HIGH</a></div><div class="ttdeci">#define HIGH</div><div class="ttdef"><b>Definition:</b> Arduino.h:24</div></div>
-<div class="ttc" id="aArduino_8h_html_a61a3c9a18380aafb6e430e79bf596557"><div class="ttname"><a href="Arduino_8h.html#a61a3c9a18380aafb6e430e79bf596557">OUTPUT</a></div><div class="ttdeci">#define OUTPUT</div><div class="ttdef"><b>Definition:</b> Arduino.h:18</div></div>
-<div class="ttc" id="aArduino_8h_html_a7bba4c1359a26349630ae3f8b478667a"><div class="ttname"><a href="Arduino_8h.html#a7bba4c1359a26349630ae3f8b478667a">map</a></div><div class="ttdeci">#define map(x, in_min, in_max, out_min, out_max)</div><div class="ttdef"><b>Definition:</b> Arduino.h:61</div></div>
-<div class="ttc" id="aArduino_8h_html_ab811d8c6ff3a505312d3276590444289"><div class="ttname"><a href="Arduino_8h.html#ab811d8c6ff3a505312d3276590444289">LOW</a></div><div class="ttdeci">#define LOW</div><div class="ttdef"><b>Definition:</b> Arduino.h:27</div></div>
+<div class="ttc" id="aArduino_8h_html_a7bba4c1359a26349630ae3f8b478667a"><div class="ttname"><a href="Arduino_8h.html#a7bba4c1359a26349630ae3f8b478667a">map</a></div><div class="ttdeci">#define map(x, in_min, in_max, out_min, out_max)</div><div class="ttdef"><b>Definition:</b> Arduino.h:52</div></div>
 <div class="ttc" id="aclasstinyrobotics_1_1BrushedMotor_html"><div class="ttname"><a href="classtinyrobotics_1_1BrushedMotor.html">tinyrobotics::BrushedMotor</a></div><div class="ttdoc">High-level H-Bridge motor driver class for bidirectional DC motor control.</div><div class="ttdef"><b>Definition:</b> BrushedMotor.h:37</div></div>
 <div class="ttc" id="aclasstinyrobotics_1_1BrushedMotor_html_a47d2548879868fc9a838889e463d9314"><div class="ttname"><a href="classtinyrobotics_1_1BrushedMotor.html#a47d2548879868fc9a838889e463d9314">tinyrobotics::BrushedMotor::setReverse</a></div><div class="ttdeci">void setReverse(bool reverse)</div><div class="ttdoc">Invert the direction logic.</div><div class="ttdef"><b>Definition:</b> BrushedMotor.h:77</div></div>
 <div class="ttc" id="aclasstinyrobotics_1_1BrushedMotor_html_a6460c640ace6f5e09db29cd079c756f4"><div class="ttname"><a href="classtinyrobotics_1_1BrushedMotor.html#a6460c640ace6f5e09db29cd079c756f4">tinyrobotics::BrushedMotor::setPins</a></div><div class="ttdeci">void setPins(int pin1, int pin2, int pwmPin=-1, int pwmFreq=20000)</div><div class="ttdoc">Set the pins for the HBridge after construction.</div><div class="ttdef"><b>Definition:</b> BrushedMotor.h:47</div></div>
