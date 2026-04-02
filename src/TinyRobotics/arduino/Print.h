@@ -70,6 +70,6 @@ class Print {
 
 }  // namespace tinyrobotics_arduino
 
-#ifdef USE_ARDUINO_EMULATION
+#ifdef USE_TR_ARDUINO_EMULATION
 using namespace tinyrobotics_arduino;
 #endif

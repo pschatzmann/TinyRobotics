@@ -1,5 +1,5 @@
 #pragma once
-#ifdef USE_ARDUINO_EMULATION
+#ifdef USE_TR_ARDUINO_EMULATION
 #include <algorithm>
 #include <chrono>
 #include <cmath>

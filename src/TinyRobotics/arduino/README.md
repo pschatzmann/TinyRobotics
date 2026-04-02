@@ -30,9 +30,11 @@ Serial.write('A'); // Outputs 'A' to stdout in native builds
 ## Defines
 
 The emulator can be configured with the following defines:
+- USE_TR_ARDUINO_EMULATION: activate the TinyRobotics Arduino Emulation
 - USE_MILLIS_CHRONO: if set to true we implement millis() with the help of the c++ chrono. If false you need to provide your own implementation
 - USE_DUMMY_PIN_FUNCTIONS: if set to true we just log the method calls; set to false to provide your own implementations
 - DUSE_PRINT_CHAR: if set to true we print to the console; if set to flase provide your own implementation for bool print_char(uint8_t)
+- USE_TR_NAMESPACE: if defined we do not need to define the namespace in the Arduino Sketch.
 
 ## Maintainers
 
