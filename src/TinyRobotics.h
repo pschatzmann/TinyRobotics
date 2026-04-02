@@ -29,7 +29,7 @@
 #include "TinyRobotics/odometry/Odometry.h"
 #include "TinyRobotics/fusion/Fusion.h"
 
-#ifdef ARDUINO
+#if defined(ARDUINO) || defined(USE_NAMESPACE)
 using namespace tinyrobotics;
 #endif
 

@@ -1,24 +1,33 @@
 #pragma once
-
+#ifdef USE_ARDUINO_EMULATION
 #include <algorithm>
 #include <chrono>
 #include <cmath>
 #include <cstdint>
 #include <iostream>
-
-#include "Print.h"
-#include "Stream.h"
 #include "TinyRobotics/utils/Config.h"
+#include "Stream.h"
 #include "TinyRobotics/utils/LoggerClass.h"
 
-#ifndef ARDUINO
-#define ARDUINO 1
+
+// Math helper: constrains a value between a minimum and maximum
+#ifndef constrain
+template <typename T, typename L, typename H>
+constexpr T constrain(T amt, L low, H high) {
+  return std::min(std::max(amt, static_cast<T>(low)), static_cast<T>(high));
+}
+#endif
+
+// Math helper: maps a value from one range to another
+#ifndef map
+#define map(x, in_min, in_max, out_min, out_max)                        \
+  (((x) - (in_min)) * ((out_max) - (out_min)) / ((in_max) - (in_min)) + \
+   (out_min))
 #endif
 
 namespace tinyrobotics_arduino {
-
 enum PinMode { INPUT = 0, OUTPUT = 1 };
-enum PinState { LOW = 0, HIGH = 1 };
+enum DigitalValue { LOW = 0, HIGH = 1 };
 
 // Timing
 #if USE_MILLIS_CHRONO
@@ -54,20 +63,6 @@ int analogRead(int);
 void analogWrite(int, int);
 #endif
 
-// Math helper: constrains a value between a minimum and maximum
-#ifndef constrain
-template <typename T, typename L, typename H>
-constexpr T constrain(T amt, L low, H high) {
-  return std::min(std::max(amt, static_cast<T>(low)), static_cast<T>(high));
-}
-#endif
-
-// Math helper: maps a value from one range to another
-#ifndef map
-#define map(x, in_min, in_max, out_min, out_max)                        \
-  (((x) - (in_min)) * ((out_max) - (out_min)) / ((in_max) - (in_min)) + \
-   (out_min))
-#endif
 
 #if USE_PRINT_CHAR
 bool print_char(uint8_t ch) {
@@ -80,14 +75,17 @@ bool print_char(uint8_t);
 
 
 /// Serial stub class
-struct HardwareSerial : public Stream {
+struct HardwareSerial1 : public Stream {
   void begin(unsigned long) {}
+  int read() override { return -1; } 
+  int peek() override { return -1; }
+  int available() override { return 0; }
   size_t write(uint8_t ch) override {
     return print_char(ch) ? 1 : 0;
   }
 };
 
-static HardwareSerial Serial;
+static HardwareSerial1 Serial;
 
 }  // namespace tinyrobotics_arduino
 
@@ -100,3 +98,5 @@ int main() {
     loop();
   }
 }
+
+#endif
