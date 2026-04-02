@@ -53,7 +53,7 @@ float accelDistanceM = 0.5; // distance to start decelerating in meters
 float wheelBase = 0.3f;  // distance between front and rear axles in meters
 MotionController2D<float> controller(odometry, maxSpeedKmh, accelDistanceM);
 
-Scheduler controllerScheduler;
+Scheduler scheduler;
 
 void buildMap() {
   pathMap.addSegment(A, B);
@@ -88,10 +88,10 @@ void setup() {
     odometry.begin(base, Distance(wheelBase, DistanceUnit::M));
 
     // update every 100ms (adjust as needed)
-    controllerScheduler.begin(100, updateController);
+    scheduler.begin(100, updateController);
   } else {
     Serial.println("No path found!");
   }
 }
 
-void loop() { controllerScheduler.run(); }
+void loop() { scheduler.run(); }

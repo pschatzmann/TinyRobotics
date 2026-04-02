@@ -86,6 +86,7 @@ class MotionController2D : public MessageSource {
   /// Start the controller and initialize state
   bool begin() {
     is_active = true;
+    has_distance = false;
     if (!hasStartCoordinate) {
       startCoordinate = motionStateSource.getPosition();
       hasStartCoordinate = true;
@@ -105,7 +106,10 @@ class MotionController2D : public MessageSource {
     float currentHeading =
         motionStateSource.getHeading().getValue(AngleUnit::DEG);
     float desiredHeading = 0;
-    handleWaypoint(currentPos, targetPos, distanceToTargetM, desiredHeading);
+    if (!handleWaypoint(currentPos, targetPos, distanceToTargetM, desiredHeading)){
+      // new waypoint
+      return;
+    }
     float headingError = computeHeadingError(desiredHeading, currentHeading);
     float currentSpeedKmh =
         motionStateSource.getSpeed().getValue(SpeedUnit::KPH);
@@ -113,6 +117,7 @@ class MotionController2D : public MessageSource {
         startCoordinate.distance(currentPos, DistanceUnit::M);
     updateSpeed(distanceFromStartM, distanceToTargetM, currentSpeedKmh);
 
+    has_distance = true;
     sendControlMessages(distanceToTargetM, headingError, currentSpeedKmh);
   }
 
@@ -137,12 +142,16 @@ class MotionController2D : public MessageSource {
   }
 
   /// Returns true if the goal has been reached
-  bool isGoalReached() const { return distanceToTargetM < targetAccuracyM; }
+  bool isGoalReached() const {
+    if (!has_distance) return false;
+    return distanceToTargetM < targetAccuracyM;
+  }
 
  protected:
   IMotionState2D& motionStateSource;
   Path<Coordinate<DistanceM>> path;
   bool is_active = false;
+  bool has_distance = false;
   float accelDistanceM = 2.0f;
   float maxSpeedKmh = 10.0f;
   float desiredSpeedKmh = 0.0f;
@@ -152,7 +161,6 @@ class MotionController2D : public MessageSource {
   bool hasStartCoordinate = false;
   float targetAccuracyM = 0.01f;
   float distanceToTargetM = 0;
-
   bool (*onGoalCallback)(void*) = nullptr;
   void* onGoaldRef = this;
   float resultThrottlePercent = 0.0f;
@@ -164,7 +172,6 @@ class MotionController2D : public MessageSource {
                    float currentSpeedKmh) {
     // Compute a desired speed profile: slow down as you approach the target
     float minSpeedKmh = 0.0f;
-    float maxSpeedKmh = maxSpeedKmh;
     desiredSpeedKmh = maxSpeedKmh;  // * (distanceToTarget / accelDistanceM);
     if (distanceToTarget < accelDistanceM) {
       if (distanceToTarget < targetAccuracyM) {
@@ -174,6 +181,8 @@ class MotionController2D : public MessageSource {
       }
     }
     if (distanceFromStartM < accelDistanceM) {
+      // avoid 0 start speed!
+      if (distanceFromStartM == 0) distanceFromStartM = 0.1f;  // avoid division by zero
       desiredSpeedKmh = maxSpeedKmh * (distanceFromStartM / accelDistanceM);
     }
     if (desiredSpeedKmh > maxSpeedKmh) desiredSpeedKmh = maxSpeedKmh;
@@ -181,7 +190,7 @@ class MotionController2D : public MessageSource {
   }
 
   /// Handle the current waypoint: calculate distance and desired heading
-  void handleWaypoint(const Coordinate<DistanceM>& currentPos,
+  bool handleWaypoint(const Coordinate<DistanceM>& currentPos,
                       Coordinate<DistanceM>& targetPos,
                       float& distanceToTargetM, float& desiredHeadingDeg) {
     // Use class variable targetAccuracyM
@@ -195,35 +204,41 @@ class MotionController2D : public MessageSource {
           if (onGoalCallback) {
             onGoalCallback(onGoaldRef);
           }
-          return;
+          return false;
         }
         targetPos = path[0];
+        return false;
       }
     }
+    return true;
   }
 
   float computeHeadingError(float desiredHeading, float currentHeading) {
     float headingError = desiredHeading - currentHeading;
-    if (headingError > 180) headingError -= 360;
-    if (headingError < -180) headingError += 360;
+    while (headingError > 180) headingError -= 360;
+    while (headingError < -180) headingError += 360;
     return headingError;
   }
 
   void sendControlMessages(float distanceToTarget, float headingError,
                            float currentSpeedKmh) {
     Message<float> msg;
+    float throttlePercent = pidSpeed_.calculate(desiredSpeedKmh, currentSpeedKmh);
+    if (throttlePercent > 0.0f && throttlePercent < 1.0f) throttlePercent = 1.0f;  // avoid too low throttle
     msg.source = MessageOrigin::Autonomy;
     msg.content = MessageContent::Throttle;
     msg.unit = Unit::Percent;
     // Use PID to map speed to throttle
-    msg.value = resultThrottlePercent =
-        pidSpeed_.calculate(desiredSpeedKmh, currentSpeedKmh);
+    msg.value = resultThrottlePercent = throttlePercent;
     sendMessage(msg);
     msg.content = MessageContent::SteeringAngle;
     msg.unit = Unit::AngleDegree;
     msg.value = resultStreeringAngleDeg =
         pidSteering_.calculate(0.0f, headingError);
     sendMessage(msg);
+    TRLogger.info("MotionController2D: distanceToTarget=%.2f m, desiredSpeed=%.2f km/h, currentSpeed=%.2f km/h, throttle=%.1f%%, headingError=%.1f deg, steeringAngle=%.1f deg",
+                  distanceToTarget, desiredSpeedKmh, currentSpeedKmh,
+                  resultThrottlePercent, headingError, resultStreeringAngleDeg);
   }
 };
 

@@ -6,4 +6,5 @@ project(TinyRoboticsTests)
 
 # Add subdirectories for each test
 add_subdirectory(control)
+add_subdirectory(circle)
 

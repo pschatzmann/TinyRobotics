@@ -45,7 +45,8 @@ class CarAckerman : public Vehicle {
    * @brief Set drive speed (percent, -100 to 100). Positive = forward.
    */
   void setSpeed(int percent) {
-    motor_.setSpeed(percent);
+    speed_ = constrain(percent, -100, 100);
+    motor_.setSpeed(speed_);
     // publish speed as message for telemetry
     Message<float> msg(MessageContent::MotorSpeed, percent, Unit::Percent);
     msg.source = MessageOrigin::Motor;
@@ -56,6 +57,7 @@ class CarAckerman : public Vehicle {
    * @brief Set steering angle (degrees, left positive, right negative).
    */
   void setSteeringAngle(int angle) {
+    angleDeg_ = angle;
     steering_.setAngle(angle);
     // publish steering angle as message for telemetry
     Message<float> msg(MessageContent::SteeringAngle, angle, Unit::AngleDegree);
@@ -66,6 +68,10 @@ class CarAckerman : public Vehicle {
   void setSteeringAngle(Angle angle){
     setSteeringAngle(static_cast<int>(angle.getValue(AngleUnit::DEG)));
   }
+
+  Angle getSteeringAngle() const { return Angle(angleDeg_,AngleUnit::DEG); }
+
+  int getSpeed() const { return speed_; }
 
   /** Stop the car (brake motor) */
   void end() {
@@ -106,6 +112,8 @@ class CarAckerman : public Vehicle {
  protected:
   MotorMT motor_;
   ServoMT steering_;
+  float speed_ = 0;
+  float angleDeg_ = 0;
 };
 
 }  // namespace tinyrobotics

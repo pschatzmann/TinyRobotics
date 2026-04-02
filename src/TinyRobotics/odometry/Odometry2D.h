@@ -63,7 +63,6 @@ namespace tinyrobotics {
  */
 
 class Odometry2D : public MessageSource, public IMotionState2D {
-
  public:
   Odometry2D() = default;
 
@@ -103,7 +102,7 @@ class Odometry2D : public MessageSource, public IMotionState2D {
     // tf.translation is a Coordinate<float>, convert to Coordinate<DistanceM>
     return begin(tf.pos, tf.getHeading(AngleUnit::RAD), wheelBase);
   }
-  
+
   /**
    * @brief Update the odometry state with new speed and steering angle.
    *
@@ -133,6 +132,9 @@ class Odometry2D : public MessageSource, public IMotionState2D {
       deltaTheta = steeringAngleRad * deltaTimeMs / 1000.0f;
     }
     theta += deltaTheta;
+    // Normalize theta to [-pi, pi)
+    while (theta >= M_PI) theta -= 2 * M_PI;
+    while (theta < -M_PI) theta += 2 * M_PI;
     float deltaX = speedMps * cos(theta) * deltaTimeMs / 1000.0f;
     float deltaY = speedMps * sin(theta) * deltaTimeMs / 1000.0f;
     position.x += deltaX;

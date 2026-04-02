@@ -2,6 +2,7 @@
 
 This directory contains classes and utilities for representing spatial maps and navigation graphs, which are essential for robotics, SLAM, path planning, and environment modeling.
 
+
 ## Contents
 
 - **GridMap.h**  
@@ -16,6 +17,12 @@ This directory contains classes and utilities for representing spatial maps and 
   Efficient 3D point cloud for mapping and obstacle detection.  
   Features: point addition, bounding box tracking, voxel grid downsampling, and occupancy queries.
 
+- **CallbackMap.h**  
+  Callback-driven neighbor generation for pathfinding and navigation.  
+  Features: configurable neighbor distance and count, runtime validity callback, on-demand neighbor computation.
+
+  **CallbackMap.h**
+
 ## Typical Usage
 
 - Model environments as occupancy grids for mapping and localization.
@@ -26,9 +33,7 @@ This directory contains classes and utilities for representing spatial maps and 
 ## Example
 
 ```cpp
-#include "GridMap.h"
-#include "PathMap.h"
-#include "PointCloud.h"
+#include "TinyRobotics.h"
 
 // Create a 2D grid map
 GridMap<> grid(100, 100, 0.1f); // 100x100 cells, 10cm resolution
@@ -41,6 +46,11 @@ pathMap.addSegment({a, b, false}); // Add undirected segment from a to b
 PointCloud cloud;
 cloud.add(1.0, 2.0, 0.5);
 cloud.buildVoxelGrid(0.1f); // 10cm voxels
+
+// Use CallbackMap for neighbor generation
+CallbackMap<> cbmap(1.0f, 16); // 1m distance, 16 directions
+cbmap.setIsValidCallback([](Coordinate<DistanceM> c) { return c.x > 0; });
+auto neighbors = cbmap.getNeighbors(Coordinate<DistanceM>(0,0));
 ```
 ## See Examples
 

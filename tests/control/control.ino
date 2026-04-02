@@ -53,8 +53,8 @@ Distance accelDistanceM(0.5, DistanceUnit::M); // distance to start decelerating
 Distance wheelBase(0.3f, DistanceUnit::M);  // distance between front and rear axles in meters
 MotionController2D<float> controller(odometry, maxSpeedKmh, accelDistanceM);
 
-Scheduler controllerScheduler;
-MessageHandlerPrintJSON json_printer(Serial);  // Print to Serial in JSON format
+Scheduler scheduler;
+MessageHandlerPrintJSON json_printer(NullPrint);  // Print to Serial in JSON format
 
 void buildMap() {
   pathMap.addSegment(A, B);
@@ -80,24 +80,26 @@ void setup() {
   Serial.begin(115200);
 
   buildMap();
-  car.setPins(4, 5, 6, 7);  // int in1, int in2, int pwm, int steeringPin
+  //car.setPins(4, 5, 6, 7);  // int in1, int in2, int pwm, int steeringPin
 
   // find path using A*
   auto path = astar.findPath(pathMap, start, goal);
   if (path.size() > 1) {
+    // setup odometry firs
+    odometry.begin(base, wheelBase);
+    odometry.subscribe(json_printer);  // subscribe to odometry messages for telemetry
+    // then setup controller which depends on odometry
     controller.subscribe(car);  // subscribe to control messages from the controller
     controller.setPath(path);
     controller.begin();
     controller.subscribe(json_printer);  // subscribe to controller messages for telemetry
-    odometry.begin(base, wheelBase);
-    odometry.subscribe(json_printer);  // subscribe to odometry messages for telemetry
     car.subscribe(json_printer);  // subscribe to car messages for telemetry
 
     // update every 100ms (adjust as needed)
-    controllerScheduler.begin(200, updateController);
+    scheduler.begin(200, updateController);
   } else {
     Serial.println("No path found!");
   }
 }
 
-void loop() { controllerScheduler.run(); }
+void loop() { scheduler.run(); }

@@ -12,3 +12,4 @@
 #include "Config.h"
 #include "LoggerClass.h"
 #include "MemoryStream.h"
+#include "NullPrint.h"
