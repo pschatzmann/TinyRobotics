@@ -10,21 +10,6 @@
 #include "TinyRobotics/utils/LoggerClass.h"
 
 
-// Math helper: constrains a value between a minimum and maximum
-#ifndef constrain
-template <typename T, typename L, typename H>
-constexpr T constrain(T amt, L low, H high) {
-  return std::min(std::max(amt, static_cast<T>(low)), static_cast<T>(high));
-}
-#endif
-
-// Math helper: maps a value from one range to another
-#ifndef map
-#define map(x, in_min, in_max, out_min, out_max)                        \
-  (((x) - (in_min)) * ((out_max) - (out_min)) / ((in_max) - (in_min)) + \
-   (out_min))
-#endif
-
 namespace tinyrobotics_arduino {
 enum PinMode { INPUT = 0, OUTPUT = 1 };
 enum DigitalValue { LOW = 0, HIGH = 1 };
@@ -49,18 +34,29 @@ inline void pinMode(int pin, int mode) {
 inline void digitalWrite(int pin, int value) {
   tinyrobotics::TRLogger.info("Emulator: digitalWrite(%d,%d)", pin, value);
 }
-inline int analogRead(int pin) {
-  tinyrobotics::TRLogger.info("Emulator: analogRead(%d)",pin);
-  return 0;
-}
 inline void analogWrite(int pin, int value) {
   tinyrobotics::TRLogger.info("Emulator: analogWrite(%d,%d)", pin, value);
 }
 #else
 void pinMode(int, int);
 void digitalWrite(int, int);
-int analogRead(int);
 void analogWrite(int, int);
+#endif
+
+// Math helper: constrains a value between a minimum and maximum
+#ifndef constrain
+template <typename T, typename L, typename H>
+constexpr T constrain(T amt, L low, H high) {
+  return std::min(std::max(amt, static_cast<T>(low)), static_cast<T>(high));
+}
+#endif
+
+// Math helper: maps a value from one range to another
+#ifndef map
+template <typename T, typename U>
+constexpr auto map(T x, U in_min, U in_max, U out_min, U out_max) {
+    return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
+}
 #endif
 
 
