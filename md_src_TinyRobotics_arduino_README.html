@@ -73,10 +73,10 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><p>This folder contains minimal Arduino compatibility headers and stubs to enable building and testing the TinyRobotics library on non-Arduino (native/desktop) platforms or other non Arduino based microcontroller platforms.</p>
-<h1><a class="anchor" id="autotoc_md1"></a>
+<h1><a class="anchor" id="autotoc_md6"></a>
 Purpose</h1>
 <p>Arduino sketches and libraries depend on core Arduino classes and functions (e.g., <code>Serial</code>, <code>Print</code>, <code>Stream</code>, <code>millis()</code>, <code>pinMode</code>, etc.). These are not available on desktop systems. The files in this directory provide stub implementations so that code can be compiled and tested natively, including with CMake and standard C++ compilers.</p>
-<h1><a class="anchor" id="autotoc_md2"></a>
+<h1><a class="anchor" id="autotoc_md7"></a>
 Key Files</h1>
 <ul>
 <li><code><a class="el" href="Arduino_8h_source.html">Arduino.h</a></code>: Stubs for Arduino functions, macros, and types:<ul>
@@ -95,16 +95,16 @@ Key Files</h1>
 <li><code><a class="el" href="Stream_8h_source.html">Stream.h</a></code>: Minimal base class for stream-style input/output.</li>
 <li><code>SerialStub.h</code> (if present): Stub for the <code>Serial</code> object.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md3"></a>
+<h1><a class="anchor" id="autotoc_md8"></a>
 Usage</h1>
 <p>These headers are automatically included when building for native/desktop targets. They are not used on real Arduino hardware.</p>
 <p>You can extend these stubs to add more Arduino API coverage as needed for your tests.</p>
-<h1><a class="anchor" id="autotoc_md4"></a>
+<h1><a class="anchor" id="autotoc_md9"></a>
 Example</h1>
 <div class="fragment"><div class="line"><span class="preprocessor">#include &lt;TinyRobotics/arduino/Arduino.h&gt;</span></div>
 <div class="line"> </div>
 <div class="line">Serial.write(<span class="charliteral">&#39;A&#39;</span>); <span class="comment">// Outputs &#39;A&#39; to stdout in native builds</span></div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md5"></a>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md10"></a>
 Defines</h1>
 <p>The emulator can be configured with the following defines:</p><ul>
 <li>USE_TR_ARDUINO_EMULATION: activate this functionality</li>
@@ -113,7 +113,7 @@ Defines</h1>
 <li>DUSE_PRINT_CHAR: if set to true we print to the console; if set to flase provide your own implementation for the <code>bool print_char(uint8_t)</code> method</li>
 <li>USE_TR_NAMESPACE: if defined we do not need to define the namespace in the Arduino Sketch.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md6"></a>
+<h1><a class="anchor" id="autotoc_md11"></a>
 Maintainers</h1>
 <p>If you add new Arduino API stubs, please document them here. </p>
 </div></div><!-- contents -->

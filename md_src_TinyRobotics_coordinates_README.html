@@ -73,7 +73,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><p>This directory contains classes and utilities for representing and manipulating coordinates and frames in 2D and 3D space, as well as geodetic (GPS) coordinates. These are foundational for robotics, mapping, navigation, and sensor fusion.</p>
-<h1><a class="anchor" id="autotoc_md49"></a>
+<h1><a class="anchor" id="autotoc_md54"></a>
 Contents</h1>
 <ul>
 <li><b><a class="el" href="Coordinate_8h_source.html">Coordinate.h</a></b> <br  />
@@ -89,7 +89,7 @@ Contents</h1>
  Manages a hierarchy of 3D coordinate frames (e.g., world, robot base, sensors) and enables SE(3) transforms and GPS conversion. <br  />
  Features: frame tree management, quaternion-based transform computation, and conversion to GPS coordinates in 3D.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md50"></a>
+<h1><a class="anchor" id="autotoc_md55"></a>
 Typical Usage</h1>
 <ul>
 <li>Represent robot, sensor, or world positions in 2D/3D space.</li>
@@ -97,7 +97,7 @@ Typical Usage</h1>
 <li>Compute distances, bearings, and elevation angles for navigation and mapping.</li>
 <li>Manage hierarchical coordinate frames for complex robots or sensor setups.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md51"></a>
+<h1><a class="anchor" id="autotoc_md56"></a>
 Example</h1>
 <div class="fragment"><div class="line"><span class="preprocessor">#include &lt;<a class="code" href="TinyRobotics_8h.html">TinyRobotics.h</a>&gt;</span></div>
 <div class="line"> </div>
@@ -117,14 +117,14 @@ Example</h1>
 <div class="line"><span class="comment">// Convert a local frame coordinate to GPS:</span></div>
 <div class="line"><span class="keyword">auto</span> gps_result = mgr.toGPS(base);</div>
 <div class="ttc" id="aTinyRobotics_8h_html"><div class="ttname"><a href="TinyRobotics_8h.html">TinyRobotics.h</a></div></div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md52"></a>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md57"></a>
 See Examples</h1>
 <ul>
 <li><a href="../../../examples/coordinates&amp;frames/frame2d/frame2d.ino">2D Frame Example</a></li>
 <li><a href="../../../examples/coordinates&amp;frames/frame3d/frame3d.ino">3D Frame Example</a></li>
 <li><a href="../../../examples/coordinates&amp;frames/record-gps/record-gps.ino">Record GPS Example</a></li>
 </ul>
-<h1><a class="anchor" id="autotoc_md53"></a>
+<h1><a class="anchor" id="autotoc_md58"></a>
 See Also</h1>
 <ul>
 <li><a href="../units/">units/</a> for strongly-typed units (distance, angle, etc.)</li>
