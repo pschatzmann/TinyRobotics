@@ -12,22 +12,47 @@ bool dtSetFromUpdates = false;
 
 namespace tinyrobotics {
 
+/// Defines how the throttle is determined
+/**
+ * @brief Throttle control strategy selection.
+ */
+enum class ThrottleMode {
+  FeedforwardOnly,  ///< Model-based (open-loop) throttle
+  PIDOnly,          ///< Feedback (closed-loop) throttle
+  Combined          ///< Feedforward + PID feedback
+};
+
 /**
  * @class MotionController2D
  * @ingroup control
  * @brief 2D motion controller for path following and vehicle control.
  *
- * This class implements a 2D motion controller for robotic vehicles using PID
- * control for both speed (throttle) and steering. It supports path following,
- * smooth acceleration/deceleration, and integrates with an IMU for feedback.
+ * This class implements a flexible 2D motion controller for robotic vehicles, supporting both model-based (feedforward) and feedback (PID) control for speed (throttle) and steering. It is designed for path following, smooth acceleration/deceleration, and robust integration with IMU and odometry sensors.
  *
- * - Uses a configurable PID controller for speed-to-throttle mapping.
- * - Uses a configurable PID controller for steering angle correction.
- * - Accepts a path (sequence of waypoints) and drives the vehicle to follow it.
- * - Automatically slows down as the vehicle approaches the goal.
- * - Designed for modular use with different vehicle types and IMU sensors.
- * - Vehicle needs to suscribe to receive control messages (throttle and
- * steering angle).
+ * **Features:**
+ * - Configurable PID controllers for both speed (throttle) and steering angle correction.
+ * - Multiple throttle control strategies: Feedforward (model-based), PID (feedback), or Combined (feedforward + feedback).
+ * - Path following with a sequence of waypoints, including automatic waypoint advancement and goal detection.
+ * - Smooth acceleration and deceleration profiles based on distance to target and from start.
+ * - Dynamic time step (dt) initialization for PID controllers based on update frequency.
+ * - Modular design for use with different vehicle types, IMU sensors, and coordinate systems.
+ * - Integration with the TinyRobotics message system for sending throttle and steering commands.
+ * - Customizable goal callback for user-defined actions upon reaching the final waypoint.
+ *
+ * **Usage Example:**
+ * @code
+ *   MotionController2D<> controller(motionState, 10.0f, 2.0f);
+ *   controller.setPath(path);
+ *   controller.setThrottleMode(ThrottleMode::Combined);
+ *   controller.begin();
+ *   // In main loop:
+ *   controller.update();
+ * @endcode
+ *
+ * **Integration:**
+ * - Use as a standalone controller for path following and vehicle control.
+ * - Integrate with a message bus to receive and send control messages.
+ * - Extend or customize by overriding protected methods or providing custom callbacks.
  *
  * @tparam T Numeric type for calculations (default: float)
  *
@@ -59,8 +84,8 @@ class MotionController2D : public MessageSource {
    * @param ki Integral gain
    * @param kd Derivative gain
    */
-  void configureSpeedPID(float maxOut, float minOut, float kp,
-                         float ki, float kd) {
+  void configureSpeedPID(float maxOut, float minOut, float kp, float ki,
+                         float kd) {
     pidSpeed_.begin(0.0f, maxOut, minOut, kp, ki, kd);
   }
 
@@ -73,8 +98,8 @@ class MotionController2D : public MessageSource {
    * @param ki Integral gain
    * @param kd Derivative gain
    */
-  void configureSteeringPID(float maxOut, float minOut, float kp,
-                            float ki, float kd) {
+  void configureSteeringPID(float maxOut, float minOut, float kp, float ki,
+                            float kd) {
     pidSteering_.begin(0.0f, maxOut, minOut, kp, ki, kd);
   }
 
@@ -142,13 +167,22 @@ class MotionController2D : public MessageSource {
    */
   void setOnGoalCallback(bool (*callback)(void*), void* ref = nullptr) {
     onGoalCallback = callback;
-    if (ref != nullptr) onGoaldRef = ref;
+  if (ref != nullptr) onGoalRef = ref;
   }
 
+  /**
+   * @brief Get the last computed throttle percent.
+   */
   float getThrottlePercent() const { return resultThrottlePercent; }
-  float getSteeringAngleDeg() const { return resultStreeringAngleDeg; }
+  /**
+   * @brief Get the last computed steering angle in degrees.
+   */
+  float getSteeringAngleDeg() const { return resultSteeringAngleDeg; }
+  /**
+   * @brief Get the last computed steering angle as an Angle object.
+   */
   Angle getSteeringAngle() const {
-    return Angle(resultStreeringAngleDeg, AngleUnit::DEG);
+    return Angle(resultSteeringAngleDeg, AngleUnit::DEG);
   }
 
   float getTargetAccuracy(DistanceUnit unit) const {
@@ -160,6 +194,13 @@ class MotionController2D : public MessageSource {
     if (!has_distance) return false;
     return distanceToTargetM < targetAccuracyM;
   }
+
+  /**
+   * @brief Set the throttle control mode.
+   * @param mode The throttle control strategy to use (FeedforwardOnly, PIDOnly,
+   * Combined).
+   */
+  void setThrottleMode(ThrottleMode mode) { throttleMode = mode; }
 
  protected:
   IMotionState2D& motionStateSource;
@@ -176,9 +217,11 @@ class MotionController2D : public MessageSource {
   float targetAccuracyM = 0.10f;
   float distanceToTargetM = 0;
   bool (*onGoalCallback)(void*) = nullptr;
-  void* onGoaldRef = this;
+  void* onGoalRef = this;
   float resultThrottlePercent = 0.0f;
-  float resultStreeringAngleDeg = 0.0f;
+  float resultSteeringAngleDeg = 0.0f;
+  /// Throttle control mode
+  ThrottleMode throttleMode = ThrottleMode::PIDOnly;
 
   /// Calculate desired speed based on distance to target and distance from
   /// start
@@ -217,7 +260,7 @@ class MotionController2D : public MessageSource {
         path.removeHead();
         if (path.isEmpty()) {
           if (onGoalCallback) {
-            onGoalCallback(onGoaldRef);
+            onGoalCallback(onGoalRef);
           }
           return false;
         }
@@ -235,35 +278,62 @@ class MotionController2D : public MessageSource {
     return headingError;
   }
 
-  void sendControlMessages(float distanceToTarget, float headingError,
-                           float currentSpeedKmh) {
-    Message<float> msg;
-    float throttlePercent =
-        pidSpeed_.calculate(desiredSpeedKmh, currentSpeedKmh);
+  /**
+   * @brief Model-based feedforward throttle estimate: 100% throttle =
+   * maxSpeedKmh
+   */
+  float feedforwardThrottle(float desiredSpeedKmh) const {
+    if (maxSpeedKmh <= 0.0f) return 0.0f;
+    return 100.0f * desiredSpeedKmh / maxSpeedKmh;
+  }
+
+  /**
+   * @brief Compute the throttle percent based on the selected mode.
+   */
+  float getThrottlePercent(float currentSpeedKmh) {
+    float ff = feedforwardThrottle(desiredSpeedKmh);
+    float fb = pidSpeed_.calculate(desiredSpeedKmh, currentSpeedKmh);
+    float throttlePercent = 0.0f;
+    switch (throttleMode) {
+      case ThrottleMode::FeedforwardOnly:
+        throttlePercent = ff;
+        break;
+      case ThrottleMode::PIDOnly:
+        throttlePercent = fb;
+        break;
+      case ThrottleMode::Combined:
+      default:
+        throttlePercent = ff + fb;
+        break;
+    }
     // Clamp throttle to [0, 100]
     if (throttlePercent > 100.0f) throttlePercent = 100.0f;
-    if (throttlePercent < 0.0f && throttlePercent > -1.0f)
-      throttlePercent = 0.0f;
+    if (throttlePercent < 0.0f) throttlePercent = 0.0f;
     if (throttlePercent > 0.0f && throttlePercent < 1.0f)
       throttlePercent = 1.0f;  // avoid too low throttle
-    if (throttlePercent < 0.0f) throttlePercent = 0.0f;
+    return throttlePercent;
+  }
+
+  void sendControlMessages(float distanceToTarget, float headingError,
+                           float currentSpeedKmh) {
+    resultThrottlePercent = getThrottlePercent(currentSpeedKmh);
+    Message<float> msg;
     msg.source = MessageOrigin::Autonomy;
     msg.content = MessageContent::Throttle;
     msg.unit = Unit::Percent;
-    // Use PID to map speed to throttle
-    msg.value = resultThrottlePercent = throttlePercent;
+    msg.value = resultThrottlePercent;
     sendMessage(msg);
     msg.content = MessageContent::SteeringAngle;
     msg.unit = Unit::AngleDegree;
-    msg.value = resultStreeringAngleDeg =
+    msg.value = resultSteeringAngleDeg =
         pidSteering_.calculate(0.0f, -headingError);
     sendMessage(msg);
     TRLogger.info(
         "MotionController2D: distanceToTarget=%.2f m, desiredSpeed=%.2f km/h, "
         "currentSpeed=%.2f km/h, throttle=%.1f%%, headingError=%.1f deg, "
         "steeringAngle=%.1f deg",
-        distanceToTarget, desiredSpeedKmh, currentSpeedKmh,
-        resultThrottlePercent, headingError, resultStreeringAngleDeg);
+        distanceToTarget, desiredSpeedKmh, currentSpeedKmh, resultThrottlePercent,
+        headingError, resultSteeringAngleDeg);
   }
 
   /// Handles dt initialization from first 10 updates, but does not block

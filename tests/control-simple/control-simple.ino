@@ -35,8 +35,8 @@ Coordinate<float> target(10, 0);
 
 CarAckerman<BrushedMotor, ServoMotor> car;
 Odometry2D odometry;
-SpeedFromThrottle speedEstimator(2.0f);  // max speed 2 m/s (adjust as needed)
 Speed maxSpeedKmh(5, SpeedUnit::KPH);    // max speed in km/h
+SpeedFromThrottle speedEstimator(maxSpeedKmh);  // max speed 2 m/s (adjust as needed)
 Distance accelDistanceM(
     0.5, DistanceUnit::M);  // distance to start decelerating in meters
 Distance wheelBase(

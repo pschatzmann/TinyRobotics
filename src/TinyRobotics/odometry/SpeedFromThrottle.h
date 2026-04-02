@@ -14,15 +14,17 @@ namespace tinyrobotics {
  * This class provides a flexible, piecewise linear mapping from throttle percentage
  * (e.g., -100% to 100%) to speed (in meters per second), based on user-provided calibration points.
  * It is useful for systems where direct speed measurement is unavailable or unreliable, and a throttle-to-speed
- * relationship can be established empirically.
+ * relationship can be established empirically. The mapping can be linear or non-linear, depending on the calibration data.
  *
+ * **Features:**
  * - By default, 0% throttle maps to 0 m/s, 100% throttle maps to maxSpeedMps, and -100% throttle maps to -maxSpeedMps.
  * - Additional calibration points can be added with addSpeedCalibration(throttle, speed), allowing for non-linear mappings.
  * - If a calibration point for a throttle value already exists, it is replaced; otherwise, it is inserted in order.
- * - The class supports both direct speed queries (getSpeed, getSpeedMPS) and integration with the TinyRobotics message system.
+ * - Supports both direct speed queries (getSpeed, getSpeedMPS) and integration with the TinyRobotics message system.
  * - When used as a MessageHandler, it listens for Throttle messages and emits Speed messages via MessageSource.
+ * - Calibration data can be cleared and redefined at runtime.
  *
- * Typical usage:
+ * **Typical usage:**
  * @code
  *   SpeedFromThrottle speedMap(2.0f); // 2 m/s at 100% throttle
  *   speedMap.addSpeedCalibration(50.0f, 1.0f); // 1 m/s at 50%
@@ -31,7 +33,11 @@ namespace tinyrobotics {
  *   bus.subscribe(speedMap); // Receives Throttle messages, emits Speed messages
  * @endcode
  *
- * @see addSpeedCalibration, getSpeed, getSpeedMPS, onMessage
+ * **Integration:**
+ * - Use as a standalone utility for throttle-to-speed conversion.
+ * - Or, connect to a MessageBus to automatically convert Throttle messages to Speed messages.
+ *
+ * @see addSpeedCalibration, getSpeed, getSpeedMPS, onMessage, clearCalibration
  *
  * @author Phil Schatzmann
  */
@@ -39,6 +45,7 @@ namespace tinyrobotics {
 class SpeedFromThrottle : public MessageSource, public MessageHandler {
  public:
   SpeedFromThrottle(float maxSpeedMps) { begin(maxSpeedMps); }
+  SpeedFromThrottle(Speed maxSpeed) : SpeedFromThrottle(maxSpeed.getValue(SpeedUnit::MPS)) {}
 
   bool begin(float maxSpeedMps) {
     addSpeedCalibration(0.0f, 0.0f);           // 0% throttle = 0 m/s
