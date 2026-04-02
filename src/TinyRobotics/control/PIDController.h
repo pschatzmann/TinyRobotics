@@ -67,26 +67,37 @@ class PIDController {
     this->kp = kp;
     this->kd = kd;
     this->ki = ki;
+    this->integral = 0.0f;
+    this->preerror = 0.0f;
     return true;
   }
+
+  void setDt(N dt) { this->dt = dt; }
 
   // target = desired process value
   // measured = current process value:
   // returns new process value
   N calculate(N target, N measured) {
-    // Calculate errori
+    // Calculate error
     N error = target - measured;
 
     // Proportional term
     N pout = kp * error;
 
-    // Interal term
+    // Integral term with anti-windup (clamp integral)
     integral += error * dt;
+    // Clamp integral so that ki * integral stays within output limits
     N Iout = ki * integral;
+    if (Iout > max) {
+      Iout = max;
+      integral = max / (ki != 0 ? ki : 1);
+    } else if (Iout < min) {
+      Iout = min;
+      integral = min / (ki != 0 ? ki : 1);
+    }
 
     // Derivative term
     assert(dt != 0.0);
-
     N derivative = (error - preerror) / dt;
     N dout = kd * derivative;
 

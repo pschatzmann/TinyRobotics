@@ -1,3 +1,8 @@
+// For dynamic dt measurement (simplified)
+int updateCount = 0;
+unsigned long updateStartTimeMs = 0;
+unsigned long updateEndTimeMs = 0;
+bool dtSetFromUpdates = false;
 #pragma once
 #include "MotionState2D.h"
 #include "PIDController.h"
@@ -36,11 +41,8 @@ class MotionController2D : public MessageSource {
       : motionStateSource(motionState),
         accelDistanceM(accelDistanceM),
         maxSpeedKmh(maxSpeedKmh) {
-    configureSteeringPID(0.1f, 30.0f, -30.0f, 1.0f, 0.0f,
-                         0.1f);  // default steering PID
-  configureSpeedPID(
-    0.1f, 100.0f, 0.0f, 2.0f, 0.2f,
-    0.5f);  // speed PID: reduced gains for stability
+    configureSteeringPID(30.0f, -30.0f, 1.0f, 0.0f, 0.1f);
+    configureSpeedPID(100.0f, 0.0f, 12.0f, 0.1f, 0.01f);
   }
 
   MotionController2D(IMotionState2D& motionState, Speed maxSpeedKmh,
@@ -57,9 +59,9 @@ class MotionController2D : public MessageSource {
    * @param ki Integral gain
    * @param kd Derivative gain
    */
-  void configureSpeedPID(float dt, float maxOut, float minOut, float kp,
+  void configureSpeedPID(float maxOut, float minOut, float kp,
                          float ki, float kd) {
-    pidSpeed_.begin(dt, maxOut, minOut, kp, ki, kd);
+    pidSpeed_.begin(0.0f, maxOut, minOut, kp, ki, kd);
   }
 
   /**
@@ -71,9 +73,9 @@ class MotionController2D : public MessageSource {
    * @param ki Integral gain
    * @param kd Derivative gain
    */
-  void configureSteeringPID(float dt, float maxOut, float minOut, float kp,
+  void configureSteeringPID(float maxOut, float minOut, float kp,
                             float ki, float kd) {
-    pidSteering_.begin(dt, maxOut, minOut, kp, ki, kd);
+    pidSteering_.begin(0.0f, maxOut, minOut, kp, ki, kd);
   }
 
   /// Defines the path to follow as a sequence of waypoints
@@ -94,6 +96,7 @@ class MotionController2D : public MessageSource {
   bool begin() {
     is_active = true;
     has_distance = false;
+    dtSetFromUpdates = false;
     if (!hasStartCoordinate) {
       startCoordinate = motionStateSource.getPosition();
       hasStartCoordinate = true;
@@ -108,6 +111,9 @@ class MotionController2D : public MessageSource {
   /// loop)
   void update() {
     if (!is_active) return;
+    if (!initializeDtFromUpdates()) {
+      return;
+    }
     Coordinate<DistanceM> currentPos = motionStateSource.getPosition();
     Coordinate<DistanceM> targetPos = path[0];
     float currentHeading =
@@ -232,12 +238,15 @@ class MotionController2D : public MessageSource {
   void sendControlMessages(float distanceToTarget, float headingError,
                            float currentSpeedKmh) {
     Message<float> msg;
-  float throttlePercent = pidSpeed_.calculate(desiredSpeedKmh, currentSpeedKmh);
-  // Clamp throttle to [0, 100]
-  if (throttlePercent > 100.0f) throttlePercent = 100.0f;
-  if (throttlePercent < 0.0f && throttlePercent > -1.0f) throttlePercent = 0.0f;
-  if (throttlePercent > 0.0f && throttlePercent < 1.0f) throttlePercent = 1.0f;  // avoid too low throttle
-  if (throttlePercent < 0.0f) throttlePercent = 0.0f;
+    float throttlePercent =
+        pidSpeed_.calculate(desiredSpeedKmh, currentSpeedKmh);
+    // Clamp throttle to [0, 100]
+    if (throttlePercent > 100.0f) throttlePercent = 100.0f;
+    if (throttlePercent < 0.0f && throttlePercent > -1.0f)
+      throttlePercent = 0.0f;
+    if (throttlePercent > 0.0f && throttlePercent < 1.0f)
+      throttlePercent = 1.0f;  // avoid too low throttle
+    if (throttlePercent < 0.0f) throttlePercent = 0.0f;
     msg.source = MessageOrigin::Autonomy;
     msg.content = MessageContent::Throttle;
     msg.unit = Unit::Percent;
@@ -255,6 +264,27 @@ class MotionController2D : public MessageSource {
         "steeringAngle=%.1f deg",
         distanceToTarget, desiredSpeedKmh, currentSpeedKmh,
         resultThrottlePercent, headingError, resultStreeringAngleDeg);
+  }
+
+  /// Handles dt initialization from first 10 updates, but does not block
+  /// control logic
+  bool initializeDtFromUpdates() {
+    unsigned long nowMs = millis();
+    if (dtSetFromUpdates) return true;
+    if (updateCount == 0) {
+      updateStartTimeMs = nowMs;
+    }
+    updateCount++;
+    if (updateCount == 11) {
+      updateEndTimeMs = nowMs;
+      float avgMs = (updateEndTimeMs - updateStartTimeMs) / 10.0f;
+      float dt = avgMs / 1000.0f;  // convert ms to seconds
+      // Reconfigure both PIDs with new dt, keep other params
+      pidSpeed_.setDt(dt);
+      pidSteering_.setDt(dt);
+      dtSetFromUpdates = true;
+    }
+    return dtSetFromUpdates;
   }
 };
 
