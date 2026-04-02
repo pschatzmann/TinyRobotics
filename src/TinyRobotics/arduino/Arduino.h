@@ -13,21 +13,10 @@
 #define ARDUINO 1
 #endif
 
-// Pin modes and digital values
-#ifndef OUTPUT
-#define OUTPUT 1
-#endif
-#ifndef INPUT
-#define INPUT 0
-#endif
-#ifndef HIGH
-#define HIGH 1
-#endif
-#ifndef LOW
-#define LOW 0
-#endif
-
 namespace tinyrobotics_arduino  {
+
+enum PinMode { INPUT = 0, OUTPUT = 1 };
+enum PinState { LOW = 0, HIGH = 1 };
 
 // Timing
 inline unsigned long millis() {
@@ -50,13 +39,15 @@ int analogRead(int);
 void analogWrite(int, int);
 #endif
 
-// Math helpers
+// Math helper: constrains a value between a minimum and maximum
 #ifndef constrain
 template <typename T, typename L, typename H>
 constexpr T constrain(T amt, L low, H high) {
   return std::min(std::max(amt, static_cast<T>(low)), static_cast<T>(high));
 }
 #endif
+
+// Math helper: maps a value from one range to another
 #ifndef map
 #define map(x, in_min, in_max, out_min, out_max)                        \
   (((x) - (in_min)) * ((out_max) - (out_min)) / ((in_max) - (in_min)) + \
