@@ -151,12 +151,15 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>setOnGoalCallback</b>
 <tr class="separator:ae620eb48b5fcaad75334028e807074e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abf47a4b1ba948aa37e02d95cf8971c25"><td class="memItemLeft" align="right" valign="top"><a id="abf47a4b1ba948aa37e02d95cf8971c25" name="abf47a4b1ba948aa37e02d95cf8971c25"></a>
 float&#160;</td><td class="memItemRight" valign="bottom"><b>getThrottlePercent</b> () const</td></tr>
+<tr class="memdesc:abf47a4b1ba948aa37e02d95cf8971c25"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the last computed throttle percent. <br /></td></tr>
 <tr class="separator:abf47a4b1ba948aa37e02d95cf8971c25"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2f62201e21f46f747280a46609c7b14c"><td class="memItemLeft" align="right" valign="top"><a id="a2f62201e21f46f747280a46609c7b14c" name="a2f62201e21f46f747280a46609c7b14c"></a>
 float&#160;</td><td class="memItemRight" valign="bottom"><b>getSteeringAngleDeg</b> () const</td></tr>
+<tr class="memdesc:a2f62201e21f46f747280a46609c7b14c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the last computed steering angle in degrees. <br /></td></tr>
 <tr class="separator:a2f62201e21f46f747280a46609c7b14c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3ee00f59434f682b87ae5577484a4d2e"><td class="memItemLeft" align="right" valign="top"><a id="a3ee00f59434f682b87ae5577484a4d2e" name="a3ee00f59434f682b87ae5577484a4d2e"></a>
 <a class="el" href="classtinyrobotics_1_1Angle.html">Angle</a>&#160;</td><td class="memItemRight" valign="bottom"><b>getSteeringAngle</b> () const</td></tr>
+<tr class="memdesc:a3ee00f59434f682b87ae5577484a4d2e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the last computed steering angle as an <a class="el" href="classtinyrobotics_1_1Angle.html" title="Represents an angle with unit conversion and wrap-around support.">Angle</a> object. <br /></td></tr>
 <tr class="separator:a3ee00f59434f682b87ae5577484a4d2e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac9a2b84d7979c70979ee7c9ff743d343"><td class="memItemLeft" align="right" valign="top"><a id="ac9a2b84d7979c70979ee7c9ff743d343" name="ac9a2b84d7979c70979ee7c9ff743d343"></a>
 float&#160;</td><td class="memItemRight" valign="bottom"><b>getTargetAccuracy</b> (<a class="el" href="group__units.html#ga4c67a7b952f3804e2bd056cf95c4161a">DistanceUnit</a> unit) const</td></tr>
@@ -165,6 +168,9 @@ float&#160;</td><td class="memItemRight" valign="bottom"><b>getTargetAccuracy</b
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>isGoalReached</b> () const</td></tr>
 <tr class="memdesc:a4ace8b9354bc633d112897c0b54cbf9c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns true if the goal has been reached. <br /></td></tr>
 <tr class="separator:a4ace8b9354bc633d112897c0b54cbf9c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a02f053e66bda8d79a586f8fd0465cbed"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1MotionController2D.html#a02f053e66bda8d79a586f8fd0465cbed">setThrottleMode</a> (ThrottleMode mode)</td></tr>
+<tr class="memdesc:a02f053e66bda8d79a586f8fd0465cbed"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the throttle control mode.  <br /></td></tr>
+<tr class="separator:a02f053e66bda8d79a586f8fd0465cbed"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classtinyrobotics_1_1MessageSource"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classtinyrobotics_1_1MessageSource')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classtinyrobotics_1_1MessageSource.html">MessageSource</a></td></tr>
 <tr class="memitem:a6f644591faf6edfeceef6b7776b331df inherit pub_methods_classtinyrobotics_1_1MessageSource"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1MessageSource.html#a6f644591faf6edfeceef6b7776b331df">subscribe</a> (<a class="el" href="classtinyrobotics_1_1MessageHandler.html">MessageHandler</a> &amp;handler)</td></tr>
 <tr class="memdesc:a6f644591faf6edfeceef6b7776b331df inherit pub_methods_classtinyrobotics_1_1MessageSource"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add a message handler to the chain.  <br /></td></tr>
@@ -194,6 +200,14 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>handleWaypoint</b> (c
 <tr class="memitem:ad3481ebd8379b81869785d6a47b9e1a0"><td class="memItemLeft" align="right" valign="top"><a id="ad3481ebd8379b81869785d6a47b9e1a0" name="ad3481ebd8379b81869785d6a47b9e1a0"></a>
 float&#160;</td><td class="memItemRight" valign="bottom"><b>computeHeadingError</b> (float desiredHeading, float currentHeading)</td></tr>
 <tr class="separator:ad3481ebd8379b81869785d6a47b9e1a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aec5be575507485c0b3822d3b022f765b"><td class="memItemLeft" align="right" valign="top"><a id="aec5be575507485c0b3822d3b022f765b" name="aec5be575507485c0b3822d3b022f765b"></a>
+float&#160;</td><td class="memItemRight" valign="bottom"><b>feedforwardThrottle</b> (float desiredSpeedKmh) const</td></tr>
+<tr class="memdesc:aec5be575507485c0b3822d3b022f765b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Model-based feedforward throttle estimate: 100% throttle = maxSpeedKmh. <br /></td></tr>
+<tr class="separator:aec5be575507485c0b3822d3b022f765b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a85c609c6342c6f0de6ae070e5a45915c"><td class="memItemLeft" align="right" valign="top"><a id="a85c609c6342c6f0de6ae070e5a45915c" name="a85c609c6342c6f0de6ae070e5a45915c"></a>
+float&#160;</td><td class="memItemRight" valign="bottom"><b>getThrottlePercent</b> (float currentSpeedKmh)</td></tr>
+<tr class="memdesc:a85c609c6342c6f0de6ae070e5a45915c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute the throttle percent based on the selected mode. <br /></td></tr>
+<tr class="separator:a85c609c6342c6f0de6ae070e5a45915c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9e8d8c4c745557a2819b5e779ee23314"><td class="memItemLeft" align="right" valign="top"><a id="a9e8d8c4c745557a2819b5e779ee23314" name="a9e8d8c4c745557a2819b5e779ee23314"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>sendControlMessages</b> (float distanceToTarget, float headingError, float currentSpeedKmh)</td></tr>
 <tr class="separator:a9e8d8c4c745557a2819b5e779ee23314"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -244,15 +258,19 @@ float&#160;</td><td class="memItemRight" valign="bottom"><b>distanceToTargetM</b
 <tr class="memitem:a425445d92af590b78a4d8226736df19e"><td class="memItemLeft" align="right" valign="top"><a id="a425445d92af590b78a4d8226736df19e" name="a425445d92af590b78a4d8226736df19e"></a>
 bool(*&#160;</td><td class="memItemRight" valign="bottom"><b>onGoalCallback</b> )(void *) = nullptr</td></tr>
 <tr class="separator:a425445d92af590b78a4d8226736df19e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abcdf58f3c622a7f3b90ef011ea96c76b"><td class="memItemLeft" align="right" valign="top"><a id="abcdf58f3c622a7f3b90ef011ea96c76b" name="abcdf58f3c622a7f3b90ef011ea96c76b"></a>
-void *&#160;</td><td class="memItemRight" valign="bottom"><b>onGoaldRef</b> = this</td></tr>
-<tr class="separator:abcdf58f3c622a7f3b90ef011ea96c76b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7805f5175783f0eadb90dc9cad2455a7"><td class="memItemLeft" align="right" valign="top"><a id="a7805f5175783f0eadb90dc9cad2455a7" name="a7805f5175783f0eadb90dc9cad2455a7"></a>
+void *&#160;</td><td class="memItemRight" valign="bottom"><b>onGoalRef</b> = this</td></tr>
+<tr class="separator:a7805f5175783f0eadb90dc9cad2455a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a61b6a4c3b1f5999a3c7c4060f4e06d64"><td class="memItemLeft" align="right" valign="top"><a id="a61b6a4c3b1f5999a3c7c4060f4e06d64" name="a61b6a4c3b1f5999a3c7c4060f4e06d64"></a>
 float&#160;</td><td class="memItemRight" valign="bottom"><b>resultThrottlePercent</b> = 0.0f</td></tr>
 <tr class="separator:a61b6a4c3b1f5999a3c7c4060f4e06d64"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ace0f314ed82d48becc3e40c5ba81889b"><td class="memItemLeft" align="right" valign="top"><a id="ace0f314ed82d48becc3e40c5ba81889b" name="ace0f314ed82d48becc3e40c5ba81889b"></a>
-float&#160;</td><td class="memItemRight" valign="bottom"><b>resultStreeringAngleDeg</b> = 0.0f</td></tr>
-<tr class="separator:ace0f314ed82d48becc3e40c5ba81889b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a68e92a3783f15450bb56103f5fac93a1"><td class="memItemLeft" align="right" valign="top"><a id="a68e92a3783f15450bb56103f5fac93a1" name="a68e92a3783f15450bb56103f5fac93a1"></a>
+float&#160;</td><td class="memItemRight" valign="bottom"><b>resultSteeringAngleDeg</b> = 0.0f</td></tr>
+<tr class="separator:a68e92a3783f15450bb56103f5fac93a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7d238c24d914c3e2592c8366ef46d490"><td class="memItemLeft" align="right" valign="top"><a id="a7d238c24d914c3e2592c8366ef46d490" name="a7d238c24d914c3e2592c8366ef46d490"></a>
+ThrottleMode&#160;</td><td class="memItemRight" valign="bottom"><b>throttleMode</b> = ThrottleMode::PIDOnly</td></tr>
+<tr class="memdesc:a7d238c24d914c3e2592c8366ef46d490"><td class="mdescLeft">&#160;</td><td class="mdescRight">Throttle control mode. <br /></td></tr>
+<tr class="separator:a7d238c24d914c3e2592c8366ef46d490"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_attribs_classtinyrobotics_1_1MessageSource"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_classtinyrobotics_1_1MessageSource')"><img src="closed.png" alt="-"/>&#160;Protected Attributes inherited from <a class="el" href="classtinyrobotics_1_1MessageSource.html">MessageSource</a></td></tr>
 <tr class="memitem:ae8917ae7a3eb87d29c94c514e1d5c981 inherit pro_attribs_classtinyrobotics_1_1MessageSource"><td class="memItemLeft" align="right" valign="top"><a id="ae8917ae7a3eb87d29c94c514e1d5c981" name="ae8917ae7a3eb87d29c94c514e1d5c981"></a>
 std::vector&lt; <a class="el" href="classtinyrobotics_1_1MessageHandler.html">MessageHandler</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>messageHandlers_</b></td></tr>
@@ -261,14 +279,28 @@ std::vector&lt; <a class="el" href="classtinyrobotics_1_1MessageHandler.html">Me
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><div class="compoundTemplParams">template&lt;typename T = float&gt;<br />
 class tinyrobotics::MotionController2D&lt; T &gt;</div><p>2D motion controller for path following and vehicle control. </p>
-<p>This class implements a 2D motion controller for robotic vehicles using PID control for both speed (throttle) and steering. It supports path following, smooth acceleration/deceleration, and integrates with an IMU for feedback.</p>
-<ul>
-<li>Uses a configurable PID controller for speed-to-throttle mapping.</li>
-<li>Uses a configurable PID controller for steering angle correction.</li>
-<li>Accepts a path (sequence of waypoints) and drives the vehicle to follow it.</li>
-<li>Automatically slows down as the vehicle approaches the goal.</li>
-<li>Designed for modular use with different vehicle types and IMU sensors.</li>
-<li><a class="el" href="classtinyrobotics_1_1Vehicle.html" title="Abstract base class for all vehicle types.">Vehicle</a> needs to suscribe to receive control messages (throttle and steering angle).</li>
+<p>This class implements a flexible 2D motion controller for robotic vehicles, supporting both model-based (feedforward) and feedback (PID) control for speed (throttle) and steering. It is designed for path following, smooth acceleration/deceleration, and robust integration with IMU and odometry sensors.</p>
+<p><b>Features:</b></p><ul>
+<li>Configurable PID controllers for both speed (throttle) and steering angle correction.</li>
+<li>Multiple throttle control strategies: Feedforward (model-based), PID (feedback), or Combined (feedforward + feedback).</li>
+<li><a class="el" href="classtinyrobotics_1_1Path.html" title="A simple path class that holds a sequence of waypoints. Each waypoint is e.g. a coordinate (e....">Path</a> following with a sequence of waypoints, including automatic waypoint advancement and goal detection.</li>
+<li>Smooth acceleration and deceleration profiles based on distance to target and from start.</li>
+<li>Dynamic time step (dt) initialization for PID controllers based on update frequency.</li>
+<li>Modular design for use with different vehicle types, IMU sensors, and coordinate systems.</li>
+<li>Integration with the TinyRobotics message system for sending throttle and steering commands.</li>
+<li>Customizable goal callback for user-defined actions upon reaching the final waypoint.</li>
+</ul>
+<p><b>Usage Example:</b> </p><div class="fragment"><div class="line"><a class="code hl_class" href="classtinyrobotics_1_1MotionController2D.html">MotionController2D&lt;&gt;</a> controller(motionState, 10.0f, 2.0f);</div>
+<div class="line">controller.setPath(path);</div>
+<div class="line">controller.setThrottleMode(ThrottleMode::Combined);</div>
+<div class="line">controller.begin();</div>
+<div class="line"><span class="comment">// In main loop:</span></div>
+<div class="line">controller.update();</div>
+<div class="ttc" id="aclasstinyrobotics_1_1MotionController2D_html"><div class="ttname"><a href="classtinyrobotics_1_1MotionController2D.html">tinyrobotics::MotionController2D</a></div><div class="ttdoc">2D motion controller for path following and vehicle control.</div><div class="ttdef"><b>Definition:</b> MotionController2D.h:62</div></div>
+</div><!-- fragment --><p><b>Integration:</b></p><ul>
+<li>Use as a standalone controller for path following and vehicle control.</li>
+<li>Integrate with a message bus to receive and send control messages.</li>
+<li>Extend or customize by overriding protected methods or providing custom callbacks.</li>
 </ul>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
@@ -466,6 +498,40 @@ class tinyrobotics::MotionController2D&lt; T &gt;</div><p>2D motion controller f
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">accuracyM</td><td>The new target accuracy in meters. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a02f053e66bda8d79a586f8fd0465cbed" name="a02f053e66bda8d79a586f8fd0465cbed"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a02f053e66bda8d79a586f8fd0465cbed">&#9670;&#160;</a></span>setThrottleMode()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void setThrottleMode </td>
+          <td>(</td>
+          <td class="paramtype">ThrottleMode&#160;</td>
+          <td class="paramname"><em>mode</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Set the throttle control mode. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">mode</td><td>The throttle control strategy to use (FeedforwardOnly, PIDOnly, Combined). </td></tr>
   </table>
   </dd>
 </dl>
