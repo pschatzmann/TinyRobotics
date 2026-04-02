@@ -195,7 +195,7 @@ std::vector&lt; <a class="el" href="classtinyrobotics_1_1MessageHandler.html">Me
 <div class="textblock"><div class="compoundTemplParams">template&lt;typename T = DistanceM&gt;<br />
 class tinyrobotics::RangeSensor&lt; T &gt;</div><p>Generic range sensor abstraction for LIDAR, ultrasonic, or similar sensors. </p>
 <p>This template class models a simple range sensor, such as a LIDAR or ultrasonic sensor, for robotics applications. It tracks the measured distance to an obstacle, the angle (bearing) of the obstacle relative to the sensor, and the transform from the sensor's local frame to the world frame. The class provides methods to set and retrieve the measured distance and bearing, update the sensor-to-world transform, and compute the world-frame coordinates of detected obstacles.</p>
-<h2><a class="anchor" id="autotoc_md126"></a>
+<h2><a class="anchor" id="autotoc_md127"></a>
 Features</h2>
 <ul>
 <li>Supports any distance unit via template parameter (default: meters)</li>
@@ -204,7 +204,7 @@ Features</h2>
 <li>Validity checks for sensor readings (distance &gt; 0)</li>
 <li>Can be used for navigation, mapping, and obstacle avoidance</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md127"></a>
+<h2><a class="anchor" id="autotoc_md128"></a>
 Usage Example</h2>
 <div class="fragment"><div class="line"><a class="code hl_class" href="classtinyrobotics_1_1Transform2D.html">Transform2D</a> tf = ...; <span class="comment">// Sensor-to-world transform</span></div>
 <div class="line"><a class="code hl_class" href="classtinyrobotics_1_1RangeSensor.html">RangeSensor&lt;&gt;</a> sensor(tf, 0.0f); <span class="comment">// 0 degrees = forward</span></div>
@@ -219,7 +219,7 @@ Usage Example</h2>
 <div class="ttc" id="aclasstinyrobotics_1_1Coordinate_html"><div class="ttname"><a href="classtinyrobotics_1_1Coordinate.html">tinyrobotics::Coordinate</a></div><div class="ttdoc">A generic 3D coordinate class for robotics, navigation, and spatial calculations.</div><div class="ttdef"><b>Definition:</b> Coordinate.h:57</div></div>
 <div class="ttc" id="aclasstinyrobotics_1_1RangeSensor_html"><div class="ttname"><a href="classtinyrobotics_1_1RangeSensor.html">tinyrobotics::RangeSensor</a></div><div class="ttdoc">Generic range sensor abstraction for LIDAR, ultrasonic, or similar sensors.</div><div class="ttdef"><b>Definition:</b> RangeSensor.h:69</div></div>
 <div class="ttc" id="aclasstinyrobotics_1_1Transform2D_html"><div class="ttname"><a href="classtinyrobotics_1_1Transform2D.html">tinyrobotics::Transform2D</a></div><div class="ttdoc">Represents a 2D rigid body transform (SE(2)): translation and rotation.</div><div class="ttdef"><b>Definition:</b> FrameMgr2D.h:42</div></div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md128"></a>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md129"></a>
 Template Parameters</h2>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
@@ -227,7 +227,7 @@ Template Parameters</h2>
   </table>
   </dd>
 </dl>
-<h2><a class="anchor" id="autotoc_md129"></a>
+<h2><a class="anchor" id="autotoc_md130"></a>
 Methods</h2>
 <ul>
 <li>setObstacleDirectionDegree(deg): Set obstacle bearing in degrees</li>
@@ -237,7 +237,7 @@ Methods</h2>
 <li>getObstacleCoordinate(result): Compute world-frame obstacle coordinate</li>
 <li><a class="el" href="classtinyrobotics_1_1RangeSensor.html#aae8c80f0ed7b82ca0360e1342a3ac103" title="Return true if there is an obstacle detected (distance &gt; 0)">hasObstacle()</a>: True if a valid obstacle is detected</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md130"></a>
+<h2><a class="anchor" id="autotoc_md131"></a>
 Applications</h2>
 <ul>
 <li>LIDAR, ultrasonic, or IR range sensing</li>

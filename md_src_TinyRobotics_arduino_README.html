@@ -94,6 +94,13 @@ Example</h1>
 <div class="line"> </div>
 <div class="line">Serial.write(<span class="charliteral">&#39;A&#39;</span>); <span class="comment">// Outputs &#39;A&#39; to stdout in native builds</span></div>
 </div><!-- fragment --><h1><a class="anchor" id="autotoc_md5"></a>
+Defines</h1>
+<p>The emulator can be configured with the following defines:</p><ul>
+<li>USE_MILLIS_CHRONO: if set to true we implement millis() with the help of the c++ chrono. If false you need to provide your own implementation</li>
+<li>USE_DUMMY_PIN_FUNCTIONS: if set to true we just log the method calls; set to false to provide your own implementations</li>
+<li>DUSE_PRINT_CHAR: if set to true we print to the console; if set to flase provide your own implementation for bool print_char(uint8_t)</li>
+</ul>
+<h1><a class="anchor" id="autotoc_md6"></a>
 Maintainers</h1>
 <p>If you add new Arduino API stubs, please document them here. </p>
 </div></div><!-- contents -->

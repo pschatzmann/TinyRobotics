@@ -139,7 +139,7 @@ Level&#160;</td><td class="memItemRight" valign="bottom"><b>minLevel</b></td></t
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Simple, cross-platform logger for Arduino and C++ environments. </p>
 <p>This class provides a lightweight logging facility with support for log levels (ERROR, WARN, INFO, DEBUG), printf-style formatting, and platform-adaptive output (Serial for Arduino, printf for standard C++). It is designed for embedded and robotics applications where monitoring, debugging, and event tracking are essential.</p>
-<h2><a class="anchor" id="autotoc_md155"></a>
+<h2><a class="anchor" id="autotoc_md156"></a>
 Features</h2>
 <ul>
 <li>Four log levels: ERROR, WARN, INFO, DEBUG</li>
@@ -149,13 +149,13 @@ Features</h2>
 <li>Thread-safe for most embedded use cases (no dynamic memory allocation)</li>
 <li>Global logger instance (<code>TRLogger</code>) for convenience</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md156"></a>
+<h2><a class="anchor" id="autotoc_md157"></a>
 Usage Example</h2>
 <div class="fragment"><div class="line">TRLogger.setLevel(LoggerClass::DEBUG);</div>
 <div class="line">TRLogger.info(<span class="stringliteral">&quot;System started, version: %d&quot;</span>, version);</div>
 <div class="line">TRLogger.error(<span class="stringliteral">&quot;Failed to open file: %s&quot;</span>, filename);</div>
 <div class="line">TRLogger.debug(<span class="stringliteral">&quot;x=%.2f, y=%.2f&quot;</span>, x, y);</div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md157"></a>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md158"></a>
 Methods</h2>
 <ul>
 <li>setLevel(level): Set the minimum log level</li>
@@ -164,7 +164,7 @@ Methods</h2>
 <li>info(fmt, ...);</li>
 <li>debug(fmt, ...);</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md158"></a>
+<h2><a class="anchor" id="autotoc_md159"></a>
 Log Levels</h2>
 <ul>
 <li>ERROR: Critical errors and failures</li>
@@ -172,7 +172,7 @@ Log Levels</h2>
 <li>INFO: Informational messages and status updates</li>
 <li>DEBUG: Detailed debug output for development</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md159"></a>
+<h2><a class="anchor" id="autotoc_md160"></a>
 Platform Support</h2>
 <ul>
 <li>On Arduino, output is sent to Serial (or a user-supplied Print object)</li>
