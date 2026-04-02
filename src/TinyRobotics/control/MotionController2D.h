@@ -200,11 +200,13 @@ class MotionController2D : public MessageSource {
     Message<float> msg;
     msg.source = MessageOrigin::Autonomy;
     msg.content = MessageContent::Throttle;
+    msg.unit = Unit::Percent;
     // Use PID to map speed to throttle
     msg.value = resultThrottlePercent =
         pidSpeed_.calculate(desiredSpeedKmh, currentSpeedKmh);
     sendMessage(msg);
     msg.content = MessageContent::SteeringAngle;
+    msg.unit = Unit::AngleDegree;
     msg.value = resultStreeringAngleDeg =
         pidSteering_.calculate(0.0f, headingError);
     sendMessage(msg);
