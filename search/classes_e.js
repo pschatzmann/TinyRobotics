@@ -9,5 +9,6 @@ var searchData=
   ['pidcontroller_3c_20float_20_3e_6',['PIDController&lt; float &gt;',['../classtinyrobotics_1_1PIDController.html',1,'tinyrobotics']]],
   ['point3d_7',['Point3D',['../structtinyrobotics_1_1Point3D.html',1,'tinyrobotics']]],
   ['pointcloud_8',['PointCloud',['../classtinyrobotics_1_1PointCloud.html',1,'tinyrobotics']]],
-  ['pose2d_9',['Pose2D',['../structtinyrobotics_1_1Fusion2D_1_1Pose2D.html',1,'tinyrobotics::Fusion2D']]]
+  ['pose2d_9',['Pose2D',['../structtinyrobotics_1_1Fusion2D_1_1Pose2D.html',1,'tinyrobotics::Fusion2D']]],
+  ['print_10',['Print',['../classtinyrobotics__arduino_1_1Print.html',1,'tinyrobotics_arduino']]]
 ];

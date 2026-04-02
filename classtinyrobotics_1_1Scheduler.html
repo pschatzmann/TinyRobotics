@@ -128,7 +128,7 @@ uint16_t&#160;</td><td class="memItemRight" valign="bottom"><b>repeatMs_</b></td
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Simple periodic task scheduler for embedded and Arduino environments. </p>
 <p>This class provides a lightweight, non-blocking scheduler for executing a callback function at a fixed interval (in milliseconds). It is designed for use in embedded systems and Arduino sketches, where you want to perform periodic tasks (such as sensor readings, status updates, or control actions) without blocking the main loop.</p>
-<h2><a class="anchor" id="autotoc_md37"></a>
+<h2><a class="anchor" id="autotoc_md43"></a>
 Features</h2>
 <ul>
 <li>Works with Arduino (uses millis()) and desktop (uses std::chrono)</li>
@@ -136,7 +136,7 @@ Features</h2>
 <li>Easy to start, stop, and change the callback</li>
 <li>Suitable for cooperative multitasking and periodic polling</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md38"></a>
+<h2><a class="anchor" id="autotoc_md44"></a>
 Usage Example</h2>
 <div class="fragment"><div class="line"><span class="keywordtype">void</span> myTask(<span class="keywordtype">void</span>*) {}</div>
 <div class="line"><a class="code hl_class" href="classtinyrobotics_1_1Scheduler.html">Scheduler</a> sched;</div>
@@ -147,7 +147,7 @@ Usage Example</h2>
 <div class="line">  <span class="comment">// ... other code ...</span></div>
 <div class="line">}</div>
 <div class="ttc" id="aclasstinyrobotics_1_1Scheduler_html"><div class="ttname"><a href="classtinyrobotics_1_1Scheduler.html">tinyrobotics::Scheduler</a></div><div class="ttdoc">Simple periodic task scheduler for embedded and Arduino environments.</div><div class="ttdef"><b>Definition:</b> Scheduler.h:57</div></div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md39"></a>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md45"></a>
 Methods</h2>
 <ul>
 <li>begin(repeatMs, callback): Start the scheduler with interval and callback</li>
@@ -155,7 +155,7 @@ Methods</h2>
 <li>setCallback(callback): Change the callback function</li>
 <li>run(): Check and execute the callback if interval elapsed</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md40"></a>
+<h2><a class="anchor" id="autotoc_md46"></a>
 Applications</h2>
 <ul>
 <li>Periodic sensor polling</li>

@@ -72,7 +72,7 @@ $(function() {
   <div class="headertitle"><div class="title">TinyRobotics Motors Module </div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><h1><a class="anchor" id="autotoc_md84"></a>
+<div class="textblock"><h1><a class="anchor" id="autotoc_md90"></a>
 Overview</h1>
 <p>The TinyRobotics Motors module is a flexible and extensible framework for controlling a wide variety of motor types in embedded and Arduino environments. It provides unified abstractions and drivers for:</p>
 <ul>
@@ -91,7 +91,7 @@ Overview</h1>
 <li>Modular design for use in robots, vehicles, and automation projects</li>
 </ul>
 <p>The module is designed for portability and can be configured to use or avoid external libraries as needed. All motor drivers inherit from a common base class, making it easy to swap implementations or extend functionality for new hardware.</p>
-<h1><a class="anchor" id="autotoc_md85"></a>
+<h1><a class="anchor" id="autotoc_md91"></a>
 Motor Configuration (utils/Config.h)</h1>
 <p>Motor-specific settings can be adjusted in <code><a class="el" href="Config_8h_source.html">src/TinyRobotics/utils/Config.h</a></code>:</p>
 <ul>
@@ -103,7 +103,7 @@ Motor Configuration (utils/Config.h)</h1>
 <p>Example: </p><div class="fragment"><div class="line"><span class="preprocessor">#define USE_SERVO_LIBRARY false</span></div>
 <div class="line"><span class="preprocessor">#include &lt;<a class="code" href="TinyRobotics_8h.html">TinyRobotics.h</a>&gt;</span></div>
 <div class="ttc" id="aTinyRobotics_8h_html"><div class="ttname"><a href="TinyRobotics_8h.html">TinyRobotics.h</a></div></div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md86"></a>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md92"></a>
 Motor Classes</h1>
 <ul>
 <li><code>Motor</code>: Abstract base class for all motor types. Defines the common interface for all motors.</li>
@@ -113,9 +113,9 @@ Motor Classes</h1>
 <li><code>GenericMotor</code>: Flexible abstraction for integrating custom/external motor drivers using callbacks.</li>
 <li><code>StepperMotor</code>: Interface for stepper motors (uses FastAccelStepper library if enabled).</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md87"></a>
+<h1><a class="anchor" id="autotoc_md93"></a>
 Example Usage</h1>
-<h2><a class="anchor" id="autotoc_md88"></a>
+<h2><a class="anchor" id="autotoc_md94"></a>
 DC Motor (H-Bridge)</h2>
 <div class="fragment"><div class="line"><span class="preprocessor">#include &lt;<a class="code" href="TinyRobotics_8h.html">TinyRobotics.h</a>&gt;</span></div>
 <div class="line"> </div>
@@ -132,7 +132,7 @@ DC Motor (H-Bridge)</h2>
 <div class="line"><span class="keywordtype">void</span> loop() {</div>
 <div class="line">  <span class="comment">// Your control logic here</span></div>
 <div class="line">}</div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md89"></a>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md95"></a>
 Servo Motor</h2>
 <div class="fragment"><div class="line"><span class="preprocessor">#include &lt;<a class="code" href="TinyRobotics_8h.html">TinyRobotics.h</a>&gt;</span></div>
 <div class="line"> </div>
@@ -150,7 +150,7 @@ Servo Motor</h2>
 <div class="line"><span class="keywordtype">void</span> loop() {</div>
 <div class="line">  <span class="comment">// Your control logic here</span></div>
 <div class="line">}</div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md90"></a>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md96"></a>
 Generic Motor (Custom Driver)</h2>
 <div class="fragment"><div class="line"><span class="preprocessor">#include &lt;<a class="code" href="TinyRobotics_8h.html">TinyRobotics.h</a>&gt;</span></div>
 <div class="line"> </div>
@@ -174,13 +174,13 @@ Generic Motor (Custom Driver)</h2>
 <div class="line">  motor.setSpeed(-50); <span class="comment">// Half speed reverse</span></div>
 <div class="line">  motor.end();</div>
 <div class="line">}</div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md91"></a>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md97"></a>
 Stepper Motor (if enabled)</h2>
 <div class="fragment"><div class="line"><span class="preprocessor">#include &lt;<a class="code" href="TinyRobotics_8h.html">TinyRobotics.h</a>&gt;</span></div>
 <div class="line"> </div>
 <div class="line">StepperMotor stepper;</div>
 <div class="line"><span class="keywordtype">void</span> setup() {</div>
-<div class="line">  stepper.<a class="code hl_function" href="classtinyrobotics_1_1GenericMotor.html#a6460c640ace6f5e09db29cd079c756f4">setPins</a>(2, 3, 4);</div>
+<div class="line">  stepper.setPins(2, 3, 4);</div>
 <div class="line">  stepper.setMaxSpeed(1000);</div>
 <div class="line">  stepper.setStepsPerRevolution(200);</div>
 <div class="line">  stepper.begin();</div>
@@ -188,15 +188,14 @@ Stepper Motor (if enabled)</h2>
 <div class="line">  motor.setSpeed(-50); <span class="comment">// Half speed reverse</span></div>
 <div class="line">  stepper.end();</div>
 <div class="line">}</div>
-<div class="ttc" id="aclasstinyrobotics_1_1GenericMotor_html_a6460c640ace6f5e09db29cd079c756f4"><div class="ttname"><a href="classtinyrobotics_1_1GenericMotor.html#a6460c640ace6f5e09db29cd079c756f4">tinyrobotics::GenericMotor::setPins</a></div><div class="ttdeci">void setPins(int pin1, int pin2, int pwmPin=-1, int pwmFreq=20000)</div><div class="ttdoc">Not supported.</div><div class="ttdef"><b>Definition:</b> GenericMotor.h:115</div></div>
-</div><!-- fragment --> <h1><a class="anchor" id="autotoc_md92"></a>
+</div><!-- fragment --> <h1><a class="anchor" id="autotoc_md98"></a>
 Dependencies</h1>
 <ul>
 <li><a href="https://github.com/jkb-git/ESP32Servo">ESP32Servo</a></li>
 <li><a href="https://docs.arduino.cc/libraries/servo/">Servo</a></li>
 <li><a href="https://github.com/ESP32DIYer/FastAccelStepper">FastAccelStepper</a> (for StepperMotor support)</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md93"></a>
+<h1><a class="anchor" id="autotoc_md99"></a>
 See Also</h1>
 <ul>
 <li><a class="el" href="md_src_TinyRobotics_control_README.html">Control Module</a></li>

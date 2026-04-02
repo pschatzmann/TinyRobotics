@@ -72,10 +72,10 @@ $(function() {
   <div class="headertitle"><div class="title">TinyRobotics IMU Module </div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><h1><a class="anchor" id="autotoc_md64"></a>
+<div class="textblock"><h1><a class="anchor" id="autotoc_md70"></a>
 Overview</h1>
 <p>This module provides dead-reckoning integration for 2D and 3D Inertial Measurement Units (IMUs) in robotics applications. It estimates position, velocity, and orientation by integrating gyroscope and accelerometer data. No sensor fusion, Kalman filtering, magnetometer, or GPS support is provided. The IMU2D and IMU3D classes are intended for simple heading, velocity, and pose estimation in embedded and Arduino environments.</p>
-<h1><a class="anchor" id="autotoc_md65"></a>
+<h1><a class="anchor" id="autotoc_md71"></a>
 Features</h1>
 <ul>
 <li>Dead-reckoning 2D and 3D IMU integration (no sensor fusion)</li>
@@ -83,15 +83,15 @@ Features</h1>
 <li>3D support: orientation (yaw, pitch, roll), 3D position, 3D velocity</li>
 <li>Designed for embedded and Arduino environments</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md66"></a>
+<h1><a class="anchor" id="autotoc_md72"></a>
 Key Classes</h1>
 <ul>
 <li><code>IMU2D</code>: 2D IMU dead-reckoning integration</li>
 <li><code>IMU3D</code>: 3D IMU dead-reckoning integration (yaw, pitch, roll, 3D position/velocity)</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md67"></a>
+<h1><a class="anchor" id="autotoc_md73"></a>
 Example Usage</h1>
-<h2><a class="anchor" id="autotoc_md68"></a>
+<h2><a class="anchor" id="autotoc_md74"></a>
 2D IMU</h2>
 <div class="fragment"><div class="line"><span class="preprocessor">#include &lt;<a class="code" href="TinyRobotics_8h.html">TinyRobotics.h</a>&gt;</span></div>
 <div class="line">IMU2D imu;</div>
@@ -106,7 +106,7 @@ Example Usage</h1>
 <div class="line">  <span class="keywordtype">float</span> heading = imu.getTheta();</div>
 <div class="line">}</div>
 <div class="ttc" id="aTinyRobotics_8h_html"><div class="ttname"><a href="TinyRobotics_8h.html">TinyRobotics.h</a></div></div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md69"></a>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md75"></a>
 3D IMU</h2>
 <div class="fragment"><div class="line"><span class="preprocessor">#include &lt;<a class="code" href="TinyRobotics_8h.html">TinyRobotics.h</a>&gt;</span></div>
 <div class="line">IMU3D&lt;&gt; imu3d;</div>
@@ -123,9 +123,9 @@ Example Usage</h1>
 <div class="line">  <span class="keyword">auto</span> lastDelta = imu3d.getLastDelta();</div>
 <div class="line">  <span class="keyword">auto</span> lastAngularVel = imu3d.getLastAngularVelocity();</div>
 <div class="line">}</div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md70"></a>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md76"></a>
 API Highlights</h1>
-<h2><a class="anchor" id="autotoc_md71"></a>
+<h2><a class="anchor" id="autotoc_md77"></a>
 IMU2D</h2>
 <ul>
 <li><code>begin(float headingRad, Coordinate&lt;float&gt; position)</code>: Initialize state</li>
@@ -135,7 +135,7 @@ IMU2D</h2>
 <li><code>getLinearVelocity()</code>: Get current linear velocity (float)</li>
 <li><code>getTheta()</code>: Get current heading (float, radians)</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md72"></a>
+<h2><a class="anchor" id="autotoc_md78"></a>
 IMU3D</h2>
 <ul>
 <li><code>begin(Coordinate&lt;T&gt; position, Orientation3D orientation)</code>: Initialize state</li>
@@ -147,12 +147,12 @@ IMU3D</h2>
 <li><code>getLastDelta()</code>: Get last position delta (Distance3D)</li>
 <li><code>getLastAngularVelocity()</code>: Get last angular velocity (AngularVelocity3D)</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md73"></a>
+<h1><a class="anchor" id="autotoc_md79"></a>
 See Examples</h1>
 <ul>
 <li><a href="../../../examples/imu/imu2d/imu2d.ino">IMU 2D Example</a></li>
 </ul>
-<h1><a class="anchor" id="autotoc_md74"></a>
+<h1><a class="anchor" id="autotoc_md80"></a>
 Notes</h1>
 <ul>
 <li>All units are SI (meters, seconds, radians)</li>

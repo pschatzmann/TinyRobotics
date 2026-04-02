@@ -21,12 +21,13 @@ var searchData=
   ['tinyrobotics_20units_20module_18',['TinyRobotics Units Module',['../md_src_TinyRobotics_units_README.html',1,'']]],
   ['tinyrobotics_20utils_20module_19',['TinyRobotics Utils Module',['../md_src_TinyRobotics_utils_README.html',1,'']]],
   ['tinyrobotics_2eh_20',['TinyRobotics.h',['../TinyRobotics_8h.html',1,'']]],
-  ['togps_21',['toGPS',['../classtinyrobotics_1_1FrameMgr3D.html#a204042e0b4084ba491256fc09760cf63',1,'tinyrobotics::FrameMgr3D::toGPS()'],['../classtinyrobotics_1_1FrameMgr2D.html#a1485dd4c5a4005ffea28b74ea930d11f',1,'tinyrobotics::FrameMgr2D::toGPS()']]],
-  ['tostring_22',['toString',['../classtinyrobotics_1_1GPSCoordinate.html#a1fe5121d6528fdea3f243321b3fa3a49',1,'tinyrobotics::GPSCoordinate']]],
-  ['tovoxel_23',['toVoxel',['../classtinyrobotics_1_1PointCloud.html#adc1882b911f8e4743f4c016997553777',1,'tinyrobotics::PointCloud']]],
-  ['toworld_24',['toWorld',['../classtinyrobotics_1_1GridMap.html#a2fd28860d10c623f6a2afbf3ce4d99c2',1,'tinyrobotics::GridMap']]],
-  ['transform2d_25',['Transform2D',['../classtinyrobotics_1_1Transform2D.html',1,'tinyrobotics']]],
-  ['transform3d_26',['Transform3D',['../structtinyrobotics_1_1Transform3D.html',1,'tinyrobotics']]],
-  ['trim_27',['trim',['../classtinyrobotics_1_1SingleBuffer.html#a268ae12a22c9f97b84833e4c39fb2278',1,'tinyrobotics::SingleBuffer']]],
-  ['type_28',['type',['../structtinyrobotics_1_1ParsedMessage.html#af23dd5df3133ce1a1582c66913241c0d',1,'tinyrobotics::ParsedMessage']]]
+  ['tinyrobotics_5farduino_21',['tinyrobotics_arduino',['../namespacetinyrobotics__arduino.html',1,'']]],
+  ['togps_22',['toGPS',['../classtinyrobotics_1_1FrameMgr3D.html#a204042e0b4084ba491256fc09760cf63',1,'tinyrobotics::FrameMgr3D::toGPS()'],['../classtinyrobotics_1_1FrameMgr2D.html#a1485dd4c5a4005ffea28b74ea930d11f',1,'tinyrobotics::FrameMgr2D::toGPS()']]],
+  ['tostring_23',['toString',['../classtinyrobotics_1_1GPSCoordinate.html#a1fe5121d6528fdea3f243321b3fa3a49',1,'tinyrobotics::GPSCoordinate']]],
+  ['tovoxel_24',['toVoxel',['../classtinyrobotics_1_1PointCloud.html#adc1882b911f8e4743f4c016997553777',1,'tinyrobotics::PointCloud']]],
+  ['toworld_25',['toWorld',['../classtinyrobotics_1_1GridMap.html#a2fd28860d10c623f6a2afbf3ce4d99c2',1,'tinyrobotics::GridMap']]],
+  ['transform2d_26',['Transform2D',['../classtinyrobotics_1_1Transform2D.html',1,'tinyrobotics']]],
+  ['transform3d_27',['Transform3D',['../structtinyrobotics_1_1Transform3D.html',1,'tinyrobotics']]],
+  ['trim_28',['trim',['../classtinyrobotics_1_1SingleBuffer.html#a268ae12a22c9f97b84833e4c39fb2278',1,'tinyrobotics::SingleBuffer']]],
+  ['type_29',['type',['../structtinyrobotics_1_1ParsedMessage.html#af23dd5df3133ce1a1582c66913241c0d',1,'tinyrobotics::ParsedMessage']]]
 ];

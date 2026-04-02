@@ -77,7 +77,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 <div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#</span><span class="preprocessor">pragma</span> <span class="preprocessor">once</span></div>
-<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#</span><span class="preprocessor">include</span> <span class="preprocessor">&quot;Stream.h&quot;</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#</span><span class="preprocessor">include</span> <a class="code" href="Stream_8h.html">&quot;Stream.h&quot;</a></div>
 <div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#</span><span class="preprocessor">include</span> <span class="preprocessor">&quot;TinyRobotics/utils/Buffers.h&quot;</span></div>
 <div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span> </div>
 <div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#</span><span class="preprocessor">define</span> <span class="preprocessor">STREAM_READ_OVERRIDE</span></div>
@@ -117,9 +117,9 @@ $(function() {
 <div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    <span class="keywordflow">return</span> tmp_out.write(ch);</div>
 <div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>  }</div>
 <div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span> </div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>  <span class="keyword">virtual</span> <span class="keywordtype">int</span> available() <span class="keyword">override</span> { <span class="keywordflow">return</span> <a class="code hl_define" href="BaseStream_8h.html#a6e576a3c6530636d68b7a220480bcd32">DEFAULT_BUFFER_SIZE</a>; };</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>  <span class="keyword">virtual</span> <span class="keywordtype">int</span> available() { <span class="keywordflow">return</span> <a class="code hl_define" href="BaseStream_8h.html#a6e576a3c6530636d68b7a220480bcd32">DEFAULT_BUFFER_SIZE</a>; };</div>
 <div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span> </div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>  <span class="keyword">virtual</span> <span class="keywordtype">int</span> availableForWrite() <span class="keyword">override</span> { <span class="keywordflow">return</span> <a class="code hl_define" href="BaseStream_8h.html#a6e576a3c6530636d68b7a220480bcd32">DEFAULT_BUFFER_SIZE</a>; }</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>  <span class="keyword">virtual</span> <span class="keywordtype">int</span> availableForWrite() { <span class="keywordflow">return</span> <a class="code hl_define" href="BaseStream_8h.html#a6e576a3c6530636d68b7a220480bcd32">DEFAULT_BUFFER_SIZE</a>; }</div>
 <div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span> </div>
 <div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>  <span class="keyword">virtual</span> <span class="keywordtype">void</span> flush() <span class="keyword">override</span> {</div>
 <div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    <span class="keywordflow">if</span> (tmp_out.available() &gt; 0) {</div>

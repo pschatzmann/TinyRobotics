@@ -1,3 +1,5 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$classtinyrobotics_1_1QueueRTOS.html" title="FIFO Queue whch is based on the FreeRTOS queue API. The default allocator will allocate the memory fr..." alt="" coords="5,5,215,31"/>
+<area shape="rect" id="node1" href="$classtinyrobotics__arduino_1_1Print.html" title=" " alt="" coords="5,5,57,31"/>
+<area shape="rect" id="node2" href="$classtinyrobotics__arduino_1_1Stream.html" title=" " alt="" coords="105,5,175,31"/>
+<area shape="rect" id="node3" href="$structtinyrobotics__arduino_1_1HardwareSerial.html" title=" " alt="" coords="223,5,345,31"/>
 </map>

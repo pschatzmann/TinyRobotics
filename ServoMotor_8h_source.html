@@ -132,14 +132,14 @@ $(function() {
 <div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>    <span class="comment">// potentially constrain the angles</span></div>
 <div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    <span class="keywordflow">if</span> (rosAngleDegrees &lt; minAngle) rosAngleDegrees = minAngle;</div>
 <div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>    <span class="keywordflow">if</span> (rosAngleDegrees &gt; maxAngle) rosAngleDegrees = maxAngle;</div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>    int8_t angle = map(rosAngleDegrees, -90, 90, 0, 180);</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>    int8_t angle = <a class="code hl_define" href="Arduino_8h.html#a7bba4c1359a26349630ae3f8b478667a">map</a>(rosAngleDegrees, -90, 90, 0, 180);</div>
 <div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>    servo.write(constrain(angle, 0, 180));</div>
 <div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>  }</div>
 <div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span> </div>
 <div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>  <span class="comment">/** Get the last written angle (degrees) */</span></div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>  <a class="code hl_function" href="classtinyrobotics_1_1ServoMotor.html#a36459042a0cf20a8c10c020370e7f4ae">int8_t</a> <a class="code hl_function" href="classtinyrobotics_1_1ServoMotor.html#a36459042a0cf20a8c10c020370e7f4ae">getAngle</a>() {</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>  int8_t <a class="code hl_function" href="classtinyrobotics_1_1ServoMotor.html#a36459042a0cf20a8c10c020370e7f4ae">getAngle</a>() {</div>
 <div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>    <span class="keywordtype">int</span> angle = servo.read();</div>
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>    <span class="keywordflow">return</span> map(angle, 0, 180, -90, 90);</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>    <span class="keywordflow">return</span> <a class="code hl_define" href="Arduino_8h.html#a7bba4c1359a26349630ae3f8b478667a">map</a>(angle, 0, 180, -90, 90);</div>
 <div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>  }</div>
 <div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span> </div>
 <div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>  <span class="comment">/// Set constraints on the allowed angle range (degrees). This can be used to</span></div>
@@ -152,7 +152,7 @@ $(function() {
 <div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>  }</div>
 <div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span> </div>
 <div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>  <span class="keywordtype">void</span> end() <span class="keyword">override</span> {</div>
-<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>    setAngle(0);</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>    <a class="code hl_function" href="classtinyrobotics_1_1ServoMotor.html#a7103642ee5456bfc478e19dd33eaa52e">setAngle</a><a class="code hl_function" href="classtinyrobotics_1_1ServoMotor.html#a7103642ee5456bfc478e19dd33eaa52e">(</a>0<a class="code hl_function" href="classtinyrobotics_1_1ServoMotor.html#a7103642ee5456bfc478e19dd33eaa52e">)</a>;</div>
 <div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>    servo.detach();</div>
 <div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>  }</div>
 <div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span> </div>
@@ -167,6 +167,7 @@ $(function() {
 <div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>};</div>
 <div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span> </div>
 <div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>}  <span class="comment">// namespace tinyrobotics</span></div>
+<div class="ttc" id="aArduino_8h_html_a7bba4c1359a26349630ae3f8b478667a"><div class="ttname"><a href="Arduino_8h.html#a7bba4c1359a26349630ae3f8b478667a">map</a></div><div class="ttdeci">#define map(x, in_min, in_max, out_min, out_max)</div><div class="ttdef"><b>Definition:</b> Arduino.h:61</div></div>
 <div class="ttc" id="aclasstinyrobotics_1_1Motor_html"><div class="ttname"><a href="classtinyrobotics_1_1Motor.html">tinyrobotics::Motor</a></div><div class="ttdoc">Abstract base class for all motor driver types.</div><div class="ttdef"><b>Definition:</b> Motor.h:19</div></div>
 <div class="ttc" id="aclasstinyrobotics_1_1ServoMotor_html"><div class="ttname"><a href="classtinyrobotics_1_1ServoMotor.html">tinyrobotics::ServoMotor</a></div><div class="ttdoc">High-level wrapper for Arduino Servo control (RC servo motors).</div><div class="ttdef"><b>Definition:</b> ServoMotor.h:39</div></div>
 <div class="ttc" id="aclasstinyrobotics_1_1ServoMotor_html_a2360066b15117341cd2fcb2f47e41801"><div class="ttname"><a href="classtinyrobotics_1_1ServoMotor.html#a2360066b15117341cd2fcb2f47e41801">tinyrobotics::ServoMotor::setPin</a></div><div class="ttdeci">void setPin(int pin)</div><div class="ttdef"><b>Definition:</b> ServoMotor.h:44</div></div>

@@ -126,7 +126,7 @@ N&#160;</td><td class="memItemRight" valign="bottom"><b>integral</b> = 0.0f</td>
 <div class="textblock"><div class="compoundTemplParams">template&lt;class N = float&gt;<br />
 class tinyrobotics::PIDController&lt; N &gt;</div><p>Implements a simple, header-only Proportional-Integral-Derivative (PID) controller. </p>
 <p>This class provides a basic PID controller for closed-loop control of processes such as motors, temperature, position, and more. The controller computes a control output based on the error between a target setpoint and a measured process value, using configurable proportional, integral, and derivative gains.</p>
-<h2><a class="anchor" id="autotoc_md28"></a>
+<h2><a class="anchor" id="autotoc_md34"></a>
 Features</h2>
 <ul>
 <li>Simple API: <code>begin()</code> to configure, <code>calculate()</code> to compute control output</li>
@@ -134,13 +134,13 @@ Features</h2>
 <li>Suitable for real-time and embedded systems</li>
 <li>All state is internal; no dynamic memory allocation</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md29"></a>
+<h2><a class="anchor" id="autotoc_md35"></a>
 Usage Example</h2>
 <div class="fragment"><div class="line"><a class="code hl_class" href="classtinyrobotics_1_1PIDController.html">PIDController</a> pid;</div>
 <div class="line">pid.begin(0.01, 255, 0, 1.0, 0.5, 0.1); <span class="comment">// dt, max, min, kp, ki, kd</span></div>
 <div class="line">N control = pid.calculate(target, measured);</div>
-<div class="ttc" id="aclasstinyrobotics_1_1PIDController_html"><div class="ttname"><a href="classtinyrobotics_1_1PIDController.html">tinyrobotics::PIDController</a></div><div class="ttdoc">Implements a simple, header-only Proportional-Integral-Derivative (PID) controller.</div><div class="ttdef"><b>Definition:</b> PIDController.h:54</div></div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md30"></a>
+<div class="ttc" id="aclasstinyrobotics_1_1PIDController_html"><div class="ttname"><a href="classtinyrobotics_1_1PIDController.html">tinyrobotics::PIDController</a></div><div class="ttdoc">Implements a simple, header-only Proportional-Integral-Derivative (PID) controller.</div><div class="ttdef"><b>Definition:</b> PIDController.h:55</div></div>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md36"></a>
 Parameters</h2>
 <ul>
 <li>dt: Loop interval time (seconds)</li>
@@ -150,13 +150,13 @@ Parameters</h2>
 <li>ki: Integral gain</li>
 <li>kd: Derivative gain</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md31"></a>
+<h2><a class="anchor" id="autotoc_md37"></a>
 Methods</h2>
 <ul>
 <li>begin(dt, max, min, kp, ki, kd): Initialize controller parameters</li>
 <li>calculate(target, measured): Compute control output for current error</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md32"></a>
+<h2><a class="anchor" id="autotoc_md38"></a>
 Applications</h2>
 <ul>
 <li><a class="el" href="classtinyrobotics_1_1Motor.html" title="Abstract base class for all motor driver types.">Motor</a> speed and position control</li>
