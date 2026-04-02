@@ -1,5 +1,7 @@
 #pragma once
 
+namespace tinyrobotics_arduino  {
+
 /**
  * @brief Arduino-compatible Print base class stub for native builds.
  *
@@ -13,9 +15,6 @@
  * To use, derive from Print and implement the write(uint8_t) method to define how
  * output is handled (e.g., to std::cout, a file, or a buffer).
  */
-#pragma once
-
-namespace tinyrobotics_arduino  {
 
 class Print {
  public:

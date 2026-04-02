@@ -1,6 +1,7 @@
 #pragma once
 #include "Print.h"
 
+namespace tinyrobotics_arduino  {
 
 /**
  * @brief Arduino-compatible Stream base class stub for native builds.
@@ -12,7 +13,6 @@
  * Use this as a base for implementing Serial, file, or memory streams when porting
  * Arduino code to standard C++ platforms.
  */
-namespace tinyrobotics_arduino  {
 
 class Stream : public Print {
  public:
