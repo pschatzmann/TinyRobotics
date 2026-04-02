@@ -127,6 +127,12 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>setSteeringAngle</b> 
 <tr class="memitem:ae7db134ed7983f2eecb01368cd77f6fd"><td class="memItemLeft" align="right" valign="top"><a id="ae7db134ed7983f2eecb01368cd77f6fd" name="ae7db134ed7983f2eecb01368cd77f6fd"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>setSteeringAngle</b> (<a class="el" href="classtinyrobotics_1_1Angle.html">Angle</a> angle)</td></tr>
 <tr class="separator:ae7db134ed7983f2eecb01368cd77f6fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3ee00f59434f682b87ae5577484a4d2e"><td class="memItemLeft" align="right" valign="top"><a id="a3ee00f59434f682b87ae5577484a4d2e" name="a3ee00f59434f682b87ae5577484a4d2e"></a>
+<a class="el" href="classtinyrobotics_1_1Angle.html">Angle</a>&#160;</td><td class="memItemRight" valign="bottom"><b>getSteeringAngle</b> () const</td></tr>
+<tr class="separator:a3ee00f59434f682b87ae5577484a4d2e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3685db1c841f838f5b843534bab7f3ec"><td class="memItemLeft" align="right" valign="top"><a id="a3685db1c841f838f5b843534bab7f3ec" name="a3685db1c841f838f5b843534bab7f3ec"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>getSpeed</b> () const</td></tr>
+<tr class="separator:a3685db1c841f838f5b843534bab7f3ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aaf81d3fdaf258088d7692fa70cece087"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1CarAckerman.html#aaf81d3fdaf258088d7692fa70cece087">end</a> ()</td></tr>
 <tr class="separator:aaf81d3fdaf258088d7692fa70cece087"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aab121fc05ce8562504b0970668fe3f3f"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1CarAckerman.html#aab121fc05ce8562504b0970668fe3f3f">isPinsSet</a> () const</td></tr>
@@ -190,6 +196,12 @@ MotorMT&#160;</td><td class="memItemRight" valign="bottom"><b>motor_</b></td></t
 <tr class="memitem:a6759339767b14f98da4635b0077df5b0"><td class="memItemLeft" align="right" valign="top"><a id="a6759339767b14f98da4635b0077df5b0" name="a6759339767b14f98da4635b0077df5b0"></a>
 ServoMT&#160;</td><td class="memItemRight" valign="bottom"><b>steering_</b></td></tr>
 <tr class="separator:a6759339767b14f98da4635b0077df5b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6bcf637aa4f03937954c7e26c6123c7c"><td class="memItemLeft" align="right" valign="top"><a id="a6bcf637aa4f03937954c7e26c6123c7c" name="a6bcf637aa4f03937954c7e26c6123c7c"></a>
+float&#160;</td><td class="memItemRight" valign="bottom"><b>speed_</b> = 0</td></tr>
+<tr class="separator:a6bcf637aa4f03937954c7e26c6123c7c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac824447202975fb90d993f62ad37b15b"><td class="memItemLeft" align="right" valign="top"><a id="ac824447202975fb90d993f62ad37b15b" name="ac824447202975fb90d993f62ad37b15b"></a>
+float&#160;</td><td class="memItemRight" valign="bottom"><b>angleDeg_</b> = 0</td></tr>
+<tr class="separator:ac824447202975fb90d993f62ad37b15b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_attribs_classtinyrobotics_1_1MessageSource"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_classtinyrobotics_1_1MessageSource')"><img src="closed.png" alt="-"/>&#160;Protected Attributes inherited from <a class="el" href="classtinyrobotics_1_1MessageSource.html">MessageSource</a></td></tr>
 <tr class="memitem:ae8917ae7a3eb87d29c94c514e1d5c981 inherit pro_attribs_classtinyrobotics_1_1MessageSource"><td class="memItemLeft" align="right" valign="top"><a id="ae8917ae7a3eb87d29c94c514e1d5c981" name="ae8917ae7a3eb87d29c94c514e1d5c981"></a>
 std::vector&lt; <a class="el" href="classtinyrobotics_1_1MessageHandler.html">MessageHandler</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>messageHandlers_</b></td></tr>
@@ -210,7 +222,7 @@ class tinyrobotics::CarAckerman&lt; MotorMT, ServoMT &gt;</div><p>Car with Acker
 <div class="ttc" id="aclasstinyrobotics_1_1CarAckerman_html"><div class="ttname"><a href="classtinyrobotics_1_1CarAckerman.html">tinyrobotics::CarAckerman</a></div><div class="ttdoc">Car with Ackerman steering and single drive motor.</div><div class="ttdef"><b>Definition:</b> CarAckerman.h:28</div></div>
 <div class="ttc" id="aclasstinyrobotics_1_1CarAckerman_html_a3599eac156ea37e08b695e841649bdce"><div class="ttname"><a href="classtinyrobotics_1_1CarAckerman.html#a3599eac156ea37e08b695e841649bdce">tinyrobotics::CarAckerman::setSpeed</a></div><div class="ttdeci">void setSpeed(int percent)</div><div class="ttdoc">Set drive speed (percent, -100 to 100). Positive = forward.</div><div class="ttdef"><b>Definition:</b> CarAckerman.h:47</div></div>
 <div class="ttc" id="aclasstinyrobotics_1_1CarAckerman_html_a679b569ee71fd92173c5bd96e3432355"><div class="ttname"><a href="classtinyrobotics_1_1CarAckerman.html#a679b569ee71fd92173c5bd96e3432355">tinyrobotics::CarAckerman::setPins</a></div><div class="ttdeci">void setPins(int in1, int in2, int pwm, int steeringPin)</div><div class="ttdoc">Set the pins for the drive motor and steering servo.</div><div class="ttdef"><b>Definition:</b> CarAckerman.h:39</div></div>
-<div class="ttc" id="aclasstinyrobotics_1_1CarAckerman_html_aaf81d3fdaf258088d7692fa70cece087"><div class="ttname"><a href="classtinyrobotics_1_1CarAckerman.html#aaf81d3fdaf258088d7692fa70cece087">tinyrobotics::CarAckerman::end</a></div><div class="ttdeci">void end()</div><div class="ttdef"><b>Definition:</b> CarAckerman.h:71</div></div>
+<div class="ttc" id="aclasstinyrobotics_1_1CarAckerman_html_aaf81d3fdaf258088d7692fa70cece087"><div class="ttname"><a href="classtinyrobotics_1_1CarAckerman.html#aaf81d3fdaf258088d7692fa70cece087">tinyrobotics::CarAckerman::end</a></div><div class="ttdeci">void end()</div><div class="ttdef"><b>Definition:</b> CarAckerman.h:77</div></div>
 </div><!-- fragment --> </div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="aaf81d3fdaf258088d7692fa70cece087" name="aaf81d3fdaf258088d7692fa70cece087"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aaf81d3fdaf258088d7692fa70cece087">&#9670;&#160;</a></span>end()</h2>

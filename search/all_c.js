@@ -4,5 +4,6 @@ var searchData=
   ['nextstep_1',['nextStep',['../classtinyrobotics_1_1AStar.html#a4126c277aac5e9ceb1353979c97571d3',1,'tinyrobotics::AStar']]],
   ['nmeaparser_2',['NMEAParser',['../classtinyrobotics_1_1NMEAParser.html',1,'tinyrobotics']]],
   ['noderecord_3',['NodeRecord',['../structtinyrobotics_1_1AStar_1_1NodeRecord.html',1,'tinyrobotics::AStar']]],
-  ['nointerrupthandler_4',['NoInterruptHandler',['../classtinyrobotics_1_1NoInterruptHandler.html',1,'tinyrobotics']]]
+  ['nointerrupthandler_4',['NoInterruptHandler',['../classtinyrobotics_1_1NoInterruptHandler.html',1,'tinyrobotics']]],
+  ['nullprintclass_5',['NullPrintClass',['../classtinyrobotics__arduino_1_1NullPrintClass.html',1,'tinyrobotics_arduino']]]
 ];

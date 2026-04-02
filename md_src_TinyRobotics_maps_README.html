@@ -85,6 +85,11 @@ Contents</h1>
 <li><b><a class="el" href="PointCloud_8h_source.html">PointCloud.h</a></b> <br  />
  Efficient 3D point cloud for mapping and obstacle detection. <br  />
  Features: point addition, bounding box tracking, voxel grid downsampling, and occupancy queries.</li>
+<li><p class="startli"><b><a class="el" href="CallbackMap_8h_source.html">CallbackMap.h</a></b> <br  />
+ Callback-driven neighbor generation for pathfinding and navigation. <br  />
+ Features: configurable neighbor distance and count, runtime validity callback, on-demand neighbor computation.</p>
+<p class="startli"><b><a class="el" href="CallbackMap_8h_source.html">CallbackMap.h</a></b></p>
+</li>
 </ul>
 <h1><a class="anchor" id="autotoc_md90"></a>
 Typical Usage</h1>
@@ -96,9 +101,7 @@ Typical Usage</h1>
 </ul>
 <h1><a class="anchor" id="autotoc_md91"></a>
 Example</h1>
-<div class="fragment"><div class="line"><span class="preprocessor">#include &quot;GridMap.h&quot;</span></div>
-<div class="line"><span class="preprocessor">#include &quot;PathMap.h&quot;</span></div>
-<div class="line"><span class="preprocessor">#include &quot;PointCloud.h&quot;</span></div>
+<div class="fragment"><div class="line"><span class="preprocessor">#include &quot;<a class="code" href="TinyRobotics_8h.html">TinyRobotics.h</a>&quot;</span></div>
 <div class="line"> </div>
 <div class="line"><span class="comment">// Create a 2D grid map</span></div>
 <div class="line">GridMap&lt;&gt; grid(100, 100, 0.1f); <span class="comment">// 100x100 cells, 10cm resolution</span></div>
@@ -111,6 +114,12 @@ Example</h1>
 <div class="line">PointCloud cloud;</div>
 <div class="line">cloud.add(1.0, 2.0, 0.5);</div>
 <div class="line">cloud.buildVoxelGrid(0.1f); <span class="comment">// 10cm voxels</span></div>
+<div class="line"> </div>
+<div class="line"><span class="comment">// Use CallbackMap for neighbor generation</span></div>
+<div class="line">CallbackMap&lt;&gt; cbmap(1.0f, 16); <span class="comment">// 1m distance, 16 directions</span></div>
+<div class="line">cbmap.setIsValidCallback([](Coordinate&lt;DistanceM&gt; c) { <span class="keywordflow">return</span> c.x &gt; 0; });</div>
+<div class="line"><span class="keyword">auto</span> neighbors = cbmap.getNeighbors(Coordinate&lt;DistanceM&gt;(0,0));</div>
+<div class="ttc" id="aTinyRobotics_8h_html"><div class="ttname"><a href="TinyRobotics_8h.html">TinyRobotics.h</a></div></div>
 </div><!-- fragment --> <h1><a class="anchor" id="autotoc_md92"></a>
 See Examples</h1>
 <ul>

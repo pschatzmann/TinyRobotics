@@ -21,7 +21,7 @@ var searchData=
   ['getmap_18',['getMap',['../classtinyrobotics_1_1SLAM2D.html#a440b671e4d8a7f2c5b42622d2986bd79',1,'tinyrobotics::SLAM2D']]],
   ['getmotor_19',['getMotor',['../classtinyrobotics_1_1GenericMotor.html#a9a3669849db2be3739302328334664f1',1,'tinyrobotics::GenericMotor']]],
   ['getneighborcells_20',['getNeighborCells',['../classtinyrobotics_1_1GridMap.html#a94571cca4ecd74cde89d8a0a7f167df1',1,'tinyrobotics::GridMap']]],
-  ['getneighbors_21',['getNeighbors',['../classtinyrobotics_1_1PointCloud.html#ae7bb7edf90fa388eb34881fa5f89da81',1,'tinyrobotics::PointCloud::getNeighbors()'],['../classtinyrobotics_1_1GridMap.html#a4baf12d55e814af3f2acedd6b71f188e',1,'tinyrobotics::GridMap::getNeighbors()']]],
+  ['getneighbors_21',['getNeighbors',['../classtinyrobotics_1_1CallbackMap.html#a4baf12d55e814af3f2acedd6b71f188e',1,'tinyrobotics::CallbackMap::getNeighbors()'],['../classtinyrobotics_1_1PointCloud.html#ae7bb7edf90fa388eb34881fa5f89da81',1,'tinyrobotics::PointCloud::getNeighbors()'],['../classtinyrobotics_1_1GridMap.html#a4baf12d55e814af3f2acedd6b71f188e',1,'tinyrobotics::GridMap::getNeighbors()']]],
   ['getnextfrontier_22',['getNextFrontier',['../classtinyrobotics_1_1SLAM2D.html#a9d8d57f260c6de54137a30d891107327',1,'tinyrobotics::SLAM2D']]],
   ['getobstaclecoordinate_23',['getObstacleCoordinate',['../classtinyrobotics_1_1RangeSensor.html#a6f84e0a0f915a9306faec3154b8e4fb4',1,'tinyrobotics::RangeSensor']]],
   ['getobstacledirectiondegree_24',['getObstacleDirectionDegree',['../classtinyrobotics_1_1RangeSensor.html#ac902aa5c03242814bf3ac2ea6bf435f0',1,'tinyrobotics::RangeSensor']]],
