@@ -78,15 +78,20 @@ $(function() {
 <a href="#pro-methods">Protected Member Functions</a> &#124;
 <a href="#pro-attribs">Protected Attributes</a> &#124;
 <a href="classtinyrobotics_1_1StepperMotor-members.html">List of all members</a>  </div>
-  <div class="headertitle"><div class="title">StepperMotor Class Reference</div></div>
+  <div class="headertitle"><div class="title">StepperMotor Class Reference<div class="ingroups"><a class="el" href="group__main.html">TinyRobotics</a> &raquo; <a class="el" href="group__motors.html">Motors</a></div></div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Stepper motor driver using FastAccelStepper for Arduino.  
+ <a href="classtinyrobotics_1_1StepperMotor.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="StepperMotor_8h_source.html">StepperMotor.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for StepperMotor:</div>
 <div class="dyncontent">
 <div class="center"><img src="classtinyrobotics_1_1StepperMotor__inherit__graph.png" border="0" usemap="#aStepperMotor_inherit__map" alt="Inheritance graph"/></div>
 <map name="aStepperMotor_inherit__map" id="aStepperMotor_inherit__map">
-<area shape="rect" title=" " alt="" coords="5,79,116,104"/>
+<area shape="rect" title="Stepper motor driver using FastAccelStepper for Arduino." alt="" coords="5,79,116,104"/>
 <area shape="rect" href="classtinyrobotics_1_1Motor.html" title="Abstract base class for all motor driver types." alt="" coords="31,5,91,31"/>
 </map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
@@ -95,7 +100,7 @@ Collaboration diagram for StepperMotor:</div>
 <div class="dyncontent">
 <div class="center"><img src="classtinyrobotics_1_1StepperMotor__coll__graph.png" border="0" usemap="#aStepperMotor_coll__map" alt="Collaboration graph"/></div>
 <map name="aStepperMotor_coll__map" id="aStepperMotor_coll__map">
-<area shape="rect" title=" " alt="" coords="5,79,116,104"/>
+<area shape="rect" title="Stepper motor driver using FastAccelStepper for Arduino." alt="" coords="5,79,116,104"/>
 <area shape="rect" href="classtinyrobotics_1_1Motor.html" title="Abstract base class for all motor driver types." alt="" coords="31,5,91,31"/>
 </map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
@@ -191,7 +196,47 @@ void(*&#160;</td><td class="memItemRight" valign="bottom"><b>callback</b> )(void
 uint8_t&#160;</td><td class="memItemRight" valign="bottom"><b>id</b> = 0</td></tr>
 <tr class="separator:a1e6927fa1486224044e568f9c370519b inherit pro_attribs_classtinyrobotics_1_1Motor"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Member Function Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Stepper motor driver using FastAccelStepper for Arduino. </p>
+<p>This class provides an interface to control stepper motors with acceleration and speed control. It supports:</p><ul>
+<li>Continuous speed mode: setSpeed(percent) for indefinite movement at a given speed and direction.</li>
+<li>Relative movement: moveRevolutions(revolutions, speedPercent, callback,
+ref) to move a specific number of revolutions, with optional callback on completion.</li>
+<li>Distance-based movement: moveDistance(distance, wheelDiameter,
+speedPercent, callback, ref) to move a specific physical distance (using wheel diameter), with optional callback.</li>
+</ul>
+<p>You can set pins, maximum speed, acceleration, and steps per revolution. The motor can be started, stopped, or moved by distance or revolutions. Acceleration is handled automatically based on the configured accelerationMs.</p>
+<p>The class uses FastAccelStepper's continuous mode for <a class="el" href="classtinyrobotics_1_1StepperMotor.html#a3d45de3f120eb5346db3e91c46960d01">setSpeed()</a>, and supports asynchronous notification via callback for move operations.</p>
+<p>@dependencies</p><ul>
+<li>Requires the FastAccelStepper library: <a href="https://github.com/ESP32DIYer/FastAccelStepper">https://github.com/ESP32DIYer/FastAccelStepper</a> (Install via Arduino Library Manager or PlatformIO)</li>
+<li>Uses Arduino core functions (e.g., constrain, map)</li>
+</ul>
+<p>Main methods:</p><ul>
+<li>setPins(stepPin, dirPin, enablePin): Assigns the control pins for the stepper driver.</li>
+<li>setMaxSpeed(stepsPerSec): Sets the maximum speed in steps per second.</li>
+<li>setStepsPerRevolution(steps): Sets the number of steps per full revolution.</li>
+<li>setAccelerationMs(ms): Sets the time in milliseconds to reach max speed (acceleration).</li>
+<li><a class="el" href="classtinyrobotics_1_1StepperMotor.html#a601fb7cf1fc15db50c71a826f084f934">begin()</a>: Initializes the stepper hardware and prepares for movement.</li>
+<li>setSpeed(percent): Starts continuous movement at the given speed percentage (-100 to 100) using continuous mode.</li>
+<li>moveRevolutions(revolutions, speedPercent, callback, ref): Move the stepper by a given number of revolutions at a specified speed, with optional callback.</li>
+<li>moveDistance(distance, wheelDiameter, speedPercent, callback, ref): Move the stepper by a physical distance (using wheel diameter), at a specified speed, with optional callback.</li>
+<li><a class="el" href="classtinyrobotics_1_1StepperMotor.html#a64e9fa75beda50a9e8400ee0d4e61984" title="Stop the stepper motor.">end()</a>: Stops the stepper motor.</li>
+</ul>
+<p>Usage notes:</p><ul>
+<li>Call <a class="el" href="classtinyrobotics_1_1StepperMotor.html#a601fb7cf1fc15db50c71a826f084f934">begin()</a> after setting pins and speed parameters.</li>
+<li>Use setSpeed(percent) to start or change continuous movement. Use setSpeed(0) to stop.</li>
+<li>Acceleration is set in <a class="el" href="classtinyrobotics_1_1StepperMotor.html#a3d45de3f120eb5346db3e91c46960d01">setSpeed()</a> based on the configured accelerationMs.</li>
+</ul>
+<p>Example usage: </p><div class="fragment"><div class="line">Stepper stepper;</div>
+<div class="line">stepper.setPins(2, 3, 4);</div>
+<div class="line">stepper.setMaxSpeed(1000);</div>
+<div class="line">stepper.setStepsPerRevolution(200);</div>
+<div class="line">stepper.setAccelerationMs(2000);</div>
+<div class="line">stepper.begin();</div>
+<div class="line">stepper.setSpeed(50); <span class="comment">// Move at 50% of max speed (continuous mode)</span></div>
+<div class="line">stepper.setSpeed(0);  <span class="comment">// Stop</span></div>
+<div class="line">stepper.end();        <span class="comment">// Ensure motor is stopped</span></div>
+</div><!-- fragment --> </div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="a601fb7cf1fc15db50c71a826f084f934" name="a601fb7cf1fc15db50c71a826f084f934"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a601fb7cf1fc15db50c71a826f084f934">&#9670;&#160;</a></span>begin()</h2>
 

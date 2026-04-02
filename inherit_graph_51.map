@@ -4,5 +4,5 @@
 <area shape="rect" id="node3" href="$classtinyrobotics_1_1BrushlessMotor.html" title="Simple brushless DC motor (ESC) driver using Servo library for Arduino/ESP32." alt="" coords="113,55,236,80"/>
 <area shape="rect" id="node4" href="$classtinyrobotics_1_1GenericMotor.html" title="Motor abstraction for integrating external/custom motor drivers using callbacks." alt="" coords="119,104,230,129"/>
 <area shape="rect" id="node5" href="$classtinyrobotics_1_1ServoMotor.html" title="High&#45;level wrapper for Arduino Servo control (RC servo motors)." alt="" coords="126,153,223,179"/>
-<area shape="rect" id="node6" href="$classtinyrobotics_1_1StepperMotor.html" title=" " alt="" coords="119,203,230,228"/>
+<area shape="rect" id="node6" href="$classtinyrobotics_1_1StepperMotor.html" title="Stepper motor driver using FastAccelStepper for Arduino." alt="" coords="119,203,230,228"/>
 </map>
