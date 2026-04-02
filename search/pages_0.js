@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['arduino_20compatibility_20stubs_20for_20native_20builds_0',['Arduino Compatibility Stubs for Native Builds',['../md_src_TinyRobotics_arduino_README.html',1,'']]]
+  ['arduino_20emulation_20layer_0',['Arduino Emulation Layer',['../md_src_TinyRobotics_arduino_README.html',1,'']]]
 ];
