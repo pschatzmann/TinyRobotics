@@ -79,7 +79,7 @@ bool print_char(uint8_t);
 #endif
 
 
-// Serial stub
+/// Serial stub class
 struct HardwareSerial : public Stream {
   void begin(unsigned long) {}
   size_t write(uint8_t ch) override {
