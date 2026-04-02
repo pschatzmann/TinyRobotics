@@ -27,6 +27,13 @@ You can extend these stubs to add more Arduino API coverage as needed for your t
 Serial.write('A'); // Outputs 'A' to stdout in native builds
 ```
 
+## Defines
+
+The emulator can be configured with the following defines:
+- USE_MILLIS_CHRONO: if set to true we implement millis() with the help of the c++ chrono. If false you need to provide your own implementation
+- USE_DUMMY_PIN_FUNCTIONS: if set to true we just log the method calls; set to false to provide your own implementations
+- DUSE_PRINT_CHAR: if set to true we print to the console; if set to flase provide your own implementation for bool print_char(uint8_t)
+
 ## Maintainers
 
 If you add new Arduino API stubs, please document them here.
