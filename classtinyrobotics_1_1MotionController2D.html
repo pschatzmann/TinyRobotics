@@ -115,6 +115,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:aeabe2e4efad41dedfc3482b7e0efd302"><td class="memItemLeft" align="right" valign="top"><a id="aeabe2e4efad41dedfc3482b7e0efd302" name="aeabe2e4efad41dedfc3482b7e0efd302"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>MotionController2D</b> (<a class="el" href="classtinyrobotics_1_1IMotionState2D.html">IMotionState2D</a> &amp;motionState, float maxSpeedKmh=10, float accelDistanceM=2.0f)</td></tr>
 <tr class="separator:aeabe2e4efad41dedfc3482b7e0efd302"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1dd361ded67cb3cbd20b0245e7a9a332"><td class="memItemLeft" align="right" valign="top"><a id="a1dd361ded67cb3cbd20b0245e7a9a332" name="a1dd361ded67cb3cbd20b0245e7a9a332"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>MotionController2D</b> (<a class="el" href="classtinyrobotics_1_1IMotionState2D.html">IMotionState2D</a> &amp;motionState, <a class="el" href="classtinyrobotics_1_1Speed.html">Speed</a> maxSpeedKmh, <a class="el" href="classtinyrobotics_1_1Distance.html">Distance</a> accelDistanceM)</td></tr>
+<tr class="separator:a1dd361ded67cb3cbd20b0245e7a9a332"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a261f575a9b0286c7cfb88d0377e1f271"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1MotionController2D.html#a261f575a9b0286c7cfb88d0377e1f271">configureSpeedPID</a> (float dt, float maxOut, float minOut, float kp, float ki, float kd)</td></tr>
 <tr class="memdesc:a261f575a9b0286c7cfb88d0377e1f271"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configure the PID controller for speed-to-throttle mapping.  <br /></td></tr>
 <tr class="separator:a261f575a9b0286c7cfb88d0377e1f271"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -150,6 +153,13 @@ float&#160;</td><td class="memItemRight" valign="bottom"><b>getSteeringAngleDeg<
 <tr class="memitem:a3ee00f59434f682b87ae5577484a4d2e"><td class="memItemLeft" align="right" valign="top"><a id="a3ee00f59434f682b87ae5577484a4d2e" name="a3ee00f59434f682b87ae5577484a4d2e"></a>
 <a class="el" href="classtinyrobotics_1_1Angle.html">Angle</a>&#160;</td><td class="memItemRight" valign="bottom"><b>getSteeringAngle</b> () const</td></tr>
 <tr class="separator:a3ee00f59434f682b87ae5577484a4d2e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac9a2b84d7979c70979ee7c9ff743d343"><td class="memItemLeft" align="right" valign="top"><a id="ac9a2b84d7979c70979ee7c9ff743d343" name="ac9a2b84d7979c70979ee7c9ff743d343"></a>
+float&#160;</td><td class="memItemRight" valign="bottom"><b>getTargetAccuracy</b> (<a class="el" href="group__units.html#ga4c67a7b952f3804e2bd056cf95c4161a">DistanceUnit</a> unit) const</td></tr>
+<tr class="separator:ac9a2b84d7979c70979ee7c9ff743d343"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4ace8b9354bc633d112897c0b54cbf9c"><td class="memItemLeft" align="right" valign="top"><a id="a4ace8b9354bc633d112897c0b54cbf9c" name="a4ace8b9354bc633d112897c0b54cbf9c"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>isGoalReached</b> () const</td></tr>
+<tr class="memdesc:a4ace8b9354bc633d112897c0b54cbf9c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns true if the goal has been reached. <br /></td></tr>
+<tr class="separator:a4ace8b9354bc633d112897c0b54cbf9c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classtinyrobotics_1_1MessageSource"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classtinyrobotics_1_1MessageSource')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classtinyrobotics_1_1MessageSource.html">MessageSource</a></td></tr>
 <tr class="memitem:a6f644591faf6edfeceef6b7776b331df inherit pub_methods_classtinyrobotics_1_1MessageSource"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1MessageSource.html#a6f644591faf6edfeceef6b7776b331df">subscribe</a> (<a class="el" href="classtinyrobotics_1_1MessageHandler.html">MessageHandler</a> &amp;handler)</td></tr>
 <tr class="memdesc:a6f644591faf6edfeceef6b7776b331df inherit pub_methods_classtinyrobotics_1_1MessageSource"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add a message handler to the chain.  <br /></td></tr>
@@ -218,6 +228,9 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>hasStartCoordinate</b
 <tr class="memitem:a39a90d64af8d6c74cf5e4121f113eb53"><td class="memItemLeft" align="right" valign="top"><a id="a39a90d64af8d6c74cf5e4121f113eb53" name="a39a90d64af8d6c74cf5e4121f113eb53"></a>
 float&#160;</td><td class="memItemRight" valign="bottom"><b>targetAccuracyM</b> = 0.01f</td></tr>
 <tr class="separator:a39a90d64af8d6c74cf5e4121f113eb53"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1a2931f0e695dcaa953b0aa8ea8a2b49"><td class="memItemLeft" align="right" valign="top"><a id="a1a2931f0e695dcaa953b0aa8ea8a2b49" name="a1a2931f0e695dcaa953b0aa8ea8a2b49"></a>
+float&#160;</td><td class="memItemRight" valign="bottom"><b>distanceToTargetM</b> = 0</td></tr>
+<tr class="separator:a1a2931f0e695dcaa953b0aa8ea8a2b49"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a425445d92af590b78a4d8226736df19e"><td class="memItemLeft" align="right" valign="top"><a id="a425445d92af590b78a4d8226736df19e" name="a425445d92af590b78a4d8226736df19e"></a>
 bool(*&#160;</td><td class="memItemRight" valign="bottom"><b>onGoalCallback</b> )(void *) = nullptr</td></tr>
 <tr class="separator:a425445d92af590b78a4d8226736df19e"><td class="memSeparator" colspan="2">&#160;</td></tr>
