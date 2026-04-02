@@ -48,18 +48,21 @@ class AirPlane : public Vehicle {
   /** Attach the motor HBridge. */
   void setPinsMotor(int in1, int in2, int pwm) {
     motor_.setPins(in1, in2, pwm);
+    motor_.setID(0);  // Motor ID 0
   }
 
   /** Attach the rudder servo. */
   void setPinRudder(int pin) {
     pins_[Rudder] = pin;
     servos_[Rudder].setPin(pin);
+    servos_[Rudder].setID(static_cast<uint8_t>(Rudder));
   }
 
   /** Attach the elevator servo. */
   void setPinElevator(int pin) {
     pins_[Elevator] = pin;
     servos_[Elevator].setPin(pin);
+    servos_[Elevator].setID(static_cast<uint8_t>(Elevator));
   }
 
   /** Attach the aileron servos. */
@@ -68,6 +71,16 @@ class AirPlane : public Vehicle {
     pins_[AileronRight] = rightPin;
     servos_[AileronLeft].setPin(leftPin);
     servos_[AileronRight].setPin(rightPin);
+    servos_[AileronLeft].setID(static_cast<uint8_t>(AileronLeft));
+    servos_[AileronRight].setID(static_cast<uint8_t>(AileronRight));
+  }
+
+  void setPinServo(ControlSurface surface, int pin) {
+    if (surface >= 0 && surface < NumSurfaces) {
+      pins_[surface] = pin;
+      servos_[surface].setPin(pin);
+      servos_[surface].setID(static_cast<uint8_t>(surface));
+    }
   }
 
   /** Set throttle (0-100%) */

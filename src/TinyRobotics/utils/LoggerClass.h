@@ -65,7 +65,7 @@ class LoggerClass {
     return true;
   }
 #else
-  bool begin(Level level) { setLevel(level); }
+  bool begin(Level level) { setLevel(level); return true; }
 #endif
 
   void setLevel(Level level) { minLevel = level; }

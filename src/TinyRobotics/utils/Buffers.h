@@ -1,7 +1,7 @@
 #pragma once
 
 #include <stdint.h>
-
+#include <math.h>
 #include <vector>
 
 #include "TinyRobotics/utils/Config.h"
@@ -40,7 +40,7 @@ class BaseBuffer {
       LOGE("NPE");
       return 0;
     }
-    int lenResult = min(len, available());
+    int lenResult = std::min(len, available());
     for (int j = 0; j < lenResult; j++) {
       read(data[j]);
     }
@@ -50,7 +50,7 @@ class BaseBuffer {
 
   /// Removes the next len entries
   virtual int clearArray(int len) {
-    int lenResult = min(len, available());
+    int lenResult = std::min(len, available());
     T dummy[lenResult];
     readArray(dummy, lenResult);
     return lenResult;
@@ -196,7 +196,7 @@ class SingleBuffer : public BaseBuffer<T> {
 
   int available() override {
     int result = current_write_pos - current_read_pos;
-    return max(result, 0);
+    return std::max(result, 0);
   }
 
   int availableForWrite() override { return buffer.size() - current_write_pos; }
@@ -259,7 +259,7 @@ class SingleBuffer : public BaseBuffer<T> {
   /// If we load values directly into the address we need to set the avialeble
   /// size
   size_t setAvailable(size_t available_size) {
-    size_t result = min(available_size, (size_t)buffer.size());
+    size_t result = std::min(available_size, (size_t)buffer.size());
     current_read_pos = 0;
     current_write_pos = result;
     return result;

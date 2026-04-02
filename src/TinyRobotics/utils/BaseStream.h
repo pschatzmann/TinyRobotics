@@ -39,9 +39,9 @@ class BaseStream : public Stream {
     return tmp_out.write(ch);
   }
 
-  virtual int available() override { return DEFAULT_BUFFER_SIZE; };
+  virtual int available() { return DEFAULT_BUFFER_SIZE; };
 
-  virtual int availableForWrite() override { return DEFAULT_BUFFER_SIZE; }
+  virtual int availableForWrite() { return DEFAULT_BUFFER_SIZE; }
 
   virtual void flush() override {
     if (tmp_out.available() > 0) {

@@ -1,3 +1,6 @@
+#include <algorithm>
+using std::min;
+using std::max;
 #pragma once
 
 #include "TinyRobotics/motors/Motors.h"

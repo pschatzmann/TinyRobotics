@@ -1,3 +1,5 @@
+#include <TinyRobotics/arduino/Arduino.h>
+using ::millis;
 #pragma once
 #include <math.h>
 #include <stdint.h>

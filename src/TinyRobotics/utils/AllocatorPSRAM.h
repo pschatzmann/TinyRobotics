@@ -1,4 +1,5 @@
 #pragma once
+#include "assert.h"
 
 #ifdef ESP32
 #include <esp_heap_caps.h>
