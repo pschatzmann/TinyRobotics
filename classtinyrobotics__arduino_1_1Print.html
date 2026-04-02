@@ -69,7 +69,7 @@ $(function() {
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="namespacetinyrobotics__arduino.html">tinyrobotics_arduino</a></li><li class="navelem"><a class="el" href="classtinyrobotics__arduino_1_1Print.html">Print</a></li>  </ul>
+<li class="navelem"><b>tinyrobotics_arduino</b></li><li class="navelem"><a class="el" href="classtinyrobotics__arduino_1_1Print.html">Print</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -79,13 +79,18 @@ $(function() {
   <div class="headertitle"><div class="title">Print Class Reference<span class="mlabels"><span class="mlabel">abstract</span></span></div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Arduino-compatible <a class="el" href="classtinyrobotics__arduino_1_1Print.html" title="Arduino-compatible Print base class stub for native builds.">Print</a> base class stub for native builds.  
+ <a href="classtinyrobotics__arduino_1_1Print.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="Print_8h_source.html">Print.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for Print:</div>
 <div class="dyncontent">
 <div class="center"><img src="classtinyrobotics__arduino_1_1Print__inherit__graph.png" border="0" usemap="#aPrint_inherit__map" alt="Inheritance graph"/></div>
 <map name="aPrint_inherit__map" id="aPrint_inherit__map">
-<area shape="rect" title=" " alt="" coords="41,5,93,31"/>
-<area shape="rect" href="classtinyrobotics__arduino_1_1Stream.html" title=" " alt="" coords="32,79,101,104"/>
+<area shape="rect" title="Arduino&#45;compatible Print base class stub for native builds." alt="" coords="41,5,93,31"/>
+<area shape="rect" href="classtinyrobotics__arduino_1_1Stream.html" title="Arduino&#45;compatible Stream base class stub for native builds." alt="" coords="32,79,101,104"/>
 <area shape="rect" href="structtinyrobotics__arduino_1_1HardwareSerial.html" title=" " alt="" coords="5,152,128,177"/>
 </map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
@@ -126,7 +131,12 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>flush</b> ()</td></tr
 int&#160;</td><td class="memItemRight" valign="bottom"><b>availableForWrie</b> ()</td></tr>
 <tr class="separator:a1e4f7523f4f1fd0c3ef018066f447d9c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<hr/>The documentation for this class was generated from the following file:<ul>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Arduino-compatible <a class="el" href="classtinyrobotics__arduino_1_1Print.html" title="Arduino-compatible Print base class stub for native builds.">Print</a> base class stub for native builds. </p>
+<p>This class provides a minimal interface compatible with the Arduino <a class="el" href="classtinyrobotics__arduino_1_1Print.html" title="Arduino-compatible Print base class stub for native builds.">Print</a> class, allowing code that uses <a class="el" href="classtinyrobotics__arduino_1_1Print.html" title="Arduino-compatible Print base class stub for native builds.">Print</a> (and derived classes like Serial, <a class="el" href="classtinyrobotics__arduino_1_1Stream.html" title="Arduino-compatible Stream base class stub for native builds.">Stream</a>, etc.) to compile and run on non-Arduino (desktop/native) platforms.</p>
+<p>Methods such as write(), print(), and println() mimic the Arduino API, enabling easy porting and testing of Arduino libraries and sketches in a standard C++ environment.</p>
+<p>To use, derive from <a class="el" href="classtinyrobotics__arduino_1_1Print.html" title="Arduino-compatible Print base class stub for native builds.">Print</a> and implement the write(uint8_t) method to define how output is handled (e.g., to std::cout, a file, or a buffer). </p>
+</div><hr/>The documentation for this class was generated from the following file:<ul>
 <li>src/TinyRobotics/arduino/<a class="el" href="Print_8h_source.html">Print.h</a></li>
 </ul>
 </div><!-- contents -->

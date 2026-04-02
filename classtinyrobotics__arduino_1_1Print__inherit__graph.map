@@ -1,5 +1,5 @@
 <map id="Print" name="Print">
-<area shape="rect" id="node1" title=" " alt="" coords="41,5,93,31"/>
-<area shape="rect" id="node2" href="$classtinyrobotics__arduino_1_1Stream.html" title=" " alt="" coords="32,79,101,104"/>
+<area shape="rect" id="node1" title="Arduino&#45;compatible Print base class stub for native builds." alt="" coords="41,5,93,31"/>
+<area shape="rect" id="node2" href="$classtinyrobotics__arduino_1_1Stream.html" title="Arduino&#45;compatible Stream base class stub for native builds." alt="" coords="32,79,101,104"/>
 <area shape="rect" id="node3" href="$structtinyrobotics__arduino_1_1HardwareSerial.html" title=" " alt="" coords="5,152,128,177"/>
 </map>
