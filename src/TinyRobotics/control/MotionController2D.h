@@ -21,7 +21,8 @@ namespace tinyrobotics {
  * - Accepts a path (sequence of waypoints) and drives the vehicle to follow it.
  * - Automatically slows down as the vehicle approaches the goal.
  * - Designed for modular use with different vehicle types and IMU sensors.
- * - Vehicle needs to suscribe to receive control messages (throttle and steering angle).
+ * - Vehicle needs to suscribe to receive control messages (throttle and
+ * steering angle).
  *
  * @tparam T Numeric type for calculations (default: float)
  *
@@ -40,6 +41,11 @@ class MotionController2D : public MessageSource {
     configureSpeedPID(0.1f, 100.0f, 0.0f, 1.0f, 0.0f,
                       0.1f);  // default speed PID
   }
+
+  MotionController2D(IMotionState2D& motionState, Speed maxSpeedKmh,
+                     Distance accelDistanceM)
+      : MotionController2D(motionState, maxSpeedKmh.getValue(SpeedUnit::KPH),
+                           accelDistanceM.getValue(DistanceUnit::M)) {}
 
   /**
    * @brief Configure the PID controller for speed-to-throttle mapping.
@@ -98,17 +104,16 @@ class MotionController2D : public MessageSource {
     Coordinate<DistanceM> targetPos = path[0];
     float currentHeading =
         motionStateSource.getHeading().getValue(AngleUnit::DEG);
-    float distanceToTarget = 0;
     float desiredHeading = 0;
-    handleWaypoint(currentPos, targetPos, distanceToTarget, desiredHeading);
+    handleWaypoint(currentPos, targetPos, distanceToTargetM, desiredHeading);
     float headingError = computeHeadingError(desiredHeading, currentHeading);
     float currentSpeedKmh =
         motionStateSource.getSpeed().getValue(SpeedUnit::KPH);
     float distanceFromStartM =
         startCoordinate.distance(currentPos, DistanceUnit::M);
-    updateSpeed(distanceFromStartM, distanceToTarget, currentSpeedKmh);
+    updateSpeed(distanceFromStartM, distanceToTargetM, currentSpeedKmh);
 
-    sendControlMessages(distanceToTarget, headingError, currentSpeedKmh);
+    sendControlMessages(distanceToTargetM, headingError, currentSpeedKmh);
   }
 
   /**
@@ -127,6 +132,13 @@ class MotionController2D : public MessageSource {
     return Angle(resultStreeringAngleDeg, AngleUnit::DEG);
   }
 
+  float getTargetAccuracy(DistanceUnit unit) const {
+    return Distance(targetAccuracyM, DistanceUnit::M).getValue(unit);
+  }
+
+  /// Returns true if the goal has been reached
+  bool isGoalReached() const { return distanceToTargetM < targetAccuracyM; }
+
  protected:
   IMotionState2D& motionStateSource;
   Path<Coordinate<DistanceM>> path;
@@ -139,6 +151,8 @@ class MotionController2D : public MessageSource {
   Coordinate<DistanceM> startCoordinate;
   bool hasStartCoordinate = false;
   float targetAccuracyM = 0.01f;
+  float distanceToTargetM = 0;
+
   bool (*onGoalCallback)(void*) = nullptr;
   void* onGoaldRef = this;
   float resultThrottlePercent = 0.0f;
@@ -155,7 +169,7 @@ class MotionController2D : public MessageSource {
     if (distanceToTarget < accelDistanceM) {
       if (distanceToTarget < targetAccuracyM) {
         desiredSpeedKmh = 0.0f;  // Stop at the target
-      } else {  
+      } else {
         desiredSpeedKmh = maxSpeedKmh * (distanceToTarget / accelDistanceM);
       }
     }
@@ -171,7 +185,7 @@ class MotionController2D : public MessageSource {
                       Coordinate<DistanceM>& targetPos,
                       float& distanceToTargetM, float& desiredHeadingDeg) {
     // Use class variable targetAccuracyM
-    distanceToTargetM = 0;
+    distanceToTargetM = 0.0f;
     while (distanceToTargetM < targetAccuracyM) {
       desiredHeadingDeg = currentPos.bearing(targetPos, AngleUnit::DEG);
       distanceToTargetM = currentPos.distance(targetPos, DistanceUnit::M);

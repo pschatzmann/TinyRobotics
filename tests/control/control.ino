@@ -48,14 +48,13 @@ AStar<PathMap<Coordinate<float>>, Coordinate<float>> astar;
 CarAckerman<BrushedMotor, ServoMotor> car;
 Odometry2D odometry;
 SpeedFromThrottle speedEstimator(2.0f);  // max speed 2 m/s (adjust as needed)
-int maxSpeedKmh = 5;
-float accelDistanceM = 0.5; // distance to start decelerating in meters
-float wheelBase = 0.3f;  // distance between front and rear axles in meters
+Speed maxSpeedKmh(5, SpeedUnit::KPH);  // max speed in km/h
+Distance accelDistanceM(0.5, DistanceUnit::M); // distance to start decelerating in meters
+Distance wheelBase(0.3f, DistanceUnit::M);  // distance between front and rear axles in meters
 MotionController2D<float> controller(odometry, maxSpeedKmh, accelDistanceM);
 
 Scheduler controllerScheduler;
 MessageHandlerPrintJSON json_printer(Serial);  // Print to Serial in JSON format
-
 
 void buildMap() {
   pathMap.addSegment(A, B);
@@ -68,6 +67,7 @@ void buildMap() {
 }
 
 void updateController(void*) {
+  if (controller.isGoalReached()) return;  // stop updating if goal is reached
   // Move to next waypoint
   controller.update();
   // estimate speed from throttle
@@ -89,7 +89,7 @@ void setup() {
     controller.setPath(path);
     controller.begin();
     controller.subscribe(json_printer);  // subscribe to controller messages for telemetry
-    odometry.begin(base, Distance(wheelBase, DistanceUnit::M));
+    odometry.begin(base, wheelBase);
     odometry.subscribe(json_printer);  // subscribe to odometry messages for telemetry
     car.subscribe(json_printer);  // subscribe to car messages for telemetry
 

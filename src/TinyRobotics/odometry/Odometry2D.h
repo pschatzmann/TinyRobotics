@@ -104,7 +104,6 @@ class Odometry2D : public MessageSource, public IMotionState2D {
     return begin(tf.pos, tf.getHeading(AngleUnit::RAD), wheelBase);
   }
   
-
   /**
    * @brief Update the odometry state with new speed and steering angle.
    *
