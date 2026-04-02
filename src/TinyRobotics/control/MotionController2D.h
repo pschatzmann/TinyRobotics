@@ -38,8 +38,9 @@ class MotionController2D : public MessageSource {
         maxSpeedKmh(maxSpeedKmh) {
     configureSteeringPID(0.1f, 30.0f, -30.0f, 1.0f, 0.0f,
                          0.1f);  // default steering PID
-    configureSpeedPID(0.1f, 100.0f, 0.0f, 1.0f, 0.0f,
-                      0.1f);  // default speed PID
+  configureSpeedPID(
+    0.1f, 100.0f, 0.0f, 2.0f, 0.2f,
+    0.5f);  // speed PID: reduced gains for stability
   }
 
   MotionController2D(IMotionState2D& motionState, Speed maxSpeedKmh,
@@ -75,7 +76,13 @@ class MotionController2D : public MessageSource {
     pidSteering_.begin(dt, maxOut, minOut, kp, ki, kd);
   }
 
+  /// Defines the path to follow as a sequence of waypoints
   void setPath(Path<Coordinate<DistanceM>> path) { this->path = path; }
+
+  /// Adds a single waypoint to the path (appended to the end)
+  void addWaypoint(Coordinate<DistanceM> target) {
+    this->path.addWaypoint(target);
+  }
 
   /**
    * @brief Set the target accuracy (meters) for reaching waypoints.
@@ -106,7 +113,8 @@ class MotionController2D : public MessageSource {
     float currentHeading =
         motionStateSource.getHeading().getValue(AngleUnit::DEG);
     float desiredHeading = 0;
-    if (!handleWaypoint(currentPos, targetPos, distanceToTargetM, desiredHeading)){
+    if (!handleWaypoint(currentPos, targetPos, distanceToTargetM,
+                        desiredHeading)) {
       // new waypoint
       return;
     }
@@ -159,7 +167,7 @@ class MotionController2D : public MessageSource {
   PIDController<float> pidSpeed_;
   Coordinate<DistanceM> startCoordinate;
   bool hasStartCoordinate = false;
-  float targetAccuracyM = 0.01f;
+  float targetAccuracyM = 0.10f;
   float distanceToTargetM = 0;
   bool (*onGoalCallback)(void*) = nullptr;
   void* onGoaldRef = this;
@@ -182,7 +190,8 @@ class MotionController2D : public MessageSource {
     }
     if (distanceFromStartM < accelDistanceM) {
       // avoid 0 start speed!
-      if (distanceFromStartM == 0) distanceFromStartM = 0.1f;  // avoid division by zero
+      if (distanceFromStartM == 0)
+        distanceFromStartM = 0.1f;  // avoid division by zero
       desiredSpeedKmh = maxSpeedKmh * (distanceFromStartM / accelDistanceM);
     }
     if (desiredSpeedKmh > maxSpeedKmh) desiredSpeedKmh = maxSpeedKmh;
@@ -223,8 +232,12 @@ class MotionController2D : public MessageSource {
   void sendControlMessages(float distanceToTarget, float headingError,
                            float currentSpeedKmh) {
     Message<float> msg;
-    float throttlePercent = pidSpeed_.calculate(desiredSpeedKmh, currentSpeedKmh);
-    if (throttlePercent > 0.0f && throttlePercent < 1.0f) throttlePercent = 1.0f;  // avoid too low throttle
+  float throttlePercent = pidSpeed_.calculate(desiredSpeedKmh, currentSpeedKmh);
+  // Clamp throttle to [0, 100]
+  if (throttlePercent > 100.0f) throttlePercent = 100.0f;
+  if (throttlePercent < 0.0f && throttlePercent > -1.0f) throttlePercent = 0.0f;
+  if (throttlePercent > 0.0f && throttlePercent < 1.0f) throttlePercent = 1.0f;  // avoid too low throttle
+  if (throttlePercent < 0.0f) throttlePercent = 0.0f;
     msg.source = MessageOrigin::Autonomy;
     msg.content = MessageContent::Throttle;
     msg.unit = Unit::Percent;
@@ -234,11 +247,14 @@ class MotionController2D : public MessageSource {
     msg.content = MessageContent::SteeringAngle;
     msg.unit = Unit::AngleDegree;
     msg.value = resultStreeringAngleDeg =
-        pidSteering_.calculate(0.0f, headingError);
+        pidSteering_.calculate(0.0f, -headingError);
     sendMessage(msg);
-    TRLogger.info("MotionController2D: distanceToTarget=%.2f m, desiredSpeed=%.2f km/h, currentSpeed=%.2f km/h, throttle=%.1f%%, headingError=%.1f deg, steeringAngle=%.1f deg",
-                  distanceToTarget, desiredSpeedKmh, currentSpeedKmh,
-                  resultThrottlePercent, headingError, resultStreeringAngleDeg);
+    TRLogger.info(
+        "MotionController2D: distanceToTarget=%.2f m, desiredSpeed=%.2f km/h, "
+        "currentSpeed=%.2f km/h, throttle=%.1f%%, headingError=%.1f deg, "
+        "steeringAngle=%.1f deg",
+        distanceToTarget, desiredSpeedKmh, currentSpeedKmh,
+        resultThrottlePercent, headingError, resultStreeringAngleDeg);
   }
 };
 
