@@ -2,7 +2,6 @@
 
 This directory contains classes and utilities for representing spatial maps and navigation graphs, which are essential for robotics, SLAM, path planning, and environment modeling.
 
-
 ## Contents
 
 - **GridMap.h**  
@@ -20,8 +19,6 @@ This directory contains classes and utilities for representing spatial maps and 
 - **CallbackMap.h**  
   Callback-driven neighbor generation for pathfinding and navigation.  
   Features: configurable neighbor distance and count, runtime validity callback, on-demand neighbor computation.
-
-  **CallbackMap.h**
 
 ## Typical Usage
 
