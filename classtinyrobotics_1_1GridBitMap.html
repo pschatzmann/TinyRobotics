@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.6"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>TinyRobotics: GridMapBitVector Class Reference</title>
+<title>TinyRobotics: GridBitMap Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -69,7 +69,7 @@ $(function() {
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><b>tinyrobotics</b></li><li class="navelem"><a class="el" href="classtinyrobotics_1_1GridMapBitVector.html">GridMapBitVector</a></li>  </ul>
+<li class="navelem"><b>tinyrobotics</b></li><li class="navelem"><a class="el" href="classtinyrobotics_1_1GridBitMap.html">GridBitMap</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -77,21 +77,16 @@ $(function() {
 <a href="#nested-classes">Classes</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pro-attribs">Protected Attributes</a> &#124;
-<a href="classtinyrobotics_1_1GridMapBitVector-members.html">List of all members</a>  </div>
-  <div class="headertitle"><div class="title">GridMapBitVector Class Reference<div class="ingroups"><a class="el" href="group__main.html">TinyRobotics</a> &raquo; <a class="el" href="group__maps.html">Maps</a></div></div></div>
+<a href="classtinyrobotics_1_1GridBitMap-members.html">List of all members</a>  </div>
+  <div class="headertitle"><div class="title">GridBitMap Class Reference</div></div>
 </div><!--header-->
 <div class="contents">
-
-<p>A grid map using two bit vectors to represent CellState efficiently.  
- <a href="classtinyrobotics_1_1GridMapBitVector.html#details">More...</a></p>
-
-<p><code>#include &lt;<a class="el" href="GridMapBitVector_8h_source.html">GridMapBitVector.h</a>&gt;</code></p>
 <div class="dynheader">
-Collaboration diagram for GridMapBitVector:</div>
+Collaboration diagram for GridBitMap:</div>
 <div class="dyncontent">
-<div class="center"><img src="classtinyrobotics_1_1GridMapBitVector__coll__graph.png" border="0" usemap="#aGridMapBitVector_coll__map" alt="Collaboration graph"/></div>
-<map name="aGridMapBitVector_coll__map" id="aGridMapBitVector_coll__map">
-<area shape="rect" title="A grid map using two bit vectors to represent CellState efficiently." alt="" coords="13,168,149,193"/>
+<div class="center"><img src="classtinyrobotics_1_1GridBitMap__coll__graph.png" border="0" usemap="#aGridBitMap_coll__map" alt="Collaboration graph"/></div>
+<map name="aGridBitMap_coll__map" id="aGridBitMap_coll__map">
+<area shape="rect" title=" " alt="" coords="34,168,129,193"/>
 <area shape="rect" href="classtinyrobotics_1_1Coordinate.html" title=" " alt="" coords="5,80,157,105"/>
 <area shape="rect" href="classtinyrobotics_1_1Serializable.html" title="This class defines an interface for serializable objects that can be converted to and from a string r..." alt="" coords="32,5,131,31"/>
 </map>
@@ -99,14 +94,17 @@ Collaboration diagram for GridMapBitVector:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtinyrobotics_1_1GridMapBitVector_1_1Cell.html">Cell</a></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtinyrobotics_1_1GridBitMap_1_1Cell.html">Cell</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ad148f2e439306e51a2715e59fa9370ae"><td class="memItemLeft" align="right" valign="top"><a id="ad148f2e439306e51a2715e59fa9370ae" name="ad148f2e439306e51a2715e59fa9370ae"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>GridMapBitVector</b> (int xCount, int yCount, float resolutionM)</td></tr>
-<tr class="separator:ad148f2e439306e51a2715e59fa9370ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a91e6796755ac55f0d9c1d6c5524b80bc"><td class="memItemLeft" align="right" valign="top"><a id="a91e6796755ac55f0d9c1d6c5524b80bc" name="a91e6796755ac55f0d9c1d6c5524b80bc"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>GridBitMap</b> (int xCount, int yCount, float resolutionM)</td></tr>
+<tr class="separator:a91e6796755ac55f0d9c1d6c5524b80bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a74bf41ff9cc3406386e85a846d867916"><td class="memItemLeft" align="right" valign="top"><a id="a74bf41ff9cc3406386e85a846d867916" name="a74bf41ff9cc3406386e85a846d867916"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>GridBitMap</b> (int xCount, int yCount, <a class="el" href="classtinyrobotics_1_1Distance.html">Distance</a> resolution)</td></tr>
+<tr class="separator:a74bf41ff9cc3406386e85a846d867916"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a097f2b8172a74c6c7f699910316c6209"><td class="memItemLeft" align="right" valign="top"><a id="a097f2b8172a74c6c7f699910316c6209" name="a097f2b8172a74c6c7f699910316c6209"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>resize</b> (int newXCount, int newYCount)</td></tr>
 <tr class="separator:a097f2b8172a74c6c7f699910316c6209"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -120,7 +118,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>getYCount</b> () const
 float&#160;</td><td class="memItemRight" valign="bottom"><b>getResolution</b> () const</td></tr>
 <tr class="separator:ad64b99aa178cb615be8271f5daaf7798"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2c91ddd71d94825916d766d57aa64552"><td class="memItemLeft" align="right" valign="top"><a id="a2c91ddd71d94825916d766d57aa64552" name="a2c91ddd71d94825916d766d57aa64552"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>worldToCell</b> (float wx, float wy, <a class="el" href="structtinyrobotics_1_1GridMapBitVector_1_1Cell.html">Cell</a> &amp;cell) const</td></tr>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>worldToCell</b> (float wx, float wy, <a class="el" href="structtinyrobotics_1_1GridBitMap_1_1Cell.html">Cell</a> &amp;cell) const</td></tr>
 <tr class="separator:a2c91ddd71d94825916d766d57aa64552"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a40dc2bf6d1ec60659f40ceed2e14d067"><td class="memItemLeft" align="right" valign="top"><a id="a40dc2bf6d1ec60659f40ceed2e14d067" name="a40dc2bf6d1ec60659f40ceed2e14d067"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>cellToWorld</b> (int cx, int cy, float &amp;wx, float &amp;wy) const</td></tr>
@@ -159,22 +157,8 @@ std::vector&lt; bool &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>
 std::vector&lt; bool &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>free</b></td></tr>
 <tr class="separator:a104a89e79826313fa123ae5b23e52c34"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>A grid map using two bit vectors to represent CellState efficiently. </p>
-<p>The <a class="el" href="classtinyrobotics_1_1GridMapBitVector.html" title="A grid map using two bit vectors to represent CellState efficiently.">GridMapBitVector</a> class models the environment as a regular grid of cells, each storing a state (FREE, OCCUPIED, UNKNOWN) using two std::vector&lt;bool&gt; for memory efficiency. So each cell occupies only 2 buts!</p>
-<p>CellState encoding:</p><ul>
-<li>00: FREE</li>
-<li>01: OCCUPIED</li>
-<li>10: UNKNOWN</li>
-</ul>
-<dl class="tparams"><dt>Template Parameters</dt><dd>
-  <table class="tparams">
-    <tr><td class="paramname">T</td><td>Numeric type for coordinates (default: float) </td></tr>
-  </table>
-  </dd>
-</dl>
-</div><hr/>The documentation for this class was generated from the following file:<ul>
-<li>src/TinyRobotics/maps/<a class="el" href="GridMapBitVector_8h_source.html">GridMapBitVector.h</a></li>
+<hr/>The documentation for this class was generated from the following file:<ul>
+<li>src/TinyRobotics/maps/<a class="el" href="GridBitMap_8h_source.html">GridBitMap.h</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
