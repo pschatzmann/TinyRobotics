@@ -170,6 +170,9 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>operator&lt;</b> (con
 <tr class="memitem:a7537dadf0ea1031fc64814f063120ea1"><td class="memItemLeft" align="right" valign="top"><a id="a7537dadf0ea1031fc64814f063120ea1" name="a7537dadf0ea1031fc64814f063120ea1"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>setValues</b> (T newX, T newY, T newZ=0)</td></tr>
 <tr class="separator:a7537dadf0ea1031fc64814f063120ea1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad8282465ce9d40fd16acfe79fe7065ce"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="classtinyrobotics_1_1Coordinate.html">Coordinate</a>&lt; T &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1Coordinate.html#ad8282465ce9d40fd16acfe79fe7065ce">interpolateTo</a> (const <a class="el" href="classtinyrobotics_1_1Coordinate.html">Coordinate</a>&lt; T &gt; &amp;target, T resolution)</td></tr>
+<tr class="memdesc:ad8282465ce9d40fd16acfe79fe7065ce"><td class="mdescLeft">&#160;</td><td class="mdescRight">Interpolate points between source and target with a defined resolution.  <br /></td></tr>
+<tr class="separator:ad8282465ce9d40fd16acfe79fe7065ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae5741c4ce82f857ceeccfcf5bd2b88a9"><td class="memItemLeft" align="right" valign="top"><a id="ae5741c4ce82f857ceeccfcf5bd2b88a9" name="ae5741c4ce82f857ceeccfcf5bd2b88a9"></a>
 const char *&#160;</td><td class="memItemRight" valign="bottom"><b>getTypeName</b> () const</td></tr>
 <tr class="separator:ae5741c4ce82f857ceeccfcf5bd2b88a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -446,6 +449,53 @@ class tinyrobotics::Coordinate&lt; T &gt;</div><p>A generic 3D coordinate class 
 </div><div class="memdoc">
 
 <p>Implements <a class="el" href="classtinyrobotics_1_1Serializable.html">Serializable</a>.</p>
+
+</div>
+</div>
+<a id="ad8282465ce9d40fd16acfe79fe7065ce" name="ad8282465ce9d40fd16acfe79fe7065ce"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad8282465ce9d40fd16acfe79fe7065ce">&#9670;&#160;</a></span>interpolateTo()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt; <a class="el" href="classtinyrobotics_1_1Coordinate.html">Coordinate</a>&lt; T &gt; &gt; interpolateTo </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classtinyrobotics_1_1Coordinate.html">Coordinate</a>&lt; T &gt; &amp;&#160;</td>
+          <td class="paramname"><em>target</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">T&#160;</td>
+          <td class="paramname"><em>resolution</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Interpolate points between source and target with a defined resolution. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">source</td><td>The starting coordinate. </td></tr>
+    <tr><td class="paramname">target</td><td>The ending coordinate. </td></tr>
+    <tr><td class="paramname">resolution</td><td>The distance between interpolated points. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>std::vector&lt;Coordinate&lt;T&gt;&gt; List of interpolated coordinates (including source and target). </dd></dl>
 
 </div>
 </div>
