@@ -170,7 +170,7 @@ float&#160;</td><td class="memItemRight" valign="bottom"><b>getSteeringAngleDeg<
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>isGoalReached</b> () const</td></tr>
 <tr class="memdesc:a4ace8b9354bc633d112897c0b54cbf9c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns true if the goal has been reached. <br /></td></tr>
 <tr class="separator:a4ace8b9354bc633d112897c0b54cbf9c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a02f053e66bda8d79a586f8fd0465cbed"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1MotionController2D.html#a02f053e66bda8d79a586f8fd0465cbed">setThrottleMode</a> (ThrottleMode mode)</td></tr>
+<tr class="memitem:a02f053e66bda8d79a586f8fd0465cbed"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1MotionController2D.html#a02f053e66bda8d79a586f8fd0465cbed">setThrottleMode</a> (<a class="el" href="group__control.html#ga77b969c23bc431a5c9f30c9569d09f17">ThrottleMode</a> mode)</td></tr>
 <tr class="memdesc:a02f053e66bda8d79a586f8fd0465cbed"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the throttle control mode.  <br /></td></tr>
 <tr class="separator:a02f053e66bda8d79a586f8fd0465cbed"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a15be619b76510c988e93f33f230b955a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1MotionController2D.html#a15be619b76510c988e93f33f230b955a">setInvertedSteering</a> (bool inverted)</td></tr>
@@ -279,7 +279,7 @@ float&#160;</td><td class="memItemRight" valign="bottom"><b>resultThrottlePercen
 float&#160;</td><td class="memItemRight" valign="bottom"><b>resultSteeringAngleDeg</b> = 0.0f</td></tr>
 <tr class="separator:a68e92a3783f15450bb56103f5fac93a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7d238c24d914c3e2592c8366ef46d490"><td class="memItemLeft" align="right" valign="top"><a id="a7d238c24d914c3e2592c8366ef46d490" name="a7d238c24d914c3e2592c8366ef46d490"></a>
-ThrottleMode&#160;</td><td class="memItemRight" valign="bottom"><b>throttleMode</b> = ThrottleMode::Combined</td></tr>
+<a class="el" href="group__control.html#ga77b969c23bc431a5c9f30c9569d09f17">ThrottleMode</a>&#160;</td><td class="memItemRight" valign="bottom"><b>throttleMode</b> = <a class="el" href="group__control.html#gga77b969c23bc431a5c9f30c9569d09f17a55f4b4a94111759e08b3acb1acd12b8c">ThrottleMode::Combined</a></td></tr>
 <tr class="memdesc:a7d238c24d914c3e2592c8366ef46d490"><td class="mdescLeft">&#160;</td><td class="mdescRight">Throttle control mode. <br /></td></tr>
 <tr class="separator:a7d238c24d914c3e2592c8366ef46d490"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab751ac9c27bf5a13970581e111a26645"><td class="memItemLeft" align="right" valign="top"><a id="ab751ac9c27bf5a13970581e111a26645" name="ab751ac9c27bf5a13970581e111a26645"></a>
@@ -318,11 +318,12 @@ class tinyrobotics::MotionController2D&lt; T &gt;</div><p>2D motion controller f
 </ul>
 <p><b>Usage Example:</b> </p><div class="fragment"><div class="line"><a class="code hl_class" href="classtinyrobotics_1_1MotionController2D.html">MotionController2D&lt;&gt;</a> controller(motionState, 10.0f, 2.0f);</div>
 <div class="line">controller.setPath(path);</div>
-<div class="line">controller.setThrottleMode(ThrottleMode::Combined);</div>
+<div class="line">controller.setThrottleMode(<a class="code hl_enumvalue" href="group__control.html#gga77b969c23bc431a5c9f30c9569d09f17a55f4b4a94111759e08b3acb1acd12b8c">ThrottleMode::Combined</a>);</div>
 <div class="line">controller.begin();</div>
 <div class="line"><span class="comment">// In main loop:</span></div>
 <div class="line">controller.update();</div>
 <div class="ttc" id="aclasstinyrobotics_1_1MotionController2D_html"><div class="ttname"><a href="classtinyrobotics_1_1MotionController2D.html">tinyrobotics::MotionController2D</a></div><div class="ttdoc">2D motion controller for path following and vehicle control.</div><div class="ttdef"><b>Definition:</b> MotionController2D.h:71</div></div>
+<div class="ttc" id="agroup__control_html_gga77b969c23bc431a5c9f30c9569d09f17a55f4b4a94111759e08b3acb1acd12b8c"><div class="ttname"><a href="group__control.html#gga77b969c23bc431a5c9f30c9569d09f17a55f4b4a94111759e08b3acb1acd12b8c">tinyrobotics::ThrottleMode::Combined</a></div><div class="ttdeci">@ Combined</div><div class="ttdoc">Feedforward + PID feedback.</div></div>
 </div><!-- fragment --><p><b>Integration:</b></p><ul>
 <li>Use as a standalone controller for path following and vehicle control.</li>
 <li>Integrate with a message bus to receive and send control messages.</li>
@@ -584,7 +585,7 @@ class tinyrobotics::MotionController2D&lt; T &gt;</div><p>2D motion controller f
         <tr>
           <td class="memname">void setThrottleMode </td>
           <td>(</td>
-          <td class="paramtype">ThrottleMode&#160;</td>
+          <td class="paramtype"><a class="el" href="group__control.html#ga77b969c23bc431a5c9f30c9569d09f17">ThrottleMode</a>&#160;</td>
           <td class="paramname"><em>mode</em></td><td>)</td>
           <td></td>
         </tr>

@@ -70,7 +70,8 @@ $(function() {
 
 <div class="header">
   <div class="summary">
-<a href="#nested-classes">Classes</a>  </div>
+<a href="#nested-classes">Classes</a> &#124;
+<a href="#enum-members">Enumerations</a>  </div>
   <div class="headertitle"><div class="title">Control<div class="ingroups"><a class="el" href="group__main.html">TinyRobotics</a></div></div></div>
 </div><!--header-->
 <div class="contents">
@@ -131,9 +132,51 @@ Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1Scheduler.html">Scheduler</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Simple periodic task scheduler for embedded and Arduino environments.  <a href="classtinyrobotics_1_1Scheduler.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="enum-members" name="enum-members"></a>
+Enumerations</h2></td></tr>
+<tr class="memitem:ga77b969c23bc431a5c9f30c9569d09f17"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__control.html#ga77b969c23bc431a5c9f30c9569d09f17">ThrottleMode</a> { <a class="el" href="group__control.html#gga77b969c23bc431a5c9f30c9569d09f17a424c5746dc717554bd16a88ac685c9eb">FeedforwardOnly</a>
+, <a class="el" href="group__control.html#gga77b969c23bc431a5c9f30c9569d09f17a682dc9aa1c1469abcb9fb87a50d0741e">PIDOnly</a>
+, <a class="el" href="group__control.html#gga77b969c23bc431a5c9f30c9569d09f17a55f4b4a94111759e08b3acb1acd12b8c">Combined</a>
+ }</td></tr>
+<tr class="memdesc:ga77b969c23bc431a5c9f30c9569d09f17"><td class="mdescLeft">&#160;</td><td class="mdescRight">Throttle control strategy selection.  <a href="group__control.html#ga77b969c23bc431a5c9f30c9569d09f17">More...</a><br /></td></tr>
+<tr class="separator:ga77b969c23bc431a5c9f30c9569d09f17"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <p>Control algorithms and state estimation (PID, Kalman, etc.) </p>
+<h2 class="groupheader">Enumeration Type Documentation</h2>
+<a id="ga77b969c23bc431a5c9f30c9569d09f17" name="ga77b969c23bc431a5c9f30c9569d09f17"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga77b969c23bc431a5c9f30c9569d09f17">&#9670;&#160;</a></span>ThrottleMode</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum class <a class="el" href="group__control.html#ga77b969c23bc431a5c9f30c9569d09f17">ThrottleMode</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">strong</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Throttle control strategy selection. </p>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="gga77b969c23bc431a5c9f30c9569d09f17a424c5746dc717554bd16a88ac685c9eb" name="gga77b969c23bc431a5c9f30c9569d09f17a424c5746dc717554bd16a88ac685c9eb"></a>FeedforwardOnly&#160;</td><td class="fielddoc"><p>Model-based (open-loop) throttle. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga77b969c23bc431a5c9f30c9569d09f17a682dc9aa1c1469abcb9fb87a50d0741e" name="gga77b969c23bc431a5c9f30c9569d09f17a682dc9aa1c1469abcb9fb87a50d0741e"></a>PIDOnly&#160;</td><td class="fielddoc"><p>Feedback (closed-loop) throttle. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga77b969c23bc431a5c9f30c9569d09f17a55f4b4a94111759e08b3acb1acd12b8c" name="gga77b969c23bc431a5c9f30c9569d09f17a55f4b4a94111759e08b3acb1acd12b8c"></a>Combined&#160;</td><td class="fielddoc"><p>Feedforward + PID feedback. </p>
+</td></tr>
+</table>
+
+</div>
+</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

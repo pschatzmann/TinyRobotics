@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['obstacle_0',['OBSTACLE',['../group__utils.html#ggae63373b1147a2e480cea6083c3f9dc6ca2399122c182da0d5946e2937bb73edf2',1,'tinyrobotics']]],
-  ['odometry_1',['ODOMETRY',['../group__utils.html#ggae63373b1147a2e480cea6083c3f9dc6ca0c48d1aa0f17b3c10b54c7de041b8413',1,'tinyrobotics']]]
+  ['meters_0',['Meters',['../group__utils.html#ggabceb2331ad056e3c5ad27894199a49eda80b4a3eed88aed8a1c7d8a4418b7f469',1,'tinyrobotics']]],
+  ['meterspersecond_1',['MetersPerSecond',['../group__utils.html#ggabceb2331ad056e3c5ad27894199a49edaf8afbd8ccb437ab960848b9776ef3603',1,'tinyrobotics']]],
+  ['millimeters_2',['Millimeters',['../group__utils.html#ggabceb2331ad056e3c5ad27894199a49eda3be6521a73bcafce5b38459ec548bd11',1,'tinyrobotics']]]
 ];

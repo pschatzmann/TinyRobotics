@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['lidar_0',['LIDAR',['../group__utils.html#ggae63373b1147a2e480cea6083c3f9dc6cad65de5dfebb084344726074547490cc4',1,'tinyrobotics']]]
+  ['feedforwardonly_0',['FeedforwardOnly',['../group__control.html#gga77b969c23bc431a5c9f30c9569d09f17a424c5746dc717554bd16a88ac685c9eb',1,'tinyrobotics']]]
 ];

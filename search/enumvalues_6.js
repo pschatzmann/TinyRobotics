@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['percent_0',['Percent',['../group__utils.html#ggabceb2331ad056e3c5ad27894199a49edaadaaee4b22041c27198d410c68d952c9',1,'tinyrobotics']]],
-  ['pixel_1',['Pixel',['../group__utils.html#ggabceb2331ad056e3c5ad27894199a49eda08822b3ae4e2aede0afe08abe600e9c0',1,'tinyrobotics']]]
+  ['obstacle_0',['OBSTACLE',['../group__utils.html#ggae63373b1147a2e480cea6083c3f9dc6ca2399122c182da0d5946e2937bb73edf2',1,'tinyrobotics']]],
+  ['odometry_1',['ODOMETRY',['../group__utils.html#ggae63373b1147a2e480cea6083c3f9dc6ca0c48d1aa0f17b3c10b54c7de041b8413',1,'tinyrobotics']]]
 ];
