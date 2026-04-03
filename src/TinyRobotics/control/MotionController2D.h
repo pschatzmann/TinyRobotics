@@ -75,8 +75,8 @@ class MotionController2D : public MessageSource {
       : motionStateSource(motionState),
         accelDistanceM(accelDistanceM),
         maxSpeedKmh(maxSpeedKmh) {
-    configureSteeringPID(30.0f, -30.0f, 1.0f, 0.0f, 0.1f);
-    configureSpeedPID(100.0f, 0.0f, 12.0f, 0.1f, 0.01f);
+    configureSteeringPID(-30.0f, 30.0f, 1.0f, 0.0f, 0.1f);
+    configureSpeedPID(0.0f, 100.0f, 12.0f, 0.1f, 0.01f);
   }
 
   MotionController2D(IMotionState2D& motionState, Speed maxSpeedKmh,
@@ -93,9 +93,9 @@ class MotionController2D : public MessageSource {
    * @param ki Integral gain
    * @param kd Derivative gain
    */
-  void configureSpeedPID(float maxOut, float minOut, float kp, float ki,
+  void configureSpeedPID(float minOut, float maxOut, float kp, float ki,
                          float kd) {
-    pidSpeed_.begin(0.0f, maxOut, minOut, kp, ki, kd);
+    pidSpeed_.begin(0.0f, minOut, maxOut, kp, ki, kd);
   }
 
   /**
@@ -109,7 +109,7 @@ class MotionController2D : public MessageSource {
    */
   void configureSteeringPID(float maxOut, float minOut, float kp, float ki,
                             float kd) {
-    pidSteering_.begin(0.0f, maxOut, minOut, kp, ki, kd);
+    pidSteering_.begin(0.0f, minOut, maxOut, kp, ki, kd);
   }
 
   /// Defines the path to follow as a sequence of waypoints
@@ -130,7 +130,11 @@ class MotionController2D : public MessageSource {
   bool begin() {
     is_active = true;
     has_distance = false;
+    updateCount = 0;
+    updateStartTimeMs = 0;
+    updateEndTimeMs = 0;
     dtSetFromUpdates = false;
+
     if (!hasStartCoordinate) {
       startCoordinate = motionStateSource.getPosition();
       hasStartCoordinate = true;

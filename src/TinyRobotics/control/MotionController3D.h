@@ -1,4 +1,3 @@
-#include "TinyRobotics/planning/Path.h"
 #pragma once
 #include <math.h>
 
@@ -6,6 +5,7 @@
 #include "TinyRobotics/control/PIDController.h"
 #include "TinyRobotics/coordinates/Coordinate.h"
 #include "TinyRobotics/coordinates/Orientation3D.h"
+#include "TinyRobotics/planning/Path.h"
 #include "TinyRobotics/units/AngularVelocity.h"
 #include "TinyRobotics/units/Speed.h"
 
@@ -67,25 +67,25 @@ class MotionController3D {
         positionToleranceM(positionToleranceM),
         onGoalAction(onGloal) {
     // Default PID: dt=0.1s, max=1.0, min=-1.0, kp=1.0, ki=0.0, kd=0.0
-    pidX.begin(0.1f, 1.0f, -1.0f, 1.0f, 0.0f, 0.0f);
-    pidY.begin(0.1f, 1.0f, -1.0f, 1.0f, 0.0f, 0.0f);
-    pidZ.begin(0.1f, 1.0f, -1.0f, 1.0f, 0.0f, 0.0f);
-    pidYaw.begin(0.1f, 1.0f, -1.0f, 1.0f, 0.0f, 0.0f);
-    pidPitch.begin(0.1f, 1.0f, -1.0f, 1.0f, 0.0f, 0.0f);
-    pidRoll.begin(0.1f, 1.0f, -1.0f, 1.0f, 0.0f, 0.0f);
+    pidX.begin(0.1f, -1.0f, 1.0f, 1.0f, 0.0f, 0.0f);
+    pidY.begin(0.1f, -1.0f, 1.0f, 1.0f, 0.0f, 0.0f);
+    pidZ.begin(0.1f, -1.0f, 1.0f, 1.0f, 0.0f, 0.0f);
+    pidYaw.begin(0.1f, -1.0f, 1.0f, 1.0f, 0.0f, 0.0f);
+    pidPitch.begin(0.1f, -1.0f, 1.0f, 1.0f, 0.0f, 0.0f);
+    pidRoll.begin(0.1f, -1.0f, 1.0f, 1.0f, 0.0f, 0.0f);
   }
 
   void configurePositionPID(float dt, float maxOut, float minOut, float kp,
                             float ki, float kd) {
-    pidX.begin(dt, maxOut, minOut, kp, ki, kd);
-    pidY.begin(dt, maxOut, minOut, kp, ki, kd);
-    pidZ.begin(dt, maxOut, minOut, kp, ki, kd);
+    pidX.begin(dt, minOut, maxOut, kp, ki, kd);
+    pidY.begin(dt, minOut, maxOut, kp, ki, kd);
+    pidZ.begin(dt, minOut, maxOut, kp, ki, kd);
   }
-  void configureOrientationPID(float dt, float maxOut, float minOut, float kp,
+  void configureOrientationPID(float dt, float minOut, float maxOut, float kp,
                                float ki, float kd) {
-    pidYaw.begin(dt, maxOut, minOut, kp, ki, kd);
-    pidPitch.begin(dt, maxOut, minOut, kp, ki, kd);
-    pidRoll.begin(dt, maxOut, minOut, kp, ki, kd);
+    pidYaw.begin(dt, minOut, maxOut, kp, ki, kd);
+    pidPitch.begin(dt, minOut, maxOut, kp, ki, kd);
+    pidRoll.begin(dt, minOut, maxOut, kp, ki, kd);
   }
 
   void setPath(Path<Coordinate<DistanceM>> path) {
@@ -98,6 +98,11 @@ class MotionController3D {
    * available.
    */
   void begin() {
+    updateCount = 0;
+    updateStartTimeMs = 0;
+    updateEndTimeMs = 0;
+    dtSetFromUpdates = false;
+
     if (!path.isEmpty()) {
       target = MotionState3D(
           path[0], target.getOrientation(), Speed3D(0, 0, 0, SpeedUnit::MPS),
@@ -116,6 +121,7 @@ class MotionController3D {
    */
   bool update() {
     if (!is_active) return false;
+    if (!initializeDtFromUpdates()) return true;
     advanceWaypoint(positionToleranceM);
     if (path.isEmpty()) {
       return false;
@@ -137,8 +143,8 @@ class MotionController3D {
                           wrapAngle(motionState.getOrientation().roll));
 
     linearCmd = Speed3D(vx, vy, vz, SpeedUnit::MPS);
-    angularCmd = AngularVelocity3D(vyaw, vpitch, vroll,
-                                   AngularVelocityUnit::RadPerSec);
+    angularCmd =
+        AngularVelocity3D(vyaw, vpitch, vroll, AngularVelocityUnit::RadPerSec);
 
     return true;
   }
@@ -160,7 +166,7 @@ class MotionController3D {
     circleInitialized = false;
   }
 
-  /** 
+  /**
    * @brief Set a custom callback to be called when reaching the goal. The
    * callback should return true if it handled the goal action, or false to
    * allow default handling.
@@ -201,6 +207,36 @@ class MotionController3D {
       AngularVelocity3D(0, 0, 0, AngularVelocityUnit::RadPerSec);
   bool (*onGoalCallback)(void*) = nullptr;
   void* onGoaldRef = this;
+  // For dynamic dt measurement (simplified)
+  int updateCount = 0;
+  unsigned long updateStartTimeMs = 0;
+  unsigned long updateEndTimeMs = 0;
+  bool dtSetFromUpdates = false;
+
+  /// Handles dt initialization from first 10 updates, but does not block
+  /// control logic
+  bool initializeDtFromUpdates() {
+    unsigned long nowMs = millis();
+    if (dtSetFromUpdates) return true;
+    if (updateCount == 0) {
+      updateStartTimeMs = nowMs;
+    }
+    updateCount++;
+    if (updateCount == 11) {
+      updateEndTimeMs = nowMs;
+      float avgMs = (updateEndTimeMs - updateStartTimeMs) / 10.0f;
+      float dt = avgMs / 1000.0f;  // convert ms to seconds
+      // Reconfigure all PIDs with new dt, keep other params
+      pidX.setDt(dt);
+      pidY.setDt(dt);
+      pidZ.setDt(dt);
+      pidYaw.setDt(dt);
+      pidPitch.setDt(dt);
+      pidRoll.setDt(dt);
+      dtSetFromUpdates = true;
+    }
+    return dtSetFromUpdates;
+  }
 
   bool advanceWaypoint(float positionTolerance = 0.1f) {
     if (path.isEmpty()) return false;
@@ -252,8 +288,7 @@ class MotionController3D {
       case OnGoalAction::Stop:
         // Set all commands to zero and deactivate controller
         linearCmd = Speed3D(0, 0, 0, SpeedUnit::MPS);
-        angularCmd =
-            AngularVelocity3D(0, 0, 0, AngularVelocityUnit::RadPerSec);
+        angularCmd = AngularVelocity3D(0, 0, 0, AngularVelocityUnit::RadPerSec);
         is_active = false;
         break;
       case OnGoalAction::HoldPosition:

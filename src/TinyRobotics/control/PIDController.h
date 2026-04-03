@@ -55,12 +55,12 @@ template <class N = float>
 class PIDController {
  public:
   // dt -  loop interval time
-  // max - maximum value of manipulated variable
   // min - minimum value of manipulated variable
+  // max - maximum value of manipulated variable
   // kp -  proportional gain
   // ki -  Integral gain
   // kd -  derivative gain
-  bool begin(N dt, N max, N min, N kp, N ki, N kd) {
+  bool begin(N dt, N min, N max, N kp, N ki, N kd) {
     this->dt = dt;
     this->max = max;
     this->min = min;
