@@ -8,6 +8,10 @@ This directory contains classes and utilities for representing spatial maps and 
   2D occupancy or value grid for representing environments as rasterized cells.  
   Features: cell state management, world-to-grid conversion, neighbor queries, and probabilistic updates.
 
+- **GridBitMap.h**  
+  Memory-efficient 2D occupancy grid using bit vectors for cell state storage.  
+  Features: 2-bit cell encoding, fast cell access, world-to-grid conversion, and minimal memory footprint.
+
 - **PathMap.h**  
   Graph structure for pathfinding, where nodes are coordinates and edges are path segments.  
   Features: directed/undirected segments, segment queries, and support for algorithms like A* and Dijkstra.
