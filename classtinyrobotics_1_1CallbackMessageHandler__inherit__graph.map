@@ -1,0 +1,4 @@
+<map id="CallbackMessageHandler" name="CallbackMessageHandler">
+<area shape="rect" id="node1" title="MessageHandler implementation using user&#45;provided callbacks." alt="" coords="5,79,192,104"/>
+<area shape="rect" id="node2" href="$classtinyrobotics_1_1MessageHandler.html" title="Interface for handling messages in the TinyRobotics framework." alt="" coords="33,5,164,31"/>
+</map>
