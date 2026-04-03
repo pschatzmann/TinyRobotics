@@ -211,11 +211,35 @@ class Coordinate : public Serializable {
     y = newY;
     z = newZ;
   }
+  
+  /**
+   * @brief Interpolate points between source and target with a defined
+   * resolution.
+   *
+   * @param source The starting coordinate.
+   * @param target The ending coordinate.
+   * @param resolution The distance between interpolated points.
+   * @return std::vector<Coordinate<T>> List of interpolated coordinates
+   * (including source and target).
+   */
+  std::vector<Coordinate<T>> interpolateTo(const Coordinate<T>& target,
+                                             T resolution) {
+    std::vector<Coordinate<T>> points;
+    T dx = target.x - this->x;
+    T dy = target.y - this->y;
+    T dz = target.z - this->z;
+    T distance = std::sqrt(dx * dx + dy * dy + dz * dz);
+    int steps = std::max(1, static_cast<int>(std::ceil(distance / resolution)));
+    for (int i = 0; i <= steps; ++i) {
+      T t = static_cast<T>(i) / steps;
+      points.emplace_back(this->x + t * dx, this->y + t * dy, this->z + t * dz);
+    }
+    return points;
+  }
 
   const char* getTypeName() const { return "Coordinate"; }
 
-protected:
-
+ protected:
   AngleDeg bearingDeg(const Coordinate& other) const {
     float dx = other.x - x;
     float dy = other.y - y;
@@ -239,7 +263,6 @@ protected:
 };
 
 }  // namespace tinyrobotics
-
 
 namespace std {
 template <typename T>
