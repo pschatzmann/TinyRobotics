@@ -298,8 +298,12 @@ class MotionController2D : public MessageSource {
       desiredHeadingDeg = currentPos.bearing(targetPos, AngleUnit::DEG);
       distanceToTargetM = currentPos.distance(targetPos, DistanceUnit::M);
       if (distanceToTargetM < targetAccuracyM) {
+        TRLogger.info(
+            "Reached waypoint at (%.2f m, %.2f m), distance to target: %.2f m",
+            targetPos.x, targetPos.y, distanceToTargetM);
         path.removeHead();
         if (path.isEmpty()) {
+          TRLogger.info("Reached final goal!");
           if (onGoalCallback) {
             onGoalCallback(onGoalRef);
           }
