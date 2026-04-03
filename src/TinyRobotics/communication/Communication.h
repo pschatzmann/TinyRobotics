@@ -13,4 +13,5 @@
 #include "MessageParser.h"
 #include "MessageSource.h"
 #include "MultiOutput.h"
+#include "CallbackMessageHandler.h"
 // #include "MicroROS.h"
