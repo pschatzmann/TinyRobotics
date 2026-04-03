@@ -232,7 +232,7 @@ class FrontierExplorer {
     * robot to new areas.
     *
     * After calling this method, the `frontiers` vector will contain all current
-    * frontier cells, which can then be used by the exploration strategy to
+    * frontier coordinates, which can then be used by the exploration strategy to
     * select the next goal.
     */
    void collectFrontiers() {
