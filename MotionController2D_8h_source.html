@@ -435,41 +435,45 @@ $(function() {
 <div class="line"><a id="l00357" name="l00357"></a><span class="lineno">  357</span>    msg.unit = Unit::Percent;</div>
 <div class="line"><a id="l00358" name="l00358"></a><span class="lineno">  358</span>    msg.value = resultThrottlePercent;</div>
 <div class="line"><a id="l00359" name="l00359"></a><span class="lineno">  359</span>    sendMessage(msg);</div>
-<div class="line"><a id="l00360" name="l00360"></a><span class="lineno">  360</span>  msg.content = MessageContent::SteeringAngle;</div>
-<div class="line"><a id="l00361" name="l00361"></a><span class="lineno">  361</span>  msg.unit = Unit::AngleDegree;</div>
-<div class="line"><a id="l00362" name="l00362"></a><span class="lineno">  362</span>  <span class="comment">// ROS convention: positive steering = left turn. Invert heading error sign so negative error (target left) yields negative steering (right turn).</span></div>
-<div class="line"><a id="l00363" name="l00363"></a><span class="lineno">  363</span>  msg.value = resultSteeringAngleDeg =</div>
-<div class="line"><a id="l00364" name="l00364"></a><span class="lineno">  364</span>    pidSteering_.calculate(0.0f, -headingError);</div>
-<div class="line"><a id="l00365" name="l00365"></a><span class="lineno">  365</span>  sendMessage(msg);</div>
-<div class="line"><a id="l00366" name="l00366"></a><span class="lineno">  366</span>  TRLogger.info(</div>
-<div class="line"><a id="l00367" name="l00367"></a><span class="lineno">  367</span>    <span class="stringliteral">&quot;MotionController2D: desiredHeading=%.1f deg, currentHeading=%.1f deg, headingError=%.1f deg, steeringAngle=%.1f deg, distanceToTarget=%.2f m, desiredSpeed=%.2f km/h, currentSpeed=%.2f km/h, throttle=%.1f%%&quot;</span>,</div>
-<div class="line"><a id="l00368" name="l00368"></a><span class="lineno">  368</span>    desiredHeading, currentHeading, headingError, resultSteeringAngleDeg,</div>
-<div class="line"><a id="l00369" name="l00369"></a><span class="lineno">  369</span>    distanceToTarget, desiredSpeedKmh, currentSpeedKmh, resultThrottlePercent);</div>
-<div class="line"><a id="l00370" name="l00370"></a><span class="lineno">  370</span>  }</div>
-<div class="line"><a id="l00371" name="l00371"></a><span class="lineno">  371</span> </div>
-<div class="line"><a id="l00372" name="l00372"></a><span class="lineno">  372</span>  <span class="comment">/// Handles dt initialization from first 10 updates, but does not block</span></div>
-<div class="line"><a id="l00373" name="l00373"></a><span class="lineno">  373</span>  <span class="comment">/// control logic</span></div>
-<div class="line"><a id="l00374" name="l00374"></a><span class="lineno">  374</span>  <span class="keywordtype">bool</span> <a class="code hl_function" href="classtinyrobotics_1_1MotionController2D.html#a88911ec7c89c2f537efac4b4e9ba72b1">initializeDtFromUpdates</a>() {</div>
-<div class="line"><a id="l00375" name="l00375"></a><span class="lineno">  375</span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> nowMs = millis();</div>
-<div class="line"><a id="l00376" name="l00376"></a><span class="lineno">  376</span>    <span class="keywordflow">if</span> (dtSetFromUpdates) <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><a id="l00377" name="l00377"></a><span class="lineno">  377</span>    <span class="keywordflow">if</span> (updateCount == 0) {</div>
-<div class="line"><a id="l00378" name="l00378"></a><span class="lineno">  378</span>      updateStartTimeMs = nowMs;</div>
-<div class="line"><a id="l00379" name="l00379"></a><span class="lineno">  379</span>    }</div>
-<div class="line"><a id="l00380" name="l00380"></a><span class="lineno">  380</span>    updateCount++;</div>
-<div class="line"><a id="l00381" name="l00381"></a><span class="lineno">  381</span>    <span class="keywordflow">if</span> (updateCount == 11) {</div>
-<div class="line"><a id="l00382" name="l00382"></a><span class="lineno">  382</span>      updateEndTimeMs = nowMs;</div>
-<div class="line"><a id="l00383" name="l00383"></a><span class="lineno">  383</span>      <span class="keywordtype">float</span> avgMs = (updateEndTimeMs - updateStartTimeMs) / 10.0f;</div>
-<div class="line"><a id="l00384" name="l00384"></a><span class="lineno">  384</span>      <span class="keywordtype">float</span> dt = avgMs / 1000.0f;  <span class="comment">// convert ms to seconds</span></div>
-<div class="line"><a id="l00385" name="l00385"></a><span class="lineno">  385</span>      <span class="comment">// Reconfigure both PIDs with new dt, keep other params</span></div>
-<div class="line"><a id="l00386" name="l00386"></a><span class="lineno">  386</span>      pidSpeed_.setDt(dt);</div>
-<div class="line"><a id="l00387" name="l00387"></a><span class="lineno">  387</span>      pidSteering_.setDt(dt);</div>
-<div class="line"><a id="l00388" name="l00388"></a><span class="lineno">  388</span>      dtSetFromUpdates = <span class="keyword">true</span>;</div>
-<div class="line"><a id="l00389" name="l00389"></a><span class="lineno">  389</span>    }</div>
-<div class="line"><a id="l00390" name="l00390"></a><span class="lineno">  390</span>    <span class="keywordflow">return</span> dtSetFromUpdates;</div>
-<div class="line"><a id="l00391" name="l00391"></a><span class="lineno">  391</span>  }</div>
-<div class="line"><a id="l00392" name="l00392"></a><span class="lineno">  392</span>};</div>
-<div class="line"><a id="l00393" name="l00393"></a><span class="lineno">  393</span> </div>
-<div class="line"><a id="l00394" name="l00394"></a><span class="lineno">  394</span>}  <span class="comment">// namespace tinyrobotics</span></div>
+<div class="line"><a id="l00360" name="l00360"></a><span class="lineno">  360</span>    msg.content = MessageContent::SteeringAngle;</div>
+<div class="line"><a id="l00361" name="l00361"></a><span class="lineno">  361</span>    msg.unit = Unit::AngleDegree;</div>
+<div class="line"><a id="l00362" name="l00362"></a><span class="lineno">  362</span>    <span class="comment">// ROS convention: positive steering = left turn. Invert heading error sign</span></div>
+<div class="line"><a id="l00363" name="l00363"></a><span class="lineno">  363</span>    <span class="comment">// so negative error (target left) yields negative steering (right turn).</span></div>
+<div class="line"><a id="l00364" name="l00364"></a><span class="lineno">  364</span>    msg.value = resultSteeringAngleDeg =</div>
+<div class="line"><a id="l00365" name="l00365"></a><span class="lineno">  365</span>        pidSteering_.calculate(0.0f, -headingError);</div>
+<div class="line"><a id="l00366" name="l00366"></a><span class="lineno">  366</span>    sendMessage(msg);</div>
+<div class="line"><a id="l00367" name="l00367"></a><span class="lineno">  367</span>    TRLogger.info(</div>
+<div class="line"><a id="l00368" name="l00368"></a><span class="lineno">  368</span>        <span class="stringliteral">&quot;MotionController2D: desiredHeading=%.1f deg, currentHeading=%.1f deg, &quot;</span></div>
+<div class="line"><a id="l00369" name="l00369"></a><span class="lineno">  369</span>        <span class="stringliteral">&quot;headingError=%.1f deg, steeringAngle=%.1f deg, distanceToTarget=%.2f &quot;</span></div>
+<div class="line"><a id="l00370" name="l00370"></a><span class="lineno">  370</span>        <span class="stringliteral">&quot;m, desiredSpeed=%.2f km/h, currentSpeed=%.2f km/h, throttle=%.1f%%&quot;</span>,</div>
+<div class="line"><a id="l00371" name="l00371"></a><span class="lineno">  371</span>        desiredHeading, currentHeading, headingError, resultSteeringAngleDeg,</div>
+<div class="line"><a id="l00372" name="l00372"></a><span class="lineno">  372</span>        distanceToTarget, desiredSpeedKmh, currentSpeedKmh,</div>
+<div class="line"><a id="l00373" name="l00373"></a><span class="lineno">  373</span>        resultThrottlePercent);</div>
+<div class="line"><a id="l00374" name="l00374"></a><span class="lineno">  374</span>  }</div>
+<div class="line"><a id="l00375" name="l00375"></a><span class="lineno">  375</span> </div>
+<div class="line"><a id="l00376" name="l00376"></a><span class="lineno">  376</span>  <span class="comment">/// Handles dt initialization from first 10 updates, but does not block</span></div>
+<div class="line"><a id="l00377" name="l00377"></a><span class="lineno">  377</span>  <span class="comment">/// control logic</span></div>
+<div class="line"><a id="l00378" name="l00378"></a><span class="lineno">  378</span>  <span class="keywordtype">bool</span> <a class="code hl_function" href="classtinyrobotics_1_1MotionController2D.html#a88911ec7c89c2f537efac4b4e9ba72b1">initializeDtFromUpdates</a>() {</div>
+<div class="line"><a id="l00379" name="l00379"></a><span class="lineno">  379</span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> nowMs = millis();</div>
+<div class="line"><a id="l00380" name="l00380"></a><span class="lineno">  380</span>    <span class="keywordflow">if</span> (dtSetFromUpdates) <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00381" name="l00381"></a><span class="lineno">  381</span>    <span class="keywordflow">if</span> (updateCount == 0) {</div>
+<div class="line"><a id="l00382" name="l00382"></a><span class="lineno">  382</span>      updateStartTimeMs = nowMs;</div>
+<div class="line"><a id="l00383" name="l00383"></a><span class="lineno">  383</span>    }</div>
+<div class="line"><a id="l00384" name="l00384"></a><span class="lineno">  384</span>    updateCount++;</div>
+<div class="line"><a id="l00385" name="l00385"></a><span class="lineno">  385</span>    <span class="keywordflow">if</span> (updateCount == 11) {</div>
+<div class="line"><a id="l00386" name="l00386"></a><span class="lineno">  386</span>      updateEndTimeMs = nowMs;</div>
+<div class="line"><a id="l00387" name="l00387"></a><span class="lineno">  387</span>      <span class="keywordtype">float</span> avgMs = (updateEndTimeMs - updateStartTimeMs) / 10.0f;</div>
+<div class="line"><a id="l00388" name="l00388"></a><span class="lineno">  388</span>      <span class="keywordtype">float</span> dt = avgMs / 1000.0f;  <span class="comment">// convert ms to seconds</span></div>
+<div class="line"><a id="l00389" name="l00389"></a><span class="lineno">  389</span>      <span class="comment">// Reconfigure both PIDs with new dt, keep other params</span></div>
+<div class="line"><a id="l00390" name="l00390"></a><span class="lineno">  390</span>      pidSpeed_.setDt(dt);</div>
+<div class="line"><a id="l00391" name="l00391"></a><span class="lineno">  391</span>      pidSteering_.setDt(dt);</div>
+<div class="line"><a id="l00392" name="l00392"></a><span class="lineno">  392</span>      dtSetFromUpdates = <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00393" name="l00393"></a><span class="lineno">  393</span>    }</div>
+<div class="line"><a id="l00394" name="l00394"></a><span class="lineno">  394</span>    <span class="keywordflow">return</span> dtSetFromUpdates;</div>
+<div class="line"><a id="l00395" name="l00395"></a><span class="lineno">  395</span>  }</div>
+<div class="line"><a id="l00396" name="l00396"></a><span class="lineno">  396</span>};</div>
+<div class="line"><a id="l00397" name="l00397"></a><span class="lineno">  397</span> </div>
+<div class="line"><a id="l00398" name="l00398"></a><span class="lineno">  398</span>}  <span class="comment">// namespace tinyrobotics</span></div>
 <div class="ttc" id="aclasstinyrobotics_1_1Angle_html"><div class="ttname"><a href="classtinyrobotics_1_1Angle.html">tinyrobotics::Angle</a></div><div class="ttdoc">Represents an angle with unit conversion and wrap-around support.</div><div class="ttdef"><b>Definition:</b> Angle.h:39</div></div>
 <div class="ttc" id="aclasstinyrobotics_1_1Coordinate_html"><div class="ttname"><a href="classtinyrobotics_1_1Coordinate.html">tinyrobotics::Coordinate</a></div><div class="ttdoc">A generic 3D coordinate class for robotics, navigation, and spatial calculations.</div><div class="ttdef"><b>Definition:</b> Coordinate.h:57</div></div>
 <div class="ttc" id="aclasstinyrobotics_1_1Distance_html"><div class="ttname"><a href="classtinyrobotics_1_1Distance.html">tinyrobotics::Distance</a></div><div class="ttdoc">Represents a distance measurement with unit conversion support.</div><div class="ttdef"><b>Definition:</b> Distance.h:37</div></div>
@@ -488,7 +492,7 @@ $(function() {
 <div class="ttc" id="aclasstinyrobotics_1_1MotionController2D_html_a7d238c24d914c3e2592c8366ef46d490"><div class="ttname"><a href="classtinyrobotics_1_1MotionController2D.html#a7d238c24d914c3e2592c8366ef46d490">tinyrobotics::MotionController2D::throttleMode</a></div><div class="ttdeci">ThrottleMode throttleMode</div><div class="ttdoc">Throttle control mode.</div><div class="ttdef"><b>Definition:</b> MotionController2D.h:252</div></div>
 <div class="ttc" id="aclasstinyrobotics_1_1MotionController2D_html_a83669afed8cf6fa5bb6dc42cba02de60"><div class="ttname"><a href="classtinyrobotics_1_1MotionController2D.html#a83669afed8cf6fa5bb6dc42cba02de60">tinyrobotics::MotionController2D::configureSpeedPID</a></div><div class="ttdeci">void configureSpeedPID(float minOut, float maxOut, float kp, float ki, float kd)</div><div class="ttdoc">Configure the PID controller for speed-to-throttle mapping.</div><div class="ttdef"><b>Definition:</b> MotionController2D.h:99</div></div>
 <div class="ttc" id="aclasstinyrobotics_1_1MotionController2D_html_a85c609c6342c6f0de6ae070e5a45915c"><div class="ttname"><a href="classtinyrobotics_1_1MotionController2D.html#a85c609c6342c6f0de6ae070e5a45915c">tinyrobotics::MotionController2D::getThrottlePercent</a></div><div class="ttdeci">float getThrottlePercent(float currentSpeedKmh)</div><div class="ttdoc">Compute the throttle percent based on the selected mode.</div><div class="ttdef"><b>Definition:</b> MotionController2D.h:325</div></div>
-<div class="ttc" id="aclasstinyrobotics_1_1MotionController2D_html_a88911ec7c89c2f537efac4b4e9ba72b1"><div class="ttname"><a href="classtinyrobotics_1_1MotionController2D.html#a88911ec7c89c2f537efac4b4e9ba72b1">tinyrobotics::MotionController2D::initializeDtFromUpdates</a></div><div class="ttdeci">bool initializeDtFromUpdates()</div><div class="ttdef"><b>Definition:</b> MotionController2D.h:374</div></div>
+<div class="ttc" id="aclasstinyrobotics_1_1MotionController2D_html_a88911ec7c89c2f537efac4b4e9ba72b1"><div class="ttname"><a href="classtinyrobotics_1_1MotionController2D.html#a88911ec7c89c2f537efac4b4e9ba72b1">tinyrobotics::MotionController2D::initializeDtFromUpdates</a></div><div class="ttdeci">bool initializeDtFromUpdates()</div><div class="ttdef"><b>Definition:</b> MotionController2D.h:378</div></div>
 <div class="ttc" id="aclasstinyrobotics_1_1MotionController2D_html_a8c0cfd4b82436d61cd82a08278ffdd7d"><div class="ttname"><a href="classtinyrobotics_1_1MotionController2D.html#a8c0cfd4b82436d61cd82a08278ffdd7d">tinyrobotics::MotionController2D::handleWaypoint</a></div><div class="ttdeci">bool handleWaypoint(const Coordinate&lt; DistanceM &gt; &amp;currentPos, Coordinate&lt; DistanceM &gt; &amp;targetPos, float &amp;distanceToTargetM, float &amp;desiredHeadingDeg)</div><div class="ttdoc">Handle the current waypoint: calculate distance and desired heading.</div><div class="ttdef"><b>Definition:</b> MotionController2D.h:283</div></div>
 <div class="ttc" id="aclasstinyrobotics_1_1MotionController2D_html_aaf81d3fdaf258088d7692fa70cece087"><div class="ttname"><a href="classtinyrobotics_1_1MotionController2D.html#aaf81d3fdaf258088d7692fa70cece087">tinyrobotics::MotionController2D::end</a></div><div class="ttdeci">void end()</div><div class="ttdoc">Stop the controller and the vehicle.</div><div class="ttdef"><b>Definition:</b> MotionController2D.h:156</div></div>
 <div class="ttc" id="aclasstinyrobotics_1_1MotionController2D_html_abf47a4b1ba948aa37e02d95cf8971c25"><div class="ttname"><a href="classtinyrobotics_1_1MotionController2D.html#abf47a4b1ba948aa37e02d95cf8971c25">tinyrobotics::MotionController2D::getThrottlePercent</a></div><div class="ttdeci">float getThrottlePercent() const</div><div class="ttdoc">Get the last computed throttle percent.</div><div class="ttdef"><b>Definition:</b> MotionController2D.h:202</div></div>
