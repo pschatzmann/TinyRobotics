@@ -164,6 +164,17 @@ class RangeSensor : public MessageSource {
   /// Return true if there is an obstacle detected (distance > 0)
   bool hasObstacle() const { return distanceM > 0; }
 
+
+  /// Compute a speed factor (0.0 to 1.0) based on the distance to the obstacle
+  float getSpeedFactor(Distance breakingDistance) const {
+    if (distanceM <= 0) return 1.0f;  // No obstacle, full speed
+    if (distanceM >= breakingDistance.getValue(DistanceUnit::M))
+      return 1.0f;  // Beyond breaking distance, full speed
+    // Linearly scale speed factor based on distance to obstacle
+    float factor = distanceM / breakingDistance.getValue(DistanceUnit::M);
+    return constrain(factor, 0.0f, 1.0f);
+  }
+
  protected:
   float obstacle_deg_ = 0;
   float distanceM = 0;
