@@ -179,11 +179,31 @@ class MotionController2D : public MessageSource {
         motionStateSource.getSpeed().getValue(SpeedUnit::KPH);
     float distanceFromStartM =
         startCoordinate.distance(currentPos, DistanceUnit::M);
-    updateSpeed(distanceFromStartM, distanceToTargetM, currentSpeedKmh);
 
+    desiredSpeedKmh =
+        getDesiredSpeed(distanceFromStartM, distanceToTargetM, currentSpeedKmh);
+
+    // Compute actuator commands and update class state
+    resultThrottlePercent = getThrottlePercent(currentSpeedKmh);
+    // ROS convention: positive steering = left turn. Invert heading error sign
+    // so negative error (target left) yields negative steering (right turn).
+    float pidInput = !isInverted ? -headingError : headingError;
+    resultSteeringAngleDeg = pidSteering_.calculate(0.0f, pidInput);
+
+    // Log summary (moved from sendControlMessages)
+    TRLogger.info(
+        "MotionController2D: distanceToTarget=%.2f m, desiredHeading=%.1f deg, "
+        "currentHeading=%.1f deg, headingError=%.1f deg, steeringAngle=%.1f "
+        "deg, desiredSpeed=%.2f km/h, currentSpeed=%.2f km/h, throttle=%.1f%%",
+        distanceToTargetM, desiredHeading, currentHeading, headingError,
+        resultSteeringAngleDeg, desiredSpeedKmh, currentSpeedKmh,
+        resultThrottlePercent);
+
+    // Send messages with computed values
+    sendControlMessages(resultThrottlePercent, resultSteeringAngleDeg);
+
+    // We have a valid distance to target, so we can compute control commands
     has_distance = true;
-    sendControlMessages(distanceToTargetM, headingError, currentSpeedKmh,
-                        desiredHeading, currentHeading);
   }
 
   /**
@@ -211,6 +231,12 @@ class MotionController2D : public MessageSource {
     return Angle(resultSteeringAngleDeg, AngleUnit::DEG);
   }
 
+  /**
+   * @brief Get the Target Accuracy object
+   *
+   * @param unit
+   * @return float
+   */
   float getTargetAccuracy(DistanceUnit unit) const {
     return Distance(targetAccuracyM, DistanceUnit::M).getValue(unit);
   }
@@ -264,13 +290,13 @@ class MotionController2D : public MessageSource {
   bool dtSetFromUpdates = false;
   bool isInverted = false;  // For steering direction inversion if needed
 
-  /// Calculate desired speed based on distance to target and distance from
-  /// start
-  void updateSpeed(float distanceFromStartM, float distanceToTarget,
-                   float currentSpeedKmh) {
+  /// Calculate desired speed based on distance to target and start
+  float getDesiredSpeed(float distanceFromStartM, float distanceToTarget,
+                        float currentSpeedKmh) {
     // Compute a desired speed profile: slow down as you approach the target
     float minSpeedKmh = 0.0f;
-    desiredSpeedKmh = maxSpeedKmh;  // * (distanceToTarget / accelDistanceM);
+    float desiredSpeedKmh =
+        maxSpeedKmh;  // * (distanceToTarget / accelDistanceM);
     if (distanceToTarget < accelDistanceM) {
       if (distanceToTarget < targetAccuracyM) {
         desiredSpeedKmh = 0.0f;  // Stop at the target
@@ -286,6 +312,7 @@ class MotionController2D : public MessageSource {
     }
     if (desiredSpeedKmh > maxSpeedKmh) desiredSpeedKmh = maxSpeedKmh;
     if (desiredSpeedKmh < minSpeedKmh) desiredSpeedKmh = minSpeedKmh;
+    return desiredSpeedKmh;
   }
 
   /// Handle the current waypoint: calculate distance and desired heading
@@ -316,6 +343,7 @@ class MotionController2D : public MessageSource {
     return true;
   }
 
+  /// Compute angle difference range [-180, 180]
   float computeHeadingError(float desiredHeading, float currentHeading) {
     float headingError = desiredHeading - currentHeading;
     while (headingError > 180) headingError -= 360;
@@ -323,18 +351,13 @@ class MotionController2D : public MessageSource {
     return headingError;
   }
 
-  /**
-   * @brief Model-based feedforward throttle estimate: 100% throttle =
-   * maxSpeedKmh
-   */
+  /// Model-based feedforward throttle estimate: 100% throttle = maxSpeedKmh
   float feedforwardThrottle(float desiredSpeedKmh) const {
     if (maxSpeedKmh <= 0.0f) return 0.0f;
     return 100.0f * desiredSpeedKmh / maxSpeedKmh;
   }
 
-  /**
-   * @brief Compute the throttle percent based on the selected mode.
-   */
+  /// Compute the throttle percent based on the selected mode.
   float getThrottlePercent(float currentSpeedKmh) {
     float speedError = desiredSpeedKmh - currentSpeedKmh;
     float ff = feedforwardThrottle(desiredSpeedKmh);
@@ -360,35 +383,22 @@ class MotionController2D : public MessageSource {
     return throttlePercent;
   }
 
-  void sendControlMessages(float distanceToTarget, float headingError,
-                           float currentSpeedKmh, float desiredHeading,
-                           float currentHeading) {
-    resultThrottlePercent = getThrottlePercent(currentSpeedKmh);
+  /// Send control messages for throttle and steering angle
+  void sendControlMessages(float throttlePercent, float steeringAngleDeg) {
     Message<float> msg;
     msg.source = MessageOrigin::Autonomy;
     msg.content = MessageContent::Throttle;
     msg.unit = Unit::Percent;
-    msg.value = resultThrottlePercent;
+    msg.value = throttlePercent;
     sendMessage(msg);
+
     msg.content = MessageContent::SteeringAngle;
     msg.unit = Unit::AngleDegree;
-    // ROS convention: positive steering = left turn. Invert heading error sign
-    // so negative error (target left) yields negative steering (right turn).
-    float pidInput =
-        !isInverted ? -headingError : headingError;  // Invert error if needed
-    msg.value = resultSteeringAngleDeg = pidSteering_.calculate(0.0f, pidInput);
+    msg.value = steeringAngleDeg;
     sendMessage(msg);
-    TRLogger.info(
-        "MotionController2D: desiredHeading=%.1f deg, currentHeading=%.1f deg, "
-        "headingError=%.1f deg, steeringAngle=%.1f deg, distanceToTarget=%.2f "
-        "m, desiredSpeed=%.2f km/h, currentSpeed=%.2f km/h, throttle=%.1f%%",
-        desiredHeading, currentHeading, headingError, resultSteeringAngleDeg,
-        distanceToTarget, desiredSpeedKmh, currentSpeedKmh,
-        resultThrottlePercent);
   }
 
-  /// Handles dt initialization from first 10 updates, but does not block
-  /// control logic
+  /// Handles dt initialization from first 10 updates
   bool initializeDtFromUpdates() {
     unsigned long nowMs = millis();
     if (dtSetFromUpdates) return true;
@@ -404,6 +414,8 @@ class MotionController2D : public MessageSource {
       pidSpeed_.setDt(dt);
       pidSteering_.setDt(dt);
       dtSetFromUpdates = true;
+      TRLogger.info("Initialized PID dt from updates: %.3f seconds (%.1f ms)",
+                    dt, avgMs);
     }
     return dtSetFromUpdates;
   }
