@@ -16,12 +16,17 @@ This directory contains algorithms and utilities for path planning, motion plann
   Generic Dijkstra shortest path algorithm for graphs, grids, and navigation maps.  
   Features: callback-based cost and validity, flexible map integration, and optimal path computation without heuristics.
 
+- **FrontierExplorer.h**  
+  Generic frontier-based exploration utility for autonomous mapping and SLAM.  
+  Features: supports multiple selection strategies (random, nearest, farthest, first, last, custom), works with any grid/occupancy map, and provides flexible integration for exploration tasks.
+
 
 ## Typical Usage
 
 - Find the shortest or optimal path between two points in a grid, map, or graph.
 - Represent and manipulate robot paths for following, smoothing, or analysis.
 - Integrate planning algorithms with mapping and localization modules for autonomous navigation.
+- Perform frontier-based exploration for mapping unknown environments or enhancing SLAM performance.
 
 ## Example
 

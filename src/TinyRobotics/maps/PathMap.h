@@ -39,11 +39,11 @@ namespace tinyrobotics {
  *
  * @tparam Coordinate The coordinate type (e.g., 2D or 3D point).
  */
-template <typename Coordinate = Coordinate<DistanceM>>
+template <typename CoordinateT = Coordinate<DistanceM>>
 class PathSegment {
  public:
-  Coordinate from;
-  Coordinate to;
+  CoordinateT from;
+  CoordinateT to;
   float cost = 0.0;  // Default cost for traversing this segment
   bool directed = false;
 };
@@ -66,22 +66,22 @@ class PathSegment {
  *
  * @tparam Coordinate The coordinate type (e.g., 2D or 3D point).
  */
-template <typename Coordinate = Coordinate<float>>
+template <typename CoordinateT = Coordinate<float>>
 class PathMap {
  public:
   PathMap() = default;
 
-  void addSegment(const Coordinate& from, const Coordinate& to,
+  void addSegment(const CoordinateT& from, const CoordinateT& to,
                   bool directed = false) {
     auto distance = from.distance(to);  // Example cost based on distance
-    PathSegment<Coordinate> segment{from, to, distance,
+    PathSegment<CoordinateT> segment{from, to, distance,
                                     directed};  // Default cost = 1.0
     segments.push_back(segment);
   }
 
-  std::vector<PathSegment<Coordinate>> getSegments(
-      const Coordinate& from) const {
-    std::vector<PathSegment<Coordinate>> result;
+  std::vector<PathSegment<CoordinateT>> getSegments(
+      const CoordinateT& from) const {
+    std::vector<PathSegment<CoordinateT>> result;
     for (const auto& seg : segments) {
       if (seg.from == from) {
         result.push_back(seg);
@@ -89,7 +89,7 @@ class PathMap {
     }
     for (const auto& seg : segments) {
       if (seg.to == from && !seg.directed) {
-        PathSegment<Coordinate> reverse_seg = seg;
+        PathSegment<CoordinateT> reverse_seg = seg;
         std::swap(reverse_seg.from, reverse_seg.to);
         result.push_back(reverse_seg);
       }
@@ -97,8 +97,8 @@ class PathMap {
     return result;
   }
 
-  std::vector<Coordinate> getNeighbors(const Coordinate& from) const {
-    std::vector<Coordinate> neighbors;
+  std::vector<CoordinateT> getNeighbors(const CoordinateT& from) const {
+    std::vector<CoordinateT> neighbors;
     for (const auto& seg : segments) {
       if (seg.from == from) {
         neighbors.push_back(seg.to);
@@ -111,8 +111,8 @@ class PathMap {
   }
 
  protected:
-  std::vector<PathSegment<Coordinate>,
-              AllocatorPSRAM<PathSegment<Coordinate>>>
+  std::vector<PathSegment<CoordinateT>,
+              AllocatorPSRAM<PathSegment<CoordinateT>>>
       segments;
 };
 
