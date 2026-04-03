@@ -8,9 +8,9 @@
 
 namespace tinyrobotics {
 
-/// Defines how the throttle is determined
 /**
  * @brief Throttle control strategy selection.
+ * @ingroup control
  */
 enum class ThrottleMode {
   FeedforwardOnly,  ///< Model-based (open-loop) throttle
