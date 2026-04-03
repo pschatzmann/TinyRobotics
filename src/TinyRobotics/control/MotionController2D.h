@@ -75,8 +75,11 @@ class MotionController2D : public MessageSource {
       : motionStateSource(motionState),
         accelDistanceM(accelDistanceM),
         maxSpeedKmh(maxSpeedKmh) {
-    configureSteeringPID(-30.0f, 30.0f, 1.0f, 0.0f, 0.1f);
-    configureSpeedPID(0.0f, 100.0f, 12.0f, 0.1f, 0.01f);
+    // Conservative initial PID values for easier tuning
+    // kp=0.1, ki=0, kd=0
+    configureSteeringPID(-30.0f, 30.0f, 1.0f, 0.0f, 0.0f);
+    // kp=2.0, ki=0, kd=0
+    configureSpeedPID(0.0f, 100.0f, 2.0f, 0.0f, 0.0f);
   }
 
   MotionController2D(IMotionState2D& motionState, Speed maxSpeedKmh,
@@ -100,22 +103,25 @@ class MotionController2D : public MessageSource {
 
   /**
    * @brief Configure the PID controller for steering.
-   * @param dt Time step (seconds)
-   * @param maxOut Maximum output
    * @param minOut Minimum output
+   * @param maxOut Maximum output
    * @param kp Proportional gain
    * @param ki Integral gain
    * @param kd Derivative gain
    */
-  void configureSteeringPID(float maxOut, float minOut, float kp, float ki,
+  void configureSteeringPID(float minOut, float maxOut, float kp, float ki,
                             float kd) {
     pidSteering_.begin(0.0f, minOut, maxOut, kp, ki, kd);
   }
 
-  /// Defines the path to follow as a sequence of waypoints
+  /**
+   * @brief Defines the path to follow as a sequence of waypoints
+   */
   void setPath(Path<Coordinate<DistanceM>> path) { this->path = path; }
 
-  /// Adds a single waypoint to the path (appended to the end)
+  /**
+   * @brief Adds a single waypoint to the path (appended to the end)
+   */
   void addWaypoint(Coordinate<DistanceM> target) {
     this->path.addWaypoint(target);
   }
@@ -126,7 +132,9 @@ class MotionController2D : public MessageSource {
    */
   void setTargetAccuracy(float accuracyM) { targetAccuracyM = accuracyM; }
 
-  /// Start the controller and initialize state
+  /**
+   * @brief Start the controller and initialize state
+   */
   bool begin() {
     is_active = true;
     has_distance = false;
@@ -142,11 +150,15 @@ class MotionController2D : public MessageSource {
     return true;
   }
 
-  /// Stop the controller and the vehicle
+  /**
+   * @brief Stop the controller and the vehicle
+   */
   void end() { is_active = false; }
 
-  /// Main control loop to be called periodically (e.g., in a timer or main
-  /// loop)
+  /**
+   * @brief Main control loop to be called periodically (e.g., in a timer or
+   * main loop)
+   */
   void update() {
     if (!is_active) return;
     if (!initializeDtFromUpdates()) {
@@ -170,7 +182,8 @@ class MotionController2D : public MessageSource {
     updateSpeed(distanceFromStartM, distanceToTargetM, currentSpeedKmh);
 
     has_distance = true;
-    sendControlMessages(distanceToTargetM, headingError, currentSpeedKmh);
+    sendControlMessages(distanceToTargetM, headingError, currentSpeedKmh,
+                        desiredHeading, currentHeading);
   }
 
   /**
@@ -202,7 +215,9 @@ class MotionController2D : public MessageSource {
     return Distance(targetAccuracyM, DistanceUnit::M).getValue(unit);
   }
 
-  /// Returns true if the goal has been reached
+  /**
+   * @brief Returns true if the goal has been reached
+   */
   bool isGoalReached() const {
     if (!has_distance) return false;
     return distanceToTargetM < targetAccuracyM;
@@ -333,7 +348,8 @@ class MotionController2D : public MessageSource {
   }
 
   void sendControlMessages(float distanceToTarget, float headingError,
-                           float currentSpeedKmh) {
+                           float currentSpeedKmh, float desiredHeading,
+                           float currentHeading) {
     resultThrottlePercent = getThrottlePercent(currentSpeedKmh);
     Message<float> msg;
     msg.source = MessageOrigin::Autonomy;
@@ -341,17 +357,16 @@ class MotionController2D : public MessageSource {
     msg.unit = Unit::Percent;
     msg.value = resultThrottlePercent;
     sendMessage(msg);
-    msg.content = MessageContent::SteeringAngle;
-    msg.unit = Unit::AngleDegree;
-    msg.value = resultSteeringAngleDeg =
-        pidSteering_.calculate(0.0f, -headingError);
-    sendMessage(msg);
-    TRLogger.info(
-        "MotionController2D: distanceToTarget=%.2f m, desiredSpeed=%.2f km/h, "
-        "currentSpeed=%.2f km/h, throttle=%.1f%%, headingError=%.1f deg, "
-        "steeringAngle=%.1f deg",
-        distanceToTarget, desiredSpeedKmh, currentSpeedKmh,
-        resultThrottlePercent, headingError, resultSteeringAngleDeg);
+  msg.content = MessageContent::SteeringAngle;
+  msg.unit = Unit::AngleDegree;
+  // ROS convention: positive steering = left turn. Invert heading error sign so negative error (target left) yields negative steering (right turn).
+  msg.value = resultSteeringAngleDeg =
+    pidSteering_.calculate(0.0f, -headingError);
+  sendMessage(msg);
+  TRLogger.info(
+    "MotionController2D: desiredHeading=%.1f deg, currentHeading=%.1f deg, headingError=%.1f deg, steeringAngle=%.1f deg, distanceToTarget=%.2f m, desiredSpeed=%.2f km/h, currentSpeed=%.2f km/h, throttle=%.1f%%",
+    desiredHeading, currentHeading, headingError, resultSteeringAngleDeg,
+    distanceToTarget, desiredSpeedKmh, currentSpeedKmh, resultThrottlePercent);
   }
 
   /// Handles dt initialization from first 10 updates, but does not block

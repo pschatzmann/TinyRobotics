@@ -30,7 +30,7 @@
 #include <TinyRobotics.h>
 
 Frame2D world{FrameType::WORLD, 0};
-Frame2D base{FrameType::BASE, 0, world, Transform2D(0, 0, 180)};
+Frame2D base{FrameType::BASE, 0, world, Transform2D(0, 0, 90)};
 Coordinate<float> target(10, 0);
 
 CarAckerman<BrushedMotor, ServoMotor> car;
