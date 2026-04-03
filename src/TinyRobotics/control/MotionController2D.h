@@ -71,20 +71,23 @@ template <typename T = float>
 class MotionController2D : public MessageSource {
  public:
   MotionController2D(IMotionState2D& motionState, float maxSpeedKmh = 10,
+                     float maxSteeringAngleDeg = 30.0f,
                      float accelDistanceM = 2.0f)
       : motionStateSource(motionState),
         accelDistanceM(accelDistanceM),
         maxSpeedKmh(maxSpeedKmh) {
     // Conservative initial PID values for easier tuning
     // kp=0.1, ki=0, kd=0
-    configureSteeringPID(-30.0f, 30.0f, 1.0f, 0.0f, 0.0f);
+    configureSteeringPID(-maxSteeringAngleDeg, maxSteeringAngleDeg, 1.0f, 0.0f,
+                         0.0f);
     // kp=2.0, ki=0, kd=0
     configureSpeedPID(0.0f, 100.0f, 2.0f, 0.0f, 0.0f);
   }
 
   MotionController2D(IMotionState2D& motionState, Speed maxSpeedKmh,
-                     Distance accelDistanceM)
+                     Angle maxSteeringAngle, Distance accelDistanceM)
       : MotionController2D(motionState, maxSpeedKmh.getValue(SpeedUnit::KPH),
+                           maxSteeringAngle.getValue(AngleUnit::DEG),
                            accelDistanceM.getValue(DistanceUnit::M)) {}
 
   /**
@@ -272,6 +275,7 @@ class MotionController2D : public MessageSource {
   float accelDistanceM = 2.0f;
   float maxSpeedKmh = 10.0f;
   float desiredSpeedKmh = 0.0f;
+  float maxSteeringAngleDeg = 30.0f;
   PIDController<float> pidSteering_;
   PIDController<float> pidSpeed_;
   Coordinate<DistanceM> startCoordinate;

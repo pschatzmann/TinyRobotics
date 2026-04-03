@@ -51,7 +51,8 @@ SpeedFromThrottle speedEstimator(2.0f);  // max speed 2 m/s (adjust as needed)
 Speed maxSpeedKmh(5, SpeedUnit::KPH);  // max speed in km/h
 Distance accelDistanceM(0.5, DistanceUnit::M); // distance to start decelerating in meters
 Distance wheelBase(0.3f, DistanceUnit::M);  // distance between front and rear axles in meters
-MotionController2D<float> controller(odometry, maxSpeedKmh, accelDistanceM);
+Angle maxSteeringAngle(30.0f, AngleUnit::DEG);
+MotionController2D<float> controller(odometry, maxSpeedKmh,maxSteeringAngle,accelDistanceM);
 
 Scheduler scheduler;
 MessageHandlerPrintJSON json_printer(NullPrint);  // Print to Serial in JSON format

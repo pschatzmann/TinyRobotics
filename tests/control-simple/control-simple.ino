@@ -35,13 +35,14 @@ Coordinate<float> target(10, 0);
 
 CarAckerman<BrushedMotor, ServoMotor> car;
 Odometry2D odometry;
-Speed maxSpeedKmh(5, SpeedUnit::KPH);    // max speed in km/h
-SpeedFromThrottle speedEstimator(maxSpeedKmh);  // max speed 2 m/s (adjust as needed)
-Distance accelDistanceM(
-    0.5, DistanceUnit::M);  // distance to start decelerating in meters
-Distance wheelBase(
-    0.3f, DistanceUnit::M);  // distance between front and rear axles in meters
-MotionController2D<float> controller(odometry, maxSpeedKmh, accelDistanceM);
+Speed maxSpeedKmh(5, SpeedUnit::KPH);  // max speed in km/h
+SpeedFromThrottle speedEstimator(
+    maxSpeedKmh);  // max speed 2 m/s (adjust as needed)
+Distance accelDistanceM(0.5, DistanceUnit::M);
+Distance wheelBase(0.3f, DistanceUnit::M);
+Angle maxSteeringAngle(30.0f, AngleUnit::DEG);
+MotionController2D<float> controller(odometry, maxSpeedKmh, maxSteeringAngle,
+                                     accelDistanceM);
 
 Scheduler scheduler;
 MessageHandlerPrintJSON json_printer(
@@ -63,9 +64,11 @@ void setup() {
   // find path using A*
   // setup odometry firs
   odometry.begin(base, wheelBase);
-  odometry.subscribe( json_printer);  // subscribe to odometry messages for telemetry
+  odometry.subscribe(
+      json_printer);  // subscribe to odometry messages for telemetry
   // then setup controller which depends on odometry
-  controller.subscribe(car);  // subscribe to control messages from the controller
+  controller.subscribe(
+      car);  // subscribe to control messages from the controller
   controller.addWaypoint(target);
   controller.setTargetAccuracy(0.10f);  // 10 cm accuracy
   controller.begin();
