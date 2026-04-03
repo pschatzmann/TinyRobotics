@@ -230,8 +230,8 @@ class MotionController2D : public MessageSource {
    */
   void setThrottleMode(ThrottleMode mode) { throttleMode = mode; }
   /**
-   * @brief Set the Inverted Steering object: by default we use ROS logic for
-   * steering correction (positive error = turn left), but some vehicles may
+   * @brief Set the Inverted Steering logic: by default we use ROS logic for
+   * steering correction (positive angle = turn left), but some vehicles may
    * require the opposite. Set to true to invert the steering direction.
    *
    * @param inverted
