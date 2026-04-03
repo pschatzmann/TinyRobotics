@@ -61,6 +61,11 @@ class GridMap {
       : resolution(resolutionM) {
     resize(xCount, yCount);
   }
+  GridMap(int xCount, int yCount, Distance resolution)
+      : xCount(xCount), yCount(yCount) {
+    this->resolution = resolution.getValue(DistanceUnit::M);
+    resize(xCount, yCount);
+  }
 
   /// World to cell conversion
   bool worldToCell(DistanceM wx, DistanceM wy, Cell& cell) const {

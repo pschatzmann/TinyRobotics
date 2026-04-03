@@ -1,8 +1,9 @@
 #pragma once
 #include <vector>
+
+#include "TinyRobotics/coordinates/Coordinate.h"
 #include "TinyRobotics/utils/AllocatorPSRAM.h"
 #include "TinyRobotics/utils/Common.h"
-#include "TinyRobotics/coordinates/Coordinate.h"
 
 namespace tinyrobotics {
 
@@ -11,10 +12,10 @@ namespace tinyrobotics {
  * @ingroup maps
  * @brief A grid map using two bit vectors to represent CellState efficiently.
  *
- * The GridMapBitVector class models the environment as a regular grid of cells, each
- * storing a state (FREE, OCCUPIED, UNKNOWN) using two std::vector<bool> for memory efficiency.
- * So each cell occupies only 2 buts!
- * 
+ * The GridMapBitVector class models the environment as a regular grid of cells,
+ * each storing a state (FREE, OCCUPIED, UNKNOWN) using two std::vector<bool>
+ * for memory efficiency. So each cell occupies only 2 buts!
+ *
  * CellState encoding:
  *   - 00: FREE
  *   - 01: OCCUPIED
@@ -23,16 +24,21 @@ namespace tinyrobotics {
  * @tparam T Numeric type for coordinates (default: float)
  */
 
-class GridMapBitVector {
+class GridBitMap {
  public:
   struct Cell {
     size_t cx;
     size_t cy;
   };
 
-  GridMapBitVector() = default;
-  GridMapBitVector(int xCount, int yCount, float resolutionM)
+  GridBitMap() = default;
+  GridBitMap(int xCount, int yCount, float resolutionM)
       : xCount(xCount), yCount(yCount), resolution(resolutionM) {
+    resize(xCount, yCount);
+  }
+  GridBitMap(int xCount, int yCount, Distance resolution)
+      : xCount(xCount), yCount(yCount) {
+    this->resolution = resolution.getValue(DistanceUnit::M);
     resize(xCount, yCount);
   }
 
@@ -51,7 +57,8 @@ class GridMapBitVector {
   bool worldToCell(float wx, float wy, Cell& cell) const {
     cell.cx = static_cast<int>((wx - origin.x) / resolution);
     cell.cy = static_cast<int>((wy - origin.y) / resolution);
-    return (cell.cx >= 0 && cell.cx < xCount && cell.cy >= 0 && cell.cy < yCount);
+    return (cell.cx >= 0 && cell.cx < xCount && cell.cy >= 0 &&
+            cell.cy < yCount);
   }
 
   // Cell to world (center of cell)
@@ -62,8 +69,7 @@ class GridMapBitVector {
 
   // Get cell state by index
   bool getCell(int cx, int cy, CellState& result) const {
-    if (cx < 0 || cx >= xCount || cy < 0 || cy >= yCount)
-      return false;
+    if (cx < 0 || cx >= xCount || cy < 0 || cy >= yCount) return false;
     size_t idx = cy * xCount + cx;
     if (occupied[idx]) {
       result = CellState::OCCUPIED;
@@ -77,8 +83,7 @@ class GridMapBitVector {
 
   // Set cell state by index
   void setCell(int cx, int cy, CellState value) {
-    if (cx < 0 || cx >= xCount || cy < 0 || cy >= yCount)
-      return;
+    if (cx < 0 || cx >= xCount || cy < 0 || cy >= yCount) return;
     size_t idx = cy * xCount + cx;
     switch (value) {
       case CellState::FREE:
@@ -122,4 +127,4 @@ class GridMapBitVector {
   std::vector<bool> free;
 };
 
-} // namespace tinyrobotics
+}  // namespace tinyrobotics
