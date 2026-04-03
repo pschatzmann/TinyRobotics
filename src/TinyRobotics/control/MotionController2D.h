@@ -357,16 +357,20 @@ class MotionController2D : public MessageSource {
     msg.unit = Unit::Percent;
     msg.value = resultThrottlePercent;
     sendMessage(msg);
-  msg.content = MessageContent::SteeringAngle;
-  msg.unit = Unit::AngleDegree;
-  // ROS convention: positive steering = left turn. Invert heading error sign so negative error (target left) yields negative steering (right turn).
-  msg.value = resultSteeringAngleDeg =
-    pidSteering_.calculate(0.0f, -headingError);
-  sendMessage(msg);
-  TRLogger.info(
-    "MotionController2D: desiredHeading=%.1f deg, currentHeading=%.1f deg, headingError=%.1f deg, steeringAngle=%.1f deg, distanceToTarget=%.2f m, desiredSpeed=%.2f km/h, currentSpeed=%.2f km/h, throttle=%.1f%%",
-    desiredHeading, currentHeading, headingError, resultSteeringAngleDeg,
-    distanceToTarget, desiredSpeedKmh, currentSpeedKmh, resultThrottlePercent);
+    msg.content = MessageContent::SteeringAngle;
+    msg.unit = Unit::AngleDegree;
+    // ROS convention: positive steering = left turn. Invert heading error sign
+    // so negative error (target left) yields negative steering (right turn).
+    msg.value = resultSteeringAngleDeg =
+        pidSteering_.calculate(0.0f, -headingError);
+    sendMessage(msg);
+    TRLogger.info(
+        "MotionController2D: desiredHeading=%.1f deg, currentHeading=%.1f deg, "
+        "headingError=%.1f deg, steeringAngle=%.1f deg, distanceToTarget=%.2f "
+        "m, desiredSpeed=%.2f km/h, currentSpeed=%.2f km/h, throttle=%.1f%%",
+        desiredHeading, currentHeading, headingError, resultSteeringAngleDeg,
+        distanceToTarget, desiredSpeedKmh, currentSpeedKmh,
+        resultThrottlePercent);
   }
 
   /// Handles dt initialization from first 10 updates, but does not block
