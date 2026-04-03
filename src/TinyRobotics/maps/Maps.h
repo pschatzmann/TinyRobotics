@@ -9,3 +9,4 @@
 #include "TinyRobotics/maps/PathMap.h"
 #include "TinyRobotics/maps/PointCloud.h"
 #include "TinyRobotics/maps/CallbackMap.h"
+#include "TinyRobotics/maps/GridMapBitVector.h"
