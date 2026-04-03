@@ -229,6 +229,14 @@ class MotionController2D : public MessageSource {
    * Combined).
    */
   void setThrottleMode(ThrottleMode mode) { throttleMode = mode; }
+  /**
+   * @brief Set the Inverted Steering object: by default we use ROS logic for
+   * steering correction (positive error = turn left), but some vehicles may
+   * require the opposite. Set to true to invert the steering direction.
+   *
+   * @param inverted
+   */
+  void setInvertedSteering(bool inverted) { isInverted = inverted; }
 
  protected:
   IMotionState2D& motionStateSource;
@@ -254,6 +262,7 @@ class MotionController2D : public MessageSource {
   unsigned long updateStartTimeMs = 0;
   unsigned long updateEndTimeMs = 0;
   bool dtSetFromUpdates = false;
+  bool isInverted = false;  // For steering direction inversion if needed
 
   /// Calculate desired speed based on distance to target and distance from
   /// start
@@ -361,8 +370,9 @@ class MotionController2D : public MessageSource {
     msg.unit = Unit::AngleDegree;
     // ROS convention: positive steering = left turn. Invert heading error sign
     // so negative error (target left) yields negative steering (right turn).
-    msg.value = resultSteeringAngleDeg =
-        pidSteering_.calculate(0.0f, -headingError);
+    float pidInput =
+        !isInverted ? -headingError : headingError;  // Invert error if needed
+    msg.value = resultSteeringAngleDeg = pidSteering_.calculate(0.0f, pidInput);
     sendMessage(msg);
     TRLogger.info(
         "MotionController2D: desiredHeading=%.1f deg, currentHeading=%.1f deg, "
