@@ -48,12 +48,14 @@ AStar<PathMap<Coordinate<float>>, Coordinate<float>> astar;
 CarAckerman<BrushedMotor, ServoMotor> car;
 Odometry2D odometry;
 SpeedFromThrottle speedEstimator(2.0f);  // max speed 2 m/s (adjust as needed)
-int maxSpeedKmh = 5;
-float accelDistanceM = 0.5; // distance to start decelerating in meters
-float wheelBase = 0.3f;  // distance between front and rear axles in meters
-MotionController2D<float> controller(odometry, maxSpeedKmh, accelDistanceM);
+Speed maxSpeedKmh(5, SpeedUnit::KPH);  // max speed in km/h
+Distance accelDistanceM(0.5, DistanceUnit::M); // distance to start decelerating in meters
+Distance wheelBase(0.3f, DistanceUnit::M);  // distance between front and rear axles in meters
+Angle maxSteeringAngle(30.0f, AngleUnit::DEG);
+MotionController2D<float> controller(odometry, maxSpeedKmh,maxSteeringAngle,accelDistanceM);
 
 Scheduler scheduler;
+MessageHandlerPrintJSON json_printer(NullPrint);  // Print to Serial in JSON format
 
 void buildMap() {
   pathMap.addSegment(A, B);
@@ -66,6 +68,7 @@ void buildMap() {
 }
 
 void updateController(void*) {
+  if (controller.isGoalReached()) return;  // stop updating if goal is reached
   // Move to next waypoint
   controller.update();
   // estimate speed from throttle
@@ -78,17 +81,23 @@ void setup() {
   Serial.begin(115200);
 
   buildMap();
+  car.setPins(4, 5, 6, 7);  // int in1, int in2, int pwm, int steeringPin
 
   // find path using A*
   auto path = astar.findPath(pathMap, start, goal);
   if (path.size() > 1) {
+    // setup odometry firs
+    odometry.begin(base, wheelBase);
+    odometry.subscribe(json_printer);  // subscribe to odometry messages for telemetry
+    // then setup controller which depends on odometry
     controller.subscribe(car);  // subscribe to control messages from the controller
     controller.setPath(path);
     controller.begin();
-    odometry.begin(base, Distance(wheelBase, DistanceUnit::M));
+    controller.subscribe(json_printer);  // subscribe to controller messages for telemetry
+    car.subscribe(json_printer);  // subscribe to car messages for telemetry
 
     // update every 100ms (adjust as needed)
-    scheduler.begin(100, updateController);
+    scheduler.begin(200, updateController);
   } else {
     Serial.println("No path found!");
   }
