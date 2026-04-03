@@ -174,7 +174,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>isGoalReached</b> () 
 <tr class="memdesc:a02f053e66bda8d79a586f8fd0465cbed"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the throttle control mode.  <br /></td></tr>
 <tr class="separator:a02f053e66bda8d79a586f8fd0465cbed"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a15be619b76510c988e93f33f230b955a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1MotionController2D.html#a15be619b76510c988e93f33f230b955a">setInvertedSteering</a> (bool inverted)</td></tr>
-<tr class="memdesc:a15be619b76510c988e93f33f230b955a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the Inverted Steering object: by default we use ROS logic for steering correction (positive error = turn left), but some vehicles may require the opposite. Set to true to invert the steering direction.  <br /></td></tr>
+<tr class="memdesc:a15be619b76510c988e93f33f230b955a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the Inverted Steering logic: by default we use ROS logic for steering correction (positive angle = turn left), but some vehicles may require the opposite. Set to true to invert the steering direction.  <br /></td></tr>
 <tr class="separator:a15be619b76510c988e93f33f230b955a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classtinyrobotics_1_1MessageSource"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classtinyrobotics_1_1MessageSource')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classtinyrobotics_1_1MessageSource.html">MessageSource</a></td></tr>
 <tr class="memitem:a6f644591faf6edfeceef6b7776b331df inherit pub_methods_classtinyrobotics_1_1MessageSource"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1MessageSource.html#a6f644591faf6edfeceef6b7776b331df">subscribe</a> (<a class="el" href="classtinyrobotics_1_1MessageHandler.html">MessageHandler</a> &amp;handler)</td></tr>
@@ -513,7 +513,7 @@ class tinyrobotics::MotionController2D&lt; T &gt;</div><p>2D motion controller f
 </table>
 </div><div class="memdoc">
 
-<p>Set the Inverted Steering object: by default we use ROS logic for steering correction (positive error = turn left), but some vehicles may require the opposite. Set to true to invert the steering direction. </p>
+<p>Set the Inverted Steering logic: by default we use ROS logic for steering correction (positive angle = turn left), but some vehicles may require the opposite. Set to true to invert the steering direction. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">inverted</td><td></td></tr>
