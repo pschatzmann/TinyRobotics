@@ -118,9 +118,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a1dd361ded67cb3cbd20b0245e7a9a332"><td class="memItemLeft" align="right" valign="top"><a id="a1dd361ded67cb3cbd20b0245e7a9a332" name="a1dd361ded67cb3cbd20b0245e7a9a332"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>MotionController2D</b> (<a class="el" href="classtinyrobotics_1_1IMotionState2D.html">IMotionState2D</a> &amp;motionState, <a class="el" href="classtinyrobotics_1_1Speed.html">Speed</a> maxSpeedKmh, <a class="el" href="classtinyrobotics_1_1Distance.html">Distance</a> accelDistanceM)</td></tr>
 <tr class="separator:a1dd361ded67cb3cbd20b0245e7a9a332"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1c2b6b9fad5407f05f9d95ed06fe294b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1MotionController2D.html#a1c2b6b9fad5407f05f9d95ed06fe294b">configureSpeedPID</a> (float maxOut, float minOut, float kp, float ki, float kd)</td></tr>
-<tr class="memdesc:a1c2b6b9fad5407f05f9d95ed06fe294b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configure the PID controller for speed-to-throttle mapping.  <br /></td></tr>
-<tr class="separator:a1c2b6b9fad5407f05f9d95ed06fe294b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a83669afed8cf6fa5bb6dc42cba02de60"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1MotionController2D.html#a83669afed8cf6fa5bb6dc42cba02de60">configureSpeedPID</a> (float minOut, float maxOut, float kp, float ki, float kd)</td></tr>
+<tr class="memdesc:a83669afed8cf6fa5bb6dc42cba02de60"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configure the PID controller for speed-to-throttle mapping.  <br /></td></tr>
+<tr class="separator:a83669afed8cf6fa5bb6dc42cba02de60"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5d1e1325cc74b4b51d63dff81cde2111"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1MotionController2D.html#a5d1e1325cc74b4b51d63dff81cde2111">configureSteeringPID</a> (float maxOut, float minOut, float kp, float ki, float kd)</td></tr>
 <tr class="memdesc:a5d1e1325cc74b4b51d63dff81cde2111"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configure the PID controller for steering.  <br /></td></tr>
 <tr class="separator:a5d1e1325cc74b4b51d63dff81cde2111"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -322,8 +322,8 @@ class tinyrobotics::MotionController2D&lt; T &gt;</div><p>2D motion controller f
 </dl>
 <dl class="section author"><dt>Author</dt><dd>Phil Schatzmann </dd></dl>
 </div><h2 class="groupheader">Member Function Documentation</h2>
-<a id="a1c2b6b9fad5407f05f9d95ed06fe294b" name="a1c2b6b9fad5407f05f9d95ed06fe294b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1c2b6b9fad5407f05f9d95ed06fe294b">&#9670;&#160;</a></span>configureSpeedPID()</h2>
+<a id="a83669afed8cf6fa5bb6dc42cba02de60" name="a83669afed8cf6fa5bb6dc42cba02de60"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a83669afed8cf6fa5bb6dc42cba02de60">&#9670;&#160;</a></span>configureSpeedPID()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -335,13 +335,13 @@ class tinyrobotics::MotionController2D&lt; T &gt;</div><p>2D motion controller f
           <td class="memname">void configureSpeedPID </td>
           <td>(</td>
           <td class="paramtype">float&#160;</td>
-          <td class="paramname"><em>maxOut</em>, </td>
+          <td class="paramname"><em>minOut</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">float&#160;</td>
-          <td class="paramname"><em>minOut</em>, </td>
+          <td class="paramname"><em>maxOut</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>

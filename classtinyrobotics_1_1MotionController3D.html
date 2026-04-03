@@ -113,9 +113,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:af1ac166d7c14150062195e2d8b72b760"><td class="memItemLeft" align="right" valign="top"><a id="af1ac166d7c14150062195e2d8b72b760" name="af1ac166d7c14150062195e2d8b72b760"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>configurePositionPID</b> (float dt, float maxOut, float minOut, float kp, float ki, float kd)</td></tr>
 <tr class="separator:af1ac166d7c14150062195e2d8b72b760"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8bc9cbf6dbd25022985b5bf1a6015546"><td class="memItemLeft" align="right" valign="top"><a id="a8bc9cbf6dbd25022985b5bf1a6015546" name="a8bc9cbf6dbd25022985b5bf1a6015546"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>configureOrientationPID</b> (float dt, float maxOut, float minOut, float kp, float ki, float kd)</td></tr>
-<tr class="separator:a8bc9cbf6dbd25022985b5bf1a6015546"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac922f795bd37f0f2eea494601bf25ce8"><td class="memItemLeft" align="right" valign="top"><a id="ac922f795bd37f0f2eea494601bf25ce8" name="ac922f795bd37f0f2eea494601bf25ce8"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>configureOrientationPID</b> (float dt, float minOut, float maxOut, float kp, float ki, float kd)</td></tr>
+<tr class="separator:ac922f795bd37f0f2eea494601bf25ce8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af27424ecbc5deb36d6de7bf689f4b278"><td class="memItemLeft" align="right" valign="top"><a id="af27424ecbc5deb36d6de7bf689f4b278" name="af27424ecbc5deb36d6de7bf689f4b278"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>setPath</b> (<a class="el" href="classtinyrobotics_1_1Path.html">Path</a>&lt; <a class="el" href="classtinyrobotics_1_1Coordinate.html">Coordinate</a>&lt; DistanceM &gt; &gt; path)</td></tr>
 <tr class="separator:af27424ecbc5deb36d6de7bf689f4b278"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -161,6 +161,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>setCircleAngularSpeed
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-methods" name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
+<tr class="memitem:a88911ec7c89c2f537efac4b4e9ba72b1"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1MotionController3D.html#a88911ec7c89c2f537efac4b4e9ba72b1">initializeDtFromUpdates</a> ()</td></tr>
+<tr class="separator:a88911ec7c89c2f537efac4b4e9ba72b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a85720ba2fe4f34035ed91e4904e56fe6"><td class="memItemLeft" align="right" valign="top"><a id="a85720ba2fe4f34035ed91e4904e56fe6" name="a85720ba2fe4f34035ed91e4904e56fe6"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>advanceWaypoint</b> (float positionTolerance=0.1f)</td></tr>
 <tr class="separator:a85720ba2fe4f34035ed91e4904e56fe6"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -222,6 +224,18 @@ bool(*&#160;</td><td class="memItemRight" valign="bottom"><b>onGoalCallback</b> 
 <tr class="memitem:abcdf58f3c622a7f3b90ef011ea96c76b"><td class="memItemLeft" align="right" valign="top"><a id="abcdf58f3c622a7f3b90ef011ea96c76b" name="abcdf58f3c622a7f3b90ef011ea96c76b"></a>
 void *&#160;</td><td class="memItemRight" valign="bottom"><b>onGoaldRef</b> = this</td></tr>
 <tr class="separator:abcdf58f3c622a7f3b90ef011ea96c76b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab751ac9c27bf5a13970581e111a26645"><td class="memItemLeft" align="right" valign="top"><a id="ab751ac9c27bf5a13970581e111a26645" name="ab751ac9c27bf5a13970581e111a26645"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>updateCount</b> = 0</td></tr>
+<tr class="separator:ab751ac9c27bf5a13970581e111a26645"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a544a687205f0d8d3fb431529dda7fb65"><td class="memItemLeft" align="right" valign="top"><a id="a544a687205f0d8d3fb431529dda7fb65" name="a544a687205f0d8d3fb431529dda7fb65"></a>
+unsigned long&#160;</td><td class="memItemRight" valign="bottom"><b>updateStartTimeMs</b> = 0</td></tr>
+<tr class="separator:a544a687205f0d8d3fb431529dda7fb65"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aff9624b22f2676358479a158659962c0"><td class="memItemLeft" align="right" valign="top"><a id="aff9624b22f2676358479a158659962c0" name="aff9624b22f2676358479a158659962c0"></a>
+unsigned long&#160;</td><td class="memItemRight" valign="bottom"><b>updateEndTimeMs</b> = 0</td></tr>
+<tr class="separator:aff9624b22f2676358479a158659962c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa610a61d970a2fd641753fc2e78d93fd"><td class="memItemLeft" align="right" valign="top"><a id="aa610a61d970a2fd641753fc2e78d93fd" name="aa610a61d970a2fd641753fc2e78d93fd"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>dtSetFromUpdates</b> = false</td></tr>
+<tr class="separator:aa610a61d970a2fd641753fc2e78d93fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8cc780f911b7cb5f692c69fd978b6131"><td class="memItemLeft" align="right" valign="top"><a id="a8cc780f911b7cb5f692c69fd978b6131" name="a8cc780f911b7cb5f692c69fd978b6131"></a>
 float&#160;</td><td class="memItemRight" valign="bottom"><b>circlePhase</b> = 0.0f</td></tr>
 <tr class="separator:a8cc780f911b7cb5f692c69fd978b6131"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -282,6 +296,32 @@ Example</h2>
 <div class="line">}</div>
 <div class="ttc" id="aclasstinyrobotics_1_1MotionController3D_html"><div class="ttname"><a href="classtinyrobotics_1_1MotionController3D.html">tinyrobotics::MotionController3D</a></div><div class="ttdoc">3D motion/path controller using PID for position and orientation.</div><div class="ttdef"><b>Definition:</b> MotionController3D.h:62</div></div>
 </div><!-- fragment --> </div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="a88911ec7c89c2f537efac4b4e9ba72b1" name="a88911ec7c89c2f537efac4b4e9ba72b1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a88911ec7c89c2f537efac4b4e9ba72b1">&#9670;&#160;</a></span>initializeDtFromUpdates()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool initializeDtFromUpdates </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Handles dt initialization from first 10 updates, but does not block control logic </p>
+
+</div>
+</div>
 <a id="aa2aac016e2bf7b5bd2b271786c2791aa" name="aa2aac016e2bf7b5bd2b271786c2791aa"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aa2aac016e2bf7b5bd2b271786c2791aa">&#9670;&#160;</a></span>update()</h2>
 
