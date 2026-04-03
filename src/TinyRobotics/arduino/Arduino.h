@@ -8,7 +8,7 @@
 #include "TinyRobotics/utils/Config.h"
 #include "Stream.h"
 #include "TinyRobotics/utils/LoggerClass.h"
-
+#include <thread>
 
 namespace tinyrobotics_arduino {
 enum PinMode { INPUT = 0, OUTPUT = 1 };
@@ -22,20 +22,24 @@ inline unsigned long millis() {
   return std::chrono::duration_cast<std::chrono::milliseconds>(now - start)
       .count();
 }
+inline void delay(unsigned long ms) {
+  std::this_thread::sleep_for(std::chrono::milliseconds(ms));
+}
 #else
 unsigned long millis();
+delay(unsigned long ms);
 #endif
 
 // Pin functions (no-op for native)
 #if USE_DUMMY_PIN_FUNCTIONS
 inline void pinMode(int pin, int mode) {
-  tinyrobotics::TRLogger.info("Emulator: pinMode(%d,%d)", pin, mode);
+  tinyrobotics::TRLogger.debug("Emulator: pinMode(%d,%d)", pin, mode);
 }
 inline void digitalWrite(int pin, int value) {
-  tinyrobotics::TRLogger.info("Emulator: digitalWrite(%d,%d)", pin, value);
+  tinyrobotics::TRLogger.debug("Emulator: digitalWrite(%d,%d)", pin, value);
 }
 inline void analogWrite(int pin, int value) {
-  tinyrobotics::TRLogger.info("Emulator: analogWrite(%d,%d)", pin, value);
+  tinyrobotics::TRLogger.debug("Emulator: analogWrite(%d,%d)", pin, value);
 }
 #else
 void pinMode(int, int);

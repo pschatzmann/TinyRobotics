@@ -10,4 +10,5 @@
 #include "MotionController3D.h"
 #include "MovingAverage.h"
 #include "PIDController.h"
+#include "PIDAutoTuner.h"
 #include "Scheduler.h"

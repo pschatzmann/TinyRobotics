@@ -11,6 +11,7 @@ Arduino sketches and libraries depend on core Arduino classes and functions (e.g
 - `Arduino.h`: Stubs for Arduino functions, macros, and types:
 
   - unsigned long millis()
+  - void delay()
   - void pinMode(int, int)
   - void digitalWrite(int, int)
   - void analogWrite(int, int)
