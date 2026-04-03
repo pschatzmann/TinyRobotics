@@ -121,9 +121,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a83669afed8cf6fa5bb6dc42cba02de60"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1MotionController2D.html#a83669afed8cf6fa5bb6dc42cba02de60">configureSpeedPID</a> (float minOut, float maxOut, float kp, float ki, float kd)</td></tr>
 <tr class="memdesc:a83669afed8cf6fa5bb6dc42cba02de60"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configure the PID controller for speed-to-throttle mapping.  <br /></td></tr>
 <tr class="separator:a83669afed8cf6fa5bb6dc42cba02de60"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5d1e1325cc74b4b51d63dff81cde2111"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1MotionController2D.html#a5d1e1325cc74b4b51d63dff81cde2111">configureSteeringPID</a> (float maxOut, float minOut, float kp, float ki, float kd)</td></tr>
-<tr class="memdesc:a5d1e1325cc74b4b51d63dff81cde2111"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configure the PID controller for steering.  <br /></td></tr>
-<tr class="separator:a5d1e1325cc74b4b51d63dff81cde2111"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a15d41d2c53de4ea9b2029bc75084810a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1MotionController2D.html#a15d41d2c53de4ea9b2029bc75084810a">configureSteeringPID</a> (float minOut, float maxOut, float kp, float ki, float kd)</td></tr>
+<tr class="memdesc:a15d41d2c53de4ea9b2029bc75084810a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configure the PID controller for steering.  <br /></td></tr>
+<tr class="separator:a15d41d2c53de4ea9b2029bc75084810a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af27424ecbc5deb36d6de7bf689f4b278"><td class="memItemLeft" align="right" valign="top"><a id="af27424ecbc5deb36d6de7bf689f4b278" name="af27424ecbc5deb36d6de7bf689f4b278"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>setPath</b> (<a class="el" href="classtinyrobotics_1_1Path.html">Path</a>&lt; <a class="el" href="classtinyrobotics_1_1Coordinate.html">Coordinate</a>&lt; DistanceM &gt; &gt; path)</td></tr>
 <tr class="memdesc:af27424ecbc5deb36d6de7bf689f4b278"><td class="mdescLeft">&#160;</td><td class="mdescRight">Defines the path to follow as a sequence of waypoints. <br /></td></tr>
@@ -143,7 +143,9 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>begin</b> ()</td></tr
 void&#160;</td><td class="memItemRight" valign="bottom"><b>end</b> ()</td></tr>
 <tr class="memdesc:aaf81d3fdaf258088d7692fa70cece087"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stop the controller and the vehicle. <br /></td></tr>
 <tr class="separator:aaf81d3fdaf258088d7692fa70cece087"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac5c54df7ed3b930268c8d7752c101725"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1MotionController2D.html#ac5c54df7ed3b930268c8d7752c101725">update</a> ()</td></tr>
+<tr class="memitem:ac5c54df7ed3b930268c8d7752c101725"><td class="memItemLeft" align="right" valign="top"><a id="ac5c54df7ed3b930268c8d7752c101725" name="ac5c54df7ed3b930268c8d7752c101725"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>update</b> ()</td></tr>
+<tr class="memdesc:ac5c54df7ed3b930268c8d7752c101725"><td class="mdescLeft">&#160;</td><td class="mdescRight">Main control loop to be called periodically (e.g., in a timer or main loop) <br /></td></tr>
 <tr class="separator:ac5c54df7ed3b930268c8d7752c101725"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae620eb48b5fcaad75334028e807074e4"><td class="memItemLeft" align="right" valign="top"><a id="ae620eb48b5fcaad75334028e807074e4" name="ae620eb48b5fcaad75334028e807074e4"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>setOnGoalCallback</b> (bool(*callback)(void *), void *ref=nullptr)</td></tr>
@@ -208,9 +210,9 @@ float&#160;</td><td class="memItemRight" valign="bottom"><b>feedforwardThrottle<
 float&#160;</td><td class="memItemRight" valign="bottom"><b>getThrottlePercent</b> (float currentSpeedKmh)</td></tr>
 <tr class="memdesc:a85c609c6342c6f0de6ae070e5a45915c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute the throttle percent based on the selected mode. <br /></td></tr>
 <tr class="separator:a85c609c6342c6f0de6ae070e5a45915c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9e8d8c4c745557a2819b5e779ee23314"><td class="memItemLeft" align="right" valign="top"><a id="a9e8d8c4c745557a2819b5e779ee23314" name="a9e8d8c4c745557a2819b5e779ee23314"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>sendControlMessages</b> (float distanceToTarget, float headingError, float currentSpeedKmh)</td></tr>
-<tr class="separator:a9e8d8c4c745557a2819b5e779ee23314"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afe5b723b03923583dc8f5b03fd40516d"><td class="memItemLeft" align="right" valign="top"><a id="afe5b723b03923583dc8f5b03fd40516d" name="afe5b723b03923583dc8f5b03fd40516d"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>sendControlMessages</b> (float distanceToTarget, float headingError, float currentSpeedKmh, float desiredHeading, float currentHeading)</td></tr>
+<tr class="separator:afe5b723b03923583dc8f5b03fd40516d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a88911ec7c89c2f537efac4b4e9ba72b1"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1MotionController2D.html#a88911ec7c89c2f537efac4b4e9ba72b1">initializeDtFromUpdates</a> ()</td></tr>
 <tr class="separator:a88911ec7c89c2f537efac4b4e9ba72b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -389,8 +391,8 @@ class tinyrobotics::MotionController2D&lt; T &gt;</div><p>2D motion controller f
 
 </div>
 </div>
-<a id="a5d1e1325cc74b4b51d63dff81cde2111" name="a5d1e1325cc74b4b51d63dff81cde2111"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5d1e1325cc74b4b51d63dff81cde2111">&#9670;&#160;</a></span>configureSteeringPID()</h2>
+<a id="a15d41d2c53de4ea9b2029bc75084810a" name="a15d41d2c53de4ea9b2029bc75084810a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a15d41d2c53de4ea9b2029bc75084810a">&#9670;&#160;</a></span>configureSteeringPID()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -402,13 +404,13 @@ class tinyrobotics::MotionController2D&lt; T &gt;</div><p>2D motion controller f
           <td class="memname">void configureSteeringPID </td>
           <td>(</td>
           <td class="paramtype">float&#160;</td>
-          <td class="paramname"><em>maxOut</em>, </td>
+          <td class="paramname"><em>minOut</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">float&#160;</td>
-          <td class="paramname"><em>minOut</em>, </td>
+          <td class="paramname"><em>maxOut</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -444,9 +446,8 @@ class tinyrobotics::MotionController2D&lt; T &gt;</div><p>2D motion controller f
 <p>Configure the PID controller for steering. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">dt</td><td><a class="el" href="classtinyrobotics_1_1Time.html" title="Represents a time duration with a specific unit (seconds, milliseconds, microseconds,...">Time</a> step (seconds) </td></tr>
-    <tr><td class="paramname">maxOut</td><td>Maximum output </td></tr>
     <tr><td class="paramname">minOut</td><td>Minimum output </td></tr>
+    <tr><td class="paramname">maxOut</td><td>Maximum output </td></tr>
     <tr><td class="paramname">kp</td><td>Proportional gain </td></tr>
     <tr><td class="paramname">ki</td><td>Integral gain </td></tr>
     <tr><td class="paramname">kd</td><td>Derivative gain </td></tr>
@@ -547,32 +548,6 @@ class tinyrobotics::MotionController2D&lt; T &gt;</div><p>2D motion controller f
   </table>
   </dd>
 </dl>
-
-</div>
-</div>
-<a id="ac5c54df7ed3b930268c8d7752c101725" name="ac5c54df7ed3b930268c8d7752c101725"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac5c54df7ed3b930268c8d7752c101725">&#9670;&#160;</a></span>update()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void update </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<p>Main control loop to be called periodically (e.g., in a timer or main loop) </p>
 
 </div>
 </div>

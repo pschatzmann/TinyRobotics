@@ -23,7 +23,7 @@ var searchData=
   ['concurrency_20',['Concurrency',['../group__concurrency.html',1,'']]],
   ['concurrency_20module_21',['Concurrency Module',['../md_src_TinyRobotics_concurrency_README.html',1,'']]],
   ['configurespeedpid_22',['configureSpeedPID',['../classtinyrobotics_1_1MotionController2D.html#a83669afed8cf6fa5bb6dc42cba02de60',1,'tinyrobotics::MotionController2D']]],
-  ['configuresteeringpid_23',['configureSteeringPID',['../classtinyrobotics_1_1MotionController2D.html#a5d1e1325cc74b4b51d63dff81cde2111',1,'tinyrobotics::MotionController2D']]],
+  ['configuresteeringpid_23',['configureSteeringPID',['../classtinyrobotics_1_1MotionController2D.html#a15d41d2c53de4ea9b2029bc75084810a',1,'tinyrobotics::MotionController2D']]],
   ['connect_24',['connect',['../classtinyrobotics_1_1UDPStream.html#a1396bf9b5defe9fa844a63b5cd40ac0e',1,'tinyrobotics::UDPStream']]],
   ['content_25',['content',['../structtinyrobotics_1_1Message.html#a8e68387e210029af6bdfa6404d29f30f',1,'tinyrobotics::Message']]],
   ['control_26',['Control',['../group__control.html',1,'']]],
