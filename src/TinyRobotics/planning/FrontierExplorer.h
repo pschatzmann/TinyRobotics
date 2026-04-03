@@ -249,7 +249,8 @@ class FrontierExplorer {
              CellState neighborState;
              if (map_.getCell(x + dx, y + dy, neighborState) &&
                  neighborState == CellState::UNKNOWN) {
-               frontiers.push_back(CoordinateT(x, y));
+              // return world coordinates of the frontier cell 
+               frontiers.push_back(map_.toWorld(x, y));
                found = true;
              }
            }
