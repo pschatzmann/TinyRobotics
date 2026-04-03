@@ -158,6 +158,14 @@ virtual std::vector&lt; MessageContent &gt;&#160;</td><td class="memItemRight" v
 <tr class="memitem:ac714c10512e020d33286a92fa0e35803 inherit pub_methods_classtinyrobotics_1_1Vehicle"><td class="memItemLeft" align="right" valign="top"><a id="ac714c10512e020d33286a92fa0e35803" name="ac714c10512e020d33286a92fa0e35803"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>isValidMessageSource</b> (MessageOrigin origin) const</td></tr>
 <tr class="separator:ac714c10512e020d33286a92fa0e35803 inherit pub_methods_classtinyrobotics_1_1Vehicle"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7307472891b867761641aee21bb38b29 inherit pub_methods_classtinyrobotics_1_1Vehicle"><td class="memItemLeft" align="right" valign="top"><a id="a7307472891b867761641aee21bb38b29" name="a7307472891b867761641aee21bb38b29"></a>
+float&#160;</td><td class="memItemRight" valign="bottom"><b>getSpeedFactor</b> () const</td></tr>
+<tr class="memdesc:a7307472891b867761641aee21bb38b29 inherit pub_methods_classtinyrobotics_1_1Vehicle"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the speed factor (scaling for speed commands). <br /></td></tr>
+<tr class="separator:a7307472891b867761641aee21bb38b29 inherit pub_methods_classtinyrobotics_1_1Vehicle"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9d7e12e385f6a4978831ff0a4a66c14d inherit pub_methods_classtinyrobotics_1_1Vehicle"><td class="memItemLeft" align="right" valign="top"><a id="a9d7e12e385f6a4978831ff0a4a66c14d" name="a9d7e12e385f6a4978831ff0a4a66c14d"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>setSpeedFactor</b> (float factor)</td></tr>
+<tr class="memdesc:a9d7e12e385f6a4978831ff0a4a66c14d inherit pub_methods_classtinyrobotics_1_1Vehicle"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the speed factor (scaling for speed commands). <br /></td></tr>
+<tr class="separator:a9d7e12e385f6a4978831ff0a4a66c14d inherit pub_methods_classtinyrobotics_1_1Vehicle"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classtinyrobotics_1_1MessageHandler"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classtinyrobotics_1_1MessageHandler')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classtinyrobotics_1_1MessageHandler.html">MessageHandler</a></td></tr>
 <tr class="memitem:ad4db64cdd50701eba69a319785dac84b inherit pub_methods_classtinyrobotics_1_1MessageHandler"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1MessageHandler.html#ad4db64cdd50701eba69a319785dac84b">onMessage</a> (const <a class="el" href="structtinyrobotics_1_1Message.html">Message</a>&lt; float &gt; &amp;msg)=0</td></tr>
 <tr class="memdesc:ad4db64cdd50701eba69a319785dac84b inherit pub_methods_classtinyrobotics_1_1MessageHandler"><td class="mdescLeft">&#160;</td><td class="mdescRight">Handle an incoming message (pure virtual).  <br /></td></tr>
@@ -204,6 +212,10 @@ float&#160;</td><td class="memItemRight" valign="bottom"><b>speed_</b></td></tr>
 <tr class="memitem:a436ce9ddc40b13e4dbf24f7c8d72864f"><td class="memItemLeft" align="right" valign="top"><a id="a436ce9ddc40b13e4dbf24f7c8d72864f" name="a436ce9ddc40b13e4dbf24f7c8d72864f"></a>
 float&#160;</td><td class="memItemRight" valign="bottom"><b>turn_</b></td></tr>
 <tr class="separator:a436ce9ddc40b13e4dbf24f7c8d72864f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pro_attribs_classtinyrobotics_1_1Vehicle"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_classtinyrobotics_1_1Vehicle')"><img src="closed.png" alt="-"/>&#160;Protected Attributes inherited from <a class="el" href="classtinyrobotics_1_1Vehicle.html">Vehicle</a></td></tr>
+<tr class="memitem:a0ccde9cc3dd4315f6151731264a0639f inherit pro_attribs_classtinyrobotics_1_1Vehicle"><td class="memItemLeft" align="right" valign="top"><a id="a0ccde9cc3dd4315f6151731264a0639f" name="a0ccde9cc3dd4315f6151731264a0639f"></a>
+float&#160;</td><td class="memItemRight" valign="bottom"><b>speedFactor_</b> = 1.0f</td></tr>
+<tr class="separator:a0ccde9cc3dd4315f6151731264a0639f inherit pro_attribs_classtinyrobotics_1_1Vehicle"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_attribs_classtinyrobotics_1_1MessageSource"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_classtinyrobotics_1_1MessageSource')"><img src="closed.png" alt="-"/>&#160;Protected Attributes inherited from <a class="el" href="classtinyrobotics_1_1MessageSource.html">MessageSource</a></td></tr>
 <tr class="memitem:ae8917ae7a3eb87d29c94c514e1d5c981 inherit pro_attribs_classtinyrobotics_1_1MessageSource"><td class="memItemLeft" align="right" valign="top"><a id="ae8917ae7a3eb87d29c94c514e1d5c981" name="ae8917ae7a3eb87d29c94c514e1d5c981"></a>
 std::vector&lt; <a class="el" href="classtinyrobotics_1_1MessageHandler.html">MessageHandler</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>messageHandlers_</b></td></tr>
