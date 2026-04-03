@@ -42,6 +42,15 @@ class MotorBoat : public Vehicle {
   }
 
   /**
+   * @brief Set the speed as a percentage (-100 to 100). Positive = forward.
+   * This applies the speed scaling factor (speedFactor) before setting throttle.
+   * @param percent Speed percentage (-100 to 100)
+   */
+  void setSpeed(int percent) {
+    setThrottle(percent*getSpeedFactor());
+  }
+
+  /**
    * @brief Set throttle (percent, -100 to 100). Positive = forward.
    */
   void setThrottle(int percent) {

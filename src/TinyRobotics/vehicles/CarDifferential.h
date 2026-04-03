@@ -54,7 +54,7 @@ class CarDifferential : public Vehicle {
    * Positive = forward, negative = reverse.
    */
   void setSpeed(int percent) {
-    speed_ = constrain(percent, -100, 100);
+    speed_ = constrain(percent * getSpeedFactor(), -100, 100);
     updateMotors();
   }
 

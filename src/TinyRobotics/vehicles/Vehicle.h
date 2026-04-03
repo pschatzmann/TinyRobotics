@@ -40,6 +40,19 @@ class Vehicle : public MessageHandler, public MessageSource {
     return origin == MessageOrigin::RemoteControl ||
            origin == MessageOrigin::Autonomy;
   }
+
+  /**
+   * @brief Get the speed factor (scaling for speed commands).
+   */
+  float getSpeedFactor() const { return speedFactor_; }
+
+  /**
+   * @brief Set the speed factor (scaling for speed commands).
+   */
+  void setSpeedFactor(float factor) { speedFactor_ = factor; }
+ protected:
+  float speedFactor_ = 1.0f;
+
 };
 
 }  // namespace tinyrobotics

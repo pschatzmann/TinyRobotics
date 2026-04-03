@@ -45,7 +45,7 @@ class CarAckerman : public Vehicle {
    * @brief Set drive speed (percent, -100 to 100). Positive = forward.
    */
   void setSpeed(int percent) {
-    speed_ = constrain(percent, -100, 100);
+    speed_ = constrain(percent * getSpeedFactor(), -100, 100);
     motor_.setSpeed(speed_);
     // publish speed as message for telemetry
     Message<float> msg(MessageContent::MotorSpeed, percent, Unit::Percent);
