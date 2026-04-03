@@ -55,7 +55,7 @@ Angle maxSteeringAngle(30.0f, AngleUnit::DEG);
 MotionController2D<float> controller(odometry, maxSpeedKmh,maxSteeringAngle,accelDistanceM);
 
 Scheduler scheduler;
-MessageHandlerPrintJSON json_printer(NullPrint);  // Print to Serial in JSON format
+MessageHandlerPrintJSON json_printer(Serial);  // Print to Serial in JSON format
 
 void buildMap() {
   pathMap.addSegment(A, B);
@@ -79,6 +79,7 @@ void updateController(void*) {
 
 void setup() {
   Serial.begin(115200);
+  TRLogger.begin(Serial, TRLogLevel::INFO);  // Initialize logger with Serial output and INFO level
 
   buildMap();
   car.setPins(4, 5, 6, 7);  // int in1, int in2, int pwm, int steeringPin
