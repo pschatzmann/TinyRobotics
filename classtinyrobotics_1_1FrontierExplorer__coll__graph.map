@@ -1,0 +1,5 @@
+<map id="FrontierExplorer&lt; MapType, CoordinateT &gt;" name="FrontierExplorer&lt; MapType, CoordinateT &gt;">
+<area shape="rect" id="node1" title="Generic exploration and frontier&#45;based SLAM utility for grid or occupancy maps." alt="" coords="5,168,208,208"/>
+<area shape="rect" id="node2" href="$classtinyrobotics_1_1Coordinate.html" title=" " alt="" coords="31,80,183,105"/>
+<area shape="rect" id="node3" href="$classtinyrobotics_1_1Serializable.html" title="This class defines an interface for serializable objects that can be converted to and from a string r..." alt="" coords="57,5,156,31"/>
+</map>

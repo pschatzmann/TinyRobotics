@@ -9,7 +9,8 @@ var searchData=
   ['framemgr3d_6',['FrameMgr3D',['../classtinyrobotics_1_1FrameMgr3D.html',1,'tinyrobotics']]],
   ['frametype_7',['FrameType',['../group__utils.html#gae63373b1147a2e480cea6083c3f9dc6c',1,'tinyrobotics']]],
   ['fromstring_8',['fromString',['../classtinyrobotics_1_1GPSCoordinate.html#a90a596c64056d74e218b1a77186546d4',1,'tinyrobotics::GPSCoordinate']]],
-  ['fusion_9',['Fusion',['../group__fusion.html',1,'']]],
-  ['fusion2d_10',['Fusion2D',['../classtinyrobotics_1_1Fusion2D.html#a02761b1baa1443f52b8b0de02859af08',1,'tinyrobotics::Fusion2D::Fusion2D()'],['../classtinyrobotics_1_1Fusion2D.html',1,'Fusion2D']]],
-  ['fusion3d_11',['Fusion3D',['../classtinyrobotics_1_1Fusion3D.html',1,'tinyrobotics']]]
+  ['frontierexplorer_9',['FrontierExplorer',['../classtinyrobotics_1_1FrontierExplorer.html#aafbeb881feb1a765002799daeb6d58e1',1,'tinyrobotics::FrontierExplorer::FrontierExplorer()'],['../classtinyrobotics_1_1FrontierExplorer.html',1,'FrontierExplorer&lt; MapType, CoordinateT &gt;']]],
+  ['fusion_10',['Fusion',['../group__fusion.html',1,'']]],
+  ['fusion2d_11',['Fusion2D',['../classtinyrobotics_1_1Fusion2D.html#a02761b1baa1443f52b8b0de02859af08',1,'tinyrobotics::Fusion2D::Fusion2D()'],['../classtinyrobotics_1_1Fusion2D.html',1,'Fusion2D']]],
+  ['fusion3d_12',['Fusion3D',['../classtinyrobotics_1_1Fusion3D.html',1,'tinyrobotics']]]
 ];

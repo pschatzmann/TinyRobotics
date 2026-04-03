@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.6"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>TinyRobotics: PathMap&lt; Coordinate &gt; Class Template Reference</title>
+<title>TinyRobotics: PathMap&lt; CoordinateT &gt; Class Template Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -77,7 +77,7 @@ $(function() {
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pro-attribs">Protected Attributes</a> &#124;
 <a href="classtinyrobotics_1_1PathMap-members.html">List of all members</a>  </div>
-  <div class="headertitle"><div class="title">PathMap&lt; Coordinate &gt; Class Template Reference<div class="ingroups"><a class="el" href="group__main.html">TinyRobotics</a> &raquo; <a class="el" href="group__maps.html">Maps</a></div></div></div>
+  <div class="headertitle"><div class="title">PathMap&lt; CoordinateT &gt; Class Template Reference<div class="ingroups"><a class="el" href="group__main.html">TinyRobotics</a> &raquo; <a class="el" href="group__maps.html">Maps</a></div></div></div>
 </div><!--header-->
 <div class="contents">
 
@@ -88,25 +88,25 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a28df237ba146e80d8d4e14afa641ffa8"><td class="memItemLeft" align="right" valign="top"><a id="a28df237ba146e80d8d4e14afa641ffa8" name="a28df237ba146e80d8d4e14afa641ffa8"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>addSegment</b> (const <a class="el" href="classtinyrobotics_1_1Coordinate.html">Coordinate</a> &amp;from, const <a class="el" href="classtinyrobotics_1_1Coordinate.html">Coordinate</a> &amp;to, bool directed=false)</td></tr>
-<tr class="separator:a28df237ba146e80d8d4e14afa641ffa8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac86f00dfc1f972232cd29462274c17e5"><td class="memItemLeft" align="right" valign="top"><a id="ac86f00dfc1f972232cd29462274c17e5" name="ac86f00dfc1f972232cd29462274c17e5"></a>
-std::vector&lt; <a class="el" href="classtinyrobotics_1_1PathSegment.html">PathSegment</a>&lt; <a class="el" href="classtinyrobotics_1_1Coordinate.html">Coordinate</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>getSegments</b> (const <a class="el" href="classtinyrobotics_1_1Coordinate.html">Coordinate</a> &amp;from) const</td></tr>
-<tr class="separator:ac86f00dfc1f972232cd29462274c17e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abb8db70ee5bcd70b92088b87eb944dba"><td class="memItemLeft" align="right" valign="top"><a id="abb8db70ee5bcd70b92088b87eb944dba" name="abb8db70ee5bcd70b92088b87eb944dba"></a>
-std::vector&lt; <a class="el" href="classtinyrobotics_1_1Coordinate.html">Coordinate</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>getNeighbors</b> (const <a class="el" href="classtinyrobotics_1_1Coordinate.html">Coordinate</a> &amp;from) const</td></tr>
-<tr class="separator:abb8db70ee5bcd70b92088b87eb944dba"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a183844d1d46af09cafb8ee00f4813224"><td class="memItemLeft" align="right" valign="top"><a id="a183844d1d46af09cafb8ee00f4813224" name="a183844d1d46af09cafb8ee00f4813224"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>addSegment</b> (const CoordinateT &amp;from, const CoordinateT &amp;to, bool directed=false)</td></tr>
+<tr class="separator:a183844d1d46af09cafb8ee00f4813224"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4eea08788699dec05cb0cec2b28d0a94"><td class="memItemLeft" align="right" valign="top"><a id="a4eea08788699dec05cb0cec2b28d0a94" name="a4eea08788699dec05cb0cec2b28d0a94"></a>
+std::vector&lt; <a class="el" href="classtinyrobotics_1_1PathSegment.html">PathSegment</a>&lt; CoordinateT &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>getSegments</b> (const CoordinateT &amp;from) const</td></tr>
+<tr class="separator:a4eea08788699dec05cb0cec2b28d0a94"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abfd3796a23a6f9a8181902be250ca0a9"><td class="memItemLeft" align="right" valign="top"><a id="abfd3796a23a6f9a8181902be250ca0a9" name="abfd3796a23a6f9a8181902be250ca0a9"></a>
+std::vector&lt; CoordinateT &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>getNeighbors</b> (const CoordinateT &amp;from) const</td></tr>
+<tr class="separator:abfd3796a23a6f9a8181902be250ca0a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
-<tr class="memitem:a3ebd2a0016f8d93daecf41cf258ca910"><td class="memItemLeft" align="right" valign="top"><a id="a3ebd2a0016f8d93daecf41cf258ca910" name="a3ebd2a0016f8d93daecf41cf258ca910"></a>
-std::vector&lt; <a class="el" href="classtinyrobotics_1_1PathSegment.html">PathSegment</a>&lt; <a class="el" href="classtinyrobotics_1_1Coordinate.html">Coordinate</a> &gt;, <a class="el" href="classtinyrobotics_1_1AllocatorPSRAM.html">AllocatorPSRAM</a>&lt; <a class="el" href="classtinyrobotics_1_1PathSegment.html">PathSegment</a>&lt; <a class="el" href="classtinyrobotics_1_1Coordinate.html">Coordinate</a> &gt; &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>segments</b></td></tr>
-<tr class="separator:a3ebd2a0016f8d93daecf41cf258ca910"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a90efaecd4317791125d04b2ae911a429"><td class="memItemLeft" align="right" valign="top"><a id="a90efaecd4317791125d04b2ae911a429" name="a90efaecd4317791125d04b2ae911a429"></a>
+std::vector&lt; <a class="el" href="classtinyrobotics_1_1PathSegment.html">PathSegment</a>&lt; CoordinateT &gt;, <a class="el" href="classtinyrobotics_1_1AllocatorPSRAM.html">AllocatorPSRAM</a>&lt; <a class="el" href="classtinyrobotics_1_1PathSegment.html">PathSegment</a>&lt; CoordinateT &gt; &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>segments</b></td></tr>
+<tr class="separator:a90efaecd4317791125d04b2ae911a429"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><div class="compoundTemplParams">template&lt;typename <a class="el" href="classtinyrobotics_1_1Coordinate.html">Coordinate</a> = Coordinate&lt;float&gt;&gt;<br />
-class tinyrobotics::PathMap&lt; Coordinate &gt;</div><p>Represents a graph of valid path segments (edges) between coordinates (nodes). </p>
+<div class="textblock"><div class="compoundTemplParams">template&lt;typename CoordinateT = Coordinate&lt;float&gt;&gt;<br />
+class tinyrobotics::PathMap&lt; CoordinateT &gt;</div><p>Represents a graph of valid path segments (edges) between coordinates (nodes). </p>
 <p>Represents a path segment (edge) between two coordinates in a graph.</p>
 <p><a class="el" href="classtinyrobotics_1_1PathMap.html" title="Represents a graph of valid path segments (edges) between coordinates (nodes).">PathMap</a> is used for pathfinding algorithms (A*, <a class="el" href="classtinyrobotics_1_1Dijkstra.html" title="Generic Dijkstra shortest path algorithm for graphs/maps with callback-based cost and validity.">Dijkstra</a>, etc.) to find optimal paths between nodes. The map can contain both directed (one-way) and undirected (two-way) segments.</p>
 <p>Features:</p><ul>
