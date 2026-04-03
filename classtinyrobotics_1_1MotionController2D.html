@@ -268,9 +268,21 @@ float&#160;</td><td class="memItemRight" valign="bottom"><b>resultThrottlePercen
 float&#160;</td><td class="memItemRight" valign="bottom"><b>resultSteeringAngleDeg</b> = 0.0f</td></tr>
 <tr class="separator:a68e92a3783f15450bb56103f5fac93a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7d238c24d914c3e2592c8366ef46d490"><td class="memItemLeft" align="right" valign="top"><a id="a7d238c24d914c3e2592c8366ef46d490" name="a7d238c24d914c3e2592c8366ef46d490"></a>
-ThrottleMode&#160;</td><td class="memItemRight" valign="bottom"><b>throttleMode</b> = ThrottleMode::PIDOnly</td></tr>
+ThrottleMode&#160;</td><td class="memItemRight" valign="bottom"><b>throttleMode</b> = ThrottleMode::Combined</td></tr>
 <tr class="memdesc:a7d238c24d914c3e2592c8366ef46d490"><td class="mdescLeft">&#160;</td><td class="mdescRight">Throttle control mode. <br /></td></tr>
 <tr class="separator:a7d238c24d914c3e2592c8366ef46d490"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab751ac9c27bf5a13970581e111a26645"><td class="memItemLeft" align="right" valign="top"><a id="ab751ac9c27bf5a13970581e111a26645" name="ab751ac9c27bf5a13970581e111a26645"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>updateCount</b> = 0</td></tr>
+<tr class="separator:ab751ac9c27bf5a13970581e111a26645"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a544a687205f0d8d3fb431529dda7fb65"><td class="memItemLeft" align="right" valign="top"><a id="a544a687205f0d8d3fb431529dda7fb65" name="a544a687205f0d8d3fb431529dda7fb65"></a>
+unsigned long&#160;</td><td class="memItemRight" valign="bottom"><b>updateStartTimeMs</b> = 0</td></tr>
+<tr class="separator:a544a687205f0d8d3fb431529dda7fb65"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aff9624b22f2676358479a158659962c0"><td class="memItemLeft" align="right" valign="top"><a id="aff9624b22f2676358479a158659962c0" name="aff9624b22f2676358479a158659962c0"></a>
+unsigned long&#160;</td><td class="memItemRight" valign="bottom"><b>updateEndTimeMs</b> = 0</td></tr>
+<tr class="separator:aff9624b22f2676358479a158659962c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa610a61d970a2fd641753fc2e78d93fd"><td class="memItemLeft" align="right" valign="top"><a id="aa610a61d970a2fd641753fc2e78d93fd" name="aa610a61d970a2fd641753fc2e78d93fd"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>dtSetFromUpdates</b> = false</td></tr>
+<tr class="separator:aa610a61d970a2fd641753fc2e78d93fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_attribs_classtinyrobotics_1_1MessageSource"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_classtinyrobotics_1_1MessageSource')"><img src="closed.png" alt="-"/>&#160;Protected Attributes inherited from <a class="el" href="classtinyrobotics_1_1MessageSource.html">MessageSource</a></td></tr>
 <tr class="memitem:ae8917ae7a3eb87d29c94c514e1d5c981 inherit pro_attribs_classtinyrobotics_1_1MessageSource"><td class="memItemLeft" align="right" valign="top"><a id="ae8917ae7a3eb87d29c94c514e1d5c981" name="ae8917ae7a3eb87d29c94c514e1d5c981"></a>
 std::vector&lt; <a class="el" href="classtinyrobotics_1_1MessageHandler.html">MessageHandler</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>messageHandlers_</b></td></tr>
@@ -296,7 +308,7 @@ class tinyrobotics::MotionController2D&lt; T &gt;</div><p>2D motion controller f
 <div class="line">controller.begin();</div>
 <div class="line"><span class="comment">// In main loop:</span></div>
 <div class="line">controller.update();</div>
-<div class="ttc" id="aclasstinyrobotics_1_1MotionController2D_html"><div class="ttname"><a href="classtinyrobotics_1_1MotionController2D.html">tinyrobotics::MotionController2D</a></div><div class="ttdoc">2D motion controller for path following and vehicle control.</div><div class="ttdef"><b>Definition:</b> MotionController2D.h:62</div></div>
+<div class="ttc" id="aclasstinyrobotics_1_1MotionController2D_html"><div class="ttname"><a href="classtinyrobotics_1_1MotionController2D.html">tinyrobotics::MotionController2D</a></div><div class="ttdoc">2D motion controller for path following and vehicle control.</div><div class="ttdef"><b>Definition:</b> MotionController2D.h:71</div></div>
 </div><!-- fragment --><p><b>Integration:</b></p><ul>
 <li>Use as a standalone controller for path following and vehicle control.</li>
 <li>Integrate with a message bus to receive and send control messages.</li>
