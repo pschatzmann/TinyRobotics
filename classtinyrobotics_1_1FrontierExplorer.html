@@ -261,7 +261,7 @@ class tinyrobotics::FrontierExplorer&lt; MapType, CoordinateT &gt;</div><p>Gener
 <p>Find all frontier cells in the map (cells adjacent to unknown space). </p>
 <p>A frontier cell is defined as a cell that is FREE (traversable) and has at least one neighboring cell (in any of the 8 directions) that is UNKNOWN (unexplored). This method iterates over every cell in the map, and for each FREE cell, checks all 8 neighbors. If any neighbor is UNKNOWN, the cell is added to the internal <code>frontiers</code> vector. Each cell is considered only once, so no duplicates occur.</p>
 <p>This is a key step in frontier-based exploration and SLAM, as it identifies the boundary between explored and unexplored space, guiding the robot to new areas.</p>
-<p>After calling this method, the <code>frontiers</code> vector will contain all current frontier cells, which can then be used by the exploration strategy to select the next goal. </p>
+<p>After calling this method, the <code>frontiers</code> vector will contain all current frontier coordinates, which can then be used by the exploration strategy to select the next goal. </p>
 
 </div>
 </div>
