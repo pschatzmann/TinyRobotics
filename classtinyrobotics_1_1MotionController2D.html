@@ -112,12 +112,12 @@ Collaboration diagram for MotionController2D&lt; T &gt;:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:aeabe2e4efad41dedfc3482b7e0efd302"><td class="memItemLeft" align="right" valign="top"><a id="aeabe2e4efad41dedfc3482b7e0efd302" name="aeabe2e4efad41dedfc3482b7e0efd302"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>MotionController2D</b> (<a class="el" href="classtinyrobotics_1_1IMotionState2D.html">IMotionState2D</a> &amp;motionState, float maxSpeedKmh=10, float accelDistanceM=2.0f)</td></tr>
-<tr class="separator:aeabe2e4efad41dedfc3482b7e0efd302"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1dd361ded67cb3cbd20b0245e7a9a332"><td class="memItemLeft" align="right" valign="top"><a id="a1dd361ded67cb3cbd20b0245e7a9a332" name="a1dd361ded67cb3cbd20b0245e7a9a332"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>MotionController2D</b> (<a class="el" href="classtinyrobotics_1_1IMotionState2D.html">IMotionState2D</a> &amp;motionState, <a class="el" href="classtinyrobotics_1_1Speed.html">Speed</a> maxSpeedKmh, <a class="el" href="classtinyrobotics_1_1Distance.html">Distance</a> accelDistanceM)</td></tr>
-<tr class="separator:a1dd361ded67cb3cbd20b0245e7a9a332"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0221f4f60633010d400e3ba7b442dd2e"><td class="memItemLeft" align="right" valign="top"><a id="a0221f4f60633010d400e3ba7b442dd2e" name="a0221f4f60633010d400e3ba7b442dd2e"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>MotionController2D</b> (<a class="el" href="classtinyrobotics_1_1IMotionState2D.html">IMotionState2D</a> &amp;motionState, float maxSpeedKmh=10, float maxSteeringAngleDeg=30.0f, float accelDistanceM=2.0f)</td></tr>
+<tr class="separator:a0221f4f60633010d400e3ba7b442dd2e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af0eb20ee4e47f70b95af454ecc1bbdb4"><td class="memItemLeft" align="right" valign="top"><a id="af0eb20ee4e47f70b95af454ecc1bbdb4" name="af0eb20ee4e47f70b95af454ecc1bbdb4"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>MotionController2D</b> (<a class="el" href="classtinyrobotics_1_1IMotionState2D.html">IMotionState2D</a> &amp;motionState, <a class="el" href="classtinyrobotics_1_1Speed.html">Speed</a> maxSpeedKmh, <a class="el" href="classtinyrobotics_1_1Angle.html">Angle</a> maxSteeringAngle, <a class="el" href="classtinyrobotics_1_1Distance.html">Distance</a> accelDistanceM)</td></tr>
+<tr class="separator:af0eb20ee4e47f70b95af454ecc1bbdb4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a83669afed8cf6fa5bb6dc42cba02de60"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1MotionController2D.html#a83669afed8cf6fa5bb6dc42cba02de60">configureSpeedPID</a> (float minOut, float maxOut, float kp, float ki, float kd)</td></tr>
 <tr class="memdesc:a83669afed8cf6fa5bb6dc42cba02de60"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configure the PID controller for speed-to-throttle mapping.  <br /></td></tr>
 <tr class="separator:a83669afed8cf6fa5bb6dc42cba02de60"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -248,6 +248,9 @@ float&#160;</td><td class="memItemRight" valign="bottom"><b>maxSpeedKmh</b> = 10
 <tr class="memitem:a5cd195deee195a6c0ee64bfb0944d9a1"><td class="memItemLeft" align="right" valign="top"><a id="a5cd195deee195a6c0ee64bfb0944d9a1" name="a5cd195deee195a6c0ee64bfb0944d9a1"></a>
 float&#160;</td><td class="memItemRight" valign="bottom"><b>desiredSpeedKmh</b> = 0.0f</td></tr>
 <tr class="separator:a5cd195deee195a6c0ee64bfb0944d9a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae83126f2d5c211a14bbfe5b03bc9abf2"><td class="memItemLeft" align="right" valign="top"><a id="ae83126f2d5c211a14bbfe5b03bc9abf2" name="ae83126f2d5c211a14bbfe5b03bc9abf2"></a>
+float&#160;</td><td class="memItemRight" valign="bottom"><b>maxSteeringAngleDeg</b> = 30.0f</td></tr>
+<tr class="separator:ae83126f2d5c211a14bbfe5b03bc9abf2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a50953209589e80eef587bca9610eade5"><td class="memItemLeft" align="right" valign="top"><a id="a50953209589e80eef587bca9610eade5" name="a50953209589e80eef587bca9610eade5"></a>
 <a class="el" href="classtinyrobotics_1_1PIDController.html">PIDController</a>&lt; float &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>pidSteering_</b></td></tr>
 <tr class="separator:a50953209589e80eef587bca9610eade5"><td class="memSeparator" colspan="2">&#160;</td></tr>
