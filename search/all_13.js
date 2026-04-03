@@ -10,7 +10,7 @@ var searchData=
   ['updateheading_7',['updateHeading',['../classtinyrobotics_1_1Fusion2D.html#a39b28cfcc34e08685909d726ead089a5',1,'tinyrobotics::Fusion2D']]],
   ['updateimu_8',['updateIMU',['../classtinyrobotics_1_1Fusion2D.html#acca737a83be6fdbfa67c90c974aecbfc',1,'tinyrobotics::Fusion2D']]],
   ['updatemotors_9',['updateMotors',['../classtinyrobotics_1_1CarDifferential.html#a807a87c5df438fde21c1e8213906695b',1,'tinyrobotics::CarDifferential::updateMotors()'],['../classtinyrobotics_1_1Quadrotor.html#a807a87c5df438fde21c1e8213906695b',1,'tinyrobotics::Quadrotor::updateMotors()']]],
-  ['updatespeed_10',['updateSpeed',['../classtinyrobotics_1_1MotionController2D.html#a6a8aa05bb9adab1d1cf74d30287278b1',1,'tinyrobotics::MotionController2D::updateSpeed()'],['../classtinyrobotics_1_1Fusion2D.html#a32839a0e941346a47e8bf3b46791b787',1,'tinyrobotics::Fusion2D::updateSpeed()']]],
+  ['updatespeed_10',['updateSpeed',['../classtinyrobotics_1_1Fusion2D.html#a32839a0e941346a47e8bf3b46791b787',1,'tinyrobotics::Fusion2D']]],
   ['use_5fsend_5fack_11',['use_send_ack',['../structtinyrobotics_1_1ESPNowStreamConfig.html#adb22ad0ebbfecfe8863d8c40ddf6b31a',1,'tinyrobotics::ESPNowStreamConfig']]],
   ['utilities_12',['Utilities',['../group__utils.html',1,'']]]
 ];

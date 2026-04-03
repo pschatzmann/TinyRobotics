@@ -163,8 +163,8 @@ float&#160;</td><td class="memItemRight" valign="bottom"><b>getSteeringAngleDeg<
 <a class="el" href="classtinyrobotics_1_1Angle.html">Angle</a>&#160;</td><td class="memItemRight" valign="bottom"><b>getSteeringAngle</b> () const</td></tr>
 <tr class="memdesc:a3ee00f59434f682b87ae5577484a4d2e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the last computed steering angle as an <a class="el" href="classtinyrobotics_1_1Angle.html" title="Represents an angle with unit conversion and wrap-around support.">Angle</a> object. <br /></td></tr>
 <tr class="separator:a3ee00f59434f682b87ae5577484a4d2e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac9a2b84d7979c70979ee7c9ff743d343"><td class="memItemLeft" align="right" valign="top"><a id="ac9a2b84d7979c70979ee7c9ff743d343" name="ac9a2b84d7979c70979ee7c9ff743d343"></a>
-float&#160;</td><td class="memItemRight" valign="bottom"><b>getTargetAccuracy</b> (<a class="el" href="group__units.html#ga4c67a7b952f3804e2bd056cf95c4161a">DistanceUnit</a> unit) const</td></tr>
+<tr class="memitem:ac9a2b84d7979c70979ee7c9ff743d343"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1MotionController2D.html#ac9a2b84d7979c70979ee7c9ff743d343">getTargetAccuracy</a> (<a class="el" href="group__units.html#ga4c67a7b952f3804e2bd056cf95c4161a">DistanceUnit</a> unit) const</td></tr>
+<tr class="memdesc:ac9a2b84d7979c70979ee7c9ff743d343"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the Target Accuracy object.  <br /></td></tr>
 <tr class="separator:ac9a2b84d7979c70979ee7c9ff743d343"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4ace8b9354bc633d112897c0b54cbf9c"><td class="memItemLeft" align="right" valign="top"><a id="a4ace8b9354bc633d112897c0b54cbf9c" name="a4ace8b9354bc633d112897c0b54cbf9c"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>isGoalReached</b> () const</td></tr>
@@ -196,14 +196,17 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>sendMessage</b> (cons
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-methods" name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
-<tr class="memitem:a6a8aa05bb9adab1d1cf74d30287278b1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1MotionController2D.html#a6a8aa05bb9adab1d1cf74d30287278b1">updateSpeed</a> (float distanceFromStartM, float distanceToTarget, float currentSpeedKmh)</td></tr>
-<tr class="separator:a6a8aa05bb9adab1d1cf74d30287278b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7d73c280565bf00e8db4aaeae0ac2493"><td class="memItemLeft" align="right" valign="top"><a id="a7d73c280565bf00e8db4aaeae0ac2493" name="a7d73c280565bf00e8db4aaeae0ac2493"></a>
+float&#160;</td><td class="memItemRight" valign="bottom"><b>getDesiredSpeed</b> (float distanceFromStartM, float distanceToTarget, float currentSpeedKmh)</td></tr>
+<tr class="memdesc:a7d73c280565bf00e8db4aaeae0ac2493"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculate desired speed based on distance to target and start. <br /></td></tr>
+<tr class="separator:a7d73c280565bf00e8db4aaeae0ac2493"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8c0cfd4b82436d61cd82a08278ffdd7d"><td class="memItemLeft" align="right" valign="top"><a id="a8c0cfd4b82436d61cd82a08278ffdd7d" name="a8c0cfd4b82436d61cd82a08278ffdd7d"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>handleWaypoint</b> (const <a class="el" href="classtinyrobotics_1_1Coordinate.html">Coordinate</a>&lt; DistanceM &gt; &amp;currentPos, <a class="el" href="classtinyrobotics_1_1Coordinate.html">Coordinate</a>&lt; DistanceM &gt; &amp;targetPos, float &amp;distanceToTargetM, float &amp;desiredHeadingDeg)</td></tr>
 <tr class="memdesc:a8c0cfd4b82436d61cd82a08278ffdd7d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Handle the current waypoint: calculate distance and desired heading. <br /></td></tr>
 <tr class="separator:a8c0cfd4b82436d61cd82a08278ffdd7d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad3481ebd8379b81869785d6a47b9e1a0"><td class="memItemLeft" align="right" valign="top"><a id="ad3481ebd8379b81869785d6a47b9e1a0" name="ad3481ebd8379b81869785d6a47b9e1a0"></a>
 float&#160;</td><td class="memItemRight" valign="bottom"><b>computeHeadingError</b> (float desiredHeading, float currentHeading)</td></tr>
+<tr class="memdesc:ad3481ebd8379b81869785d6a47b9e1a0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute angle difference range [-180, 180]. <br /></td></tr>
 <tr class="separator:ad3481ebd8379b81869785d6a47b9e1a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aec5be575507485c0b3822d3b022f765b"><td class="memItemLeft" align="right" valign="top"><a id="aec5be575507485c0b3822d3b022f765b" name="aec5be575507485c0b3822d3b022f765b"></a>
 float&#160;</td><td class="memItemRight" valign="bottom"><b>feedforwardThrottle</b> (float desiredSpeedKmh) const</td></tr>
@@ -213,10 +216,13 @@ float&#160;</td><td class="memItemRight" valign="bottom"><b>feedforwardThrottle<
 float&#160;</td><td class="memItemRight" valign="bottom"><b>getThrottlePercent</b> (float currentSpeedKmh)</td></tr>
 <tr class="memdesc:a85c609c6342c6f0de6ae070e5a45915c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute the throttle percent based on the selected mode. <br /></td></tr>
 <tr class="separator:a85c609c6342c6f0de6ae070e5a45915c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afe5b723b03923583dc8f5b03fd40516d"><td class="memItemLeft" align="right" valign="top"><a id="afe5b723b03923583dc8f5b03fd40516d" name="afe5b723b03923583dc8f5b03fd40516d"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>sendControlMessages</b> (float distanceToTarget, float headingError, float currentSpeedKmh, float desiredHeading, float currentHeading)</td></tr>
-<tr class="separator:afe5b723b03923583dc8f5b03fd40516d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a88911ec7c89c2f537efac4b4e9ba72b1"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1MotionController2D.html#a88911ec7c89c2f537efac4b4e9ba72b1">initializeDtFromUpdates</a> ()</td></tr>
+<tr class="memitem:ac6d57cf5201df6a35cba86569bddb5a7"><td class="memItemLeft" align="right" valign="top"><a id="ac6d57cf5201df6a35cba86569bddb5a7" name="ac6d57cf5201df6a35cba86569bddb5a7"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>sendControlMessages</b> (float throttlePercent, float steeringAngleDeg)</td></tr>
+<tr class="memdesc:ac6d57cf5201df6a35cba86569bddb5a7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Send control messages for throttle and steering angle. <br /></td></tr>
+<tr class="separator:ac6d57cf5201df6a35cba86569bddb5a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a88911ec7c89c2f537efac4b4e9ba72b1"><td class="memItemLeft" align="right" valign="top"><a id="a88911ec7c89c2f537efac4b4e9ba72b1" name="a88911ec7c89c2f537efac4b4e9ba72b1"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>initializeDtFromUpdates</b> ()</td></tr>
+<tr class="memdesc:a88911ec7c89c2f537efac4b4e9ba72b1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Handles dt initialization from first 10 updates. <br /></td></tr>
 <tr class="separator:a88911ec7c89c2f537efac4b4e9ba72b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
@@ -463,8 +469,8 @@ class tinyrobotics::MotionController2D&lt; T &gt;</div><p>2D motion controller f
 
 </div>
 </div>
-<a id="a88911ec7c89c2f537efac4b4e9ba72b1" name="a88911ec7c89c2f537efac4b4e9ba72b1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a88911ec7c89c2f537efac4b4e9ba72b1">&#9670;&#160;</a></span>initializeDtFromUpdates()</h2>
+<a id="ac9a2b84d7979c70979ee7c9ff743d343" name="ac9a2b84d7979c70979ee7c9ff743d343"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac9a2b84d7979c70979ee7c9ff743d343">&#9670;&#160;</a></span>getTargetAccuracy()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -473,19 +479,28 @@ class tinyrobotics::MotionController2D&lt; T &gt;</div><p>2D motion controller f
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">bool initializeDtFromUpdates </td>
+          <td class="memname">float getTargetAccuracy </td>
           <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
+          <td class="paramtype"><a class="el" href="group__units.html#ga4c67a7b952f3804e2bd056cf95c4161a">DistanceUnit</a>&#160;</td>
+          <td class="paramname"><em>unit</em></td><td>)</td>
+          <td> const</td>
         </tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">protected</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Handles dt initialization from first 10 updates, but does not block control logic </p>
+
+<p>Get the Target Accuracy object. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">unit</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>float </dd></dl>
 
 </div>
 </div>
@@ -588,49 +603,6 @@ class tinyrobotics::MotionController2D&lt; T &gt;</div><p>2D motion controller f
   </table>
   </dd>
 </dl>
-
-</div>
-</div>
-<a id="a6a8aa05bb9adab1d1cf74d30287278b1" name="a6a8aa05bb9adab1d1cf74d30287278b1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6a8aa05bb9adab1d1cf74d30287278b1">&#9670;&#160;</a></span>updateSpeed()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void updateSpeed </td>
-          <td>(</td>
-          <td class="paramtype">float&#160;</td>
-          <td class="paramname"><em>distanceFromStartM</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">float&#160;</td>
-          <td class="paramname"><em>distanceToTarget</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">float&#160;</td>
-          <td class="paramname"><em>currentSpeedKmh</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">protected</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<p>Calculate desired speed based on distance to target and distance from start </p>
 
 </div>
 </div>
