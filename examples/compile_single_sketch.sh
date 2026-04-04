@@ -6,8 +6,11 @@ LOG_FILE="$(dirname "$0")/compile_single_sketch_results.log"
 
 # List of FQBNs to test (add more as needed)
 FQBN_LIST=(
-  "rp2040:rp2040:rpipico:os=freertos"
   "esp32:esp32:esp32"
+  "rp2040:rp2040:rpipico:os=freertos"
+  "arduino:renesas_uno:unor4wifi"
+  "arduino:zephyr_main:nano33ble"
+  "STMicroelectronics:stm32:GenF4:pnum=BLACKPILL_F411CE"
 )
 
 # Install required libraries

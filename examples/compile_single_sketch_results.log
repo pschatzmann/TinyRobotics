@@ -1,10 +1,25 @@
+Compiling ./others/compile/compile.ino for esp32:esp32:esp32...
+Sketch uses 265600 bytes (20%) of program storage space. Maximum is 1310720 bytes.
+Global variables use 22076 bytes (6%) of dynamic memory, leaving 305604 bytes for local variables. Maximum is 327680 bytes.
+SUCCESS: ./others/compile/compile.ino (esp32:esp32:esp32)
+-----------------------------
 Compiling ./others/compile/compile.ino for rp2040:rp2040:rpipico:os=freertos...
 Sketch uses 65848 bytes (3%) of program storage space. Maximum is 2093056 bytes.
 Global variables use 17592 bytes (6%) of dynamic memory, leaving 244552 bytes for local variables. Maximum is 262144 bytes.
 SUCCESS: ./others/compile/compile.ino (rp2040:rp2040:rpipico:os=freertos)
 -----------------------------
-Compiling ./others/compile/compile.ino for esp32:esp32:esp32...
-Sketch uses 266192 bytes (20%) of program storage space. Maximum is 1310720 bytes.
-Global variables use 22060 bytes (6%) of dynamic memory, leaving 305620 bytes for local variables. Maximum is 327680 bytes.
-SUCCESS: ./others/compile/compile.ino (esp32:esp32:esp32)
+Compiling ./others/compile/compile.ino for arduino:renesas_uno:unor4wifi...
+Sketch uses 51832 bytes (19%) of program storage space. Maximum is 262144 bytes.
+Global variables use 6740 bytes (20%) of dynamic memory, leaving 26028 bytes for local variables. Maximum is 32768 bytes.
+SUCCESS: ./others/compile/compile.ino (arduino:renesas_uno:unor4wifi)
+-----------------------------
+Compiling ./others/compile/compile.ino for arduino:zephyr_main:nano33ble...
+Sketch uses 1664 bytes (1%) of program storage space. Maximum is 98304 bytes.
+Global variables use 484 bytes (0%) of dynamic memory, leaving 130588 bytes for local variables. Maximum is 131072 bytes.
+SUCCESS: ./others/compile/compile.ino (arduino:zephyr_main:nano33ble)
+-----------------------------
+Compiling ./others/compile/compile.ino for STMicroelectronics:stm32:GenF4:pnum=BLACKPILL_F411CE...
+Sketch uses 7768 bytes (1%) of program storage space. Maximum is 524288 bytes.
+Global variables use 1092 bytes (0%) of dynamic memory, leaving 129980 bytes for local variables. Maximum is 131072 bytes.
+SUCCESS: ./others/compile/compile.ino (STMicroelectronics:stm32:GenF4:pnum=BLACKPILL_F411CE)
 -----------------------------

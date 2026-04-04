@@ -105,7 +105,7 @@ class SpeedFromThrottle : public MessageSource, public MessageHandler {
     if (it != calibrationData.end() && it->first == throttlePercent) {
       it->second = speedMps;  // Replace existing
     } else {
-      calibrationData.insert(it, std::make_pair(throttlePercent, speedMps));
+      calibrationData.insert(it, std::pair<float, float>(throttlePercent, speedMps));
     }
   }
 

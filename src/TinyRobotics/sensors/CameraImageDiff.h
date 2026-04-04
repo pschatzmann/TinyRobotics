@@ -48,7 +48,7 @@ class CameraImageDiff {
     diff_.resize(width * height);
     prevImage_.resize(width * height);
     for (uint32_t i = 0; i < width_ * height_; ++i) {
-      diff_[i] = (uint8_t)std::abs(int(image[i]) - int(prevImage_[i]));
+      diff_[i] = (uint8_t)abs(int16_t(image[i]) - int16_t(prevImage_[i]));
     }
     memcpy(prevImage_.data(), image, width * height);
   }
