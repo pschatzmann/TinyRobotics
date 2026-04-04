@@ -9,11 +9,11 @@
 <area shape="rect" id="node37" href="$Motors_8h_source.html" title=" " alt="" coords="3048,79,3204,119"/>
 <area shape="rect" id="node40" href="$Planning_8h_source.html" title=" " alt="" coords="1836,416,2003,456"/>
 <area shape="rect" id="node44" href="$Sensors_8h_source.html" title=" " alt="" coords="1369,79,1529,119"/>
-<area shape="rect" id="node46" href="$SLAM_8h_source.html" title=" " alt="" coords="3229,86,3423,111"/>
-<area shape="rect" id="node47" href="$Utils_8h_source.html" title=" " alt="" coords="3447,79,3586,119"/>
-<area shape="rect" id="node48" href="$Vehicles_8h_source.html" title=" " alt="" coords="3611,79,3775,119"/>
-<area shape="rect" id="node49" href="$Odometry_8h_source.html" title=" " alt="" coords="3799,79,3973,119"/>
-<area shape="rect" id="node50" href="$Fusion_8h_source.html" title=" " alt="" coords="3997,79,4148,119"/>
+<area shape="rect" id="node46" href="$Localization_8h_source.html" title=" " alt="" coords="3228,79,3413,119"/>
+<area shape="rect" id="node47" href="$Utils_8h_source.html" title=" " alt="" coords="3438,79,3577,119"/>
+<area shape="rect" id="node48" href="$Vehicles_8h_source.html" title=" " alt="" coords="3601,79,3765,119"/>
+<area shape="rect" id="node49" href="$Odometry_8h_source.html" title=" " alt="" coords="3790,79,3963,119"/>
+<area shape="rect" id="node50" href="$Fusion_8h_source.html" title=" " alt="" coords="3988,79,4139,119"/>
 <area shape="rect" id="node3" href="$Message_8h_source.html" title=" " alt="" coords="531,511,623,537"/>
 <area shape="rect" id="node4" href="$MessageBus_8h_source.html" title=" " alt="" coords="5,423,121,449"/>
 <area shape="rect" id="node5" href="$MessageDispatcher_8h_source.html" title=" " alt="" coords="141,335,303,361"/>

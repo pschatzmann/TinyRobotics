@@ -1,3 +1,5 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$classtinyrobotics_1_1QueueRTOS.html" title="FIFO Queue whch is based on the FreeRTOS queue API. The default allocator will allocate the memory fr..." alt="" coords="5,5,215,31"/>
+<area shape="rect" id="node1" href="$classtinyrobotics__arduino_1_1Print.html" title="Arduino&#45;compatible Print base class stub for native builds." alt="" coords="5,31,57,56"/>
+<area shape="rect" id="node2" href="$classtinyrobotics__arduino_1_1NullPrintClass.html" title="NullPrint is a Print subclass that discards all output. Useful for disabling output in code that expe..." alt="" coords="105,5,219,31"/>
+<area shape="rect" id="node3" href="$classtinyrobotics__arduino_1_1Stream.html" title="Arduino&#45;compatible Stream base class stub for native builds." alt="" coords="127,55,197,80"/>
 </map>

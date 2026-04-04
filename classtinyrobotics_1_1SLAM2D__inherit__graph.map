@@ -1,4 +1,0 @@
-<map id="SLAM2D&lt; T &gt;" name="SLAM2D&lt; T &gt;">
-<area shape="rect" id="node1" title="2D Simultaneous Localization and Mapping (SLAM) with frame transforms and message integration." alt="" coords="10,79,125,104"/>
-<area shape="rect" id="node2" href="$classtinyrobotics_1_1MessageSource.html" title="Base class for message sources in the TinyRobotics communication framework." alt="" coords="5,5,129,31"/>
-</map>

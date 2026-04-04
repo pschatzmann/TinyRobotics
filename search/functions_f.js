@@ -23,7 +23,7 @@ var searchData=
   ['setclearwithzero_20',['setClearWithZero',['../classtinyrobotics_1_1SingleBuffer.html#a3cbbe5124b80c5fd48c168debbf50b52',1,'tinyrobotics::SingleBuffer']]],
   ['setconstraints_21',['setConstraints',['../classtinyrobotics_1_1BrushedMotor.html#a8058d5cf7575f9c44ab71f5212530036',1,'tinyrobotics::BrushedMotor::setConstraints()'],['../classtinyrobotics_1_1ServoMotor.html#a45ae9b8e37c4c25dbacc230772bed168',1,'tinyrobotics::ServoMotor::setConstraints()']]],
   ['setcostcallback_22',['setCostCallback',['../classtinyrobotics_1_1Dijkstra.html#af46f0f54f7bd50991ba10c2468d683fb',1,'tinyrobotics::Dijkstra::setCostCallback()'],['../classtinyrobotics_1_1AStar.html#af46f0f54f7bd50991ba10c2468d683fb',1,'tinyrobotics::AStar::setCostCallback()']]],
-  ['setcurrentposition_23',['setCurrentPosition',['../classtinyrobotics_1_1FrontierExplorer.html#a1cb78039edec0f458d1bb3cdae84a88c',1,'tinyrobotics::FrontierExplorer']]],
+  ['setcurrentposition_23',['setCurrentPosition',['../classtinyrobotics_1_1FrontierExplorer.html#ac012de423af7f9748b1201be69f85092',1,'tinyrobotics::FrontierExplorer']]],
   ['setelevator_24',['setElevator',['../classtinyrobotics_1_1AirPlane.html#aa9f6fd69525e11e130b03df992adebd3',1,'tinyrobotics::AirPlane']]],
   ['setendcallback_25',['setEndCallback',['../classtinyrobotics_1_1GenericMotor.html#adb0636641d362db20208b544289d498f',1,'tinyrobotics::GenericMotor']]],
   ['setgps_26',['setGPS',['../classtinyrobotics_1_1FrameMgr2D.html#a3152f35d21025bb3cf460fbc5038c1cd',1,'tinyrobotics::FrameMgr2D::setGPS()'],['../classtinyrobotics_1_1FrameMgr3D.html#ac1474ac737fa9eec07e857adf9c2ab86',1,'tinyrobotics::FrameMgr3D::setGPS()']]],
@@ -51,7 +51,7 @@ var searchData=
   ['setreverse_48',['setReverse',['../classtinyrobotics_1_1BrushedMotor.html#a47d2548879868fc9a838889e463d9314',1,'tinyrobotics::BrushedMotor']]],
   ['setroll_49',['setRoll',['../classtinyrobotics_1_1AirPlane.html#afd33c582ecc8b2b0edd513a72896e5fc',1,'tinyrobotics::AirPlane::setRoll()'],['../classtinyrobotics_1_1Quadrotor.html#ac0ba521da16841a95b8f76f181695d08',1,'tinyrobotics::Quadrotor::setRoll()']]],
   ['setrudder_50',['setRudder',['../classtinyrobotics_1_1AirPlane.html#ad1dc0b12cdbceec298589410750d2672',1,'tinyrobotics::AirPlane::setRudder()'],['../classtinyrobotics_1_1MotorBoat.html#ad1dc0b12cdbceec298589410750d2672',1,'tinyrobotics::MotorBoat::setRudder()']]],
-  ['setselectcallback_51',['setSelectCallback',['../classtinyrobotics_1_1FrontierExplorer.html#a7dd6979c09e8cd0792a886714e5b3a8e',1,'tinyrobotics::FrontierExplorer']]],
+  ['setselectcallback_51',['setSelectCallback',['../classtinyrobotics_1_1FrontierExplorer.html#a607728de64b8fa971eddc730bd978f6b',1,'tinyrobotics::FrontierExplorer']]],
   ['setsendcallback_52',['setSendCallback',['../classtinyrobotics_1_1ESPNowStream.html#a19b2f79c6278f469fceebf0696a7d5c7',1,'tinyrobotics::ESPNowStream']]],
   ['setsize_53',['setSize',['../classtinyrobotics_1_1MovingAverage.html#a97deb13018c1b55b18bfe25a9e339e8d',1,'tinyrobotics::MovingAverage']]],
   ['setslipfactor_54',['setSlipFactor',['../classtinyrobotics_1_1WheelEncoder.html#a11f103c03c7e0fda74b6f2c8cdd60029',1,'tinyrobotics::WheelEncoder']]],
@@ -79,5 +79,5 @@ var searchData=
   ['setyaw_76',['setYaw',['../classtinyrobotics_1_1AirPlane.html#a0abe8f58d2a76cadf34a38c03f9cf736',1,'tinyrobotics::AirPlane::setYaw()'],['../classtinyrobotics_1_1Quadrotor.html#a6bd9a070d33f958397b768119fe09ae4',1,'tinyrobotics::Quadrotor::setYaw()']]],
   ['singlebuffer_77',['SingleBuffer',['../classtinyrobotics_1_1SingleBuffer.html#a35c6a8c1d8f0857e27e85530479a444a',1,'tinyrobotics::SingleBuffer::SingleBuffer(int size)'],['../classtinyrobotics_1_1SingleBuffer.html#acc095e96946a477f0606fe4612fea1be',1,'tinyrobotics::SingleBuffer::SingleBuffer()']]],
   ['size_78',['size',['../classtinyrobotics_1_1PointCloud.html#a259cb5a711406a8c3e5d937eb9350cca',1,'tinyrobotics::PointCloud::size()'],['../classtinyrobotics_1_1FrontierExplorer.html#a259cb5a711406a8c3e5d937eb9350cca',1,'tinyrobotics::FrontierExplorer::size()'],['../classtinyrobotics_1_1RingBuffer.html#a7c95a45fb1a447704fc915df6cf1374c',1,'tinyrobotics::RingBuffer::size()']]],
-  ['subscribe_79',['subscribe',['../classtinyrobotics_1_1MessageSource.html#a6f644591faf6edfeceef6b7776b331df',1,'tinyrobotics::MessageSource::subscribe()'],['../classtinyrobotics_1_1SLAM2D.html#a6f644591faf6edfeceef6b7776b331df',1,'tinyrobotics::SLAM2D::subscribe()']]]
+  ['subscribe_79',['subscribe',['../classtinyrobotics_1_1MessageSource.html#a6f644591faf6edfeceef6b7776b331df',1,'tinyrobotics::MessageSource::subscribe()'],['../classtinyrobotics_1_1LocalizationAndMapping2D.html#a6f644591faf6edfeceef6b7776b331df',1,'tinyrobotics::LocalizationAndMapping2D::subscribe()']]]
 ];

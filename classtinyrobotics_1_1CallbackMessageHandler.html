@@ -106,15 +106,15 @@ Collaboration diagram for CallbackMessageHandler:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-types" name="pub-types"></a>
 Public Types</h2></td></tr>
-<tr class="memitem:a4a688c1b87e92c927119340041805822"><td class="memItemLeft" align="right" valign="top"><a id="a4a688c1b87e92c927119340041805822" name="a4a688c1b87e92c927119340041805822"></a>
-using&#160;</td><td class="memItemRight" valign="bottom"><b>ValueCallback</b> = std::function&lt; bool(const <a class="el" href="structtinyrobotics_1_1Message.html">Message</a>&lt; float &gt; &amp;)&gt;</td></tr>
-<tr class="separator:a4a688c1b87e92c927119340041805822"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6a7358fb2f9509295d1fc12a193b1381"><td class="memItemLeft" align="right" valign="top"><a id="a6a7358fb2f9509295d1fc12a193b1381" name="a6a7358fb2f9509295d1fc12a193b1381"></a>
-using&#160;</td><td class="memItemRight" valign="bottom"><b>CoordinateCallback</b> = std::function&lt; bool(const <a class="el" href="structtinyrobotics_1_1Message.html">Message</a>&lt; <a class="el" href="classtinyrobotics_1_1Coordinate.html">Coordinate</a>&lt; float &gt; &gt; &amp;)&gt;</td></tr>
-<tr class="separator:a6a7358fb2f9509295d1fc12a193b1381"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2210655509351af6e688b974a1fc4c5e"><td class="memItemLeft" align="right" valign="top"><a id="a2210655509351af6e688b974a1fc4c5e" name="a2210655509351af6e688b974a1fc4c5e"></a>
-using&#160;</td><td class="memItemRight" valign="bottom"><b>GPSCoordinateCallback</b> = std::function&lt; bool(const <a class="el" href="structtinyrobotics_1_1Message.html">Message</a>&lt; <a class="el" href="classtinyrobotics_1_1GPSCoordinate.html">GPSCoordinate</a> &gt; &amp;)&gt;</td></tr>
-<tr class="separator:a2210655509351af6e688b974a1fc4c5e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa86f32cf53dd2367ab4add2938537d97"><td class="memItemLeft" align="right" valign="top"><a id="aa86f32cf53dd2367ab4add2938537d97" name="aa86f32cf53dd2367ab4add2938537d97"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><b>ValueCallback</b> = std::function&lt; bool(const <a class="el" href="structtinyrobotics_1_1Message.html">Message</a>&lt; float &gt; &amp;, void *)&gt;</td></tr>
+<tr class="separator:aa86f32cf53dd2367ab4add2938537d97"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8780cd4bebb73d98bbbac22eb31a12c1"><td class="memItemLeft" align="right" valign="top"><a id="a8780cd4bebb73d98bbbac22eb31a12c1" name="a8780cd4bebb73d98bbbac22eb31a12c1"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><b>CoordinateCallback</b> = std::function&lt; bool(const <a class="el" href="structtinyrobotics_1_1Message.html">Message</a>&lt; <a class="el" href="classtinyrobotics_1_1Coordinate.html">Coordinate</a>&lt; float &gt; &gt; &amp;, void *)&gt;</td></tr>
+<tr class="separator:a8780cd4bebb73d98bbbac22eb31a12c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6dfad33f09cf11cdcaf22bce521d4e58"><td class="memItemLeft" align="right" valign="top"><a id="a6dfad33f09cf11cdcaf22bce521d4e58" name="a6dfad33f09cf11cdcaf22bce521d4e58"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><b>GPSCoordinateCallback</b> = std::function&lt; bool(const <a class="el" href="structtinyrobotics_1_1Message.html">Message</a>&lt; <a class="el" href="classtinyrobotics_1_1GPSCoordinate.html">GPSCoordinate</a> &gt; &amp;, void *)&gt;</td></tr>
+<tr class="separator:a6dfad33f09cf11cdcaf22bce521d4e58"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -125,15 +125,15 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a3cb88e681e0a7fcf208b2ba3636656f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5d28788d7675612883f9f8d6ba98f71f"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1CallbackMessageHandler.html#a5d28788d7675612883f9f8d6ba98f71f">onMessage</a> (const <a class="el" href="structtinyrobotics_1_1Message.html">Message</a>&lt; <a class="el" href="classtinyrobotics_1_1GPSCoordinate.html">GPSCoordinate</a> &gt; &amp;msg) override</td></tr>
 <tr class="separator:a5d28788d7675612883f9f8d6ba98f71f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a500b640cc2ac19d144895d44626f257f"><td class="memItemLeft" align="right" valign="top"><a id="a500b640cc2ac19d144895d44626f257f" name="a500b640cc2ac19d144895d44626f257f"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setValueCallback</b> (ValueCallback cb)</td></tr>
-<tr class="separator:a500b640cc2ac19d144895d44626f257f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aea9a3b1d6055004017e03eb2985591e9"><td class="memItemLeft" align="right" valign="top"><a id="aea9a3b1d6055004017e03eb2985591e9" name="aea9a3b1d6055004017e03eb2985591e9"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setCoordinateCallback</b> (CoordinateCallback cb)</td></tr>
-<tr class="separator:aea9a3b1d6055004017e03eb2985591e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2fbab297bf93b42ce85ec8d909ff66ff"><td class="memItemLeft" align="right" valign="top"><a id="a2fbab297bf93b42ce85ec8d909ff66ff" name="a2fbab297bf93b42ce85ec8d909ff66ff"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setGPSCoordinateCallback</b> (GPSCoordinateCallback cb)</td></tr>
-<tr class="separator:a2fbab297bf93b42ce85ec8d909ff66ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9e2a9e9991717f4f849a3763abb588d6"><td class="memItemLeft" align="right" valign="top"><a id="a9e2a9e9991717f4f849a3763abb588d6" name="a9e2a9e9991717f4f849a3763abb588d6"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>setValueCallback</b> (ValueCallback cb, void *reference)</td></tr>
+<tr class="separator:a9e2a9e9991717f4f849a3763abb588d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac523307dcdc2cb71cc60940331f62d04"><td class="memItemLeft" align="right" valign="top"><a id="ac523307dcdc2cb71cc60940331f62d04" name="ac523307dcdc2cb71cc60940331f62d04"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>setCoordinateCallback</b> (CoordinateCallback cb, void *reference)</td></tr>
+<tr class="separator:ac523307dcdc2cb71cc60940331f62d04"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a310a53feca8c6be411b387aebaba3b26"><td class="memItemLeft" align="right" valign="top"><a id="a310a53feca8c6be411b387aebaba3b26" name="a310a53feca8c6be411b387aebaba3b26"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>setGPSCoordinateCallback</b> (GPSCoordinateCallback cb, void *reference)</td></tr>
+<tr class="separator:a310a53feca8c6be411b387aebaba3b26"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad4db64cdd50701eba69a319785dac84b"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1MessageHandler.html#ad4db64cdd50701eba69a319785dac84b">onMessage</a> (const <a class="el" href="structtinyrobotics_1_1Message.html">Message</a>&lt; float &gt; &amp;msg)=0</td></tr>
 <tr class="memdesc:ad4db64cdd50701eba69a319785dac84b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Handle an incoming message (pure virtual).  <br /></td></tr>
 <tr class="separator:ad4db64cdd50701eba69a319785dac84b"><td class="memSeparator" colspan="2">&#160;</td></tr>

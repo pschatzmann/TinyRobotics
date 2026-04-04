@@ -1,4 +1,5 @@
 <map id="MotionState2D" name="MotionState2D">
-<area shape="rect" id="node1" title="Concrete implementation of INavigationState2D for storing and accessing 2D navigation state." alt="" coords="7,79,126,104"/>
-<area shape="rect" id="node2" href="$classtinyrobotics_1_1IMotionState2D.html" title="Interface for representing the navigation state of a robot in 2D space." alt="" coords="5,5,128,31"/>
+<area shape="rect" id="node1" title="Concrete implementation of INavigationState2D for storing and accessing 2D navigation state." alt="" coords="8,152,127,177"/>
+<area shape="rect" id="node2" href="$classtinyrobotics_1_1IMotionState2D.html" title="Interface for representing the navigation state of a robot in 2D space." alt="" coords="6,79,129,104"/>
+<area shape="rect" id="node3" href="$classtinyrobotics_1_1MessageSource.html" title="Base class for message sources in the TinyRobotics communication framework." alt="" coords="5,5,129,31"/>
 </map>

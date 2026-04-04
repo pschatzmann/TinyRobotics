@@ -2,7 +2,7 @@ var searchData=
 [
   ['radianspersecond_0',['RadiansPerSecond',['../group__utils.html#ggabceb2331ad056e3c5ad27894199a49eda1b9e7a2b816b28e74c246fe29920f0a2',1,'tinyrobotics']]],
   ['rangesensor_1',['RangeSensor',['../classtinyrobotics_1_1RangeSensor.html',1,'tinyrobotics']]],
-  ['rangesensor_3c_20float_20_3e_2',['RangeSensor&lt; float &gt;',['../classtinyrobotics_1_1RangeSensor.html',1,'tinyrobotics']]],
+  ['rangesensor_3c_20t_20_3e_2',['RangeSensor&lt; T &gt;',['../classtinyrobotics_1_1RangeSensor.html',1,'tinyrobotics']]],
   ['rate_3',['rate',['../structtinyrobotics_1_1ESPNowStreamConfig.html#add99443712e271bc9d643939e9d1eab7',1,'tinyrobotics::ESPNowStreamConfig']]],
   ['rcgamepadmessagesource_4',['RCGamepadMessageSource',['../classtinyrobotics_1_1RCGamepadMessageSource.html',1,'tinyrobotics']]],
   ['read_5',['read',['../classtinyrobotics_1_1BufferRP2040T.html#a6d13d5ba12e1bf31c48324b5459fca51',1,'tinyrobotics::BufferRP2040T::read()'],['../classtinyrobotics_1_1BufferRTOS.html#a561678b19e43ad0116146987c3d3392a',1,'tinyrobotics::BufferRTOS::read()'],['../classtinyrobotics_1_1SynchronizedBuffer.html#a561678b19e43ad0116146987c3d3392a',1,'tinyrobotics::SynchronizedBuffer::read()'],['../classtinyrobotics_1_1BaseBuffer.html#a13fa20cbedc16d016789d4f909b318b9',1,'tinyrobotics::BaseBuffer::read()'],['../classtinyrobotics_1_1SingleBuffer.html#a561678b19e43ad0116146987c3d3392a',1,'tinyrobotics::SingleBuffer::read()'],['../classtinyrobotics_1_1RingBuffer.html#a561678b19e43ad0116146987c3d3392a',1,'tinyrobotics::RingBuffer::read()']]],

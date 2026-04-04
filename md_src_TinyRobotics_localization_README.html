@@ -72,60 +72,65 @@ $(function() {
   <div class="headertitle"><div class="title">TinyRobotics SLAM Module </div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p>This module provides 2D Simultaneous Localization and Mapping (SLAM) capabilities for robotics applications using the TinyRobotics library. It integrates IMU and range sensor data, maintains an occupancy grid map, and supports frame transforms for accurate world modeling.</p>
-<h2><a class="anchor" id="autotoc_md149"></a>
-Features</h2>
+<div class="textblock"><p>This module provides robust 2D Simultaneous Localization and Mapping (SLAM) for robotics applications using the TinyRobotics library. It fuses IMU and range sensor data, maintains an efficient occupancy grid map, and supports flexible frame transforms for accurate world modeling and autonomous exploration.</p>
+<h1><a class="anchor" id="autotoc_md93"></a>
+Features</h1>
 <ul>
-<li>Occupancy grid mapping with <code>GridMap&lt;CellState&gt;</code></li>
-<li>IMU2D-based pose estimation</li>
-<li>RangeSensor-based obstacle detection</li>
-<li>Frame2D and FrameMgr2D for coordinate transforms</li>
-<li>Efficient map updates (free/occupied cells)</li>
-<li>Frontier-based exploration support</li>
-<li>Message bus integration for modular sensor fusion</li>
+<li><b>Occupancy Grid Mapping:</b> Efficient 2D grid map with <code>GridBitMap</code> for storing free, occupied, and unknown cells.</li>
+<li><b>IMU/Odometry Integration:</b> Use <code>IMU2D</code> or any <code>IMotionState2D</code> implementation for pose estimation.</li>
+<li><b>Range Sensor Fusion:</b> Integrate LIDAR or other range sensors with <code>RangeSensor</code> for obstacle detection and map updates.</li>
+<li><b>Frame Management:</b> Use <code>Frame2D</code> and <code>FrameMgr2D</code> for coordinate transforms between world, base, and sensor frames.</li>
+<li><b>Frontier-Based Exploration:</b> Autonomous navigation with <code>FrontierExplorer</code> and the <code>IFrontierExplorer</code> interface.</li>
+<li><b>Message Bus:</b> Modular sensor fusion and communication via the message bus architecture.</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md150"></a>
-Example Usage</h2>
+<h1><a class="anchor" id="autotoc_md94"></a>
+Example Usage</h1>
 <div class="fragment"><div class="line"><span class="preprocessor">#include &lt;<a class="code" href="TinyRobotics_8h.html">TinyRobotics.h</a>&gt;</span></div>
 <div class="line"> </div>
+<div class="line"><span class="comment">// Frame definitions</span></div>
 <div class="line">Frame2D world, base, lidar;</div>
-<div class="line">FrameMgr2D tf;</div>
-<div class="line">SLAM2D slam(10.0, 10.0, 0.1, world, base, lidar, tf); <span class="comment">// 10x10m map, 10cm resolution</span></div>
+<div class="line"><span class="comment">// Map: 10x10 meters, 10cm resolution</span></div>
+<div class="line">GridBitMap&lt;float&gt; map(100, 100, 0.1f);</div>
+<div class="line"><span class="comment">// IMU</span></div>
+<div class="line">IMU2D&lt;float&gt; imu;</div>
+<div class="line"><span class="comment">// Frontier-based exploration</span></div>
+<div class="line">FrontierExplorer&lt;float&gt; explorer(map);</div>
+<div class="line"><span class="comment">// SLAM system</span></div>
+<div class="line">LocalizationAndMapping2D&lt;float&gt; slam(map, explorer, world, base, lidar, imu);</div>
 <div class="line"> </div>
-<div class="line"><span class="comment">// Subscribe to messages</span></div>
+<div class="line"><span class="comment">// Subscribe to sensor messages</span></div>
 <div class="line">slam.subscribe(handler);</div>
 <div class="line"> </div>
-<div class="line"><span class="comment">// IMU update</span></div>
-<div class="line">slam.update(accelX, accelY, gyroZ, nowMillis);</div>
-<div class="line"> </div>
-<div class="line"><span class="comment">// Lidar update</span></div>
-<div class="line">slam.addRangeMeasurement(distance, angle);</div>
-<div class="line"> </div>
-<div class="line"><span class="comment">// Publish IMU state and update base frame</span></div>
-<div class="line">slam.publish();</div>
+<div class="line"><span class="comment">// Add a Lidar measurement (distance in meters, angle in degrees, cell state)</span></div>
+<div class="line">slam.addRangeMeasurement(distance, angle, CellState::OCCUPIED);</div>
 <div class="line"> </div>
 <div class="line"><span class="comment">// Access the map</span></div>
-<div class="line"><span class="keyword">const</span> <span class="keyword">auto</span>&amp; map = slam.getMap();</div>
+<div class="line"><span class="keyword">auto</span>&amp; mymap = slam.getMap();</div>
 <div class="line"> </div>
-<div class="line"><span class="comment">// Get next exploration frontier</span></div>
-<div class="line"><span class="keyword">auto</span> next = slam.getNextFrontier();</div>
+<div class="line"><span class="comment">// Get the next exploration frontier</span></div>
+<div class="line">Coordinate&lt;float&gt; next;</div>
+<div class="line"><span class="keywordflow">if</span> (slam.getNextFrontier(next)) {</div>
+<div class="line">    <span class="comment">// Use &#39;next&#39; as the next goal</span></div>
+<div class="line">}</div>
 <div class="ttc" id="aTinyRobotics_8h_html"><div class="ttname"><a href="TinyRobotics_8h.html">TinyRobotics.h</a></div></div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md151"></a>
-Classes</h2>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md95"></a>
+Main Classes</h1>
 <ul>
-<li><code>SLAM2D</code>: Main class for 2D SLAM with frame transforms and message integration</li>
-<li><code>GridMap&lt;CellState&gt;</code>: Occupancy grid map</li>
-<li><code>IMU2D</code>: 2D IMU sensor fusion</li>
-<li><code>RangeSensor</code>: Range/obstacle sensor abstraction</li>
+<li><code>LocalizationAndMapping2D&lt;T&gt;</code>: Main SLAM class (modular, template-based)</li>
+<li><code>GridBitMap&lt;T&gt;</code>: 2D occupancy grid map</li>
+<li><code>IMU2D&lt;T&gt;</code>: 2D IMU/odometry sensor fusion</li>
+<li><code>RangeSensor&lt;T&gt;</code>: Range/obstacle sensor abstraction</li>
 <li><code>Frame2D</code>, <code>FrameMgr2D</code>: Frame transforms</li>
+<li><code>FrontierExplorer&lt;T&gt;</code>, <code>IFrontierExplorer&lt;T&gt;</code>: Autonomous exploration</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md152"></a>
+<h1><a class="anchor" id="autotoc_md96"></a>
 See Examples</h1>
 <ul>
 <li><a href="../../../examples/maps&amp;planning/pointcloud-astar/pointcloud-astar.ino">Pointcloud A* Example</a></li>
+<li><a href="../../../examples/">Other Example Sketches</a></li>
 </ul>
-<h2><a class="anchor" id="autotoc_md153"></a>
-See Also</h2>
+<h1><a class="anchor" id="autotoc_md97"></a>
+See Also</h1>
 <ul>
 <li><a href="https://github.com/pschatzmann/TinyRobotics">TinyRobotics Documentation</a></li>
 <li>Example sketches in the <code>examples/</code> directory </li>

@@ -3,7 +3,7 @@ var searchData=
   ['mac_5faddress_0',['mac_address',['../structtinyrobotics_1_1ESPNowStreamConfig.html#a03d462404454669f61ed8e5822e27b90',1,'tinyrobotics::ESPNowStreamConfig']]],
   ['macaddress_1',['macAddress',['../classtinyrobotics_1_1ESPNowStream.html#a92337c8c3bcec39597ff92fc30671662',1,'tinyrobotics::ESPNowStream']]],
   ['maps_2',['Maps',['../group__maps.html',1,'']]],
-  ['markfreecellsbetweensensorandobstacle_3',['markFreeCellsBetweenSensorAndObstacle',['../classtinyrobotics_1_1SLAM2D.html#ae0b2c606aca27439158162ccf5b21ff6',1,'tinyrobotics::SLAM2D']]],
+  ['markray_3',['markRay',['../classtinyrobotics_1_1LocalizationAndMapping2D.html#a5b1397fcb7232002e52c6d5d2e936fe4',1,'tinyrobotics::LocalizationAndMapping2D']]],
   ['matrix_4',['Matrix',['../structtinyrobotics_1_1Matrix.html',1,'tinyrobotics']]],
   ['matrix_3c_20nx_2c_201_20_3e_5',['Matrix&lt; NX, 1 &gt;',['../structtinyrobotics_1_1Matrix.html',1,'tinyrobotics']]],
   ['matrix_3c_20nx_2c_20nx_20_3e_6',['Matrix&lt; NX, NX &gt;',['../structtinyrobotics_1_1Matrix.html',1,'tinyrobotics']]],

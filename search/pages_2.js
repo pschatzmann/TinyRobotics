@@ -9,7 +9,7 @@ var searchData=
   ['tinyrobotics_20odometry_20module_6',['TinyRobotics Odometry Module',['../md_src_TinyRobotics_odometry_README.html',1,'']]],
   ['tinyrobotics_20planning_20module_7',['TinyRobotics Planning Module',['../md_src_TinyRobotics_planning_README.html',1,'']]],
   ['tinyrobotics_20sensors_20module_8',['TinyRobotics Sensors Module',['../md_src_TinyRobotics_sensors_README.html',1,'']]],
-  ['tinyrobotics_20slam_20module_9',['TinyRobotics SLAM Module',['../md_src_TinyRobotics_slam_README.html',1,'']]],
+  ['tinyrobotics_20slam_20module_9',['TinyRobotics SLAM Module',['../md_src_TinyRobotics_localization_README.html',1,'']]],
   ['tinyrobotics_20units_20module_10',['TinyRobotics Units Module',['../md_src_TinyRobotics_units_README.html',1,'']]],
   ['tinyrobotics_20utils_20module_11',['TinyRobotics Utils Module',['../md_src_TinyRobotics_utils_README.html',1,'']]]
 ];

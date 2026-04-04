@@ -1,5 +1,6 @@
-<map id="GridBitMap" name="GridBitMap">
-<area shape="rect" id="node1" title=" " alt="" coords="34,168,129,193"/>
-<area shape="rect" id="node2" href="$classtinyrobotics_1_1Coordinate.html" title=" " alt="" coords="5,80,157,105"/>
-<area shape="rect" id="node3" href="$classtinyrobotics_1_1Serializable.html" title="This class defines an interface for serializable objects that can be converted to and from a string r..." alt="" coords="32,5,131,31"/>
+<map id="GridBitMap&lt; T &gt;" name="GridBitMap&lt; T &gt;">
+<area shape="rect" id="node1" title=" " alt="" coords="6,168,139,193"/>
+<area shape="rect" id="node2" href="$classtinyrobotics_1_1IMap.html" title=" " alt="" coords="5,80,97,105"/>
+<area shape="rect" id="node3" href="$classtinyrobotics_1_1Coordinate.html" title=" " alt="" coords="122,80,314,105"/>
+<area shape="rect" id="node4" href="$classtinyrobotics_1_1Serializable.html" title="This class defines an interface for serializable objects that can be converted to and from a string r..." alt="" coords="169,5,267,31"/>
 </map>

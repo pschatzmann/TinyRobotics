@@ -1,5 +1,7 @@
-<map id="FrontierExplorer&lt; MapType, CoordinateT &gt;" name="FrontierExplorer&lt; MapType, CoordinateT &gt;">
-<area shape="rect" id="node1" title="Generic exploration and frontier&#45;based SLAM utility for grid or occupancy maps." alt="" coords="5,168,208,208"/>
-<area shape="rect" id="node2" href="$classtinyrobotics_1_1Coordinate.html" title=" " alt="" coords="31,80,183,105"/>
-<area shape="rect" id="node3" href="$classtinyrobotics_1_1Serializable.html" title="This class defines an interface for serializable objects that can be converted to and from a string r..." alt="" coords="57,5,156,31"/>
+<map id="FrontierExplorer&lt; T &gt;" name="FrontierExplorer&lt; T &gt;">
+<area shape="rect" id="node1" title="Generic exploration and frontier&#45;based SLAM utility for grid or occupancy maps." alt="" coords="211,168,375,193"/>
+<area shape="rect" id="node2" href="$classtinyrobotics_1_1IFrontierExplorer.html" title="Interface for frontier&#45;based exploration utilities." alt="" coords="5,80,173,105"/>
+<area shape="rect" id="node3" href="$classtinyrobotics_1_1Coordinate.html" title=" " alt="" coords="197,80,389,105"/>
+<area shape="rect" id="node4" href="$classtinyrobotics_1_1Serializable.html" title="This class defines an interface for serializable objects that can be converted to and from a string r..." alt="" coords="244,5,343,31"/>
+<area shape="rect" id="node5" href="$classtinyrobotics_1_1IMap.html" title=" " alt="" coords="414,80,567,105"/>
 </map>

@@ -1,9 +1,9 @@
 <map id="MotionController2D&lt; T &gt;" name="MotionController2D&lt; T &gt;">
-<area shape="rect" id="node1" title="2D motion controller for path following and vehicle control." alt="" coords="545,111,732,136"/>
-<area shape="rect" id="node2" href="$classtinyrobotics_1_1MessageSource.html" title="Base class for message sources in the TinyRobotics communication framework." alt="" coords="199,5,323,31"/>
-<area shape="rect" id="node3" href="$classtinyrobotics_1_1IMotionState2D.html" title="Interface for representing the navigation state of a robot in 2D space." alt="" coords="199,55,322,80"/>
-<area shape="rect" id="node4" href="$classtinyrobotics_1_1Path.html" title=" " alt="" coords="153,105,368,145"/>
-<area shape="rect" id="node5" href="$classtinyrobotics_1_1PIDController.html" title=" " alt="" coords="177,171,344,196"/>
-<area shape="rect" id="node6" href="$classtinyrobotics_1_1Coordinate.html" title=" " alt="" coords="165,220,357,245"/>
-<area shape="rect" id="node7" href="$classtinyrobotics_1_1Serializable.html" title="This class defines an interface for serializable objects that can be converted to and from a string r..." alt="" coords="5,220,104,245"/>
+<area shape="rect" id="node1" title="2D motion controller for path following and vehicle control." alt="" coords="571,95,757,120"/>
+<area shape="rect" id="node2" href="$classtinyrobotics_1_1MessageSource.html" title="Base class for message sources in the TinyRobotics communication framework." alt="" coords="5,5,129,31"/>
+<area shape="rect" id="node3" href="$classtinyrobotics_1_1IMotionState2D.html" title="Interface for representing the navigation state of a robot in 2D space." alt="" coords="225,39,347,64"/>
+<area shape="rect" id="node4" href="$classtinyrobotics_1_1Path.html" title=" " alt="" coords="179,89,393,129"/>
+<area shape="rect" id="node5" href="$classtinyrobotics_1_1PIDController.html" title=" " alt="" coords="203,155,369,180"/>
+<area shape="rect" id="node6" href="$classtinyrobotics_1_1Coordinate.html" title=" " alt="" coords="190,204,382,229"/>
+<area shape="rect" id="node7" href="$classtinyrobotics_1_1Serializable.html" title="This class defines an interface for serializable objects that can be converted to and from a string r..." alt="" coords="18,204,117,229"/>
 </map>

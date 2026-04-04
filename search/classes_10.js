@@ -1,7 +1,7 @@
 var searchData=
 [
   ['rangesensor_0',['RangeSensor',['../classtinyrobotics_1_1RangeSensor.html',1,'tinyrobotics']]],
-  ['rangesensor_3c_20float_20_3e_1',['RangeSensor&lt; float &gt;',['../classtinyrobotics_1_1RangeSensor.html',1,'tinyrobotics']]],
+  ['rangesensor_3c_20t_20_3e_1',['RangeSensor&lt; T &gt;',['../classtinyrobotics_1_1RangeSensor.html',1,'tinyrobotics']]],
   ['rcgamepadmessagesource_2',['RCGamepadMessageSource',['../classtinyrobotics_1_1RCGamepadMessageSource.html',1,'tinyrobotics']]],
   ['readioheadstream_3',['ReadioHeadStream',['../classtinyrobotics_1_1ReadioHeadStream.html',1,'tinyrobotics']]],
   ['rebind_4',['rebind',['../structtinyrobotics_1_1AllocatorPSRAM_1_1rebind.html',1,'tinyrobotics::AllocatorPSRAM']]],
