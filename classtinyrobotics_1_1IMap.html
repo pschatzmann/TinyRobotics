@@ -92,29 +92,84 @@ Inheritance diagram for IMap&lt; T &gt;:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:af56db0da727de5b6f96f15733abddd59"><td class="memItemLeft" align="right" valign="top"><a id="af56db0da727de5b6f96f15733abddd59" name="af56db0da727de5b6f96f15733abddd59"></a>
-virtual int&#160;</td><td class="memItemRight" valign="bottom"><b>getXCount</b> () const =0</td></tr>
+<tr class="memitem:af56db0da727de5b6f96f15733abddd59"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1IMap.html#af56db0da727de5b6f96f15733abddd59">getXCount</a> () const =0</td></tr>
+<tr class="memdesc:af56db0da727de5b6f96f15733abddd59"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the number of cells in the X direction.  <br /></td></tr>
 <tr class="separator:af56db0da727de5b6f96f15733abddd59"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a32e4a0f038cc3306937b55de0a2e2e94"><td class="memItemLeft" align="right" valign="top"><a id="a32e4a0f038cc3306937b55de0a2e2e94" name="a32e4a0f038cc3306937b55de0a2e2e94"></a>
-virtual int&#160;</td><td class="memItemRight" valign="bottom"><b>getYCount</b> () const =0</td></tr>
+<tr class="memitem:a32e4a0f038cc3306937b55de0a2e2e94"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1IMap.html#a32e4a0f038cc3306937b55de0a2e2e94">getYCount</a> () const =0</td></tr>
+<tr class="memdesc:a32e4a0f038cc3306937b55de0a2e2e94"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the number of cells in the Y direction.  <br /></td></tr>
 <tr class="separator:a32e4a0f038cc3306937b55de0a2e2e94"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a48052f71080641a96cd0168864ecb39f"><td class="memItemLeft" align="right" valign="top"><a id="a48052f71080641a96cd0168864ecb39f" name="a48052f71080641a96cd0168864ecb39f"></a>
-virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>getCell</b> (int x, int y, <a class="el" href="group__utils.html#ga8787c656e38c35a93bccad5fe9a8d7d9">CellState</a> &amp;state) const =0</td></tr>
-<tr class="separator:a48052f71080641a96cd0168864ecb39f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac2076c8f6319b4506ba1c7fec781f3ee"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classtinyrobotics_1_1Coordinate.html">Coordinate</a>&lt; T &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1IMap.html#ac2076c8f6319b4506ba1c7fec781f3ee">toWorld</a> (int x, int y) const =0</td></tr>
-<tr class="separator:ac2076c8f6319b4506ba1c7fec781f3ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9b4369ef42b5c367be0aa7fd594e98a7"><td class="memItemLeft" align="right" valign="top"><a id="a9b4369ef42b5c367be0aa7fd594e98a7" name="a9b4369ef42b5c367be0aa7fd594e98a7"></a>
-virtual float&#160;</td><td class="memItemRight" valign="bottom"><b>getResolution</b> () const =0</td></tr>
+<tr class="memitem:a9b4369ef42b5c367be0aa7fd594e98a7"><td class="memItemLeft" align="right" valign="top">virtual float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1IMap.html#a9b4369ef42b5c367be0aa7fd594e98a7">getResolution</a> () const =0</td></tr>
+<tr class="memdesc:a9b4369ef42b5c367be0aa7fd594e98a7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the map resolution (cell size in meters).  <br /></td></tr>
 <tr class="separator:a9b4369ef42b5c367be0aa7fd594e98a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1b2e90d8edd5e5690929ca0ee332d485"><td class="memItemLeft" align="right" valign="top">virtual std::vector&lt; <a class="el" href="classtinyrobotics_1_1Coordinate.html">Coordinate</a>&lt; T &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1IMap.html#a1b2e90d8edd5e5690929ca0ee332d485">getNeighbors</a> (<a class="el" href="classtinyrobotics_1_1Coordinate.html">Coordinate</a>&lt; T &gt; from) const =0</td></tr>
-<tr class="memdesc:a1b2e90d8edd5e5690929ca0ee332d485"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get world coordinates of neighboring cells (for pathfinding or navigation)  <br /></td></tr>
+<tr class="memdesc:a1b2e90d8edd5e5690929ca0ee332d485"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get world coordinates of neighboring cells (for pathfinding or navigation).  <br /></td></tr>
 <tr class="separator:a1b2e90d8edd5e5690929ca0ee332d485"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0cecc8ef02a2cabba50b0d8286848cf6"><td class="memItemLeft" align="right" valign="top"><a id="a0cecc8ef02a2cabba50b0d8286848cf6" name="a0cecc8ef02a2cabba50b0d8286848cf6"></a>
-virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>isValid</b> (const <a class="el" href="classtinyrobotics_1_1Coordinate.html">Coordinate</a>&lt; float &gt; &amp;coord) const =0</td></tr>
-<tr class="memdesc:a0cecc8ef02a2cabba50b0d8286848cf6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if a world coordinate is valid (within bounds and not an obstacle) <br /></td></tr>
+<tr class="memitem:a0cecc8ef02a2cabba50b0d8286848cf6"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1IMap.html#a0cecc8ef02a2cabba50b0d8286848cf6">isValid</a> (const <a class="el" href="classtinyrobotics_1_1Coordinate.html">Coordinate</a>&lt; float &gt; &amp;coord) const =0</td></tr>
+<tr class="memdesc:a0cecc8ef02a2cabba50b0d8286848cf6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if a coordinate is inside the map bounds.  <br /></td></tr>
 <tr class="separator:a0cecc8ef02a2cabba50b0d8286848cf6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a48052f71080641a96cd0168864ecb39f"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1IMap.html#a48052f71080641a96cd0168864ecb39f">getCell</a> (int x, int y, <a class="el" href="group__utils.html#ga8787c656e38c35a93bccad5fe9a8d7d9">CellState</a> &amp;state) const =0</td></tr>
+<tr class="memdesc:a48052f71080641a96cd0168864ecb39f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the state of a cell by integer indices.  <br /></td></tr>
+<tr class="separator:a48052f71080641a96cd0168864ecb39f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac2076c8f6319b4506ba1c7fec781f3ee"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classtinyrobotics_1_1Coordinate.html">Coordinate</a>&lt; T &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1IMap.html#ac2076c8f6319b4506ba1c7fec781f3ee">toWorld</a> (int x, int y) const =0</td></tr>
+<tr class="memdesc:ac2076c8f6319b4506ba1c7fec781f3ee"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert cell indices to world coordinates.  <br /></td></tr>
+<tr class="separator:ac2076c8f6319b4506ba1c7fec781f3ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a id="a48052f71080641a96cd0168864ecb39f" name="a48052f71080641a96cd0168864ecb39f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a48052f71080641a96cd0168864ecb39f">&#9670;&#160;</a></span>getCell()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual bool getCell </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>y</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__utils.html#ga8787c656e38c35a93bccad5fe9a8d7d9">CellState</a> &amp;&#160;</td>
+          <td class="paramname"><em>state</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get the state of a cell by integer indices. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x</td><td>Cell X index </td></tr>
+    <tr><td class="paramname">y</td><td>Cell Y index </td></tr>
+    <tr><td class="paramname">state</td><td>Output: Cell state (FREE, OCCUPIED, UNKNOWN) </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True if cell is valid, false otherwise. </dd></dl>
+
+<p>Implemented in <a class="el" href="classtinyrobotics_1_1GridBitMap.html#ab57a7882fcd2f8d19986301651585bb1">GridBitMap&lt; T &gt;</a>.</p>
+
+</div>
+</div>
 <a id="a1b2e90d8edd5e5690929ca0ee332d485" name="a1b2e90d8edd5e5690929ca0ee332d485"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a1b2e90d8edd5e5690929ca0ee332d485">&#9670;&#160;</a></span>getNeighbors()</h2>
 
@@ -139,9 +194,138 @@ virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>isValid</b> (
 </table>
 </div><div class="memdoc">
 
-<p>Get world coordinates of neighboring cells (for pathfinding or navigation) </p>
+<p>Get world coordinates of neighboring cells (for pathfinding or navigation). </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">from</td><td>The cell coordinate to find neighbors for. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Vector of neighboring coordinates. </dd></dl>
 
 <p>Implemented in <a class="el" href="classtinyrobotics_1_1GridBitMap.html#a60f3893238746a814b258c753825357f">GridBitMap&lt; T &gt;</a>, and <a class="el" href="classtinyrobotics_1_1GridMap.html#a4baf12d55e814af3f2acedd6b71f188e">GridMap&lt; StateType, T &gt;</a>.</p>
+
+</div>
+</div>
+<a id="a9b4369ef42b5c367be0aa7fd594e98a7" name="a9b4369ef42b5c367be0aa7fd594e98a7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9b4369ef42b5c367be0aa7fd594e98a7">&#9670;&#160;</a></span>getResolution()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual float getResolution </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get the map resolution (cell size in meters). </p>
+
+<p>Implemented in <a class="el" href="classtinyrobotics_1_1GridBitMap.html#ad64b99aa178cb615be8271f5daaf7798">GridBitMap&lt; T &gt;</a>, and <a class="el" href="classtinyrobotics_1_1GridMap.html#ad64b99aa178cb615be8271f5daaf7798">GridMap&lt; StateType, T &gt;</a>.</p>
+
+</div>
+</div>
+<a id="af56db0da727de5b6f96f15733abddd59" name="af56db0da727de5b6f96f15733abddd59"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af56db0da727de5b6f96f15733abddd59">&#9670;&#160;</a></span>getXCount()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual int getXCount </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get the number of cells in the X direction. </p>
+
+<p>Implemented in <a class="el" href="classtinyrobotics_1_1GridBitMap.html#a54ad0b502e7d71e80eab487bbd499911">GridBitMap&lt; T &gt;</a>, and <a class="el" href="classtinyrobotics_1_1GridMap.html#a54ad0b502e7d71e80eab487bbd499911">GridMap&lt; StateType, T &gt;</a>.</p>
+
+</div>
+</div>
+<a id="a32e4a0f038cc3306937b55de0a2e2e94" name="a32e4a0f038cc3306937b55de0a2e2e94"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a32e4a0f038cc3306937b55de0a2e2e94">&#9670;&#160;</a></span>getYCount()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual int getYCount </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get the number of cells in the Y direction. </p>
+
+<p>Implemented in <a class="el" href="classtinyrobotics_1_1GridBitMap.html#aade636dd324e15605eb2664f82971279">GridBitMap&lt; T &gt;</a>, and <a class="el" href="classtinyrobotics_1_1GridMap.html#aade636dd324e15605eb2664f82971279">GridMap&lt; StateType, T &gt;</a>.</p>
+
+</div>
+</div>
+<a id="a0cecc8ef02a2cabba50b0d8286848cf6" name="a0cecc8ef02a2cabba50b0d8286848cf6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0cecc8ef02a2cabba50b0d8286848cf6">&#9670;&#160;</a></span>isValid()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual bool isValid </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classtinyrobotics_1_1Coordinate.html">Coordinate</a>&lt; float &gt; &amp;&#160;</td>
+          <td class="paramname"><em>coord</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Check if a coordinate is inside the map bounds. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">coord</td><td>The coordinate to check. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True if valid, false otherwise. </dd></dl>
 
 </div>
 </div>
@@ -178,6 +362,16 @@ virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>isValid</b> (
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Convert cell indices to world coordinates. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x</td><td>Cell X index </td></tr>
+    <tr><td class="paramname">y</td><td>Cell Y index </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>World coordinate of the cell center. </dd></dl>
 
 <p>Implemented in <a class="el" href="classtinyrobotics_1_1GridMap.html#a2fd28860d10c623f6a2afbf3ce4d99c2">GridMap&lt; StateType, T &gt;</a>, and <a class="el" href="classtinyrobotics_1_1GridBitMap.html#a48bee91a8d87a134e91d5e7b05d2d530">GridBitMap&lt; T &gt;</a>.</p>
 

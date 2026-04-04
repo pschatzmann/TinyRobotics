@@ -80,30 +80,87 @@ $(function() {
 <div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#</span><span class="preprocessor">include</span> <span class="preprocessor">&lt;</span><span class="preprocessor">vector</span><span class="preprocessor">&gt;</span></div>
 <div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#</span><span class="preprocessor">include</span> <span class="preprocessor">&quot;TinyRobotics/coordinates/Coordinate.h&quot;</span></div>
 <div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span> </div>
-<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="keyword">namespace</span> tinyrobotics {</div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
-<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T = DistanceM&gt;</div>
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="keyword">class</span> <a class="code hl_class" href="classtinyrobotics_1_1IMap.html">IMap</a> {</div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="keyword">public</span>:</div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span>  <span class="keyword">virtual</span> <span class="keywordtype">int</span> getXCount() <span class="keyword">const</span> = 0;</div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>  <span class="keyword">virtual</span> <span class="keywordtype">int</span> getYCount() <span class="keyword">const</span> = 0;</div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>  <span class="keyword">virtual</span> <span class="keywordtype">bool</span> getCell(<span class="keywordtype">int</span> x, <span class="keywordtype">int</span> y, <a class="code hl_enumeration" href="group__utils.html#ga8787c656e38c35a93bccad5fe9a8d7d9">CellState</a>&amp; state) <span class="keyword">const</span> = 0;</div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>  <span class="keyword">virtual</span> <a class="code hl_class" href="classtinyrobotics_1_1Coordinate.html">Coordinate</a>&lt;T&gt; toWorld(<span class="keywordtype">int</span> x, <span class="keywordtype">int</span> y) <span class="keyword">const</span> = 0;</div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>  <span class="keyword">virtual</span> <span class="keywordtype">float</span> getResolution() <span class="keyword">const</span> = 0;</div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span> </div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>  <span class="comment">/// Get world coordinates of neighboring cells (for pathfinding or navigation)</span></div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>  <span class="keyword">virtual</span> <a class="code hl_function" href="classtinyrobotics_1_1IMap.html#a1b2e90d8edd5e5690929ca0ee332d485">std</a>::<a class="code hl_function" href="classtinyrobotics_1_1IMap.html#a1b2e90d8edd5e5690929ca0ee332d485">vector</a>&lt;<a class="code hl_function" href="classtinyrobotics_1_1IMap.html#a1b2e90d8edd5e5690929ca0ee332d485">Coordinate</a>&lt;<a class="code hl_function" href="classtinyrobotics_1_1IMap.html#a1b2e90d8edd5e5690929ca0ee332d485">T</a>&gt;&gt; <a class="code hl_function" href="classtinyrobotics_1_1IMap.html#a1b2e90d8edd5e5690929ca0ee332d485">getNeighbors</a>(<a class="code hl_function" href="classtinyrobotics_1_1IMap.html#a1b2e90d8edd5e5690929ca0ee332d485">Coordinate</a>&lt;<a class="code hl_function" href="classtinyrobotics_1_1IMap.html#a1b2e90d8edd5e5690929ca0ee332d485">T</a>&gt; <a class="code hl_function" href="classtinyrobotics_1_1IMap.html#a1b2e90d8edd5e5690929ca0ee332d485">from</a>) <span class="keyword">const</span> = 0;</div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> </div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>  <span class="comment">/// Check if a world coordinate is valid (within bounds and not an obstacle)</span></div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>  <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code hl_function" href="classtinyrobotics_1_1IMap.html#a0cecc8ef02a2cabba50b0d8286848cf6">isValid</a>(<span class="keyword">const</span> <a class="code hl_class" href="classtinyrobotics_1_1Coordinate.html">Coordinate</a>&lt;<span class="keywordtype">float</span>&gt;&amp; coord) <span class="keyword">const</span>  = 0;</div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>};</div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span> </div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>}</div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment">/**</span></div>
+<div class="line"><span class="lineno">    6</span><span class="comment"> * @class IMap</span></div>
+<div class="line"><span class="lineno">    7</span><span class="comment"> * @ingroup maps</span></div>
+<div class="line"><span class="lineno">    8</span><span class="comment"> * @brief Abstract interface for 2D grid maps in TinyRobotics.</span></div>
+<div class="line"><span class="lineno">    9</span><span class="comment"> *</span></div>
+<div class="line"><span class="lineno">   10</span><span class="comment"> * Provides a generic interface for occupancy grid maps, supporting cell access,</span></div>
+<div class="line"><span class="lineno">   11</span><span class="comment"> * coordinate transforms, and neighbor queries. All map implementations (e.g., GridBitMap)</span></div>
+<div class="line"><span class="lineno">   12</span><span class="comment"> * must inherit from this interface and implement all pure virtual methods.</span></div>
+<div class="line"><span class="lineno">   13</span><span class="comment"> *</span></div>
+<div class="line"><span class="lineno">   14</span><span class="comment"> * @tparam T Scalar type for coordinates and math (default: DistanceM)</span></div>
+<div class="line"><span class="lineno">   15</span><span class="comment"> *</span></div>
+<div class="line"><span class="lineno">   16</span><span class="comment"> * ### Required Methods</span></div>
+<div class="line"><span class="lineno">   17</span><span class="comment"> * - getXCount(), getYCount(): Map dimensions in cells</span></div>
+<div class="line"><span class="lineno">   18</span><span class="comment"> * - getResolution(): Cell size in meters</span></div>
+<div class="line"><span class="lineno">   19</span><span class="comment"> * - getNeighbors(): Neighboring cell coordinates for pathfinding</span></div>
+<div class="line"><span class="lineno">   20</span><span class="comment"> * - isValid(): Check if a coordinate is inside the map</span></div>
+<div class="line"><span class="lineno">   21</span><span class="comment"> * - getCell(): Get cell state (FREE, OCCUPIED, UNKNOWN) by index</span></div>
+<div class="line"><span class="lineno">   22</span><span class="comment"> * - toWorld(): Convert cell indices to world coordinates</span></div>
+<div class="line"><span class="lineno">   23</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="keyword">namespace</span> tinyrobotics {</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span> </div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T = DistanceM&gt;</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="keyword">class</span> <a class="code hl_class" href="classtinyrobotics_1_1IMap.html">IMap</a> {</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>  <span class="comment">/**</span></div>
+<div class="line"><span class="lineno">   30</span><span class="comment">   * @brief Get the number of cells in the X direction.</span></div>
+<div class="line"><span class="lineno">   31</span><span class="comment">   */</span></div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>  <span class="keyword">virtual</span> <span class="keywordtype">int</span> <a class="code hl_function" href="classtinyrobotics_1_1IMap.html#af56db0da727de5b6f96f15733abddd59">getXCount</a>() <span class="keyword">const</span> = 0;</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span> </div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>  <span class="comment">/**</span></div>
+<div class="line"><span class="lineno">   35</span><span class="comment">   * @brief Get the number of cells in the Y direction.</span></div>
+<div class="line"><span class="lineno">   36</span><span class="comment">   */</span></div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>  <span class="keyword">virtual</span> <span class="keywordtype">int</span> <a class="code hl_function" href="classtinyrobotics_1_1IMap.html#a32e4a0f038cc3306937b55de0a2e2e94">getYCount</a>() <span class="keyword">const</span> = 0;</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span> </div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>  <span class="comment">/**</span></div>
+<div class="line"><span class="lineno">   40</span><span class="comment">   * @brief Get the map resolution (cell size in meters).</span></div>
+<div class="line"><span class="lineno">   41</span><span class="comment">   */</span></div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>  <span class="keyword">virtual</span> <span class="keywordtype">float</span> <a class="code hl_function" href="classtinyrobotics_1_1IMap.html#a9b4369ef42b5c367be0aa7fd594e98a7">getResolution</a>() <span class="keyword">const</span> = 0;</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span> </div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>  <span class="comment">/**</span></div>
+<div class="line"><span class="lineno">   45</span><span class="comment">   * @brief Get world coordinates of neighboring cells (for pathfinding or navigation).</span></div>
+<div class="line"><span class="lineno">   46</span><span class="comment">   * @param from The cell coordinate to find neighbors for.</span></div>
+<div class="line"><span class="lineno">   47</span><span class="comment">   * @return Vector of neighboring coordinates.</span></div>
+<div class="line"><span class="lineno">   48</span><span class="comment">   */</span></div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>  <span class="keyword">virtual</span> <a class="code hl_function" href="classtinyrobotics_1_1IMap.html#a1b2e90d8edd5e5690929ca0ee332d485">std</a>::<a class="code hl_function" href="classtinyrobotics_1_1IMap.html#a1b2e90d8edd5e5690929ca0ee332d485">vector</a>&lt;<a class="code hl_function" href="classtinyrobotics_1_1IMap.html#a1b2e90d8edd5e5690929ca0ee332d485">Coordinate</a>&lt;<a class="code hl_function" href="classtinyrobotics_1_1IMap.html#a1b2e90d8edd5e5690929ca0ee332d485">T</a>&gt;&gt; <a class="code hl_function" href="classtinyrobotics_1_1IMap.html#a1b2e90d8edd5e5690929ca0ee332d485">getNeighbors</a>(<a class="code hl_function" href="classtinyrobotics_1_1IMap.html#a1b2e90d8edd5e5690929ca0ee332d485">Coordinate</a>&lt;<a class="code hl_function" href="classtinyrobotics_1_1IMap.html#a1b2e90d8edd5e5690929ca0ee332d485">T</a>&gt; <a class="code hl_function" href="classtinyrobotics_1_1IMap.html#a1b2e90d8edd5e5690929ca0ee332d485">from</a>) <span class="keyword">const</span> = 0;</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span> </div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>  <span class="comment">/**</span></div>
+<div class="line"><span class="lineno">   52</span><span class="comment">   * @brief Check if a coordinate is inside the map bounds.</span></div>
+<div class="line"><span class="lineno">   53</span><span class="comment">   * @param coord The coordinate to check.</span></div>
+<div class="line"><span class="lineno">   54</span><span class="comment">   * @return True if valid, false otherwise.</span></div>
+<div class="line"><span class="lineno">   55</span><span class="comment">   */</span></div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>  <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code hl_function" href="classtinyrobotics_1_1IMap.html#a0cecc8ef02a2cabba50b0d8286848cf6">isValid</a>(<span class="keyword">const</span> <a class="code hl_class" href="classtinyrobotics_1_1Coordinate.html">Coordinate</a>&lt;<span class="keywordtype">float</span>&gt;&amp; coord) <span class="keyword">const</span>  = 0;</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span> </div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>  <span class="comment">/**</span></div>
+<div class="line"><span class="lineno">   59</span><span class="comment">   * @brief Get the state of a cell by integer indices.</span></div>
+<div class="line"><span class="lineno">   60</span><span class="comment">   * @param x Cell X index</span></div>
+<div class="line"><span class="lineno">   61</span><span class="comment">   * @param y Cell Y index</span></div>
+<div class="line"><span class="lineno">   62</span><span class="comment">   * @param state Output: Cell state (FREE, OCCUPIED, UNKNOWN)</span></div>
+<div class="line"><span class="lineno">   63</span><span class="comment">   * @return True if cell is valid, false otherwise.</span></div>
+<div class="line"><span class="lineno">   64</span><span class="comment">   */</span></div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>  <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code hl_function" href="classtinyrobotics_1_1IMap.html#a48052f71080641a96cd0168864ecb39f">getCell</a>(<span class="keywordtype">int</span> x, <span class="keywordtype">int</span> y, <a class="code hl_enumeration" href="group__utils.html#ga8787c656e38c35a93bccad5fe9a8d7d9">CellState</a>&amp; state) <span class="keyword">const</span> = 0;</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span> </div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>  <span class="comment">/**</span></div>
+<div class="line"><span class="lineno">   68</span><span class="comment">   * @brief Convert cell indices to world coordinates.</span></div>
+<div class="line"><span class="lineno">   69</span><span class="comment">   * @param x Cell X index</span></div>
+<div class="line"><span class="lineno">   70</span><span class="comment">   * @param y Cell Y index</span></div>
+<div class="line"><span class="lineno">   71</span><span class="comment">   * @return World coordinate of the cell center.</span></div>
+<div class="line"><span class="lineno">   72</span><span class="comment">   */</span></div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>  <span class="keyword">virtual</span> <a class="code hl_class" href="classtinyrobotics_1_1Coordinate.html">Coordinate</a>&lt;T&gt; <a class="code hl_function" href="classtinyrobotics_1_1IMap.html#ac2076c8f6319b4506ba1c7fec781f3ee">toWorld</a>(<span class="keywordtype">int</span> x, <span class="keywordtype">int</span> y) <span class="keyword">const</span> = 0;</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>};</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span> </div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>}</div>
 <div class="ttc" id="aclasstinyrobotics_1_1Coordinate_html"><div class="ttname"><a href="classtinyrobotics_1_1Coordinate.html">tinyrobotics::Coordinate</a></div><div class="ttdoc">A generic 3D coordinate class for robotics, navigation, and spatial calculations.</div><div class="ttdef"><b>Definition:</b> Coordinate.h:57</div></div>
-<div class="ttc" id="aclasstinyrobotics_1_1IMap_html"><div class="ttname"><a href="classtinyrobotics_1_1IMap.html">tinyrobotics::IMap</a></div><div class="ttdef"><b>Definition:</b> IMap.h:8</div></div>
-<div class="ttc" id="aclasstinyrobotics_1_1IMap_html_a0cecc8ef02a2cabba50b0d8286848cf6"><div class="ttname"><a href="classtinyrobotics_1_1IMap.html#a0cecc8ef02a2cabba50b0d8286848cf6">tinyrobotics::IMap::isValid</a></div><div class="ttdeci">virtual bool isValid(const Coordinate&lt; float &gt; &amp;coord) const =0</div><div class="ttdoc">Check if a world coordinate is valid (within bounds and not an obstacle)</div></div>
-<div class="ttc" id="aclasstinyrobotics_1_1IMap_html_a1b2e90d8edd5e5690929ca0ee332d485"><div class="ttname"><a href="classtinyrobotics_1_1IMap.html#a1b2e90d8edd5e5690929ca0ee332d485">tinyrobotics::IMap::getNeighbors</a></div><div class="ttdeci">virtual std::vector&lt; Coordinate&lt; T &gt; &gt; getNeighbors(Coordinate&lt; T &gt; from) const =0</div><div class="ttdoc">Get world coordinates of neighboring cells (for pathfinding or navigation)</div></div>
+<div class="ttc" id="aclasstinyrobotics_1_1IMap_html"><div class="ttname"><a href="classtinyrobotics_1_1IMap.html">tinyrobotics::IMap</a></div><div class="ttdef"><b>Definition:</b> IMap.h:27</div></div>
+<div class="ttc" id="aclasstinyrobotics_1_1IMap_html_a0cecc8ef02a2cabba50b0d8286848cf6"><div class="ttname"><a href="classtinyrobotics_1_1IMap.html#a0cecc8ef02a2cabba50b0d8286848cf6">tinyrobotics::IMap::isValid</a></div><div class="ttdeci">virtual bool isValid(const Coordinate&lt; float &gt; &amp;coord) const =0</div><div class="ttdoc">Check if a coordinate is inside the map bounds.</div></div>
+<div class="ttc" id="aclasstinyrobotics_1_1IMap_html_a1b2e90d8edd5e5690929ca0ee332d485"><div class="ttname"><a href="classtinyrobotics_1_1IMap.html#a1b2e90d8edd5e5690929ca0ee332d485">tinyrobotics::IMap::getNeighbors</a></div><div class="ttdeci">virtual std::vector&lt; Coordinate&lt; T &gt; &gt; getNeighbors(Coordinate&lt; T &gt; from) const =0</div><div class="ttdoc">Get world coordinates of neighboring cells (for pathfinding or navigation).</div></div>
+<div class="ttc" id="aclasstinyrobotics_1_1IMap_html_a32e4a0f038cc3306937b55de0a2e2e94"><div class="ttname"><a href="classtinyrobotics_1_1IMap.html#a32e4a0f038cc3306937b55de0a2e2e94">tinyrobotics::IMap::getYCount</a></div><div class="ttdeci">virtual int getYCount() const =0</div><div class="ttdoc">Get the number of cells in the Y direction.</div></div>
+<div class="ttc" id="aclasstinyrobotics_1_1IMap_html_a48052f71080641a96cd0168864ecb39f"><div class="ttname"><a href="classtinyrobotics_1_1IMap.html#a48052f71080641a96cd0168864ecb39f">tinyrobotics::IMap::getCell</a></div><div class="ttdeci">virtual bool getCell(int x, int y, CellState &amp;state) const =0</div><div class="ttdoc">Get the state of a cell by integer indices.</div></div>
+<div class="ttc" id="aclasstinyrobotics_1_1IMap_html_a9b4369ef42b5c367be0aa7fd594e98a7"><div class="ttname"><a href="classtinyrobotics_1_1IMap.html#a9b4369ef42b5c367be0aa7fd594e98a7">tinyrobotics::IMap::getResolution</a></div><div class="ttdeci">virtual float getResolution() const =0</div><div class="ttdoc">Get the map resolution (cell size in meters).</div></div>
+<div class="ttc" id="aclasstinyrobotics_1_1IMap_html_ac2076c8f6319b4506ba1c7fec781f3ee"><div class="ttname"><a href="classtinyrobotics_1_1IMap.html#ac2076c8f6319b4506ba1c7fec781f3ee">tinyrobotics::IMap::toWorld</a></div><div class="ttdeci">virtual Coordinate&lt; T &gt; toWorld(int x, int y) const =0</div><div class="ttdoc">Convert cell indices to world coordinates.</div></div>
+<div class="ttc" id="aclasstinyrobotics_1_1IMap_html_af56db0da727de5b6f96f15733abddd59"><div class="ttname"><a href="classtinyrobotics_1_1IMap.html#af56db0da727de5b6f96f15733abddd59">tinyrobotics::IMap::getXCount</a></div><div class="ttdeci">virtual int getXCount() const =0</div><div class="ttdoc">Get the number of cells in the X direction.</div></div>
 <div class="ttc" id="agroup__utils_html_ga8787c656e38c35a93bccad5fe9a8d7d9"><div class="ttname"><a href="group__utils.html#ga8787c656e38c35a93bccad5fe9a8d7d9">tinyrobotics::CellState</a></div><div class="ttdeci">CellState</div><div class="ttdoc">Cell state for occupancy grid mapping (e.g., UNKNOWN, FREE, OCCUPIED).</div><div class="ttdef"><b>Definition:</b> Common.h:30</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->

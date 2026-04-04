@@ -4,7 +4,7 @@ var searchData=
   ['ifrontierexplorer_1',['IFrontierExplorer',['../classtinyrobotics_1_1IFrontierExplorer.html',1,'tinyrobotics']]],
   ['ifrontierexplorer_3c_20distancem_20_3e_2',['IFrontierExplorer&lt; DistanceM &gt;',['../classtinyrobotics_1_1IFrontierExplorer.html',1,'tinyrobotics']]],
   ['ifrontierexplorer_3c_20t_20_3e_3',['IFrontierExplorer&lt; T &gt;',['../classtinyrobotics_1_1IFrontierExplorer.html',1,'tinyrobotics']]],
-  ['imap_4',['IMap',['../classtinyrobotics_1_1IMap.html',1,'tinyrobotics']]],
+  ['imap_4',['IMap',['../classIMap.html',1,'IMap'],['../classtinyrobotics_1_1IMap.html',1,'IMap&lt; T &gt;']]],
   ['imap_3c_20distancem_20_3e_5',['IMap&lt; DistanceM &gt;',['../classtinyrobotics_1_1IMap.html',1,'tinyrobotics']]],
   ['imap_3c_20t_20_3e_6',['IMap&lt; T &gt;',['../classtinyrobotics_1_1IMap.html',1,'tinyrobotics']]],
   ['imotionstate2d_7',['IMotionState2D',['../classtinyrobotics_1_1IMotionState2D.html',1,'tinyrobotics']]],

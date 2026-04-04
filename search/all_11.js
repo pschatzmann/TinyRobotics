@@ -102,8 +102,9 @@ var searchData=
   ['steppermotor_99',['StepperMotor',['../classtinyrobotics_1_1StepperMotor.html',1,'tinyrobotics']]],
   ['stream_100',['Stream',['../classtinyrobotics__arduino_1_1Stream.html',1,'tinyrobotics_arduino']]],
   ['subscribe_101',['subscribe',['../classtinyrobotics_1_1MessageSource.html#a6f644591faf6edfeceef6b7776b331df',1,'tinyrobotics::MessageSource::subscribe()'],['../classtinyrobotics_1_1LocalizationAndMapping2D.html#a6f644591faf6edfeceef6b7776b331df',1,'tinyrobotics::LocalizationAndMapping2D::subscribe()']]],
-  ['synchronizedbuffer_102',['SynchronizedBuffer',['../classtinyrobotics_1_1SynchronizedBuffer.html',1,'tinyrobotics']]],
-  ['synchronizedbufferrtos_103',['SynchronizedBufferRTOS',['../group__concurrency.html#gaf8c8076294cfef1804d5857a9e506492',1,'tinyrobotics']]],
-  ['synchronizedqueue_104',['SynchronizedQueue',['../classtinyrobotics_1_1SynchronizedQueue.html',1,'tinyrobotics']]],
-  ['synchronizedstream_105',['SynchronizedStream',['../classtinyrobotics_1_1SynchronizedStream.html',1,'tinyrobotics']]]
+  ['switch_5ffirst_5flast_102',['SWITCH_FIRST_LAST',['../group__planning.html#gga745ea1c02850e7a0ceb57abd1ff7ea20ad8a63c5450911296b2301ce556a825a5',1,'tinyrobotics']]],
+  ['synchronizedbuffer_103',['SynchronizedBuffer',['../classtinyrobotics_1_1SynchronizedBuffer.html',1,'tinyrobotics']]],
+  ['synchronizedbufferrtos_104',['SynchronizedBufferRTOS',['../group__concurrency.html#gaf8c8076294cfef1804d5857a9e506492',1,'tinyrobotics']]],
+  ['synchronizedqueue_105',['SynchronizedQueue',['../classtinyrobotics_1_1SynchronizedQueue.html',1,'tinyrobotics']]],
+  ['synchronizedstream_106',['SynchronizedStream',['../classtinyrobotics_1_1SynchronizedStream.html',1,'tinyrobotics']]]
 ];

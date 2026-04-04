@@ -70,7 +70,8 @@ $(function() {
 
 <div class="header">
   <div class="summary">
-<a href="#nested-classes">Classes</a>  </div>
+<a href="#nested-classes">Classes</a> &#124;
+<a href="#enum-members">Enumerations</a>  </div>
   <div class="headertitle"><div class="title">Planning<div class="ingroups"><a class="el" href="group__main.html">TinyRobotics</a></div></div></div>
 </div><!--header-->
 <div class="contents">
@@ -95,6 +96,12 @@ Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1Dijkstra.html">Dijkstra&lt; MapType, Node &gt;</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generic <a class="el" href="classtinyrobotics_1_1Dijkstra.html" title="Generic Dijkstra shortest path algorithm for graphs/maps with callback-based cost and validity.">Dijkstra</a> shortest path algorithm for graphs/maps with callback-based cost and validity.  <a href="classtinyrobotics_1_1Dijkstra.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1FrontierExplorer.html">FrontierExplorer&lt; T &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generic exploration and frontier-based SLAM utility for grid or occupancy maps.  <a href="classtinyrobotics_1_1FrontierExplorer.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">interface &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1IFrontierExplorer.html">IFrontierExplorer&lt; T &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Interface for frontier-based exploration utilities.  <a href="classtinyrobotics_1_1IFrontierExplorer.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1ScheduledWayPoint.html">ScheduledWayPoint&lt; T &gt;</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Represents a waypoint with an associated timestamp.  <a href="classtinyrobotics_1_1ScheduledWayPoint.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -104,9 +111,66 @@ Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1Path.html">Path&lt; T, Allocator &gt;</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A simple path class that holds a sequence of waypoints. Each waypoint is e.g. a coordinate (e.g., x,y,z) that the robot should follow. The path can be used for navigation, motion planning, or trajectory execution. It provides methods to add waypoints.  <a href="classtinyrobotics_1_1Path.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="enum-members" name="enum-members"></a>
+Enumerations</h2></td></tr>
+<tr class="memitem:ga745ea1c02850e7a0ceb57abd1ff7ea20"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__planning.html#ga745ea1c02850e7a0ceb57abd1ff7ea20">FrontierSelectionStrategy</a> { <br />
+&#160;&#160;<a class="el" href="group__planning.html#gga745ea1c02850e7a0ceb57abd1ff7ea20a170e02e86972c2be8559884cc3c12254">RANDOM</a>
+, <a class="el" href="group__planning.html#gga745ea1c02850e7a0ceb57abd1ff7ea20aad135772d7cf93dd0ccf9d2474b34e6a">NEAREST</a>
+, <a class="el" href="group__planning.html#gga745ea1c02850e7a0ceb57abd1ff7ea20ae6887a217aac2e6a015efe499d1c0f81">FARTHEST</a>
+, <a class="el" href="group__planning.html#gga745ea1c02850e7a0ceb57abd1ff7ea20a2c2624a5059934a947d6e25fe8332ade">FIRST</a>
+, <br />
+&#160;&#160;<a class="el" href="group__planning.html#gga745ea1c02850e7a0ceb57abd1ff7ea20af447f5c03508de4d88e340390ba7c78f">LAST</a>
+, <a class="el" href="group__planning.html#gga745ea1c02850e7a0ceb57abd1ff7ea20ad8a63c5450911296b2301ce556a825a5">SWITCH_FIRST_LAST</a>
+, <a class="el" href="group__planning.html#gga745ea1c02850e7a0ceb57abd1ff7ea20a72baef04098f035e8a320b03ad197818">CUSTOM</a>
+<br />
+ }</td></tr>
+<tr class="memdesc:ga745ea1c02850e7a0ceb57abd1ff7ea20"><td class="mdescLeft">&#160;</td><td class="mdescRight">Strategy for selecting the next frontier cell to explore. Used by <code>FrontierExplorer</code> to determine how the next exploration frontier is chosen.  <a href="group__planning.html#ga745ea1c02850e7a0ceb57abd1ff7ea20">More...</a><br /></td></tr>
+<tr class="separator:ga745ea1c02850e7a0ceb57abd1ff7ea20"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <p>Path planning and search algorithms (A*, Dijkstra, etc.) </p>
+<h2 class="groupheader">Enumeration Type Documentation</h2>
+<a id="ga745ea1c02850e7a0ceb57abd1ff7ea20" name="ga745ea1c02850e7a0ceb57abd1ff7ea20"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga745ea1c02850e7a0ceb57abd1ff7ea20">&#9670;&#160;</a></span>FrontierSelectionStrategy</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum class <a class="el" href="group__planning.html#ga745ea1c02850e7a0ceb57abd1ff7ea20">FrontierSelectionStrategy</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">strong</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Strategy for selecting the next frontier cell to explore. Used by <code><a class="el" href="classtinyrobotics_1_1FrontierExplorer.html" title="Generic exploration and frontier-based SLAM utility for grid or occupancy maps.">FrontierExplorer</a></code> to determine how the next exploration frontier is chosen. </p>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="gga745ea1c02850e7a0ceb57abd1ff7ea20a170e02e86972c2be8559884cc3c12254" name="gga745ea1c02850e7a0ceb57abd1ff7ea20a170e02e86972c2be8559884cc3c12254"></a>RANDOM&#160;</td><td class="fielddoc"><p>Randomly select a frontier cell. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga745ea1c02850e7a0ceb57abd1ff7ea20aad135772d7cf93dd0ccf9d2474b34e6a" name="gga745ea1c02850e7a0ceb57abd1ff7ea20aad135772d7cf93dd0ccf9d2474b34e6a"></a>NEAREST&#160;</td><td class="fielddoc"><p>Select the frontier cell closest to the robot. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga745ea1c02850e7a0ceb57abd1ff7ea20ae6887a217aac2e6a015efe499d1c0f81" name="gga745ea1c02850e7a0ceb57abd1ff7ea20ae6887a217aac2e6a015efe499d1c0f81"></a>FARTHEST&#160;</td><td class="fielddoc"><p>Select the frontier cell farthest from the robot. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga745ea1c02850e7a0ceb57abd1ff7ea20a2c2624a5059934a947d6e25fe8332ade" name="gga745ea1c02850e7a0ceb57abd1ff7ea20a2c2624a5059934a947d6e25fe8332ade"></a>FIRST&#160;</td><td class="fielddoc"><p>Select the first frontier cell found (e.g., in scan order) </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga745ea1c02850e7a0ceb57abd1ff7ea20af447f5c03508de4d88e340390ba7c78f" name="gga745ea1c02850e7a0ceb57abd1ff7ea20af447f5c03508de4d88e340390ba7c78f"></a>LAST&#160;</td><td class="fielddoc"><p>Select the last frontier cell found. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga745ea1c02850e7a0ceb57abd1ff7ea20ad8a63c5450911296b2301ce556a825a5" name="gga745ea1c02850e7a0ceb57abd1ff7ea20ad8a63c5450911296b2301ce556a825a5"></a>SWITCH_FIRST_LAST&#160;</td><td class="fielddoc"><p>Alternate between first and last on each call. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga745ea1c02850e7a0ceb57abd1ff7ea20a72baef04098f035e8a320b03ad197818" name="gga745ea1c02850e7a0ceb57abd1ff7ea20a72baef04098f035e8a320b03ad197818"></a>CUSTOM&#160;</td><td class="fielddoc"><p>Use a user-defined callback to select the frontier. </p>
+</td></tr>
+</table>
+
+</div>
+</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

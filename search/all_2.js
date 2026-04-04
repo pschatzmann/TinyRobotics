@@ -40,5 +40,5 @@ var searchData=
   ['countchangessplithorizontal_37',['countChangesSplitHorizontal',['../classtinyrobotics_1_1CameraImageDiff.html#ab5967af5c6af0e0b5a54b9e8d37af67d',1,'tinyrobotics::CameraImageDiff']]],
   ['countchangessplitvertical_38',['countChangesSplitVertical',['../classtinyrobotics_1_1CameraImageDiff.html#a56cc39dd23ffc021c519f534c19a21fd',1,'tinyrobotics::CameraImageDiff']]],
   ['create_39',['create',['../classtinyrobotics_1_1Task.html#a0924715b76f5f0305eda62e802cfcf2b',1,'tinyrobotics::Task']]],
-  ['custom_40',['CUSTOM',['../group__utils.html#ggae63373b1147a2e480cea6083c3f9dc6ca72baef04098f035e8a320b03ad197818',1,'tinyrobotics']]]
+  ['custom_40',['CUSTOM',['../group__planning.html#gga745ea1c02850e7a0ceb57abd1ff7ea20a72baef04098f035e8a320b03ad197818',1,'CUSTOM()tinyrobotics'],['../group__utils.html#ggae63373b1147a2e480cea6083c3f9dc6ca72baef04098f035e8a320b03ad197818',1,'CUSTOM()tinyrobotics']]]
 ];
