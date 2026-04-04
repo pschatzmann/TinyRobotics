@@ -1,6 +1,7 @@
 <map id="IMap&lt; T &gt;" name="IMap&lt; T &gt;">
-<area shape="rect" id="node1" title=" " alt="" coords="194,5,286,31"/>
-<area shape="rect" id="node2" href="$classtinyrobotics_1_1CallbackMap.html" title="A map&#45;like utility for generating and validating neighbor coordinates in a configurable pattern." alt="" coords="5,79,149,104"/>
-<area shape="rect" id="node3" href="$classtinyrobotics_1_1GridBitMap.html" title=" " alt="" coords="173,79,307,104"/>
-<area shape="rect" id="node4" href="$classtinyrobotics_1_1GridMap.html" title="A grid map for spatial representation, navigation, and planning." alt="" coords="331,79,517,104"/>
+<area shape="rect" id="node1" title="Abstract interface for 2D grid maps and occupancy maps in TinyRobotics." alt="" coords="194,79,286,104"/>
+<area shape="rect" id="node3" href="$classtinyrobotics_1_1CallbackMap.html" title="A map&#45;like utility for generating and validating neighbor coordinates in a configurable pattern." alt="" coords="5,152,149,177"/>
+<area shape="rect" id="node4" href="$classtinyrobotics_1_1GridBitMap.html" title=" " alt="" coords="173,152,307,177"/>
+<area shape="rect" id="node5" href="$classtinyrobotics_1_1GridMap.html" title="A grid map for spatial representation, navigation, and planning." alt="" coords="331,152,517,177"/>
+<area shape="rect" id="node2" href="$classtinyrobotics_1_1IMapNeighbors.html" title="Abstract interface for neighbor queries in map&#45;like data structures." alt="" coords="161,5,319,31"/>
 </map>

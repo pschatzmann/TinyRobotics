@@ -19,12 +19,13 @@ var searchData=
   ['pixel_16',['Pixel',['../group__utils.html#ggabceb2331ad056e3c5ad27894199a49eda08822b3ae4e2aede0afe08abe600e9c0',1,'tinyrobotics']]],
   ['planning_17',['Planning',['../group__planning.html',1,'']]],
   ['point3d_18',['Point3D',['../structtinyrobotics_1_1Point3D.html',1,'tinyrobotics']]],
-  ['pointcloud_19',['PointCloud',['../classtinyrobotics_1_1PointCloud.html',1,'tinyrobotics']]],
-  ['points_20',['points',['../classtinyrobotics_1_1PointCloud.html#a3d86a0a941631e0158f66b8231c4fa9f',1,'tinyrobotics::PointCloud::points() const'],['../classtinyrobotics_1_1PointCloud.html#a9705d7311203b4bb2fea87c54f00a4cf',1,'tinyrobotics::PointCloud::points()']]],
-  ['pos_21',['pos',['../classtinyrobotics_1_1Transform2D.html#a33d05d27c8c96122896148c7e2b90891',1,'tinyrobotics::Transform2D']]],
-  ['pose2d_22',['Pose2D',['../structtinyrobotics_1_1Fusion2D_1_1Pose2D.html',1,'tinyrobotics::Fusion2D']]],
-  ['predict_23',['predict',['../classtinyrobotics_1_1Fusion2D.html#a5c9a692fc52b8092d2a5368f6add98bf',1,'tinyrobotics::Fusion2D']]],
-  ['prefix_24',['prefix',['../structtinyrobotics_1_1Message.html#a5b41c5ae4505891e6c53e26df197e02b',1,'tinyrobotics::Message']]],
-  ['primary_5fmaster_5fkey_25',['primary_master_key',['../structtinyrobotics_1_1ESPNowStreamConfig.html#a4574b7c5bb954f02512bab0493b16955',1,'tinyrobotics::ESPNowStreamConfig']]],
-  ['print_26',['Print',['../classtinyrobotics__arduino_1_1Print.html',1,'tinyrobotics_arduino']]]
+  ['point3d_3c_20t_20_3e_19',['Point3D&lt; T &gt;',['../structtinyrobotics_1_1Point3D.html',1,'tinyrobotics']]],
+  ['pointcloud_20',['PointCloud',['../classtinyrobotics_1_1PointCloud.html',1,'tinyrobotics']]],
+  ['points_21',['points',['../classtinyrobotics_1_1PointCloud.html#a3d86a0a941631e0158f66b8231c4fa9f',1,'tinyrobotics::PointCloud::points() const'],['../classtinyrobotics_1_1PointCloud.html#a9705d7311203b4bb2fea87c54f00a4cf',1,'tinyrobotics::PointCloud::points()']]],
+  ['pos_22',['pos',['../classtinyrobotics_1_1Transform2D.html#a33d05d27c8c96122896148c7e2b90891',1,'tinyrobotics::Transform2D']]],
+  ['pose2d_23',['Pose2D',['../structtinyrobotics_1_1Fusion2D_1_1Pose2D.html',1,'tinyrobotics::Fusion2D']]],
+  ['predict_24',['predict',['../classtinyrobotics_1_1Fusion2D.html#a5c9a692fc52b8092d2a5368f6add98bf',1,'tinyrobotics::Fusion2D']]],
+  ['prefix_25',['prefix',['../structtinyrobotics_1_1Message.html#a5b41c5ae4505891e6c53e26df197e02b',1,'tinyrobotics::Message']]],
+  ['primary_5fmaster_5fkey_26',['primary_master_key',['../structtinyrobotics_1_1ESPNowStreamConfig.html#a4574b7c5bb954f02512bab0493b16955',1,'tinyrobotics::ESPNowStreamConfig']]],
+  ['print_27',['Print',['../classtinyrobotics__arduino_1_1Print.html',1,'tinyrobotics_arduino']]]
 ];

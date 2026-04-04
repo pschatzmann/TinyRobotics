@@ -73,9 +73,9 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><p>This module provides classes for estimating the position and orientation (pose) of a robot in 2D or 3D space using odometry. Odometry is essential for mobile robots to track their movement over time based on wheel encoders, velocity commands, or steering data. 3D odometry is especially useful for drones, underwater vehicles, and any robot operating in full 3D.</p>
-<h1><a class="anchor" id="autotoc_md130"></a>
+<h1><a class="anchor" id="autotoc_md131"></a>
 Classes</h1>
-<h2><a class="anchor" id="autotoc_md131"></a>
+<h2><a class="anchor" id="autotoc_md132"></a>
 Odometry2D</h2>
 <p>Tracks the 2D position (x, y) and orientation (theta) of a robot using velocity and steering angle inputs. Supports both differential drive and Ackermann steering kinematics.</p>
 <p><b>Features:</b></p><ul>
@@ -106,7 +106,7 @@ Odometry2D</h2>
 <div class="line"><span class="keyword">auto</span> pos = odom.getPosition();</div>
 <div class="line"><span class="keywordtype">float</span> heading = odom.getTheta();</div>
 <div class="line">Serial.printf(<span class="stringliteral">&quot;x=%.2f, y=%.2f, theta=%.2f\n&quot;</span>, pos.x, pos.y, heading);</div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md132"></a>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md133"></a>
 Odometry3D</h2>
 <p>Tracks the 3D position (x, y, z) and orientation (yaw, pitch, roll) of a robot using linear and angular velocity inputs. Suitable for drones, underwater vehicles, and robots operating in 3D environments.</p>
 <p><b>Features:</b></p><ul>
@@ -149,7 +149,7 @@ Odometry3D</h2>
 <div class="ttc" id="aclasstinyrobotics_1_1Odometry3D_html_a8a21a18c6779b0bd2f03fafda64050b0"><div class="ttname"><a href="classtinyrobotics_1_1Odometry3D.html#a8a21a18c6779b0bd2f03fafda64050b0">tinyrobotics::Odometry3D::getPosition</a></div><div class="ttdeci">Coordinate&lt; float &gt; getPosition() const</div><div class="ttdoc">Get the current 3D position (meters)</div><div class="ttdef"><b>Definition:</b> Odometry3D.h:127</div></div>
 <div class="ttc" id="aclasstinyrobotics_1_1Odometry3D_html_aa55ecc7018a3c7f9ca2cb0038e68df12"><div class="ttname"><a href="classtinyrobotics_1_1Odometry3D.html#aa55ecc7018a3c7f9ca2cb0038e68df12">tinyrobotics::Odometry3D::getOrientation</a></div><div class="ttdeci">Orientation3D getOrientation() const</div><div class="ttdoc">Get the current orientation as Orientation3D (yaw, pitch, roll in radians)</div><div class="ttdef"><b>Definition:</b> Odometry3D.h:130</div></div>
 <div class="ttc" id="aclasstinyrobotics_1_1Orientation3D_html"><div class="ttname"><a href="classtinyrobotics_1_1Orientation3D.html">tinyrobotics::Orientation3D</a></div><div class="ttdoc">Simple 3D orientation class (yaw, pitch, roll in radians)</div><div class="ttdef"><b>Definition:</b> Orientation3D.h:12</div></div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md133"></a>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md134"></a>
 SpeedFromThrottle</h2>
 <p>Estimates vehicle speed from throttle percentage using calibration data. Useful when direct speed measurement is unavailable or unreliable.</p>
 <p><b>Features:</b></p><ul>
@@ -172,7 +172,7 @@ SpeedFromThrottle</h2>
 <div class="line">bus.subscribe(speedMap); <span class="comment">// Receives Throttle messages, emits Speed messages</span></div>
 <div class="ttc" id="aclasstinyrobotics_1_1SpeedFromThrottle_html"><div class="ttname"><a href="classtinyrobotics_1_1SpeedFromThrottle.html">tinyrobotics::SpeedFromThrottle</a></div><div class="ttdoc">Estimates vehicle speed from throttle percentage using calibration data.</div><div class="ttdef"><b>Definition:</b> SpeedFromThrottle.h:45</div></div>
 </div><!-- fragment --><hr  />
-<h1><a class="anchor" id="autotoc_md135"></a>
+<h1><a class="anchor" id="autotoc_md136"></a>
 Usage Notes</h1>
 <ul>
 <li>For Ackermann vehicles, set the wheelbase using <code>begin()</code> or by assigning to <code>wheelBase</code>.</li>

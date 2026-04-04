@@ -145,8 +145,8 @@ $(function() {
 <div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>  <span class="comment">/// limit the maximum speed for safety or to match the characteristics of a</span></div>
 <div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>  <span class="comment">/// specific motor.</span></div>
 <div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classtinyrobotics_1_1BrushedMotor.html#a8058d5cf7575f9c44ab71f5212530036">setConstraints</a>(<span class="keywordtype">int</span> minSpeed, <span class="keywordtype">int</span> maxSpeed) {</div>
-<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>    minSpeed = max(minSpeed, -255);</div>
-<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>    maxSpeed = min(maxSpeed, 255);</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>    minSpeed = std::max(minSpeed, -255);</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>    maxSpeed = std::min(maxSpeed, 255);</div>
 <div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>  }</div>
 <div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span> </div>
 <div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>  <span class="comment">/// Invert the direction logic</span></div>

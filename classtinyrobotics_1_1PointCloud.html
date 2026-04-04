@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.6"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>TinyRobotics: PointCloud Class Reference</title>
+<title>TinyRobotics: PointCloud&lt; T &gt; Class Template Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -81,7 +81,7 @@ $(function() {
 <a href="#pro-methods">Protected Member Functions</a> &#124;
 <a href="#pro-attribs">Protected Attributes</a> &#124;
 <a href="classtinyrobotics_1_1PointCloud-members.html">List of all members</a>  </div>
-  <div class="headertitle"><div class="title">PointCloud Class Reference<div class="ingroups"><a class="el" href="group__main.html">TinyRobotics</a> &raquo; <a class="el" href="group__maps.html">Maps</a></div></div></div>
+  <div class="headertitle"><div class="title">PointCloud&lt; T &gt; Class Template Reference<div class="ingroups"><a class="el" href="group__main.html">TinyRobotics</a> &raquo; <a class="el" href="group__maps.html">Maps</a></div></div></div>
 </div><!--header-->
 <div class="contents">
 
@@ -90,21 +90,31 @@ $(function() {
 
 <p><code>#include &lt;<a class="el" href="PointCloud_8h_source.html">PointCloud.h</a>&gt;</code></p>
 <div class="dynheader">
-Collaboration diagram for PointCloud:</div>
+Inheritance diagram for PointCloud&lt; T &gt;:</div>
 <div class="dyncontent">
-<div class="center"><img src="classtinyrobotics_1_1PointCloud__coll__graph.png" border="0" usemap="#aPointCloud_coll__map" alt="Collaboration graph"/></div>
-<map name="aPointCloud_coll__map" id="aPointCloud_coll__map">
-<area shape="rect" title="Represents a 3D point cloud for robotics and mapping applications." alt="" coords="5,196,97,221"/>
-<area shape="rect" title=" " alt="" coords="16,108,87,133"/>
-<area shape="rect" href="structtinyrobotics_1_1Point3D.html" title="Represents a 3D point with x, y, z coordinates (in meters)." alt="" coords="15,5,88,31"/>
+<div class="center"><img src="classtinyrobotics_1_1PointCloud__inherit__graph.png" border="0" usemap="#aPointCloud_3_01T_01_4_inherit__map" alt="Inheritance graph"/></div>
+<map name="aPointCloud_3_01T_01_4_inherit__map" id="aPointCloud_3_01T_01_4_inherit__map">
+<area shape="rect" title="Represents a 3D point cloud for robotics and mapping applications." alt="" coords="19,79,150,104"/>
+<area shape="rect" href="classtinyrobotics_1_1IMapNeighbors.html" title="Abstract interface for neighbor queries in map&#45;like data structures." alt="" coords="5,5,164,31"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
+<div class="dynheader">
+Collaboration diagram for PointCloud&lt; T &gt;:</div>
+<div class="dyncontent">
+<div class="center"><img src="classtinyrobotics_1_1PointCloud__coll__graph.png" border="0" usemap="#aPointCloud_3_01T_01_4_coll__map" alt="Collaboration graph"/></div>
+<map name="aPointCloud_3_01T_01_4_coll__map" id="aPointCloud_3_01T_01_4_coll__map">
+<area shape="rect" title="Represents a 3D point cloud for robotics and mapping applications." alt="" coords="65,196,195,221"/>
+<area shape="rect" href="classtinyrobotics_1_1IMapNeighbors.html" title="Abstract interface for neighbor queries in map&#45;like data structures." alt="" coords="5,108,164,133"/>
+<area shape="rect" title=" " alt="" coords="188,108,259,133"/>
+<area shape="rect" href="structtinyrobotics_1_1Point3D.html" title=" " alt="" coords="168,5,279,31"/>
 </map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-types" name="pub-types"></a>
 Public Types</h2></td></tr>
-<tr class="memitem:a579b204a4ba4ced4bb0bfc32cab01669"><td class="memItemLeft" align="right" valign="top"><a id="a579b204a4ba4ced4bb0bfc32cab01669" name="a579b204a4ba4ced4bb0bfc32cab01669"></a>
-using&#160;</td><td class="memItemRight" valign="bottom"><b>Container</b> = std::vector&lt; <a class="el" href="structtinyrobotics_1_1Point3D.html">Point3D</a>, <a class="el" href="classtinyrobotics_1_1AllocatorPSRAM.html">AllocatorPSRAM</a>&lt; <a class="el" href="structtinyrobotics_1_1Point3D.html">Point3D</a> &gt; &gt;</td></tr>
-<tr class="separator:a579b204a4ba4ced4bb0bfc32cab01669"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1c1bb230364111da6a0d35d5da4430f5"><td class="memItemLeft" align="right" valign="top"><a id="a1c1bb230364111da6a0d35d5da4430f5" name="a1c1bb230364111da6a0d35d5da4430f5"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><b>Container</b> = std::vector&lt; <a class="el" href="structtinyrobotics_1_1Point3D.html">Point3D</a>&lt; T &gt;, <a class="el" href="classtinyrobotics_1_1AllocatorPSRAM.html">AllocatorPSRAM</a>&lt; <a class="el" href="structtinyrobotics_1_1Point3D.html">Point3D</a>&lt; T &gt; &gt; &gt;</td></tr>
+<tr class="separator:a1c1bb230364111da6a0d35d5da4430f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -113,18 +123,18 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:af55c41c60ef0afc009f5a5dddcae520b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af4da019fb9709f760edd7a55ea4d1a57"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1PointCloud.html#af4da019fb9709f760edd7a55ea4d1a57">setLiveVoxelGrid</a> (bool live)</td></tr>
 <tr class="separator:af4da019fb9709f760edd7a55ea4d1a57"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3ff3f755ec3b89e7ac58a4102111b311"><td class="memItemLeft" align="right" valign="top"><a id="a3ff3f755ec3b89e7ac58a4102111b311" name="a3ff3f755ec3b89e7ac58a4102111b311"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>add</b> (DistanceM x, DistanceM y, DistanceM z=0.0f)</td></tr>
-<tr class="memdesc:a3ff3f755ec3b89e7ac58a4102111b311"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add a single point. <br /></td></tr>
-<tr class="separator:a3ff3f755ec3b89e7ac58a4102111b311"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a923cfc0388bf9af2002d54d195cf1155"><td class="memItemLeft" align="right" valign="top"><a id="a923cfc0388bf9af2002d54d195cf1155" name="a923cfc0388bf9af2002d54d195cf1155"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>add</b> (const <a class="el" href="structtinyrobotics_1_1Point3D.html">Point3D</a> *pts, size_t count)</td></tr>
-<tr class="memdesc:a923cfc0388bf9af2002d54d195cf1155"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add from array. <br /></td></tr>
-<tr class="separator:a923cfc0388bf9af2002d54d195cf1155"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a92368ae277f8587b72cd4f16ae6236e5"><td class="memItemLeft" align="right" valign="top"><a id="a92368ae277f8587b72cd4f16ae6236e5" name="a92368ae277f8587b72cd4f16ae6236e5"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>add</b> (const <a class="el" href="classtinyrobotics_1_1Coordinate.html">Coordinate</a>&lt; DistanceM &gt; &amp;coord)</td></tr>
-<tr class="memdesc:a92368ae277f8587b72cd4f16ae6236e5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add from <a class="el" href="classtinyrobotics_1_1Coordinate.html" title="A generic 3D coordinate class for robotics, navigation, and spatial calculations.">Coordinate</a>. <br /></td></tr>
-<tr class="separator:a92368ae277f8587b72cd4f16ae6236e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a952ff0502847235a3508c6de6b3fa1c5"><td class="memItemLeft" align="right" valign="top"><a id="a952ff0502847235a3508c6de6b3fa1c5" name="a952ff0502847235a3508c6de6b3fa1c5"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>add</b> (T x, T y, T z=0.0f)</td></tr>
+<tr class="memdesc:a952ff0502847235a3508c6de6b3fa1c5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add a single point. <br /></td></tr>
+<tr class="separator:a952ff0502847235a3508c6de6b3fa1c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afe135e3300d1ca403e83c2bc2b36f9fd"><td class="memItemLeft" align="right" valign="top"><a id="afe135e3300d1ca403e83c2bc2b36f9fd" name="afe135e3300d1ca403e83c2bc2b36f9fd"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>add</b> (const <a class="el" href="structtinyrobotics_1_1Point3D.html">Point3D</a>&lt; T &gt; *pts, size_t count)</td></tr>
+<tr class="memdesc:afe135e3300d1ca403e83c2bc2b36f9fd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add from array. <br /></td></tr>
+<tr class="separator:afe135e3300d1ca403e83c2bc2b36f9fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac6c6c0b7694182b48d684e224e3d8e6a"><td class="memItemLeft" align="right" valign="top"><a id="ac6c6c0b7694182b48d684e224e3d8e6a" name="ac6c6c0b7694182b48d684e224e3d8e6a"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>add</b> (const <a class="el" href="classtinyrobotics_1_1Coordinate.html">Coordinate</a>&lt; T &gt; &amp;coord)</td></tr>
+<tr class="memdesc:ac6c6c0b7694182b48d684e224e3d8e6a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add from <a class="el" href="classtinyrobotics_1_1Coordinate.html" title="A generic 3D coordinate class for robotics, navigation, and spatial calculations.">Coordinate</a>. <br /></td></tr>
+<tr class="separator:ac6c6c0b7694182b48d684e224e3d8e6a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac8bb3912a3ce86b15842e79d0b421204"><td class="memItemLeft" align="right" valign="top"><a id="ac8bb3912a3ce86b15842e79d0b421204" name="ac8bb3912a3ce86b15842e79d0b421204"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>clear</b> ()</td></tr>
 <tr class="memdesc:ac8bb3912a3ce86b15842e79d0b421204"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clear all data. <br /></td></tr>
@@ -163,17 +173,24 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>addVoxel</b> (float x
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>isOccupied</b> (float x, float y, float z) const</td></tr>
 <tr class="memdesc:ab47306687399fcea999ae55c9f26f0df"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if a given point is occupied based on the voxel grid. <br /></td></tr>
 <tr class="separator:ab47306687399fcea999ae55c9f26f0df"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae7bb7edf90fa388eb34881fa5f89da81"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="classtinyrobotics_1_1Coordinate.html">Coordinate</a>&lt; DistanceM &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1PointCloud.html#ae7bb7edf90fa388eb34881fa5f89da81">getNeighbors</a> (const <a class="el" href="classtinyrobotics_1_1Coordinate.html">Coordinate</a>&lt; DistanceM &gt; &amp;from) const</td></tr>
-<tr class="memdesc:ae7bb7edf90fa388eb34881fa5f89da81"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the free (unoccupied) neighboring coordinates of a given point in the voxel grid.  <br /></td></tr>
-<tr class="separator:ae7bb7edf90fa388eb34881fa5f89da81"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adc1882b911f8e4743f4c016997553777"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classtinyrobotics_1_1Coordinate.html">Coordinate</a>&lt; DistanceM &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1PointCloud.html#adc1882b911f8e4743f4c016997553777">toVoxel</a> (int cx, int cy) const</td></tr>
-<tr class="separator:adc1882b911f8e4743f4c016997553777"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2b84733531108a9e0c3303124b3fdb85"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="classtinyrobotics_1_1Coordinate.html">Coordinate</a>&lt; T &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1PointCloud.html#a2b84733531108a9e0c3303124b3fdb85">getNeighbors</a> (<a class="el" href="classtinyrobotics_1_1Coordinate.html">Coordinate</a>&lt; T &gt; from) const override</td></tr>
+<tr class="memdesc:a2b84733531108a9e0c3303124b3fdb85"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the free (unoccupied) neighboring coordinates of a given point in the voxel grid.  <br /></td></tr>
+<tr class="separator:a2b84733531108a9e0c3303124b3fdb85"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaa6ca19bebccbd26d9918bc16ad2d1e3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classtinyrobotics_1_1Coordinate.html">Coordinate</a>&lt; T &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1PointCloud.html#aaa6ca19bebccbd26d9918bc16ad2d1e3">toVoxel</a> (int cx, int cy) const</td></tr>
+<tr class="separator:aaa6ca19bebccbd26d9918bc16ad2d1e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acd36e583c322526e2754082d9f8ad050"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1PointCloud.html#acd36e583c322526e2754082d9f8ad050">set3D</a> (bool is3d)</td></tr>
 <tr class="separator:acd36e583c322526e2754082d9f8ad050"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8ea428e64b581cd88474197763f418e6"><td class="memItemLeft" align="right" valign="top"><a id="a8ea428e64b581cd88474197763f418e6" name="a8ea428e64b581cd88474197763f418e6"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setBounds</b> (float minX, float minY, float minZ, float maxX, float maxY, float maxZ)</td></tr>
-<tr class="memdesc:a8ea428e64b581cd88474197763f418e6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Manually set the bounding box (if known in advance, can save time instead of. <br /></td></tr>
+<tr class="memitem:a8ea428e64b581cd88474197763f418e6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1PointCloud.html#a8ea428e64b581cd88474197763f418e6">setBounds</a> (float minX, float minY, float minZ, float maxX, float maxY, float maxZ)</td></tr>
 <tr class="separator:a8ea428e64b581cd88474197763f418e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a41d7d13067fa1e7b650f367d9d8a1e97"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1PointCloud.html#a41d7d13067fa1e7b650f367d9d8a1e97">isValid</a> (const <a class="el" href="classtinyrobotics_1_1Coordinate.html">Coordinate</a>&lt; T &gt; &amp;coord) const override</td></tr>
+<tr class="memdesc:a41d7d13067fa1e7b650f367d9d8a1e97"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if a coordinate is valid (within bounds and not occupied)  <br /></td></tr>
+<tr class="separator:a41d7d13067fa1e7b650f367d9d8a1e97"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1b2e90d8edd5e5690929ca0ee332d485"><td class="memItemLeft" align="right" valign="top">virtual std::vector&lt; <a class="el" href="classtinyrobotics_1_1Coordinate.html">Coordinate</a>&lt; T &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1IMapNeighbors.html#a1b2e90d8edd5e5690929ca0ee332d485">getNeighbors</a> (<a class="el" href="classtinyrobotics_1_1Coordinate.html">Coordinate</a>&lt; T &gt; from) const =0</td></tr>
+<tr class="memdesc:a1b2e90d8edd5e5690929ca0ee332d485"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get world coordinates of neighboring cells (for pathfinding or navigation).  <br /></td></tr>
+<tr class="separator:a1b2e90d8edd5e5690929ca0ee332d485"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8cca770e0c35b859947e290845dbe071"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1IMapNeighbors.html#a8cca770e0c35b859947e290845dbe071">isValid</a> (const <a class="el" href="classtinyrobotics_1_1Coordinate.html">Coordinate</a>&lt; T &gt; &amp;coord) const =0</td></tr>
+<tr class="memdesc:a8cca770e0c35b859947e290845dbe071"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if a coordinate is inside the map bounds.  <br /></td></tr>
+<tr class="separator:a8cca770e0c35b859947e290845dbe071"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-types" name="pro-types"></a>
 Protected Types</h2></td></tr>
@@ -186,9 +203,9 @@ Protected Member Functions</h2></td></tr>
 <tr class="memitem:af1b7003a4167f1ecb99e513ff6211168"><td class="memItemLeft" align="right" valign="top"><a id="af1b7003a4167f1ecb99e513ff6211168" name="af1b7003a4167f1ecb99e513ff6211168"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>resetBounds</b> ()</td></tr>
 <tr class="separator:af1b7003a4167f1ecb99e513ff6211168"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab3c259b26251a723c51f6e588878efdd"><td class="memItemLeft" align="right" valign="top"><a id="ab3c259b26251a723c51f6e588878efdd" name="ab3c259b26251a723c51f6e588878efdd"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>updateBounds</b> (const <a class="el" href="structtinyrobotics_1_1Point3D.html">Point3D</a> &amp;p)</td></tr>
-<tr class="separator:ab3c259b26251a723c51f6e588878efdd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0cf6f8621d5b267ab9c1c0af83b42f5d"><td class="memItemLeft" align="right" valign="top"><a id="a0cf6f8621d5b267ab9c1c0af83b42f5d" name="a0cf6f8621d5b267ab9c1c0af83b42f5d"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>updateBounds</b> (const <a class="el" href="structtinyrobotics_1_1Point3D.html">Point3D</a>&lt; T &gt; &amp;p)</td></tr>
+<tr class="separator:a0cf6f8621d5b267ab9c1c0af83b42f5d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
@@ -201,9 +218,9 @@ Container&#160;</td><td class="memItemRight" valign="bottom"><b>points_</b></td>
 <tr class="memitem:afe6a9626e57f8ed72e44c8b319cd936b"><td class="memItemLeft" align="right" valign="top"><a id="afe6a9626e57f8ed72e44c8b319cd936b" name="afe6a9626e57f8ed72e44c8b319cd936b"></a>
 Bounds&#160;</td><td class="memItemRight" valign="bottom"><b>bounds_</b></td></tr>
 <tr class="separator:afe6a9626e57f8ed72e44c8b319cd936b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac9808f1040ad9aabd8f06d876c65fb60"><td class="memItemLeft" align="right" valign="top"><a id="ac9808f1040ad9aabd8f06d876c65fb60" name="ac9808f1040ad9aabd8f06d876c65fb60"></a>
-DistanceM&#160;</td><td class="memItemRight" valign="bottom"><b>voxelSize_</b> = 0.0f</td></tr>
-<tr class="separator:ac9808f1040ad9aabd8f06d876c65fb60"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a33d0b317bc71d2d9edf1575ad246445e"><td class="memItemLeft" align="right" valign="top"><a id="a33d0b317bc71d2d9edf1575ad246445e" name="a33d0b317bc71d2d9edf1575ad246445e"></a>
+T&#160;</td><td class="memItemRight" valign="bottom"><b>voxelSize_</b> = 0.0f</td></tr>
+<tr class="separator:a33d0b317bc71d2d9edf1575ad246445e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af3c8712151b58db6ebf5b7e844669965"><td class="memItemLeft" align="right" valign="top"><a id="af3c8712151b58db6ebf5b7e844669965" name="af3c8712151b58db6ebf5b7e844669965"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>liveVocelGrid_</b> = false</td></tr>
 <tr class="separator:af3c8712151b58db6ebf5b7e844669965"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -212,7 +229,8 @@ std::unordered_set&lt; Key, KeyHash, std::equal_to&lt; Key &gt;, <a class="el" h
 <tr class="separator:a1c805d420292205715730663ca5a0a47"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Represents a 3D point cloud for robotics and mapping applications. </p>
+<div class="textblock"><div class="compoundTemplParams">template&lt;typename T = DistanceM&gt;<br />
+class tinyrobotics::PointCloud&lt; T &gt;</div><p>Represents a 3D point cloud for robotics and mapping applications. </p>
 <p>The <a class="el" href="classtinyrobotics_1_1PointCloud.html" title="Represents a 3D point cloud for robotics and mapping applications.">PointCloud</a> class manages a collection of 3D points and provides:</p><ul>
 <li>Efficient addition of points (individually, from arrays, or from <a class="el" href="classtinyrobotics_1_1Coordinate.html" title="A generic 3D coordinate class for robotics, navigation, and spatial calculations.">Coordinate</a>).</li>
 <li>Automatic bounding box tracking for fast spatial queries.</li>
@@ -229,16 +247,16 @@ std::unordered_set&lt; Key, KeyHash, std::equal_to&lt; Key &gt;, <a class="el" h
 <li>Optionally enable live voxel grid updates for real-time occupancy.</li>
 </ul>
 <p>Example: </p><div class="fragment"><div class="line"><a class="code hl_class" href="classtinyrobotics_1_1PointCloud.html">PointCloud</a> cloud;</div>
-<div class="line">cloud.<a class="code hl_function" href="classtinyrobotics_1_1PointCloud.html#a3ff3f755ec3b89e7ac58a4102111b311">add</a>(1.0, 2.0, 0.5);</div>
+<div class="line">cloud.<a class="code hl_function" href="classtinyrobotics_1_1PointCloud.html#a952ff0502847235a3508c6de6b3fa1c5">add</a>(1.0, 2.0, 0.5);</div>
 <div class="line">cloud.<a class="code hl_function" href="classtinyrobotics_1_1PointCloud.html#af6992125317ddc408237467ef80fda56">buildVoxelGrid</a>(0.1f); <span class="comment">// 10cm voxels</span></div>
 <div class="line"><span class="keywordtype">bool</span> occ = cloud.<a class="code hl_function" href="classtinyrobotics_1_1PointCloud.html#ab47306687399fcea999ae55c9f26f0df">isOccupied</a>(1.0, 2.0, 0.5);</div>
-<div class="ttc" id="aclasstinyrobotics_1_1PointCloud_html"><div class="ttname"><a href="classtinyrobotics_1_1PointCloud.html">tinyrobotics::PointCloud</a></div><div class="ttdoc">Represents a 3D point cloud for robotics and mapping applications.</div><div class="ttdef"><b>Definition:</b> PointCloud.h:62</div></div>
-<div class="ttc" id="aclasstinyrobotics_1_1PointCloud_html_a3ff3f755ec3b89e7ac58a4102111b311"><div class="ttname"><a href="classtinyrobotics_1_1PointCloud.html#a3ff3f755ec3b89e7ac58a4102111b311">tinyrobotics::PointCloud::add</a></div><div class="ttdeci">void add(DistanceM x, DistanceM y, DistanceM z=0.0f)</div><div class="ttdoc">Add a single point.</div><div class="ttdef"><b>Definition:</b> PointCloud.h:96</div></div>
-<div class="ttc" id="aclasstinyrobotics_1_1PointCloud_html_ab47306687399fcea999ae55c9f26f0df"><div class="ttname"><a href="classtinyrobotics_1_1PointCloud.html#ab47306687399fcea999ae55c9f26f0df">tinyrobotics::PointCloud::isOccupied</a></div><div class="ttdeci">bool isOccupied(float x, float y, float z) const</div><div class="ttdoc">Checks if a given point is occupied based on the voxel grid.</div><div class="ttdef"><b>Definition:</b> PointCloud.h:188</div></div>
-<div class="ttc" id="aclasstinyrobotics_1_1PointCloud_html_af6992125317ddc408237467ef80fda56"><div class="ttname"><a href="classtinyrobotics_1_1PointCloud.html#af6992125317ddc408237467ef80fda56">tinyrobotics::PointCloud::buildVoxelGrid</a></div><div class="ttdeci">void buildVoxelGrid(float voxelSize)</div><div class="ttdoc">Builds a voxel grid for fast occupancy queries: A voxel is a grid cell.</div><div class="ttdef"><b>Definition:</b> PointCloud.h:162</div></div>
+<div class="ttc" id="aclasstinyrobotics_1_1PointCloud_html"><div class="ttname"><a href="classtinyrobotics_1_1PointCloud.html">tinyrobotics::PointCloud</a></div><div class="ttdoc">Represents a 3D point cloud for robotics and mapping applications.</div><div class="ttdef"><b>Definition:</b> PointCloud.h:65</div></div>
+<div class="ttc" id="aclasstinyrobotics_1_1PointCloud_html_a952ff0502847235a3508c6de6b3fa1c5"><div class="ttname"><a href="classtinyrobotics_1_1PointCloud.html#a952ff0502847235a3508c6de6b3fa1c5">tinyrobotics::PointCloud::add</a></div><div class="ttdeci">void add(T x, T y, T z=0.0f)</div><div class="ttdoc">Add a single point.</div><div class="ttdef"><b>Definition:</b> PointCloud.h:99</div></div>
+<div class="ttc" id="aclasstinyrobotics_1_1PointCloud_html_ab47306687399fcea999ae55c9f26f0df"><div class="ttname"><a href="classtinyrobotics_1_1PointCloud.html#ab47306687399fcea999ae55c9f26f0df">tinyrobotics::PointCloud::isOccupied</a></div><div class="ttdeci">bool isOccupied(float x, float y, float z) const</div><div class="ttdoc">Checks if a given point is occupied based on the voxel grid.</div><div class="ttdef"><b>Definition:</b> PointCloud.h:189</div></div>
+<div class="ttc" id="aclasstinyrobotics_1_1PointCloud_html_af6992125317ddc408237467ef80fda56"><div class="ttname"><a href="classtinyrobotics_1_1PointCloud.html#af6992125317ddc408237467ef80fda56">tinyrobotics::PointCloud::buildVoxelGrid</a></div><div class="ttdeci">void buildVoxelGrid(float voxelSize)</div><div class="ttdoc">Builds a voxel grid for fast occupancy queries: A voxel is a grid cell.</div><div class="ttdef"><b>Definition:</b> PointCloud.h:163</div></div>
 </div><!-- fragment --> </div><h2 class="groupheader">Member Function Documentation</h2>
-<a id="ae7bb7edf90fa388eb34881fa5f89da81" name="ae7bb7edf90fa388eb34881fa5f89da81"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae7bb7edf90fa388eb34881fa5f89da81">&#9670;&#160;</a></span>getNeighbors()</h2>
+<a id="a2b84733531108a9e0c3303124b3fdb85" name="a2b84733531108a9e0c3303124b3fdb85"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2b84733531108a9e0c3303124b3fdb85">&#9670;&#160;</a></span>getNeighbors()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -247,16 +265,16 @@ std::unordered_set&lt; Key, KeyHash, std::equal_to&lt; Key &gt;, <a class="el" h
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">std::vector&lt; <a class="el" href="classtinyrobotics_1_1Coordinate.html">Coordinate</a>&lt; DistanceM &gt; &gt; getNeighbors </td>
+          <td class="memname">std::vector&lt; <a class="el" href="classtinyrobotics_1_1Coordinate.html">Coordinate</a>&lt; T &gt; &gt; getNeighbors </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="classtinyrobotics_1_1Coordinate.html">Coordinate</a>&lt; DistanceM &gt; &amp;&#160;</td>
+          <td class="paramtype"><a class="el" href="classtinyrobotics_1_1Coordinate.html">Coordinate</a>&lt; T &gt;&#160;</td>
           <td class="paramname"><em>from</em></td><td>)</td>
           <td> const</td>
         </tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -269,7 +287,39 @@ std::unordered_set&lt; Key, KeyHash, std::equal_to&lt; Key &gt;, <a class="el" h
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>std::vector&lt;Coordinate&lt;DistanceM&gt;&gt; List of free neighboring coordinates. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>std::vector&lt;Coordinate&lt;T&gt;&gt; List of free neighboring coordinates. </dd></dl>
+
+<p>Implements <a class="el" href="classtinyrobotics_1_1IMapNeighbors.html#a1b2e90d8edd5e5690929ca0ee332d485">IMapNeighbors&lt; T &gt;</a>.</p>
+
+</div>
+</div>
+<a id="a41d7d13067fa1e7b650f367d9d8a1e97" name="a41d7d13067fa1e7b650f367d9d8a1e97"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a41d7d13067fa1e7b650f367d9d8a1e97">&#9670;&#160;</a></span>isValid()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool isValid </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classtinyrobotics_1_1Coordinate.html">Coordinate</a>&lt; T &gt; &amp;&#160;</td>
+          <td class="paramname"><em>coord</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Checks if a coordinate is valid (within bounds and not occupied) </p>
+
+<p>Implements <a class="el" href="classtinyrobotics_1_1IMapNeighbors.html#a8cca770e0c35b859947e290845dbe071">IMapNeighbors&lt; T &gt;</a>.</p>
 
 </div>
 </div>
@@ -300,6 +350,67 @@ std::unordered_set&lt; Key, KeyHash, std::equal_to&lt; Key &gt;, <a class="el" h
 
 </div>
 </div>
+<a id="a8ea428e64b581cd88474197763f418e6" name="a8ea428e64b581cd88474197763f418e6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8ea428e64b581cd88474197763f418e6">&#9670;&#160;</a></span>setBounds()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void setBounds </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>minX</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>minY</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>minZ</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>maxX</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>maxY</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>maxZ</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Manually set the bounding box (if known in advance, can save time instead of </p>
+
+</div>
+</div>
 <a id="af4da019fb9709f760edd7a55ea4d1a57" name="af4da019fb9709f760edd7a55ea4d1a57"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#af4da019fb9709f760edd7a55ea4d1a57">&#9670;&#160;</a></span>setLiveVoxelGrid()</h2>
 
@@ -327,8 +438,8 @@ std::unordered_set&lt; Key, KeyHash, std::equal_to&lt; Key &gt;, <a class="el" h
 
 </div>
 </div>
-<a id="adc1882b911f8e4743f4c016997553777" name="adc1882b911f8e4743f4c016997553777"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#adc1882b911f8e4743f4c016997553777">&#9670;&#160;</a></span>toVoxel()</h2>
+<a id="aaa6ca19bebccbd26d9918bc16ad2d1e3" name="aaa6ca19bebccbd26d9918bc16ad2d1e3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaa6ca19bebccbd26d9918bc16ad2d1e3">&#9670;&#160;</a></span>toVoxel()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -337,7 +448,7 @@ std::unordered_set&lt; Key, KeyHash, std::equal_to&lt; Key &gt;, <a class="el" h
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classtinyrobotics_1_1Coordinate.html">Coordinate</a>&lt; DistanceM &gt; toVoxel </td>
+          <td class="memname"><a class="el" href="classtinyrobotics_1_1Coordinate.html">Coordinate</a>&lt; T &gt; toVoxel </td>
           <td>(</td>
           <td class="paramtype">int&#160;</td>
           <td class="paramname"><em>cx</em>, </td>

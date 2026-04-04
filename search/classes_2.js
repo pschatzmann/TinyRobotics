@@ -11,5 +11,6 @@ var searchData=
   ['cell_8',['Cell',['../structtinyrobotics_1_1GridBitMap_1_1Cell.html',1,'GridBitMap&lt; T &gt;::Cell'],['../structtinyrobotics_1_1GridMap_1_1Cell.html',1,'GridMap&lt; StateType, T &gt;::Cell']]],
   ['coordinate_9',['Coordinate',['../classtinyrobotics_1_1Coordinate.html',1,'tinyrobotics']]],
   ['coordinate_3c_20distancem_20_3e_10',['Coordinate&lt; DistanceM &gt;',['../classtinyrobotics_1_1Coordinate.html',1,'tinyrobotics']]],
-  ['coordinate_3c_20float_20_3e_11',['Coordinate&lt; float &gt;',['../classtinyrobotics_1_1Coordinate.html',1,'tinyrobotics']]]
+  ['coordinate_3c_20float_20_3e_11',['Coordinate&lt; float &gt;',['../classtinyrobotics_1_1Coordinate.html',1,'tinyrobotics']]],
+  ['coordinate_3c_20t_20_3e_12',['Coordinate&lt; T &gt;',['../classtinyrobotics_1_1Coordinate.html',1,'tinyrobotics']]]
 ];

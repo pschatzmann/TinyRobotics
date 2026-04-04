@@ -98,12 +98,12 @@ $(function() {
 <div class="line"><span class="lineno">   20</span><span class="comment"> * @tparam MapType Must provide:</span></div>
 <div class="line"><span class="lineno">   21</span><span class="comment"> *   - std::vector&lt;Node&gt; getNeighbors(const Node&amp; node) const</span></div>
 <div class="line"><span class="lineno">   22</span><span class="comment"> */</span></div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> MapType, <span class="keyword">typename</span> Node = <a class="code hl_class" href="classtinyrobotics_1_1Coordinate.html">Coordinate</a>&lt;DistanceM&gt;&gt;</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T = DistanceM&gt;</div>
 <div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="keyword">class</span> <a class="code hl_class" href="classtinyrobotics_1_1Dijkstra.html">Dijkstra</a> {</div>
 <div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span> <span class="keyword">public</span>:</div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>  <span class="keyword">using</span> CostCallback =</div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>      std::function&lt;<span class="keywordtype">float</span>(<span class="keyword">const</span> Node&amp;, <span class="keyword">const</span> Node&amp;, <span class="keywordtype">void</span>* ref)&gt;;</div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>  <span class="keyword">using</span> ValidCallback = std::function&lt;<span class="keywordtype">bool</span>(<span class="keyword">const</span> Node&amp;, <span class="keywordtype">void</span>* ref)&gt;;</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>  <span class="keyword">using</span> CostCallback = std::function&lt;<span class="keywordtype">float</span>(<span class="keyword">const</span> <a class="code hl_class" href="classtinyrobotics_1_1Coordinate.html">Coordinate</a>&lt;T&gt;&amp;,</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>                                           <span class="keyword">const</span> <a class="code hl_class" href="classtinyrobotics_1_1Coordinate.html">Coordinate</a>&lt;T&gt;&amp;, <span class="keywordtype">void</span>* ref)&gt;;</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>  <span class="keyword">using</span> ValidCallback = std::function&lt;<span class="keywordtype">bool</span>(<span class="keyword">const</span> <a class="code hl_class" href="classtinyrobotics_1_1Coordinate.html">Coordinate</a>&lt;T&gt;&amp;, <span class="keywordtype">void</span>* ref)&gt;;</div>
 <div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span> </div>
 <div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>  Dijkstra() = <span class="keywordflow">default</span>;</div>
 <div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
@@ -122,63 +122,65 @@ $(function() {
 <div class="line"><span class="lineno">   44</span><span class="comment">   * @param goal The goal node.</span></div>
 <div class="line"><span class="lineno">   45</span><span class="comment">   * @return Vector of nodes representing the path (empty if no path found).</span></div>
 <div class="line"><span class="lineno">   46</span><span class="comment">   */</span></div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>  <a class="code hl_function" href="classtinyrobotics_1_1Dijkstra.html#a2183d5d1a2f1f1ac416328c2146d65fa">Path</a>&lt;<a class="code hl_function" href="classtinyrobotics_1_1Dijkstra.html#a2183d5d1a2f1f1ac416328c2146d65fa">Node</a>&gt; <a class="code hl_function" href="classtinyrobotics_1_1Dijkstra.html#a2183d5d1a2f1f1ac416328c2146d65fa">findPath</a>(<span class="keyword">const</span> <a class="code hl_function" href="classtinyrobotics_1_1Dijkstra.html#a2183d5d1a2f1f1ac416328c2146d65fa">MapType</a>&amp; <a class="code hl_function" href="classtinyrobotics_1_1Dijkstra.html#a2183d5d1a2f1f1ac416328c2146d65fa">map</a>, <span class="keyword">const</span> <a class="code hl_function" href="classtinyrobotics_1_1Dijkstra.html#a2183d5d1a2f1f1ac416328c2146d65fa">Node</a>&amp; <a class="code hl_function" href="classtinyrobotics_1_1Dijkstra.html#a2183d5d1a2f1f1ac416328c2146d65fa">start</a>, <span class="keyword">const</span> <a class="code hl_function" href="classtinyrobotics_1_1Dijkstra.html#a2183d5d1a2f1f1ac416328c2146d65fa">Node</a>&amp; <a class="code hl_function" href="classtinyrobotics_1_1Dijkstra.html#a2183d5d1a2f1f1ac416328c2146d65fa">goal</a>) {</div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    <span class="keyword">using</span> Pair = std::pair&lt;<span class="keywordtype">float</span>, Node&gt;;</div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    std::priority_queue&lt;Pair, std::vector&lt;Pair&gt;, std::greater&lt;Pair&gt;&gt; open;</div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    std::unordered_map&lt;Node, <span class="keywordtype">float</span>&gt; cost_so_far;</div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    std::unordered_map&lt;Node, Node&gt; came_from;</div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span> </div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    open.emplace(0.0f, start);</div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>    cost_so_far[start] = 0.0f;</div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    came_from[start] = start;</div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span> </div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>    <span class="keywordflow">while</span> (!open.empty()) {</div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>      Node current = open.top().second;</div>
-<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>      open.pop();</div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span> </div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>      <span class="keywordflow">if</span> (current == goal) <span class="keywordflow">break</span>;</div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span> </div>
-<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>      <span class="keywordflow">for</span> (<span class="keyword">const</span> Node&amp; next : map.getNeighbors(current)) {</div>
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>        <span class="keywordflow">if</span> (!valid_cb(next, ref)) <span class="keywordflow">continue</span>;</div>
-<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>        <span class="keywordtype">float</span> new_cost = cost_so_far[current] + cost_cb(current, next, ref);</div>
-<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>        <span class="keywordflow">if</span> (!cost_so_far.count(next) || new_cost &lt; cost_so_far[next]) {</div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>          cost_so_far[next] = new_cost;</div>
-<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>          came_from[next] = current;</div>
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>          open.emplace(new_cost, next);</div>
-<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>        }</div>
-<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>      }</div>
-<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>    }</div>
-<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span> </div>
-<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>    <span class="comment">// Reconstruct path</span></div>
-<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>    Path&lt;Node&gt; path;</div>
-<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>    <span class="keywordflow">if</span> (!came_from.count(goal)) <span class="keywordflow">return</span> path;</div>
-<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>    <span class="keywordflow">for</span> (Node at = goal; at != start; at = came_from[at]) {</div>
-<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>      path.addWaypoint(at);</div>
-<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>    }</div>
-<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>    path.addWaypoint(start);</div>
-<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>    path.reverse();</div>
-<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>    <span class="keywordflow">return</span> path;</div>
-<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>  }</div>
-<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span> </div>
-<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span> <span class="keyword">protected</span>:</div>
-<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>  CostCallback cost_cb = defaultCost;</div>
-<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>  ValidCallback valid_cb = defaultValid;</div>
-<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>  <span class="keywordtype">void</span>* ref = <span class="keyword">this</span>;</div>
-<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span> </div>
-<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>  <span class="keyword">static</span> <span class="keywordtype">float</span> defaultCost(<span class="keyword">const</span> Node&amp; from, <span class="keyword">const</span> Node&amp; to, <span class="keywordtype">void</span>* ref) {</div>
-<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>    <span class="keywordflow">return</span> from.distance(to);</div>
-<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>  }</div>
-<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span> </div>
-<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>  <span class="keyword">static</span> <span class="keywordtype">bool</span> defaultValid(<span class="keyword">const</span> Node&amp; node, <span class="keywordtype">void</span>* ref) {</div>
-<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>    <span class="keywordflow">return</span> <span class="keyword">true</span>;  <span class="comment">// By default, all nodes are valid</span></div>
-<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>  }</div>
-<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>};</div>
-<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span> </div>
-<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>}  <span class="comment">// namespace tinyrobotics</span></div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>  <a class="code hl_function" href="classtinyrobotics_1_1Dijkstra.html#aee850c3f8664e5de150807cd1a2f6b01">Path</a>&lt;<a class="code hl_function" href="classtinyrobotics_1_1Dijkstra.html#aee850c3f8664e5de150807cd1a2f6b01">Coordinate</a>&lt;<a class="code hl_function" href="classtinyrobotics_1_1Dijkstra.html#aee850c3f8664e5de150807cd1a2f6b01">T</a>&gt;&gt; <a class="code hl_function" href="classtinyrobotics_1_1Dijkstra.html#aee850c3f8664e5de150807cd1a2f6b01">findPath</a>(<span class="keyword">const</span> <a class="code hl_function" href="classtinyrobotics_1_1Dijkstra.html#aee850c3f8664e5de150807cd1a2f6b01">IMapNeighbors</a>&lt;<a class="code hl_function" href="classtinyrobotics_1_1Dijkstra.html#aee850c3f8664e5de150807cd1a2f6b01">T</a>&gt;&amp; <a class="code hl_function" href="classtinyrobotics_1_1Dijkstra.html#aee850c3f8664e5de150807cd1a2f6b01">map</a>, <span class="keyword">const</span> <a class="code hl_function" href="classtinyrobotics_1_1Dijkstra.html#aee850c3f8664e5de150807cd1a2f6b01">Coordinate</a>&lt;<a class="code hl_function" href="classtinyrobotics_1_1Dijkstra.html#aee850c3f8664e5de150807cd1a2f6b01">T</a>&gt;&amp; <a class="code hl_function" href="classtinyrobotics_1_1Dijkstra.html#aee850c3f8664e5de150807cd1a2f6b01">start</a>,</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>                               <span class="keyword">const</span> <a class="code hl_function" href="classtinyrobotics_1_1Dijkstra.html#aee850c3f8664e5de150807cd1a2f6b01">Coordinate</a>&lt;<a class="code hl_function" href="classtinyrobotics_1_1Dijkstra.html#aee850c3f8664e5de150807cd1a2f6b01">T</a>&gt;&amp; <a class="code hl_function" href="classtinyrobotics_1_1Dijkstra.html#aee850c3f8664e5de150807cd1a2f6b01">goal</a>) {</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    <span class="keyword">using</span> Pair = std::pair&lt;<span class="keywordtype">float</span>, <a class="code hl_class" href="classtinyrobotics_1_1Coordinate.html">Coordinate</a>&lt;T&gt;&gt;;</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    std::priority_queue&lt;Pair, std::vector&lt;Pair&gt;, std::greater&lt;Pair&gt;&gt; open;</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    std::unordered_map&lt;Coordinate&lt;T&gt;, <span class="keywordtype">float</span>&gt; cost_so_far;</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    std::unordered_map&lt;Coordinate&lt;T&gt;, Coordinate&lt;T&gt;&gt; came_from;</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span> </div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>    open.emplace(0.0f, start);</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    cost_so_far[start] = 0.0f;</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>    came_from[start] = start;</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span> </div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>    <span class="keywordflow">while</span> (!open.empty()) {</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>      Coordinate&lt;T&gt; current = open.top().second;</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>      open.pop();</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span> </div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>      <span class="keywordflow">if</span> (current == goal) <span class="keywordflow">break</span>;</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span> </div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>      <span class="keywordflow">for</span> (<span class="keyword">const</span> Coordinate&lt;T&gt;&amp; next : map.getNeighbors(current)) {</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>        <span class="keywordflow">if</span> (!valid_cb(next, ref)) <span class="keywordflow">continue</span>;</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>        <span class="keywordtype">float</span> new_cost = cost_so_far[current] + cost_cb(current, next, ref);</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>        <span class="keywordflow">if</span> (!cost_so_far.count(next) || new_cost &lt; cost_so_far[next]) {</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>          cost_so_far[next] = new_cost;</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>          came_from[next] = current;</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>          open.emplace(new_cost, next);</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>        }</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>      }</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>    }</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span> </div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>    <span class="comment">// Reconstruct path</span></div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>    Path&lt;Coordinate&lt;T&gt;&gt; path;</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>    <span class="keywordflow">if</span> (!came_from.count(goal)) <span class="keywordflow">return</span> path;</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>    <span class="keywordflow">for</span> (<a class="code hl_class" href="classtinyrobotics_1_1Coordinate.html">Coordinate</a>&lt;T&gt; at = goal; at != start; at = came_from[at]) {</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>      path.addWaypoint(at);</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>    }</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>    path.addWaypoint(start);</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>    path.reverse();</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>    <span class="keywordflow">return</span> path;</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>  }</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span> </div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span> <span class="keyword">protected</span>:</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>  CostCallback cost_cb = defaultCost;</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>  ValidCallback valid_cb = defaultValid;</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>  <span class="keywordtype">void</span>* ref = <span class="keyword">this</span>;</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span> </div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>  <span class="keyword">static</span> <span class="keywordtype">float</span> defaultCost(<span class="keyword">const</span> <a class="code hl_class" href="classtinyrobotics_1_1Coordinate.html">Coordinate</a>&lt;T&gt;&amp; from, <span class="keyword">const</span> <a class="code hl_class" href="classtinyrobotics_1_1Coordinate.html">Coordinate</a>&lt;T&gt;&amp; to,</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>                           <span class="keywordtype">void</span>* ref) {</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>    <span class="keywordflow">return</span> from.distance(to);</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>  }</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span> </div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>  <span class="keyword">static</span> <span class="keywordtype">bool</span> defaultValid(<span class="keyword">const</span> <a class="code hl_class" href="classtinyrobotics_1_1Coordinate.html">Coordinate</a>&lt;T&gt;&amp; node, <span class="keywordtype">void</span>* ref) {</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>    <span class="keywordflow">return</span> <span class="keyword">true</span>;  <span class="comment">// By default, all nodes are valid</span></div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>  }</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>};</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span> </div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>}  <span class="comment">// namespace tinyrobotics</span></div>
 <div class="ttc" id="aclasstinyrobotics_1_1Coordinate_html"><div class="ttname"><a href="classtinyrobotics_1_1Coordinate.html">tinyrobotics::Coordinate</a></div><div class="ttdoc">A generic 3D coordinate class for robotics, navigation, and spatial calculations.</div><div class="ttdef"><b>Definition:</b> Coordinate.h:57</div></div>
 <div class="ttc" id="aclasstinyrobotics_1_1Dijkstra_html"><div class="ttname"><a href="classtinyrobotics_1_1Dijkstra.html">tinyrobotics::Dijkstra</a></div><div class="ttdoc">Generic Dijkstra shortest path algorithm for graphs/maps with callback-based cost and validity.</div><div class="ttdef"><b>Definition:</b> Dijkstra.h:24</div></div>
-<div class="ttc" id="aclasstinyrobotics_1_1Dijkstra_html_a2183d5d1a2f1f1ac416328c2146d65fa"><div class="ttname"><a href="classtinyrobotics_1_1Dijkstra.html#a2183d5d1a2f1f1ac416328c2146d65fa">tinyrobotics::Dijkstra::findPath</a></div><div class="ttdeci">Path&lt; Node &gt; findPath(const MapType &amp;map, const Node &amp;start, const Node &amp;goal)</div><div class="ttdoc">Finds the shortest path from start to goal.</div><div class="ttdef"><b>Definition:</b> Dijkstra.h:47</div></div>
 <div class="ttc" id="aclasstinyrobotics_1_1Dijkstra_html_ae5f7c99bd9954accb45e76503e1e53d7"><div class="ttname"><a href="classtinyrobotics_1_1Dijkstra.html#ae5f7c99bd9954accb45e76503e1e53d7">tinyrobotics::Dijkstra::setValidCallback</a></div><div class="ttdeci">void setValidCallback(ValidCallback cb)</div><div class="ttdoc">provide a callback to determine if a node is valid (e.g., not an obstacle)</div><div class="ttdef"><b>Definition:</b> Dijkstra.h:36</div></div>
+<div class="ttc" id="aclasstinyrobotics_1_1Dijkstra_html_aee850c3f8664e5de150807cd1a2f6b01"><div class="ttname"><a href="classtinyrobotics_1_1Dijkstra.html#aee850c3f8664e5de150807cd1a2f6b01">tinyrobotics::Dijkstra::findPath</a></div><div class="ttdeci">Path&lt; Coordinate&lt; T &gt; &gt; findPath(const IMapNeighbors&lt; T &gt; &amp;map, const Coordinate&lt; T &gt; &amp;start, const Coordinate&lt; T &gt; &amp;goal)</div><div class="ttdoc">Finds the shortest path from start to goal.</div><div class="ttdef"><b>Definition:</b> Dijkstra.h:47</div></div>
 <div class="ttc" id="aclasstinyrobotics_1_1Dijkstra_html_af18f354e3db7c08b67f6751e63b76245"><div class="ttname"><a href="classtinyrobotics_1_1Dijkstra.html#af18f354e3db7c08b67f6751e63b76245">tinyrobotics::Dijkstra::setReference</a></div><div class="ttdeci">void setReference(void *reference)</div><div class="ttdef"><b>Definition:</b> Dijkstra.h:39</div></div>
 <div class="ttc" id="aclasstinyrobotics_1_1Dijkstra_html_af46f0f54f7bd50991ba10c2468d683fb"><div class="ttname"><a href="classtinyrobotics_1_1Dijkstra.html#af46f0f54f7bd50991ba10c2468d683fb">tinyrobotics::Dijkstra::setCostCallback</a></div><div class="ttdeci">void setCostCallback(CostCallback cb)</div><div class="ttdef"><b>Definition:</b> Dijkstra.h:34</div></div>
 </div><!-- fragment --></div><!-- contents -->

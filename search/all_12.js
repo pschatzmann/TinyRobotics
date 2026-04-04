@@ -26,7 +26,7 @@ var searchData=
   ['tinyrobotics_2eh_23',['TinyRobotics.h',['../TinyRobotics_8h.html',1,'']]],
   ['togps_24',['toGPS',['../classtinyrobotics_1_1FrameMgr3D.html#a204042e0b4084ba491256fc09760cf63',1,'tinyrobotics::FrameMgr3D::toGPS()'],['../classtinyrobotics_1_1FrameMgr2D.html#a1485dd4c5a4005ffea28b74ea930d11f',1,'tinyrobotics::FrameMgr2D::toGPS()']]],
   ['tostring_25',['toString',['../classtinyrobotics_1_1GPSCoordinate.html#a1fe5121d6528fdea3f243321b3fa3a49',1,'tinyrobotics::GPSCoordinate']]],
-  ['tovoxel_26',['toVoxel',['../classtinyrobotics_1_1PointCloud.html#adc1882b911f8e4743f4c016997553777',1,'tinyrobotics::PointCloud']]],
+  ['tovoxel_26',['toVoxel',['../classtinyrobotics_1_1PointCloud.html#aaa6ca19bebccbd26d9918bc16ad2d1e3',1,'tinyrobotics::PointCloud']]],
   ['toworld_27',['toWorld',['../classtinyrobotics_1_1IMap.html#ac2076c8f6319b4506ba1c7fec781f3ee',1,'tinyrobotics::IMap::toWorld()'],['../classtinyrobotics_1_1GridMap.html#a2fd28860d10c623f6a2afbf3ce4d99c2',1,'tinyrobotics::GridMap::toWorld()'],['../classtinyrobotics_1_1GridBitMap.html#a48bee91a8d87a134e91d5e7b05d2d530',1,'tinyrobotics::GridBitMap::toWorld()'],['../classtinyrobotics_1_1CallbackMap.html#aa0185570593ff36946d6c7864338d92e',1,'tinyrobotics::CallbackMap::toWorld()']]],
   ['transform2d_28',['Transform2D',['../classtinyrobotics_1_1Transform2D.html',1,'tinyrobotics']]],
   ['transform3d_29',['Transform3D',['../structtinyrobotics_1_1Transform3D.html',1,'tinyrobotics']]],

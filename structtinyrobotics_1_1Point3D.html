@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.6"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>TinyRobotics: Point3D Struct Reference</title>
+<title>TinyRobotics: Point3D&lt; T &gt; Struct Template Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -76,7 +76,7 @@ $(function() {
   <div class="summary">
 <a href="#pub-attribs">Public Attributes</a> &#124;
 <a href="structtinyrobotics_1_1Point3D-members.html">List of all members</a>  </div>
-  <div class="headertitle"><div class="title">Point3D Struct Reference<div class="ingroups"><a class="el" href="group__main.html">TinyRobotics</a> &raquo; <a class="el" href="group__maps.html">Maps</a></div></div></div>
+  <div class="headertitle"><div class="title">Point3D&lt; T &gt; Struct Template Reference<div class="ingroups"><a class="el" href="group__main.html">TinyRobotics</a> &raquo; <a class="el" href="group__maps.html">Maps</a></div></div></div>
 </div><!--header-->
 <div class="contents">
 
@@ -87,19 +87,20 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:a928287c7e96211e5387e9e8293bd0542"><td class="memItemLeft" align="right" valign="top"><a id="a928287c7e96211e5387e9e8293bd0542" name="a928287c7e96211e5387e9e8293bd0542"></a>
-DistanceM&#160;</td><td class="memItemRight" valign="bottom"><b>x</b></td></tr>
-<tr class="separator:a928287c7e96211e5387e9e8293bd0542"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5abfb34ae6c442d38492bf1ef7364b6f"><td class="memItemLeft" align="right" valign="top"><a id="a5abfb34ae6c442d38492bf1ef7364b6f" name="a5abfb34ae6c442d38492bf1ef7364b6f"></a>
-DistanceM&#160;</td><td class="memItemRight" valign="bottom"><b>y</b></td></tr>
-<tr class="separator:a5abfb34ae6c442d38492bf1ef7364b6f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac3963f0aa7a8a4c69bbc73a603ac505e"><td class="memItemLeft" align="right" valign="top"><a id="ac3963f0aa7a8a4c69bbc73a603ac505e" name="ac3963f0aa7a8a4c69bbc73a603ac505e"></a>
-DistanceM&#160;</td><td class="memItemRight" valign="bottom"><b>z</b></td></tr>
-<tr class="separator:ac3963f0aa7a8a4c69bbc73a603ac505e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9a4f74af87a76a4c3dcb729cb0e68f8d"><td class="memItemLeft" align="right" valign="top"><a id="a9a4f74af87a76a4c3dcb729cb0e68f8d" name="a9a4f74af87a76a4c3dcb729cb0e68f8d"></a>
+T&#160;</td><td class="memItemRight" valign="bottom"><b>x</b></td></tr>
+<tr class="separator:a9a4f74af87a76a4c3dcb729cb0e68f8d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1cb2b5ea04251d543e49356ef54eb853"><td class="memItemLeft" align="right" valign="top"><a id="a1cb2b5ea04251d543e49356ef54eb853" name="a1cb2b5ea04251d543e49356ef54eb853"></a>
+T&#160;</td><td class="memItemRight" valign="bottom"><b>y</b></td></tr>
+<tr class="separator:a1cb2b5ea04251d543e49356ef54eb853"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa37b7ae12b900daed71297a80053aacf"><td class="memItemLeft" align="right" valign="top"><a id="aa37b7ae12b900daed71297a80053aacf" name="aa37b7ae12b900daed71297a80053aacf"></a>
+T&#160;</td><td class="memItemRight" valign="bottom"><b>z</b></td></tr>
+<tr class="separator:aa37b7ae12b900daed71297a80053aacf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Represents a 3D point with x, y, z coordinates (in meters). </p>
-<p>Used throughout the mapping and robotics modules for point cloud processing, spatial queries, and geometric computations. Each coordinate is stored as a DistanceM (meters). </p>
+<div class="textblock"><div class="compoundTemplParams">template&lt;typename T = DistanceM&gt;<br />
+struct tinyrobotics::Point3D&lt; T &gt;</div><p>Represents a 3D point with x, y, z coordinates (in meters). </p>
+<p>Used throughout the mapping and robotics modules for point cloud processing, spatial queries, and geometric computations. Each coordinate is stored as a T (meters). </p>
 </div><hr/>The documentation for this struct was generated from the following file:<ul>
 <li>src/TinyRobotics/maps/<a class="el" href="PointCloud_8h_source.html">PointCloud.h</a></li>
 </ul>

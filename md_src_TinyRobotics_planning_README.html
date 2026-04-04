@@ -73,23 +73,23 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><p>This directory contains algorithms and utilities for path planning, motion planning, and trajectory generation—core components for autonomous navigation and robotics.</p>
-<h1><a class="anchor" id="autotoc_md137"></a>
+<h1><a class="anchor" id="autotoc_md138"></a>
 Contents</h1>
 <ul>
 <li><b><a class="el" href="Path_8h_source.html">Path.h</a></b> <br  />
  Path representation as a sequence of waypoints or segments. <br  />
  Features: path construction, reversal, length calculation, and interpolation.</li>
 <li><b><a class="el" href="AStar_8h_source.html">AStar.h</a></b> <br  />
- Generic and extensible A* pathfinding algorithm for graphs, grids, and navigation maps. <br  />
- Features: iterative search, customizable heuristics, and support for user-defined map types.</li>
+ Flexible A* pathfinding algorithm for any map implementing <a class="el" href="classtinyrobotics_1_1IMap.html">IMap&lt;T&gt;</a> and using <a class="el" href="classtinyrobotics_1_1Coordinate.html">Coordinate&lt;T&gt;</a> nodes. <br  />
+ Features: interface-based design, customizable cost and validity callbacks, and support for arbitrary map types.</li>
 <li><b><a class="el" href="Dijkstra_8h_source.html">Dijkstra.h</a></b> <br  />
- Generic Dijkstra shortest path algorithm for graphs, grids, and navigation maps. <br  />
- Features: callback-based cost and validity, flexible map integration, and optimal path computation without heuristics.</li>
+ Flexible Dijkstra shortest path algorithm for any map implementing <a class="el" href="classtinyrobotics_1_1IMap.html">IMap&lt;T&gt;</a> and using <a class="el" href="classtinyrobotics_1_1Coordinate.html">Coordinate&lt;T&gt;</a> nodes. <br  />
+ Features: callback-based cost and validity, interface-based map integration, and optimal path computation without heuristics.</li>
 <li><b><a class="el" href="FrontierExplorer_8h_source.html">FrontierExplorer.h</a></b> <br  />
  Generic frontier-based exploration utility for autonomous mapping and SLAM. <br  />
  Features: supports multiple selection strategies (random, nearest, farthest, first, last, custom), works with any grid/occupancy map, and provides flexible integration for exploration tasks.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md138"></a>
+<h1><a class="anchor" id="autotoc_md139"></a>
 Typical Usage</h1>
 <ul>
 <li>Find the shortest or optimal path between two points in a grid, map, or graph.</li>
@@ -97,17 +97,17 @@ Typical Usage</h1>
 <li>Integrate planning algorithms with mapping and localization modules for autonomous navigation.</li>
 <li>Perform frontier-based exploration for mapping unknown environments or enhancing SLAM performance.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md139"></a>
+<h1><a class="anchor" id="autotoc_md140"></a>
 Example</h1>
 <div class="fragment"><div class="line"><span class="preprocessor">#include &lt;<a class="code" href="TinyRobotics_8h.html">TinyRobotics.h</a>&gt;</span></div>
 <div class="line"> </div>
-<div class="line"><span class="comment">// Define your map or graph type (e.g., GridMap, PathMap)</span></div>
-<div class="line">GridMap&lt;&gt; grid(50, 50, 0.1f);</div>
+<div class="line"><span class="comment">// Define your map type (must implement IMap&lt;T&gt;)</span></div>
+<div class="line">GridMap grid(50, 50, 0.1f);</div>
 <div class="line"><span class="keyword">auto</span> start = grid.worldToGrid(0.0f, 0.0f);</div>
 <div class="line"><span class="keyword">auto</span> goal = grid.worldToGrid(4.0f, 4.0f);</div>
 <div class="line"> </div>
-<div class="line">AStar&lt;<span class="keyword">decltype</span>(grid)&gt; astar(grid);</div>
-<div class="line"><span class="keyword">auto</span> path = astar.findPath(start, goal);</div>
+<div class="line">AStar astar;</div>
+<div class="line"><span class="keyword">auto</span> path = astar.findPath(grid, start, goal);</div>
 <div class="line"> </div>
 <div class="line"><span class="keywordflow">if</span> (!path.empty()) {</div>
 <div class="line">    <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; node : path) {</div>
@@ -115,16 +115,16 @@ Example</h1>
 <div class="line">    }</div>
 <div class="line">}</div>
 <div class="ttc" id="aTinyRobotics_8h_html"><div class="ttname"><a href="TinyRobotics_8h.html">TinyRobotics.h</a></div></div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md140"></a>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md141"></a>
 See Examples</h1>
 <ul>
-<li><a href="../../../examples/maps&amp;planning/gridmap-astar/girdmap-astar.ino">Gridmap A*</a></li>
-<li><a href="../../../examples/maps&amp;planning/gridmap-dijkstra/girdmap-dijkstra.ino">Gridmap Dijkstra</a></li>
+<li><a href="../../../examples/maps&amp;planning/gridmap-astar/gridmap-astar.ino">Gridmap A*</a></li>
+<li><a href="../../../examples/maps&amp;planning/gridmap-dijkstra/gridmap-dijkstra.ino">Gridmap Dijkstra</a></li>
 <li><a href="../../../examples/maps&amp;planning/pathmap-astar/pathmap-astar.ino">Pathmap A*</a></li>
 <li><a href="../../../examples/maps&amp;planning/plannedpath/plannedpath.ino">Planned Path</a></li>
 <li><a href="../../../examples/maps&amp;planning/pointcloud-astar/pointcloud-astar.ino">Pointcloud A*</a></li>
 </ul>
-<h1><a class="anchor" id="autotoc_md141"></a>
+<h1><a class="anchor" id="autotoc_md142"></a>
 See Also</h1>
 <ul>
 <li><a href="../coordinates/">coordinates/</a> for coordinate and frame representations</li>

@@ -249,48 +249,48 @@ std::vector&lt; <a class="el" href="classtinyrobotics_1_1MessageHandler.html">Me
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Tracks 2D position and orientation of a robot using velocity and steering data. </p>
 <p>This class provides simple 2D odometry for mobile robots, such as differential drive or Ackermann vehicles. It integrates velocity and steering angle over time to estimate the robot's position (x, y) in meters.</p>
-<h2><a class="anchor" id="autotoc_md118"></a>
+<h2><a class="anchor" id="autotoc_md119"></a>
 Supported Kinematics</h2>
 <ul>
 <li>Differential drive (default model)</li>
 <li>Ackermann steering (if steering angle is provided)</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md119"></a>
+<h2><a class="anchor" id="autotoc_md120"></a>
 Inputs</h2>
 <ul>
 <li><a class="el" href="classtinyrobotics_1_1Speed.html" title="Represents a speed measurement with unit conversion support.">Speed</a> (as a <a class="el" href="classtinyrobotics_1_1Speed.html" title="Represents a speed measurement with unit conversion support.">Speed</a> object, e.g., meters per second)</li>
 <li>Steering angle (as an <a class="el" href="classtinyrobotics_1_1Angle.html" title="Represents an angle with unit conversion and wrap-around support.">Angle</a> object, e.g., radians)</li>
 <li><a class="el" href="classtinyrobotics_1_1Time.html" title="Represents a time duration with a specific unit (seconds, milliseconds, microseconds,...">Time</a> delta (in milliseconds, or uses millis() if not provided)</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md120"></a>
+<h2><a class="anchor" id="autotoc_md121"></a>
 Outputs</h2>
 <ul>
 <li>2D position (x, y) in meters</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md121"></a>
+<h2><a class="anchor" id="autotoc_md122"></a>
 Coordinate Frame</h2>
 <ul>
 <li>All positions are in the robot's local/world frame, with x forward and y left/right.</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md122"></a>
+<h2><a class="anchor" id="autotoc_md123"></a>
 Update Method</h2>
 <ul>
 <li>Call <a class="el" href="classtinyrobotics_1_1Odometry2D.html#aff5ccb8954d32d3e22d57ea0d25db587" title="Update the odometry state with new speed and steering angle.">update()</a> with new speed and steering angle at each control loop iteration.</li>
 <li>Optionally provide delta time, or let the class compute it using millis().</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md123"></a>
+<h2><a class="anchor" id="autotoc_md124"></a>
 Integration Method</h2>
 <ul>
 <li>Uses simple Euler integration for position updates.</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md124"></a>
+<h2><a class="anchor" id="autotoc_md125"></a>
 Limitations</h2>
 <ul>
 <li>Assumes no wheel slip or drift.</li>
 <li>Not suitable for holonomic or omnidirectional robots.</li>
 <li>Orientation (theta) is not explicitly tracked in this class.</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md125"></a>
+<h2><a class="anchor" id="autotoc_md126"></a>
 Example Usage</h2>
 <div class="fragment"><div class="line"><a class="code hl_class" href="classtinyrobotics_1_1Odometry2D.html">Odometry2D</a> odom;</div>
 <div class="line">odom.<a class="code hl_function" href="classtinyrobotics_1_1Odometry2D.html#a706c9d3ef6f8bb22ef5f54cd97bfdef6">begin</a>(<a class="code hl_class" href="classtinyrobotics_1_1Coordinate.html">Coordinate&lt;DistanceM&gt;</a>(0, 0));</div>

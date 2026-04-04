@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.6"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>TinyRobotics: Dijkstra&lt; MapType, Node &gt; Class Template Reference</title>
+<title>TinyRobotics: Dijkstra&lt; T &gt; Class Template Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -79,7 +79,7 @@ $(function() {
 <a href="#pro-static-methods">Static Protected Member Functions</a> &#124;
 <a href="#pro-attribs">Protected Attributes</a> &#124;
 <a href="classtinyrobotics_1_1Dijkstra-members.html">List of all members</a>  </div>
-  <div class="headertitle"><div class="title">Dijkstra&lt; MapType, Node &gt; Class Template Reference<div class="ingroups"><a class="el" href="group__main.html">TinyRobotics</a> &raquo; <a class="el" href="group__planning.html">Planning</a></div></div></div>
+  <div class="headertitle"><div class="title">Dijkstra&lt; T &gt; Class Template Reference<div class="ingroups"><a class="el" href="group__main.html">TinyRobotics</a> &raquo; <a class="el" href="group__planning.html">Planning</a></div></div></div>
 </div><!--header-->
 <div class="contents">
 
@@ -90,12 +90,12 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-types" name="pub-types"></a>
 Public Types</h2></td></tr>
-<tr class="memitem:a0b4f0337233c68cae74a2c171503ccb8"><td class="memItemLeft" align="right" valign="top"><a id="a0b4f0337233c68cae74a2c171503ccb8" name="a0b4f0337233c68cae74a2c171503ccb8"></a>
-using&#160;</td><td class="memItemRight" valign="bottom"><b>CostCallback</b> = std::function&lt; float(const Node &amp;, const Node &amp;, void *ref)&gt;</td></tr>
-<tr class="separator:a0b4f0337233c68cae74a2c171503ccb8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6b13be02c36e536303e8326efdae99bb"><td class="memItemLeft" align="right" valign="top"><a id="a6b13be02c36e536303e8326efdae99bb" name="a6b13be02c36e536303e8326efdae99bb"></a>
-using&#160;</td><td class="memItemRight" valign="bottom"><b>ValidCallback</b> = std::function&lt; bool(const Node &amp;, void *ref)&gt;</td></tr>
-<tr class="separator:a6b13be02c36e536303e8326efdae99bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aad918c1d4bc40ef698496d35f38d18df"><td class="memItemLeft" align="right" valign="top"><a id="aad918c1d4bc40ef698496d35f38d18df" name="aad918c1d4bc40ef698496d35f38d18df"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><b>CostCallback</b> = std::function&lt; float(const <a class="el" href="classtinyrobotics_1_1Coordinate.html">Coordinate</a>&lt; T &gt; &amp;, const <a class="el" href="classtinyrobotics_1_1Coordinate.html">Coordinate</a>&lt; T &gt; &amp;, void *ref)&gt;</td></tr>
+<tr class="separator:aad918c1d4bc40ef698496d35f38d18df"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aacb5c85161b86c9d5a35cc8180bf75de"><td class="memItemLeft" align="right" valign="top"><a id="aacb5c85161b86c9d5a35cc8180bf75de" name="aacb5c85161b86c9d5a35cc8180bf75de"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><b>ValidCallback</b> = std::function&lt; bool(const <a class="el" href="classtinyrobotics_1_1Coordinate.html">Coordinate</a>&lt; T &gt; &amp;, void *ref)&gt;</td></tr>
+<tr class="separator:aacb5c85161b86c9d5a35cc8180bf75de"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -107,18 +107,18 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>setValidCallback</b> 
 <tr class="separator:ae5f7c99bd9954accb45e76503e1e53d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af18f354e3db7c08b67f6751e63b76245"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1Dijkstra.html#af18f354e3db7c08b67f6751e63b76245">setReference</a> (void *reference)</td></tr>
 <tr class="separator:af18f354e3db7c08b67f6751e63b76245"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2183d5d1a2f1f1ac416328c2146d65fa"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classtinyrobotics_1_1Path.html">Path</a>&lt; Node &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1Dijkstra.html#a2183d5d1a2f1f1ac416328c2146d65fa">findPath</a> (const MapType &amp;map, const Node &amp;start, const Node &amp;goal)</td></tr>
-<tr class="memdesc:a2183d5d1a2f1f1ac416328c2146d65fa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Finds the shortest path from start to goal.  <br /></td></tr>
-<tr class="separator:a2183d5d1a2f1f1ac416328c2146d65fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aee850c3f8664e5de150807cd1a2f6b01"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classtinyrobotics_1_1Path.html">Path</a>&lt; <a class="el" href="classtinyrobotics_1_1Coordinate.html">Coordinate</a>&lt; T &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1Dijkstra.html#aee850c3f8664e5de150807cd1a2f6b01">findPath</a> (const <a class="el" href="classtinyrobotics_1_1IMapNeighbors.html">IMapNeighbors</a>&lt; T &gt; &amp;map, const <a class="el" href="classtinyrobotics_1_1Coordinate.html">Coordinate</a>&lt; T &gt; &amp;start, const <a class="el" href="classtinyrobotics_1_1Coordinate.html">Coordinate</a>&lt; T &gt; &amp;goal)</td></tr>
+<tr class="memdesc:aee850c3f8664e5de150807cd1a2f6b01"><td class="mdescLeft">&#160;</td><td class="mdescRight">Finds the shortest path from start to goal.  <br /></td></tr>
+<tr class="separator:aee850c3f8664e5de150807cd1a2f6b01"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-static-methods" name="pro-static-methods"></a>
 Static Protected Member Functions</h2></td></tr>
-<tr class="memitem:a115a0b16f6e811c778ff9809c85a50e9"><td class="memItemLeft" align="right" valign="top"><a id="a115a0b16f6e811c778ff9809c85a50e9" name="a115a0b16f6e811c778ff9809c85a50e9"></a>
-static float&#160;</td><td class="memItemRight" valign="bottom"><b>defaultCost</b> (const Node &amp;from, const Node &amp;to, void *ref)</td></tr>
-<tr class="separator:a115a0b16f6e811c778ff9809c85a50e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4d0c38f4aff0a93e3bb4b9c0bd9ccdc9"><td class="memItemLeft" align="right" valign="top"><a id="a4d0c38f4aff0a93e3bb4b9c0bd9ccdc9" name="a4d0c38f4aff0a93e3bb4b9c0bd9ccdc9"></a>
-static bool&#160;</td><td class="memItemRight" valign="bottom"><b>defaultValid</b> (const Node &amp;node, void *ref)</td></tr>
-<tr class="separator:a4d0c38f4aff0a93e3bb4b9c0bd9ccdc9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a64ecc5acaab9469d456e8373251dfe54"><td class="memItemLeft" align="right" valign="top"><a id="a64ecc5acaab9469d456e8373251dfe54" name="a64ecc5acaab9469d456e8373251dfe54"></a>
+static float&#160;</td><td class="memItemRight" valign="bottom"><b>defaultCost</b> (const <a class="el" href="classtinyrobotics_1_1Coordinate.html">Coordinate</a>&lt; T &gt; &amp;from, const <a class="el" href="classtinyrobotics_1_1Coordinate.html">Coordinate</a>&lt; T &gt; &amp;to, void *ref)</td></tr>
+<tr class="separator:a64ecc5acaab9469d456e8373251dfe54"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7f87c13377f3ca4deffd566e7e89a8b4"><td class="memItemLeft" align="right" valign="top"><a id="a7f87c13377f3ca4deffd566e7e89a8b4" name="a7f87c13377f3ca4deffd566e7e89a8b4"></a>
+static bool&#160;</td><td class="memItemRight" valign="bottom"><b>defaultValid</b> (const <a class="el" href="classtinyrobotics_1_1Coordinate.html">Coordinate</a>&lt; T &gt; &amp;node, void *ref)</td></tr>
+<tr class="separator:a7f87c13377f3ca4deffd566e7e89a8b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
@@ -133,8 +133,8 @@ void *&#160;</td><td class="memItemRight" valign="bottom"><b>ref</b> = this</td>
 <tr class="separator:a1830ddb36c14bdd7057683e633f918c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><div class="compoundTemplParams">template&lt;typename MapType, typename Node = Coordinate&lt;DistanceM&gt;&gt;<br />
-class tinyrobotics::Dijkstra&lt; MapType, Node &gt;</div><p>Generic <a class="el" href="classtinyrobotics_1_1Dijkstra.html" title="Generic Dijkstra shortest path algorithm for graphs/maps with callback-based cost and validity.">Dijkstra</a> shortest path algorithm for graphs/maps with callback-based cost and validity. </p>
+<div class="textblock"><div class="compoundTemplParams">template&lt;typename T = DistanceM&gt;<br />
+class tinyrobotics::Dijkstra&lt; T &gt;</div><p>Generic <a class="el" href="classtinyrobotics_1_1Dijkstra.html" title="Generic Dijkstra shortest path algorithm for graphs/maps with callback-based cost and validity.">Dijkstra</a> shortest path algorithm for graphs/maps with callback-based cost and validity. </p>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
     <tr><td class="paramname">MapType</td><td>Must provide:<ul>
@@ -145,8 +145,8 @@ class tinyrobotics::Dijkstra&lt; MapType, Node &gt;</div><p>Generic <a class="el
   </dd>
 </dl>
 </div><h2 class="groupheader">Member Function Documentation</h2>
-<a id="a2183d5d1a2f1f1ac416328c2146d65fa" name="a2183d5d1a2f1f1ac416328c2146d65fa"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2183d5d1a2f1f1ac416328c2146d65fa">&#9670;&#160;</a></span>findPath()</h2>
+<a id="aee850c3f8664e5de150807cd1a2f6b01" name="aee850c3f8664e5de150807cd1a2f6b01"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aee850c3f8664e5de150807cd1a2f6b01">&#9670;&#160;</a></span>findPath()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -155,21 +155,21 @@ class tinyrobotics::Dijkstra&lt; MapType, Node &gt;</div><p>Generic <a class="el
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classtinyrobotics_1_1Path.html">Path</a>&lt; Node &gt; findPath </td>
+          <td class="memname"><a class="el" href="classtinyrobotics_1_1Path.html">Path</a>&lt; <a class="el" href="classtinyrobotics_1_1Coordinate.html">Coordinate</a>&lt; T &gt; &gt; findPath </td>
           <td>(</td>
-          <td class="paramtype">const MapType &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="classtinyrobotics_1_1IMapNeighbors.html">IMapNeighbors</a>&lt; T &gt; &amp;&#160;</td>
           <td class="paramname"><em>map</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const Node &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="classtinyrobotics_1_1Coordinate.html">Coordinate</a>&lt; T &gt; &amp;&#160;</td>
           <td class="paramname"><em>start</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const Node &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="classtinyrobotics_1_1Coordinate.html">Coordinate</a>&lt; T &gt; &amp;&#160;</td>
           <td class="paramname"><em>goal</em>&#160;</td>
         </tr>
         <tr>
