@@ -1,8 +1,4 @@
-#ifndef M_PI
-#define M_PI 3.14159265358979323846
-#endif
 #pragma once
-#include <cstdint>
 
 #include "Config.h"
 
@@ -34,6 +30,7 @@ enum class CellState : int8_t { UNKNOWN = -1, FREE = 0, OCCUPIED = 100 };
 
 /// Default numeric type for distances:  This can be changed
 using DistanceM = DEFAULT_TYPE;
+
 /// Default numeric type for angles in messages (degrees): This can be changed
 using AngleDeg = DEFAULT_TYPE;
 
