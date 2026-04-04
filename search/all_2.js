@@ -32,7 +32,7 @@ var searchData=
   ['content_29',['content',['../structtinyrobotics_1_1Message.html#a8e68387e210029af6bdfa6404d29f30f',1,'tinyrobotics::Message']]],
   ['control_30',['Control',['../group__control.html',1,'']]],
   ['control_20module_20overview_31',['Control Module Overview',['../md_src_TinyRobotics_control_README.html',1,'']]],
-  ['coordinate_32',['Coordinate',['../classtinyrobotics_1_1Coordinate.html',1,'tinyrobotics']]],
+  ['coordinate_32',['Coordinate',['../classtinyrobotics_1_1Coordinate.html#a7c6c0504ed144dde6eaf0599d424ef26',1,'tinyrobotics::Coordinate::Coordinate(Distance x, Distance y, Distance z=0)'],['../classtinyrobotics_1_1Coordinate.html#a13537389849f1f8839333d04843eb73f',1,'tinyrobotics::Coordinate::Coordinate(const Coordinate &amp;other)'],['../classtinyrobotics_1_1Coordinate.html',1,'Coordinate&lt; T &gt;']]],
   ['coordinate_3c_20distancem_20_3e_33',['Coordinate&lt; DistanceM &gt;',['../classtinyrobotics_1_1Coordinate.html',1,'tinyrobotics']]],
   ['coordinate_3c_20float_20_3e_34',['Coordinate&lt; float &gt;',['../classtinyrobotics_1_1Coordinate.html',1,'tinyrobotics']]],
   ['coordinate_3c_20t_20_3e_35',['Coordinate&lt; T &gt;',['../classtinyrobotics_1_1Coordinate.html',1,'tinyrobotics']]],

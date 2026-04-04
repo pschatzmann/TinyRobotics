@@ -12,8 +12,9 @@ var searchData=
   ['configurespeedpid_9',['configureSpeedPID',['../classtinyrobotics_1_1MotionController2D.html#a83669afed8cf6fa5bb6dc42cba02de60',1,'tinyrobotics::MotionController2D']]],
   ['configuresteeringpid_10',['configureSteeringPID',['../classtinyrobotics_1_1MotionController2D.html#a15d41d2c53de4ea9b2029bc75084810a',1,'tinyrobotics::MotionController2D']]],
   ['connect_11',['connect',['../classtinyrobotics_1_1UDPStream.html#a1396bf9b5defe9fa844a63b5cd40ac0e',1,'tinyrobotics::UDPStream']]],
-  ['countchanges_12',['countChanges',['../classtinyrobotics_1_1CameraImageDiff.html#a9265a5887c1771abba985ff55eedfb94',1,'tinyrobotics::CameraImageDiff']]],
-  ['countchangessplithorizontal_13',['countChangesSplitHorizontal',['../classtinyrobotics_1_1CameraImageDiff.html#ab5967af5c6af0e0b5a54b9e8d37af67d',1,'tinyrobotics::CameraImageDiff']]],
-  ['countchangessplitvertical_14',['countChangesSplitVertical',['../classtinyrobotics_1_1CameraImageDiff.html#a56cc39dd23ffc021c519f534c19a21fd',1,'tinyrobotics::CameraImageDiff']]],
-  ['create_15',['create',['../classtinyrobotics_1_1Task.html#a0924715b76f5f0305eda62e802cfcf2b',1,'tinyrobotics::Task']]]
+  ['coordinate_12',['Coordinate',['../classtinyrobotics_1_1Coordinate.html#a13537389849f1f8839333d04843eb73f',1,'tinyrobotics::Coordinate::Coordinate(const Coordinate &amp;other)'],['../classtinyrobotics_1_1Coordinate.html#a7c6c0504ed144dde6eaf0599d424ef26',1,'tinyrobotics::Coordinate::Coordinate(Distance x, Distance y, Distance z=0)']]],
+  ['countchanges_13',['countChanges',['../classtinyrobotics_1_1CameraImageDiff.html#a9265a5887c1771abba985ff55eedfb94',1,'tinyrobotics::CameraImageDiff']]],
+  ['countchangessplithorizontal_14',['countChangesSplitHorizontal',['../classtinyrobotics_1_1CameraImageDiff.html#ab5967af5c6af0e0b5a54b9e8d37af67d',1,'tinyrobotics::CameraImageDiff']]],
+  ['countchangessplitvertical_15',['countChangesSplitVertical',['../classtinyrobotics_1_1CameraImageDiff.html#a56cc39dd23ffc021c519f534c19a21fd',1,'tinyrobotics::CameraImageDiff']]],
+  ['create_16',['create',['../classtinyrobotics_1_1Task.html#a0924715b76f5f0305eda62e802cfcf2b',1,'tinyrobotics::Task']]]
 ];

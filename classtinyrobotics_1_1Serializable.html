@@ -99,14 +99,12 @@ Inheritance diagram for Serializable:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a86412f21d82b99aa3444ad89a34e222d"><td class="memItemLeft" align="right" valign="top"><a id="a86412f21d82b99aa3444ad89a34e222d" name="a86412f21d82b99aa3444ad89a34e222d"></a>
-virtual std::string&#160;</td><td class="memItemRight" valign="bottom"><b>toString</b> () const =0</td></tr>
+<tr class="memitem:a86412f21d82b99aa3444ad89a34e222d"><td class="memItemLeft" align="right" valign="top">virtual std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1Serializable.html#a86412f21d82b99aa3444ad89a34e222d">toString</a> () const =0</td></tr>
 <tr class="separator:a86412f21d82b99aa3444ad89a34e222d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae33c8054d24700dfa576cb69630e6085"><td class="memItemLeft" align="right" valign="top"><a id="ae33c8054d24700dfa576cb69630e6085" name="ae33c8054d24700dfa576cb69630e6085"></a>
 const char *&#160;</td><td class="memItemRight" valign="bottom"><b>toCString</b> () const</td></tr>
 <tr class="separator:ae33c8054d24700dfa576cb69630e6085"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afdf1c5b982e9a4380cb85cf9567cea5e"><td class="memItemLeft" align="right" valign="top"><a id="afdf1c5b982e9a4380cb85cf9567cea5e" name="afdf1c5b982e9a4380cb85cf9567cea5e"></a>
-virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>fromString</b> (const std::string &amp;in)=0</td></tr>
+<tr class="memitem:afdf1c5b982e9a4380cb85cf9567cea5e"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1Serializable.html#afdf1c5b982e9a4380cb85cf9567cea5e">fromString</a> (const std::string &amp;in)=0</td></tr>
 <tr class="separator:afdf1c5b982e9a4380cb85cf9567cea5e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0c5533c401e0fd05ad59faeb960de1b9"><td class="memItemLeft" align="right" valign="top"><a id="a0c5533c401e0fd05ad59faeb960de1b9" name="a0c5533c401e0fd05ad59faeb960de1b9"></a>
 virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>fromString</b> (const char *in)</td></tr>
@@ -114,7 +112,63 @@ virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>fromString</b
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>This class defines an interface for serializable objects that can be converted to and from a string representation. It provides two pure virtual methods: toString() for converting the object to a string, and fromString() for populating the object from a string input. This interface can be implemented by any class that needs to support serialization and deserialization, allowing for easy storage, transmission, or logging of object state in a human-readable. </p>
-</div><hr/>The documentation for this class was generated from the following file:<ul>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="afdf1c5b982e9a4380cb85cf9567cea5e" name="afdf1c5b982e9a4380cb85cf9567cea5e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afdf1c5b982e9a4380cb85cf9567cea5e">&#9670;&#160;</a></span>fromString()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual bool fromString </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>in</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implemented in <a class="el" href="classtinyrobotics_1_1Coordinate.html#a90a596c64056d74e218b1a77186546d4">Coordinate&lt; T &gt;</a>, <a class="el" href="classtinyrobotics_1_1Coordinate.html#a90a596c64056d74e218b1a77186546d4">Coordinate&lt; T &gt;</a>, <a class="el" href="classtinyrobotics_1_1Coordinate.html#a90a596c64056d74e218b1a77186546d4">Coordinate&lt; DistanceM &gt;</a>, and <a class="el" href="classtinyrobotics_1_1Coordinate.html#a90a596c64056d74e218b1a77186546d4">Coordinate&lt; float &gt;</a>.</p>
+
+</div>
+</div>
+<a id="a86412f21d82b99aa3444ad89a34e222d" name="a86412f21d82b99aa3444ad89a34e222d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a86412f21d82b99aa3444ad89a34e222d">&#9670;&#160;</a></span>toString()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual std::string toString </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implemented in <a class="el" href="classtinyrobotics_1_1Coordinate.html#a1fe5121d6528fdea3f243321b3fa3a49">Coordinate&lt; T &gt;</a>, <a class="el" href="classtinyrobotics_1_1Coordinate.html#a1fe5121d6528fdea3f243321b3fa3a49">Coordinate&lt; T &gt;</a>, <a class="el" href="classtinyrobotics_1_1Coordinate.html#a1fe5121d6528fdea3f243321b3fa3a49">Coordinate&lt; DistanceM &gt;</a>, and <a class="el" href="classtinyrobotics_1_1Coordinate.html#a1fe5121d6528fdea3f243321b3fa3a49">Coordinate&lt; float &gt;</a>.</p>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following file:<ul>
 <li>src/TinyRobotics/serialize/<a class="el" href="Serializable_8h_source.html">Serializable.h</a></li>
 </ul>
 </div><!-- contents -->
