@@ -49,6 +49,7 @@ The emulator can be configured with the following defines:
 - USE_TR_NAMESPACE: if defined we do not need to define the namespace in the Arduino Sketch.
 
 
-## Maintainers
+## Remarks
 
-If you add new Arduino API stubs, please document them here.
+- If you add new Arduino API stubs, please document them here.
+- If you need a complete Arduino Emulation you can use the [Arduino Emulator](https://github.com/pschatzmann/Arduino-Emulator) project.
