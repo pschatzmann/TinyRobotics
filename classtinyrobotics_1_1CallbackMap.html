@@ -85,38 +85,110 @@ $(function() {
  <a href="classtinyrobotics_1_1CallbackMap.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="CallbackMap_8h_source.html">CallbackMap.h</a>&gt;</code></p>
+<div class="dynheader">
+Inheritance diagram for CallbackMap&lt; T &gt;:</div>
+<div class="dyncontent">
+<div class="center"><img src="classtinyrobotics_1_1CallbackMap__inherit__graph.png" border="0" usemap="#aCallbackMap_3_01T_01_4_inherit__map" alt="Inheritance graph"/></div>
+<map name="aCallbackMap_3_01T_01_4_inherit__map" id="aCallbackMap_3_01T_01_4_inherit__map">
+<area shape="rect" title="A map&#45;like utility for generating and validating neighbor coordinates in a configurable pattern." alt="" coords="5,79,149,104"/>
+<area shape="rect" href="classtinyrobotics_1_1IMap.html" title=" " alt="" coords="31,5,123,31"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
+<div class="dynheader">
+Collaboration diagram for CallbackMap&lt; T &gt;:</div>
+<div class="dyncontent">
+<div class="center"><img src="classtinyrobotics_1_1CallbackMap__coll__graph.png" border="0" usemap="#aCallbackMap_3_01T_01_4_coll__map" alt="Collaboration graph"/></div>
+<map name="aCallbackMap_3_01T_01_4_coll__map" id="aCallbackMap_3_01T_01_4_coll__map">
+<area shape="rect" title="A map&#45;like utility for generating and validating neighbor coordinates in a configurable pattern." alt="" coords="5,79,149,104"/>
+<area shape="rect" href="classtinyrobotics_1_1IMap.html" title=" " alt="" coords="31,5,123,31"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:af5911804da243d5d9044a66d9db8e45c"><td class="memItemLeft" align="right" valign="top"><a id="af5911804da243d5d9044a66d9db8e45c" name="af5911804da243d5d9044a66d9db8e45c"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>CallbackMap</b> (float distance, int neighborCount)</td></tr>
-<tr class="separator:af5911804da243d5d9044a66d9db8e45c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a39c2d56b6ae61daa03dfd8afce47f6e7"><td class="memItemLeft" align="right" valign="top"><a id="a39c2d56b6ae61daa03dfd8afce47f6e7" name="a39c2d56b6ae61daa03dfd8afce47f6e7"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>isValid</b> (<a class="el" href="classtinyrobotics_1_1Coordinate.html">Coordinate</a>&lt; T &gt;coord) const</td></tr>
-<tr class="separator:a39c2d56b6ae61daa03dfd8afce47f6e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af60007de9326532efc653d2b9076d262"><td class="memItemLeft" align="right" valign="top"><a id="af60007de9326532efc653d2b9076d262" name="af60007de9326532efc653d2b9076d262"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setIsValidCallback</b> (bool(*callback)(<a class="el" href="classtinyrobotics_1_1Coordinate.html">Coordinate</a>&lt; T &gt;))</td></tr>
-<tr class="separator:af60007de9326532efc653d2b9076d262"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4baf12d55e814af3f2acedd6b71f188e"><td class="memItemLeft" align="right" valign="top"><a id="a4baf12d55e814af3f2acedd6b71f188e" name="a4baf12d55e814af3f2acedd6b71f188e"></a>
-std::vector&lt; <a class="el" href="classtinyrobotics_1_1Coordinate.html">Coordinate</a>&lt; T &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>getNeighbors</b> (<a class="el" href="classtinyrobotics_1_1Coordinate.html">Coordinate</a>&lt; T &gt; from) const</td></tr>
-<tr class="memdesc:a4baf12d55e814af3f2acedd6b71f188e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get world coordinates of neighboring cells (for pathfinding or navigation) <br /></td></tr>
-<tr class="separator:a4baf12d55e814af3f2acedd6b71f188e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7d0b96e925106bc078af1b69bc99cf82"><td class="memItemLeft" align="right" valign="top"><a id="a7d0b96e925106bc078af1b69bc99cf82" name="a7d0b96e925106bc078af1b69bc99cf82"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setDistance</b> (float distance)</td></tr>
-<tr class="separator:a7d0b96e925106bc078af1b69bc99cf82"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a167ac3fe252cef8aeb07d9aadad26dc9"><td class="memItemLeft" align="right" valign="top"><a id="a167ac3fe252cef8aeb07d9aadad26dc9" name="a167ac3fe252cef8aeb07d9aadad26dc9"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setNeighborCount</b> (int neighborCount)</td></tr>
+<tr class="memitem:a23cf3aea6eceb70157cb2f092d78b2fd"><td class="memItemLeft" align="right" valign="top"><a id="a23cf3aea6eceb70157cb2f092d78b2fd" name="a23cf3aea6eceb70157cb2f092d78b2fd"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>CallbackMap</b> ()=default</td></tr>
+<tr class="memdesc:a23cf3aea6eceb70157cb2f092d78b2fd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default constructor. <br /></td></tr>
+<tr class="separator:a23cf3aea6eceb70157cb2f092d78b2fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a966cb79bf94367a87d4b08fbf4478c15"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1CallbackMap.html#a966cb79bf94367a87d4b08fbf4478c15">CallbackMap</a> (float distanceX, float distanceY, float resolutionM, int neighborCount)</td></tr>
+<tr class="memdesc:a966cb79bf94367a87d4b08fbf4478c15"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct a <a class="el" href="classtinyrobotics_1_1CallbackMap.html" title="A map-like utility for generating and validating neighbor coordinates in a configurable pattern.">CallbackMap</a> with extents, resolution, and neighbor count.  <br /></td></tr>
+<tr class="separator:a966cb79bf94367a87d4b08fbf4478c15"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a46b60b70f6cab3dd3def090aaa041dc5"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1CallbackMap.html#a46b60b70f6cab3dd3def090aaa041dc5">getXCount</a> () const override</td></tr>
+<tr class="memdesc:a46b60b70f6cab3dd3def090aaa041dc5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the number of cells in the X direction.  <br /></td></tr>
+<tr class="separator:a46b60b70f6cab3dd3def090aaa041dc5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a536fc44bb975b113f31fa0c8582fce70"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1CallbackMap.html#a536fc44bb975b113f31fa0c8582fce70">getYCount</a> () const override</td></tr>
+<tr class="memdesc:a536fc44bb975b113f31fa0c8582fce70"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the number of cells in the Y direction.  <br /></td></tr>
+<tr class="separator:a536fc44bb975b113f31fa0c8582fce70"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aae6040eec466bec0d6ff656e67d5596d"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1CallbackMap.html#aae6040eec466bec0d6ff656e67d5596d">getResolution</a> () const override</td></tr>
+<tr class="memdesc:aae6040eec466bec0d6ff656e67d5596d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the map resolution in meters.  <br /></td></tr>
+<tr class="separator:aae6040eec466bec0d6ff656e67d5596d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2b84733531108a9e0c3303124b3fdb85"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="classtinyrobotics_1_1Coordinate.html">Coordinate</a>&lt; T &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1CallbackMap.html#a2b84733531108a9e0c3303124b3fdb85">getNeighbors</a> (<a class="el" href="classtinyrobotics_1_1Coordinate.html">Coordinate</a>&lt; T &gt; from) const override</td></tr>
+<tr class="memdesc:a2b84733531108a9e0c3303124b3fdb85"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generate valid neighbor coordinates around a given point.  <br /></td></tr>
+<tr class="separator:a2b84733531108a9e0c3303124b3fdb85"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a41d7d13067fa1e7b650f367d9d8a1e97"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1CallbackMap.html#a41d7d13067fa1e7b650f367d9d8a1e97">isValid</a> (const <a class="el" href="classtinyrobotics_1_1Coordinate.html">Coordinate</a>&lt; T &gt; &amp;coord) const override</td></tr>
+<tr class="memdesc:a41d7d13067fa1e7b650f367d9d8a1e97"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if a coordinate is valid (not occupied).  <br /></td></tr>
+<tr class="separator:a41d7d13067fa1e7b650f367d9d8a1e97"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af1651beb4a5110936bfd8955a6e91340"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1CallbackMap.html#af1651beb4a5110936bfd8955a6e91340">getCell</a> (int x, int y, <a class="el" href="group__utils.html#ga8787c656e38c35a93bccad5fe9a8d7d9">CellState</a> &amp;state) const override</td></tr>
+<tr class="memdesc:af1651beb4a5110936bfd8955a6e91340"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the cell state at grid coordinates (x, y).  <br /></td></tr>
+<tr class="separator:af1651beb4a5110936bfd8955a6e91340"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa0185570593ff36946d6c7864338d92e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classtinyrobotics_1_1Coordinate.html">Coordinate</a>&lt; T &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1CallbackMap.html#aa0185570593ff36946d6c7864338d92e">toWorld</a> (int x, int y) const override</td></tr>
+<tr class="memdesc:aa0185570593ff36946d6c7864338d92e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert grid indices to world coordinates.  <br /></td></tr>
+<tr class="separator:aa0185570593ff36946d6c7864338d92e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a32ee3f83fdd1db89a5a8eaacc83198e0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1CallbackMap.html#a32ee3f83fdd1db89a5a8eaacc83198e0">setIsValidCallback</a> (<a class="el" href="group__utils.html#ga8787c656e38c35a93bccad5fe9a8d7d9">CellState</a>(*callback)(<a class="el" href="classtinyrobotics_1_1Coordinate.html">Coordinate</a>&lt; T &gt;))</td></tr>
+<tr class="memdesc:a32ee3f83fdd1db89a5a8eaacc83198e0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the callback for cell validity checking.  <br /></td></tr>
+<tr class="separator:a32ee3f83fdd1db89a5a8eaacc83198e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab19da0af11483890129c4236cc14c5cb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1CallbackMap.html#ab19da0af11483890129c4236cc14c5cb">setResolution</a> (float resolutionM)</td></tr>
+<tr class="memdesc:ab19da0af11483890129c4236cc14c5cb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the map resolution in meters.  <br /></td></tr>
+<tr class="separator:ab19da0af11483890129c4236cc14c5cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a167ac3fe252cef8aeb07d9aadad26dc9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1CallbackMap.html#a167ac3fe252cef8aeb07d9aadad26dc9">setNeighborCount</a> (int neighborCount)</td></tr>
+<tr class="memdesc:a167ac3fe252cef8aeb07d9aadad26dc9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the number of neighbors to generate.  <br /></td></tr>
 <tr class="separator:a167ac3fe252cef8aeb07d9aadad26dc9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad1881fd2fb52b8af1b4b074f7f45f3f5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1CallbackMap.html#ad1881fd2fb52b8af1b4b074f7f45f3f5">setDistanceX</a> (float dx)</td></tr>
+<tr class="memdesc:ad1881fd2fb52b8af1b4b074f7f45f3f5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the map extent in X direction.  <br /></td></tr>
+<tr class="separator:ad1881fd2fb52b8af1b4b074f7f45f3f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1061d795d2aca4e2b0df8477d602a0f3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1CallbackMap.html#a1061d795d2aca4e2b0df8477d602a0f3">setDistanceY</a> (float dy)</td></tr>
+<tr class="memdesc:a1061d795d2aca4e2b0df8477d602a0f3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the map extent in Y direction.  <br /></td></tr>
+<tr class="separator:a1061d795d2aca4e2b0df8477d602a0f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_classtinyrobotics_1_1IMap"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classtinyrobotics_1_1IMap')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classtinyrobotics_1_1IMap.html">IMap&lt; T &gt;</a></td></tr>
+<tr class="memitem:af56db0da727de5b6f96f15733abddd59 inherit pub_methods_classtinyrobotics_1_1IMap"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1IMap.html#af56db0da727de5b6f96f15733abddd59">getXCount</a> () const =0</td></tr>
+<tr class="memdesc:af56db0da727de5b6f96f15733abddd59 inherit pub_methods_classtinyrobotics_1_1IMap"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the number of cells in the X direction.  <br /></td></tr>
+<tr class="separator:af56db0da727de5b6f96f15733abddd59 inherit pub_methods_classtinyrobotics_1_1IMap"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a32e4a0f038cc3306937b55de0a2e2e94 inherit pub_methods_classtinyrobotics_1_1IMap"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1IMap.html#a32e4a0f038cc3306937b55de0a2e2e94">getYCount</a> () const =0</td></tr>
+<tr class="memdesc:a32e4a0f038cc3306937b55de0a2e2e94 inherit pub_methods_classtinyrobotics_1_1IMap"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the number of cells in the Y direction.  <br /></td></tr>
+<tr class="separator:a32e4a0f038cc3306937b55de0a2e2e94 inherit pub_methods_classtinyrobotics_1_1IMap"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9b4369ef42b5c367be0aa7fd594e98a7 inherit pub_methods_classtinyrobotics_1_1IMap"><td class="memItemLeft" align="right" valign="top">virtual float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1IMap.html#a9b4369ef42b5c367be0aa7fd594e98a7">getResolution</a> () const =0</td></tr>
+<tr class="memdesc:a9b4369ef42b5c367be0aa7fd594e98a7 inherit pub_methods_classtinyrobotics_1_1IMap"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the map resolution (cell size in meters).  <br /></td></tr>
+<tr class="separator:a9b4369ef42b5c367be0aa7fd594e98a7 inherit pub_methods_classtinyrobotics_1_1IMap"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1b2e90d8edd5e5690929ca0ee332d485 inherit pub_methods_classtinyrobotics_1_1IMap"><td class="memItemLeft" align="right" valign="top">virtual std::vector&lt; <a class="el" href="classtinyrobotics_1_1Coordinate.html">Coordinate</a>&lt; T &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1IMap.html#a1b2e90d8edd5e5690929ca0ee332d485">getNeighbors</a> (<a class="el" href="classtinyrobotics_1_1Coordinate.html">Coordinate</a>&lt; T &gt; from) const =0</td></tr>
+<tr class="memdesc:a1b2e90d8edd5e5690929ca0ee332d485 inherit pub_methods_classtinyrobotics_1_1IMap"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get world coordinates of neighboring cells (for pathfinding or navigation).  <br /></td></tr>
+<tr class="separator:a1b2e90d8edd5e5690929ca0ee332d485 inherit pub_methods_classtinyrobotics_1_1IMap"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0cecc8ef02a2cabba50b0d8286848cf6 inherit pub_methods_classtinyrobotics_1_1IMap"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1IMap.html#a0cecc8ef02a2cabba50b0d8286848cf6">isValid</a> (const <a class="el" href="classtinyrobotics_1_1Coordinate.html">Coordinate</a>&lt; float &gt; &amp;coord) const =0</td></tr>
+<tr class="memdesc:a0cecc8ef02a2cabba50b0d8286848cf6 inherit pub_methods_classtinyrobotics_1_1IMap"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if a coordinate is inside the map bounds.  <br /></td></tr>
+<tr class="separator:a0cecc8ef02a2cabba50b0d8286848cf6 inherit pub_methods_classtinyrobotics_1_1IMap"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a48052f71080641a96cd0168864ecb39f inherit pub_methods_classtinyrobotics_1_1IMap"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1IMap.html#a48052f71080641a96cd0168864ecb39f">getCell</a> (int x, int y, <a class="el" href="group__utils.html#ga8787c656e38c35a93bccad5fe9a8d7d9">CellState</a> &amp;state) const =0</td></tr>
+<tr class="memdesc:a48052f71080641a96cd0168864ecb39f inherit pub_methods_classtinyrobotics_1_1IMap"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the state of a cell by integer indices.  <br /></td></tr>
+<tr class="separator:a48052f71080641a96cd0168864ecb39f inherit pub_methods_classtinyrobotics_1_1IMap"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac2076c8f6319b4506ba1c7fec781f3ee inherit pub_methods_classtinyrobotics_1_1IMap"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classtinyrobotics_1_1Coordinate.html">Coordinate</a>&lt; T &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1IMap.html#ac2076c8f6319b4506ba1c7fec781f3ee">toWorld</a> (int x, int y) const =0</td></tr>
+<tr class="memdesc:ac2076c8f6319b4506ba1c7fec781f3ee inherit pub_methods_classtinyrobotics_1_1IMap"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert cell indices to world coordinates.  <br /></td></tr>
+<tr class="separator:ac2076c8f6319b4506ba1c7fec781f3ee inherit pub_methods_classtinyrobotics_1_1IMap"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
-<tr class="memitem:a79c18d6982d5b3833dcfcbfd6fe9afd3"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1CallbackMap.html#a79c18d6982d5b3833dcfcbfd6fe9afd3">defaultNeighborCount</a></td></tr>
+<tr class="memitem:a79c18d6982d5b3833dcfcbfd6fe9afd3"><td class="memItemLeft" align="right" valign="top"><a id="a79c18d6982d5b3833dcfcbfd6fe9afd3" name="a79c18d6982d5b3833dcfcbfd6fe9afd3"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>defaultNeighborCount</b> = 36</td></tr>
 <tr class="separator:a79c18d6982d5b3833dcfcbfd6fe9afd3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a070f6f602bd3d2fc8c993f25ba3c8819"><td class="memItemLeft" align="right" valign="top"><a id="a070f6f602bd3d2fc8c993f25ba3c8819" name="a070f6f602bd3d2fc8c993f25ba3c8819"></a>
-float&#160;</td><td class="memItemRight" valign="bottom"><b>defaultDistance</b> = 1.0f</td></tr>
-<tr class="separator:a070f6f602bd3d2fc8c993f25ba3c8819"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a01f62ca0a099d9661502b3eb88610029"><td class="memItemLeft" align="right" valign="top">bool(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1CallbackMap.html#a01f62ca0a099d9661502b3eb88610029">isValidCB</a> )(<a class="el" href="classtinyrobotics_1_1Coordinate.html">Coordinate</a>&lt; T &gt; coord)</td></tr>
-<tr class="separator:a01f62ca0a099d9661502b3eb88610029"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af3c276cc43292299e97dfe3b351214f5"><td class="memItemLeft" align="right" valign="top"><a id="af3c276cc43292299e97dfe3b351214f5" name="af3c276cc43292299e97dfe3b351214f5"></a>
+float&#160;</td><td class="memItemRight" valign="bottom"><b>defaultResolutionM</b> = 1.0f</td></tr>
+<tr class="separator:af3c276cc43292299e97dfe3b351214f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae3318aeff0a3cd9bdb5d5e4c8f4f436c"><td class="memItemLeft" align="right" valign="top"><a id="ae3318aeff0a3cd9bdb5d5e4c8f4f436c" name="ae3318aeff0a3cd9bdb5d5e4c8f4f436c"></a>
+float&#160;</td><td class="memItemRight" valign="bottom"><b>distanceX</b> = 0</td></tr>
+<tr class="separator:ae3318aeff0a3cd9bdb5d5e4c8f4f436c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a61a605e1eda3be5aa7cf6409f8ca31a8"><td class="memItemLeft" align="right" valign="top"><a id="a61a605e1eda3be5aa7cf6409f8ca31a8" name="a61a605e1eda3be5aa7cf6409f8ca31a8"></a>
+float&#160;</td><td class="memItemRight" valign="bottom"><b>distanceY</b> = 0</td></tr>
+<tr class="separator:a61a605e1eda3be5aa7cf6409f8ca31a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a147ff7f132d83bf1c904ce117b0f440a"><td class="memItemLeft" align="right" valign="top"><a id="a147ff7f132d83bf1c904ce117b0f440a" name="a147ff7f132d83bf1c904ce117b0f440a"></a>
+<a class="el" href="group__utils.html#ga8787c656e38c35a93bccad5fe9a8d7d9">CellState</a>(*&#160;</td><td class="memItemRight" valign="bottom"><b>isValidCB</b> )(<a class="el" href="classtinyrobotics_1_1Coordinate.html">Coordinate</a>&lt; T &gt; coord) = nullptr</td></tr>
+<tr class="separator:a147ff7f132d83bf1c904ce117b0f440a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><div class="compoundTemplParams">template&lt;typename T = DistanceM&gt;<br />
@@ -132,11 +204,11 @@ class tinyrobotics::CallbackMap&lt; T &gt;</div><p>A map-like utility for genera
 <p>Example usage: </p><div class="fragment"><div class="line"><a class="code hl_class" href="classtinyrobotics_1_1CallbackMap.html">CallbackMap&lt;&gt;</a> map(1.0f, 16); <span class="comment">// 1m distance, 16 directions</span></div>
 <div class="line">map.setIsValidCallback([](<a class="code hl_class" href="classtinyrobotics_1_1Coordinate.html">Coordinate&lt;DistanceM&gt;</a> c) { <span class="keywordflow">return</span> c.x &gt; 0; });</div>
 <div class="line"><span class="keyword">auto</span> neighbors = map.getNeighbors(<a class="code hl_class" href="classtinyrobotics_1_1Coordinate.html">Coordinate&lt;DistanceM&gt;</a>(0,0));</div>
-<div class="ttc" id="aclasstinyrobotics_1_1CallbackMap_html"><div class="ttname"><a href="classtinyrobotics_1_1CallbackMap.html">tinyrobotics::CallbackMap</a></div><div class="ttdoc">A map-like utility for generating and validating neighbor coordinates in a configurable pattern.</div><div class="ttdef"><b>Definition:</b> CallbackMap.h:33</div></div>
+<div class="ttc" id="aclasstinyrobotics_1_1CallbackMap_html"><div class="ttname"><a href="classtinyrobotics_1_1CallbackMap.html">tinyrobotics::CallbackMap</a></div><div class="ttdoc">A map-like utility for generating and validating neighbor coordinates in a configurable pattern.</div><div class="ttdef"><b>Definition:</b> CallbackMap.h:34</div></div>
 <div class="ttc" id="aclasstinyrobotics_1_1Coordinate_html"><div class="ttname"><a href="classtinyrobotics_1_1Coordinate.html">tinyrobotics::Coordinate</a></div><div class="ttdoc">A generic 3D coordinate class for robotics, navigation, and spatial calculations.</div><div class="ttdef"><b>Definition:</b> Coordinate.h:57</div></div>
-</div><!-- fragment --> </div><h2 class="groupheader">Member Data Documentation</h2>
-<a id="a79c18d6982d5b3833dcfcbfd6fe9afd3" name="a79c18d6982d5b3833dcfcbfd6fe9afd3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a79c18d6982d5b3833dcfcbfd6fe9afd3">&#9670;&#160;</a></span>defaultNeighborCount</h2>
+</div><!-- fragment --> </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a966cb79bf94367a87d4b08fbf4478c15" name="a966cb79bf94367a87d4b08fbf4478c15"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a966cb79bf94367a87d4b08fbf4478c15">&#9670;&#160;</a></span>CallbackMap()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -145,22 +217,58 @@ class tinyrobotics::CallbackMap&lt; T &gt;</div><p>A map-like utility for genera
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">int defaultNeighborCount</td>
+          <td class="memname"><a class="el" href="classtinyrobotics_1_1CallbackMap.html">CallbackMap</a> </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>distanceX</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>distanceY</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>resolutionM</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>neighborCount</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
-<b>Initial value:</b><div class="fragment"><div class="line">=</div>
-<div class="line">      36</div>
-</div><!-- fragment -->
+
+<p>Construct a <a class="el" href="classtinyrobotics_1_1CallbackMap.html" title="A map-like utility for generating and validating neighbor coordinates in a configurable pattern.">CallbackMap</a> with extents, resolution, and neighbor count. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">distanceX</td><td>Map extent in X direction (meters) </td></tr>
+    <tr><td class="paramname">distanceY</td><td>Map extent in Y direction (meters) </td></tr>
+    <tr><td class="paramname">resolutionM</td><td>Grid resolution (meters) </td></tr>
+    <tr><td class="paramname">neighborCount</td><td>Number of neighbors to generate </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
-<a id="a01f62ca0a099d9661502b3eb88610029" name="a01f62ca0a099d9661502b3eb88610029"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a01f62ca0a099d9661502b3eb88610029">&#9670;&#160;</a></span>isValidCB</h2>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="af1651beb4a5110936bfd8955a6e91340" name="af1651beb4a5110936bfd8955a6e91340"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af1651beb4a5110936bfd8955a6e91340">&#9670;&#160;</a></span>getCell()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -169,18 +277,426 @@ class tinyrobotics::CallbackMap&lt; T &gt;</div><p>A map-like utility for genera
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">bool(* isValidCB) (<a class="el" href="classtinyrobotics_1_1Coordinate.html">Coordinate</a>&lt; T &gt; coord)</td>
+          <td class="memname">bool getCell </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>y</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__utils.html#ga8787c656e38c35a93bccad5fe9a8d7d9">CellState</a> &amp;&#160;</td>
+          <td class="paramname"><em>state</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
         </tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
-<b>Initial value:</b><div class="fragment"><div class="line">=</div>
-<div class="line">      <span class="keyword">nullptr</span></div>
-</div><!-- fragment -->
+
+<p>Get the cell state at grid coordinates (x, y). </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x</td><td>X grid index </td></tr>
+    <tr><td class="paramname">y</td><td>Y grid index </td></tr>
+    <tr><td class="paramname">state</td><td>Output cell state </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True if cell state is available </dd></dl>
+
+<p>Implements <a class="el" href="classtinyrobotics_1_1IMap.html#a48052f71080641a96cd0168864ecb39f">IMap&lt; T &gt;</a>.</p>
+
+</div>
+</div>
+<a id="a2b84733531108a9e0c3303124b3fdb85" name="a2b84733531108a9e0c3303124b3fdb85"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2b84733531108a9e0c3303124b3fdb85">&#9670;&#160;</a></span>getNeighbors()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt; <a class="el" href="classtinyrobotics_1_1Coordinate.html">Coordinate</a>&lt; T &gt; &gt; getNeighbors </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classtinyrobotics_1_1Coordinate.html">Coordinate</a>&lt; T &gt;&#160;</td>
+          <td class="paramname"><em>from</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Generate valid neighbor coordinates around a given point. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">from</td><td>Center coordinate </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Vector of valid neighbor coordinates </dd></dl>
+
+<p>Implements <a class="el" href="classtinyrobotics_1_1IMap.html#a1b2e90d8edd5e5690929ca0ee332d485">IMap&lt; T &gt;</a>.</p>
+
+</div>
+</div>
+<a id="aae6040eec466bec0d6ff656e67d5596d" name="aae6040eec466bec0d6ff656e67d5596d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aae6040eec466bec0d6ff656e67d5596d">&#9670;&#160;</a></span>getResolution()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float getResolution </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get the map resolution in meters. </p>
+
+<p>Implements <a class="el" href="classtinyrobotics_1_1IMap.html#a9b4369ef42b5c367be0aa7fd594e98a7">IMap&lt; T &gt;</a>.</p>
+
+</div>
+</div>
+<a id="a46b60b70f6cab3dd3def090aaa041dc5" name="a46b60b70f6cab3dd3def090aaa041dc5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a46b60b70f6cab3dd3def090aaa041dc5">&#9670;&#160;</a></span>getXCount()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int getXCount </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get the number of cells in the X direction. </p>
+
+<p>Implements <a class="el" href="classtinyrobotics_1_1IMap.html#af56db0da727de5b6f96f15733abddd59">IMap&lt; T &gt;</a>.</p>
+
+</div>
+</div>
+<a id="a536fc44bb975b113f31fa0c8582fce70" name="a536fc44bb975b113f31fa0c8582fce70"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a536fc44bb975b113f31fa0c8582fce70">&#9670;&#160;</a></span>getYCount()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int getYCount </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get the number of cells in the Y direction. </p>
+
+<p>Implements <a class="el" href="classtinyrobotics_1_1IMap.html#a32e4a0f038cc3306937b55de0a2e2e94">IMap&lt; T &gt;</a>.</p>
+
+</div>
+</div>
+<a id="a41d7d13067fa1e7b650f367d9d8a1e97" name="a41d7d13067fa1e7b650f367d9d8a1e97"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a41d7d13067fa1e7b650f367d9d8a1e97">&#9670;&#160;</a></span>isValid()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool isValid </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classtinyrobotics_1_1Coordinate.html">Coordinate</a>&lt; T &gt; &amp;&#160;</td>
+          <td class="paramname"><em>coord</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Check if a coordinate is valid (not occupied). </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">coord</td><td><a class="el" href="classtinyrobotics_1_1Coordinate.html" title="A generic 3D coordinate class for robotics, navigation, and spatial calculations.">Coordinate</a> to check </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True if valid (not OCCUPIED), false otherwise </dd></dl>
+
+</div>
+</div>
+<a id="ad1881fd2fb52b8af1b4b074f7f45f3f5" name="ad1881fd2fb52b8af1b4b074f7f45f3f5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad1881fd2fb52b8af1b4b074f7f45f3f5">&#9670;&#160;</a></span>setDistanceX()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void setDistanceX </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>dx</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Set the map extent in X direction. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">dx</td><td>Extent in meters </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a1061d795d2aca4e2b0df8477d602a0f3" name="a1061d795d2aca4e2b0df8477d602a0f3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1061d795d2aca4e2b0df8477d602a0f3">&#9670;&#160;</a></span>setDistanceY()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void setDistanceY </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>dy</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Set the map extent in Y direction. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">dy</td><td>Extent in meters </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a32ee3f83fdd1db89a5a8eaacc83198e0" name="a32ee3f83fdd1db89a5a8eaacc83198e0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a32ee3f83fdd1db89a5a8eaacc83198e0">&#9670;&#160;</a></span>setIsValidCallback()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void setIsValidCallback </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__utils.html#ga8787c656e38c35a93bccad5fe9a8d7d9">CellState</a>(*)(<a class="el" href="classtinyrobotics_1_1Coordinate.html">Coordinate</a>&lt; T &gt;)&#160;</td>
+          <td class="paramname"><em>callback</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Set the callback for cell validity checking. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">callback</td><td>Function pointer taking a coordinate and returning CellState </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a167ac3fe252cef8aeb07d9aadad26dc9" name="a167ac3fe252cef8aeb07d9aadad26dc9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a167ac3fe252cef8aeb07d9aadad26dc9">&#9670;&#160;</a></span>setNeighborCount()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void setNeighborCount </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>neighborCount</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Set the number of neighbors to generate. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">neighborCount</td><td>Number of neighbors </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ab19da0af11483890129c4236cc14c5cb" name="ab19da0af11483890129c4236cc14c5cb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab19da0af11483890129c4236cc14c5cb">&#9670;&#160;</a></span>setResolution()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void setResolution </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>resolutionM</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Set the map resolution in meters. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">resolutionM</td><td>Grid resolution </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="aa0185570593ff36946d6c7864338d92e" name="aa0185570593ff36946d6c7864338d92e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa0185570593ff36946d6c7864338d92e">&#9670;&#160;</a></span>toWorld()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classtinyrobotics_1_1Coordinate.html">Coordinate</a>&lt; T &gt; toWorld </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>y</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Convert grid indices to world coordinates. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x</td><td>X grid index </td></tr>
+    <tr><td class="paramname">y</td><td>Y grid index </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>World coordinate </dd></dl>
+
+<p>Implements <a class="el" href="classtinyrobotics_1_1IMap.html#ac2076c8f6319b4506ba1c7fec781f3ee">IMap&lt; T &gt;</a>.</p>
+
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>

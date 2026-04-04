@@ -1,7 +1,7 @@
 var searchData=
 [
   ['calibrateslip_0',['calibrateSlip',['../classtinyrobotics_1_1WheelEncoder.html#ad56a0ccb97a9351685d8bb924a913a72',1,'tinyrobotics::WheelEncoder']]],
-  ['callbackmap_1',['CallbackMap',['../classtinyrobotics_1_1CallbackMap.html',1,'tinyrobotics']]],
+  ['callbackmap_1',['CallbackMap',['../classtinyrobotics_1_1CallbackMap.html#a966cb79bf94367a87d4b08fbf4478c15',1,'tinyrobotics::CallbackMap::CallbackMap(float distanceX, float distanceY, float resolutionM, int neighborCount)'],['../classtinyrobotics_1_1CallbackMap.html#a23cf3aea6eceb70157cb2f092d78b2fd',1,'tinyrobotics::CallbackMap::CallbackMap()=default'],['../classtinyrobotics_1_1CallbackMap.html',1,'CallbackMap&lt; T &gt;']]],
   ['callbackmessagehandler_2',['CallbackMessageHandler',['../classtinyrobotics_1_1CallbackMessageHandler.html',1,'tinyrobotics']]],
   ['camera_3',['CAMERA',['../group__utils.html#ggae63373b1147a2e480cea6083c3f9dc6caddf0d6b21537d984fea6544f58101fa8',1,'tinyrobotics']]],
   ['cameraedgefollower_4',['CameraEdgeFollower',['../classtinyrobotics_1_1CameraEdgeFollower.html',1,'tinyrobotics']]],

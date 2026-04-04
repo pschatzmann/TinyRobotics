@@ -81,82 +81,170 @@ $(function() {
 <div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#</span><span class="preprocessor">include</span> <span class="preprocessor">&lt;</span><span class="preprocessor">cstdint</span><span class="preprocessor">&gt;</span></div>
 <div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#</span><span class="preprocessor">include</span> <span class="preprocessor">&lt;</span><span class="preprocessor">vector</span><span class="preprocessor">&gt;</span></div>
 <div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span> </div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#</span><span class="preprocessor">include</span> <span class="preprocessor">&quot;TinyRobotics/utils/Common.h&quot;</span></div>
-<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="keyword">namespace</span> tinyrobotics {</div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="comment">/**</span></div>
-<div class="line"><span class="lineno">   11</span><span class="comment"> * @class CallbackMap</span></div>
-<div class="line"><span class="lineno">   12</span><span class="comment"> * @brief A map-like utility for generating and validating neighbor coordinates</span></div>
-<div class="line"><span class="lineno">   13</span><span class="comment"> * in a configurable pattern.</span></div>
-<div class="line"><span class="lineno">   14</span><span class="comment"> *</span></div>
-<div class="line"><span class="lineno">   15</span><span class="comment"> * CallbackMap generates neighbor coordinates around a given point at a</span></div>
-<div class="line"><span class="lineno">   16</span><span class="comment"> * specified distance and angular resolution. It supports a user-provided</span></div>
-<div class="line"><span class="lineno">   17</span><span class="comment"> * callback to determine if a coordinate is valid (e.g., obstacle-free).</span></div>
-<div class="line"><span class="lineno">   18</span><span class="comment"> *</span></div>
-<div class="line"><span class="lineno">   19</span><span class="comment"> * Typical use: pathfinding, navigation, or virtual occupancy grids where</span></div>
-<div class="line"><span class="lineno">   20</span><span class="comment"> * neighbors are not stored but computed on demand.</span></div>
-<div class="line"><span class="lineno">   21</span><span class="comment"> *</span></div>
-<div class="line"><span class="lineno">   22</span><span class="comment"> * @tparam T Numeric type for coordinates (default: DistanceM)</span></div>
-<div class="line"><span class="lineno">   23</span><span class="comment"> *</span></div>
-<div class="line"><span class="lineno">   24</span><span class="comment"> * Example usage:</span></div>
-<div class="line"><span class="lineno">   25</span><span class="comment"> * @code</span></div>
-<div class="line"><span class="lineno">   26</span><span class="comment"> * CallbackMap&lt;&gt; map(1.0f, 16); // 1m distance, 16 directions</span></div>
-<div class="line"><span class="lineno">   27</span><span class="comment"> * map.setIsValidCallback([](Coordinate&lt;DistanceM&gt; c) { return c.x &gt; 0; });</span></div>
-<div class="line"><span class="lineno">   28</span><span class="comment"> * auto neighbors = map.getNeighbors(Coordinate&lt;DistanceM&gt;(0,0));</span></div>
-<div class="line"><span class="lineno">   29</span><span class="comment"> * @endcode</span></div>
-<div class="line"><span class="lineno">   30</span><span class="comment"> */</span></div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T = DistanceM&gt;</div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span><span class="keyword">class</span> <a class="code hl_class" href="classtinyrobotics_1_1CallbackMap.html">CallbackMap</a> {</div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span> <span class="keyword">public</span>:</div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>  CallbackMap() = <span class="keywordflow">default</span>;</div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>  CallbackMap(<span class="keywordtype">float</span> distance, <span class="keywordtype">int</span> neighborCount)</div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>      : defaultDistance(distance), defaultNeighborCount(neighborCount) {}</div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span> </div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>  <span class="keywordtype">bool</span> isValid(Coordinate&lt;T&gt;coord) <span class="keyword">const</span> {</div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    <span class="keywordflow">if</span> (isValidCB) {</div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>      <span class="keywordflow">return</span> isValidCB(coord);</div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    }</div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    <span class="keywordflow">return</span> <span class="keyword">true</span>;  <span class="comment">// Default to all cells valid if no callback provided</span></div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>  }</div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span> </div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>  <span class="keywordtype">void</span> setIsValidCallback(<span class="keywordtype">bool</span> (*callback)(Coordinate&lt;T&gt;)) {</div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    isValidCB = callback;</div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>  }</div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span> </div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>  <span class="comment">/// Get world coordinates of neighboring cells (for pathfinding or navigation)</span></div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>  <a class="code hl_function" href="classtinyrobotics_1_1CallbackMap.html#a4baf12d55e814af3f2acedd6b71f188e">std</a>::<a class="code hl_function" href="classtinyrobotics_1_1CallbackMap.html#a4baf12d55e814af3f2acedd6b71f188e">vector</a>&lt;<a class="code hl_function" href="classtinyrobotics_1_1CallbackMap.html#a4baf12d55e814af3f2acedd6b71f188e">Coordinate</a>&lt;<a class="code hl_function" href="classtinyrobotics_1_1CallbackMap.html#a4baf12d55e814af3f2acedd6b71f188e">T</a>&gt;&gt; <a class="code hl_function" href="classtinyrobotics_1_1CallbackMap.html#a4baf12d55e814af3f2acedd6b71f188e">getNeighbors</a>(<a class="code hl_function" href="classtinyrobotics_1_1CallbackMap.html#a4baf12d55e814af3f2acedd6b71f188e">Coordinate</a>&lt;<a class="code hl_function" href="classtinyrobotics_1_1CallbackMap.html#a4baf12d55e814af3f2acedd6b71f188e">T</a>&gt; <a class="code hl_function" href="classtinyrobotics_1_1CallbackMap.html#a4baf12d55e814af3f2acedd6b71f188e">from</a>) <span class="keyword">const</span> {</div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    std::vector&lt;Coordinate&lt;T&gt;&gt; neighbors;</div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    <span class="comment">// Generate neighbors at defaultDistance in defaultResolution directions</span></div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; defaultNeighborCount; ++i) {</div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>      <span class="keywordtype">float</span> angle = 2.0f * M_PI * i / defaultNeighborCount;</div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>      <span class="keywordtype">float</span> dx = defaultDistance * std::cos(angle);</div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>      <span class="keywordtype">float</span> dy = defaultDistance * std::sin(angle);</div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>      Coordinate&lt;T&gt; neighbor(from.x + dx, from.y + dy);</div>
-<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>      <span class="keywordflow">if</span> (isValid(neighbor)) {</div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>        neighbors.push_back(neighbor);</div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>      }</div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    }</div>
-<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>    <span class="keywordflow">return</span> neighbors;</div>
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>  }</div>
-<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span> </div>
-<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>  <span class="keywordtype">void</span> setDistance(<span class="keywordtype">float</span> distance) { defaultDistance = distance; }</div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>  <span class="keywordtype">void</span> setNeighborCount(<span class="keywordtype">int</span> neighborCount) {</div>
-<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>    defaultNeighborCount = neighborCount;</div>
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>  }</div>
-<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span> </div>
-<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span> <span class="keyword">protected</span>:</div>
-<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>  <span class="keywordtype">int</span> defaultNeighborCount =</div>
-<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>      36;  <span class="comment">// Default to 36 neighbors (10 degree resolution)</span></div>
-<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>  <span class="keywordtype">float</span> defaultDistance = 1.0f;</div>
-<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>  <span class="keywordtype">bool</span> (*isValidCB)(Coordinate&lt;T&gt; coord) =</div>
-<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>      <span class="keywordtype">nullptr</span>;  <span class="comment">// Optional callback for cell validity</span></div>
-<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>};</div>
-<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span> </div>
-<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>}  <span class="comment">// namespace tinyrobotics</span></div>
-<div class="ttc" id="aclasstinyrobotics_1_1CallbackMap_html"><div class="ttname"><a href="classtinyrobotics_1_1CallbackMap.html">tinyrobotics::CallbackMap</a></div><div class="ttdoc">A map-like utility for generating and validating neighbor coordinates in a configurable pattern.</div><div class="ttdef"><b>Definition:</b> CallbackMap.h:33</div></div>
-<div class="ttc" id="aclasstinyrobotics_1_1CallbackMap_html_a4baf12d55e814af3f2acedd6b71f188e"><div class="ttname"><a href="classtinyrobotics_1_1CallbackMap.html#a4baf12d55e814af3f2acedd6b71f188e">tinyrobotics::CallbackMap::getNeighbors</a></div><div class="ttdeci">std::vector&lt; Coordinate&lt; T &gt; &gt; getNeighbors(Coordinate&lt; T &gt; from) const</div><div class="ttdoc">Get world coordinates of neighboring cells (for pathfinding or navigation)</div><div class="ttdef"><b>Definition:</b> CallbackMap.h:51</div></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#</span><span class="preprocessor">include</span> <span class="preprocessor">&quot;TinyRobotics/maps/IMap.h&quot;</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#</span><span class="preprocessor">include</span> <span class="preprocessor">&quot;TinyRobotics/utils/Common.h&quot;</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="keyword">namespace</span> tinyrobotics {</div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="comment">/**</span></div>
+<div class="line"><span class="lineno">   12</span><span class="comment"> * @class CallbackMap</span></div>
+<div class="line"><span class="lineno">   13</span><span class="comment"> * @brief A map-like utility for generating and validating neighbor coordinates</span></div>
+<div class="line"><span class="lineno">   14</span><span class="comment"> * in a configurable pattern.</span></div>
+<div class="line"><span class="lineno">   15</span><span class="comment"> *</span></div>
+<div class="line"><span class="lineno">   16</span><span class="comment"> * CallbackMap generates neighbor coordinates around a given point at a</span></div>
+<div class="line"><span class="lineno">   17</span><span class="comment"> * specified distance and angular resolution. It supports a user-provided</span></div>
+<div class="line"><span class="lineno">   18</span><span class="comment"> * callback to determine if a coordinate is valid (e.g., obstacle-free).</span></div>
+<div class="line"><span class="lineno">   19</span><span class="comment"> *</span></div>
+<div class="line"><span class="lineno">   20</span><span class="comment"> * Typical use: pathfinding, navigation, or virtual occupancy grids where</span></div>
+<div class="line"><span class="lineno">   21</span><span class="comment"> * neighbors are not stored but computed on demand.</span></div>
+<div class="line"><span class="lineno">   22</span><span class="comment"> *</span></div>
+<div class="line"><span class="lineno">   23</span><span class="comment"> * @tparam T Numeric type for coordinates (default: DistanceM)</span></div>
+<div class="line"><span class="lineno">   24</span><span class="comment"> *</span></div>
+<div class="line"><span class="lineno">   25</span><span class="comment"> * Example usage:</span></div>
+<div class="line"><span class="lineno">   26</span><span class="comment"> * @code</span></div>
+<div class="line"><span class="lineno">   27</span><span class="comment"> * CallbackMap&lt;&gt; map(1.0f, 16); // 1m distance, 16 directions</span></div>
+<div class="line"><span class="lineno">   28</span><span class="comment"> * map.setIsValidCallback([](Coordinate&lt;DistanceM&gt; c) { return c.x &gt; 0; });</span></div>
+<div class="line"><span class="lineno">   29</span><span class="comment"> * auto neighbors = map.getNeighbors(Coordinate&lt;DistanceM&gt;(0,0));</span></div>
+<div class="line"><span class="lineno">   30</span><span class="comment"> * @endcode</span></div>
+<div class="line"><span class="lineno">   31</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span> </div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T = DistanceM&gt;</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span><span class="keyword">class</span> <a class="code hl_class" href="classtinyrobotics_1_1CallbackMap.html">CallbackMap</a> : <span class="keyword">public</span> <a class="code hl_class" href="classtinyrobotics_1_1IMap.html">IMap</a>&lt;T&gt; {</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span> <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span> </div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>  <span class="comment">/// @brief Default constructor.</span></div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>  <a class="code hl_function" href="classtinyrobotics_1_1CallbackMap.html#a23cf3aea6eceb70157cb2f092d78b2fd">CallbackMap</a>() = <span class="keywordflow">default</span>;</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span> </div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>  <span class="comment">/// @brief Construct a CallbackMap with extents, resolution, and neighbor count.</span></div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>  <span class="comment">/// @param distanceX Map extent in X direction (meters)</span></div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>  <span class="comment">/// @param distanceY Map extent in Y direction (meters)</span></div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>  <span class="comment">/// @param resolutionM Grid resolution (meters)</span></div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>  <span class="comment">/// @param neighborCount Number of neighbors to generate</span></div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>  <a class="code hl_function" href="classtinyrobotics_1_1CallbackMap.html#a966cb79bf94367a87d4b08fbf4478c15">CallbackMap</a>(<span class="keywordtype">float</span> distanceX, <span class="keywordtype">float</span> distanceY, <span class="keywordtype">float</span> resolutionM, <span class="keywordtype">int</span> neighborCount)</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>      : defaultResolutionM(resolutionM), defaultNeighborCount(neighborCount),</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>        distanceX(distanceX), distanceY(distanceY) {}</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span> </div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>  <span class="comment">// --- IMap interface implementations ---</span></div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span> </div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>  <span class="comment">/// @brief Get the number of cells in the X direction.</span></div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>  <span class="keywordtype">int</span> <a class="code hl_function" href="classtinyrobotics_1_1CallbackMap.html#a46b60b70f6cab3dd3def090aaa041dc5">getXCount</a>() <span class="keyword">const</span> <span class="keyword">override</span> {</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    <span class="keywordflow">return</span> (defaultResolutionM &gt; 0 &amp;&amp; distanceX &gt; 0) ? <span class="keyword">static_cast</span>&lt;<span class="keywordtype">int</span>&gt;(distanceX / defaultResolutionM) : 0;</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>  }</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span> </div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>  <span class="comment">/// @brief Get the number of cells in the Y direction.</span></div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>  <span class="keywordtype">int</span> <a class="code hl_function" href="classtinyrobotics_1_1CallbackMap.html#a536fc44bb975b113f31fa0c8582fce70">getYCount</a>() <span class="keyword">const</span> <span class="keyword">override</span> {</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>    <span class="keywordflow">return</span> (defaultResolutionM &gt; 0 &amp;&amp; distanceY &gt; 0) ? <span class="keyword">static_cast</span>&lt;<span class="keywordtype">int</span>&gt;(distanceY / defaultResolutionM) : 0;</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>  }</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span> </div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>  <span class="comment">/// @brief Get the map resolution in meters.</span></div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>  <span class="keywordtype">float</span> <a class="code hl_function" href="classtinyrobotics_1_1CallbackMap.html#aae6040eec466bec0d6ff656e67d5596d">getResolution</a>() <span class="keyword">const</span> <span class="keyword">override</span> { <span class="keywordflow">return</span> defaultResolutionM; }</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span> </div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span> </div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>  <span class="comment">/// @brief Generate valid neighbor coordinates around a given point.</span></div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>  <span class="comment">/// @param from Center coordinate</span></div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>  <span class="comment">/// @return Vector of valid neighbor coordinates</span></div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>  <a class="code hl_function" href="classtinyrobotics_1_1CallbackMap.html#a2b84733531108a9e0c3303124b3fdb85">std</a>::<a class="code hl_function" href="classtinyrobotics_1_1CallbackMap.html#a2b84733531108a9e0c3303124b3fdb85">vector</a>&lt;<a class="code hl_function" href="classtinyrobotics_1_1CallbackMap.html#a2b84733531108a9e0c3303124b3fdb85">Coordinate</a>&lt;<a class="code hl_function" href="classtinyrobotics_1_1CallbackMap.html#a2b84733531108a9e0c3303124b3fdb85">T</a>&gt;&gt; <a class="code hl_function" href="classtinyrobotics_1_1CallbackMap.html#a2b84733531108a9e0c3303124b3fdb85">getNeighbors</a>(<a class="code hl_function" href="classtinyrobotics_1_1CallbackMap.html#a2b84733531108a9e0c3303124b3fdb85">Coordinate</a>&lt;<a class="code hl_function" href="classtinyrobotics_1_1CallbackMap.html#a2b84733531108a9e0c3303124b3fdb85">T</a>&gt; <a class="code hl_function" href="classtinyrobotics_1_1CallbackMap.html#a2b84733531108a9e0c3303124b3fdb85">from</a>) <span class="keyword">const</span> <span class="keyword">override</span> {</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>    std::vector&lt;Coordinate&lt;T&gt;&gt; neighbors;</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; defaultNeighborCount; ++i) {</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>      <span class="keywordtype">float</span> angle = 2.0f * M_PI * i / defaultNeighborCount;</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>      <span class="keywordtype">float</span> dx = defaultResolutionM * std::cos(angle);</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>      <span class="keywordtype">float</span> dy = defaultResolutionM * std::sin(angle);</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>      <a class="code hl_class" href="classtinyrobotics_1_1Coordinate.html">Coordinate</a>&lt;T&gt; neighbor(from.x + dx, from.y + dy);</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>      <span class="keywordflow">if</span> (<a class="code hl_function" href="classtinyrobotics_1_1CallbackMap.html#a41d7d13067fa1e7b650f367d9d8a1e97">isValid</a><a class="code hl_function" href="classtinyrobotics_1_1CallbackMap.html#a41d7d13067fa1e7b650f367d9d8a1e97">(</a>neighbor<a class="code hl_function" href="classtinyrobotics_1_1CallbackMap.html#a41d7d13067fa1e7b650f367d9d8a1e97">)</a>) {</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>        neighbors.push_back(neighbor);</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>      }</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>    }</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>    <span class="keywordflow">return</span> neighbors;</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>  }</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span> </div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span> </div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>  <span class="comment">/// @brief Check if a coordinate is valid (not occupied).</span></div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>  <span class="comment">/// @param coord Coordinate to check</span></div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>  <span class="comment">/// @return True if valid (not OCCUPIED), false otherwise</span></div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>  <span class="keywordtype">bool</span> <a class="code hl_function" href="classtinyrobotics_1_1CallbackMap.html#a41d7d13067fa1e7b650f367d9d8a1e97">isValid</a>(<span class="keyword">const</span> <a class="code hl_class" href="classtinyrobotics_1_1Coordinate.html">Coordinate</a>&lt;T&gt;&amp; coord) <span class="keyword">const</span> <span class="keyword">override</span> {</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>    <span class="keywordflow">if</span> (isValidCB) {</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>      <span class="keywordflow">return</span> isValidCB(coord) != <a class="code hl_enumeration" href="group__utils.html#ga8787c656e38c35a93bccad5fe9a8d7d9">CellState</a>::OCCUPIED;</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>    }</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>    <span class="comment">// If no callback is set, treat all cells as valid</span></div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>  }</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span> </div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span> </div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>  <span class="comment">/// @brief Get the cell state at grid coordinates (x, y).</span></div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>  <span class="comment">/// @param x X grid index</span></div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>  <span class="comment">/// @param y Y grid index</span></div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>  <span class="comment">/// @param state Output cell state</span></div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>  <span class="comment">/// @return True if cell state is available</span></div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>  <span class="keywordtype">bool</span> <a class="code hl_function" href="classtinyrobotics_1_1CallbackMap.html#af1651beb4a5110936bfd8955a6e91340">getCell</a>(<span class="keywordtype">int</span> x, <span class="keywordtype">int</span> y, <a class="code hl_enumeration" href="group__utils.html#ga8787c656e38c35a93bccad5fe9a8d7d9">CellState</a>&amp; state) <span class="keyword">const</span> <span class="keyword">override</span> {</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>    <a class="code hl_class" href="classtinyrobotics_1_1Coordinate.html">Coordinate</a>&lt;T&gt; c = <a class="code hl_function" href="classtinyrobotics_1_1CallbackMap.html#aa0185570593ff36946d6c7864338d92e">toWorld</a><a class="code hl_function" href="classtinyrobotics_1_1CallbackMap.html#aa0185570593ff36946d6c7864338d92e">(</a>x<a class="code hl_function" href="classtinyrobotics_1_1CallbackMap.html#aa0185570593ff36946d6c7864338d92e">,</a> y<a class="code hl_function" href="classtinyrobotics_1_1CallbackMap.html#aa0185570593ff36946d6c7864338d92e">)</a>;</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>    <span class="keywordflow">if</span> (isValidCB) {</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>      state = isValidCB(c);</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>      <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>    }</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>    <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>  }</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span> </div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span> </div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>  <span class="comment">/// @brief Convert grid indices to world coordinates.</span></div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>  <span class="comment">/// @param x X grid index</span></div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>  <span class="comment">/// @param y Y grid index</span></div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>  <span class="comment">/// @return World coordinate</span></div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>  <a class="code hl_class" href="classtinyrobotics_1_1Coordinate.html">Coordinate</a>&lt;T&gt; <a class="code hl_function" href="classtinyrobotics_1_1CallbackMap.html#aa0185570593ff36946d6c7864338d92e">toWorld</a>(<span class="keywordtype">int</span> x, <span class="keywordtype">int</span> y) <span class="keyword">const</span> <span class="keyword">override</span> {</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>    <span class="keywordflow">return</span> <a class="code hl_class" href="classtinyrobotics_1_1Coordinate.html">Coordinate</a>&lt;T&gt;(x * defaultResolutionM, y * defaultResolutionM);</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>  }</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span> </div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span> </div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>  <span class="comment">/// @brief Set the callback for cell validity checking.</span></div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>  <span class="comment">/// @param callback Function pointer taking a coordinate and returning CellState</span></div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classtinyrobotics_1_1CallbackMap.html#a32ee3f83fdd1db89a5a8eaacc83198e0">setIsValidCallback</a>(<a class="code hl_enumeration" href="group__utils.html#ga8787c656e38c35a93bccad5fe9a8d7d9">CellState</a> (*callback)(<a class="code hl_class" href="classtinyrobotics_1_1Coordinate.html">Coordinate</a>&lt;T&gt;)) {</div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>    isValidCB = callback;</div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>  }</div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span> </div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>  <span class="comment">/// @brief Set the map resolution in meters.</span></div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>  <span class="comment">/// @param resolutionM Grid resolution</span></div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classtinyrobotics_1_1CallbackMap.html#ab19da0af11483890129c4236cc14c5cb">setResolution</a>(<span class="keywordtype">float</span> resolutionM) { defaultResolutionM = resolutionM; }</div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span> </div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>  <span class="comment">/// @brief Set the number of neighbors to generate.</span></div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>  <span class="comment">/// @param neighborCount Number of neighbors</span></div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classtinyrobotics_1_1CallbackMap.html#a167ac3fe252cef8aeb07d9aadad26dc9">setNeighborCount</a>(<span class="keywordtype">int</span> neighborCount) {</div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>    defaultNeighborCount = neighborCount;</div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>  }</div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span> </div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>  <span class="comment">/// @brief Set the map extent in X direction.</span></div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>  <span class="comment">/// @param dx Extent in meters</span></div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classtinyrobotics_1_1CallbackMap.html#ad1881fd2fb52b8af1b4b074f7f45f3f5">setDistanceX</a>(<span class="keywordtype">float</span> dx) { distanceX = dx; }</div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span> </div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>  <span class="comment">/// @brief Set the map extent in Y direction.</span></div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span>  <span class="comment">/// @param dy Extent in meters</span></div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classtinyrobotics_1_1CallbackMap.html#a1061d795d2aca4e2b0df8477d602a0f3">setDistanceY</a>(<span class="keywordtype">float</span> dy) { distanceY = dy; }</div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span> </div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span> <span class="keyword">protected</span>:</div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span>  <span class="keywordtype">int</span> defaultNeighborCount = 36;</div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span>  <span class="keywordtype">float</span> defaultResolutionM = 1.0f;</div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>  <span class="keywordtype">float</span> distanceX = 0;</div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>  <span class="keywordtype">float</span> distanceY = 0;</div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>  <a class="code hl_enumeration" href="group__utils.html#ga8787c656e38c35a93bccad5fe9a8d7d9">CellState</a> (*isValidCB)(<a class="code hl_class" href="classtinyrobotics_1_1Coordinate.html">Coordinate</a>&lt;T&gt; coord) = <span class="keywordtype">nullptr</span>;</div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>};</div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span> </div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>} <span class="comment">// namespace tinyrobotics</span></div>
+<div class="ttc" id="aclasstinyrobotics_1_1CallbackMap_html"><div class="ttname"><a href="classtinyrobotics_1_1CallbackMap.html">tinyrobotics::CallbackMap</a></div><div class="ttdoc">A map-like utility for generating and validating neighbor coordinates in a configurable pattern.</div><div class="ttdef"><b>Definition:</b> CallbackMap.h:34</div></div>
+<div class="ttc" id="aclasstinyrobotics_1_1CallbackMap_html_a1061d795d2aca4e2b0df8477d602a0f3"><div class="ttname"><a href="classtinyrobotics_1_1CallbackMap.html#a1061d795d2aca4e2b0df8477d602a0f3">tinyrobotics::CallbackMap::setDistanceY</a></div><div class="ttdeci">void setDistanceY(float dy)</div><div class="ttdoc">Set the map extent in Y direction.</div><div class="ttdef"><b>Definition:</b> CallbackMap.h:141</div></div>
+<div class="ttc" id="aclasstinyrobotics_1_1CallbackMap_html_a167ac3fe252cef8aeb07d9aadad26dc9"><div class="ttname"><a href="classtinyrobotics_1_1CallbackMap.html#a167ac3fe252cef8aeb07d9aadad26dc9">tinyrobotics::CallbackMap::setNeighborCount</a></div><div class="ttdeci">void setNeighborCount(int neighborCount)</div><div class="ttdoc">Set the number of neighbors to generate.</div><div class="ttdef"><b>Definition:</b> CallbackMap.h:131</div></div>
+<div class="ttc" id="aclasstinyrobotics_1_1CallbackMap_html_a23cf3aea6eceb70157cb2f092d78b2fd"><div class="ttname"><a href="classtinyrobotics_1_1CallbackMap.html#a23cf3aea6eceb70157cb2f092d78b2fd">tinyrobotics::CallbackMap::CallbackMap</a></div><div class="ttdeci">CallbackMap()=default</div><div class="ttdoc">Default constructor.</div></div>
+<div class="ttc" id="aclasstinyrobotics_1_1CallbackMap_html_a2b84733531108a9e0c3303124b3fdb85"><div class="ttname"><a href="classtinyrobotics_1_1CallbackMap.html#a2b84733531108a9e0c3303124b3fdb85">tinyrobotics::CallbackMap::getNeighbors</a></div><div class="ttdeci">std::vector&lt; Coordinate&lt; T &gt; &gt; getNeighbors(Coordinate&lt; T &gt; from) const override</div><div class="ttdoc">Generate valid neighbor coordinates around a given point.</div><div class="ttdef"><b>Definition:</b> CallbackMap.h:68</div></div>
+<div class="ttc" id="aclasstinyrobotics_1_1CallbackMap_html_a32ee3f83fdd1db89a5a8eaacc83198e0"><div class="ttname"><a href="classtinyrobotics_1_1CallbackMap.html#a32ee3f83fdd1db89a5a8eaacc83198e0">tinyrobotics::CallbackMap::setIsValidCallback</a></div><div class="ttdeci">void setIsValidCallback(CellState(*callback)(Coordinate&lt; T &gt;))</div><div class="ttdoc">Set the callback for cell validity checking.</div><div class="ttdef"><b>Definition:</b> CallbackMap.h:121</div></div>
+<div class="ttc" id="aclasstinyrobotics_1_1CallbackMap_html_a41d7d13067fa1e7b650f367d9d8a1e97"><div class="ttname"><a href="classtinyrobotics_1_1CallbackMap.html#a41d7d13067fa1e7b650f367d9d8a1e97">tinyrobotics::CallbackMap::isValid</a></div><div class="ttdeci">bool isValid(const Coordinate&lt; T &gt; &amp;coord) const override</div><div class="ttdoc">Check if a coordinate is valid (not occupied).</div><div class="ttdef"><b>Definition:</b> CallbackMap.h:86</div></div>
+<div class="ttc" id="aclasstinyrobotics_1_1CallbackMap_html_a46b60b70f6cab3dd3def090aaa041dc5"><div class="ttname"><a href="classtinyrobotics_1_1CallbackMap.html#a46b60b70f6cab3dd3def090aaa041dc5">tinyrobotics::CallbackMap::getXCount</a></div><div class="ttdeci">int getXCount() const override</div><div class="ttdoc">Get the number of cells in the X direction.</div><div class="ttdef"><b>Definition:</b> CallbackMap.h:52</div></div>
+<div class="ttc" id="aclasstinyrobotics_1_1CallbackMap_html_a536fc44bb975b113f31fa0c8582fce70"><div class="ttname"><a href="classtinyrobotics_1_1CallbackMap.html#a536fc44bb975b113f31fa0c8582fce70">tinyrobotics::CallbackMap::getYCount</a></div><div class="ttdeci">int getYCount() const override</div><div class="ttdoc">Get the number of cells in the Y direction.</div><div class="ttdef"><b>Definition:</b> CallbackMap.h:57</div></div>
+<div class="ttc" id="aclasstinyrobotics_1_1CallbackMap_html_a966cb79bf94367a87d4b08fbf4478c15"><div class="ttname"><a href="classtinyrobotics_1_1CallbackMap.html#a966cb79bf94367a87d4b08fbf4478c15">tinyrobotics::CallbackMap::CallbackMap</a></div><div class="ttdeci">CallbackMap(float distanceX, float distanceY, float resolutionM, int neighborCount)</div><div class="ttdoc">Construct a CallbackMap with extents, resolution, and neighbor count.</div><div class="ttdef"><b>Definition:</b> CallbackMap.h:45</div></div>
+<div class="ttc" id="aclasstinyrobotics_1_1CallbackMap_html_aa0185570593ff36946d6c7864338d92e"><div class="ttname"><a href="classtinyrobotics_1_1CallbackMap.html#aa0185570593ff36946d6c7864338d92e">tinyrobotics::CallbackMap::toWorld</a></div><div class="ttdeci">Coordinate&lt; T &gt; toWorld(int x, int y) const override</div><div class="ttdoc">Convert grid indices to world coordinates.</div><div class="ttdef"><b>Definition:</b> CallbackMap.h:114</div></div>
+<div class="ttc" id="aclasstinyrobotics_1_1CallbackMap_html_aae6040eec466bec0d6ff656e67d5596d"><div class="ttname"><a href="classtinyrobotics_1_1CallbackMap.html#aae6040eec466bec0d6ff656e67d5596d">tinyrobotics::CallbackMap::getResolution</a></div><div class="ttdeci">float getResolution() const override</div><div class="ttdoc">Get the map resolution in meters.</div><div class="ttdef"><b>Definition:</b> CallbackMap.h:62</div></div>
+<div class="ttc" id="aclasstinyrobotics_1_1CallbackMap_html_ab19da0af11483890129c4236cc14c5cb"><div class="ttname"><a href="classtinyrobotics_1_1CallbackMap.html#ab19da0af11483890129c4236cc14c5cb">tinyrobotics::CallbackMap::setResolution</a></div><div class="ttdeci">void setResolution(float resolutionM)</div><div class="ttdoc">Set the map resolution in meters.</div><div class="ttdef"><b>Definition:</b> CallbackMap.h:127</div></div>
+<div class="ttc" id="aclasstinyrobotics_1_1CallbackMap_html_ad1881fd2fb52b8af1b4b074f7f45f3f5"><div class="ttname"><a href="classtinyrobotics_1_1CallbackMap.html#ad1881fd2fb52b8af1b4b074f7f45f3f5">tinyrobotics::CallbackMap::setDistanceX</a></div><div class="ttdeci">void setDistanceX(float dx)</div><div class="ttdoc">Set the map extent in X direction.</div><div class="ttdef"><b>Definition:</b> CallbackMap.h:137</div></div>
+<div class="ttc" id="aclasstinyrobotics_1_1CallbackMap_html_af1651beb4a5110936bfd8955a6e91340"><div class="ttname"><a href="classtinyrobotics_1_1CallbackMap.html#af1651beb4a5110936bfd8955a6e91340">tinyrobotics::CallbackMap::getCell</a></div><div class="ttdeci">bool getCell(int x, int y, CellState &amp;state) const override</div><div class="ttdoc">Get the cell state at grid coordinates (x, y).</div><div class="ttdef"><b>Definition:</b> CallbackMap.h:100</div></div>
+<div class="ttc" id="aclasstinyrobotics_1_1Coordinate_html"><div class="ttname"><a href="classtinyrobotics_1_1Coordinate.html">tinyrobotics::Coordinate</a></div><div class="ttdoc">A generic 3D coordinate class for robotics, navigation, and spatial calculations.</div><div class="ttdef"><b>Definition:</b> Coordinate.h:57</div></div>
+<div class="ttc" id="aclasstinyrobotics_1_1IMap_html"><div class="ttname"><a href="classtinyrobotics_1_1IMap.html">tinyrobotics::IMap</a></div><div class="ttdef"><b>Definition:</b> IMap.h:27</div></div>
+<div class="ttc" id="agroup__utils_html_ga8787c656e38c35a93bccad5fe9a8d7d9"><div class="ttname"><a href="group__utils.html#ga8787c656e38c35a93bccad5fe9a8d7d9">tinyrobotics::CellState</a></div><div class="ttdeci">CellState</div><div class="ttdoc">Cell state for occupancy grid mapping (e.g., UNKNOWN, FREE, OCCUPIED).</div><div class="ttdef"><b>Definition:</b> Common.h:30</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
