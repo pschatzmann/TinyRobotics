@@ -5,6 +5,7 @@
 
 #include "TinyRobotics/utils/AllocatorPSRAM.h"
 #include "TinyRobotics/utils/Common.h"
+#include "IMap.h"
 
 namespace tinyrobotics {
 
@@ -48,7 +49,7 @@ namespace tinyrobotics {
  */
 
 template <typename StateType = CellState, typename T = DistanceM>
-class GridMap {
+class GridMap : public IMap<T>  {
  public:
   /// Cell structure to represent grid cell indices
   struct Cell {
@@ -192,6 +193,18 @@ class GridMap {
   int getYCount() const { return yCount; }
 
   float getResolution() const { return resolution; }
+
+  /**
+   * @brief Check if a coordinate is within the map bounds.
+   * @param coord The coordinate to check.
+   * @return true if the coordinate is inside the map, false otherwise.
+   */
+  bool isValid(const Coordinate<T>& coord) const {
+    int cx, cy;
+    cx = static_cast<int>((coord.x - origin.x) / resolution);
+    cy = static_cast<int>((coord.y - origin.y) / resolution);
+    return cx >= 0 && cx < xCount && cy >= 0 && cy < yCount;
+  }
 
  protected:
   // Grid parameters

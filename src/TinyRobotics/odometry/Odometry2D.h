@@ -62,7 +62,7 @@ namespace tinyrobotics {
  * @date 2026-03-30
  */
 
-class Odometry2D : public MessageSource, public IMotionState2D {
+class Odometry2D :  public IMotionState2D {
  public:
   Odometry2D() = default;
 
@@ -89,6 +89,10 @@ class Odometry2D : public MessageSource, public IMotionState2D {
     return true;
   }
 
+  bool begin(Transform2D transform){
+    return begin(transform.pos, transform.getHeading(AngleUnit::RAD));
+  }
+
   /**
    * @brief Initialize the odometry state from a Frame2D.
    *
@@ -96,12 +100,14 @@ class Odometry2D : public MessageSource, public IMotionState2D {
    * @param wheelBase The wheelbase (optional, default 0).
    * @return true on success
    */
-  bool begin(const Frame2D& frame, Distance wheelBase = Distance()) {
+  bool begin(const Frame2D& frame) {
     // Extract position and orientation from the frame's transform
     auto tf = frame.getTransform();
     // tf.translation is a Coordinate<float>, convert to Coordinate<DistanceM>
     return begin(tf.pos, tf.getHeading(AngleUnit::RAD), wheelBase);
   }
+
+  void end(){}
 
   /**
    * @brief Update the odometry state with new speed and steering angle.
@@ -190,6 +196,8 @@ class Odometry2D : public MessageSource, public IMotionState2D {
     position = pos;
     theta = th;
   }
+
+  Transform2D getTransform() const { return Transform2D(position, getHeading().getValue(AngleUnit::DEG)); }
 
  protected:
   Coordinate<float> position;

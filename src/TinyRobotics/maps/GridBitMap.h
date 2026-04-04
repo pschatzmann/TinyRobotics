@@ -4,6 +4,7 @@
 #include "TinyRobotics/coordinates/Coordinate.h"
 #include "TinyRobotics/utils/AllocatorPSRAM.h"
 #include "TinyRobotics/utils/Common.h"
+#include "IMap.h"
 
 namespace tinyrobotics {
 
@@ -24,7 +25,8 @@ namespace tinyrobotics {
  * @tparam T Numeric type for coordinates (default: float)
  */
 
-class GridBitMap {
+template <typename T = DistanceM>
+class GridBitMap : public IMap<T> {
  public:
   struct Cell {
     size_t cx;
@@ -50,7 +52,9 @@ class GridBitMap {
   }
 
   int getXCount() const { return xCount; }
+
   int getYCount() const { return yCount; }
+
   float getResolution() const { return resolution; }
 
   // World to cell conversion
@@ -102,7 +106,7 @@ class GridBitMap {
   }
 
   // Get cell state by coordinate
-  bool getCell(const Coordinate<float>& coord, CellState& result) const {
+  bool getCell(const Coordinate<T>& coord, CellState& result) const {
     Cell cell;
     if (worldToCell(coord.x, coord.y, cell)) {
       return getCell(cell.cx, cell.cy, result);
@@ -111,20 +115,87 @@ class GridBitMap {
   }
 
   // Set cell state by coordinate
-  void setCell(const Coordinate<float>& coord, CellState value) {
+  void setCell(const Coordinate<T>& coord, CellState value) {
     Cell cell;
     if (worldToCell(coord.x, coord.y, cell)) {
       setCell(cell.cx, cell.cy, value);
     }
   }
 
+  /**
+   * @brief Check if a coordinate is within the map bounds.
+   * @param coord The coordinate to check.
+   * @return true if the coordinate is inside the map, false otherwise.
+   */
+  bool isValid(const Coordinate<T>& coord) const {
+    int cx, cy;
+    cx = static_cast<int>((coord.x - origin.x) / resolution);
+    cy = static_cast<int>((coord.y - origin.y) / resolution);
+    return cx >= 0 && cx < xCount && cy >= 0 && cy < yCount;
+  }
+
+  /// Get world coordinates of neighboring cells (for pathfinding or navigation)
+  std::vector<Coordinate<>> getNeighbors(Coordinate<T> from) const {
+    std::vector<Coordinate<T>> neighbors;
+    for (auto& cell : getNeighborCells(from)) {
+      Coordinate neighbor;
+      cellToWorld(cell.cx, cell.cy, neighbor.x, neighbor.y);
+      neighbors.push_back(neighbor);
+    }
+    return neighbors;
+  }
+
+  /// Convert cell indices to world coordinates (returns Coordinate<T>)
+  Coordinate<T> toWorld(int cx, int cy) const override {
+    float wx, wy;
+    cellToWorld(cx, cy, wx, wy);
+    return Coordinate<T>(wx, wy);
+  }
+
  protected:
   int xCount = 0;
   int yCount = 0;
   float resolution = 0.1f;
-  Coordinate<float> origin;
+  Coordinate<T> origin;
   std::vector<bool> occupied;
   std::vector<bool> free;
+
+  /// Determine all neighboring cells (8-connected) for a given cell coordinate.
+  std::vector<Cell> getNeighborCells(const Coordinate<T> from) const {
+    Cell cell;
+    worldToCell(from.x, from.y, cell);
+    int cx = static_cast<int>(cell.cx);
+    int cy = static_cast<int>(cell.cy);
+    std::vector<Cell> neighbors;
+    if (cx < xCount - 1)
+      neighbors.push_back(
+          {static_cast<size_t>(cx + 1), static_cast<size_t>(cy)});
+    if (cx > 0)
+      neighbors.push_back(
+          {static_cast<size_t>(cx - 1), static_cast<size_t>(cy)});
+    if (cy < yCount - 1)
+      neighbors.push_back(
+          {static_cast<size_t>(cx), static_cast<size_t>(cy + 1)});
+    if (cy > 0)
+      neighbors.push_back(
+          {static_cast<size_t>(cx), static_cast<size_t>(cy - 1)});
+
+    if (cx < xCount - 1 && cy < yCount - 1)
+      neighbors.push_back(
+          {static_cast<size_t>(cx + 1), static_cast<size_t>(cy + 1)});
+    if (cx > 0 && cy < yCount - 1)
+      neighbors.push_back(
+          {static_cast<size_t>(cx - 1), static_cast<size_t>(cy + 1)});
+    if (cx < xCount - 1 && cy > 0)
+      neighbors.push_back(
+          {static_cast<size_t>(cx + 1), static_cast<size_t>(cy - 1)});
+    if (cx > 0 && cy > 0)
+      neighbors.push_back(
+          {static_cast<size_t>(cx - 1), static_cast<size_t>(cy - 1)});
+    return neighbors;
+  }
+
+
 };
 
 }  // namespace tinyrobotics

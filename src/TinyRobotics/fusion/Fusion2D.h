@@ -26,7 +26,7 @@ namespace tinyrobotics {
  *
  * The EKF automatically adapts to the available sensors.
  */
-class Fusion2D : public MessageSource, public IMotionState2D {
+class Fusion2D : public IMotionState2D {
  public:
   /**
    * @brief Holds the estimated 2D state.
@@ -62,6 +62,10 @@ class Fusion2D : public MessageSource, public IMotionState2D {
     state.speed = 0.0f;        // optional initial speed
     state.timeMs = millis();
     return true;
+  }
+
+  bool begin(Transform2D initialTransform) {
+    return begin(initialTransform.pos, initialTransform.getHeading(AngleUnit::DEG));
   }
 
 
@@ -295,6 +299,13 @@ class Fusion2D : public MessageSource, public IMotionState2D {
   }
   Angle getHeading() const { return Angle(state.heading, AngleUnit::RAD); }
   Speed getSpeed() const { return Speed(state.speed, SpeedUnit::MPS); }
+  Transform2D getTransform() const {
+    return Transform2D(Coordinate<DistanceM>(state.x, state.y), Angle(state.heading, AngleUnit::RAD).getValue(AngleUnit::DEG));
+  }
+
+  void end() {
+    // No resources to clean up in this implementation
+  }
 
  private:
   State2D state;

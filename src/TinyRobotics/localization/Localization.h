@@ -1,7 +1,7 @@
 #pragma once
  /**
- * @defgroup slam SLAM
+ * @defgroup localization Localization and Mapping
  * @ingroup main
  * @brief Simultaneous Localization and Mapping (SLAM)
  */
-#include "SLAM2D.h"
+#include "LocalizationAndMapping2D.h"

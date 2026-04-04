@@ -32,11 +32,14 @@ struct Delta2D {
  *
  * Provides access to position, heading (orientation), and speed.
  */
-class IMotionState2D {
+class IMotionState2D : public MessageSource {
   public:
     virtual Coordinate<DistanceM> getPosition() const = 0;
     virtual Angle getHeading() const = 0;
     virtual Speed getSpeed() const = 0;
+    virtual Transform2D getTransform() const = 0;
+    virtual bool begin(Transform2D transform) = 0;
+    virtual void end() = 0;
 };
 
 /**

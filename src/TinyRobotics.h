@@ -22,7 +22,7 @@
 #include "TinyRobotics/motors/Motors.h"
 #include "TinyRobotics/planning/Planning.h"
 #include "TinyRobotics/sensors/Sensors.h"
-#include "TinyRobotics/slam/SLAM.h"
+#include "TinyRobotics/localization/Localization.h"
 #include "TinyRobotics/units/Units.h"
 #include "TinyRobotics/utils/Utils.h"
 #include "TinyRobotics/vehicles/Vehicles.h"

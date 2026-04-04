@@ -1,6 +1,4 @@
 #include <algorithm>
-using std::min;
-using std::max;
 #pragma once
 #include <Arduino.h>
 

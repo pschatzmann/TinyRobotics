@@ -1,5 +1,7 @@
 #pragma once
 #include "TinyRobotics/coordinates/Coordinate.h"
+#include "TinyRobotics/maps/IMap.h"
+#include "IFrontierExplorer.h"
 
 namespace tinyrobotics {
 
@@ -14,55 +16,35 @@ enum class FrontierSelectionStrategy {
   CUSTOM              // Use a user-defined callback to select the frontier
 };
 
+
 /**
  * @class FrontierExplorer
- * @brief Generic exploration and frontier-based SLAM utility for grid or
- * occupancy maps.
+ * @brief Generic exploration and frontier-based SLAM utility for grid or occupancy maps.
  *
- * The FrontierExplorer class provides a flexible framework for autonomous
- * exploration of a 2D or 3D environment using a frontier-based approach. It is
- * designed to work with any map type that provides cell state access (e.g.,
- * occupancy grid, bit vector map) and any coordinate type. The class supports
- * multiple strategies for selecting the next frontier to explore, including
- * random, nearest, farthest, first, last, and custom selection.
+ * Implements IFrontierExplorer for flexible autonomous exploration.
  *
- * Typical usage:
- *   - Set the robot's current position with setCurrentPosition().
- *   - Optionally set the frontier selection strategy with setStrategy().
- *   - Optionally provide a custom selection callback for advanced strategies.
- *   - Call getNextFrontier() to retrieve the next cell to explore.
- *
- * Features:
- *   - Works with any map type supporting getCell(x, y, state) and
- * getXCount()/getYCount().
- *   - Finds all frontiers (cells adjacent to unknown space) in the map.
- *   - Supports multiple selection strategies for exploration.
- *   - Allows user-defined custom selection logic.
- *
- * @tparam MapType The type of the map (e.g., GridMapBitVector,
- * GridMap<CellState>)
- * @tparam Coordinate The coordinate type (default: Coordinate<float>)
+ * @tparam T Scalar type for coordinates and map (e.g., float, DistanceM). Default: DistanceM.
  */
-template <typename MapType, typename CoordinateT = Coordinate<float>>
-class FrontierExplorer {
+template <typename T=DistanceM>
+class FrontierExplorer : public IFrontierExplorer<T> {
  public:
   /**
    * @brief Construct a FrontierExplorer with a given map (by reference).
    * @param map The map to explore (must outlive this object).
    */
-  FrontierExplorer(MapType& map) : map_(map) {}
+  FrontierExplorer(IMap<T>& map) : map_(map) {}
 
   /**
    * @brief Set the current position of the explorer.
    * @param pos The current position.
    */
-  void setCurrentPosition(const CoordinateT& pos) { current_pos = pos; }
+  void setCurrentPosition(const Coordinate<T>& pos) { current_pos = pos; }
 
   /**
    * @brief Get the current position of the explorer.
    * @return The current position.
    */
-  CoordinateT getCurrentPosition() const { return current_pos; }
+  Coordinate<T> getCurrentPosition() const { return current_pos; }
 
   /**
    * @brief Set the strategy for selecting the next frontier cell.
@@ -92,7 +74,7 @@ class FrontierExplorer {
    * @param nextCell Output parameter for the selected frontier cell.
    * @return true if a frontier was found, false otherwise.
    */
-  bool getNextFrontier(CoordinateT& nextCell) {
+  bool getNextFrontier(Coordinate<T>& nextCell) {
      // find all frontier cells
      collectFrontiers();
      record_count_ = frontiers.size();
@@ -127,29 +109,29 @@ class FrontierExplorer {
    size_t size() const { return record_count_; }
 
   protected:
-   CoordinateT current_pos{};
+   Coordinate<T> current_pos{};
    FrontierSelectionStrategy strategy_ = FrontierSelectionStrategy::RANDOM;
    bool switchFirstLast = false;
    size_t record_count_ = 0;
-   MapType & map_;
-   std::vector<CoordinateT> frontiers;
+   IMap<T> & map_;
+   std::vector<Coordinate<T>> frontiers;
    void* ref = this;
-   int (*select_callback)(std::vector<CoordinateT>& frontiers,
+   int (*select_callback)(std::vector<Coordinate<T>>& frontiers,
                           void* ref) = nullptr;
 
    // --- Strategy implementations ---
-   bool selectRandom(CoordinateT& nextCell) {
+   bool selectRandom(Coordinate<T>& nextCell) {
      int idx = random(0, frontiers.size());
      nextCell = frontiers[idx];
      frontiers.clear();
      return true;
    }
 
-   bool selectNearest(CoordinateT& nextCell) {
-     CoordinateT& result = frontiers[0];
+   bool selectNearest(Coordinate<T>& nextCell) {
+     Coordinate<T>& result = frontiers[0];
      float distance = current_pos.distance(result);
      for (int i = 1; i < frontiers.size(); ++i) {
-       CoordinateT& tmp = frontiers[i];
+       Coordinate<T>& tmp = frontiers[i];
        float tmp_distance = current_pos.distance(tmp);
        if (tmp_distance < distance) {
          result = tmp;
@@ -161,11 +143,11 @@ class FrontierExplorer {
      return true;
    }
 
-   bool selectFarthest(CoordinateT& nextCell) {
-     CoordinateT& result = frontiers[0];
+   bool selectFarthest(Coordinate<T>& nextCell) {
+     Coordinate<T>& result = frontiers[0];
      float distance = current_pos.distance(result);
      for (int i = 1; i < frontiers.size(); ++i) {
-       CoordinateT& tmp = frontiers[i];
+       Coordinate<T>& tmp = frontiers[i];
        float tmp_distance = current_pos.distance(tmp);
        if (tmp_distance > distance) {
          result = tmp;
@@ -177,19 +159,19 @@ class FrontierExplorer {
      return true;
    }
 
-   bool selectFirst(CoordinateT& nextCell) {
+   bool selectFirst(Coordinate<T>& nextCell) {
      nextCell = frontiers.front();
      frontiers.clear();
      return true;
    }
 
-   bool selectLast(CoordinateT& nextCell) {
+   bool selectLast(Coordinate<T>& nextCell) {
      nextCell = frontiers.back();
      frontiers.clear();
      return true;
    }
 
-   bool selectCustom(CoordinateT& nextCell) {
+   bool selectCustom(Coordinate<T>& nextCell) {
      if (select_callback) {
        int idx = select_callback(frontiers, ref);
        if (idx >= 0 && idx < frontiers.size()) {
@@ -207,7 +189,7 @@ class FrontierExplorer {
     * You can implement your own optimization strategy here.
     * @param cb The callback function (returns index of selected cell).
     */
-   void setSelectCallback(int (*cb)(std::vector<CoordinateT>& frontiers,
+   void setSelectCallback(int (*cb)(std::vector<Coordinate<T>>& frontiers,
                                     void* ref),
                           void* ref = nullptr) {
      select_callback = cb;

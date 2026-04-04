@@ -46,7 +46,7 @@ namespace tinyrobotics {
  */
 
 template <typename T = float>
-class IMU2D : public MessageSource, public IMotionState2D {
+class IMU2D : public IMotionState2D {
  public:
   IMU2D() = default;
 
@@ -57,6 +57,10 @@ class IMU2D : public MessageSource, public IMotionState2D {
     lastUpdateMillis = 0;
     is_active = true;
     return true;
+  }
+
+  bool begin(Transform2D transform) override{
+    return begin(transform.getHeading(AngleUnit::DEG), transform.pos);
   }
 
   void end() { is_active = false; }
@@ -124,6 +128,8 @@ class IMU2D : public MessageSource, public IMotionState2D {
   Distance getTotalDistance() const { return Distance(totalDistanceM,DistanceUnit::M); }
   /// Get time of last update
   uint32_t getTimestamp() const { return timestamp; }
+
+  Transform2D getTransform() const { return Transform2D(position, headingRad * 180.0f / M_PI); }
 
  public:
   bool is_active = false;
