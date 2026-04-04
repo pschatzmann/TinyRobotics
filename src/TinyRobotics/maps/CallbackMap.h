@@ -3,6 +3,7 @@
 #include <cstdint>
 #include <vector>
 
+#include "TinyRobotics/maps/IMap.h"
 #include "TinyRobotics/utils/Common.h"
 
 namespace tinyrobotics {
@@ -30,31 +31,46 @@ namespace tinyrobotics {
  */
 
 template <typename T = DistanceM>
-class CallbackMap {
+class CallbackMap : public IMap<T> {
  public:
+
+  /// @brief Default constructor.
   CallbackMap() = default;
-  CallbackMap(float distance, int neighborCount)
-      : defaultDistance(distance), defaultNeighborCount(neighborCount) {}
 
-  bool isValid(Coordinate<T>coord) const {
-    if (isValidCB) {
-      return isValidCB(coord);
-    }
-    return true;  // Default to all cells valid if no callback provided
+  /// @brief Construct a CallbackMap with extents, resolution, and neighbor count.
+  /// @param distanceX Map extent in X direction (meters)
+  /// @param distanceY Map extent in Y direction (meters)
+  /// @param resolutionM Grid resolution (meters)
+  /// @param neighborCount Number of neighbors to generate
+  CallbackMap(float distanceX, float distanceY, float resolutionM, int neighborCount)
+      : defaultResolutionM(resolutionM), defaultNeighborCount(neighborCount),
+        distanceX(distanceX), distanceY(distanceY) {}
+
+  // --- IMap interface implementations ---
+
+  /// @brief Get the number of cells in the X direction.
+  int getXCount() const override {
+    return (defaultResolutionM > 0 && distanceX > 0) ? static_cast<int>(distanceX / defaultResolutionM) : 0;
   }
 
-  void setIsValidCallback(bool (*callback)(Coordinate<T>)) {
-    isValidCB = callback;
+  /// @brief Get the number of cells in the Y direction.
+  int getYCount() const override {
+    return (defaultResolutionM > 0 && distanceY > 0) ? static_cast<int>(distanceY / defaultResolutionM) : 0;
   }
 
-  /// Get world coordinates of neighboring cells (for pathfinding or navigation)
-  std::vector<Coordinate<T>> getNeighbors(Coordinate<T> from) const {
+  /// @brief Get the map resolution in meters.
+  float getResolution() const override { return defaultResolutionM; }
+
+
+  /// @brief Generate valid neighbor coordinates around a given point.
+  /// @param from Center coordinate
+  /// @return Vector of valid neighbor coordinates
+  std::vector<Coordinate<T>> getNeighbors(Coordinate<T> from) const override {
     std::vector<Coordinate<T>> neighbors;
-    // Generate neighbors at defaultDistance in defaultResolution directions
     for (int i = 0; i < defaultNeighborCount; ++i) {
       float angle = 2.0f * M_PI * i / defaultNeighborCount;
-      float dx = defaultDistance * std::cos(angle);
-      float dy = defaultDistance * std::sin(angle);
+      float dx = defaultResolutionM * std::cos(angle);
+      float dy = defaultResolutionM * std::sin(angle);
       Coordinate<T> neighbor(from.x + dx, from.y + dy);
       if (isValid(neighbor)) {
         neighbors.push_back(neighbor);
@@ -63,17 +79,73 @@ class CallbackMap {
     return neighbors;
   }
 
-  void setDistance(float distance) { defaultDistance = distance; }
+
+  /// @brief Check if a coordinate is valid (not occupied).
+  /// @param coord Coordinate to check
+  /// @return True if valid (not OCCUPIED), false otherwise
+  bool isValid(const Coordinate<T>& coord) const override {
+    if (isValidCB) {
+      return isValidCB(coord) != CellState::OCCUPIED;
+    }
+    // If no callback is set, treat all cells as valid
+    return true;
+  }
+
+
+  /// @brief Get the cell state at grid coordinates (x, y).
+  /// @param x X grid index
+  /// @param y Y grid index
+  /// @param state Output cell state
+  /// @return True if cell state is available
+  bool getCell(int x, int y, CellState& state) const override {
+    Coordinate<T> c = toWorld(x, y);
+    if (isValidCB) {
+      state = isValidCB(c);
+      return true;
+    }
+    return false;
+  }
+
+
+  /// @brief Convert grid indices to world coordinates.
+  /// @param x X grid index
+  /// @param y Y grid index
+  /// @return World coordinate
+  Coordinate<T> toWorld(int x, int y) const override {
+    return Coordinate<T>(x * defaultResolutionM, y * defaultResolutionM);
+  }
+
+
+  /// @brief Set the callback for cell validity checking.
+  /// @param callback Function pointer taking a coordinate and returning CellState
+  void setIsValidCallback(CellState (*callback)(Coordinate<T>)) {
+    isValidCB = callback;
+  }
+
+  /// @brief Set the map resolution in meters.
+  /// @param resolutionM Grid resolution
+  void setResolution(float resolutionM) { defaultResolutionM = resolutionM; }
+
+  /// @brief Set the number of neighbors to generate.
+  /// @param neighborCount Number of neighbors
   void setNeighborCount(int neighborCount) {
     defaultNeighborCount = neighborCount;
   }
 
+  /// @brief Set the map extent in X direction.
+  /// @param dx Extent in meters
+  void setDistanceX(float dx) { distanceX = dx; }
+
+  /// @brief Set the map extent in Y direction.
+  /// @param dy Extent in meters
+  void setDistanceY(float dy) { distanceY = dy; }
+
  protected:
-  int defaultNeighborCount =
-      36;  // Default to 36 neighbors (10 degree resolution)
-  float defaultDistance = 1.0f;
-  bool (*isValidCB)(Coordinate<T> coord) =
-      nullptr;  // Optional callback for cell validity
+  int defaultNeighborCount = 36;
+  float defaultResolutionM = 1.0f;
+  float distanceX = 0;
+  float distanceY = 0;
+  CellState (*isValidCB)(Coordinate<T> coord) = nullptr;
 };
 
-}  // namespace tinyrobotics
+} // namespace tinyrobotics
