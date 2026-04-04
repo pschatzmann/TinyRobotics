@@ -1,4 +1,4 @@
 <map id="NullPrintClass" name="NullPrintClass">
 <area shape="rect" id="node1" title="NullPrint is a Print subclass that discards all output. Useful for disabling output in code that expe..." alt="" coords="5,79,119,104"/>
-<area shape="rect" id="node2" href="$classtinyrobotics__arduino_1_1Print.html" title="Arduino&#45;compatible Print base class stub for native builds." alt="" coords="36,5,88,31"/>
+<area shape="rect" id="node2" title=" " alt="" coords="36,5,88,31"/>
 </map>

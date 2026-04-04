@@ -6,5 +6,5 @@ var searchData=
   ['nmeaparser_3',['NMEAParser',['../classtinyrobotics_1_1NMEAParser.html',1,'tinyrobotics']]],
   ['noderecord_4',['NodeRecord',['../structtinyrobotics_1_1AStar_1_1NodeRecord.html',1,'tinyrobotics::AStar']]],
   ['nointerrupthandler_5',['NoInterruptHandler',['../classtinyrobotics_1_1NoInterruptHandler.html',1,'tinyrobotics']]],
-  ['nullprintclass_6',['NullPrintClass',['../classtinyrobotics__arduino_1_1NullPrintClass.html',1,'tinyrobotics_arduino']]]
+  ['nullprintclass_6',['NullPrintClass',['../classtinyrobotics_1_1NullPrintClass.html',1,'tinyrobotics']]]
 ];
