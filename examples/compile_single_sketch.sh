@@ -13,8 +13,6 @@ FQBN_LIST=(
   "STMicroelectronics:stm32:GenF4:pnum=BLACKPILL_F411CE"
 )
 
-# Install required libraries
-arduino-cli lib install "Adafruit ICM20X" "pubsubclient3" "FastAccelStepper" "Servo" "ESP32Servo" "RadioLIB" 
 
 > "$LOG_FILE"
 EXIT_CODE=0
