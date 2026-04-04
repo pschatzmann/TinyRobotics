@@ -8,7 +8,7 @@
 namespace tinyrobotics {
 /**
  * @class LocalizationAndMapping2D
- * @ingroup slam
+ * @ingroup localization
  * @brief Modular 2D Simultaneous Localization and Mapping (SLAM) system with
  * flexible map, IMU, and exploration integration.
  *

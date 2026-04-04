@@ -5,20 +5,26 @@
 
 namespace tinyrobotics {
 
-/// Strategy for selecting the next frontier cell to explore
+/**
+ * @enum FrontierSelectionStrategy
+ * @ingroup planning
+ * @brief Strategy for selecting the next frontier cell to explore.
+ * Used by `FrontierExplorer` to determine how the next exploration frontier is chosen.
+ */
 enum class FrontierSelectionStrategy {
-  RANDOM,    // Randomly select a frontier cell
-  NEAREST,   // Select the frontier cell closest to the robot
-  FARTHEST,  // Select the frontier cell farthest from the robot
-  FIRST,     // Select the first frontier cell found (e.g., in scan order)
-  LAST,      // Select the last frontier cell found
-  SWITCH_FIRST_LAST,  // Alternate between first and last on each call
-  CUSTOM              // Use a user-defined callback to select the frontier
+  RANDOM,    ///< Randomly select a frontier cell
+  NEAREST,   ///< Select the frontier cell closest to the robot
+  FARTHEST,  ///< Select the frontier cell farthest from the robot
+  FIRST,     ///< Select the first frontier cell found (e.g., in scan order)
+  LAST,      ///< Select the last frontier cell found
+  SWITCH_FIRST_LAST,  ///< Alternate between first and last on each call
+  CUSTOM              ///< Use a user-defined callback to select the frontier
 };
 
 
 /**
  * @class FrontierExplorer
+ * @ingroup planning
  * @brief Generic exploration and frontier-based SLAM utility for grid or occupancy maps.
  *
  * Implements IFrontierExplorer for flexible autonomous exploration.

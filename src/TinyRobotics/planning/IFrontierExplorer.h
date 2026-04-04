@@ -7,6 +7,7 @@ namespace tinyrobotics {
 
 /**
  * @interface IFrontierExplorer
+ * @ingroup planning
  * @brief Interface for frontier-based exploration utilities.
  *
  * Provides a common interface for different frontier exploration strategies.
