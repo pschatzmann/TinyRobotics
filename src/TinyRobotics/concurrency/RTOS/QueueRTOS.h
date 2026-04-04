@@ -29,7 +29,7 @@ class QueueRTOS {
  public:
   QueueRTOS(int size, TickType_t writeMaxWait = portMAX_DELAY,
             TickType_t readMaxWait = portMAX_DELAY) {
-    TRACED();
+
     read_max_wait = readMaxWait;
     write_max_wait = writeMaxWait;
     queue_size = size;
@@ -37,7 +37,7 @@ class QueueRTOS {
   }
 
   ~QueueRTOS() {
-    TRACED();
+
     end();
   }
 
@@ -48,7 +48,7 @@ class QueueRTOS {
   /// (Re-)defines the size
   bool resize(int size) {
     bool result = true;
-    TRACED();
+
     if (size != queue_size) {
       end();
       queue_size = size;
@@ -58,19 +58,19 @@ class QueueRTOS {
   }
 
   bool enqueue(T& data) {
-    TRACED();
+
     if (xQueue == nullptr) return false;
     return xQueueSend(xQueue, (void*)&data, (TickType_t)write_max_wait);
   }
 
   bool peek(T& data) {
-    TRACED();
+
     if (xQueue == nullptr) return false;
     return xQueuePeek(xQueue, &data, (TickType_t)read_max_wait);
   }
 
   bool dequeue(T& data) {
-    TRACED();
+
     if (xQueue == nullptr) return false;
     return xQueueReceive(xQueue, &data, (TickType_t)read_max_wait);
   }
@@ -78,7 +78,7 @@ class QueueRTOS {
   size_t size() { return queue_size; }
 
   bool clear() {
-    TRACED();
+
     if (xQueue == nullptr) return false;
     xQueueReset(xQueue);
     return true;

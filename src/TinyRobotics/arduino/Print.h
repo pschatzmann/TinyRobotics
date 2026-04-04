@@ -1,4 +1,6 @@
 #pragma once
+#include <cstdint>
+#include <cstddef>
 
 namespace tinyrobotics_arduino  {
 
@@ -73,3 +75,4 @@ class Print {
 #ifdef USE_TR_ARDUINO_EMULATION
 using namespace tinyrobotics_arduino;
 #endif
+

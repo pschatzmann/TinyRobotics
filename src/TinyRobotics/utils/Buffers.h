@@ -12,7 +12,6 @@
 #define LOGE TRLogger.error
 #define LOGW TRLogger.warn
 #define LOGI TRLogger.info
-#define TRACED()
 #endif
 
 namespace tinyrobotics {
@@ -269,7 +268,7 @@ class SingleBuffer : public BaseBuffer<T> {
 
   bool resize(int size) {
     if (buffer.size() < size) {
-      TRACED();
+  
       buffer.resize(size);
     }
     return true;

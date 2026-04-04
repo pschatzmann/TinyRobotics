@@ -1,5 +1,5 @@
 #pragma once
- /**
+/**
  * @defgroup utils Utilities
  * @ingroup main
  * @brief Utility classes for logging, memory, and helpers

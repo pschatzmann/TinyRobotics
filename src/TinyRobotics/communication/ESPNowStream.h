@@ -10,7 +10,6 @@
 #define LOGW TRLogger.warn
 #define LOGI TRLogger.info
 #define LOGD TRLogger.debug
-#define TRACED()
 
 // propose max data length based on esp-idf version
 #ifdef ESP_NOW_MAX_DATA_LEN_V2
@@ -482,7 +481,7 @@ class ESPNowStream : public BaseStream {
   /// Sends a single packet with retry logic
   virtual bool sendPacket(const uint8_t* data, size_t len, int& retry_count,
                           const uint8_t* destination = nullptr) {
-    TRACED();
+
     const uint8_t* target = destination;
     if (target == nullptr && is_broadcast) {
       target = BROADCAST_MAC;
@@ -552,7 +551,7 @@ class ESPNowStream : public BaseStream {
 
   /// Handles the result of packet transmission (after queuing)
   bool handleTransmissionResult(int& retry_count) {
-    TRACED();
+
     if (cfg.use_send_ack) {
       // Wait for callback to signal result
       TickType_t ticks = (cfg.ack_semaphore_timeout_ms == portMAX_DELAY)
@@ -596,7 +595,7 @@ class ESPNowStream : public BaseStream {
 
   /// Handles errors when queuing packets
   bool handleQueueError(esp_err_t rc, int& retry_count) {
-    TRACED();
+
     // esp_now_send failed to queue - callback will NOT be called
     // Give back the semaphore we took earlier
     if (cfg.use_send_ack) {

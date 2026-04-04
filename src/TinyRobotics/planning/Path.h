@@ -70,6 +70,10 @@ class Path {
 
   void addWaypoint(const T& waypoint) { waypoints.push_back(waypoint); }
 
+  void addWaypoints(const std::vector<T>& new_waypoints) {
+    waypoints.insert(waypoints.end(), new_waypoints.begin(), new_waypoints.end());
+  }
+
   void setWaypoints(const std::vector<T>& new_waypoints) {
     waypoints = new_waypoints;
   }
