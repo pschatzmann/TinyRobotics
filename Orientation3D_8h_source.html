@@ -125,13 +125,12 @@ $(function() {
 <div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span> </div>
 <div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span> <span class="keyword">private</span>:</div>
 <div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>  <span class="keyword">static</span> <span class="keywordtype">void</span> wrapAngle(<span class="keywordtype">float</span>&amp; a) {</div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    <span class="keywordflow">while</span> (a &gt; <a class="code hl_define" href="Common_8h.html#ae71449b1cc6e6250b91f539153a7a0d3">M_PI</a>) a -= 2 * <a class="code hl_define" href="Common_8h.html#ae71449b1cc6e6250b91f539153a7a0d3">M_PI</a>;</div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    <span class="keywordflow">while</span> (a &lt; -<a class="code hl_define" href="Common_8h.html#ae71449b1cc6e6250b91f539153a7a0d3">M_PI</a>) a += 2 * <a class="code hl_define" href="Common_8h.html#ae71449b1cc6e6250b91f539153a7a0d3">M_PI</a>;</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    <span class="keywordflow">while</span> (a &gt; M_PI) a -= 2 * M_PI;</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    <span class="keywordflow">while</span> (a &lt; -M_PI) a += 2 * M_PI;</div>
 <div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>  }</div>
 <div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>};</div>
 <div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span> </div>
 <div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>} <span class="comment">// namespace tinyrobotics</span></div>
-<div class="ttc" id="aCommon_8h_html_ae71449b1cc6e6250b91f539153a7a0d3"><div class="ttname"><a href="Common_8h.html#ae71449b1cc6e6250b91f539153a7a0d3">M_PI</a></div><div class="ttdeci">#define M_PI</div><div class="ttdef"><b>Definition:</b> Common.h:2</div></div>
 <div class="ttc" id="aclasstinyrobotics_1_1Angle_html"><div class="ttname"><a href="classtinyrobotics_1_1Angle.html">tinyrobotics::Angle</a></div><div class="ttdoc">Represents an angle with unit conversion and wrap-around support.</div><div class="ttdef"><b>Definition:</b> Angle.h:39</div></div>
 <div class="ttc" id="aclasstinyrobotics_1_1Orientation3D_html"><div class="ttname"><a href="classtinyrobotics_1_1Orientation3D.html">tinyrobotics::Orientation3D</a></div><div class="ttdoc">Simple 3D orientation class (yaw, pitch, roll in radians)</div><div class="ttdef"><b>Definition:</b> Orientation3D.h:12</div></div>
 <div class="ttc" id="aclasstinyrobotics_1_1Orientation3D_html_a26fd84d522945b6038221d9e38c7cc39"><div class="ttname"><a href="classtinyrobotics_1_1Orientation3D.html#a26fd84d522945b6038221d9e38c7cc39">tinyrobotics::Orientation3D::roll</a></div><div class="ttdeci">float roll</div><div class="ttdoc">Roll angle (radians)</div><div class="ttdef"><b>Definition:</b> Orientation3D.h:23</div></div>
