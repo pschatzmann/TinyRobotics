@@ -183,7 +183,7 @@ $(function() {
 <div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>    <span class="keywordflow">if</span> (it != calibrationData.end() &amp;&amp; it-&gt;first == throttlePercent) {</div>
 <div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>      it-&gt;second = speedMps;  <span class="comment">// Replace existing</span></div>
 <div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>    } <span class="keywordflow">else</span> {</div>
-<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>      calibrationData.insert(it, std::make_pair(throttlePercent, speedMps));</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>      calibrationData.insert(it, std::pair&lt;<span class="keywordtype">float</span>, <span class="keywordtype">float</span>&gt;(throttlePercent, speedMps));</div>
 <div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>    }</div>
 <div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>  }</div>
 <div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span> </div>

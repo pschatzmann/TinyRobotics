@@ -126,7 +126,7 @@ $(function() {
 <div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    diff_.resize(width * height);</div>
 <div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    prevImage_.resize(width * height);</div>
 <div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    <span class="keywordflow">for</span> (uint32_t i = 0; i &lt; width_ * height_; ++i) {</div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>      diff_[i] = (uint8_t)std::abs(<span class="keywordtype">int</span>(image[i]) - <span class="keywordtype">int</span>(prevImage_[i]));</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>      diff_[i] = (uint8_t)abs(int16_t(image[i]) - int16_t(prevImage_[i]));</div>
 <div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    }</div>
 <div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    memcpy(prevImage_.data(), image, width * height);</div>
 <div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>  }</div>
