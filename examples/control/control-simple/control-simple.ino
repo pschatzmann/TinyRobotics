@@ -1,6 +1,7 @@
 /**
  * @file contol-simple.ino
- * @brief Example: Simple path following with MotionController2D, CarAckerman, and Odometry2D
+ * @brief Example: Simple path following with MotionController2D, CarAckerman,
+ * and Odometry2D
  *
  * This example demonstrates:
  *   - Vehicle control with a CarAckerman model
@@ -44,8 +45,7 @@ MotionController2D<float> controller(odometry, maxSpeedKmh, maxSteeringAngle,
                                      accelDistanceM);
 
 Scheduler scheduler;
-MessageHandlerPrintJSON json_printer(
-    Serial);  // Print to Serial in JSON format
+MessageHandlerPrintJSON json_printer(Serial);  // Print to Serial in JSON format
 
 void updateController(void*) {
   if (controller.isGoalReached()) return;  // stop updating if goal is reached
@@ -59,13 +59,13 @@ void updateController(void*) {
 
 void setup() {
   Serial.begin(115200);
-  TRLogger.begin(Serial, TRLogLevel::INFO);  // Initialize logger with Serial output and INFO level
+  TRLogger.begin(LoggerClass::INFO, Serial);  // Initialize logger with Serial output and INFO level
 
-  // find path using A*
-  // setup odometry firs
-  odometry.begin(base, wheelBase);
-  odometry.subscribe(
-      json_printer);  // subscribe to odometry messages for telemetry
+  // subscribe to odometry messages for telemetry
+  odometry.subscribe(json_printer);
+  odometry.setWheelBase(wheelBase);
+  odometry.begin(base);
+
   // then setup controller which depends on odometry
   controller.subscribe(
       car);  // subscribe to control messages from the controller
@@ -75,7 +75,7 @@ void setup() {
   controller.subscribe(
       json_printer);  // subscribe to controller messages for telemetry
 
-  car.setPins(4, 5, 6, 7);  // int in1, int in2, int pwm, int steeringPin
+  car.setPins(4, 5, 6, 7);      // int in1, int in2, int pwm, int steeringPin
   car.subscribe(json_printer);  // subscribe to car messages for telemetry
 
   // update every 100ms (adjust as needed)

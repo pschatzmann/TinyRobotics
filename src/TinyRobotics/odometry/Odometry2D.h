@@ -65,6 +65,13 @@ namespace tinyrobotics {
 class Odometry2D :  public IMotionState2D {
  public:
   Odometry2D() = default;
+  Odometry2D(Distance wheelBase){
+    setWheelBase(wheelBase);
+  }
+
+  void setWheelBase(Distance wheelBase) {
+    this->wheelBase = wheelBase;
+  }
 
   /**
    * @brief Initialize the odometry state.

@@ -1,5 +1,5 @@
 /**
- * @file basic.ino
+ * @file control.ino
  * @brief Example: Path following with MotionController2D, CarAckerman,
  * Odometry2D, PathMap, and AStar
  *
@@ -79,7 +79,7 @@ void updateController(void*) {
 
 void setup() {
   Serial.begin(115200);
-  TRLogger.begin(Serial, TRLogLevel::INFO);  // Initialize logger with Serial output and INFO level
+  TRLogger.begin(LoggerClass::INFO, Serial);  // Initialize logger with Serial output and INFO level
 
   buildMap();
   car.setPins(4, 5, 6, 7);  // int in1, int in2, int pwm, int steeringPin
@@ -88,8 +88,9 @@ void setup() {
   auto path = astar.findPath(pathMap, start, goal);
   if (path.size() > 1) {
     // setup odometry firs
-    odometry.begin(base, wheelBase);
+    odometry.setWheelBase(wheelBase);
     odometry.subscribe(json_printer);  // subscribe to odometry messages for telemetry
+    odometry.begin(base);
     // then setup controller which depends on odometry
     controller.subscribe(car);  // subscribe to control messages from the controller
     controller.setPath(path);
