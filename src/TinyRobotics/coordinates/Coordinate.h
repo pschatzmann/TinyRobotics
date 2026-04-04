@@ -58,14 +58,19 @@ class Coordinate : public Serializable {
  public:
   Coordinate() = default;
   Coordinate(T x, T y, T z = 0) : x(x), y(y), z(z) {}
+  /// Copy constructor
   Coordinate(const Coordinate& other) : x(other.x), y(other.y), z(other.z) {}
+  /// Construct from Distance objects
   Coordinate(Distance x, Distance y, Distance z = 0)
       : x(x.getValue(DistanceUnit::M)),
         y(y.getValue(DistanceUnit::M)),
         z(z.getValue(DistanceUnit::M)) {}
 
+  /// X coordinate (meters)
   T x = 0;
+  /// Y coordinate (meters)
   T y = 0;
+  /// Z coordinate (meters)
   T z = 0;
 
   /// Calculate the Euclidean distance to another coordinate, with optional unit
@@ -182,12 +187,16 @@ class Coordinate : public Serializable {
     return z < other.z;
   }
 
+
+  /// Convert coordinate to string representation
   std::string toString() const {
     char buf[100];
     snprintf(buf, sizeof(buf), "%s: %.8f, %.8f, %.2f", getTypeName(), x, y, z);
     return std::string(buf);
   }
 
+
+  /// Parse coordinate from string representation
   bool fromString(const std::string& str) {
     if (str.find(getTypeName()) == std::string::npos)
       return false;  // Must start with type name
@@ -206,10 +215,20 @@ class Coordinate : public Serializable {
     return true;
   }
 
+
+  /// Set coordinate values from numeric types
   void setValues(T newX, T newY, T newZ = 0) {
     x = newX;
     y = newY;
     z = newZ;
+  }
+
+
+  /// Set coordinate values from Distance objects
+  void setValues(Distance newX, Distance newY, Distance newZ = 0) {
+    x = newX.getValue(DistanceUnit::M);
+    y = newY.getValue(DistanceUnit::M);
+    z = newZ.getValue(DistanceUnit::M);
   }
   
   /**
@@ -237,9 +256,20 @@ class Coordinate : public Serializable {
     return points;
   }
 
+
+  /// Interpolate points between source and target with Distance resolution
+  std::vector<Coordinate<T>> interpolateTo(const Coordinate<T>& target,
+                                           Distance resolution) {
+    return interpolateTo(target, resolution.getValue(DistanceUnit::M));
+  }
+
+
+  /// Get the type name string
   const char* getTypeName() const { return "Coordinate"; }
 
  protected:
+
+  /// Calculate bearing in degrees to another coordinate
   AngleDeg bearingDeg(const Coordinate& other) const {
     float dx = other.x - x;
     float dy = other.y - y;
@@ -247,6 +277,8 @@ class Coordinate : public Serializable {
   }
 
   // Returns the vertical angle (elevation) in degrees to another coordinate
+
+  /// Calculate elevation angle in degrees to another coordinate
   AngleDeg elevationDeg(const Coordinate& other) const {
     float dz = other.z - z;
     float dxy =
@@ -254,6 +286,8 @@ class Coordinate : public Serializable {
     return atan2(dz, dxy) * 180.0 / M_PI;
   }
 
+
+  /// Calculate Euclidean distance in meters to another coordinate
   DistanceM distanceM(const Coordinate& other) const {
     auto dx = x - other.x;
     auto dy = y - other.y;
