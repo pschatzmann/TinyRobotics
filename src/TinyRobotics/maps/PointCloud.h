@@ -16,17 +16,19 @@ namespace tinyrobotics {
  * @ingroup maps
  * @brief Represents a 3D point with x, y, z coordinates (in meters).
  *
- * Used throughout the mapping and robotics modules for point cloud processing, spatial queries,
- * and geometric computations. Each coordinate is stored as a DistanceM (meters).
+ * Used throughout the mapping and robotics modules for point cloud processing,
+ * spatial queries, and geometric computations. Each coordinate is stored as a T
+ * (meters).
  */
+template <typename T = DistanceM>
 struct Point3D {
-  DistanceM x;
-  DistanceM y;
-  DistanceM z;
+  T x;
+  T y;
+  T z;
 };
 
 /**
- * @class PointCloud 
+ * @class PointCloud
  * @ingroup maps
  * @brief Represents a 3D point cloud for robotics and mapping applications.
  *
@@ -59,11 +61,12 @@ struct Point3D {
  * bool occ = cloud.isOccupied(1.0, 2.0, 0.5);
  * @endcode
  */
-class PointCloud {
+template <typename T = DistanceM>
+class PointCloud : public IMapNeighbors<T> {
   /// Bounding box
   struct Bounds {
-    Point3D min;
-    Point3D max;
+    Point3D<T> min;
+    Point3D<T> max;
   };
 
   struct Key {
@@ -81,7 +84,7 @@ class PointCloud {
   };
 
  public:
-  using Container = std::vector<Point3D, AllocatorPSRAM<Point3D>>;
+  using Container = std::vector<Point3D<T>, AllocatorPSRAM<Point3D<T>>>;
 
   PointCloud(bool isliveVoxel = false) {
     resetBounds();
@@ -93,7 +96,7 @@ class PointCloud {
   void setLiveVoxelGrid(bool live) { liveVocelGrid_ = live; }
 
   /// Add a single point
-  void add(DistanceM x, DistanceM y, DistanceM z = 0.0f) {
+  void add(T x, T y, T z = 0.0f) {
     Point3D p{x, y, z};
     points_.push_back(p);
     updateBounds(p);
@@ -101,14 +104,12 @@ class PointCloud {
   }
 
   /// Add from array
-  void add(const Point3D* pts, size_t count) {
+  void add(const Point3D<T>* pts, size_t count) {
     for (size_t i = 0; i < count; ++i) add(pts[i].x, pts[i].y, pts[i].z);
   }
 
   /// Add from Coordinate
-  void add(const Coordinate<DistanceM>& coord) {
-    add(coord.x, coord.y, coord.z);
-  }
+  void add(const Coordinate<T>& coord) { add(coord.x, coord.y, coord.z); }
 
   /// Clear all data
   void clear() {
@@ -141,7 +142,7 @@ class PointCloud {
     PointCloud out;
     if (voxelSize <= 0.0f) return out;
 
-    std::unordered_map<Key, Point3D, KeyHash> voxels;
+    std::unordered_map<Key, Point3D<T>, KeyHash> voxels;
 
     for (const auto& p : points_) {
       Key key{int(std::floor(p.x / voxelSize)),
@@ -204,12 +205,11 @@ class PointCloud {
    * returned.
    *
    * @param from The coordinate to find neighbors for.
-   * @return std::vector<Coordinate<DistanceM>> List of free neighboring
+   * @return std::vector<Coordinate<T>> List of free neighboring
    * coordinates.
    */
-  std::vector<Coordinate<DistanceM>> getNeighbors(
-      const Coordinate<DistanceM>& from) const {
-    std::vector<Coordinate<DistanceM>> neighbors;
+  std::vector<Coordinate<T>> getNeighbors(Coordinate<T> from) const override {
+    std::vector<Coordinate<T>> neighbors;
     if (voxelSize_ <= 0.0f) return neighbors;
     TRLogger.debug("-------------------");
     TRLogger.debug(
@@ -233,9 +233,9 @@ class PointCloud {
         int ny = y0 + dy[i];
         int nz = z0 + dz[i];
         // Convert voxel index back to coordinate (center of voxel)
-        DistanceM cx = (nx + 0.5f) * voxelSize_;
-        DistanceM cy = (ny + 0.5f) * voxelSize_;
-        DistanceM cz = (nz + 0.5f) * voxelSize_;
+        T cx = (nx + 0.5f) * voxelSize_;
+        T cy = (ny + 0.5f) * voxelSize_;
+        T cz = (nz + 0.5f) * voxelSize_;
         // Check bounding box
         if (cx < bounds_.min.x || cx > bounds_.max.x || cy < bounds_.min.y ||
             cy > bounds_.max.y || cz < bounds_.min.z || cz > bounds_.max.z) {
@@ -255,9 +255,9 @@ class PointCloud {
         int nx = x0 + dx[i];
         int ny = y0 + dy[i];
         int nz = z0;  // keep z the same
-            DistanceM cx = (nx + 0.5f) * voxelSize_;
-            DistanceM cy = (ny + 0.5f) * voxelSize_;
-            DistanceM cz = 0.0f; // Always use z=0 for 2D
+        T cx = (nx + 0.5f) * voxelSize_;
+        T cy = (ny + 0.5f) * voxelSize_;
+        T cz = 0.0f;  // Always use z=0 for 2D
         // Check bounding box (z=0 plane)
         if (cx < bounds_.min.x || cx > bounds_.max.x || cy < bounds_.min.y ||
             cy > bounds_.max.y) {
@@ -279,29 +279,46 @@ class PointCloud {
 
   /// Convert voxel grid index (cx, cy) to world coordinate (center of voxel,
   /// z=0)
-  Coordinate<DistanceM> toVoxel(int cx, int cy) const {
+  Coordinate<T> toVoxel(int cx, int cy) const {
     // This matches the logic in getNeighbors for 2D
-    DistanceM wx = (cx + 0.5f) * voxelSize_;
-    DistanceM wy = (cy + 0.5f) * voxelSize_;
-    DistanceM wz = 0.0f;
-    return Coordinate<DistanceM>(wx, wy, wz);
+    T wx = (cx + 0.5f) * voxelSize_;
+    T wy = (cy + 0.5f) * voxelSize_;
+    T wz = 0.0f;
+    return Coordinate<T>(wx, wy, wz);
   }
 
   /// Use 3D in findNeighbors (if false, only consider z=0 plane for 2D
   /// occupancy)
   void set3D(bool is3d) { is_3d = is3d; }
 
-  /// Manually set the bounding box (if known in advance, can save time instead of
-  void setBounds(float minX, float minY, float minZ, float maxX, float maxY, float maxZ) {
+  /// Manually set the bounding box (if known in advance, can save time instead
+  /// of
+  void setBounds(float minX, float minY, float minZ, float maxX, float maxY,
+                 float maxZ) {
     bounds_.min = {minX, minY, minZ};
     bounds_.max = {maxX, maxY, maxZ};
+  }
+
+  /// Checks if a coordinate is valid (within bounds and not occupied)
+  bool isValid(const Coordinate<T>& coord) const override {
+    // Check bounding box
+    if (coord.x < bounds_.min.x || coord.x > bounds_.max.x ||
+        coord.y < bounds_.min.y || coord.y > bounds_.max.y ||
+        coord.z < bounds_.min.z || coord.z > bounds_.max.z) {
+      return false;
+    }
+    // If voxel grid is enabled, check occupancy
+    if (voxelSize_ > 0.0f && isOccupied(coord.x, coord.y, coord.z)) {
+      return false;
+    }
+    return true;
   }
 
  protected:
   bool is_3d = false;
   Container points_;
   Bounds bounds_;
-  DistanceM voxelSize_ = 0.0f;
+  T voxelSize_ = 0.0f;
   bool liveVocelGrid_ = false;
   // voxel grid preferrably is psram
   using PSRAMKeyAllocator = AllocatorPSRAM<Key>;
@@ -318,7 +335,7 @@ class PointCloud {
                    std::numeric_limits<float>::lowest()};
   }
 
-  void updateBounds(const Point3D& p) {
+  void updateBounds(const Point3D<T>& p) {
     if (p.x < bounds_.min.x) bounds_.min.x = p.x;
     if (p.y < bounds_.min.y) bounds_.min.y = p.y;
     if (p.z < bounds_.min.z) bounds_.min.z = p.z;

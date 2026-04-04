@@ -1,5 +1,7 @@
 #pragma once
+
 #include "TinyRobotics/utils/AllocatorPSRAM.h"
+#include "TinyRobotics/maps/IMap.h"
 
 namespace tinyrobotics {
 
@@ -67,7 +69,7 @@ class PathSegment {
  * @tparam Coordinate The coordinate type (e.g., 2D or 3D point).
  */
 template <typename CoordinateT = Coordinate<float>>
-class PathMap {
+class PathMap : public IMapNeighbors<typename std::remove_reference<decltype(std::declval<CoordinateT>().x)>::type> {
  public:
   PathMap() = default;
 
@@ -97,7 +99,8 @@ class PathMap {
     return result;
   }
 
-  std::vector<CoordinateT> getNeighbors(const CoordinateT& from) const {
+  // IMap interface: getNeighbors
+  std::vector<CoordinateT> getNeighbors(CoordinateT from) const override {
     std::vector<CoordinateT> neighbors;
     for (const auto& seg : segments) {
       if (seg.from == from) {
@@ -108,6 +111,15 @@ class PathMap {
       }
     }
     return neighbors;
+  }
+
+  // IMap interface: isValid (always true for graph nodes in PathMap)
+  bool isValid(const Coordinate<float>& coord) const override {
+    // A node is valid if it appears in any segment
+    for (const auto& seg : segments) {
+      if (seg.from == coord || seg.to == coord) return true;
+    }
+    return false;
   }
 
  protected:

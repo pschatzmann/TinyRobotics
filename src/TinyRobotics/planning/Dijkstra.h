@@ -20,12 +20,12 @@ namespace tinyrobotics {
  * @tparam MapType Must provide:
  *   - std::vector<Node> getNeighbors(const Node& node) const
  */
-template <typename MapType, typename Node = Coordinate<DistanceM>>
+template <typename T = DistanceM>
 class Dijkstra {
  public:
-  using CostCallback =
-      std::function<float(const Node&, const Node&, void* ref)>;
-  using ValidCallback = std::function<bool(const Node&, void* ref)>;
+  using CostCallback = std::function<float(const Coordinate<T>&,
+                                           const Coordinate<T>&, void* ref)>;
+  using ValidCallback = std::function<bool(const Coordinate<T>&, void* ref)>;
 
   Dijkstra() = default;
 
@@ -44,23 +44,24 @@ class Dijkstra {
    * @param goal The goal node.
    * @return Vector of nodes representing the path (empty if no path found).
    */
-  Path<Node> findPath(const MapType& map, const Node& start, const Node& goal) {
-    using Pair = std::pair<float, Node>;
+  Path<Coordinate<T>> findPath(const IMapNeighbors<T>& map, const Coordinate<T>& start,
+                               const Coordinate<T>& goal) {
+    using Pair = std::pair<float, Coordinate<T>>;
     std::priority_queue<Pair, std::vector<Pair>, std::greater<Pair>> open;
-    std::unordered_map<Node, float> cost_so_far;
-    std::unordered_map<Node, Node> came_from;
+    std::unordered_map<Coordinate<T>, float> cost_so_far;
+    std::unordered_map<Coordinate<T>, Coordinate<T>> came_from;
 
     open.emplace(0.0f, start);
     cost_so_far[start] = 0.0f;
     came_from[start] = start;
 
     while (!open.empty()) {
-      Node current = open.top().second;
+      Coordinate<T> current = open.top().second;
       open.pop();
 
       if (current == goal) break;
 
-      for (const Node& next : map.getNeighbors(current)) {
+      for (const Coordinate<T>& next : map.getNeighbors(current)) {
         if (!valid_cb(next, ref)) continue;
         float new_cost = cost_so_far[current] + cost_cb(current, next, ref);
         if (!cost_so_far.count(next) || new_cost < cost_so_far[next]) {
@@ -72,9 +73,9 @@ class Dijkstra {
     }
 
     // Reconstruct path
-    Path<Node> path;
+    Path<Coordinate<T>> path;
     if (!came_from.count(goal)) return path;
-    for (Node at = goal; at != start; at = came_from[at]) {
+    for (Coordinate<T> at = goal; at != start; at = came_from[at]) {
       path.addWaypoint(at);
     }
     path.addWaypoint(start);
@@ -87,11 +88,12 @@ class Dijkstra {
   ValidCallback valid_cb = defaultValid;
   void* ref = this;
 
-  static float defaultCost(const Node& from, const Node& to, void* ref) {
+  static float defaultCost(const Coordinate<T>& from, const Coordinate<T>& to,
+                           void* ref) {
     return from.distance(to);
   }
 
-  static bool defaultValid(const Node& node, void* ref) {
+  static bool defaultValid(const Coordinate<T>& node, void* ref) {
     return true;  // By default, all nodes are valid
   }
 };

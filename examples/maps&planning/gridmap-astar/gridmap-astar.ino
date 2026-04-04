@@ -53,7 +53,7 @@ void loop() {
   Coordinate<DistanceM> goal = gridMap.toWorld(random(0, width), random(0, height));
 
   // Find path using A*
-  AStar<GridMap<CellState>> astar;
+  AStar astar;
   auto path = astar.findPath(gridMap, start, goal);
 
   if (path.isEmpty()) {

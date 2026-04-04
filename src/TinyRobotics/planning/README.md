@@ -9,12 +9,12 @@ This directory contains algorithms and utilities for path planning, motion plann
   Features: path construction, reversal, length calculation, and interpolation.
 
 - **AStar.h**  
-  Generic and extensible A* pathfinding algorithm for graphs, grids, and navigation maps.  
-  Features: iterative search, customizable heuristics, and support for user-defined map types.
+  Flexible A* pathfinding algorithm for any map implementing IMap<T> and using Coordinate<T> nodes.  
+  Features: interface-based design, customizable cost and validity callbacks, and support for arbitrary map types.
 
 - **Dijkstra.h**  
-  Generic Dijkstra shortest path algorithm for graphs, grids, and navigation maps.  
-  Features: callback-based cost and validity, flexible map integration, and optimal path computation without heuristics.
+  Flexible Dijkstra shortest path algorithm for any map implementing IMap<T> and using Coordinate<T> nodes.  
+  Features: callback-based cost and validity, interface-based map integration, and optimal path computation without heuristics.
 
 - **FrontierExplorer.h**  
   Generic frontier-based exploration utility for autonomous mapping and SLAM.  
@@ -33,13 +33,13 @@ This directory contains algorithms and utilities for path planning, motion plann
 ```cpp
 #include <TinyRobotics.h>
 
-// Define your map or graph type (e.g., GridMap, PathMap)
-GridMap<> grid(50, 50, 0.1f);
+// Define your map type (must implement IMap<T>)
+GridMap grid(50, 50, 0.1f);
 auto start = grid.worldToGrid(0.0f, 0.0f);
 auto goal = grid.worldToGrid(4.0f, 4.0f);
 
-AStar<decltype(grid)> astar(grid);
-auto path = astar.findPath(start, goal);
+AStar astar;
+auto path = astar.findPath(grid, start, goal);
 
 if (!path.empty()) {
     for (const auto& node : path) {
@@ -50,8 +50,8 @@ if (!path.empty()) {
 
 ## See Examples
 
-- [Gridmap A*](../../../examples/maps&planning/gridmap-astar/girdmap-astar.ino)
-- [Gridmap Dijkstra](../../../examples/maps&planning/gridmap-dijkstra/girdmap-dijkstra.ino)
+- [Gridmap A*](../../../examples/maps&planning/gridmap-astar/gridmap-astar.ino)
+- [Gridmap Dijkstra](../../../examples/maps&planning/gridmap-dijkstra/gridmap-dijkstra.ino)
 - [Pathmap A*](../../../examples/maps&planning/pathmap-astar/pathmap-astar.ino)
 - [Planned Path](../../../examples/maps&planning/plannedpath/plannedpath.ino)
 - [Pointcloud A*](../../../examples/maps&planning/pointcloud-astar/pointcloud-astar.ino)

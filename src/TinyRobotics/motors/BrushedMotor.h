@@ -67,8 +67,8 @@ class BrushedMotor : public Motor {
   /// limit the maximum speed for safety or to match the characteristics of a
   /// specific motor.
   void setConstraints(int minSpeed, int maxSpeed) {
-    minSpeed = max(minSpeed, -255);
-    maxSpeed = min(maxSpeed, 255);
+    minSpeed = std::max(minSpeed, -255);
+    maxSpeed = std::min(maxSpeed, 255);
   }
 
   /// Invert the direction logic

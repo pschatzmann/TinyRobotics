@@ -57,7 +57,7 @@ void loop() {
   Coordinate<DistanceM> goal = coordinates[random(0, sizeof(coordinates))];
 
   // Find path using A*
-  AStar<PathMap<Coordinate<DistanceM>>> astar;
+  AStar astar;
   auto path = astar.findPath(pathMap, start, goal);
 
   // Check result

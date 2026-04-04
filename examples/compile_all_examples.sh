@@ -14,24 +14,28 @@ arduino-cli lib install "pubsubclient3" "FastAccelStepper" "Servo" "ESP32Servo" 
 
 echo "Compilation finished. See $LOG_FILE for details."
 
+
 EXIT_CODE=0
-find "$EXAMPLES_DIR" -type f -name "*.ino" \
+SUCCESS_COUNT=0
+FAIL_COUNT=0
+
+
+for example in $(find "$EXAMPLES_DIR" -type f -name "*.ino" \
   ! -path "*IEEE802_15_4 -receive/*" \
-  ! -path "*IEEE802_15_4 -send/*" | while read -r example; do
+  ! -path "*IEEE802_15_4 -send/*"); do
   echo "Compiling $example..." | tee -a "$LOG_FILE"
   arduino-cli compile --fqbn "$FQBN" "$example" &>> "$LOG_FILE"
   if [ $? -eq 0 ]; then
     echo "SUCCESS: $example" | tee -a "$LOG_FILE"
+    SUCCESS_COUNT=$((SUCCESS_COUNT+1))
   else
     echo "FAIL: $example" | tee -a "$LOG_FILE"
+    FAIL_COUNT=$((FAIL_COUNT+1))
     EXIT_CODE=1
   fi
   echo "-----------------------------" >> "$LOG_FILE"
 done
 
-if [ $EXIT_CODE -eq 0 ]; then
-  echo "All examples compiled successfully. See $LOG_FILE for details."
-else
-  echo "Some examples failed to compile. See $LOG_FILE for details."
-fi
+echo "Summary: $SUCCESS_COUNT successful, $FAIL_COUNT errors." | tee -a "$LOG_FILE"
+
 exit $EXIT_CODE

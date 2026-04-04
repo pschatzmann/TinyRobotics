@@ -1,31 +1,83 @@
 #pragma once
 #include <vector>
+
 #include "TinyRobotics/coordinates/Coordinate.h"
+
+namespace tinyrobotics {
+
+/**
+ * @class IMapNeighbors
+ * @ingroup maps
+ * @brief Abstract interface for neighbor queries in map-like data structures.
+ *
+ * Provides a minimal interface for pathfinding and navigation algorithms to
+ * query neighboring coordinates and check coordinate validity. Any map or graph
+ * class that supports neighbor queries can implement this interface, enabling
+ * use with generic planning algorithms (e.g., A*, Dijkstra).
+ *
+ * @tparam T Scalar type for coordinates and math (default: DistanceM)
+ *
+ * ### Required Methods
+ * - getNeighbors(Coordinate<T> from): Return a vector of neighboring
+ * coordinates for a given node.
+ * - isValid(const Coordinate<T>& coord): Return true if the coordinate is valid
+ * (e.g., inside map or graph).
+ */
+template <typename T = DistanceM>
+class IMapNeighbors {
+ public:
+  /**
+   * @brief Get world coordinates of neighboring cells (for pathfinding or
+   * navigation).
+   * @param from The cell coordinate to find neighbors for.
+   * @return Vector of neighboring coordinates.
+   */
+  virtual std::vector<Coordinate<T>> getNeighbors(Coordinate<T> from) const = 0;
+
+  /**
+   * @brief Check if a coordinate is inside the map bounds.
+   * @param coord The coordinate to check.
+   * @return True if valid, false otherwise.
+   */
+  virtual bool isValid(const Coordinate<T>& coord) const = 0;
+};
 
 /**
  * @class IMap
  * @ingroup maps
- * @brief Abstract interface for 2D grid maps in TinyRobotics.
+ * @brief Abstract interface for 2D grid maps and occupancy maps in
+ * TinyRobotics.
  *
- * Provides a generic interface for occupancy grid maps, supporting cell access,
- * coordinate transforms, and neighbor queries. All map implementations (e.g., GridBitMap)
- * must inherit from this interface and implement all pure virtual methods.
+ * IMap extends IMapNeighbors and provides a comprehensive interface for
+ * grid-based or cell-based maps for frontier exploring. It supports cell
+ * access, coordinate transforms, and neighbor queries, making it suitable for
+ * pathfinding, navigation, and mapping algorithms. All grid or occupancy map
+ * implementations (e.g., GridMap, GridBitMap) should inherit from this
+ * interface and implement all pure virtual methods.
+ *
+ *
+ * Features:
+ *   - Query map dimensions and resolution
+ *   - Access cell state (FREE, OCCUPIED, UNKNOWN) by index
+ *   - Convert cell indices to world coordinates
+ *   - Query neighbors and check coordinate validity (from IMapNeighbors)
  *
  * @tparam T Scalar type for coordinates and math (default: DistanceM)
  *
  * ### Required Methods
  * - getXCount(), getYCount(): Map dimensions in cells
  * - getResolution(): Cell size in meters
- * - getNeighbors(): Neighboring cell coordinates for pathfinding
- * - isValid(): Check if a coordinate is inside the map
- * - getCell(): Get cell state (FREE, OCCUPIED, UNKNOWN) by index
- * - toWorld(): Convert cell indices to world coordinates
+ * - getNeighbors(Coordinate<T> from): Neighboring cell coordinates for
+ * pathfinding (from IMapNeighbors)
+ * - isValid(const Coordinate<T>& coord): Check if a coordinate is inside the
+ * map (from IMapNeighbors)
+ * - getCell(int x, int y, CellState& state): Get cell state by index
+ * - toWorld(int x, int y): Convert cell indices to world coordinates
  */
-namespace tinyrobotics {
 
-template <typename T = DistanceM>    
-class IMap {
-public:
+template <typename T = DistanceM>
+class IMap : public IMapNeighbors<T> {
+ public:
   /**
    * @brief Get the number of cells in the X direction.
    */
@@ -40,20 +92,6 @@ public:
    * @brief Get the map resolution (cell size in meters).
    */
   virtual float getResolution() const = 0;
-
-  /**
-   * @brief Get world coordinates of neighboring cells (for pathfinding or navigation).
-   * @param from The cell coordinate to find neighbors for.
-   * @return Vector of neighboring coordinates.
-   */
-  virtual std::vector<Coordinate<T>> getNeighbors(Coordinate<T> from) const = 0;
-
-  /**
-   * @brief Check if a coordinate is inside the map bounds.
-   * @param coord The coordinate to check.
-   * @return True if valid, false otherwise.
-   */
-  virtual bool isValid(const Coordinate<float>& coord) const  = 0;
 
   /**
    * @brief Get the state of a cell by integer indices.
@@ -73,4 +111,4 @@ public:
   virtual Coordinate<T> toWorld(int x, int y) const = 0;
 };
 
-}
+}  // namespace tinyrobotics

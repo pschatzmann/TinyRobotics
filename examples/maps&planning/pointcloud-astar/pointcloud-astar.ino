@@ -52,7 +52,7 @@ void loop() {
   Coordinate<float> goal(4.5f, 4.5f, 0.0f);   // Center of voxel (4,4)
 
   // Find path using A*
-  AStar<PointCloud> astar;
+  AStar astar;
   auto path = astar.findPath(cloud, start, goal);
 
   // Check result

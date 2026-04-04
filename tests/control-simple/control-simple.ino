@@ -63,9 +63,10 @@ void setup() {
 
   // find path using A*
   // setup odometry firs
-  odometry.begin(base, wheelBase);
-  odometry.subscribe(
-      json_printer);  // subscribe to odometry messages for telemetry
+  odometry.setWheelBase(wheelBase);
+  odometry.subscribe(json_printer);  
+  odometry.begin(base);
+
   // then setup controller which depends on odometry
   controller.subscribe(
       car);  // subscribe to control messages from the controller

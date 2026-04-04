@@ -53,7 +53,7 @@ void loop() {
   Coordinate<DistanceM> goal = gridMap.toWorld(random(0, width), random(0, height));
 
   // Find path using Dijkstra
-  Dijkstra<GridMap<CellState>> dijkstra;
+  Dijkstra dijkstra;
   auto path = dijkstra.findPath(gridMap, start, goal);
 
   if (path.isEmpty()) {

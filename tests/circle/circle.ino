@@ -46,8 +46,9 @@ void setup() {
   Serial.begin(115200);
 
   car.setPins(4, 5, 6, 7);  // int in1, int in2, int pwm, int steeringPin
-  odometry.begin(base, wheelBase);
+  odometry.setWheelBase(wheelBase);
   odometry.subscribe(json_printer);
+  odometry.begin(base);
   car.subscribe(json_printer);
   car.setSpeed(50);  
   car.setSteeringAngle(30);  // 30 degrees steering angle for circular path

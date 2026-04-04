@@ -176,17 +176,17 @@ Global variables use 22968 bytes (7%) of dynamic memory, leaving 304712 bytes fo
 SUCCESS: ./control/control-simple/control-simple.ino
 -----------------------------
 Compiling ./control/control/control.ino...
-Sketch uses 327571 bytes (24%) of program storage space. Maximum is 1310720 bytes.
+Sketch uses 327595 bytes (24%) of program storage space. Maximum is 1310720 bytes.
 Global variables use 23128 bytes (7%) of dynamic memory, leaving 304552 bytes for local variables. Maximum is 327680 bytes.
 SUCCESS: ./control/control/control.ino
 -----------------------------
 Compiling ./maps&planning/gridmap-dijkstra/gridmap-dijkstra.ino...
-Sketch uses 298635 bytes (22%) of program storage space. Maximum is 1310720 bytes.
+Sketch uses 298627 bytes (22%) of program storage space. Maximum is 1310720 bytes.
 Global variables use 22332 bytes (6%) of dynamic memory, leaving 305348 bytes for local variables. Maximum is 327680 bytes.
 SUCCESS: ./maps&planning/gridmap-dijkstra/gridmap-dijkstra.ino
 -----------------------------
 Compiling ./maps&planning/gridmap-astar/gridmap-astar.ino...
-Sketch uses 301059 bytes (22%) of program storage space. Maximum is 1310720 bytes.
+Sketch uses 301035 bytes (22%) of program storage space. Maximum is 1310720 bytes.
 Global variables use 22340 bytes (6%) of dynamic memory, leaving 305340 bytes for local variables. Maximum is 327680 bytes.
 SUCCESS: ./maps&planning/gridmap-astar/gridmap-astar.ino
 -----------------------------
@@ -196,12 +196,13 @@ Global variables use 22132 bytes (6%) of dynamic memory, leaving 305548 bytes fo
 SUCCESS: ./maps&planning/plannedpath/plannedpath.ino
 -----------------------------
 Compiling ./maps&planning/pointcloud-astar/pointcloud-astar.ino...
-Sketch uses 301956 bytes (23%) of program storage space. Maximum is 1310720 bytes.
+Sketch uses 302256 bytes (23%) of program storage space. Maximum is 1310720 bytes.
 Global variables use 22252 bytes (6%) of dynamic memory, leaving 305428 bytes for local variables. Maximum is 327680 bytes.
 SUCCESS: ./maps&planning/pointcloud-astar/pointcloud-astar.ino
 -----------------------------
 Compiling ./maps&planning/pathmap-astar/pathmap-astar.ino...
-Sketch uses 299799 bytes (22%) of program storage space. Maximum is 1310720 bytes.
+Sketch uses 299903 bytes (22%) of program storage space. Maximum is 1310720 bytes.
 Global variables use 22452 bytes (6%) of dynamic memory, leaving 305228 bytes for local variables. Maximum is 327680 bytes.
 SUCCESS: ./maps&planning/pathmap-astar/pathmap-astar.ino
 -----------------------------
+Summary: 41 successful, 0 errors.
