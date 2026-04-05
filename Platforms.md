@@ -2,11 +2,11 @@
 
 ### Arduino
 
-This library should be working on all Arduino platforms that provide "enough" RAM and support the C++ STL:
+This library should be working on all Arduino platforms that provide "enough" RAM and support the __C++ STL__:
 
-- ESP32
-- ESP8266
-- RP2040
+- __ESP32__
+- __ESP8266__
+- __RP2040__
 - Arduino Zephyr cores
 - Arduino MKR boards
 - etc
