@@ -33,8 +33,21 @@ namespace tinyrobotics {
  *   - World-to-cell and cell-to-world coordinate conversion
  *   - Fast access to cell state by index or coordinate
  *   - Probabilistic update using log-odds for sensor fusion
- *   - Customizable cell validity via callback
+ *   - Customizable cell validity via callback (see setValidityCallback)
+ *   - Customizable cell state conversion via callback (see
+ * setCellStateCallback)
  *   - Neighbor cell extraction for graph-based search
+ *
+ * Callback Notes:
+ *   - Validity Callback: Use setValidityCallback to provide custom logic for
+ * determining if a cell is valid (e.g., for dynamic obstacles or special
+ * terrain). The callback receives cell indices and an optional reference
+ * pointer.
+ *   - Cell State Callback: Use setCellStateCallback to provide custom logic for
+ * converting StateType to CellState (e.g., for visualization or compatibility
+ * with algorithms expecting CellState). The callback receives the cell value
+ * and an optional reference pointer.
+ *   - Use setReference to set the reference pointer passed to both callbacks.
  *
  * Example:
  * @code
@@ -42,6 +55,11 @@ namespace tinyrobotics {
  * Coordinate<float> pos(1.2, 3.4);
  * map.setCell(pos, CellState::OCCUPIED);
  * auto state = map.getCell(5, 5);
+ *
+ * // For GridMap<float>, set a callback to convert float to CellState
+ * map.setCellStateCallback([](const float& v, void*) {
+ *   return v > 0.5f ? CellState::OCCUPIED : CellState::FREE;
+ * });
  * @endcode
  *
  * @tparam StateType The type stored in each cell (e.g., occupancy, height)
@@ -96,14 +114,24 @@ class GridMap : public IMap<T> {
     result = data[cy * xCount + cx];
     return true;
   }
-  bool getCell(int cx, int cy, StateType& result) const {
+
+  /// Provide access to cell state by cell index
+  bool getCell(int cx, int cy, CellState& result) const {
     if (cx < 0 || cx >= xCount || cy < 0 || cy >= yCount)
       return false;  // Out of bounds
-    result = data[cy * xCount + cx];
-    return true;
+    if constexpr (std::is_same<StateType, CellState>::value) {
+      result = data[cy * xCount + cx];
+      return true;
+    } else {
+      if (get_cellstate_cb == nullptr) {
+        return false;
+      }
+      result = get_cellstate_cb(data[cy * xCount + cx], reference);
+      return true;
+    }
   }
   /// Provide access to cell state by coordinate
-  bool getCell(Coordinate<T>& coord, StateType& result) {
+  bool getCell(Coordinate<T>& coord, CellState& result) {
     Cell cell;
     if (worldToCell(coord.x, coord.y, cell)) {
       return getCell(cell.cx, cell.cy);
@@ -111,19 +139,19 @@ class GridMap : public IMap<T> {
     return false;  // Out of bounds
   }
 
-  void setCell(Cell& cell, StateType value) {
+  void setCell(Cell& cell, CellState value) {
     if (cell.cx >= 0 && cell.cx < xCount && cell.cy >= 0 && cell.cy < yCount)
       data[cell.cy * xCount + cell.cx] = value;
   }
 
   /// Set cell state (for initialization or manual updates)
-  void setCell(int cx, int cy, StateType value) {
+  void setCell(int cx, int cy, CellState value) {
     if (cx >= 0 && cx < xCount && cy >= 0 && cy < yCount)
       data[cy * xCount + cx] = value;
   }
 
   /// Set cell state by coordinate (converts to cell index internally)
-  void setCell(Coordinate<T>& coord, StateType value) {
+  void setCell(Coordinate<T>& coord, CellState value) {
     Cell cell;
     if (worldToCell(coord.x, coord.y, cell)) {
       setCell(cell.cx, cell.cy, value);
@@ -176,12 +204,6 @@ class GridMap : public IMap<T> {
     return neighbors;
   }
 
-  /// Define a custom validity callback (e.g., for dynamic obstacles or special
-  /// terrain)
-  void setValidityCallback(bool (*cb)(int cx, int cy, void* ref)) {
-    is_valid_cb = cb;
-  }
-
   void resize(int newXCount, int newYCount) {
     xCount = newXCount;
     yCount = newYCount;
@@ -203,17 +225,35 @@ class GridMap : public IMap<T> {
     int cx, cy;
     cx = static_cast<int>((coord.x - origin.x) / resolution);
     cy = static_cast<int>((coord.y - origin.y) / resolution);
-    return cx >= 0 && cx < xCount && cy >= 0 && cy < yCount;
+    bool in_range = cx >= 0 && cx < xCount && cy >= 0 && cy < yCount;
+    if (!in_range) return false;  // Out of bounds
+    if (is_valid_cb != nullptr) {
+      return is_valid_cb(cx, cy, reference);
+    }
+    return true;  // In bounds, valid by default
   }
+
+  // Allow user to set a custom callback
+  void setCellStateCallback(CellState (*cb)(const StateType&, void* ref)) {
+    get_cellstate_cb = cb;
+  }
+  /// Define a custom validity callback (e.g., for dynamic obstacles or special
+  /// terrain)
+  void setValidityCallback(bool (*cb)(int cx, int cy, void* ref)) {
+    is_valid_cb = cb;
+  }
+
+  void setReference(void* ref) { reference = ref; }
 
  protected:
   // Grid parameters
-  int xCount;            // Number of cells in x direction
-  int yCount;            // Number of cells in y direction
-  float resolution;      // Meters per cell
-  Coordinate<T> origin;  // World coordinate of cell (0,0)
-  bool (*is_valid_cb)(int cx, int cy, void*) =
-      isValid;  // Optional callback for custom validity checks
+  int xCount;                 // Number of cells in x direction
+  int yCount;                 // Number of cells in y direction
+  float resolution;           // Meters per cell
+  Coordinate<T> origin;       // World coordinate of cell (0,0)
+  void* reference = nullptr;  // Optional reference for validity callback
+  bool (*is_valid_cb)(int cx, int cy, void*) = isValid;
+  CellState (*get_cellstate_cb)(const StateType&, void* ref) = nullptr;
 
   // Map data: e.g. 0=free, 100=occupied, -1=unknown
   std::vector<StateType, AllocatorPSRAM<StateType>> data;
@@ -222,10 +262,15 @@ class GridMap : public IMap<T> {
   /// overridden with a custom callback for more complex logic (e.g., dynamic
   /// obstacles, special terrain, etc.).
   static bool isValid(int cx, int cy, void* ref) {
-    GridMap<StateType>* self = (GridMap<StateType>*)ref;
+    GridMap<StateType, T>* self = (GridMap<StateType, T>*)ref;
     StateType result;
     if (!self->getCell(cx, cy, result)) return false;  // Out of bounds
-    return result != CellState::OCCUPIED;
+    if constexpr (std::is_same<StateType, CellState>::value) {
+      return result != CellState::OCCUPIED;
+    } else {
+      // For non-CellState types, always return true or provide custom logic
+      return true;
+    }
   }
 };
 
