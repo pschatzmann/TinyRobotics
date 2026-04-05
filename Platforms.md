@@ -11,11 +11,11 @@ This library should be working on all Arduino platforms that provide "enough" RA
 - Arduino MKR boards
 - etc
 
-However, it might happen that motor libraries are not supported. In this case you can deactivate them in utils/Config.h or by using one of the following #defines before including the project:
+However, it might happen that motor libraries are not supported. In this case you can deactivate them in __utils/Config.h__ or by using one of the following #defines before including the project:
 
-- #define USE_FASTACCEL_STEPPER false
-- #define USE_EXTERNAL_MOTOR_LIBRARIES false
-- #define USE_SERVO_LIBRARY false
+- #define __USE_EXTERNAL_MOTOR_LIBRARIES__ false
+- #define __USE_FASTACCEL_STEPPER__ false
+- #define __USE_SERVO_LIBRARY__ false
 
 ### Others
 
