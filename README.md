@@ -32,6 +32,7 @@ The following __extended functionality__ can be included optionally:
 ## Documentation
 
 - [Class Documentaion](https://pschatzmann.github.io/TinyRobotics/modules.html)
+- [Supported Platforms](Platforms.md)
 - [Examples](/examples)
 
 ## Installation

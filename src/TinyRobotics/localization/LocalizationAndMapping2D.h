@@ -2,8 +2,8 @@
 #include "TinyRobotics/coordinates/Coordinate.h"
 #include "TinyRobotics/imu/IMU2D.h"
 #include "TinyRobotics/maps/GridBitMap.h"
-#include "TinyRobotics/sensors/RangeSensor.h"
 #include "TinyRobotics/planning/IFrontierExplorer.h"
+#include "TinyRobotics/sensors/RangeSensor.h"
 
 namespace tinyrobotics {
 /**
@@ -99,7 +99,7 @@ class LocalizationAndMapping2D : public MessageSource {
     rangeSensor_.setTransform(
         tf_.getTransform(lidar_, world_));  // Ensure transform is set
     rangeSensor_.setObstacle(distanceM, angleDeg);
-    Coordinate obs;
+    Coordinate<T> obs;
     if (rangeSensor_.getObstacleCoordinate(obs)) {
       // Transform obstacle coordinate from lidar to world frame
       Transform2D tf_lidar2world = tf_.getTransform(lidar_, world_);

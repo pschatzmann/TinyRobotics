@@ -3,9 +3,9 @@
 #include <cstdint>
 #include <vector>
 
+#include "IMap.h"
 #include "TinyRobotics/utils/AllocatorPSRAM.h"
 #include "TinyRobotics/utils/Common.h"
-#include "IMap.h"
 
 namespace tinyrobotics {
 
@@ -49,7 +49,7 @@ namespace tinyrobotics {
  */
 
 template <typename StateType = CellState, typename T = DistanceM>
-class GridMap : public IMap<T>  {
+class GridMap : public IMap<T> {
  public:
   /// Cell structure to represent grid cell indices
   struct Cell {
@@ -169,7 +169,7 @@ class GridMap : public IMap<T>  {
   std::vector<Coordinate<T>> getNeighbors(Coordinate<T> from) const {
     std::vector<Coordinate<T>> neighbors;
     for (auto& cell : getNeighborCells(from)) {
-      Coordinate neighbor;
+      Coordinate<T> neighbor;
       cellToWorld(cell.cx, cell.cy, neighbor.x, neighbor.y);
       neighbors.push_back(neighbor);
     }

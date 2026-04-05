@@ -1,10 +1,10 @@
 #pragma once
 #include <vector>
 
+#include "IMap.h"
 #include "TinyRobotics/coordinates/Coordinate.h"
 #include "TinyRobotics/utils/AllocatorPSRAM.h"
 #include "TinyRobotics/utils/Common.h"
-#include "IMap.h"
 
 namespace tinyrobotics {
 
@@ -138,7 +138,7 @@ class GridBitMap : public IMap<T> {
   std::vector<Coordinate<>> getNeighbors(Coordinate<T> from) const {
     std::vector<Coordinate<T>> neighbors;
     for (auto& cell : getNeighborCells(from)) {
-      Coordinate neighbor;
+      Coordinate<T> neighbor;
       cellToWorld(cell.cx, cell.cy, neighbor.x, neighbor.y);
       neighbors.push_back(neighbor);
     }
@@ -194,8 +194,6 @@ class GridBitMap : public IMap<T> {
           {static_cast<size_t>(cx - 1), static_cast<size_t>(cy - 1)});
     return neighbors;
   }
-
-
 };
 
 }  // namespace tinyrobotics

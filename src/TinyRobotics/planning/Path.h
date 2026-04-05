@@ -1,11 +1,11 @@
 #pragma once
 
 #include <algorithm>
-#include <optional>
 
 #include "TinyRobotics/coordinates/Coordinate.h"
 #include "TinyRobotics/utils/AllocatorPSRAM.h"
 #include "TinyRobotics/utils/Common.h"
+#include "TinyRobotics/utils/Optional.h"
 
 namespace tinyrobotics {
 

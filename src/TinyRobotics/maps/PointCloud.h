@@ -97,7 +97,7 @@ class PointCloud : public IMapNeighbors<T> {
 
   /// Add a single point
   void add(T x, T y, T z = 0.0f) {
-    Point3D p{x, y, z};
+    Point3D<T> p{x, y, z};
     points_.push_back(p);
     updateBounds(p);
     if (liveVocelGrid_) addVoxel(x, y, z);
