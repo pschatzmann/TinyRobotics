@@ -57,7 +57,7 @@ var searchData=
   ['getycount_54',['getYCount',['../classtinyrobotics_1_1GridBitMap.html#aade636dd324e15605eb2664f82971279',1,'tinyrobotics::GridBitMap::getYCount()'],['../classtinyrobotics_1_1CallbackMap.html#a536fc44bb975b113f31fa0c8582fce70',1,'tinyrobotics::CallbackMap::getYCount()'],['../classtinyrobotics_1_1IMap.html#a32e4a0f038cc3306937b55de0a2e2e94',1,'tinyrobotics::IMap::getYCount()'],['../classtinyrobotics_1_1GridMap.html#aade636dd324e15605eb2664f82971279',1,'tinyrobotics::GridMap::getYCount()']]],
   ['gpscoordinate_55',['GPSCoordinate',['../classtinyrobotics_1_1GPSCoordinate.html',1,'tinyrobotics']]],
   ['gridbitmap_56',['GridBitMap',['../classtinyrobotics_1_1GridBitMap.html',1,'tinyrobotics']]],
-  ['gridmap_57',['GridMap',['../classtinyrobotics_1_1GridMap.html',1,'tinyrobotics']]],
+  ['gridmap_57',['GridMap',['../classtinyrobotics_1_1GridMap.html#a573d8bc75a335756657dd9069b11c4b6',1,'tinyrobotics::GridMap::GridMap()=default'],['../classtinyrobotics_1_1GridMap.html#a2cb90881eee53464e38851b11f5b3b44',1,'tinyrobotics::GridMap::GridMap(int xCount, int yCount, DistanceM resolutionM)'],['../classtinyrobotics_1_1GridMap.html#a3a87fe34c3de8388262954e0730a4863',1,'tinyrobotics::GridMap::GridMap(int xCount, int yCount, Distance resolution)'],['../classtinyrobotics_1_1GridMap.html',1,'GridMap&lt; StateType, T &gt;']]],
   ['gridmapbitvector_58',['GridMapBitVector',['../classGridMapBitVector.html',1,'']]],
   ['gyrobias_59',['gyroBias',['../structtinyrobotics_1_1Fusion2D_1_1State2D.html#a1ab84b43d2f000564e35a078b52d6ab3',1,'tinyrobotics::Fusion2D::State2D']]],
   ['gyrobiasz_60',['gyroBiasZ',['../structtinyrobotics_1_1Fusion3D_1_1State3D.html#a0567f74b89a314ae65a942ef0e4b81cb',1,'tinyrobotics::Fusion3D::State3D']]]
