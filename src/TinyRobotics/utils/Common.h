@@ -63,11 +63,28 @@ inline bool toAngleDegree(DEFAULT_TYPE in, Unit unit, AngleDeg& out) {
       out = in;
       return true;
     case Unit::AngleRadian:
-      out = in * 180.0 / M_PI;
+      out = in * 180.0f / static_cast<float>(M_PI);
       return true;
     default:
       return false;  // Unsupported unit for angle
   }
+}
+
+/// Normalize angle in radians to [-pi, pi)
+inline float normalizeAngleRad(float angle) {
+  float twoPi = 2.0f * static_cast<float>(M_PI);
+  angle = std::fmod(angle + static_cast<float>(M_PI), twoPi);
+  if (angle < 0.0f)
+    angle += twoPi;
+  return angle - static_cast<float>(M_PI);
+}
+
+/// Normalize angle in degrees to [-180, 180)
+inline float normalizeAngleDeg(float angle) {
+  angle = std::fmod(angle + 180.0f, 360.0f);
+  if (angle < 0.0f)
+    angle += 360.0f;
+  return angle - 180.0f;
 }
 
 }  // namespace tinyrobotics

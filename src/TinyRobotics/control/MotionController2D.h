@@ -1,5 +1,6 @@
 // For dynamic dt measurement (simplified)
 #pragma once
+#include "Arduino.h" // for millis
 #include "MotionState2D.h"
 #include "PIDController.h"
 #include "TinyRobotics/coordinates/Coordinate.h"

@@ -75,9 +75,9 @@ class Odometry3D {
     orientation.yaw += wz * dt;
     orientation.wrap();
     // Rotate velocity to world frame (using current orientation)
-    float cr = cos(orientation.roll), sr = sin(orientation.roll);
-    float cp = cos(orientation.pitch), sp = sin(orientation.pitch);
-    float cy = cos(orientation.yaw), sy = sin(orientation.yaw);
+    float cr = std::cos(orientation.roll), sr = std::sin(orientation.roll);
+    float cp = std::cos(orientation.pitch), sp = std::sin(orientation.pitch);
+    float cy = std::cos(orientation.yaw), sy = std::sin(orientation.yaw);
     // Rotation matrix (ZYX convention)
     float vx_world = cy * cp * vx + (cy * sp * sr - sy * cr) * vy +
                      (cy * sp * cr + sy * sr) * vz;
@@ -91,18 +91,17 @@ class Odometry3D {
     position.x += dx;
     position.y += dy;
     position.z += dz;
-    totalDistance += sqrt(dx * dx + dy * dy + dz * dz);
+    totalDistance += std::sqrt(dx * dx + dy * dy + dz * dz);
     lastDelta = Distance3D(dx, dy, dz, DistanceUnit::M);
   }
 
   void update(Velocity3D velocity, AngularVelocity3D angularVelocity,
               uint32_t deltaTimeMs) {
     update(velocity.getX(SpeedUnit::MPS), velocity.getY(SpeedUnit::MPS),
-      velocity.getZ(SpeedUnit::MPS),
-      angularVelocity.getX(AngularVelocityUnit::RadPerSec),
-      angularVelocity.getY(AngularVelocityUnit::RadPerSec),
-      angularVelocity.getZ(AngularVelocityUnit::RadPerSec),
-      deltaTimeMs);
+           velocity.getZ(SpeedUnit::MPS),
+           angularVelocity.getX(AngularVelocityUnit::RadPerSec),
+           angularVelocity.getY(AngularVelocityUnit::RadPerSec),
+           angularVelocity.getZ(AngularVelocityUnit::RadPerSec), deltaTimeMs);
   }
 
   /**
@@ -117,10 +116,10 @@ class Odometry3D {
 
   void update(Velocity3D velocity, AngularVelocity3D angularVelocity) {
     update(velocity.getX(SpeedUnit::MPS), velocity.getY(SpeedUnit::MPS),
-      velocity.getZ(SpeedUnit::MPS),
-      angularVelocity.getX(AngularVelocityUnit::RadPerSec),
-      angularVelocity.getY(AngularVelocityUnit::RadPerSec),
-      angularVelocity.getZ(AngularVelocityUnit::RadPerSec));
+           velocity.getZ(SpeedUnit::MPS),
+           angularVelocity.getX(AngularVelocityUnit::RadPerSec),
+           angularVelocity.getY(AngularVelocityUnit::RadPerSec),
+           angularVelocity.getZ(AngularVelocityUnit::RadPerSec));
   }
 
   /// @brief Get the current 3D position (meters)
@@ -129,7 +128,9 @@ class Odometry3D {
   /// radians)
   Orientation3D getOrientation() const { return orientation; }
   /// @brief Get the total distance traveled
-  Distance getTotalDistance() const { return Distance(totalDistance, DistanceUnit::M); }
+  Distance getTotalDistance() const {
+    return Distance(totalDistance, DistanceUnit::M);
+  }
   /// @brief Get the last delta update (dx, dy, dz)
   Distance3D getLastDelta() const { return lastDelta; }
 

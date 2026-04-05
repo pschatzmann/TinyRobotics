@@ -119,7 +119,7 @@ class RangeSensor : public MessageSource {
 
       // publish obstacle coordinate
       Message<Coordinate<T>> msgLocation(MessageContent::Position, obstacle,
-                                          Unit::Meters);
+                                         Unit::Meters);
       msgLocation.source = MessageOrigin::LIDAR;
       sendMessage(msgLocation);
     }
@@ -151,9 +151,9 @@ class RangeSensor : public MessageSource {
           "RangeSensor: No transform set, cannot compute obstacle coordinate");
       return false;
     }
-    float theta = obstacle_deg_ * M_PI / 180.0f;
-    Coordinate<T> obstacle_lidar(distanceM * cos(theta),
-                                 distanceM * sin(theta));
+    float theta = obstacle_deg_ * static_cast<float>(M_PI) / 180.0f;
+    Coordinate<T> obstacle_lidar(distanceM * std::cos(theta),
+                                 distanceM * std::sin(theta));
     result = lidar_to_world_tf.apply(obstacle_lidar);
     return true;
   }
@@ -163,7 +163,6 @@ class RangeSensor : public MessageSource {
 
   /// Return true if there is an obstacle detected (distance > 0)
   bool hasObstacle() const { return distanceM > 0; }
-
 
   /// Compute a speed factor (0.0 to 1.0) based on the distance to the obstacle
   float getSpeedFactor(Distance breakingDistance) const {

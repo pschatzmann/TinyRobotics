@@ -31,6 +31,12 @@
 #define analogWriteFreq(pin, freq) analogWriteFreq(freq)
 #endif
 
+// Zephyr does not support the servo library
+#if defined(ARDUINO_ARCH_ZEPHYR) 
+#warning "Zephyr does not support the Servo library, so USE_SERVO_LIBRARY is set to false"
+#define USE_SERVO_LIBRARY false
+#endif
+
 // Use external motor libraries (e.g., Servo, FastAccelStepper) if available
 #ifndef USE_EXTERNAL_MOTOR_LIBRARIES
 #define USE_EXTERNAL_MOTOR_LIBRARIES true
@@ -43,6 +49,6 @@
 
 // Use FastAccel Stepper Library
 #ifndef USE_FASTACCEL_STEPPER
-#define USE_FASTACCEL_STEPPER USE_EXTERNAL_MOTOR_LIBRARIES
+#define USE_FASTACCEL_STEPPER false
 #endif
 

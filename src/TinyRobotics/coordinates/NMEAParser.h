@@ -3,8 +3,8 @@
 #include <string>
 #include <vector>
 
-#include "TinyRobotics/utils/LoggerClass.h"
 #include "GPSCoordinate.h"
+#include "TinyRobotics/utils/LoggerClass.h"
 
 namespace tinyrobotics {
 
@@ -125,7 +125,7 @@ class NMEAParser {
                        fields[3]);
         return false;
       }
-      gps.latitude = lat_deg + lat_min / 60.0;
+      gps.latitude = lat_deg + lat_min / 60.0f;
       if (fields[3] == "S") gps.latitude = -gps.latitude;
     }
 
@@ -138,7 +138,7 @@ class NMEAParser {
                        fields[5]);
         return false;
       }
-      gps.longitude = lon_deg + lon_min / 60.0;
+      gps.longitude = lon_deg + lon_min / 60.0f;
       if (fields[5] == "W") gps.longitude = -gps.longitude;
     }
 
@@ -214,7 +214,7 @@ class NMEAParser {
                        fields[4]);
         return false;
       }
-      gps.latitude = lat_deg + lat_min / 60.0;
+      gps.latitude = lat_deg + lat_min / 60.0f;
       if (fields[4] == "S") gps.latitude = -gps.latitude;
     }
 
@@ -227,7 +227,7 @@ class NMEAParser {
                        fields[6]);
         return false;
       }
-      gps.longitude = lon_deg + lon_min / 60.0;
+      gps.longitude = lon_deg + lon_min / 60.0f;
       if (fields[6] == "W") gps.longitude = -gps.longitude;
     }
 

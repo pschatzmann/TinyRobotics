@@ -1,8 +1,6 @@
-#include <TinyRobotics/arduino/Arduino.h>
-using ::millis;
 #pragma once
-#include <math.h>
 #include <stdint.h>
+#include <cmath>
 
 #include "TinyRobotics/communication/Message.h"
 #include "TinyRobotics/communication/MessageHandler.h"
@@ -59,7 +57,7 @@ class IMU2D : public IMotionState2D {
     return true;
   }
 
-  bool begin(Transform2D transform) override{
+  bool begin(Transform2D transform) override {
     return begin(transform.getHeading(AngleUnit::DEG), transform.pos);
   }
 
@@ -81,18 +79,17 @@ class IMU2D : public IMotionState2D {
     // Integrate gyro for heading
     headingRad += gyroZ_in * dt;
     // Angle wrap
-    while (headingRad > M_PI) headingRad -= 2 * M_PI;
-    while (headingRad < -M_PI) headingRad += 2 * M_PI;
+    headingRad = normalizeAngleRad(headingRad);
 
     // Rotate acceleration to world frame
-    T ax_world = accelX * cos(headingRad) - accelY * sin(headingRad);
-    T ay_world = accelX * sin(headingRad) + accelY * cos(headingRad);
+    T ax_world = accelX * std::cos(headingRad) - accelY * std::sin(headingRad);
+    T ay_world = accelX * std::sin(headingRad) + accelY * std::cos(headingRad);
 
     // Integrate acceleration for velocity (simple dead-reckoning)
     static T vx = 0, vy = 0;
     vx += ax_world * dt;
     vy += ay_world * dt;
-    speedMPS = sqrt(vx * vx + vy * vy);
+    speedMPS = std::sqrt(vx * vx + vy * vy);
 
     // Integrate velocity for position
     T dx = vx * dt;
@@ -100,7 +97,7 @@ class IMU2D : public IMotionState2D {
 
     position.x += dx;
     position.y += dy;
-    totalDistanceM += sqrt(dx * dx + dy * dy);
+    totalDistanceM += std::sqrt(dx * dx + dy * dy);
 
     lastDelta = {static_cast<float>(dx), static_cast<float>(dy),
                  static_cast<float>(gyroZ_in * dt)};
@@ -125,11 +122,15 @@ class IMU2D : public IMotionState2D {
   /// get speed as Speed
   Speed getSpeed() const { return Speed(speedMPS, SpeedUnit::MPS); }
   ///  Get the total distance traveled
-  Distance getTotalDistance() const { return Distance(totalDistanceM,DistanceUnit::M); }
+  Distance getTotalDistance() const {
+    return Distance(totalDistanceM, DistanceUnit::M);
+  }
   /// Get time of last update
   uint32_t getTimestamp() const { return timestamp; }
 
-  Transform2D getTransform() const { return Transform2D(position, headingRad * 180.0f / M_PI); }
+  Transform2D getTransform() const {
+    return Transform2D(position, headingRad * 180.0f / M_PI);
+  }
 
  public:
   bool is_active = false;

@@ -1,7 +1,8 @@
 #pragma once
 
-#include <cmath>
 #include <assert.h>
+
+#include <cmath>
 
 namespace tinyrobotics {
 
@@ -97,7 +98,7 @@ class PIDController {
     }
 
     // Derivative term
-    assert(dt != 0.0);
+    assert(dt != 0.0f);
     N derivative = (error - preerror) / dt;
     N dout = kd * derivative;
 

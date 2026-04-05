@@ -113,9 +113,9 @@ class Coordinate : public Serializable {
   /// altitude change
   Coordinate navigate(DistanceM distanceM, float headingDegrees,
                       float altDiffM = 0) const {
-    AngleDeg headingRad = headingDegrees * M_PI / 180.0;
-    DistanceM newX = x + distanceM * cos(headingRad);
-    DistanceM newY = y + distanceM * sin(headingRad);
+    float headingRad = headingDegrees * static_cast<float>(M_PI) / 180.0f;
+    DistanceM newX = x + distanceM * std::cos(headingRad);
+    DistanceM newY = y + distanceM * std::sin(headingRad);
     return Coordinate(newX, newY, z + altDiffM);  // Keep same altitude
   }
 
@@ -136,7 +136,7 @@ class Coordinate : public Serializable {
   bool equalsWithAltitude(const Coordinate& other, DistanceM limit,
                           DistanceM altLimit) const {
     return distance(other) < limit &&
-           fabs(altitudeDifference(other)) < altLimit;
+           std::fabs(altitudeDifference(other)) < altLimit;
   }
 
   /// Calculate new Coordinate by adding offset defined in other to current
@@ -187,14 +187,12 @@ class Coordinate : public Serializable {
     return z < other.z;
   }
 
-
   /// Convert coordinate to string representation
   std::string toString() const {
     char buf[100];
     snprintf(buf, sizeof(buf), "%s: %.8f, %.8f, %.2f", getTypeName(), x, y, z);
     return std::string(buf);
   }
-
 
   /// Parse coordinate from string representation
   bool fromString(const std::string& str) {
@@ -215,7 +213,6 @@ class Coordinate : public Serializable {
     return true;
   }
 
-
   /// Set coordinate values from numeric types
   void setValues(T newX, T newY, T newZ = 0) {
     x = newX;
@@ -223,14 +220,13 @@ class Coordinate : public Serializable {
     z = newZ;
   }
 
-
   /// Set coordinate values from Distance objects
   void setValues(Distance newX, Distance newY, Distance newZ = 0) {
     x = newX.getValue(DistanceUnit::M);
     y = newY.getValue(DistanceUnit::M);
     z = newZ.getValue(DistanceUnit::M);
   }
-  
+
   /**
    * @brief Interpolate points between source and target with a defined
    * resolution.
@@ -242,7 +238,7 @@ class Coordinate : public Serializable {
    * (including source and target).
    */
   std::vector<Coordinate<T>> interpolateTo(const Coordinate<T>& target,
-                                             T resolution) {
+                                           T resolution) {
     std::vector<Coordinate<T>> points;
     T dx = target.x - this->x;
     T dy = target.y - this->y;
@@ -256,24 +252,22 @@ class Coordinate : public Serializable {
     return points;
   }
 
-
   /// Interpolate points between source and target with Distance resolution
   std::vector<Coordinate<T>> interpolateTo(const Coordinate<T>& target,
                                            Distance resolution) {
     return interpolateTo(target, resolution.getValue(DistanceUnit::M));
   }
 
-
   /// Get the type name string
   const char* getTypeName() const { return "Coordinate"; }
 
  protected:
-
   /// Calculate bearing in degrees to another coordinate
   AngleDeg bearingDeg(const Coordinate& other) const {
     float dx = other.x - x;
     float dy = other.y - y;
-    return atan2(dy, dx) * 180.0 / M_PI;  // Degrees
+    float angle = std::atan2(dy, dx) * 180.0f / static_cast<float>(M_PI);
+    return normalizeAngleDeg(angle);  // Degrees
   }
 
   // Returns the vertical angle (elevation) in degrees to another coordinate
@@ -281,18 +275,18 @@ class Coordinate : public Serializable {
   /// Calculate elevation angle in degrees to another coordinate
   AngleDeg elevationDeg(const Coordinate& other) const {
     float dz = other.z - z;
-    float dxy =
-        sqrt((other.x - x) * (other.x - x) + (other.y - y) * (other.y - y));
-    return atan2(dz, dxy) * 180.0 / M_PI;
+    float dxy = std::sqrt((other.x - x) * (other.x - x) +
+                          (other.y - y) * (other.y - y));
+    float angle = std::atan2(dz, dxy) * 180.0f / static_cast<float>(M_PI);
+    return normalizeAngleDeg(angle);
   }
-
 
   /// Calculate Euclidean distance in meters to another coordinate
   DistanceM distanceM(const Coordinate& other) const {
     auto dx = x - other.x;
     auto dy = y - other.y;
     auto dz = z - other.z;
-    return sqrt(dx * dx + dy * dy + dz * dz);
+    return std::sqrt(dx * dx + dy * dy + dz * dz);
   }
 };
 

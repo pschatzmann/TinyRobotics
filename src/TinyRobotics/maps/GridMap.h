@@ -78,8 +78,8 @@ class GridMap : public IMap<T> {
 
   /// Cell to world (center of cell)
   void cellToWorld(int cx, int cy, DistanceM& wx, DistanceM& wy) const {
-    wx = origin.x + (cx + 0.5) * resolution;
-    wy = origin.y + (cy + 0.5) * resolution;
+    wx = origin.x + (static_cast<float>(cx) + 0.5f) * resolution;
+    wy = origin.y + (static_cast<float>(cy) + 0.5f) * resolution;
   }
 
   /// Provide the workd coordinates for the cell

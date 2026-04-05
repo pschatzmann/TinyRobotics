@@ -62,16 +62,12 @@ namespace tinyrobotics {
  * @date 2026-03-30
  */
 
-class Odometry2D :  public IMotionState2D {
+class Odometry2D : public IMotionState2D {
  public:
   Odometry2D() = default;
-  Odometry2D(Distance wheelBase){
-    setWheelBase(wheelBase);
-  }
+  Odometry2D(Distance wheelBase) { setWheelBase(wheelBase); }
 
-  void setWheelBase(Distance wheelBase) {
-    this->wheelBase = wheelBase;
-  }
+  void setWheelBase(Distance wheelBase) { this->wheelBase = wheelBase; }
 
   /**
    * @brief Initialize the odometry state.
@@ -96,7 +92,7 @@ class Odometry2D :  public IMotionState2D {
     return true;
   }
 
-  bool begin(Transform2D transform){
+  bool begin(Transform2D transform) {
     return begin(transform.pos, transform.getHeading(AngleUnit::RAD));
   }
 
@@ -114,7 +110,7 @@ class Odometry2D :  public IMotionState2D {
     return begin(tf.pos, tf.getHeading(AngleUnit::RAD), wheelBase);
   }
 
-  void end(){}
+  void end() {}
 
   /**
    * @brief Update the odometry state with new speed and steering angle.
@@ -138,7 +134,8 @@ class Odometry2D :  public IMotionState2D {
     // Use Ackermann if wheelBase is set, else differential drive
     if (wheelBase.getValue(DistanceUnit::M) > 0.0f) {
       float wb = wheelBase.getValue(DistanceUnit::M);
-      float omega = (wb > 0.0f) ? speedMps * tan(steeringAngleRad) / wb : 0.0f;
+      float omega =
+          (wb > 0.0f) ? speedMps * std::tan(steeringAngleRad) / wb : 0.0f;
       deltaTheta = omega * deltaTimeMs / 1000.0f;
     } else {
       // Differential drive: steeringAngleRad is angular velocity
@@ -146,14 +143,13 @@ class Odometry2D :  public IMotionState2D {
     }
     theta += deltaTheta;
     // Normalize theta to [-pi, pi)
-    while (theta >= M_PI) theta -= 2 * M_PI;
-    while (theta < -M_PI) theta += 2 * M_PI;
-    float deltaX = speedMps * cos(theta) * deltaTimeMs / 1000.0f;
-    float deltaY = speedMps * sin(theta) * deltaTimeMs / 1000.0f;
+    theta = normalizeAngleRad(theta);
+    float deltaX = speedMps * std::cos(theta) * deltaTimeMs / 1000.0f;
+    float deltaY = speedMps * std::sin(theta) * deltaTimeMs / 1000.0f;
     position.x += deltaX;
     position.y += deltaY;
     lastDelta = {deltaX, deltaY, deltaTheta};
-    totalDistance += sqrt(deltaX * deltaX + deltaY * deltaY);
+    totalDistance += std::sqrt(deltaX * deltaX + deltaY * deltaY);
 
     publish();
   }
@@ -204,7 +200,9 @@ class Odometry2D :  public IMotionState2D {
     theta = th;
   }
 
-  Transform2D getTransform() const { return Transform2D(position, getHeading().getValue(AngleUnit::DEG)); }
+  Transform2D getTransform() const {
+    return Transform2D(position, getHeading().getValue(AngleUnit::DEG));
+  }
 
  protected:
   Coordinate<float> position;

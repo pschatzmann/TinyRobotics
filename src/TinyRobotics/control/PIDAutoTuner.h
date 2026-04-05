@@ -9,15 +9,20 @@ namespace tinyrobotics {
  * @ingroup control
  * @brief Automatic PID tuning using the relay (Åström-Hägglund) method.
  *
- * This class implements an automatic PID tuning algorithm based on the relay (bang-bang) method,
- * also known as the Åström-Hägglund relay auto-tuning technique. It applies a relay (on/off) control
- * to the system and analyzes the resulting oscillations to estimate the ultimate gain (Ku) and period (Tu).
- * These values are then used to compute PID parameters using the Ziegler-Nichols tuning rules.
+ * This class implements an automatic PID tuning algorithm based on the relay
+ * (bang-bang) method, also known as the Åström-Hägglund relay auto-tuning
+ * technique. It applies a relay (on/off) control to the system and analyzes the
+ * resulting oscillations to estimate the ultimate gain (Ku) and period (Tu).
+ * These values are then used to compute PID parameters using the
+ * Ziegler-Nichols tuning rules.
  *
- * - The user specifies a target setpoint, relay amplitude, and sample time (dt).
+ * - The user specifies a target setpoint, relay amplitude, and sample time
+ * (dt).
  * - The tuner applies a relay output and detects peaks in the process variable.
- * - After sufficient oscillations, it calculates Ku, Tu, and recommended PID gains.
- * - The process can be monitored with isFinished() and the results retrieved with getResult().
+ * - After sufficient oscillations, it calculates Ku, Tu, and recommended PID
+ * gains.
+ * - The process can be monitored with isFinished() and the results retrieved
+ * with getResult().
  * - Hysteresis can be adjusted to avoid chattering.
  *
  * **Usage Example:**
@@ -89,7 +94,7 @@ class PIDAutoTuner {
     float amplitude = (avgMax - avgMin) / 2.0f;
 
     // Ultimate gain (relay method)
-    float Ku = (4.0f * relayAmp) / (M_PI * amplitude);
+    float Ku = (4.0f * relayAmp) / (static_cast<float>(M_PI) * amplitude);
 
     float Tu = avgPeriod;
 

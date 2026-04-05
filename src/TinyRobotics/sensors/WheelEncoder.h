@@ -97,11 +97,12 @@ class WheelEncoder : public MessageSource {
    */
   void setTicksPerRevolution(int ticks) {
     ticksPerRevolution = ticks;
-    distancePerTickM = M_PI * wheelDiameterM / ticksPerRevolution;
+    distancePerTickM =
+        static_cast<float>(M_PI) * wheelDiameterM / ticksPerRevolution;
   }
 
   /**
-   * @brief Set the reporting frequency for distance/speed messages.
+   * @brief Defines the reporint frequency for distance and speed messages.
    * @param ms Reporting interval in milliseconds.
    */
   void setReportingFrequencyMs(uint16_t ms) {
@@ -162,7 +163,7 @@ class WheelEncoder : public MessageSource {
     uint32_t elapsedTimeMs = currentTimeMs - lastSpeedCalcTimeMs;
     if (elapsedTimeMs > 0) {
       float distanceTraveledM = (distanceM - lastDistanceM) * slipFactor;
-      speedMPS = distanceTraveledM / (elapsedTimeMs / 1000.0);
+      speedMPS = distanceTraveledM / (elapsedTimeMs / 1000.0f);
       lastSpeedCalcTimeMs = currentTimeMs;
       lastDistanceM = distanceM;
     }

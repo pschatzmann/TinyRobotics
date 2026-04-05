@@ -50,7 +50,7 @@ class MultiOutput : public Print {
 
   void add(Print& print) { vector.push_back(&print); }
   void flush() {
-    for (int j = 0; j < vector.size(); j++) {
+    for (size_t j = 0; j < vector.size(); j++) {
       vector[j]->flush();
     }
   }
@@ -73,7 +73,7 @@ class MultiOutput : public Print {
   }
 
   size_t write(uint8_t ch) override {
-    for (int j = 0; j < vector.size(); j++) {
+    for (size_t j = 0; j < vector.size(); j++) {
       int open = 1;
       while (open > 0) {
         open -= vector[j]->write(ch);
@@ -83,9 +83,7 @@ class MultiOutput : public Print {
   }
 
   /// Removes all output components
-  void clear() {
-    vector.clear();
-  }
+  void clear() { vector.clear(); }
 
  protected:
   std::vector<Print*> vector;

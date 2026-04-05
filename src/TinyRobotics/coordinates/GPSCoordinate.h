@@ -113,18 +113,22 @@ class GPSCoordinate {
   /// Calculate a new GPS coordinate given a distance (in meters) and bearing
   GPSCoordinate navigate(float distance_m, float bearing_deg,
                          float alt_diff_m = 0) const {
-    float R = 6371000;  // Earth radius in meters
-    float bearing_rad = bearing_deg * M_PI / 180.0;
-    float lat1 = latitude * M_PI / 180.0;
-    float lon1 = longitude * M_PI / 180.0;
+    float R = 6371000.0f;  // Earth radius in meters
+    float bearing_rad = bearing_deg * static_cast<float>(M_PI) / 180.0f;
+    float lat1 = latitude * static_cast<float>(M_PI) / 180.0f;
+    float lon1 = longitude * static_cast<float>(M_PI) / 180.0f;
 
-    float lat2 = asin(sin(lat1) * cos(distance_m / R) +
-                      cos(lat1) * sin(distance_m / R) * cos(bearing_rad));
+    float lat2 = std::asin(std::sin(lat1) * std::cos(distance_m / R) +
+                           std::cos(lat1) * std::sin(distance_m / R) *
+                               std::cos(bearing_rad));
     float lon2 =
-        lon1 + atan2(sin(bearing_rad) * sin(distance_m / R) * cos(lat1),
-                     cos(distance_m / R) - sin(lat1) * sin(lat2));
+        lon1 +
+        std::atan2(
+            std::sin(bearing_rad) * std::sin(distance_m / R) * std::cos(lat1),
+            std::cos(distance_m / R) - std::sin(lat1) * std::sin(lat2));
 
-    return GPSCoordinate(lat2 * 180.0 / M_PI, lon2 * 180.0 / M_PI,
+    return GPSCoordinate(lat2 * 180.0f / static_cast<float>(M_PI),
+                         lon2 * 180.0f / static_cast<float>(M_PI),
                          altitude + alt_diff_m);
   }
 
@@ -139,7 +143,7 @@ class GPSCoordinate {
   bool equalsWithAltitude(const GPSCoordinate& other, float limit,
                           float altLimit) const {
     return distance(other) < limit &&
-           fabs(altitudeDifference(other)) < altLimit;
+           std::fabs(altitudeDifference(other)) < altLimit;
   }
 
   /// Serialize GPS coordinate to string representation
@@ -174,33 +178,39 @@ class GPSCoordinate {
   /// Calculate the bearing (heading) in degrees from this coordinate to another
   /// GPS coordinate.
   float bearingDegree(const GPSCoordinate& other) const {
-    float lat1 = latitude * M_PI / 180.0;
-    float lat2 = other.latitude * M_PI / 180.0;
-    float dLon = (other.longitude - longitude) * M_PI / 180.0;
+    float lat1 = latitude * static_cast<float>(M_PI) / 180.0f;
+    float lat2 = other.latitude * static_cast<float>(M_PI) / 180.0f;
+    float dLon =
+        (other.longitude - longitude) * static_cast<float>(M_PI) / 180.0f;
 
-    float y = sin(dLon) * cos(lat2);
-    float x = cos(lat1) * sin(lat2) - sin(lat1) * cos(lat2) * cos(dLon);
-    float brng = atan2(y, x);
-    return fmod((brng * 180.0 / M_PI + 360), 360);  // Degrees
+    float y = std::sin(dLon) * std::cos(lat2);
+    float x = std::cos(lat1) * std::sin(lat2) -
+              std::sin(lat1) * std::cos(lat2) * std::cos(dLon);
+    float brng = std::atan2(y, x);
+    return normalizeAngleDeg(brng * 180.0f /
+                             static_cast<float>(M_PI));  // Degrees
   }
 
   float elevationDeg(const GPSCoordinate& other) const {
     float dz = other.altitude - altitude;
     float dxy = distanceM(other);
-    return atan2(dz, dxy) * 180.0 / M_PI;  // Degrees
+    return std::atan2(dz, dxy) * 180.0f / static_cast<float>(M_PI);  // Degrees
   }
 
   /// Distance in meters between this coordinate and another GPS coordinate
   float distanceM(const GPSCoordinate& other) const {
-    float R = 6371000;  // Earth radius in meters
-    float lat1 = latitude * M_PI / 180.0;
-    float lat2 = other.latitude * M_PI / 180.0;
-    float dLat = (other.latitude - latitude) * M_PI / 180.0;
-    float dLon = (other.longitude - longitude) * M_PI / 180.0;
+    float R = 6371000.0f;  // Earth radius in meters
+    float lat1 = latitude * static_cast<float>(M_PI) / 180.0f;
+    float lat2 = other.latitude * static_cast<float>(M_PI) / 180.0f;
+    float dLat =
+        (other.latitude - latitude) * static_cast<float>(M_PI) / 180.0f;
+    float dLon =
+        (other.longitude - longitude) * static_cast<float>(M_PI) / 180.0f;
 
-    float a = sin(dLat / 2) * sin(dLat / 2) +
-              cos(lat1) * cos(lat2) * sin(dLon / 2) * sin(dLon / 2);
-    float c = 2 * atan2(sqrt(a), sqrt(1 - a));
+    float a = std::sin(dLat / 2.0f) * std::sin(dLat / 2.0f) +
+              std::cos(lat1) * std::cos(lat2) * std::sin(dLon / 2.0f) *
+                  std::sin(dLon / 2.0f);
+    float c = 2.0f * std::atan2(std::sqrt(a), std::sqrt(1.0f - a));
     return R * c;  // Distance in meters
   }
 };

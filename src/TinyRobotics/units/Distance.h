@@ -14,13 +14,16 @@ enum class DistanceUnit { M, CM, MM, FEET };
  * @ingroup units
  * @brief Represents a distance measurement with unit conversion support.
  *
- * The Distance class encapsulates a distance value and its unit, supporting meters (M),
- * centimeters (CM), millimeters (MM), and feet (FEET). It provides methods to set and retrieve
- * the distance in any supported unit, automatically handling conversions.
+ * The Distance class encapsulates a distance value and its unit, supporting
+ * meters (M), centimeters (CM), millimeters (MM), and feet (FEET). It provides
+ * methods to set and retrieve the distance in any supported unit, automatically
+ * handling conversions.
  *
  * - Internal state is always consistent with the last set value and unit.
- * - Designed for embedded and robotics applications where unit flexibility and efficiency are required.
- * - Use getValue() to retrieve the distance in any unit; use setValue() to update the value and unit.
+ * - Designed for embedded and robotics applications where unit flexibility and
+ * efficiency are required.
+ * - Use getValue() to retrieve the distance in any unit; use setValue() to
+ * update the value and unit.
  *
  * Example:
  * @code
@@ -50,22 +53,22 @@ class Distance {
       case DistanceUnit::M:
         if (desiredUnit == DistanceUnit::CM) return distance * 100;
         if (desiredUnit == DistanceUnit::MM) return distance * 1000;
-        if (desiredUnit == DistanceUnit::FEET) return distance * 3.28084;
+        if (desiredUnit == DistanceUnit::FEET) return distance * 3.28084f;
         break;
       case DistanceUnit::CM:
         if (desiredUnit == DistanceUnit::M) return distance / 100;
         if (desiredUnit == DistanceUnit::MM) return distance * 10;
-        if (desiredUnit == DistanceUnit::FEET) return distance * 0.0328084;
+        if (desiredUnit == DistanceUnit::FEET) return distance * 0.0328084f;
         break;
       case DistanceUnit::MM:
         if (desiredUnit == DistanceUnit::M) return distance / 1000;
         if (desiredUnit == DistanceUnit::CM) return distance / 10;
-        if (desiredUnit == DistanceUnit::FEET) return distance * 0.00328084;
+        if (desiredUnit == DistanceUnit::FEET) return distance * 0.00328084f;
         break;
       case DistanceUnit::FEET:
-        if (desiredUnit == DistanceUnit::M) return distance / 3.28084;
-        if (desiredUnit == DistanceUnit::CM) return distance / 0.0328084;
-        if (desiredUnit == DistanceUnit::MM) return distance / 0.00328084;
+        if (desiredUnit == DistanceUnit::M) return distance / 3.28084f;
+        if (desiredUnit == DistanceUnit::CM) return distance / 0.0328084f;
+        if (desiredUnit == DistanceUnit::MM) return distance / 0.00328084f;
         break;
     }
     return -1;  // Invalid conversion
@@ -73,50 +76,54 @@ class Distance {
 
  protected:
   float distance = 0.0f;
-  DistanceUnit unit = DistanceUnit::M; ///< Unit of the distance. @see DistanceUnit
+  DistanceUnit unit =
+      DistanceUnit::M;  ///< Unit of the distance. @see DistanceUnit
 };
 
 /**
  * @brief Represents a 3D distance or position vector with unit support.
  *
- * This class encapsulates a 3D distance measurement, storing x, y, and z components
- * along with a unit (meters, centimeters, millimeters, or feet). It provides methods
- * to retrieve each component in any supported unit, handling conversion as needed.
+ * This class encapsulates a 3D distance measurement, storing x, y, and z
+ * components along with a unit (meters, centimeters, millimeters, or feet). It
+ * provides methods to retrieve each component in any supported unit, handling
+ * conversion as needed.
  *
- * Distance3D is useful for robotics, navigation, mapping, and simulation applications
- * where 3D positions or displacements must be represented and manipulated in a type-safe
- * and unit-aware manner. It is compatible with the Distance class for 1D distance.
+ * Distance3D is useful for robotics, navigation, mapping, and simulation
+ * applications where 3D positions or displacements must be represented and
+ * manipulated in a type-safe and unit-aware manner. It is compatible with the
+ * Distance class for 1D distance.
  *
  * Example usage:
  *   Distance3D p(1.0, 2.0, 3.0, DistanceUnit::M); // 1m, 2m, 3m in x, y, z
  *   float x_cm = p.getX(DistanceUnit::CM);        // Convert x to centimeters
  */
 class Distance3D {
-  public:
-    Distance3D() = default;
-    Distance3D(float x, float y, float z, DistanceUnit unit)
-        : x(x), y(y), z(z), unit(unit) {}
-  
-    float x = 0.0f;
-    float y = 0.0f;
-    float z = 0.0f;
-    DistanceUnit unit = DistanceUnit::M; ///< Unit of the 3D distance. @see DistanceUnit
+ public:
+  Distance3D() = default;
+  Distance3D(float x, float y, float z, DistanceUnit unit)
+      : x(x), y(y), z(z), unit(unit) {}
 
-    float getX(DistanceUnit desiredUnit) const {
-        if (unit == desiredUnit) return x;
-        Distance tempDistance(x, unit);
-        return tempDistance.getValue(desiredUnit);
-      }
-    float getY(DistanceUnit desiredUnit) const {
-        if (unit == desiredUnit) return y;
-        Distance tempDistance(y, unit);
-        return tempDistance.getValue(desiredUnit);
-      }
-    float getZ(DistanceUnit desiredUnit) const {
-        if (unit == desiredUnit) return z;
-        Distance tempDistance(z, unit);
-        return tempDistance.getValue(desiredUnit); 
-    }
+  float x = 0.0f;
+  float y = 0.0f;
+  float z = 0.0f;
+  DistanceUnit unit =
+      DistanceUnit::M;  ///< Unit of the 3D distance. @see DistanceUnit
+
+  float getX(DistanceUnit desiredUnit) const {
+    if (unit == desiredUnit) return x;
+    Distance tempDistance(x, unit);
+    return tempDistance.getValue(desiredUnit);
+  }
+  float getY(DistanceUnit desiredUnit) const {
+    if (unit == desiredUnit) return y;
+    Distance tempDistance(y, unit);
+    return tempDistance.getValue(desiredUnit);
+  }
+  float getZ(DistanceUnit desiredUnit) const {
+    if (unit == desiredUnit) return z;
+    Distance tempDistance(z, unit);
+    return tempDistance.getValue(desiredUnit);
+  }
 };
 
 }  // namespace tinyrobotics

@@ -47,11 +47,13 @@ class Transform2D {
   Transform2D(const Coordinate<DistanceM>& coord, float heading_deg)
       : pos(coord), heading_deg(heading_deg) {}
 
-  Coordinate<DistanceM> pos;     ///< Position (x, y) in meters
-  float heading_deg;  ///< Heading in degrees (0 = x axis)
+  Coordinate<DistanceM> pos;  ///< Position (x, y) in meters
+  float heading_deg;          ///< Heading in degrees (0 = x axis)
 
   /// Get heading in specified unit (degrees or radians)
-  float getHeading(AngleUnit unit) const { return Angle(heading_deg,AngleUnit::DEG).getValue(unit); }
+  float getHeading(AngleUnit unit) const {
+    return Angle(heading_deg, AngleUnit::DEG).getValue(unit);
+  }
 
   /**
    * @brief  Applies this transform to a local coordinate, returning the
@@ -59,9 +61,9 @@ class Transform2D {
    * the heading, then translated by the position of this transform.
    */
   Coordinate<DistanceM> apply(const Coordinate<DistanceM>& local) const {
-    float theta = heading_deg * M_PI / 180.0f;
-    float x = cos(theta) * local.x - sin(theta) * local.y + pos.x;
-    float y = sin(theta) * local.x + cos(theta) * local.y + pos.y;
+    float theta = heading_deg * static_cast<float>(M_PI) / 180.0f;
+    float x = std::cos(theta) * local.x - std::sin(theta) * local.y + pos.x;
+    float y = std::sin(theta) * local.x + std::cos(theta) * local.y + pos.y;
     return Coordinate<DistanceM>(x, y);
   }
 
@@ -70,15 +72,13 @@ class Transform2D {
    * Applies this transform, then the other.
    */
   Transform2D operator*(const Transform2D& other) const {
-    float theta_rad = heading_deg * M_PI / 180.0f;
-    float cos_theta = cos(theta_rad);
-    float sin_theta = sin(theta_rad);
+    float theta_rad = heading_deg * static_cast<float>(M_PI) / 180.0f;
+    float cos_theta = std::cos(theta_rad);
+    float sin_theta = std::sin(theta_rad);
     float nx = pos.x + cos_theta * other.pos.x - sin_theta * other.pos.y;
     float ny = pos.y + sin_theta * other.pos.x + cos_theta * other.pos.y;
     float nheading = heading_deg + other.heading_deg;
-    // Normalize heading to [-180, 180]
-    while (nheading > 180) nheading -= 360;
-    while (nheading < -180) nheading += 360;
+    nheading = normalizeAngleDeg(nheading);
     return Transform2D(nx, ny, nheading);
   }
 
@@ -86,15 +86,13 @@ class Transform2D {
    * @brief Invert this transform.
    */
   Transform2D inverse() const {
-    float theta_rad = heading_deg * M_PI / 180.0f;
-    float cos_theta = cos(theta_rad);
-    float sin_theta = sin(theta_rad);
+    float theta_rad = heading_deg * static_cast<float>(M_PI) / 180.0f;
+    float cos_theta = std::cos(theta_rad);
+    float sin_theta = std::sin(theta_rad);
     float ix = -pos.x * cos_theta - pos.y * sin_theta;
     float iy = pos.x * sin_theta - pos.y * cos_theta;
     float iheading = -heading_deg;
-    // Normalize heading to [-180, 180]
-    while (iheading > 180) iheading -= 360;
-    while (iheading < -180) iheading += 360;
+    iheading = normalizeAngleDeg(iheading);
     return Transform2D(ix, iy, iheading);
   }
 };
@@ -148,7 +146,7 @@ struct Frame2D {
   Transform2D& getTransform() { return tf; }
   void setTransform(const Transform2D& transform) { tf = transform; }
 
-protected:
+ protected:
   FrameType type;
   uint8_t index = 0;
   Frame2D* p_parent = nullptr;
@@ -219,14 +217,16 @@ class FrameMgr2D {
     Transform2D tf = getTransform(frame, *p_gpsParent);
 
     // Rotate the local (x, y) by gpsRotationDeg to align with GPS north
-    float theta_rad = gpsRotationDeg * M_PI / 180.0f;
-    float cos_theta = cos(theta_rad);
-    float sin_theta = sin(theta_rad);
+    float theta_rad = gpsRotationDeg * static_cast<float>(M_PI) / 180.0f;
+    float cos_theta = std::cos(theta_rad);
+    float sin_theta = std::sin(theta_rad);
     float dx = cos_theta * tf.pos.x - sin_theta * tf.pos.y;
     float dy = sin_theta * tf.pos.x + cos_theta * tf.pos.y;
 
-    float distance = sqrt(dx * dx + dy * dy);
-    float bearing_deg = atan2(dx, dy) * 180.0 / M_PI;  // Bearing from north
+    float distance = std::sqrt(dx * dx + dy * dy);
+    float bearing_deg = std::atan2(dx, dy) * 180.0f /
+                        static_cast<float>(M_PI);  // Bearing from north
+    bearing_deg = normalizeAngleDeg(bearing_deg);
 
     return gpsCoordinate.navigate(distance, bearing_deg);
   }

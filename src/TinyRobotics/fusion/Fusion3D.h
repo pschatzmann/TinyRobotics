@@ -1,22 +1,24 @@
 #pragma once
-#include <math.h>
 #include <stdint.h>
+
+#include <cmath>
 
 #include "TinyRobotics/communication/Message.h"
 #include "TinyRobotics/communication/MessageHandler.h"
 #include "TinyRobotics/communication/MessageSource.h"
 #include "TinyRobotics/coordinates/Coordinate.h"
 #include "TinyRobotics/coordinates/Orientation3D.h"
-#include "TinyRobotics/units/Speed.h"
-#include "TinyRobotics/units/Distance.h"
 #include "TinyRobotics/units/AngularVelocity.h"
+#include "TinyRobotics/units/Distance.h"
+#include "TinyRobotics/units/Speed.h"
 
 namespace tinyrobotics {
 
 /**
  * @class Fusion3D
  * @ingroup fusion
- * @brief 3D sensor fusion EKF for position, orientation, and velocity estimation.
+ * @brief 3D sensor fusion EKF for position, orientation, and velocity
+ * estimation.
  *
  * Supports optional sensors:
  * - IMU3D (gyro + acceleration)
@@ -28,11 +30,11 @@ namespace tinyrobotics {
 class Fusion3D : public MessageSource {
  public:
   struct State3D {
-    uint32_t timeMs;  ///< Timestamp in ms
-    float x, y, z;    ///< Position (meters)
-    float vx, vy, vz; ///< Velocity (m/s)
-    float yaw, pitch, roll; ///< Orientation (radians)
-    float gyroBiasX, gyroBiasY, gyroBiasZ; ///< Gyro bias (rad/s)
+    uint32_t timeMs;                        ///< Timestamp in ms
+    float x, y, z;                          ///< Position (meters)
+    float vx, vy, vz;                       ///< Velocity (m/s)
+    float yaw, pitch, roll;                 ///< Orientation (radians)
+    float gyroBiasX, gyroBiasY, gyroBiasZ;  ///< Gyro bias (rad/s)
   };
 
   Fusion3D() { reset(0); }
@@ -52,7 +54,8 @@ class Fusion3D : public MessageSource {
   }
 
   // Prediction step (dead-reckoning)
-  void predict(uint32_t timeMs, float ax = 0.0f, float ay = 0.0f, float az = 0.0f) {
+  void predict(uint32_t timeMs, float ax = 0.0f, float ay = 0.0f,
+               float az = 0.0f) {
     uint32_t dtMs = timeMs - lastPredictTime;
     lastPredictTime = timeMs;
     float dt = dtMs * 0.001f;
@@ -70,9 +73,9 @@ class Fusion3D : public MessageSource {
     state.z += state.vz * dt;
 
     // Integrate angular velocity for orientation (simple Euler integration)
-    state.roll  += (omegaXMeasured - state.gyroBiasX) * dt;
+    state.roll += (omegaXMeasured - state.gyroBiasX) * dt;
     state.pitch += (omegaYMeasured - state.gyroBiasY) * dt;
-    state.yaw   += (omegaZMeasured - state.gyroBiasZ) * dt;
+    state.yaw += (omegaZMeasured - state.gyroBiasZ) * dt;
     wrapAngles();
 
     state.timeMs = timeMs;
@@ -99,7 +102,7 @@ class Fusion3D : public MessageSource {
     // Z
     float residualZ = z - state.z;
     // (EKF update step omitted for brevity)
-    state.x += residualX * 0.5f; // Simple correction
+    state.x += residualX * 0.5f;  // Simple correction
     state.y += residualY * 0.5f;
     state.z += residualZ * 0.5f;
   }
@@ -108,17 +111,21 @@ class Fusion3D : public MessageSource {
   void updateOrientation(uint32_t timeMs, float yaw, float pitch, float roll) {
     predict(timeMs);
     // (EKF update step omitted for brevity)
-    state.yaw   = yaw;
+    state.yaw = yaw;
     state.pitch = pitch;
-    state.roll  = roll;
+    state.roll = roll;
     wrapAngles();
   }
 
   // Outputs
   State3D getState() const { return state; }
   Coordinate<float> getPosition() const { return {state.x, state.y, state.z}; }
-  Speed3D getVelocity() const { return Speed3D(state.vx, state.vy, state.vz, SpeedUnit::MPS); }
-  Orientation3D getOrientation() const { return Orientation3D(state.yaw, state.pitch, state.roll); }
+  Speed3D getVelocity() const {
+    return Speed3D(state.vx, state.vy, state.vz, SpeedUnit::MPS);
+  }
+  Orientation3D getOrientation() const {
+    return Orientation3D(state.yaw, state.pitch, state.roll);
+  }
 
  private:
   State3D state;
@@ -127,12 +134,9 @@ class Fusion3D : public MessageSource {
   bool hasIMU = false;
 
   void wrapAngles() {
-    while (state.yaw > M_PI) state.yaw -= 2 * M_PI;
-    while (state.yaw < -M_PI) state.yaw += 2 * M_PI;
-    while (state.pitch > M_PI) state.pitch -= 2 * M_PI;
-    while (state.pitch < -M_PI) state.pitch += 2 * M_PI;
-    while (state.roll > M_PI) state.roll -= 2 * M_PI;
-    while (state.roll < -M_PI) state.roll += 2 * M_PI;
+    state.yaw = normalizeAngleRad(state.yaw);
+    state.pitch = normalizeAngleRad(state.pitch);
+    state.roll = normalizeAngleRad(state.roll);
   }
 
   void reset(uint32_t timeMs = millis()) {
@@ -148,4 +152,4 @@ class Fusion3D : public MessageSource {
   }
 };
 
-} // namespace tinyrobotics
+}  // namespace tinyrobotics

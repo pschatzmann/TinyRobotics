@@ -27,17 +27,17 @@ class AngularVelocity {
   void setValue(float newAngularVelocity, AngularVelocityUnit newUnit) {
     angularVelocity = newAngularVelocity;
     unit = newUnit;
-  } 
+  }
   float getValue(AngularVelocityUnit desiredUnit) const {
     if (unit == desiredUnit) return angularVelocity;
     switch (unit) {
       case AngularVelocityUnit::RadPerSec:
         if (desiredUnit == AngularVelocityUnit::DegPerSec)
-          return angularVelocity * 180.0f / M_PI;
+          return angularVelocity * 180.0f / static_cast<float>(M_PI);
         break;
       case AngularVelocityUnit::DegPerSec:
         if (desiredUnit == AngularVelocityUnit::RadPerSec)
-          return angularVelocity * M_PI / 180.0f;
+          return angularVelocity * static_cast<float>(M_PI) / 180.0f;
         break;
     }
     return 0;  // Invalid conversion
@@ -54,12 +54,13 @@ class AngularVelocity {
  *
  * AngularVelocity3D is useful for robotics, navigation, and simulation
  * applications where 3D rotational motion must be represented and manipulated
- * in a type-safe and unit-aware manner. It is compatible with the AngularVelocity
- * class for 1D angular velocity.
+ * in a type-safe and unit-aware manner. It is compatible with the
+ * AngularVelocity class for 1D angular velocity.
  *
  * Example usage:
- *   AngularVelocity3D w(0.1, 0.0, 0.0, AngularVelocityUnit::RadPerSecond); // 0.1 rad/s about x
- *   float wx_deg = w.getX(AngularVelocityUnit::DegPerSecond);              // Convert x to deg/s
+ *   AngularVelocity3D w(0.1, 0.0, 0.0, AngularVelocityUnit::RadPerSecond); //
+ * 0.1 rad/s about x float wx_deg = w.getX(AngularVelocityUnit::DegPerSecond);
+ * // Convert x to deg/s
  */
 /**
  * @class AngularVelocity3D
@@ -92,7 +93,6 @@ class AngularVelocity3D {
     AngularVelocity temp(z, unit);
     return temp.getValue(desiredUnit);
   }
-
 };
 
 }  // namespace tinyrobotics

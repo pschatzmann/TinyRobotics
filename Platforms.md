@@ -5,6 +5,7 @@
 This library should be working on all Arduino platforms that provide "enough" RAM and support the C++ STL:
 
 - ESP32
+- ESP8266
 - RP2040
 - Arduino Zephyr cores
 - Arduino MKR boards

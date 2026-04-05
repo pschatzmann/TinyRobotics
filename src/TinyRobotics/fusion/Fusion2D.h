@@ -1,7 +1,8 @@
 
 #pragma once
-#include <math.h>
 #include <stdint.h>
+
+#include <cmath>
 
 #include "TinyRobotics/communication/Message.h"
 #include "TinyRobotics/communication/MessageHandler.h"
@@ -65,9 +66,9 @@ class Fusion2D : public IMotionState2D {
   }
 
   bool begin(Transform2D initialTransform) {
-    return begin(initialTransform.pos, initialTransform.getHeading(AngleUnit::DEG));
+    return begin(initialTransform.pos,
+                 initialTransform.getHeading(AngleUnit::DEG));
   }
-
 
   // =====================
   // PREDICTION
@@ -92,8 +93,8 @@ class Fusion2D : public IMotionState2D {
     if (dt <= 0.0f) return;
     if (dt > 0.1f) dt = 0.1f;
 
-    float c = cosf(state.heading);
-    float s = sinf(state.heading);
+    float c = std::cos(state.heading);
+    float s = std::sin(state.heading);
 
     // Determine velocity
     float v = state.speed;
@@ -102,7 +103,7 @@ class Fusion2D : public IMotionState2D {
     if (!hasWheelSpeed && hasIMU) {
       float ax_world = ax * c - ay * s;
       float ay_world = ax * s + ay * c;
-      float dv = sqrtf(ax_world * ax_world + ay_world * ay_world) * dt;
+      float dv = std::sqrt(ax_world * ax_world + ay_world * ay_world) * dt;
       v += dv;
       state.speed = v;
     }
@@ -110,7 +111,7 @@ class Fusion2D : public IMotionState2D {
     // Heading integration
     float omega = hasIMU ? (omegaMeasured - state.gyroBias) : 0.0f;
     state.heading += omega * dt;
-    state.heading = wrapAngle(state.heading);
+    state.heading = normalizeAngleRad(state.heading);
 
     // Position integration (requires some velocity)
     if (v > 0.0f) {
@@ -214,13 +215,13 @@ class Fusion2D : public IMotionState2D {
    */
   void updateHeading(uint32_t timeMs, float heading) {
     predict(timeMs);
-    float y = wrapAngle(heading - state.heading);
+    float y = normalizeAngleRad(heading - state.heading);
     float R = 0.3f;
     float S = P[2][2] + R;
     float K[5];
     for (int i = 0; i < 5; i++) K[i] = P[i][2] / S;
     applyUpdate(K, y);
-    state.heading = wrapAngle(state.heading);
+    state.heading = normalizeAngleRad(state.heading);
     updateCovariance(K, 2);
   }
 
@@ -300,7 +301,9 @@ class Fusion2D : public IMotionState2D {
   Angle getHeading() const { return Angle(state.heading, AngleUnit::RAD); }
   Speed getSpeed() const { return Speed(state.speed, SpeedUnit::MPS); }
   Transform2D getTransform() const {
-    return Transform2D(Coordinate<DistanceM>(state.x, state.y), Angle(state.heading, AngleUnit::RAD).getValue(AngleUnit::DEG));
+    return Transform2D(
+        Coordinate<DistanceM>(state.x, state.y),
+        Angle(state.heading, AngleUnit::RAD).getValue(AngleUnit::DEG));
   }
 
   void end() {
@@ -321,7 +324,7 @@ class Fusion2D : public IMotionState2D {
     state.heading += K[2] * residual;
     state.speed += K[3] * residual;
     state.gyroBias += K[4] * residual;
-    state.heading = wrapAngle(state.heading);
+    state.heading = normalizeAngleRad(state.heading);
   }
 
   void updateCovariance(float K[5], int idx) {
@@ -332,13 +335,7 @@ class Fusion2D : public IMotionState2D {
       for (int j = 0; j < 5; j++) P[i][j] = newP[i][j];
   }
 
-  static float wrapAngle(float a) {
-    while (a > M_PI) a -= 2 * M_PI;
-    while (a < -M_PI) a += 2 * M_PI;
-    return a;
-  }
-
-   /**
+  /**
    * @brief Reset the EKF state and covariance.
    * @param timeMs Optional timestamp to set the initial state time.
    */
@@ -358,7 +355,6 @@ class Fusion2D : public IMotionState2D {
     lastPredictTime = timeMs;
     omegaMeasured = 0.0f;
   }
- 
 };
 
 }  // namespace tinyrobotics

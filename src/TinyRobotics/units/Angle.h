@@ -15,14 +15,17 @@ enum class AngleUnit { DEG, RAD };
  * @ingroup units
  * @brief Represents an angle with unit conversion and wrap-around support.
  *
- * The Angle class encapsulates an angle value and its unit, supporting degrees (DEG)
- * and radians (RAD). It provides methods to set and retrieve the angle in any supported unit,
- * automatically handling conversions and wrap-around (0-360° or 0-2π rad).
+ * The Angle class encapsulates an angle value and its unit, supporting degrees
+ * (DEG) and radians (RAD). It provides methods to set and retrieve the angle in
+ * any supported unit, automatically handling conversions and wrap-around
+ * (0-360° or 0-2π rad).
  *
  * - Internal state is always consistent with the last set value and unit.
- * - Designed for embedded and robotics applications where unit flexibility and efficiency are required.
+ * - Designed for embedded and robotics applications where unit flexibility and
+ * efficiency are required.
  * - Supports addition and subtraction with automatic wrap-around.
- * - Use getValue() to retrieve the angle in any unit; use setValue() to update the value and unit.
+ * - Use getValue() to retrieve the angle in any unit; use setValue() to update
+ * the value and unit.
  *
  * Example:
  * @code
@@ -50,10 +53,10 @@ class Angle {
     if (unit == desiredUnit) return angle;
     switch (unit) {
       case AngleUnit::DEG:
-        if (desiredUnit == AngleUnit::RAD) return angle * M_PI / 180.0f;
+        if (desiredUnit == AngleUnit::RAD) return angle * (float)M_PI / 180.0f;
         break;
       case AngleUnit::RAD:
-        if (desiredUnit == AngleUnit::DEG) return angle * 180.0f / M_PI;
+        if (desiredUnit == AngleUnit::DEG) return angle * 180.0f / (float)M_PI;
         break;
     }
     return -1;  // Invalid conversion
@@ -74,7 +77,7 @@ class Angle {
       case AngleUnit::DEG:
         return 360.0f;
       case AngleUnit::RAD:
-        return 2 * M_PI;
+        return 2.0f * (float)M_PI;
     }
     return -1;  // Invalid unit
   }

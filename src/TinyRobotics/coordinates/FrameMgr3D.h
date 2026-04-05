@@ -204,16 +204,17 @@ class FrameMgr3D {
     // frame
     std::array<float, 3> xyz = tf.apply(local);
     // Rotate by gpsRotationDeg to align with GPS north (in x/y plane)
-    float theta_rad = gpsRotationDeg * M_PI / 180.0f;
-    float cos_theta = cos(theta_rad);
-    float sin_theta = sin(theta_rad);
+    float theta_rad = gpsRotationDeg * static_cast<float>(M_PI) / 180.0f;
+    float cos_theta = std::cos(theta_rad);
+    float sin_theta = std::sin(theta_rad);
     float dx = cos_theta * xyz[0] - sin_theta * xyz[1];
     float dy = sin_theta * xyz[0] + cos_theta * xyz[1];
     float dz = xyz[2];
     // Use GPSCoordinate::navigate for conversion (distance in meters, bearing
     // in degrees)
-    float distance = sqrt(dx * dx + dy * dy);
-    float bearing_deg = atan2(dx, dy) * 180.0 / M_PI;
+    float distance = std::sqrt(dx * dx + dy * dy);
+    float bearing_deg = std::atan2(dx, dy) * 180.0f / static_cast<float>(M_PI);
+    bearing_deg = normalizeAngleDeg(bearing_deg);
     return gpsCoordinate.navigate(distance, bearing_deg, dz);
   }
 

@@ -10,19 +10,20 @@ namespace tinyrobotics {
  */
 enum class MessageOrigin {
   Undefined = 0,
-  RemoteControl,  ///< Message from a remote control interface (e.g., RC receiver)
-  Autonomy,       ///< Message from an autonomous control module (e.g., path planner)
-  Sensor,         ///< Message from a sensor module (e.g., IMU, GPS)
-  System,         ///< Internal system message (e.g., status update)
-  Motor,          ///< Message from a motor controller (e.g., ESC)
-  Servo,          ///< Message from a servo controller
-  Rudder,         ///< Message from a rudder controller (specific to boats/planes)
-  Aileron,        ///< Message from an aileron controller (specific to planes)
-  Elevator,       ///< Message from an elevator controller (specific to planes)
-  IMU,            ///< Message from an IMU sensor
-  LIDAR,          ///< Message from a LIDAR or IR distance sensor
-  Camera,         ///< Message from a camera or vision sensor
-  GPS,            ///< Message from a GPS module
+  RemoteControl,  ///< Message from a remote control interface (e.g., RC
+                  ///< receiver)
+  Autonomy,  ///< Message from an autonomous control module (e.g., path planner)
+  Sensor,    ///< Message from a sensor module (e.g., IMU, GPS)
+  System,    ///< Internal system message (e.g., status update)
+  Motor,     ///< Message from a motor controller (e.g., ESC)
+  Servo,     ///< Message from a servo controller
+  Rudder,    ///< Message from a rudder controller (specific to boats/planes)
+  Aileron,   ///< Message from an aileron controller (specific to planes)
+  Elevator,  ///< Message from an elevator controller (specific to planes)
+  IMU,       ///< Message from an IMU sensor
+  LIDAR,     ///< Message from a LIDAR or IR distance sensor
+  Camera,    ///< Message from a camera or vision sensor
+  GPS,       ///< Message from a GPS module
 };
 
 /**
@@ -53,21 +54,26 @@ enum class MessageContent {
 /**
  * @class Message
  * @ingroup communication
- * @brief Generic message structure for communication, parameterized by value type.
+ * @brief Generic message structure for communication, parameterized by value
+ * type.
  * @tparam T Type of the value (default: float)
  *
- * @note When using Message in function signatures (e.g., virtual functions), always use Message<float> explicitly.
- *       C++ requires the template argument in these contexts, even though the default is float.
+ * @note When using Message in function signatures (e.g., virtual functions),
+ * always use Message<float> explicitly. C++ requires the template argument in
+ * these contexts, even though the default is float.
  */
 template <typename T = float>
 struct Message {
   const char* prefix = "MSG";  ///< prefix for message identification
   uint8_t size = sizeof(Message);
-  MessageOrigin source = MessageOrigin::RemoteControl;  ///< Source of the message. @see MessageOrigin
-  uint8_t source_id = 0;   /// Optional identifier for the source (e.g., sensor ID, motor ID)
+  MessageOrigin source =
+      MessageOrigin::RemoteControl;  ///< Source of the message. @see
+                                     ///< MessageOrigin
+  uint8_t source_id =
+      0;  /// Optional identifier for the source (e.g., sensor ID, motor ID)
   MessageContent content;  ///< Type of message content. @see MessageContent
   Unit unit;               ///< Unit of the value
-  T value;                 ///< Value of the message
+  T value{};               ///< Value of the message
 
   /**
    * @brief Default constructor.
@@ -80,8 +86,9 @@ struct Message {
    * @param v Value
    * @param u Unit
    */
-  Message(MessageContent c, T v, Unit u) : content(c), value(v), unit(u) {}
-  Message(MessageContent c, T v, Unit u, MessageOrigin orig) : content(c), value(v), unit(u), source(orig) {}
+  Message(MessageContent c, T v, Unit u) : content(c), unit(u), value(v) {}
+  Message(MessageContent c, T v, Unit u, MessageOrigin orig)
+      : content(c), unit(u), value(v), source(orig) {}
 };
 
 }  // namespace tinyrobotics

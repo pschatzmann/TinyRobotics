@@ -1,6 +1,6 @@
 #pragma once
-#include <math.h>
-
+#include <cmath>
+#include "Arduino.h" // for millis
 #include "TinyRobotics/control/MotionState3D.h"
 #include "TinyRobotics/control/PIDController.h"
 #include "TinyRobotics/coordinates/Coordinate.h"
@@ -133,14 +133,15 @@ class MotionController3D {
         pidY.calculate(target.getPosition().y, motionState.getPosition().y);
     float vz =
         pidZ.calculate(target.getPosition().z, motionState.getPosition().z);
-    float vyaw = pidYaw.calculate(wrapAngle(target.getOrientation().yaw),
-                                  wrapAngle(motionState.getOrientation().yaw));
-    float vpitch =
-        pidPitch.calculate(wrapAngle(target.getOrientation().pitch),
-                           wrapAngle(motionState.getOrientation().pitch));
+    float vyaw =
+        pidYaw.calculate(normalizeAngleRad(target.getOrientation().yaw),
+                         normalizeAngleRad(motionState.getOrientation().yaw));
+    float vpitch = pidPitch.calculate(
+        normalizeAngleRad(target.getOrientation().pitch),
+        normalizeAngleRad(motionState.getOrientation().pitch));
     float vroll =
-        pidRoll.calculate(wrapAngle(target.getOrientation().roll),
-                          wrapAngle(motionState.getOrientation().roll));
+        pidRoll.calculate(normalizeAngleRad(target.getOrientation().roll),
+                          normalizeAngleRad(motionState.getOrientation().roll));
 
     linearCmd = Speed3D(vx, vy, vz, SpeedUnit::MPS);
     angularCmd =
@@ -244,7 +245,7 @@ class MotionController3D {
     float dx = tgt.x - motionState.getPosition().x;
     float dy = tgt.y - motionState.getPosition().y;
     float dz = tgt.z - motionState.getPosition().z;
-    float dist = sqrtf(dx * dx + dy * dy + dz * dz);
+    float dist = std::sqrt(dx * dx + dy * dy + dz * dz);
     if (dist < positionTolerance) {
       path.removeHead();
       if (!path.isEmpty()) {
@@ -302,14 +303,16 @@ class MotionController3D {
           circleInitialized = true;
         } else {
           circlePhase += circleAngularSpeed;
-          if (circlePhase > 2 * M_PI) circlePhase -= 2 * M_PI;
+          if (circlePhase > 2.0f * static_cast<float>(M_PI))
+            circlePhase -= 2.0f * static_cast<float>(M_PI);
         }
         // Compute new target on the circle (XY plane, keep Z constant)
-        float x = circleCenter.x + circleRadius * cosf(circlePhase);
-        float y = circleCenter.y + circleRadius * sinf(circlePhase);
+        float x = circleCenter.x + circleRadius * std::cos(circlePhase);
+        float y = circleCenter.y + circleRadius * std::sin(circlePhase);
         float z = circleCenter.z;
         // Optionally, face tangent to the circle (yaw)
-        float yaw = atan2f(y - circleCenter.y, x - circleCenter.x) + M_PI_2;
+        float yaw = std::atan2(y - circleCenter.y, x - circleCenter.x) +
+                    static_cast<float>(M_PI_2);
         Orientation3D orientation(yaw, target.getOrientation().pitch,
                                   target.getOrientation().roll);
         target = MotionState3D(
@@ -320,11 +323,7 @@ class MotionController3D {
     }
   }
 
-  static float wrapAngle(float a) {
-    while (a > M_PI) a -= 2 * M_PI;
-    while (a < -M_PI) a += 2 * M_PI;
-    return a;
-  }
+  // Removed: use normalizeAngleRad directly
 };
 
 }  // namespace tinyrobotics
