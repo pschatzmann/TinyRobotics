@@ -323,9 +323,9 @@ $(function() {
 <div class="line"><a id="l00245" name="l00245"></a><span class="lineno">  245</span>    <span class="comment">// Find lowest common ancestor (LCA)</span></div>
 <div class="line"><a id="l00246" name="l00246"></a><span class="lineno">  246</span>    <span class="keywordtype">int</span> i = from_path.size() - 1;</div>
 <div class="line"><a id="l00247" name="l00247"></a><span class="lineno">  247</span>    <span class="keywordtype">int</span> j = to_path.size() - 1;</div>
-<div class="line"><a id="l00248" name="l00248"></a><span class="lineno">  248</span>    <span class="keyword">const</span> <a class="code hl_struct" href="structtinyrobotics_1_1Frame2D.html">Frame2D</a>* lca = <span class="keywordtype">nullptr</span>;</div>
+<div class="line"><a id="l00248" name="l00248"></a><span class="lineno">  248</span>    <span class="comment">//const Frame2D* lca = nullptr;</span></div>
 <div class="line"><a id="l00249" name="l00249"></a><span class="lineno">  249</span>    <span class="keywordflow">while</span> (i &gt;= 0 &amp;&amp; j &gt;= 0 &amp;&amp; from_path[i] == to_path[j]) {</div>
-<div class="line"><a id="l00250" name="l00250"></a><span class="lineno">  250</span>      lca = from_path[i];</div>
+<div class="line"><a id="l00250" name="l00250"></a><span class="lineno">  250</span>      <span class="comment">//lca = from_path[i];</span></div>
 <div class="line"><a id="l00251" name="l00251"></a><span class="lineno">  251</span>      --i;</div>
 <div class="line"><a id="l00252" name="l00252"></a><span class="lineno">  252</span>      --j;</div>
 <div class="line"><a id="l00253" name="l00253"></a><span class="lineno">  253</span>    }</div>
