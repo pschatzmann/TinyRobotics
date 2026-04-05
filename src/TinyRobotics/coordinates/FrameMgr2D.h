@@ -245,9 +245,9 @@ class FrameMgr2D {
     // Find lowest common ancestor (LCA)
     int i = from_path.size() - 1;
     int j = to_path.size() - 1;
-    const Frame2D* lca = nullptr;
+    //const Frame2D* lca = nullptr;
     while (i >= 0 && j >= 0 && from_path[i] == to_path[j]) {
-      lca = from_path[i];
+      //lca = from_path[i];
       --i;
       --j;
     }

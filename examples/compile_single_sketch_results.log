@@ -33,73 +33,12 @@ Global variables use 6804 bytes (20%) of dynamic memory, leaving 25964 bytes for
 SUCCESS: ./others/compile/compile.ino (arduino:renesas_uno:unor4wifi)
 -----------------------------
 Compiling ./others/compile/compile.ino for arduino:zephyr_main:nano33ble...
-In file included from /home/pschatzmann/Development/Arduino/libraries/TinyRobotics/src/TinyRobotics/sensors/Sensors.h:13,
-                 from /home/pschatzmann/Development/Arduino/libraries/TinyRobotics/src/TinyRobotics.h:29,
-                 from /home/pschatzmann/Development/Arduino/libraries/TinyRobotics/examples/others/compile/compile.ino:3:
-/home/pschatzmann/Development/Arduino/libraries/TinyRobotics/src/TinyRobotics/sensors/WheelEncoder.h:105:6: error: stray '@' in program
-  105 |    * @brief
-      |      ^
-/home/pschatzmann/Development/Arduino/libraries/TinyRobotics/src/TinyRobotics/sensors/WheelEncoder.h:108:6: error: stray '@' in program
-  108 |    * @param ms Reporting interval in milliseconds.
-      |      ^
-/home/pschatzmann/Development/Arduino/libraries/TinyRobotics/src/TinyRobotics/sensors/WheelEncoder.h:105:7: error: ISO C++ forbids declaration of 'brief' with no type [-fpermissive]
-  105 |    * @brief
-      |       ^~~~~
-/home/pschatzmann/Development/Arduino/libraries/TinyRobotics/src/TinyRobotics/sensors/WheelEncoder.h:105:7: error: expected ';' at end of member declaration
-  105 |    * @brief
-      |       ^~~~~
-      |            ;
-/home/pschatzmann/Development/Arduino/libraries/TinyRobotics/src/TinyRobotics/sensors/WheelEncoder.h:107:5: error: expected unqualified-id before '/' token
-  107 |    */
-      |     ^
-/home/pschatzmann/Development/Arduino/libraries/TinyRobotics/src/TinyRobotics/sensors/WheelEncoder.h: In member function 'bool tinyrobotics::WheelEncoder::begin()':
-/home/pschatzmann/Development/Arduino/libraries/TinyRobotics/src/TinyRobotics/sensors/WheelEncoder.h:187:7: error: 'setReportingFrequencyMs' was not declared in this scope
-  187 |       setReportingFrequencyMs(1000);
-      |       ^~~~~~~~~~~~~~~~~~~~~~~
-
-[92mUsed library[0m [92mVersion[0m [90mPath[0m
-[93mTinyRobotics[0m 0.2.0   [90m/home/pschatzmann/Development/Arduino/libraries/TinyRobotics[0m
-
-[92mUsed platform[0m       [92mVersion[0m [90mPath[0m
-[93marduino:zephyr_main[0m 0.54.1  [90m/home/pschatzmann/.arduino15/packages/arduino/hardware/zephyr_main/0.54.1[0m
-Error during build: exit status 1
-FAIL: ./others/compile/compile.ino (arduino:zephyr_main:nano33ble)
+Sketch uses 1664 bytes (1%) of program storage space. Maximum is 98304 bytes.
+Global variables use 484 bytes (0%) of dynamic memory, leaving 130588 bytes for local variables. Maximum is 131072 bytes.
+SUCCESS: ./others/compile/compile.ino (arduino:zephyr_main:nano33ble)
 -----------------------------
 Compiling ./others/compile/compile.ino for STMicroelectronics:stm32:GenF4:pnum=BLACKPILL_F411CE...
-In file included from /home/pschatzmann/Development/Arduino/libraries/TinyRobotics/src/TinyRobotics/sensors/Sensors.h:13,
-                 from /home/pschatzmann/Development/Arduino/libraries/TinyRobotics/src/TinyRobotics.h:29,
-                 from /home/pschatzmann/Development/Arduino/libraries/TinyRobotics/examples/others/compile/compile.ino:3:
-/home/pschatzmann/Development/Arduino/libraries/TinyRobotics/src/TinyRobotics/sensors/WheelEncoder.h:105:6: error: stray '@' in program
-  105 |    * @brief
-      |      ^
-/home/pschatzmann/Development/Arduino/libraries/TinyRobotics/src/TinyRobotics/sensors/WheelEncoder.h:108:6: error: stray '@' in program
-  108 |    * @param ms Reporting interval in milliseconds.
-      |      ^
-/home/pschatzmann/Development/Arduino/libraries/TinyRobotics/src/TinyRobotics/sensors/WheelEncoder.h:105:7: error: ISO C++ forbids declaration of 'brief' with no type [-fpermissive]
-  105 |    * @brief
-      |       ^~~~~
-/home/pschatzmann/Development/Arduino/libraries/TinyRobotics/src/TinyRobotics/sensors/WheelEncoder.h:105:7: error: expected ';' at end of member declaration
-  105 |    * @brief
-      |       ^~~~~
-      |            ;
-/home/pschatzmann/Development/Arduino/libraries/TinyRobotics/src/TinyRobotics/sensors/WheelEncoder.h:107:5: error: expected unqualified-id before '/' token
-  107 |    */
-      |     ^
-/home/pschatzmann/Development/Arduino/libraries/TinyRobotics/src/TinyRobotics/sensors/WheelEncoder.h: In member function 'bool tinyrobotics::WheelEncoder::begin()':
-/home/pschatzmann/Development/Arduino/libraries/TinyRobotics/src/TinyRobotics/sensors/WheelEncoder.h:187:7: error: 'setReportingFrequencyMs' was not declared in this scope
-  187 |       setReportingFrequencyMs(1000);
-      |       ^~~~~~~~~~~~~~~~~~~~~~~
-Multiple libraries were found for "Servo.h"
-  Used: /home/pschatzmann/.arduino15/packages/STMicroelectronics/hardware/stm32/2.12.0/libraries/Servo
-  Not used: /home/pschatzmann/Development/Arduino/libraries/Servo
-
-[92mUsed library[0m [92mVersion[0m [90mPath[0m
-[93mTinyRobotics[0m 0.2.0   [90m/home/pschatzmann/Development/Arduino/libraries/TinyRobotics[0m
-[93mServo[0m        1.1.2   [90m/home/pschatzmann/.arduino15/packages/STMicroelectronics/hardware/stm32/2.12.0/libraries/Servo[0m
-[93mSrcWrapper[0m   1.0.1   [90m/home/pschatzmann/.arduino15/packages/STMicroelectronics/hardware/stm32/2.12.0/libraries/SrcWrapper[0m
-
-[92mUsed platform[0m            [92mVersion[0m [90mPath[0m
-[93mSTMicroelectronics:stm32[0m 2.12.0  [90m/home/pschatzmann/.arduino15/packages/STMicroelectronics/hardware/stm32/2.12.0[0m
-Error during build: exit status 1
-FAIL: ./others/compile/compile.ino (STMicroelectronics:stm32:GenF4:pnum=BLACKPILL_F411CE)
+Sketch uses 9180 bytes (1%) of program storage space. Maximum is 524288 bytes.
+Global variables use 1268 bytes (0%) of dynamic memory, leaving 129804 bytes for local variables. Maximum is 131072 bytes.
+SUCCESS: ./others/compile/compile.ino (STMicroelectronics:stm32:GenF4:pnum=BLACKPILL_F411CE)
 -----------------------------

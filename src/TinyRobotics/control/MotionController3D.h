@@ -63,9 +63,10 @@ class MotionController3D {
  public:
   MotionController3D(IMotionState3D& motionStateRef, OnGoalAction onGloal,
                      float positionToleranceM = 2.0)
-      : motionState(motionStateRef),
-        positionToleranceM(positionToleranceM),
-        onGoalAction(onGloal) {
+      : positionToleranceM(positionToleranceM),
+        onGoalAction(onGloal),
+        path(),
+        motionState(motionStateRef) {
     // Default PID: dt=0.1s, max=1.0, min=-1.0, kp=1.0, ki=0.0, kd=0.0
     pidX.begin(0.1f, -1.0f, 1.0f, 1.0f, 0.0f, 0.0f);
     pidY.begin(0.1f, -1.0f, 1.0f, 1.0f, 0.0f, 0.0f);

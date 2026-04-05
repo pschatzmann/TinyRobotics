@@ -88,7 +88,7 @@ struct Message {
    */
   Message(MessageContent c, T v, Unit u) : content(c), unit(u), value(v) {}
   Message(MessageContent c, T v, Unit u, MessageOrigin orig)
-      : content(c), unit(u), value(v), source(orig) {}
+    : source(orig), content(c), unit(u), value(v) {}
 };
 
 }  // namespace tinyrobotics

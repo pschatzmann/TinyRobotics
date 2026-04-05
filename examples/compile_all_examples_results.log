@@ -1,10 +1,10 @@
 Compiling ./vehicles/RCCarAckermanWithRemoteSensor/RCCarAckermanWithRemoteSensor.ino...
-Sketch uses 939915 bytes (71%) of program storage space. Maximum is 1310720 bytes.
+Sketch uses 939843 bytes (71%) of program storage space. Maximum is 1310720 bytes.
 Global variables use 47228 bytes (14%) of dynamic memory, leaving 280452 bytes for local variables. Maximum is 327680 bytes.
 SUCCESS: ./vehicles/RCCarAckermanWithRemoteSensor/RCCarAckermanWithRemoteSensor.ino
 -----------------------------
 Compiling ./vehicles/RCCarAckerman/RCCarAckerman.ino...
-Sketch uses 924723 bytes (70%) of program storage space. Maximum is 1310720 bytes.
+Sketch uses 924703 bytes (70%) of program storage space. Maximum is 1310720 bytes.
 Global variables use 47132 bytes (14%) of dynamic memory, leaving 280548 bytes for local variables. Maximum is 327680 bytes.
 SUCCESS: ./vehicles/RCCarAckerman/RCCarAckerman.ino
 -----------------------------
@@ -14,12 +14,12 @@ Global variables use 22480 bytes (6%) of dynamic memory, leaving 305200 bytes fo
 SUCCESS: ./motors/generic-servo/generic-servo.ino
 -----------------------------
 Compiling ./motors/std-motors/std-motors.ino...
-Sketch uses 352362 bytes (26%) of program storage space. Maximum is 1310720 bytes.
-Global variables use 25408 bytes (7%) of dynamic memory, leaving 302272 bytes for local variables. Maximum is 327680 bytes.
+Sketch uses 295543 bytes (22%) of program storage space. Maximum is 1310720 bytes.
+Global variables use 22600 bytes (6%) of dynamic memory, leaving 305080 bytes for local variables. Maximum is 327680 bytes.
 SUCCESS: ./motors/std-motors/std-motors.ino
 -----------------------------
 Compiling ./sensors/WheelEncoder/WheelEncoder.ino...
-Sketch uses 285416 bytes (21%) of program storage space. Maximum is 1310720 bytes.
+Sketch uses 285476 bytes (21%) of program storage space. Maximum is 1310720 bytes.
 Global variables use 22628 bytes (6%) of dynamic memory, leaving 305052 bytes for local variables. Maximum is 327680 bytes.
 SUCCESS: ./sensors/WheelEncoder/WheelEncoder.ino
 -----------------------------
@@ -29,12 +29,12 @@ Global variables use 34124 bytes (10%) of dynamic memory, leaving 293556 bytes f
 SUCCESS: ./sensors/CameraLineFollower/CameraLineFollower.ino
 -----------------------------
 Compiling ./sensors/RangeSensor/RangeSensor.ino...
-Sketch uses 300692 bytes (22%) of program storage space. Maximum is 1310720 bytes.
+Sketch uses 300972 bytes (22%) of program storage space. Maximum is 1310720 bytes.
 Global variables use 22276 bytes (6%) of dynamic memory, leaving 305404 bytes for local variables. Maximum is 327680 bytes.
 SUCCESS: ./sensors/RangeSensor/RangeSensor.ino
 -----------------------------
 Compiling ./others/task/task.ino...
-Sketch uses 284475 bytes (21%) of program storage space. Maximum is 1310720 bytes.
+Sketch uses 284479 bytes (21%) of program storage space. Maximum is 1310720 bytes.
 Global variables use 22340 bytes (6%) of dynamic memory, leaving 305340 bytes for local variables. Maximum is 327680 bytes.
 SUCCESS: ./others/task/task.ino
 -----------------------------
@@ -44,27 +44,27 @@ Global variables use 22076 bytes (6%) of dynamic memory, leaving 305604 bytes fo
 SUCCESS: ./others/units/units.ino
 -----------------------------
 Compiling ./others/compile/compile.ino...
-Sketch uses 265604 bytes (20%) of program storage space. Maximum is 1310720 bytes.
+Sketch uses 266324 bytes (20%) of program storage space. Maximum is 1310720 bytes.
 Global variables use 22068 bytes (6%) of dynamic memory, leaving 305612 bytes for local variables. Maximum is 327680 bytes.
 SUCCESS: ./others/compile/compile.ino
 -----------------------------
 Compiling ./imu/imu2d/imu2d.ino...
-Sketch uses 333388 bytes (25%) of program storage space. Maximum is 1310720 bytes.
+Sketch uses 333704 bytes (25%) of program storage space. Maximum is 1310720 bytes.
 Global variables use 23756 bytes (7%) of dynamic memory, leaving 303924 bytes for local variables. Maximum is 327680 bytes.
 SUCCESS: ./imu/imu2d/imu2d.ino
 -----------------------------
 Compiling ./coordinates&frames/record-gps/record-gps.ino...
-Sketch uses 296080 bytes (22%) of program storage space. Maximum is 1310720 bytes.
+Sketch uses 295924 bytes (22%) of program storage space. Maximum is 1310720 bytes.
 Global variables use 22116 bytes (6%) of dynamic memory, leaving 305564 bytes for local variables. Maximum is 327680 bytes.
 SUCCESS: ./coordinates&frames/record-gps/record-gps.ino
 -----------------------------
 Compiling ./coordinates&frames/frame2d/frame2d.ino...
-Sketch uses 297691 bytes (22%) of program storage space. Maximum is 1310720 bytes.
+Sketch uses 297883 bytes (22%) of program storage space. Maximum is 1310720 bytes.
 Global variables use 22340 bytes (6%) of dynamic memory, leaving 305340 bytes for local variables. Maximum is 327680 bytes.
 SUCCESS: ./coordinates&frames/frame2d/frame2d.ino
 -----------------------------
 Compiling ./coordinates&frames/frame3d/frame3d.ino...
-Sketch uses 289136 bytes (22%) of program storage space. Maximum is 1310720 bytes.
+Sketch uses 289452 bytes (22%) of program storage space. Maximum is 1310720 bytes.
 Global variables use 22260 bytes (6%) of dynamic memory, leaving 305420 bytes for local variables. Maximum is 327680 bytes.
 SUCCESS: ./coordinates&frames/frame3d/frame3d.ino
 -----------------------------
@@ -149,49 +149,49 @@ Global variables use 45832 bytes (13%) of dynamic memory, leaving 281848 bytes f
 SUCCESS: ./communication/integration/ESPNow-send/ESPNow-send.ino
 -----------------------------
 Compiling ./communication/remote-control/remote-control.ino...
-Sketch uses 946955 bytes (72%) of program storage space. Maximum is 1310720 bytes.
+Sketch uses 946927 bytes (72%) of program storage space. Maximum is 1310720 bytes.
 Global variables use 46180 bytes (14%) of dynamic memory, leaving 281500 bytes for local variables. Maximum is 327680 bytes.
 SUCCESS: ./communication/remote-control/remote-control.ino
 -----------------------------
 Compiling ./communication/micro-ros/micro-ros.ino...
 Library micro_ros_arduino has been declared precompiled:
 Using precompiled library in /home/pschatzmann/Development/Arduino/libraries/micro_ros_arduino/src/esp32
-Sketch uses 1015194 bytes (77%) of program storage space. Maximum is 1310720 bytes.
+Sketch uses 1015438 bytes (77%) of program storage space. Maximum is 1310720 bytes.
 Global variables use 77168 bytes (23%) of dynamic memory, leaving 250512 bytes for local variables. Maximum is 327680 bytes.
 SUCCESS: ./communication/micro-ros/micro-ros.ino
 -----------------------------
 Compiling ./communication/publish-serial/publish-serial.ino...
-Sketch uses 300243 bytes (22%) of program storage space. Maximum is 1310720 bytes.
+Sketch uses 300303 bytes (22%) of program storage space. Maximum is 1310720 bytes.
 Global variables use 22568 bytes (6%) of dynamic memory, leaving 305112 bytes for local variables. Maximum is 327680 bytes.
 SUCCESS: ./communication/publish-serial/publish-serial.ino
 -----------------------------
 Compiling ./communication/messagebus/messagebus.ino...
-Sketch uses 930802 bytes (71%) of program storage space. Maximum is 1310720 bytes.
+Sketch uses 930738 bytes (71%) of program storage space. Maximum is 1310720 bytes.
 Global variables use 47728 bytes (14%) of dynamic memory, leaving 279952 bytes for local variables. Maximum is 327680 bytes.
 SUCCESS: ./communication/messagebus/messagebus.ino
 -----------------------------
 Compiling ./control/control-simple/control-simple.ino...
-Sketch uses 318311 bytes (24%) of program storage space. Maximum is 1310720 bytes.
+Sketch uses 318391 bytes (24%) of program storage space. Maximum is 1310720 bytes.
 Global variables use 22960 bytes (7%) of dynamic memory, leaving 304720 bytes for local variables. Maximum is 327680 bytes.
 SUCCESS: ./control/control-simple/control-simple.ino
 -----------------------------
 Compiling ./control/control/control.ino...
-Sketch uses 327611 bytes (24%) of program storage space. Maximum is 1310720 bytes.
+Sketch uses 327739 bytes (25%) of program storage space. Maximum is 1310720 bytes.
 Global variables use 23120 bytes (7%) of dynamic memory, leaving 304560 bytes for local variables. Maximum is 327680 bytes.
 SUCCESS: ./control/control/control.ino
 -----------------------------
 Compiling ./maps&planning/gridmap-dijkstra/gridmap-dijkstra.ino...
-Sketch uses 298635 bytes (22%) of program storage space. Maximum is 1310720 bytes.
+Sketch uses 298515 bytes (22%) of program storage space. Maximum is 1310720 bytes.
 Global variables use 22324 bytes (6%) of dynamic memory, leaving 305356 bytes for local variables. Maximum is 327680 bytes.
 SUCCESS: ./maps&planning/gridmap-dijkstra/gridmap-dijkstra.ino
 -----------------------------
 Compiling ./maps&planning/gridmap-astar/gridmap-astar.ino...
-Sketch uses 301039 bytes (22%) of program storage space. Maximum is 1310720 bytes.
+Sketch uses 300919 bytes (22%) of program storage space. Maximum is 1310720 bytes.
 Global variables use 22332 bytes (6%) of dynamic memory, leaving 305348 bytes for local variables. Maximum is 327680 bytes.
 SUCCESS: ./maps&planning/gridmap-astar/gridmap-astar.ino
 -----------------------------
 Compiling ./maps&planning/plannedpath/plannedpath.ino...
-Sketch uses 287528 bytes (21%) of program storage space. Maximum is 1310720 bytes.
+Sketch uses 287440 bytes (21%) of program storage space. Maximum is 1310720 bytes.
 Global variables use 22140 bytes (6%) of dynamic memory, leaving 305540 bytes for local variables. Maximum is 327680 bytes.
 SUCCESS: ./maps&planning/plannedpath/plannedpath.ino
 -----------------------------

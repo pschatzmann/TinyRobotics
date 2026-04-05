@@ -94,7 +94,7 @@ class Fusion3D : public MessageSource {
   // GPS update
   void updateGPS(uint32_t timeMs, float x, float y, float z, float accuracy) {
     predict(timeMs);
-    float R = accuracy * accuracy;
+    //float R = accuracy * accuracy;
     // X
     float residualX = x - state.x;
     // Y

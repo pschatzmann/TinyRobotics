@@ -23,8 +23,10 @@ BrushedMotor brushed(0);
 BrushlessMotor brushless(1);
 // RC Servo Motor
 ServoMotor servo(2);
+#if USE_FASTACCEL_STEPPER
 // Stepper Motor (using FastAccelStepper)
 StepperMotor stepper(3);
+#endif
 
 void setup() {
   Serial.begin(115200);
@@ -43,6 +45,7 @@ void setup() {
   servo.begin();
   servo.setAngle(45); // Set servo to 45 degrees to the left
 
+#if USE_FASTACCEL_STEPPER
   // Stepper Motor
   stepper.setPins(2, 3, 4); // Example pins: step, dir, enable
   stepper.setMaxSpeed(1000); // steps/sec
@@ -50,6 +53,7 @@ void setup() {
   stepper.setAccelerationMs(2000); // ms to reach max speed
   stepper.begin();
   stepper.setSpeed(50); // Move at 50% of max speed (continuous)
+#endif
 }
 
 void loop() {
