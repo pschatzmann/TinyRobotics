@@ -74,30 +74,30 @@ $(function() {
 <div class="contents">
 <div class="textblock"><p>This directory contains sensor processing classes for robotics applications. These classes are designed for embedded systems (such as Arduino/ESP32) and provide lightweight, efficient algorithms for interpreting sensor data from cameras and range sensors.</p>
 <p>There are plenty of Arduino device libraries, so there is no need to provide this functionality here: We just provide high level robotics classes that can process the output from those libraries.</p>
-<h1><a class="anchor" id="autotoc_md150"></a>
+<h1><a class="anchor" id="autotoc_md155"></a>
 Available Sensor Classes</h1>
-<h2><a class="anchor" id="autotoc_md151"></a>
+<h2><a class="anchor" id="autotoc_md156"></a>
 RangeSensor</h2>
 <p>Abstracts a generic range sensor (e.g., ultrasonic, infrared, or LIDAR).</p>
 <ul>
 <li>Provides distance measurement and validity checking.</li>
 <li>Supports callback for new data.</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md152"></a>
+<h2><a class="anchor" id="autotoc_md157"></a>
 SpeedFromThrottle</h2>
 <p>Estimates vehicle speed from throttle input using a piecewise linear mapping.</p>
 <ul>
 <li>Supports direct speed queries and integration with the TinyRobotics message system.</li>
 <li>Useful for simple robots without encoders or for simulation.</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md153"></a>
+<h2><a class="anchor" id="autotoc_md158"></a>
 WheelEncoder</h2>
 <p>Tracks wheel rotation and distance using encoder pulses.</p>
 <ul>
 <li>Provides position, speed, and distance traveled.</li>
 <li>Integrates with the TinyRobotics message system for reporting.</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md154"></a>
+<h2><a class="anchor" id="autotoc_md159"></a>
 CameraEdgeFollower</h2>
 <p>Detects the strongest edge in a grayscale camera image (e.g., for line or edge following robots).</p>
 <ul>
@@ -105,7 +105,7 @@ CameraEdgeFollower</h2>
 <li>Returns the x position of the detected edge and error from image center.</li>
 <li>Configurable edge threshold for noise rejection.</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md155"></a>
+<h2><a class="anchor" id="autotoc_md160"></a>
 CameraLineFollower</h2>
 <p>Detects the center of the widest dark line in a grayscale camera image (e.g., for tape or path following).</p>
 <ul>
@@ -113,7 +113,7 @@ CameraLineFollower</h2>
 <li>Returns the x position of the detected line center and error from image center.</li>
 <li>Configurable pixel threshold and minimum line width.</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md156"></a>
+<h2><a class="anchor" id="autotoc_md161"></a>
 CameraObstacleDetector</h2>
 <p>Detects obstacles in a grayscale camera image by analyzing the density of dark pixels in the center region.</p>
 <ul>
@@ -122,7 +122,7 @@ CameraObstacleDetector</h2>
 <li>Returns detection status and density (fraction of dark pixels).</li>
 <li>Configurable pixel threshold and trigger density.</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md157"></a>
+<h2><a class="anchor" id="autotoc_md162"></a>
 CameraImageDiff</h2>
 <p>Detects motion or changes between consecutive grayscale camera images.</p>
 <ul>
@@ -130,14 +130,14 @@ CameraImageDiff</h2>
 <li>Thresholds the difference to create a binary mask of changed pixels.</li>
 <li>Counts changed pixels globally, by vertical thirds (left/center/right), or by horizontal thirds (top/center/bottom).</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md158"></a>
+<h1><a class="anchor" id="autotoc_md163"></a>
 See Examples</h1>
 <ul>
 <li><a href="../../../examples/sensors/CameraLineFollower/CameraLineFollower.ino">Camera Line Follower</a></li>
 <li><a href="../../../examples/sensors/RangeSensor/RangeSensor.ino">Range Sensor</a></li>
 <li><a href="../../../examples/sensors/WheelEncoder/WheelEncoder.ino">Wheel Encoder</a></li>
 </ul>
-<h1><a class="anchor" id="autotoc_md159"></a>
+<h1><a class="anchor" id="autotoc_md164"></a>
 Notes</h1>
 <ul>
 <li>These classes are designed for efficiency and minimal memory usage.</li>
