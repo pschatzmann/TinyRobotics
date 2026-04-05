@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.6"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>TinyRobotics: Path&lt; T, Allocator &gt; Class Template Reference</title>
+<title>TinyRobotics: Path&lt; CoordinateT, AllocatorT &gt; Class Template Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -77,7 +77,7 @@ $(function() {
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pro-attribs">Protected Attributes</a> &#124;
 <a href="classtinyrobotics_1_1Path-members.html">List of all members</a>  </div>
-  <div class="headertitle"><div class="title">Path&lt; T, Allocator &gt; Class Template Reference<div class="ingroups"><a class="el" href="group__main.html">TinyRobotics</a> &raquo; <a class="el" href="group__planning.html">Planning</a></div></div></div>
+  <div class="headertitle"><div class="title">Path&lt; CoordinateT, AllocatorT &gt; Class Template Reference<div class="ingroups"><a class="el" href="group__main.html">TinyRobotics</a> &raquo; <a class="el" href="group__planning.html">Planning</a></div></div></div>
 </div><!--header-->
 <div class="contents">
 
@@ -88,78 +88,98 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
+<tr class="memitem:a93694e72f8df125f90651ca9b2834e4e"><td class="memItemLeft" align="right" valign="top"><a id="a93694e72f8df125f90651ca9b2834e4e" name="a93694e72f8df125f90651ca9b2834e4e"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>Path</b> ()=default</td></tr>
+<tr class="memdesc:a93694e72f8df125f90651ca9b2834e4e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default constructor. <br /></td></tr>
+<tr class="separator:a93694e72f8df125f90651ca9b2834e4e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a185f24bdb1af6236a3dd7f55fe866fee"><td class="memTemplParams" colspan="2"><a id="a185f24bdb1af6236a3dd7f55fe866fee" name="a185f24bdb1af6236a3dd7f55fe866fee"></a>
 template&lt;typename... Args&gt; </td></tr>
 <tr class="memitem:a185f24bdb1af6236a3dd7f55fe866fee"><td class="memTemplItemLeft" align="right" valign="top">&#160;</td><td class="memTemplItemRight" valign="bottom"><b>Path</b> (const Args &amp;... args)</td></tr>
 <tr class="memdesc:a185f24bdb1af6236a3dd7f55fe866fee"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct a path from a variable number of waypoints. <br /></td></tr>
 <tr class="separator:a185f24bdb1af6236a3dd7f55fe866fee"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a87de0766f46d2dc18bbc7953a8eca834"><td class="memItemLeft" align="right" valign="top"><a id="a87de0766f46d2dc18bbc7953a8eca834" name="a87de0766f46d2dc18bbc7953a8eca834"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Path</b> (const std::vector&lt; T &gt; &amp;waypoints)</td></tr>
-<tr class="separator:a87de0766f46d2dc18bbc7953a8eca834"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aed2a1f00acb75535023cf5ce3968adb1"><td class="memItemLeft" align="right" valign="top"><a id="aed2a1f00acb75535023cf5ce3968adb1" name="aed2a1f00acb75535023cf5ce3968adb1"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>addWaypoint</b> (const T &amp;waypoint)</td></tr>
-<tr class="separator:aed2a1f00acb75535023cf5ce3968adb1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a66714c636b95275da4edfac372a5dbd8"><td class="memItemLeft" align="right" valign="top"><a id="a66714c636b95275da4edfac372a5dbd8" name="a66714c636b95275da4edfac372a5dbd8"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>addWaypoints</b> (const std::vector&lt; T &gt; &amp;new_waypoints)</td></tr>
-<tr class="separator:a66714c636b95275da4edfac372a5dbd8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac27b4d80fc68c41d29467774b64df534"><td class="memItemLeft" align="right" valign="top"><a id="ac27b4d80fc68c41d29467774b64df534" name="ac27b4d80fc68c41d29467774b64df534"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setWaypoints</b> (const std::vector&lt; T &gt; &amp;new_waypoints)</td></tr>
-<tr class="separator:ac27b4d80fc68c41d29467774b64df534"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6dcccc2da00dbaa8e52807b09621dadd"><td class="memItemLeft" align="right" valign="top"><a id="a6dcccc2da00dbaa8e52807b09621dadd" name="a6dcccc2da00dbaa8e52807b09621dadd"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>setWaypoint</b> (int pos, const T &amp;waypoint)</td></tr>
-<tr class="separator:a6dcccc2da00dbaa8e52807b09621dadd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9a5b892dc8f78065369e2fb8c9ea393a"><td class="memItemLeft" align="right" valign="top"><a id="a9a5b892dc8f78065369e2fb8c9ea393a" name="a9a5b892dc8f78065369e2fb8c9ea393a"></a>
-std::vector&lt; T, Allocator &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>getWaypoints</b> () const</td></tr>
-<tr class="separator:a9a5b892dc8f78065369e2fb8c9ea393a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae7a2c75311d84a24b92f5a428c1b55d8"><td class="memItemLeft" align="right" valign="top"><a id="ae7a2c75311d84a24b92f5a428c1b55d8" name="ae7a2c75311d84a24b92f5a428c1b55d8"></a>
-<a class="el" href="classstd_1_1optional.html">std::optional</a>&lt; T &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>getWaypoint</b> (size_t index) const</td></tr>
-<tr class="separator:ae7a2c75311d84a24b92f5a428c1b55d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac3dc46403085c2975bace4dd8d7ff4b3"><td class="memItemLeft" align="right" valign="top"><a id="ac3dc46403085c2975bace4dd8d7ff4b3" name="ac3dc46403085c2975bace4dd8d7ff4b3"></a>
-<a class="el" href="classstd_1_1optional.html">std::optional</a>&lt; T &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>getLastWaypoint</b> () const</td></tr>
-<tr class="separator:ac3dc46403085c2975bace4dd8d7ff4b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab1e3d9d6d2ef819dc51c698c3a2eaff2"><td class="memItemLeft" align="right" valign="top"><a id="ab1e3d9d6d2ef819dc51c698c3a2eaff2" name="ab1e3d9d6d2ef819dc51c698c3a2eaff2"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>Path</b> (const std::vector&lt; CoordinateT &gt; &amp;waypoints)</td></tr>
+<tr class="memdesc:ab1e3d9d6d2ef819dc51c698c3a2eaff2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct a path from a vector of waypoints. <br /></td></tr>
+<tr class="separator:ab1e3d9d6d2ef819dc51c698c3a2eaff2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a20f01cbec31747fad07667dee9754c6f"><td class="memItemLeft" align="right" valign="top"><a id="a20f01cbec31747fad07667dee9754c6f" name="a20f01cbec31747fad07667dee9754c6f"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>addWaypoint</b> (const CoordinateT &amp;waypoint)</td></tr>
+<tr class="memdesc:a20f01cbec31747fad07667dee9754c6f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add a single waypoint to the path. <br /></td></tr>
+<tr class="separator:a20f01cbec31747fad07667dee9754c6f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a21cc80d885695ed741c4788a98b89f98"><td class="memItemLeft" align="right" valign="top"><a id="a21cc80d885695ed741c4788a98b89f98" name="a21cc80d885695ed741c4788a98b89f98"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>addWaypoints</b> (const std::vector&lt; CoordinateT &gt; &amp;new_waypoints)</td></tr>
+<tr class="memdesc:a21cc80d885695ed741c4788a98b89f98"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add multiple waypoints from a vector. <br /></td></tr>
+<tr class="separator:a21cc80d885695ed741c4788a98b89f98"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a130f49c726c4caa6a1cfe771c20bb0e0"><td class="memItemLeft" align="right" valign="top"><a id="a130f49c726c4caa6a1cfe771c20bb0e0" name="a130f49c726c4caa6a1cfe771c20bb0e0"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>addWaypoints</b> ()</td></tr>
+<tr class="memdesc:a130f49c726c4caa6a1cfe771c20bb0e0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Helper for variadic addWaypoints (base case) <br /></td></tr>
+<tr class="separator:a130f49c726c4caa6a1cfe771c20bb0e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8f8a3d44622badec58da8a5b06a8fb3c"><td class="memTemplParams" colspan="2"><a id="a8f8a3d44622badec58da8a5b06a8fb3c" name="a8f8a3d44622badec58da8a5b06a8fb3c"></a>
+template&lt;typename First , typename... Rest&gt; </td></tr>
+<tr class="memitem:a8f8a3d44622badec58da8a5b06a8fb3c"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><b>addWaypoints</b> (const First &amp;first, const Rest &amp;... rest)</td></tr>
+<tr class="memdesc:a8f8a3d44622badec58da8a5b06a8fb3c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Helper for variadic addWaypoints (recursive case) <br /></td></tr>
+<tr class="separator:a8f8a3d44622badec58da8a5b06a8fb3c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6776968d73b48db7e60e11e03d13d5f5"><td class="memItemLeft" align="right" valign="top"><a id="a6776968d73b48db7e60e11e03d13d5f5" name="a6776968d73b48db7e60e11e03d13d5f5"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>setWaypoints</b> (const std::vector&lt; CoordinateT &gt; &amp;new_waypoints)</td></tr>
+<tr class="memdesc:a6776968d73b48db7e60e11e03d13d5f5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Replace all waypoints with a new vector. <br /></td></tr>
+<tr class="separator:a6776968d73b48db7e60e11e03d13d5f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab7ce0d963c7b796d635ac8e4f1dca228"><td class="memItemLeft" align="right" valign="top"><a id="ab7ce0d963c7b796d635ac8e4f1dca228" name="ab7ce0d963c7b796d635ac8e4f1dca228"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>setWaypoint</b> (int pos, const CoordinateT &amp;waypoint)</td></tr>
+<tr class="memdesc:ab7ce0d963c7b796d635ac8e4f1dca228"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set a waypoint at a specific position. <br /></td></tr>
+<tr class="separator:ab7ce0d963c7b796d635ac8e4f1dca228"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adc55203bd464ef51ebd82fd8804747f3"><td class="memItemLeft" align="right" valign="top"><a id="adc55203bd464ef51ebd82fd8804747f3" name="adc55203bd464ef51ebd82fd8804747f3"></a>
+std::vector&lt; CoordinateT, AllocatorT &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>getWaypoints</b> () const</td></tr>
+<tr class="memdesc:adc55203bd464ef51ebd82fd8804747f3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get all waypoints as a vector. <br /></td></tr>
+<tr class="separator:adc55203bd464ef51ebd82fd8804747f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5e7d0813518c0fd77edb53cb230e060a"><td class="memItemLeft" align="right" valign="top"><a id="a5e7d0813518c0fd77edb53cb230e060a" name="a5e7d0813518c0fd77edb53cb230e060a"></a>
+<a class="el" href="classstd_1_1optional.html">std::optional</a>&lt; CoordinateT &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>getWaypoint</b> (size_t index) const</td></tr>
+<tr class="memdesc:a5e7d0813518c0fd77edb53cb230e060a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a waypoint by index (returns std::nullopt if out of bounds) <br /></td></tr>
+<tr class="separator:a5e7d0813518c0fd77edb53cb230e060a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a09c7309085da422ad769685c87f37811"><td class="memItemLeft" align="right" valign="top"><a id="a09c7309085da422ad769685c87f37811" name="a09c7309085da422ad769685c87f37811"></a>
+<a class="el" href="classstd_1_1optional.html">std::optional</a>&lt; CoordinateT &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>getLastWaypoint</b> () const</td></tr>
+<tr class="memdesc:a09c7309085da422ad769685c87f37811"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the last waypoint (returns std::nullopt if empty) <br /></td></tr>
+<tr class="separator:a09c7309085da422ad769685c87f37811"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4338a171d4047053aed0f6e7d6297175"><td class="memItemLeft" align="right" valign="top"><a id="a4338a171d4047053aed0f6e7d6297175" name="a4338a171d4047053aed0f6e7d6297175"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>removeHead</b> ()</td></tr>
 <tr class="memdesc:a4338a171d4047053aed0f6e7d6297175"><td class="mdescLeft">&#160;</td><td class="mdescRight">Remove the first waypoint in the path (e.g., after reaching it). Returns true if a waypoint was removed, false if the path was already empty. <br /></td></tr>
 <tr class="separator:a4338a171d4047053aed0f6e7d6297175"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a15efa5ed8a7f19d9a72dadbdd5826079"><td class="memItemLeft" align="right" valign="top"><a id="a15efa5ed8a7f19d9a72dadbdd5826079" name="a15efa5ed8a7f19d9a72dadbdd5826079"></a>
-T &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator[]</b> (size_t index)</td></tr>
-<tr class="separator:a15efa5ed8a7f19d9a72dadbdd5826079"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afeefc0d7fa4743ccca3673e7922243e7"><td class="memItemLeft" align="right" valign="top"><a id="afeefc0d7fa4743ccca3673e7922243e7" name="afeefc0d7fa4743ccca3673e7922243e7"></a>
-const T &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator[]</b> (size_t index) const</td></tr>
-<tr class="separator:afeefc0d7fa4743ccca3673e7922243e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa20e592907cff99b74563edfa188b2b1"><td class="memItemLeft" align="right" valign="top"><a id="aa20e592907cff99b74563edfa188b2b1" name="aa20e592907cff99b74563edfa188b2b1"></a>
+CoordinateT &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator[]</b> (size_t index)</td></tr>
+<tr class="memdesc:aa20e592907cff99b74563edfa188b2b1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Non-const index operator. <br /></td></tr>
+<tr class="separator:aa20e592907cff99b74563edfa188b2b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeefb2172ca4c1a83d68f02b58a6b7bae"><td class="memItemLeft" align="right" valign="top"><a id="aeefb2172ca4c1a83d68f02b58a6b7bae" name="aeefb2172ca4c1a83d68f02b58a6b7bae"></a>
+const CoordinateT &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator[]</b> (size_t index) const</td></tr>
+<tr class="memdesc:aeefb2172ca4c1a83d68f02b58a6b7bae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Const index operator. <br /></td></tr>
+<tr class="separator:aeefb2172ca4c1a83d68f02b58a6b7bae"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a259cb5a711406a8c3e5d937eb9350cca"><td class="memItemLeft" align="right" valign="top"><a id="a259cb5a711406a8c3e5d937eb9350cca" name="a259cb5a711406a8c3e5d937eb9350cca"></a>
 size_t&#160;</td><td class="memItemRight" valign="bottom"><b>size</b> () const</td></tr>
+<tr class="memdesc:a259cb5a711406a8c3e5d937eb9350cca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the number of waypoints. <br /></td></tr>
 <tr class="separator:a259cb5a711406a8c3e5d937eb9350cca"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acf82f9b2937375c7b1cf3dccb3df3312"><td class="memItemLeft" align="right" valign="top"><a id="acf82f9b2937375c7b1cf3dccb3df3312" name="acf82f9b2937375c7b1cf3dccb3df3312"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>isEmpty</b> () const</td></tr>
+<tr class="memdesc:acf82f9b2937375c7b1cf3dccb3df3312"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if the path is empty. <br /></td></tr>
 <tr class="separator:acf82f9b2937375c7b1cf3dccb3df3312"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a310c0bebc002158f5646a91d60e4dc89"><td class="memItemLeft" align="right" valign="top"><a id="a310c0bebc002158f5646a91d60e4dc89" name="a310c0bebc002158f5646a91d60e4dc89"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>reverse</b> ()</td></tr>
+<tr class="memdesc:a310c0bebc002158f5646a91d60e4dc89"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reverse the order of waypoints. <br /></td></tr>
 <tr class="separator:a310c0bebc002158f5646a91d60e4dc89"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac8bb3912a3ce86b15842e79d0b421204"><td class="memItemLeft" align="right" valign="top"><a id="ac8bb3912a3ce86b15842e79d0b421204" name="ac8bb3912a3ce86b15842e79d0b421204"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>clear</b> ()</td></tr>
+<tr class="memdesc:ac8bb3912a3ce86b15842e79d0b421204"><td class="mdescLeft">&#160;</td><td class="mdescRight">Remove all waypoints. <br /></td></tr>
 <tr class="separator:ac8bb3912a3ce86b15842e79d0b421204"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a858cf934b3668c4918ca0367e04686b6"><td class="memItemLeft" align="right" valign="top"><a id="a858cf934b3668c4918ca0367e04686b6" name="a858cf934b3668c4918ca0367e04686b6"></a>
 float&#160;</td><td class="memItemRight" valign="bottom"><b>distance</b> () const</td></tr>
 <tr class="memdesc:a858cf934b3668c4918ca0367e04686b6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculate the total distance. <br /></td></tr>
 <tr class="separator:a858cf934b3668c4918ca0367e04686b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a130f49c726c4caa6a1cfe771c20bb0e0"><td class="memItemLeft" align="right" valign="top"><a id="a130f49c726c4caa6a1cfe771c20bb0e0" name="a130f49c726c4caa6a1cfe771c20bb0e0"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>addWaypoints</b> ()</td></tr>
-<tr class="separator:a130f49c726c4caa6a1cfe771c20bb0e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8f8a3d44622badec58da8a5b06a8fb3c"><td class="memTemplParams" colspan="2"><a id="a8f8a3d44622badec58da8a5b06a8fb3c" name="a8f8a3d44622badec58da8a5b06a8fb3c"></a>
-template&lt;typename First , typename... Rest&gt; </td></tr>
-<tr class="memitem:a8f8a3d44622badec58da8a5b06a8fb3c"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><b>addWaypoints</b> (const First &amp;first, const Rest &amp;... rest)</td></tr>
-<tr class="separator:a8f8a3d44622badec58da8a5b06a8fb3c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
-<tr class="memitem:a8c7bd2a4bb4cccf4377455fb7ad6ae7f"><td class="memItemLeft" align="right" valign="top"><a id="a8c7bd2a4bb4cccf4377455fb7ad6ae7f" name="a8c7bd2a4bb4cccf4377455fb7ad6ae7f"></a>
-std::vector&lt; T, Allocator &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>waypoints</b></td></tr>
-<tr class="separator:a8c7bd2a4bb4cccf4377455fb7ad6ae7f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a02e90673e6f25ad4ac86612c19dd086f"><td class="memItemLeft" align="right" valign="top"><a id="a02e90673e6f25ad4ac86612c19dd086f" name="a02e90673e6f25ad4ac86612c19dd086f"></a>
+std::vector&lt; CoordinateT, AllocatorT &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>waypoints</b></td></tr>
+<tr class="separator:a02e90673e6f25ad4ac86612c19dd086f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><div class="compoundTemplParams">template&lt;typename T = Coordinate&lt;DistanceM&gt;, typename Allocator = AllocatorPSRAM&lt;T&gt;&gt;<br />
-class tinyrobotics::Path&lt; T, Allocator &gt;</div><p>A simple path class that holds a sequence of waypoints. Each waypoint is e.g. a coordinate (e.g., x,y,z) that the robot should follow. The path can be used for navigation, motion planning, or trajectory execution. It provides methods to add waypoints. </p>
+<div class="textblock"><div class="compoundTemplParams">template&lt;typename CoordinateT = Coordinate&lt;DistanceM&gt;, typename AllocatorT = AllocatorPSRAM&lt;CoordinateT&gt;&gt;<br />
+class tinyrobotics::Path&lt; CoordinateT, AllocatorT &gt;</div><p>A simple path class that holds a sequence of waypoints. Each waypoint is e.g. a coordinate (e.g., x,y,z) that the robot should follow. The path can be used for navigation, motion planning, or trajectory execution. It provides methods to add waypoints. </p>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
     <tr><td class="paramname">T</td><td><a class="el" href="classtinyrobotics_1_1Coordinate.html" title="A generic 3D coordinate class for robotics, navigation, and spatial calculations.">Coordinate</a> e.g. <a class="el" href="classtinyrobotics_1_1GPSCoordinate.html" title="Represents a geodetic GPS coordinate with latitude, longitude, and optional altitude.">GPSCoordinate</a>, <a class="el" href="classtinyrobotics_1_1Coordinate.html" title="A generic 3D coordinate class for robotics, navigation, and spatial calculations.">Coordinate</a>, <a class="el" href="classtinyrobotics_1_1ScheduledWayPoint.html" title="Represents a waypoint with an associated timestamp.">ScheduledWayPoint</a>, <a class="el" href="classtinyrobotics_1_1WayPointAndSpeed.html" title="Represents a waypoint with an associated speed.">WayPointAndSpeed</a> etc. </td></tr>
