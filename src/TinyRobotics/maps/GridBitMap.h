@@ -5,6 +5,7 @@
 #include "TinyRobotics/coordinates/Coordinate.h"
 #include "TinyRobotics/utils/AllocatorPSRAM.h"
 #include "TinyRobotics/utils/Common.h"
+#include <TinyRobotics/serialize/MapSerializer.h>
 
 namespace tinyrobotics {
 
@@ -152,6 +153,17 @@ class GridBitMap : public IMap<T> {
     return Coordinate<T>(wx, wy);
   }
 
+  /// Write map to output
+  size_t writeTo(Print& out) {
+    return serializer(*this, out);
+  }
+
+  /// Read map from input
+  size_t readFrom(Stream& in) {
+    return serializer.readFrom(*this, in);
+  }
+
+
  protected:
   int xCount = 0;
   int yCount = 0;
@@ -159,6 +171,8 @@ class GridBitMap : public IMap<T> {
   Coordinate<T> origin;
   std::vector<bool> occupied;
   std::vector<bool> free;
+  // Serialization
+  GridMapSerializer<GridBitMap, CellState, T> serializer;
 
   /// Determine all neighboring cells (8-connected) for a given cell coordinate.
   std::vector<Cell> getNeighborCells(const Coordinate<T> from) const {

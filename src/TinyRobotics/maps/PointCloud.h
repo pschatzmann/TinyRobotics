@@ -84,7 +84,7 @@ class PointCloud : public IMapNeighbors<T> {
   };
 
  public:
-  using Container = std::vector<Point3D<T>, AllocatorPSRAM<Point3D<T>>>;
+  using VectorT = std::vector<Point3D<T>, AllocatorPSRAM<Point3D<T>>>;
 
   PointCloud(bool isliveVoxel = false) {
     resetBounds();
@@ -111,18 +111,11 @@ class PointCloud : public IMapNeighbors<T> {
   /// Add from Coordinate
   void add(const Coordinate<T>& coord) { add(coord.x, coord.y, coord.z); }
 
-  /// Clear all data
-  void clear() {
-    points_.clear();
-    voxelGrid_.clear();
-    resetBounds();
-  }
+  /// Provides access to the points in the point cloud.
+  const VectorT& points() const { return points_; }
 
   /// Provides access to the points in the point cloud.
-  const Container& points() const { return points_; }
-
-  /// Provides access to the points in the point cloud.
-  Container& points() { return points_; }
+  VectorT& points() { return points_; }
 
   /// Provide the number of points in the point cloud.
   size_t size() const { return points_.size(); }
@@ -314,9 +307,32 @@ class PointCloud : public IMapNeighbors<T> {
     return true;
   }
 
+  // Sequential (iterator) access to all occupied voxels
+  auto beginVoxels() { return voxelGrid_.begin(); }
+  auto endVoxels() { return voxelGrid_.end(); }
+  auto beginVoxels() const { return voxelGrid_.begin(); }
+  auto endVoxels() const { return voxelGrid_.end(); }
+
+  /// Write map to output
+  size_t writeTo(Print& out) {
+    return serializer.write(*this, out);
+  }
+
+  /// Read map from input
+  size_t readFrom(Stream& in) {
+    return serializer.read(*this, in);
+  }
+
+  /// Clear all data
+  void clear() {
+    points_.clear();
+    voxelGrid_.clear();
+    resetBounds();
+  }
+
  protected:
   bool is_3d = false;
-  Container points_;
+  VectorT points_;
   Bounds bounds_;
   T voxelSize_ = 0.0f;
   bool liveVocelGrid_ = false;
@@ -324,6 +340,8 @@ class PointCloud : public IMapNeighbors<T> {
   using PSRAMKeyAllocator = AllocatorPSRAM<Key>;
   std::unordered_set<Key, KeyHash, std::equal_to<Key>, PSRAMKeyAllocator>
       voxelGrid_;
+  // Serialization
+  PointCloudSerializer<PointCloud<T>> serializer;
 
   void resetBounds() {
     bounds_.min = {std::numeric_limits<float>::max(),

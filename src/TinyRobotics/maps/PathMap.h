@@ -1,54 +1,10 @@
 #pragma once
 
-#include "TinyRobotics/utils/AllocatorPSRAM.h"
 #include "TinyRobotics/maps/IMap.h"
+#include "TinyRobotics/maps/PathSegment.h"
+#include "TinyRobotics/utils/AllocatorPSRAM.h"
 
 namespace tinyrobotics {
-
-/**
- * @class PathMap
- * @ingroup maps
- * @brief Represents a path segment (edge) between two coordinates in a graph.
- *
- * Each segment connects two nodes (coordinates) and can be used to define the
- * edges in a graph for pathfinding algorithms such as A* or Dijkstra's. The
- * segment has:
- *   - a start node (from)
- *   - an end node (to)
- *   - a cost (distance, time, or any metric relevant to the problem)
- *   - a directionality flag (directed or undirected)
- *
- * This class is a fundamental building block for creating a path map for
- * navigation, motion planning, and graph-based search.
- *
- * @tparam Coordinate The coordinate type (e.g., 2D or 3D point).
- */
-/**
- * @class PathSegment
- * @ingroup maps
- * @brief Represents a path segment (edge) between two coordinates in a graph.
- *
- * Each segment connects two nodes (coordinates) and can be used to define the
- * edges in a graph for pathfinding algorithms such as A* or Dijkstra's. The
- * segment has:
- *   - a start node (from)
- *   - an end node (to)
- *   - a cost (distance, time, or any metric relevant to the problem)
- *   - a directionality flag (directed or undirected)
- *
- * This class is a fundamental building block for creating a path map for
- * navigation, motion planning, and graph-based search.
- *
- * @tparam Coordinate The coordinate type (e.g., 2D or 3D point).
- */
-template <typename CoordinateT = Coordinate<DistanceM>>
-class PathSegment {
- public:
-  CoordinateT from;
-  CoordinateT to;
-  float cost = 0.0;  // Default cost for traversing this segment
-  bool directed = false;
-};
 
 /**
  * @brief Represents a graph of valid path segments (edges) between coordinates
@@ -69,7 +25,8 @@ class PathSegment {
  * @tparam Coordinate The coordinate type (e.g., 2D or 3D point).
  */
 template <typename CoordinateT = Coordinate<float>>
-class PathMap : public IMapNeighbors<typename std::remove_reference<decltype(std::declval<CoordinateT>().x)>::type> {
+class PathMap : public IMapNeighbors<typename std::remove_reference<
+                    decltype(std::declval<CoordinateT>().x)>::type> {
  public:
   PathMap() = default;
 
@@ -77,7 +34,11 @@ class PathMap : public IMapNeighbors<typename std::remove_reference<decltype(std
                   bool directed = false) {
     auto distance = from.distance(to);  // Example cost based on distance
     PathSegment<CoordinateT> segment{from, to, distance,
-                                    directed};  // Default cost = 1.0
+                                     directed};  // Default cost = 1.0
+    segments.push_back(segment);
+  }
+
+  void addSegment(PathSegment<CoordinateT> segment) {
     segments.push_back(segment);
   }
 
@@ -122,10 +83,21 @@ class PathMap : public IMapNeighbors<typename std::remove_reference<decltype(std
     return false;
   }
 
+  size_t size() const { return segments.size(); }
+
+  PathSegment<CoordinateT>& operator[](size_t index) { return segments[index]; }
+
+  size_t writeTo(Print& out) { return serializer.write(*this, out); }
+
+  size_t readFrom(Stream& in) { return serializer.read(*this, in); }
+
+  void clear() { segments.clear(); }
+
  protected:
   std::vector<PathSegment<CoordinateT>,
               AllocatorPSRAM<PathSegment<CoordinateT>>>
       segments;
+  PathMapSerializer<PathMap<CoordinateT>, CoordinateT> serializer;
 };
 
 }  // namespace tinyrobotics
