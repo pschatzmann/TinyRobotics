@@ -19,10 +19,10 @@ namespace tinyrobotics {
  *
  * @tparam T Coordinate type (e.g., Coordinate, GPSCoordinate).
  */
-template <typename T>
+template <typename CoordinateT>
 class ScheduledWayPoint {
  public:
-  T coordinate;
+  CoordinateT coordinate;
   unsigned long timestamp;  // Time at which this waypoint should be reached
 };
 
@@ -36,10 +36,10 @@ class ScheduledWayPoint {
  *
  * @tparam T Coordinate type (e.g., Coordinate, GPSCoordinate).
  */
-template <typename T>
+template <typename CoordinateT>
 class WayPointAndSpeed {
  public:
-  T coordinate;
+  CoordinateT coordinate;
   float speed;
 };
 
@@ -55,9 +55,11 @@ class WayPointAndSpeed {
  * WayPointAndSpeed etc.
  */
 
-template <typename T = Coordinate<DistanceM>, typename Allocator = AllocatorPSRAM<T>>
+template <typename CoordinateT = Coordinate<DistanceM>, typename AllocatorT = AllocatorPSRAM<CoordinateT>>
 class Path {
  public:
+
+  /// Default constructor
   Path() = default;
 
   /// Construct a path from a variable number of waypoints
@@ -66,19 +68,34 @@ class Path {
     addWaypoints(args...);
   }
 
-  Path(const std::vector<T>& waypoints) : waypoints(waypoints) {}
+  /// Construct a path from a vector of waypoints
+  Path(const std::vector<CoordinateT>& waypoints) : waypoints(waypoints) {}
 
-  void addWaypoint(const T& waypoint) { waypoints.push_back(waypoint); }
+  /// Add a single waypoint to the path
+  void addWaypoint(const CoordinateT& waypoint) { waypoints.push_back(waypoint); }
 
-  void addWaypoints(const std::vector<T>& new_waypoints) {
+  /// Add multiple waypoints from a vector
+  void addWaypoints(const std::vector<CoordinateT>& new_waypoints) {
     waypoints.insert(waypoints.end(), new_waypoints.begin(), new_waypoints.end());
   }
 
-  void setWaypoints(const std::vector<T>& new_waypoints) {
+  /// Helper for variadic addWaypoints (base case)
+  void addWaypoints() {}
+
+  /// Helper for variadic addWaypoints (recursive case)
+  template <typename First, typename... Rest>
+  void addWaypoints(const First& first, const Rest&... rest) {
+    addWaypoint(first);
+    addWaypoints(rest...);
+  }
+
+  /// Replace all waypoints with a new vector
+  void setWaypoints(const std::vector<CoordinateT>& new_waypoints) {
     waypoints = new_waypoints;
   }
 
-  bool setWaypoint(int pos, const T& waypoint) {
+  /// Set a waypoint at a specific position
+  bool setWaypoint(int pos, const CoordinateT& waypoint) {
     if (pos >= 0 && pos < waypoints.size()) {
       waypoints[pos] = waypoint;
       return true;
@@ -86,16 +103,19 @@ class Path {
     return false;
   }
 
-  std::vector<T, Allocator> getWaypoints() const { return waypoints; }
+  /// Get all waypoints as a vector
+  std::vector<CoordinateT, AllocatorT> getWaypoints() const { return waypoints; }
 
-  std::optional<T> getWaypoint(size_t index) const {
+  /// Get a waypoint by index (returns std::nullopt if out of bounds)
+  std::optional<CoordinateT> getWaypoint(size_t index) const {
     if (index < waypoints.size()) {
       return waypoints[index];
     }
     return std::nullopt;  // Out of bounds
   }
 
-  std::optional<T> getLastWaypoint() const {
+  /// Get the last waypoint (returns std::nullopt if empty)
+  std::optional<CoordinateT> getLastWaypoint() const {
     if (!waypoints.empty()) {
       return waypoints.back();
     }
@@ -111,17 +131,22 @@ class Path {
     return false;  // No waypoints to remove
   }
 
-  // Non-const version
-  T& operator[](size_t index) { return waypoints[index]; }
-  // Const version
-  const T& operator[](size_t index) const { return waypoints[index]; }
+  /// Non-const index operator
+  CoordinateT& operator[](size_t index) { return waypoints[index]; }
 
+  /// Const index operator
+  const CoordinateT& operator[](size_t index) const { return waypoints[index]; }
+
+  /// Get the number of waypoints
   size_t size() const { return waypoints.size(); }
 
+  /// Check if the path is empty
   bool isEmpty() const { return waypoints.empty(); }
 
+  /// Reverse the order of waypoints
   void reverse() { std::reverse(waypoints.begin(), waypoints.end()); }
 
+  /// Remove all waypoints
   void clear() { waypoints.clear(); }
 
   /// Calculate the total distance
@@ -133,18 +158,8 @@ class Path {
     return total_distance;
   }
 
-  // Helper to add multiple waypoints recursively
-  void addWaypoints() {}
-  template <typename First, typename... Rest>
-  void addWaypoints(const First& first, const Rest&... rest) {
-    addWaypoint(first);
-    addWaypoints(rest...);
-  }
-
  protected:
-  std::vector<T, Allocator> waypoints;
-
-
+  std::vector<CoordinateT, AllocatorT> waypoints;
 };
 
 }  // namespace tinyrobotics
