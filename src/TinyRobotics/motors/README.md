@@ -42,8 +42,8 @@ Example:
 - `BrushedMotor`: High-level H-Bridge DC motor driver for bidirectional DC motors (L298N, L293D, TB6612FNG, etc.).
 - `BrushlessMotor`: Interface for brushless DC motors (ESC-based, uses servo signal).
 - `ServoMotor`: High-level wrapper for standard RC servo motors (uses Arduino Servo or ESP32Servo library).
-- `GenericMotor`: Flexible abstraction for integrating custom/external motor drivers using callbacks.
 - `StepperMotor`: Interface for stepper motors (uses FastAccelStepper library if enabled).
+- `GenericMotor`: Flexible abstraction for integrating custom/external motor drivers using callbacks.
 
 ## Example Usage
 
@@ -52,7 +52,7 @@ Example:
 ```cpp
 #include <TinyRobotics.h>
 
-HBridge motor(1); // #1
+BrushedMotor motor(1); // #1
 
 void setup() {
   motor.setPins(5, 6, 9); // IN1=5, IN2=6, PWM=9)
@@ -88,6 +88,24 @@ void loop() {
 }
 ```
 
+
+### Stepper Motor (if enabled)
+
+```cpp
+#include <TinyRobotics.h>
+
+StepperMotor stepper;
+void setup() {
+  stepper.setPins(2, 3, 4);
+  stepper.setMaxSpeed(1000);
+  stepper.setStepsPerRevolution(200);
+  stepper.begin();
+  motor.setSpeed(50); // Half speed forward
+  motor.setSpeed(-50); // Half speed reverse
+  stepper.end();
+}
+```
+
 ### Generic Motor (Custom Driver)
 
 ```cpp
@@ -115,22 +133,40 @@ void setup() {
 }
 ```
 
-### Stepper Motor (if enabled)
+## Generic Motor Implementation Approaches
 
-```cpp
-#include <TinyRobotics.h>
+You can use a platform specifc motor control library to implement the callbacks. Alternatively you can just the PWM functionality provided by your platform:
 
-StepperMotor stepper;
-void setup() {
-  stepper.setPins(2, 3, 4);
-  stepper.setMaxSpeed(1000);
-  stepper.setStepsPerRevolution(200);
-  stepper.begin();
-  motor.setSpeed(50); // Half speed forward
-  motor.setSpeed(-50); // Half speed reverse
-  stepper.end();
-}
-```
+### H-Bridge (DC motor control) Logic
+
+- PWM Frequency: ~1 kHz – 20 kHz
+- Speed is driven by Duty cycle: 0–100%
+
+### Servo Motor Logic 
+
+- Fixed PWM frequency: ~50 Hz (20 ms period)
+- Pulse width determines position:
+  - ~1 ms → 0°
+  - ~1.5 ms → 90°
+  - ~2 ms → 180°
+
+### Brushed Motor Logic
+- Fixed PWM frequency
+- Puse width determines speed
+- Frequency ranges:
+  - 100 – 500 Hz Works, but audible noise
+  - 1 – 10 kHz Most common
+  - 16 – 25 kHz Above human hearing
+  - 25 – 100 kHz Less common, more switching loss
+
+### Stepper Motor Logic
+
+- One pulse is one step, so we can drive the motor speed by the pwm frequency: just keep the duty at 50%.
+- Very slow motion: ~1 Hz – 50 Hz
+- Normal range: ~100 Hz – 2 kHz
+- Common sweet spot: 200 Hz – 1000 Hz
+- Fast operation: 2 kHz – 10 kHz
+
 ## Dependencies
 
 - [ESP32Servo](https://github.com/jkb-git/ESP32Servo)
