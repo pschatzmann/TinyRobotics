@@ -25,7 +25,7 @@ var searchData=
   ['setbounds_22',['setBounds',['../classtinyrobotics_1_1PointCloud.html#a8ea428e64b581cd88474197763f418e6',1,'tinyrobotics::PointCloud']]],
   ['setbuffersize_23',['setBufferSize',['../classtinyrobotics_1_1SynchronizedStream.html#ad425c4f62bccf271e87b4669994be47b',1,'tinyrobotics::SynchronizedStream']]],
   ['setcallback_24',['setCallback',['../classtinyrobotics_1_1RCGamepadMessageSource.html#a9c407d1c95bc66c0054e7b5021ab5cc2',1,'tinyrobotics::RCGamepadMessageSource']]],
-  ['setcell_25',['setCell',['../classtinyrobotics_1_1GridMap.html#a89d6a8be22425323d779027483e64b80',1,'tinyrobotics::GridMap::setCell(int cx, int cy, StateType value)'],['../classtinyrobotics_1_1GridMap.html#a02368b8ed30e00f2cd44fdf408eba0ea',1,'tinyrobotics::GridMap::setCell(Coordinate&lt; T &gt; &amp;coord, StateType value)']]],
+  ['setcell_25',['setCell',['../classtinyrobotics_1_1GridMap.html#aeba2bb947e5cf26beb7a3760ee0f6ccd',1,'tinyrobotics::GridMap::setCell(int cx, int cy, CellState value)'],['../classtinyrobotics_1_1GridMap.html#aa868d2b682b37e0821c6d1eb938cd2c4',1,'tinyrobotics::GridMap::setCell(Coordinate&lt; T &gt; &amp;coord, CellState value)']]],
   ['setchannel_26',['setChannel',['../classtinyrobotics_1_1ESPNowStream.html#a74dfdcc18b3a42aaef5e467d1e6beaa4',1,'tinyrobotics::ESPNowStream']]],
   ['setcircleangularspeed_27',['setCircleAngularSpeed',['../classtinyrobotics_1_1MotionController3D.html#a5be0d734f93ae7efd51a331a87be559a',1,'tinyrobotics::MotionController3D']]],
   ['setcircleradius_28',['setCircleRadius',['../classtinyrobotics_1_1MotionController3D.html#ac2bd8b4f6adef11ef5e182b5a1ee1ed1',1,'tinyrobotics::MotionController3D']]],
