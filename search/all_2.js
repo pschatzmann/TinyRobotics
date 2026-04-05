@@ -10,7 +10,7 @@ var searchData=
   ['cameraobstacledetector_7',['CameraObstacleDetector',['../classtinyrobotics_1_1CameraObstacleDetector.html',1,'tinyrobotics']]],
   ['carackerman_8',['CarAckerman',['../classtinyrobotics_1_1CarAckerman.html',1,'tinyrobotics']]],
   ['cardifferential_9',['CarDifferential',['../classtinyrobotics_1_1CarDifferential.html',1,'tinyrobotics']]],
-  ['cell_10',['Cell',['../structtinyrobotics_1_1GridBitMap_1_1Cell.html',1,'GridBitMap&lt; T &gt;::Cell'],['../structtinyrobotics_1_1GridMap_1_1Cell.html',1,'GridMap&lt; StateType, T &gt;::Cell']]],
+  ['cell_10',['Cell',['../structtinyrobotics_1_1GridBitMap_1_1Cell.html',1,'GridBitMap&lt; T &gt;::Cell'],['../structtinyrobotics_1_1GridMap_1_1Cell.html',1,'GridMap&lt; StateT, T &gt;::Cell']]],
   ['cellstate_11',['CellState',['../group__utils.html#ga8787c656e38c35a93bccad5fe9a8d7d9',1,'tinyrobotics']]],
   ['celltoworld_12',['cellToWorld',['../classtinyrobotics_1_1GridMap.html#a0d4f96124b6d9793f428f3bf5c141af7',1,'tinyrobotics::GridMap']]],
   ['centimeters_13',['Centimeters',['../group__utils.html#ggabceb2331ad056e3c5ad27894199a49eda3040cc6624f5c309963dee141936b299',1,'tinyrobotics']]],

@@ -1,3 +1,5 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$classtinyrobotics_1_1Speed.html" title="Represents a speed measurement with unit conversion support." alt="" coords="5,5,68,31"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,31,57,56"/>
+<area shape="rect" id="node2" href="$classtinyrobotics_1_1MultiOutput.html" title="Utility class for writing output to multiple Print streams simultaneously." alt="" coords="113,5,211,31"/>
+<area shape="rect" id="node3" href="$classtinyrobotics_1_1NullPrintClass.html" title="NullPrint is a Print subclass that discards all output. Useful for disabling output in code that expe..." alt="" coords="105,55,219,80"/>
 </map>

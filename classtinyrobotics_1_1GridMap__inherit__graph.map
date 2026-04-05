@@ -1,5 +1,5 @@
-<map id="GridMap&lt; StateType, T &gt;" name="GridMap&lt; StateType, T &gt;">
-<area shape="rect" id="node1" title="A grid map for spatial representation, navigation, and planning." alt="" coords="5,152,192,177"/>
-<area shape="rect" id="node2" href="$classtinyrobotics_1_1IMap.html" title="Abstract interface for 2D grid maps and occupancy maps in TinyRobotics." alt="" coords="53,79,145,104"/>
-<area shape="rect" id="node3" href="$classtinyrobotics_1_1IMapNeighbors.html" title="Abstract interface for neighbor queries in map&#45;like data structures." alt="" coords="19,5,178,31"/>
+<map id="GridMap&lt; StateT, T &gt;" name="GridMap&lt; StateT, T &gt;">
+<area shape="rect" id="node1" title="A grid map for spatial representation, navigation, and planning." alt="" coords="5,152,171,177"/>
+<area shape="rect" id="node2" href="$classtinyrobotics_1_1IMap.html" title="Abstract interface for 2D grid maps and occupancy maps in TinyRobotics." alt="" coords="42,79,134,104"/>
+<area shape="rect" id="node3" href="$classtinyrobotics_1_1IMapNeighbors.html" title="Abstract interface for neighbor queries in map&#45;like data structures." alt="" coords="9,5,167,31"/>
 </map>

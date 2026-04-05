@@ -1,6 +1,7 @@
 <map id="PointCloud&lt; T &gt;" name="PointCloud&lt; T &gt;">
-<area shape="rect" id="node1" title="Represents a 3D point cloud for robotics and mapping applications." alt="" coords="65,196,195,221"/>
-<area shape="rect" id="node2" href="$classtinyrobotics_1_1IMapNeighbors.html" title="Abstract interface for neighbor queries in map&#45;like data structures." alt="" coords="5,108,164,133"/>
-<area shape="rect" id="node3" title=" " alt="" coords="188,108,259,133"/>
-<area shape="rect" id="node4" href="$structtinyrobotics_1_1Point3D.html" title=" " alt="" coords="168,5,279,31"/>
+<area shape="rect" id="node1" title="Represents a 3D point cloud for robotics and mapping applications." alt="" coords="503,55,633,80"/>
+<area shape="rect" id="node2" href="$classtinyrobotics_1_1IMapNeighbors.html" title="Abstract interface for neighbor queries in map&#45;like data structures." alt="" coords="214,5,373,31"/>
+<area shape="rect" id="node3" title=" " alt="" coords="258,55,329,80"/>
+<area shape="rect" id="node4" href="$structtinyrobotics_1_1Point3D.html" title=" " alt="" coords="5,55,116,80"/>
+<area shape="rect" id="node5" href="$classtinyrobotics_1_1PointCloudSerializer.html" title=" " alt="" coords="197,104,389,159"/>
 </map>

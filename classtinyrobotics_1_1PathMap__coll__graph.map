@@ -1,4 +1,5 @@
 <map id="PathMap&lt; CoordinateT &gt;" name="PathMap&lt; CoordinateT &gt;">
-<area shape="rect" id="node1" title="Represents a graph of valid path segments (edges) between coordinates (nodes)." alt="" coords="5,79,192,104"/>
-<area shape="rect" id="node2" href="$classtinyrobotics_1_1IMapNeighbors.html" title="Abstract interface for neighbor queries in map&#45;like data structures." alt="" coords="19,5,178,31"/>
+<area shape="rect" id="node1" title="Represents a graph of valid path segments (edges) between coordinates (nodes)." alt="" coords="309,41,496,67"/>
+<area shape="rect" id="node2" href="$classtinyrobotics_1_1IMapNeighbors.html" title="Abstract interface for neighbor queries in map&#45;like data structures." alt="" coords="21,5,180,31"/>
+<area shape="rect" id="node3" href="$classtinyrobotics_1_1PathMapSerializer.html" title=" " alt="" coords="5,55,196,125"/>
 </map>
