@@ -19,4 +19,4 @@ However, it might happen that motor libraries are not supported. In this case yo
 
 ### Others
 
-You can compile this project on the Desktop or for other microcontroller frameworks e.g. ESP32 IDF, Zephyr etc using CMAKE.
+You can compile this project on the __desktop__, __single-board computers__ (e.g. Raspbery PI) or for other __microcontroller frameworks__ e.g. ESP32 IDF, Zephyr etc using CMAKE.
