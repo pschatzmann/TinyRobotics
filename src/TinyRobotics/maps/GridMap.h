@@ -75,11 +75,14 @@ class GridMap : public IMap<T> {
     size_t cy;  // Cell Y index
   };
 
+  /// Default constructor
   GridMap() = default;
+  /// Construct with cell counts and resolution in meters
   GridMap(int xCount, int yCount, DistanceM resolutionM)
       : resolution(resolutionM) {
     resize(xCount, yCount);
   }
+  /// Construct with cell counts and Distance object for resolution
   GridMap(int xCount, int yCount, Distance resolution)
       : xCount(xCount), yCount(yCount) {
     this->resolution = resolution.getValue(DistanceUnit::M);
@@ -130,6 +133,7 @@ class GridMap : public IMap<T> {
       return true;
     }
   }
+  
   /// Provide access to cell state by coordinate
   bool getCell(Coordinate<T>& coord, CellState& result) {
     Cell cell;
@@ -139,6 +143,7 @@ class GridMap : public IMap<T> {
     return false;  // Out of bounds
   }
 
+  /// Provide access to cell state by coordinate
   void setCell(Cell& cell, CellState value) {
     if (cell.cx >= 0 && cell.cx < xCount && cell.cy >= 0 && cell.cy < yCount)
       data[cell.cy * xCount + cell.cx] = value;
@@ -204,16 +209,20 @@ class GridMap : public IMap<T> {
     return neighbors;
   }
 
+  /// Resize the grid to new dimensions
   void resize(int newXCount, int newYCount) {
     xCount = newXCount;
     yCount = newYCount;
     data.resize(xCount * yCount);
   }
 
+  /// Get the number of cells in the x direction
   int getXCount() const { return xCount; }
 
+  /// Get the number of cells in the y direction
   int getYCount() const { return yCount; }
 
+  /// Get the cell resolution in meters
   float getResolution() const { return resolution; }
 
   /**
@@ -227,29 +236,27 @@ class GridMap : public IMap<T> {
     cy = static_cast<int>((coord.y - origin.y) / resolution);
     bool in_range = cx >= 0 && cx < xCount && cy >= 0 && cy < yCount;
     if (!in_range) return false;  // Out of bounds
-    if (is_valid_cb != nullptr) {
-      return is_valid_cb(cx, cy, reference);
-    }
-    return true;  // In bounds, valid by default
+    return is_valid_cb(cx, cy, reference);
   }
 
-  // Allow user to set a custom callback
+  /// Set the callback for converting StateType to CellState
   void setCellStateCallback(CellState (*cb)(const StateType&, void* ref)) {
     get_cellstate_cb = cb;
   }
-  /// Define a custom validity callback (e.g., for dynamic obstacles or special
-  /// terrain)
+
+  /// Set the callback for cell validity checking
   void setValidityCallback(bool (*cb)(int cx, int cy, void* ref)) {
-    is_valid_cb = cb;
+    is_valid_cb = cb != nullptr ? cb : isValid;
   }
 
+  /// Set the reference pointer passed to callbacks
   void setReference(void* ref) { reference = ref; }
 
  protected:
   // Grid parameters
-  int xCount;                 // Number of cells in x direction
-  int yCount;                 // Number of cells in y direction
-  float resolution;           // Meters per cell
+  int xCount = 0;                 // Number of cells in x direction
+  int yCount = 0;                 // Number of cells in y direction
+  float resolution = 0;           // Meters per cell
   Coordinate<T> origin;       // World coordinate of cell (0,0)
   void* reference = this;     // Optional reference for validity callback
   bool (*is_valid_cb)(int cx, int cy, void*) = isValid;
