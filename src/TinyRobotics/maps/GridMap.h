@@ -251,7 +251,7 @@ class GridMap : public IMap<T> {
   int yCount;                 // Number of cells in y direction
   float resolution;           // Meters per cell
   Coordinate<T> origin;       // World coordinate of cell (0,0)
-  void* reference = nullptr;  // Optional reference for validity callback
+  void* reference = this;     // Optional reference for validity callback
   bool (*is_valid_cb)(int cx, int cy, void*) = isValid;
   CellState (*get_cellstate_cb)(const StateType&, void* ref) = nullptr;
 
