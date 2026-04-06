@@ -46,7 +46,7 @@ Frame2D world{FrameType::WORLD, 0};
 Frame2D base{FrameType::BASE, 0, world, Transform2D(start, 0)};
 
 AStar astar;
-CarAckerman<BrushedMotor, ServoMotor> car;
+CarAckerman car;
 Odometry2D odometry;
 SpeedFromThrottle speedEstimator(2.0f);  // max speed 2 m/s (adjust as needed)
 Speed maxSpeedKmh(5, SpeedUnit::KPH);  // max speed in km/h

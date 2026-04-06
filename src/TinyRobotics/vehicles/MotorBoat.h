@@ -24,7 +24,7 @@ namespace tinyrobotics {
  * @endcode
  */
 
-template <typename MotorMT = BrushedMotor, typename ServoMT = ServoMotor>
+template <typename MotorMT = BrushedMotor<float>, typename ServoMT = ServoMotor<float>>
 class MotorBoat : public Vehicle {
  public:
   MotorBoat() = default;
@@ -46,14 +46,14 @@ class MotorBoat : public Vehicle {
    * This applies the speed scaling factor (speedFactor) before setting throttle.
    * @param percent Speed percentage (-100 to 100)
    */
-  void setSpeed(int percent) {
+  void setSpeed(float percent) {
     setThrottle(percent*getSpeedFactor());
   }
 
   /**
    * @brief Set throttle (percent, -100 to 100). Positive = forward.
    */
-  void setThrottle(int percent) {
+  void setThrottle(float percent) {
     motor_.setSpeedPercent(percent);
     // publish throttle as message for telemetry
     Message<float> msg(MessageContent::MotorSpeed, percent, Unit::Percent);
@@ -64,7 +64,7 @@ class MotorBoat : public Vehicle {
   /**
    * @brief Set rudder angle (degrees, left positive, right negative).
    */
-  void setRudder(int angle) {
+  void setRudder(float angle) {
     rudder_.setAngle(angle);
     // publish rudder angle as message for telemetry
     Message<float> msg(MessageContent::SteeringAngle, angle, Unit::AngleDegree);

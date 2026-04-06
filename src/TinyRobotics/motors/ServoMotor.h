@@ -36,9 +36,10 @@ namespace tinyrobotics {
  *
  * @note Requires the Arduino Servo library.
  */
-class ServoMotor : public Motor {
+template <typename T = float>
+class ServoMotor : public Motor<T> {
  public:
-  ServoMotor(uint8_t id = 0) { setID(id); }
+  ServoMotor(uint8_t id = 0) { this->setID(id); }
 
   /** Attach the servo to a pin */
   void setPin(int pin) { this->pin = pin; }
@@ -64,6 +65,20 @@ class ServoMotor : public Motor {
     return map(angle, 0, 180, -90, 90);
   }
 
+  /**
+   * Set servo position as a percentage (-100 to 100).
+   * -100 = minAngle, 0 = center, 100 = maxAngle
+   */
+  bool setValuePercent(T percent) override {
+    lastValuePercent = constrain(percent, -100.0f, 100.0f);
+    // Map percent to angle in allowed range
+    int8_t angle = map(lastValuePercent, -100.0f, 100.0f, minAngle, maxAngle);
+    setAngle(angle);
+    return true;
+  }
+
+  T getValuePercent() const override { return lastValuePercent; }
+
   /// Set constraints on the allowed angle range (degrees). This can be used to
   /// prevent the servo from moving beyond physical limits or to limit the range
   /// of motion for safety: by default, the full range of -90 to 90 degrees is
@@ -86,6 +101,7 @@ class ServoMotor : public Motor {
   int minAngle = -90;
   int maxAngle = 90;
   bool is_pin_asssigned = false;
+  T lastValuePercent = 0.0f;
 };
 
 }  // namespace tinyrobotics

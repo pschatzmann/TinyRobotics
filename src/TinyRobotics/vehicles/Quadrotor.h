@@ -37,7 +37,7 @@ enum QuadrotorMotorNo {
  * @endcode
  */
 
-template <typename MotorT = BrushedMotor>
+template <typename MotorT = BrushedMotor<float>>
 class Quadrotor : public Vehicle {
  public:
   Quadrotor() = default;
@@ -52,26 +52,26 @@ class Quadrotor : public Vehicle {
   }
 
   /** Set throttle (0-100%) for all motors */
-  void setThrottle(int percent) {
-    throttle_ = constrain(percent, 0, 100);
+  void setThrottle(float percent) {
+    throttle_ = constrain(percent, 0.0f, 100.0f);
     updateMotors();
   }
 
   /** Set roll (-100 to 100): positive = right, negative = left */
-  void setRoll(int percent) {
-    roll_ = constrain(percent, -100, 100);
+  void setRoll(float percent) {
+    roll_ = constrain(percent, -100.0f, 100.0f);
     updateMotors();
   }
 
   /** Set pitch (-100 to 100): positive = forward, negative = backward */
-  void setPitch(int percent) {
-    pitch_ = constrain(percent, -100, 100);
+  void setPitch(float percent) {
+    pitch_ = constrain(percent, -100.0f, 100.0f);
     updateMotors();
   }
 
   /** Set yaw (-100 to 100): positive = right, negative = left */
-  void setYaw(int percent) {
-    yaw_ = constrain(percent, -100, 100);
+  void setYaw(float percent) {
+    yaw_ = constrain(percent, -100.0f, 100.0f);
     updateMotors();
   }
 
@@ -80,10 +80,10 @@ class Quadrotor : public Vehicle {
     for (int i = 0; i < 4; ++i) {
       motors_[i].end();
     }
-    throttle_ = 0;
-    roll_ = 0;
-    pitch_ = 0;
-    yaw_ = 0;
+    throttle_ = 0.0f;
+    roll_ = 0.0f;
+    pitch_ = 0.0f;
+    yaw_ = 0.0f;
   }
 
   /**
@@ -144,10 +144,10 @@ class Quadrotor : public Vehicle {
  protected:
   MotorT motors_[4];
   float motorGain_[4] = {1.0f, 1.0f, 1.0f, 1.0f};
-  int throttle_ = 0;
-  int roll_ = 0;
-  int pitch_ = 0;
-  int yaw_ = 0;
+  float throttle_ = 0;
+  float roll_ = 0;
+  float pitch_ = 0;
+  float yaw_ = 0;
 
   /**
    * @brief Update all motors based on throttle, roll, pitch, and yaw.

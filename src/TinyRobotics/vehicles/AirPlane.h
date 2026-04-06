@@ -31,7 +31,7 @@ namespace tinyrobotics {
  * @endcode
  */
 
-template <typename MotorMT = BrushedMotor, typename ServoMT = ServoMotor>
+template <typename MotorMT = BrushedMotor<float>, typename ServoMT = ServoMotor<float>>
 class AirPlane : public Vehicle {
  public:
   enum ControlSurface {

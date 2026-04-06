@@ -12,14 +12,20 @@
 #include "ServoMotor.h"
 #else
 namespace tinyrobotics {
-using BrushlessMotor = GenericMotor;
-using ServoMotor = GenericMotor;
+    
+template <typename T = float>
+using BrushlessMotor = GenericMotor<T>;
+
+template <typename T = float>
+using ServoMotor = GenericMotor<T>;
+
 }
 #endif
 #if (USE_FASTACCEL_STEPPER)
 #include "StepperMotor.h"
 #else
 namespace tinyrobotics {
-using StepperMotor = GenericMotor;
+template <typename T = float>
+using StepperMotor = GenericMotor<T>;
 }
 #endif

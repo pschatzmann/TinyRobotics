@@ -20,20 +20,20 @@
 #include "TinyRobotics.h"
 
 Servo myServo;
-GenericMotor motor(0, &myServo);
+GenericMotor<float> motor(0, &myServo);
 
 void setup() {
   Serial.begin(115200);
   // Define value callback to handle -90..90 degree angle control
-  motor.setValueCallback([](int8_t value, GenericMotor& motor) {
-    motor.getMotor<Servo>().write(map(value, -90, 90, 0, 180));
+  motor.setValueCallback([](float value, GenericMotor<float>& motor) {
+    motor.getMotor<Servo>().write(map((int)value, -90, 90, 0, 180));
   });
-  motor.setBeginCallback([](GenericMotor& motor) {
+  motor.setBeginCallback([](GenericMotor<float>& motor) {
     myServo.attach(9);  // Attach the servo to pin 9
     return true;        // Return true to indicate successful start
   });
   motor.setEndCallback(
-      [](GenericMotor& motor) { motor.getMotor<Servo>().detach(); });
+      [](GenericMotor<float>& motor) { motor.getMotor<Servo>().detach(); });
 
   motor.begin();
 }

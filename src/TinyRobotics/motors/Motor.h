@@ -16,12 +16,15 @@ namespace tinyrobotics {
  * All specific motor driver classes (e.g., HBridge, ServoMotor) should inherit
  * from Motor.
  */
+template <typename T = float>
 class Motor {
  public:
   Motor() = default;
-  virtual bool begin() = 0;  
+  virtual bool begin() = 0;
   virtual void end() = 0;
   virtual bool isPinsSet() const = 0;
+  virtual bool setValuePercent(T percent) = 0;
+  virtual T getValuePercent() const = 0;
   void setID(uint8_t id) { this->id = id; }
   uint8_t getID() const { return id; }
 

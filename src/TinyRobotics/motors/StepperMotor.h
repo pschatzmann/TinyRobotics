@@ -74,11 +74,12 @@ namespace tinyrobotics {
  * stepper.end();        // Ensure motor is stopped
  * @endcode
  */
-class StepperMotor : public Motor {
+template <typename T = float>
+class StepperMotor : public Motor<T> {
  public:
   StepperMotor(uint8_t id = 0) { setID(id); }
   StepperMotor(uint8_t id, uint16_t stepsPerRevolution,
-               uint16_t maxSpeedStepsPerSec, uint16_t accelerationMs) {
+               float maxSpeedStepsPerSec, uint16_t accelerationMs) {
     setID(id);
     setMaxSpeed(maxSpeedStepsPerSec);
     setAccelerationMs(accelerationMs);
@@ -94,7 +95,7 @@ class StepperMotor : public Motor {
 
   /// Set maximum speed in steps per second (e.g., 500 for 1.8 degree stepper,
   /// 1000
-  void setMaxSpeed(uint16_t stepsPerSec) { maxSpeedHz = stepsPerSec; }
+  void setMaxSpeed(float stepsPerSec) { maxSpeedHz = stepsPerSec; }
 
   /// Set acceleration time in milliseconds to reach max speed (e.g., 2000 ms)
   void setAccelerationMs(uint16_t ms) { accelerationMs = ms; }
@@ -119,21 +120,27 @@ class StepperMotor : public Motor {
 
   /// Set continuous speed as a percentage (-100 to 100). Positive for forward,
   /// negative for backward.
-  bool setSpeed(int8_t percent) {
-    if (!stepper) return false;
-    setSpeedPercent(percent);
-    if (percent >= 0) {
-      stepper->runForward();
-    } else {
-      stepper->runBackward();
+    // Set value as percentage (-100 to 100)
+    bool setValuePercent(T percent) override {
+      if (!stepper) return false;
+      lastValuePercent = constrain(percent, -100.0f, 100.0f);
+      setSpeedPercent(lastValuePercent);
+      if (lastValuePercent >= 0) {
+        stepper->runForward();
+      } else {
+        stepper->runBackward();
+      }
+      return true;
     }
-    return true;
-  }
+
+    T getValuePercent() const override {
+      return lastValuePercent;
+    }
 
   //   /// Move the stepper by n revolutions (positive or negative) and
   //   optionally
   //   /// call a callback when done.
-  //   bool moveRevolutions(float revolutions, int8_t speedPercent,
+  //   bool moveRevolutions(T revolutions, int8_t speedPercent,
   //                        void* ref = nullptr) {
   //     if (!stepper) return false;
   //     setSpeedPercent(speedPercent);
@@ -149,8 +156,8 @@ class StepperMotor : public Motor {
   //                     int8_t speedPercent, void (*callback)(void*) = nullptr,
   //                     void* ref = nullptr) {
   //     if (!stepper) return false;
-  //     float circumferenceM = PI * wheelDiameter.getDistance(DistanceUnit::M);
-  //     float revolutions = distance.getDistance(DistanceUnit::M) /
+  //     T circumferenceM = PI * wheelDiameter.getDistance(DistanceUnit::M);
+  //     T revolutions = distance.getDistance(DistanceUnit::M) /
   //     circumferenceM; return moveRevolutions(revolutions, speedPercent,
   //     callback, ref);
   //   }
@@ -165,6 +172,7 @@ class StepperMotor : public Motor {
   bool isPinsSet() const override { return is_pins_set; }
 
  protected:
+  T lastValuePercent = 0.0f;
   FastAccelStepperEngine engine;
   FastAccelStepper* stepper = NULL;
   int pinStep = -1;
@@ -173,7 +181,7 @@ class StepperMotor : public Motor {
   bool is_pins_set = false;
   // steps/sec: typical values: 500 for 1.8 degree stepper, 1000 for 0.9 degree
   // stepper, etc.
-  int maxSpeedHz = 2000;
+  float maxSpeedHz = 2000;
   // time in ms to reach max speed, adjust as needed
   uint16_t accelerationMs = 2000;
   // typical values: 200 for 1.8 degree stepper, 400 for 0.9 degree stepper,
@@ -187,10 +195,10 @@ class StepperMotor : public Motor {
       callback(ref);
     }
   }
-
-  void setSpeedPercent(int8_t percent) {
-    percent = constrain(percent, -100, 100);
-    int speed = map(percent, -100, 100, -maxSpeedHz, maxSpeedHz);
+  
+  void setSpeedPercent(T percent) {
+    percent = constrain(percent, -100.0f, 100.0f);
+    int speed = map((int)percent, -100, 100, -maxSpeedHz, maxSpeedHz);
 
     // Calculate acceleration in steps/sec^2 based on the time to reach max
     // speed
@@ -200,5 +208,6 @@ class StepperMotor : public Motor {
     // set speed (FastAccelStepper uses setSpeedInHz for continuous mode)
     stepper->setSpeedInHz(abs(speed));
   }
+
 };
 }  // namespace tinyrobotics

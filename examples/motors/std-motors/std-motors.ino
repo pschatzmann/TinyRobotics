@@ -33,17 +33,18 @@ void setup() {
   // Brushed Motor
   brushed.setPins(5, 6, 9);  // Example pins
   brushed.begin();
-  brushed.setSpeed(50); // Percent
+  brushed.setValuePercent(50); // Percent
 
   // Brushless Motor
   brushless.setPin(10);  // Example pin
   brushless.begin();
-  brushless.setSpeed(50); // Percent
+  brushless.setValuePercent(50); // Percent
 
   // Servo Motor
   servo.setPin(11);  // Example pin
   servo.begin();
   servo.setAngle(45); // Set servo to 45 degrees to the left
+  //servo.setValuePercent(50); // Move to 50% (90 degrees) - alternative to setAngle
 
 #if USE_FASTACCEL_STEPPER
   // Stepper Motor
@@ -52,7 +53,7 @@ void setup() {
   stepper.setStepsPerRevolution(200); // typical 1.8 degree stepper
   stepper.setAccelerationMs(2000); // ms to reach max speed
   stepper.begin();
-  stepper.setSpeed(50); // Move at 50% of max speed (continuous)
+  stepper.setValuePercent(50); // Move at 50% of max speed (continuous)
 #endif
 }
 

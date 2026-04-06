@@ -31,7 +31,7 @@ namespace tinyrobotics {
  * @endcode
  */
 
-template <size_t N = 4, typename MotorMT = BrushedMotor>
+template <size_t N = 4, typename MotorMT = BrushedMotor<float>>
 class CarDifferential : public Vehicle {
  public:
   CarDifferential() : speed_(0), turn_(0) {}
@@ -51,7 +51,7 @@ class CarDifferential : public Vehicle {
    * @brief Set forward/reverse speed for all motors (percent, -100 to 100).
    * Positive = forward, negative = reverse.
    */
-  void setSpeed(int percent) {
+  void setSpeed(float percent) {
     speed_ = constrain(percent * getSpeedFactor(), -100, 100);
     updateMotors();
   }
@@ -60,9 +60,9 @@ class CarDifferential : public Vehicle {
    * @brief Set turn (percent, -100 to 100). Positive = right, negative = left.
    * This slows down the motors on one side to turn the car.
    */
-  void setSteeringAgle(int angle) {
-    int percent = map(angle, -45, 45, -100, 100);  // Map angle to turn percent
-    turn_ = constrain(percent, -100, 100);
+  void setSteeringAgle(float angle) {
+    float percent = map(angle, -45.0f, 45.0f, -100.0f, 100.0f);  // Map angle to turn percent
+    turn_ = constrain(percent, -100.0f, 100.0f);
     updateMotors();
   }
 

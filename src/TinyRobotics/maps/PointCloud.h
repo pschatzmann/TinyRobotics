@@ -85,6 +85,7 @@ class PointCloud : public IMapNeighbors<T> {
 
  public:
   using VectorT = std::vector<Point3D<T>, AllocatorPSRAM<Point3D<T>>>;
+  using value_type = T;
 
   PointCloud(bool isliveVoxel = false) {
     resetBounds();

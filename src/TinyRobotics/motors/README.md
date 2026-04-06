@@ -1,6 +1,7 @@
 # TinyRobotics Motors Module
 
 ## Overview
+
 The TinyRobotics Motors module is a flexible and extensible framework for controlling a wide variety of motor types in embedded and Arduino environments. It provides unified abstractions and drivers for:
 
 - **Brushed DC motors** (via H-Bridge drivers such as L298N, L293D, TB6612FNG)
@@ -10,15 +11,16 @@ The TinyRobotics Motors module is a flexible and extensible framework for contro
 - **Custom and external motor drivers** (via the GenericMotor class and user-defined callbacks)
 
 Key features include:
+
 - Consistent API for all supported motor types
 - PWM and direction control for brushed and brushless motors
 - Angle and pulse width control for servos and brushless motors
 - Stepper motor support with acceleration and speed control
 - Easy integration of custom motor drivers without external dependencies
 - Modular design for use in robots, vehicles, and automation projects
+- Provides template for defining the numeric type for the speed (default float)
 
 The module is designed for portability and can be configured to use or avoid external libraries as needed. All motor drivers inherit from a common base class, making it easy to swap implementations or extend functionality for new hardware.
-
 
 ## Motor Configuration (utils/Config.h)
 
@@ -31,6 +33,7 @@ Motor-specific settings can be adjusted in `src/TinyRobotics/utils/Config.h`:
 You can override these macros before including TinyRobotics to customize which motor drivers are enabled.
 
 Example:
+
 ```cpp
 #define USE_SERVO_LIBRARY false
 #include <TinyRobotics.h>
@@ -57,8 +60,8 @@ BrushedMotor motor(1); // #1
 void setup() {
   motor.setPins(5, 6, 9); // IN1=5, IN2=6, PWM=9)
   motor.begin();
-  motor.setSpeed(50); // Half speed forward
-  motor.setSpeed(-50); // Half speed reverse
+  motor.setValuePercent(50); // Half speed forward
+  motor.setValuePercent(-50); // Half speed reverse
   motor.end(); // Brake
 }
 
@@ -88,7 +91,6 @@ void loop() {
 }
 ```
 
-
 ### Stepper Motor (if enabled)
 
 ```cpp
@@ -100,8 +102,8 @@ void setup() {
   stepper.setMaxSpeed(1000);
   stepper.setStepsPerRevolution(200);
   stepper.begin();
-  motor.setSpeed(50); // Half speed forward
-  motor.setSpeed(-50); // Half speed reverse
+  motor.setValuePercent(50); // Half speed forward
+  motor.setValuePercent(-50); // Half speed reverse
   stepper.end();
 }
 ```
@@ -112,23 +114,23 @@ void setup() {
 #include <TinyRobotics.h>
 
 MyMotorDriver driver;
-GenericMotor motor(3, &driver); // #3
+GenericMotor<float> motor(3, &driver); // #3
 void setup() {
   motor.setValueCallback([](int8_t value, GenericMotor& m) {
     MyMotorDriver* drv = m.getMotor<MyMotorDriver>();
     drv->setPWM(value);
   });
   // Optional: custom logic for begin and end
-  motor.setBeginCallback([](GenericMotor& m) {
+  motor.setBeginCallback([](GenericMotor<float>& m) {
     // Custom start logic (e.g., enable power)
     return true;
   });
-//   motor.setEndCallback([](GenericMotor& m) {
+//   motor.setEndCallback([](GenericMotor<float>& m) {
 //     // Custom stop logic (e.g., disable power)
 //   });
   motor.begin();
-  motor.setSpeed(50); // Half speed forward
-  motor.setSpeed(-50); // Half speed reverse
+  motor.setValuePercent(50); // Half speed forward
+  motor.setValuePercent(-50); // Half speed reverse
   motor.end();
 }
 ```
@@ -142,7 +144,7 @@ You can use a platform specifc motor control library to implement the callbacks.
 - PWM Frequency: ~1 kHz – 20 kHz
 - Speed is driven by Duty cycle: 0–100%
 
-### Servo Motor Logic 
+### Servo Motor Logic
 
 - Fixed PWM frequency: ~50 Hz (20 ms period)
 - Pulse width determines position:
@@ -151,6 +153,7 @@ You can use a platform specifc motor control library to implement the callbacks.
   - ~2 ms → 180°
 
 ### Brushed Motor Logic
+
 - Fixed PWM frequency
 - Puse width determines speed
 - Frequency ranges:

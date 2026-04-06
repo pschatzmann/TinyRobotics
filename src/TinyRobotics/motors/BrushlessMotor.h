@@ -43,9 +43,11 @@ namespace tinyrobotics {
  * motor.end();
  * @endcode
  */
-class BrushlessMotor : public Motor {
+
+template <typename T = float>
+class BrushlessMotor : public Motor<T> {
  public:
-  BrushlessMotor(uint8_t id = 0) { setID(id); }
+  BrushlessMotor(uint8_t id = 0) { this->setID(id); }
 
   /** Attach the servo to a pin */
   void setPin(int pin) { this->pin = pin; }
@@ -56,17 +58,21 @@ class BrushlessMotor : public Motor {
     return true;
   }
 
-  // Set speed as percentaage (0 to 100)
-  bool setSpeed(int8_t percent) {
+  // Set value as percentage (-100 to 100)
+  bool setValuePercent(T percent) override {
     if (!servo.attached()) return false;
-    percent = constrain(percent, -100, 100);
-    int angle = map(percent, 0, 100, 1000, 2000);  // Map to servo angle
+    lastValuePercent = constrain(percent, -100, 100);
+    int angle = map(lastValuePercent, 0, 100, 100, 2000);  // Map to servo angle
     servo.write(angle);
     return true;
   }
 
+  T getValuePercent() const override {
+    return lastValuePercent;
+  }
+
   void end() override {
-    setSpeed(0);
+    setValuePercent(0);
     servo.detach();
   }
 
@@ -76,6 +82,7 @@ class BrushlessMotor : public Motor {
   Servo servo;
   int pin = -1;
   bool is_pin_assigned = false;
+  T lastValuePercent = 0.0f;
 };
 
 }  // namespace tinyrobotics

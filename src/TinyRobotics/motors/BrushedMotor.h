@@ -32,12 +32,13 @@ namespace tinyrobotics {
  * @note If your platform does not support analogWriteFreq, the default PWM
  * frequency will be used.
  */
-class BrushedMotor : public Motor {
+template <typename T = float>
+class BrushedMotor : public Motor<T> {
  public:
   /**
    * @brief Empty constructor for late pin assignment.
    */
-  BrushedMotor(uint8_t id = 0)  { setID(id); }
+  BrushedMotor(uint8_t id = 0) { this->setID(id); }
 
   /**
    * @brief Set the pins for the HBridge after construction.
@@ -66,7 +67,7 @@ class BrushedMotor : public Motor {
   /// Constrain the speed range to a subset of -255..255. This can be used to
   /// limit the maximum speed for safety or to match the characteristics of a
   /// specific motor.
-  void setConstraints(int minSpeed, int maxSpeed) {
+  void setConstraints(T minSpeed, T maxSpeed) {
     minSpeed = std::max(minSpeed, -255);
     maxSpeed = std::min(maxSpeed, 255);
   }
@@ -78,11 +79,15 @@ class BrushedMotor : public Motor {
    * Set motor speed as a percentage (-100 to 100).
    * @param percent Speed percentage: -100 (full reverse) to 100 (full forward)
    */
-  void setSpeed(int8_t percent) {
-    percent = constrain(percent, -100, 100);
-    int pwmValue = map(percent, -100, 100, minSpeed, maxSpeed);
+  // Set value as percentage (-100 to 100)
+  bool setValuePercent(T percent) override {
+    lastValuePercent = constrain(percent, -100, 100);
+    int pwmValue = map(lastValuePercent,(T) -100, (T) 100, minSpeed, maxSpeed);
     setSpeedValue(pwmValue);
+    return true;
   }
+
+  T getValuePercent() const override { return lastValuePercent; }
 
   /** Stop the motor (brake) */
   void end() override { stop(); }
@@ -96,10 +101,11 @@ class BrushedMotor : public Motor {
   int pinIn1 = -1;
   int pinIn2 = -1;
   int pinPWM = -1;
-  int minSpeed = -255;
-  int maxSpeed = 255;
+  T minSpeed = -255;
+  T maxSpeed = 255;
   int pwmFreq = 20000;  // Default PWM frequency (20 kHz)
   bool is_reverse = false;
+  T lastValuePercent = 0.0f;
 
   bool stop() {
     digitalWrite(pinIn1, LOW);
@@ -110,7 +116,7 @@ class BrushedMotor : public Motor {
 
   /** Set motor speed and direction. Speed: -255 (full reverse) to 255 (full
    * forward) */
-  void setSpeedValue(int speed) {
+  void setSpeedValue(float speed) {
     speed = constrain(speed, minSpeed, maxSpeed);
     if (speed > 0) {
       digitalWrite(pinIn1, is_reverse ? LOW : HIGH);

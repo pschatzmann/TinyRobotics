@@ -56,6 +56,7 @@ namespace tinyrobotics {
 template <typename T = DistanceM>
 class Coordinate : public Serializable {
  public:
+  using value_type = T;
   Coordinate() = default;
   Coordinate(T x, T y, T z = 0) : x(x), y(y), z(z) {}
   /// Copy constructor
@@ -77,7 +78,7 @@ class Coordinate : public Serializable {
   /// conversion
   DistanceM distance(const Coordinate& other,
                      DistanceUnit unit = DistanceUnit::M) const {
-    float distM = distanceM(other);
+    auto distM = distanceM(other);
     Distance dist(distM, DistanceUnit::M);
     return dist.getValue(unit);
   }

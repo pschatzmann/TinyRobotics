@@ -40,11 +40,12 @@ namespace tinyrobotics {
  * @endcode
  */
 
-class GenericMotor : public Motor {
+template <typename T = float>
+class GenericMotor : public Motor<T> {
  public:
   GenericMotor() = default;
   GenericMotor(uint8_t id, void* motor = nullptr) {
-    setID(id);
+    this->setID(id);
     this->motor = motor;
   }
 
@@ -58,26 +59,27 @@ class GenericMotor : public Motor {
     return result;
   }
 
-  void setSpeed(int8_t percent) {
-    value = percent;  // Store the last set speed value
+  // Set value as percentage (-100 to 100)
+  bool setValuePercent(T percent) override {
+    value = constrain(percent, -100.0f, 100.0f);
     if (valueCB) {
       valueCB(percent, *this);
     }
+    return true;
   }
 
-  int8_t getSpeed() {
-    return value;  // Not implemented, as this is a generic callback motor
+  T getValuePercent() const override { return value; }
+
+  void setAngle(T angle) {
+    float valuePercent =
+        map(angle, -90.0f, 90.0f, -100.0f, 100.0f);  // Map angle to percentage
+    setValuePercent(
+        valuePercent);  // For simplicity, treat angle as a percentage value
   }
 
-  void setAngle(int8_t angle) {
-    value = angle;  // Store the last set angle value
-    if (valueCB) {
-      valueCB(angle, *this);
-    }
-  }
-
-  int8_t getAngle() {
-    return value;  // Not implemented, as this is a generic callback motor
+  T getAngle() {
+    return map(value, -100.0f, 100.0f, -90.0f,
+               90.0f);  // Map percentage back to angle
   }
 
   void end() override {
@@ -87,7 +89,7 @@ class GenericMotor : public Motor {
   }
 
   /// Mandatory callback to define speed/angle control behavior
-  void setValueCallback(void (*valueCB)(int8_t value, GenericMotor& motor)) {
+  void setValueCallback(void (*valueCB)(T value, GenericMotor& motor)) {
     this->valueCB = valueCB;
   }
 
@@ -102,9 +104,9 @@ class GenericMotor : public Motor {
   }
 
   /// Provides the user motor object
-  template <typename T>
-  T& getMotor() {
-    return *static_cast<T*>(motor);
+  template <typename MotorT>
+  MotorT& getMotor() {
+    return *static_cast<MotorT*>(motor);
   }
 
   /// Not supported
@@ -120,15 +122,15 @@ class GenericMotor : public Motor {
 
  protected:
   void* motor = nullptr;  // Optional pointer to user motor object for callbacks
-  int8_t value = 0;       // Current speed or angle value
+  T value = 0.0f;         // Current value percentage
   bool (*beginCB)(GenericMotor& motor) = nullptr;
   void (*endCB)(GenericMotor& motor) = defaultEnd;
-  void (*valueCB)(int8_t value, GenericMotor& motor) =
+  void (*valueCB)(T value, GenericMotor& motor) =
       nullptr;  // Callback function pointer for speed/angle control
 
   /// Default logic for end processing: just stop the motor!
   static void defaultEnd(GenericMotor& motor) {
-    motor.setSpeed(
+    motor.setValuePercent(
         0);  // Default behavior: stop the motor by setting speed to 0
   }
   void notSupported() {
