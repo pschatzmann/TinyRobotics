@@ -13,7 +13,6 @@
 namespace tinyrobotics {
 /**
  * @struct Point3D
- * @ingroup maps
  * @brief Represents a 3D point with x, y, z coordinates (in meters).
  *
  * Used throughout the mapping and robotics modules for point cloud processing,
@@ -55,9 +54,9 @@ struct Point3D {
  *
  * Example:
  * @code
- * PointCloud cloud;
+ * PointCloud cloud(0.1f);
  * cloud.add(1.0, 2.0, 0.5);
- * cloud.buildVoxelGrid(0.1f); // 10cm voxels
+ * cloud.buildVoxelGrid(); // 10cm voxels
  * bool occ = cloud.isOccupied(1.0, 2.0, 0.5);
  * @endcode
  */
@@ -87,7 +86,8 @@ class PointCloud : public IMapNeighbors<T> {
   using VectorT = std::vector<Point3D<T>, AllocatorPSRAM<Point3D<T>>>;
   using value_type = T;
 
-  PointCloud(bool isliveVoxel = false) {
+  PointCloud(T voxalSize, bool isliveVoxel = false) {
+    setVoxalSize(voxalSize);
     resetBounds();
     setLiveVoxelGrid(isliveVoxel);
   }
@@ -99,7 +99,7 @@ class PointCloud : public IMapNeighbors<T> {
   /// Add a single point
   void add(T x, T y, T z = 0.0f) {
     Point3D<T> p{x, y, z};
-    points_.push_back(p);
+    if (!liveVocelGrid_) points_.push_back(p);
     updateBounds(p);
     if (liveVocelGrid_) addVoxel(x, y, z);
   }
@@ -130,33 +130,32 @@ class PointCloud : public IMapNeighbors<T> {
   /// allowing for efficient retrieval of the spatial extent of the point cloud.
   Bounds bounds() const { return bounds_; }
 
-  /// Simple voxel downsampling: e.g. 0.5 m to reduce number of points while
-  /// keeping overall structure.
-  PointCloud voxelDownsample(float voxelSize) const {
-    PointCloud out;
-    if (voxelSize <= 0.0f) return out;
+  // /// Simple voxel downsampling: e.g. 0.5 m to reduce number of points while
+  // /// keeping overall structure.
+  // PointCloud voxelDownsample(float voxelSize) const {
+  //   PointCloud out;
+  //   if (voxelSize <= 0.0f) return out;
 
-    std::unordered_map<Key, Point3D<T>, KeyHash> voxels;
+  //   std::unordered_map<Key, Point3D<T>, KeyHash> voxels;
 
-    for (const auto& p : points_) {
-      Key key{int(std::floor(p.x / voxelSize)),
-              int(std::floor(p.y / voxelSize)),
-              int(std::floor(p.z / voxelSize))};
+  //   for (const auto& p : points_) {
+  //     Key key{int(std::floor(p.x / voxelSize)),
+  //             int(std::floor(p.y / voxelSize)),
+  //             int(std::floor(p.z / voxelSize))};
 
-      // Keep first point per voxel (simple version)
-      if (voxels.find(key) == voxels.end()) voxels[key] = p;
-    }
+  //     // Keep first point per voxel (simple version)
+  //     if (voxels.find(key) == voxels.end()) voxels[key] = p;
+  //   }
 
-    for (const auto& kv : voxels)
-      out.add(kv.second.x, kv.second.y, kv.second.z);
+  //   for (const auto& kv : voxels)
+  //     out.add(kv.second.x, kv.second.y, kv.second.z);
 
-    return out;
-  }
+  //   return out;
+  // }
 
   /// Builds a voxel grid for fast occupancy queries: A voxel is a grid cell
-  void buildVoxelGrid(float voxelSize) {
+  void buildVoxelGrid() {
     voxelGrid_.clear();
-    voxelSize_ = voxelSize;
 
     for (const auto& p : points_) {
       addVoxel(p.x, p.y, p.z);
@@ -166,27 +165,8 @@ class PointCloud : public IMapNeighbors<T> {
     for (const auto& key : voxelGrid_) {
       TRLogger.debug("Voxel: (%d, %d, %d)", key.x, key.y, key.z);
     }
-  }
-
-  /// Adds a point to the voxel grid if voxelSize_ > 0
-  void addVoxel(float x, float y, float z) {
-    if (voxelSize_ > 0.0f) {
-      Key key{int(std::floor(x / voxelSize_)), int(std::floor(y / voxelSize_)),
-              int(std::floor(z / voxelSize_))};
-      voxelGrid_.insert(key);
-    } else {
-      TRLogger.warn("Voxel size must be > 0 to add voxels");
-    }
-  }
-
-  /// Checks if a given point is occupied based on the voxel grid.
-  bool isOccupied(float x, float y, float z) const {
-    if (voxelSize_ <= 0.0f) return false;
-
-    Key key{int(std::floor(x / voxelSize_)), int(std::floor(y / voxelSize_)),
-            int(std::floor(z / voxelSize_))};
-
-    return voxelGrid_.find(key) != voxelGrid_.end();
+    // Clear the points
+    points_.clear();
   }
 
   /**
@@ -271,16 +251,6 @@ class PointCloud : public IMapNeighbors<T> {
     return neighbors;
   }
 
-  /// Convert voxel grid index (cx, cy) to world coordinate (center of voxel,
-  /// z=0)
-  Coordinate<T> toVoxel(int cx, int cy) const {
-    // This matches the logic in getNeighbors for 2D
-    T wx = (cx + 0.5f) * voxelSize_;
-    T wy = (cy + 0.5f) * voxelSize_;
-    T wz = 0.0f;
-    return Coordinate<T>(wx, wy, wz);
-  }
-
   /// Use 3D in findNeighbors (if false, only consider z=0 plane for 2D
   /// occupancy)
   void set3D(bool is3d) { is_3d = is3d; }
@@ -291,6 +261,16 @@ class PointCloud : public IMapNeighbors<T> {
                  float maxZ) {
     bounds_.min = {minX, minY, minZ};
     bounds_.max = {maxX, maxY, maxZ};
+  }
+
+  /// Checks if a given point is occupied based on the voxel grid.
+  bool isOccupied(float x, float y, float z) const {
+    if (voxelSize_ <= 0.0f) return false;
+
+    Key key{int(std::floor(x / voxelSize_)), int(std::floor(y / voxelSize_)),
+            int(std::floor(z / voxelSize_))};
+
+    return voxelGrid_.find(key) != voxelGrid_.end();
   }
 
   /// Checks if a coordinate is valid (within bounds and not occupied)
@@ -308,10 +288,13 @@ class PointCloud : public IMapNeighbors<T> {
     return true;
   }
 
-  // Sequential (iterator) access to all occupied voxels
+  /// Provides sequential (iterator) access to all occupied voxels
   auto beginVoxels() { return voxelGrid_.begin(); }
+  /// Provides sequential (iterator) access to all occupied voxels
   auto endVoxels() { return voxelGrid_.end(); }
+  /// Provides sequential (iterator) access to all occupied voxels
   auto beginVoxels() const { return voxelGrid_.begin(); }
+  /// Provides sequential (iterator) access to all occupied voxels
   auto endVoxels() const { return voxelGrid_.end(); }
 
   /// Write map to output
@@ -363,6 +346,30 @@ class PointCloud : public IMapNeighbors<T> {
     if (p.y > bounds_.max.y) bounds_.max.y = p.y;
     if (p.z > bounds_.max.z) bounds_.max.z = p.z;
   }
+
+  /// Adds a point to the voxel grid if voxelSize_ > 0
+  void addVoxel(float x, float y, float z) {
+    if (voxelSize_ > 0.0f) {
+      Key key{int(std::floor(x / voxelSize_)), int(std::floor(y / voxelSize_)),
+              int(std::floor(z / voxelSize_))};
+      voxelGrid_.insert(key);
+    } else {
+      TRLogger.warn("Voxel size must be > 0 to add voxels");
+    }
+  }
+
+
+  /// Convert voxel grid index (cx, cy) to world coordinate (center of voxel,
+  /// z=0)
+  Coordinate<T> toVoxel(int cx, int cy) const {
+    // This matches the logic in getNeighbors for 2D
+    T wx = (cx + 0.5f) * voxelSize_;
+    T wy = (cy + 0.5f) * voxelSize_;
+    T wz = 0.0f;
+    return Coordinate<T>(wx, wy, wz);
+  }
+
+
 };
 
 }  // namespace tinyrobotics
