@@ -469,7 +469,7 @@ $(function() {
 <div class="line"><a id="l00391" name="l00391"></a><span class="lineno">  391</span>  <span class="comment">/// Send control messages for throttle and steering angle</span></div>
 <div class="line"><a id="l00392" name="l00392"></a><span class="lineno">  392</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classtinyrobotics_1_1MotionController2D.html#ac6d57cf5201df6a35cba86569bddb5a7">sendControlMessages</a>(<span class="keywordtype">float</span> throttlePercent, <span class="keywordtype">float</span> steeringAngleDeg) {</div>
 <div class="line"><a id="l00393" name="l00393"></a><span class="lineno">  393</span>    <a class="code hl_class" href="structtinyrobotics_1_1Message.html">Message</a>&lt;<span class="keywordtype">float</span>&gt; msg;</div>
-<div class="line"><a id="l00394" name="l00394"></a><span class="lineno">  394</span>    msg.source = MessageOrigin::Autonomy;</div>
+<div class="line"><a id="l00394" name="l00394"></a><span class="lineno">  394</span>    msg.origin = MessageOrigin::Autonomy;</div>
 <div class="line"><a id="l00395" name="l00395"></a><span class="lineno">  395</span>    msg.content = MessageContent::Throttle;</div>
 <div class="line"><a id="l00396" name="l00396"></a><span class="lineno">  396</span>    msg.unit = Unit::Percent;</div>
 <div class="line"><a id="l00397" name="l00397"></a><span class="lineno">  397</span>    msg.value = throttlePercent;</div>

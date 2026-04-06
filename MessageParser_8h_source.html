@@ -186,7 +186,7 @@ $(function() {
 <div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>      result.coordMsg.content = content;</div>
 <div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>      result.coordMsg.unit = unit;</div>
 <div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>      <span class="comment">// Read source</span></div>
-<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>      io.readBytes((<span class="keywordtype">char</span>*)&amp;result.coordMsg.source, <span class="keyword">sizeof</span>(MessageOrigin));</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>      io.readBytes((<span class="keywordtype">char</span>*)&amp;result.coordMsg.origin, <span class="keyword">sizeof</span>(MessageOrigin));</div>
 <div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>    } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (content == MessageContent::PositionGPS) {</div>
 <div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>      result<a class="code hl_variable" href="structtinyrobotics_1_1ParsedMessage.html#af23dd5df3133ce1a1582c66913241c0d">.</a><a class="code hl_variable" href="structtinyrobotics_1_1ParsedMessage.html#af23dd5df3133ce1a1582c66913241c0d">type</a> = MessageValueType::GPSCoordinate;</div>
 <div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>      <span class="keywordflow">if</span> (io.readBytes((<span class="keywordtype">char</span>*)&amp;result.gpsMsg.value, <span class="keyword">sizeof</span>(GPSCoordinate)) !=</div>
@@ -197,7 +197,7 @@ $(function() {
 <div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>      result.gpsMsg.source_id = source_id;</div>
 <div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>      result.gpsMsg.content = content;</div>
 <div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>      result.gpsMsg.unit = unit;</div>
-<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>      io.readBytes((<span class="keywordtype">char</span>*)&amp;result.gpsMsg.source, <span class="keyword">sizeof</span>(MessageOrigin));</div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>      io.readBytes((<span class="keywordtype">char</span>*)&amp;result.gpsMsg.origin, <span class="keyword">sizeof</span>(MessageOrigin));</div>
 <div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>    } <span class="keywordflow">else</span> {</div>
 <div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>      result<a class="code hl_variable" href="structtinyrobotics_1_1ParsedMessage.html#af23dd5df3133ce1a1582c66913241c0d">.</a><a class="code hl_variable" href="structtinyrobotics_1_1ParsedMessage.html#af23dd5df3133ce1a1582c66913241c0d">type</a> = MessageValueType::Float;</div>
 <div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>      <span class="keywordflow">if</span> (io.readBytes((<span class="keywordtype">char</span>*)&amp;result.floatMsg.value, <span class="keyword">sizeof</span>(<span class="keywordtype">float</span>)) !=</div>
@@ -208,7 +208,7 @@ $(function() {
 <div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>      result.floatMsg.source_id = source_id;</div>
 <div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>      result.floatMsg.content = content;</div>
 <div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>      result.floatMsg.unit = unit;</div>
-<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>      io.readBytes((<span class="keywordtype">char</span>*)&amp;result.floatMsg.source, <span class="keyword">sizeof</span>(MessageOrigin));</div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>      io.readBytes((<span class="keywordtype">char</span>*)&amp;result.floatMsg.origin, <span class="keyword">sizeof</span>(MessageOrigin));</div>
 <div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>    }</div>
 <div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
 <div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>  }</div>

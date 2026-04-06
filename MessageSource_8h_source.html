@@ -112,56 +112,110 @@ $(function() {
 <div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span><span class="keyword">class</span> <a class="code hl_class" href="classtinyrobotics_1_1MessageSource.html">MessageSource</a> {</div>
 <div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span> <span class="keyword">public</span>:</div>
 <div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>  <span class="comment">/**</span></div>
-<div class="line"><span class="lineno">   37</span><span class="comment">   * @brief Add a message handler to the chain.</span></div>
+<div class="line"><span class="lineno">   37</span><span class="comment">   * @brief Subscribe a message handler to this source, with optional filtering.</span></div>
 <div class="line"><span class="lineno">   38</span><span class="comment">   *</span></div>
-<div class="line"><span class="lineno">   39</span><span class="comment">   * Allows forwarding messages to additional handlers.</span></div>
-<div class="line"><span class="lineno">   40</span><span class="comment">   * @param handler Reference to a MessageHandler to add.</span></div>
-<div class="line"><span class="lineno">   41</span><span class="comment">   */</span></div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classtinyrobotics_1_1MessageSource.html#a6f644591faf6edfeceef6b7776b331df">subscribe</a>(<a class="code hl_class" href="classtinyrobotics_1_1MessageHandler.html">MessageHandler</a>&amp; handler) {</div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    messageHandlers_.push_back(&amp;handler);</div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>  }</div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span> </div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>  <span class="comment">/**</span></div>
-<div class="line"><span class="lineno">   47</span><span class="comment">   * @brief Remove all registered message handlers.</span></div>
-<div class="line"><span class="lineno">   48</span><span class="comment">   */</span></div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classtinyrobotics_1_1MessageSource.html#a452ef8a62219e36235175becfc72dc61">unsubscribeAll</a>() { messageHandlers_.clear(); }</div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span> </div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>  <span class="comment">/**</span></div>
-<div class="line"><span class="lineno">   52</span><span class="comment">   * @brief Publish a message to all registered handlers.</span></div>
-<div class="line"><span class="lineno">   53</span><span class="comment">   *</span></div>
-<div class="line"><span class="lineno">   54</span><span class="comment">   * Forwards the given message to each handler in the messageHandlers_ list.</span></div>
-<div class="line"><span class="lineno">   55</span><span class="comment">   * @param msg The message to publish.</span></div>
-<div class="line"><span class="lineno">   56</span><span class="comment">   */</span></div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classtinyrobotics_1_1MessageSource.html#a98c36b84c000f803e27b164c09d96260">sendMessage</a>(<a class="code hl_class" href="structtinyrobotics_1_1Message.html">Message</a>&lt;<span class="keywordtype">float</span>&gt;&amp; msg) {</div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>    <span class="keywordflow">for</span> (<span class="keyword">auto</span> handler : messageHandlers_) {</div>
-<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>      handler-&gt;onMessage(msg);</div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    }</div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>  }</div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span> </div>
-<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>  <span class="keywordtype">void</span> sendMessage(<span class="keyword">const</span> <a class="code hl_class" href="structtinyrobotics_1_1Message.html">Message</a>&lt;<a class="code hl_class" href="classtinyrobotics_1_1Coordinate.html">Coordinate</a>&lt;<span class="keywordtype">float</span>&gt;&gt;&amp; msg) {</div>
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>    <span class="keywordflow">for</span> (<span class="keyword">auto</span> handler : messageHandlers_) {</div>
-<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>      handler-&gt;onMessage(msg);</div>
-<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>    }</div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>  }</div>
-<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span> </div>
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>  <span class="keywordtype">void</span> sendMessage(<span class="keyword">const</span> <a class="code hl_class" href="structtinyrobotics_1_1Message.html">Message</a>&lt;<a class="code hl_class" href="classtinyrobotics_1_1GPSCoordinate.html">GPSCoordinate</a>&gt;&amp; msg) {</div>
-<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>    <span class="keywordflow">for</span> (<span class="keyword">auto</span> handler : messageHandlers_) {</div>
-<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>      handler-&gt;onMessage(msg);</div>
-<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>    }</div>
-<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>  }</div>
-<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span> </div>
-<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span> <span class="keyword">protected</span>:</div>
-<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>  std::vector&lt;MessageHandler*&gt; messageHandlers_;</div>
-<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>};</div>
-<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span> </div>
-<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>}  <span class="comment">// namespace tinyrobotics</span></div>
+<div class="line"><span class="lineno">   39</span><span class="comment">   * Registers a MessageHandler to receive messages published by this source. Optionally, you can specify</span></div>
+<div class="line"><span class="lineno">   40</span><span class="comment">   * a filter for message origin and content. Only messages matching the filter (or with filter set to Undefined)</span></div>
+<div class="line"><span class="lineno">   41</span><span class="comment">   * will be delivered to the handler.</span></div>
+<div class="line"><span class="lineno">   42</span><span class="comment">   *</span></div>
+<div class="line"><span class="lineno">   43</span><span class="comment">   * @param handler Reference to a MessageHandler to add.</span></div>
+<div class="line"><span class="lineno">   44</span><span class="comment">   * @param origin  (Optional) Only deliver messages with this origin. Use MessageOrigin::Undefined to accept all origins.</span></div>
+<div class="line"><span class="lineno">   45</span><span class="comment">   * @param content (Optional) Only deliver messages with this content type. Use MessageContent::Undefined to accept all content types.</span></div>
+<div class="line"><span class="lineno">   46</span><span class="comment">   *</span></div>
+<div class="line"><span class="lineno">   47</span><span class="comment">   * Example:</span></div>
+<div class="line"><span class="lineno">   48</span><span class="comment">   * @code</span></div>
+<div class="line"><span class="lineno">   49</span><span class="comment">   *   source.subscribe(handler); // Receives all messages</span></div>
+<div class="line"><span class="lineno">   50</span><span class="comment">   *   source.subscribe(handler, MessageOrigin::RemoteControl); // Only messages from remote control</span></div>
+<div class="line"><span class="lineno">   51</span><span class="comment">   *   source.subscribe(handler, MessageOrigin::Undefined, MessageContent::Throttle); // Only throttle messages</span></div>
+<div class="line"><span class="lineno">   52</span><span class="comment">   * @endcode</span></div>
+<div class="line"><span class="lineno">   53</span><span class="comment">   */</span></div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classtinyrobotics_1_1MessageSource.html#ac3cabbec9037e5565dff2a698aa8dc8c">subscribe</a>(<a class="code hl_class" href="classtinyrobotics_1_1MessageHandler.html">MessageHandler</a>&amp; handler, MessageOrigin origin = MessageOrigin::Undefined,</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>                 MessageContent content = MessageContent::Undefined) {</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>    <a class="code hl_struct" href="structtinyrobotics_1_1MessageSource_1_1MessageHandlerEntry.html">MessageHandlerEntry</a> entry{handler, origin, content};</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>    messageHandlers_.push_back(entry);</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>  }</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span> </div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>  <span class="comment">/**</span></div>
+<div class="line"><span class="lineno">   61</span><span class="comment">   * @brief Remove all registered message handlers.</span></div>
+<div class="line"><span class="lineno">   62</span><span class="comment">   */</span></div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classtinyrobotics_1_1MessageSource.html#a452ef8a62219e36235175becfc72dc61">unsubscribeAll</a>() { messageHandlers_.clear(); }</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span> </div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>  <span class="comment">/**</span></div>
+<div class="line"><span class="lineno">   66</span><span class="comment">   * @brief Publish a message to all registered handlers.</span></div>
+<div class="line"><span class="lineno">   67</span><span class="comment">   *</span></div>
+<div class="line"><span class="lineno">   68</span><span class="comment">   * Forwards the given message to each handler in the messageHandlers_ list.</span></div>
+<div class="line"><span class="lineno">   69</span><span class="comment">   * @param msg The message to publish.</span></div>
+<div class="line"><span class="lineno">   70</span><span class="comment">   */</span></div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classtinyrobotics_1_1MessageSource.html#a98c36b84c000f803e27b164c09d96260">sendMessage</a>(<a class="code hl_class" href="structtinyrobotics_1_1Message.html">Message</a>&lt;<span class="keywordtype">float</span>&gt;&amp; msg) {</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>    <span class="keywordflow">for</span> (<span class="keyword">auto</span>&amp; entry : messageHandlers_) {</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>      <span class="keywordflow">if</span> (!entry.handler) <span class="keywordflow">continue</span>;</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>      <span class="keywordflow">if</span> ((entry.origin == MessageOrigin::Undefined || entry.origin == msg.origin) &amp;&amp;</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>          (entry.content == MessageContent::Undefined || entry.content == msg.content)) {</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>        entry.handler-&gt;onMessage(msg);</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>      }</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>    }</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>  }</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span> </div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>  <span class="comment">/**</span></div>
+<div class="line"><span class="lineno">   82</span><span class="comment">   * @brief Publish a message to all registered handlers.</span></div>
+<div class="line"><span class="lineno">   83</span><span class="comment">   *</span></div>
+<div class="line"><span class="lineno">   84</span><span class="comment">   * Forwards the given message to each handler in the messageHandlers_ list.</span></div>
+<div class="line"><span class="lineno">   85</span><span class="comment">   * @param msg The message to publish.</span></div>
+<div class="line"><span class="lineno">   86</span><span class="comment">   */</span></div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classtinyrobotics_1_1MessageSource.html#acca83780d0920c0777c5ed4801644878">sendMessage</a>(<span class="keyword">const</span> <a class="code hl_class" href="structtinyrobotics_1_1Message.html">Message</a>&lt;<a class="code hl_class" href="classtinyrobotics_1_1Coordinate.html">Coordinate</a>&lt;<span class="keywordtype">float</span>&gt;&gt;&amp; msg) {</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>    <span class="keywordflow">for</span> (<span class="keyword">auto</span>&amp; entry : messageHandlers_) {</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>      <span class="keywordflow">if</span> (!entry.handler) <span class="keywordflow">continue</span>;</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>      <span class="keywordflow">if</span> ((entry.origin == MessageOrigin::Undefined || entry.origin == msg.origin) &amp;&amp;</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>          (entry.content == MessageContent::Undefined || entry.content == msg.content)) {</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>        entry.handler-&gt;onMessage(msg);</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>      }</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>    }</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>  }</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span> </div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>  <span class="comment">/**</span></div>
+<div class="line"><span class="lineno">   98</span><span class="comment">   * @brief Publish a message to all registered handlers.</span></div>
+<div class="line"><span class="lineno">   99</span><span class="comment">   *</span></div>
+<div class="line"><span class="lineno">  100</span><span class="comment">   * Forwards the given message to each handler in the messageHandlers_ list.</span></div>
+<div class="line"><span class="lineno">  101</span><span class="comment">   * @param msg The message to publish.</span></div>
+<div class="line"><span class="lineno">  102</span><span class="comment">   */</span></div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classtinyrobotics_1_1MessageSource.html#a8c365effddc5ffc78b8a3532b01047b3">sendMessage</a>(<span class="keyword">const</span> <a class="code hl_class" href="structtinyrobotics_1_1Message.html">Message</a>&lt;<a class="code hl_class" href="classtinyrobotics_1_1GPSCoordinate.html">GPSCoordinate</a>&gt;&amp; msg) {</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>    <span class="keywordflow">for</span> (<span class="keyword">auto</span>&amp; entry : messageHandlers_) {</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>      <span class="keywordflow">if</span> (!entry.handler) <span class="keywordflow">continue</span>;</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>      <span class="keywordflow">if</span> ((entry.origin == MessageOrigin::Undefined || entry.origin == msg.origin) &amp;&amp;</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>          (entry.content == MessageContent::Undefined || entry.content == msg.content)) {</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>        entry.handler-&gt;onMessage(msg);</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>      }</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>    }</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>  }</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span> </div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span><span class="keyword">protected</span>:</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>  <span class="keyword">struct</span> <a class="code hl_struct" href="structtinyrobotics_1_1MessageSource_1_1MessageHandlerEntry.html">MessageHandlerEntry</a> {</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>    <a class="code hl_class" href="classtinyrobotics_1_1MessageHandler.html">MessageHandler</a>* handler = <span class="keywordtype">nullptr</span>;</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>    MessageOrigin origin = MessageOrigin::Undefined;  <span class="comment">// origin filter</span></div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>    MessageContent content = MessageContent::Undefined; <span class="comment">// content filter</span></div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span> </div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>    MessageHandlerEntry() = <span class="keywordflow">default</span>;</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>    MessageHandlerEntry(<a class="code hl_class" href="classtinyrobotics_1_1MessageHandler.html">MessageHandler</a>&amp; h, MessageOrigin o = MessageOrigin::Undefined, MessageContent c = MessageContent::Undefined)</div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>      : handler(&amp;h), origin(o), content(c) {}</div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span> </div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>    <span class="keywordtype">bool</span> operator==(<span class="keyword">const</span> <a class="code hl_struct" href="structtinyrobotics_1_1MessageSource_1_1MessageHandlerEntry.html">MessageHandlerEntry</a>&amp; other) <span class="keyword">const</span> {</div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>      <span class="keywordflow">return</span> handler == other.handler &amp;&amp; origin == other.origin &amp;&amp; content == other.content;</div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>    }</div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>  };</div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>  std::vector&lt;MessageHandlerEntry&gt; messageHandlers_;</div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>};</div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span> </div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>}  <span class="comment">// namespace tinyrobotics</span></div>
 <div class="ttc" id="aclasstinyrobotics_1_1Coordinate_html"><div class="ttname"><a href="classtinyrobotics_1_1Coordinate.html">tinyrobotics::Coordinate</a></div><div class="ttdoc">A generic 3D coordinate class for robotics, navigation, and spatial calculations.</div><div class="ttdef"><b>Definition:</b> Coordinate.h:57</div></div>
 <div class="ttc" id="aclasstinyrobotics_1_1GPSCoordinate_html"><div class="ttname"><a href="classtinyrobotics_1_1GPSCoordinate.html">tinyrobotics::GPSCoordinate</a></div><div class="ttdoc">Represents a geodetic GPS coordinate with latitude, longitude, and optional altitude.</div><div class="ttdef"><b>Definition:</b> GPSCoordinate.h:52</div></div>
 <div class="ttc" id="aclasstinyrobotics_1_1MessageHandler_html"><div class="ttname"><a href="classtinyrobotics_1_1MessageHandler.html">tinyrobotics::MessageHandler</a></div><div class="ttdoc">Interface for handling messages in the TinyRobotics framework.</div><div class="ttdef"><b>Definition:</b> MessageHandler.h:16</div></div>
 <div class="ttc" id="aclasstinyrobotics_1_1MessageSource_html"><div class="ttname"><a href="classtinyrobotics_1_1MessageSource.html">tinyrobotics::MessageSource</a></div><div class="ttdoc">Base class for message sources in the TinyRobotics communication framework.</div><div class="ttdef"><b>Definition:</b> MessageSource.h:34</div></div>
-<div class="ttc" id="aclasstinyrobotics_1_1MessageSource_html_a452ef8a62219e36235175becfc72dc61"><div class="ttname"><a href="classtinyrobotics_1_1MessageSource.html#a452ef8a62219e36235175becfc72dc61">tinyrobotics::MessageSource::unsubscribeAll</a></div><div class="ttdeci">void unsubscribeAll()</div><div class="ttdoc">Remove all registered message handlers.</div><div class="ttdef"><b>Definition:</b> MessageSource.h:49</div></div>
-<div class="ttc" id="aclasstinyrobotics_1_1MessageSource_html_a6f644591faf6edfeceef6b7776b331df"><div class="ttname"><a href="classtinyrobotics_1_1MessageSource.html#a6f644591faf6edfeceef6b7776b331df">tinyrobotics::MessageSource::subscribe</a></div><div class="ttdeci">void subscribe(MessageHandler &amp;handler)</div><div class="ttdoc">Add a message handler to the chain.</div><div class="ttdef"><b>Definition:</b> MessageSource.h:42</div></div>
-<div class="ttc" id="aclasstinyrobotics_1_1MessageSource_html_a98c36b84c000f803e27b164c09d96260"><div class="ttname"><a href="classtinyrobotics_1_1MessageSource.html#a98c36b84c000f803e27b164c09d96260">tinyrobotics::MessageSource::sendMessage</a></div><div class="ttdeci">void sendMessage(Message&lt; float &gt; &amp;msg)</div><div class="ttdoc">Publish a message to all registered handlers.</div><div class="ttdef"><b>Definition:</b> MessageSource.h:57</div></div>
+<div class="ttc" id="aclasstinyrobotics_1_1MessageSource_html_a452ef8a62219e36235175becfc72dc61"><div class="ttname"><a href="classtinyrobotics_1_1MessageSource.html#a452ef8a62219e36235175becfc72dc61">tinyrobotics::MessageSource::unsubscribeAll</a></div><div class="ttdeci">void unsubscribeAll()</div><div class="ttdoc">Remove all registered message handlers.</div><div class="ttdef"><b>Definition:</b> MessageSource.h:63</div></div>
+<div class="ttc" id="aclasstinyrobotics_1_1MessageSource_html_a8c365effddc5ffc78b8a3532b01047b3"><div class="ttname"><a href="classtinyrobotics_1_1MessageSource.html#a8c365effddc5ffc78b8a3532b01047b3">tinyrobotics::MessageSource::sendMessage</a></div><div class="ttdeci">void sendMessage(const Message&lt; GPSCoordinate &gt; &amp;msg)</div><div class="ttdoc">Publish a message to all registered handlers.</div><div class="ttdef"><b>Definition:</b> MessageSource.h:103</div></div>
+<div class="ttc" id="aclasstinyrobotics_1_1MessageSource_html_a98c36b84c000f803e27b164c09d96260"><div class="ttname"><a href="classtinyrobotics_1_1MessageSource.html#a98c36b84c000f803e27b164c09d96260">tinyrobotics::MessageSource::sendMessage</a></div><div class="ttdeci">void sendMessage(Message&lt; float &gt; &amp;msg)</div><div class="ttdoc">Publish a message to all registered handlers.</div><div class="ttdef"><b>Definition:</b> MessageSource.h:71</div></div>
+<div class="ttc" id="aclasstinyrobotics_1_1MessageSource_html_ac3cabbec9037e5565dff2a698aa8dc8c"><div class="ttname"><a href="classtinyrobotics_1_1MessageSource.html#ac3cabbec9037e5565dff2a698aa8dc8c">tinyrobotics::MessageSource::subscribe</a></div><div class="ttdeci">void subscribe(MessageHandler &amp;handler, MessageOrigin origin=MessageOrigin::Undefined, MessageContent content=MessageContent::Undefined)</div><div class="ttdoc">Subscribe a message handler to this source, with optional filtering.</div><div class="ttdef"><b>Definition:</b> MessageSource.h:54</div></div>
+<div class="ttc" id="aclasstinyrobotics_1_1MessageSource_html_acca83780d0920c0777c5ed4801644878"><div class="ttname"><a href="classtinyrobotics_1_1MessageSource.html#acca83780d0920c0777c5ed4801644878">tinyrobotics::MessageSource::sendMessage</a></div><div class="ttdeci">void sendMessage(const Message&lt; Coordinate&lt; float &gt; &gt; &amp;msg)</div><div class="ttdoc">Publish a message to all registered handlers.</div><div class="ttdef"><b>Definition:</b> MessageSource.h:87</div></div>
+<div class="ttc" id="astructtinyrobotics_1_1MessageSource_1_1MessageHandlerEntry_html"><div class="ttname"><a href="structtinyrobotics_1_1MessageSource_1_1MessageHandlerEntry.html">tinyrobotics::MessageSource::MessageHandlerEntry</a></div><div class="ttdef"><b>Definition:</b> MessageSource.h:114</div></div>
 <div class="ttc" id="astructtinyrobotics_1_1Message_html"><div class="ttname"><a href="structtinyrobotics_1_1Message.html">tinyrobotics::Message</a></div><div class="ttdoc">Generic message structure for communication, parameterized by value type.</div><div class="ttdef"><b>Definition:</b> Message.h:66</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->

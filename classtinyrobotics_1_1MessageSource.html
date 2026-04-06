@@ -74,6 +74,7 @@ $(function() {
 </div><!-- top -->
 <div class="header">
   <div class="summary">
+<a href="#nested-classes">Classes</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pro-attribs">Protected Attributes</a> &#124;
 <a href="classtinyrobotics_1_1MessageSource-members.html">List of all members</a>  </div>
@@ -118,11 +119,16 @@ Inheritance diagram for MessageSource:</div>
 </map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtinyrobotics_1_1MessageSource_1_1MessageHandlerEntry.html">MessageHandlerEntry</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a6f644591faf6edfeceef6b7776b331df"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1MessageSource.html#a6f644591faf6edfeceef6b7776b331df">subscribe</a> (<a class="el" href="classtinyrobotics_1_1MessageHandler.html">MessageHandler</a> &amp;handler)</td></tr>
-<tr class="memdesc:a6f644591faf6edfeceef6b7776b331df"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add a message handler to the chain.  <br /></td></tr>
-<tr class="separator:a6f644591faf6edfeceef6b7776b331df"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac3cabbec9037e5565dff2a698aa8dc8c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1MessageSource.html#ac3cabbec9037e5565dff2a698aa8dc8c">subscribe</a> (<a class="el" href="classtinyrobotics_1_1MessageHandler.html">MessageHandler</a> &amp;handler, MessageOrigin origin=MessageOrigin::Undefined, MessageContent content=MessageContent::Undefined)</td></tr>
+<tr class="memdesc:ac3cabbec9037e5565dff2a698aa8dc8c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Subscribe a message handler to this source, with optional filtering.  <br /></td></tr>
+<tr class="separator:ac3cabbec9037e5565dff2a698aa8dc8c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a452ef8a62219e36235175becfc72dc61"><td class="memItemLeft" align="right" valign="top"><a id="a452ef8a62219e36235175becfc72dc61" name="a452ef8a62219e36235175becfc72dc61"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>unsubscribeAll</b> ()</td></tr>
 <tr class="memdesc:a452ef8a62219e36235175becfc72dc61"><td class="mdescLeft">&#160;</td><td class="mdescRight">Remove all registered message handlers. <br /></td></tr>
@@ -130,33 +136,101 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>unsubscribeAll</b> ()
 <tr class="memitem:a98c36b84c000f803e27b164c09d96260"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1MessageSource.html#a98c36b84c000f803e27b164c09d96260">sendMessage</a> (<a class="el" href="structtinyrobotics_1_1Message.html">Message</a>&lt; float &gt; &amp;msg)</td></tr>
 <tr class="memdesc:a98c36b84c000f803e27b164c09d96260"><td class="mdescLeft">&#160;</td><td class="mdescRight">Publish a message to all registered handlers.  <br /></td></tr>
 <tr class="separator:a98c36b84c000f803e27b164c09d96260"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acca83780d0920c0777c5ed4801644878"><td class="memItemLeft" align="right" valign="top"><a id="acca83780d0920c0777c5ed4801644878" name="acca83780d0920c0777c5ed4801644878"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>sendMessage</b> (const <a class="el" href="structtinyrobotics_1_1Message.html">Message</a>&lt; <a class="el" href="classtinyrobotics_1_1Coordinate.html">Coordinate</a>&lt; float &gt; &gt; &amp;msg)</td></tr>
+<tr class="memitem:acca83780d0920c0777c5ed4801644878"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1MessageSource.html#acca83780d0920c0777c5ed4801644878">sendMessage</a> (const <a class="el" href="structtinyrobotics_1_1Message.html">Message</a>&lt; <a class="el" href="classtinyrobotics_1_1Coordinate.html">Coordinate</a>&lt; float &gt; &gt; &amp;msg)</td></tr>
+<tr class="memdesc:acca83780d0920c0777c5ed4801644878"><td class="mdescLeft">&#160;</td><td class="mdescRight">Publish a message to all registered handlers.  <br /></td></tr>
 <tr class="separator:acca83780d0920c0777c5ed4801644878"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8c365effddc5ffc78b8a3532b01047b3"><td class="memItemLeft" align="right" valign="top"><a id="a8c365effddc5ffc78b8a3532b01047b3" name="a8c365effddc5ffc78b8a3532b01047b3"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>sendMessage</b> (const <a class="el" href="structtinyrobotics_1_1Message.html">Message</a>&lt; <a class="el" href="classtinyrobotics_1_1GPSCoordinate.html">GPSCoordinate</a> &gt; &amp;msg)</td></tr>
+<tr class="memitem:a8c365effddc5ffc78b8a3532b01047b3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1MessageSource.html#a8c365effddc5ffc78b8a3532b01047b3">sendMessage</a> (const <a class="el" href="structtinyrobotics_1_1Message.html">Message</a>&lt; <a class="el" href="classtinyrobotics_1_1GPSCoordinate.html">GPSCoordinate</a> &gt; &amp;msg)</td></tr>
+<tr class="memdesc:a8c365effddc5ffc78b8a3532b01047b3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Publish a message to all registered handlers.  <br /></td></tr>
 <tr class="separator:a8c365effddc5ffc78b8a3532b01047b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
-<tr class="memitem:ae8917ae7a3eb87d29c94c514e1d5c981"><td class="memItemLeft" align="right" valign="top"><a id="ae8917ae7a3eb87d29c94c514e1d5c981" name="ae8917ae7a3eb87d29c94c514e1d5c981"></a>
-std::vector&lt; <a class="el" href="classtinyrobotics_1_1MessageHandler.html">MessageHandler</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>messageHandlers_</b></td></tr>
-<tr class="separator:ae8917ae7a3eb87d29c94c514e1d5c981"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a61506a2328621ddeb80f3c83146db0d8"><td class="memItemLeft" align="right" valign="top"><a id="a61506a2328621ddeb80f3c83146db0d8" name="a61506a2328621ddeb80f3c83146db0d8"></a>
+std::vector&lt; <a class="el" href="structtinyrobotics_1_1MessageSource_1_1MessageHandlerEntry.html">MessageHandlerEntry</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>messageHandlers_</b></td></tr>
+<tr class="separator:a61506a2328621ddeb80f3c83146db0d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Base class for message sources in the TinyRobotics communication framework. </p>
 <p><a class="el" href="classtinyrobotics_1_1MessageSource.html" title="Base class for message sources in the TinyRobotics communication framework.">MessageSource</a> manages a list of <a class="el" href="classtinyrobotics_1_1MessageHandler.html" title="Interface for handling messages in the TinyRobotics framework.">MessageHandler</a> objects and provides methods to add, clear, and forward messages to all registered handlers. This enables a flexible publish/subscribe or observer pattern for distributing messages (such as sensor data, commands, or events) to multiple consumers in a robotics system.</p>
 <p>Typical usage: </p><div class="fragment"><div class="line"><a class="code hl_class" href="classtinyrobotics_1_1MessageSource.html">MessageSource</a> source;</div>
-<div class="line">source.<a class="code hl_function" href="classtinyrobotics_1_1MessageSource.html#a6f644591faf6edfeceef6b7776b331df">subscribe</a>(handler1);</div>
-<div class="line">source.<a class="code hl_function" href="classtinyrobotics_1_1MessageSource.html#a6f644591faf6edfeceef6b7776b331df">subscribe</a>(handler2);</div>
+<div class="line">source.<a class="code hl_function" href="classtinyrobotics_1_1MessageSource.html#ac3cabbec9037e5565dff2a698aa8dc8c">subscribe</a>(handler1);</div>
+<div class="line">source.<a class="code hl_function" href="classtinyrobotics_1_1MessageSource.html#ac3cabbec9037e5565dff2a698aa8dc8c">subscribe</a>(handler2);</div>
 <div class="line">source.<a class="code hl_function" href="classtinyrobotics_1_1MessageSource.html#a98c36b84c000f803e27b164c09d96260">sendMessage</a>(msg); <span class="comment">// Forwards to all handlers</span></div>
 <div class="ttc" id="aclasstinyrobotics_1_1MessageSource_html"><div class="ttname"><a href="classtinyrobotics_1_1MessageSource.html">tinyrobotics::MessageSource</a></div><div class="ttdoc">Base class for message sources in the TinyRobotics communication framework.</div><div class="ttdef"><b>Definition:</b> MessageSource.h:34</div></div>
-<div class="ttc" id="aclasstinyrobotics_1_1MessageSource_html_a6f644591faf6edfeceef6b7776b331df"><div class="ttname"><a href="classtinyrobotics_1_1MessageSource.html#a6f644591faf6edfeceef6b7776b331df">tinyrobotics::MessageSource::subscribe</a></div><div class="ttdeci">void subscribe(MessageHandler &amp;handler)</div><div class="ttdoc">Add a message handler to the chain.</div><div class="ttdef"><b>Definition:</b> MessageSource.h:42</div></div>
-<div class="ttc" id="aclasstinyrobotics_1_1MessageSource_html_a98c36b84c000f803e27b164c09d96260"><div class="ttname"><a href="classtinyrobotics_1_1MessageSource.html#a98c36b84c000f803e27b164c09d96260">tinyrobotics::MessageSource::sendMessage</a></div><div class="ttdeci">void sendMessage(Message&lt; float &gt; &amp;msg)</div><div class="ttdoc">Publish a message to all registered handlers.</div><div class="ttdef"><b>Definition:</b> MessageSource.h:57</div></div>
+<div class="ttc" id="aclasstinyrobotics_1_1MessageSource_html_a98c36b84c000f803e27b164c09d96260"><div class="ttname"><a href="classtinyrobotics_1_1MessageSource.html#a98c36b84c000f803e27b164c09d96260">tinyrobotics::MessageSource::sendMessage</a></div><div class="ttdeci">void sendMessage(Message&lt; float &gt; &amp;msg)</div><div class="ttdoc">Publish a message to all registered handlers.</div><div class="ttdef"><b>Definition:</b> MessageSource.h:71</div></div>
+<div class="ttc" id="aclasstinyrobotics_1_1MessageSource_html_ac3cabbec9037e5565dff2a698aa8dc8c"><div class="ttname"><a href="classtinyrobotics_1_1MessageSource.html#ac3cabbec9037e5565dff2a698aa8dc8c">tinyrobotics::MessageSource::subscribe</a></div><div class="ttdeci">void subscribe(MessageHandler &amp;handler, MessageOrigin origin=MessageOrigin::Undefined, MessageContent content=MessageContent::Undefined)</div><div class="ttdoc">Subscribe a message handler to this source, with optional filtering.</div><div class="ttdef"><b>Definition:</b> MessageSource.h:54</div></div>
 </div><!-- fragment --><p>Extend this class to implement custom message-producing components (e.g., sensors, controllers) that need to broadcast messages to other system parts. </p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="acca83780d0920c0777c5ed4801644878" name="acca83780d0920c0777c5ed4801644878"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acca83780d0920c0777c5ed4801644878">&#9670;&#160;</a></span>sendMessage() <span class="overload">[1/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void sendMessage </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structtinyrobotics_1_1Message.html">Message</a>&lt; <a class="el" href="classtinyrobotics_1_1Coordinate.html">Coordinate</a>&lt; float &gt; &gt; &amp;&#160;</td>
+          <td class="paramname"><em>msg</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Publish a message to all registered handlers. </p>
+<p>Forwards the given message to each handler in the messageHandlers_ list. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">msg</td><td>The message to publish. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a8c365effddc5ffc78b8a3532b01047b3" name="a8c365effddc5ffc78b8a3532b01047b3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8c365effddc5ffc78b8a3532b01047b3">&#9670;&#160;</a></span>sendMessage() <span class="overload">[2/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void sendMessage </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structtinyrobotics_1_1Message.html">Message</a>&lt; <a class="el" href="classtinyrobotics_1_1GPSCoordinate.html">GPSCoordinate</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>msg</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Publish a message to all registered handlers. </p>
+<p>Forwards the given message to each handler in the messageHandlers_ list. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">msg</td><td>The message to publish. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a id="a98c36b84c000f803e27b164c09d96260" name="a98c36b84c000f803e27b164c09d96260"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a98c36b84c000f803e27b164c09d96260">&#9670;&#160;</a></span>sendMessage()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a98c36b84c000f803e27b164c09d96260">&#9670;&#160;</a></span>sendMessage() <span class="overload">[3/3]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -189,8 +263,8 @@ std::vector&lt; <a class="el" href="classtinyrobotics_1_1MessageHandler.html">Me
 
 </div>
 </div>
-<a id="a6f644591faf6edfeceef6b7776b331df" name="a6f644591faf6edfeceef6b7776b331df"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6f644591faf6edfeceef6b7776b331df">&#9670;&#160;</a></span>subscribe()</h2>
+<a id="ac3cabbec9037e5565dff2a698aa8dc8c" name="ac3cabbec9037e5565dff2a698aa8dc8c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac3cabbec9037e5565dff2a698aa8dc8c">&#9670;&#160;</a></span>subscribe()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -202,8 +276,24 @@ std::vector&lt; <a class="el" href="classtinyrobotics_1_1MessageHandler.html">Me
           <td class="memname">void subscribe </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="classtinyrobotics_1_1MessageHandler.html">MessageHandler</a> &amp;&#160;</td>
-          <td class="paramname"><em>handler</em></td><td>)</td>
+          <td class="paramname"><em>handler</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">MessageOrigin&#160;</td>
+          <td class="paramname"><em>origin</em> = <code>MessageOrigin::Undefined</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">MessageContent&#160;</td>
+          <td class="paramname"><em>content</em> = <code>MessageContent::Undefined</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
   </td>
@@ -213,14 +303,20 @@ std::vector&lt; <a class="el" href="classtinyrobotics_1_1MessageHandler.html">Me
 </table>
 </div><div class="memdoc">
 
-<p>Add a message handler to the chain. </p>
-<p>Allows forwarding messages to additional handlers. </p><dl class="params"><dt>Parameters</dt><dd>
+<p>Subscribe a message handler to this source, with optional filtering. </p>
+<p>Registers a <a class="el" href="classtinyrobotics_1_1MessageHandler.html" title="Interface for handling messages in the TinyRobotics framework.">MessageHandler</a> to receive messages published by this source. Optionally, you can specify a filter for message origin and content. Only messages matching the filter (or with filter set to Undefined) will be delivered to the handler.</p>
+<dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">handler</td><td>Reference to a <a class="el" href="classtinyrobotics_1_1MessageHandler.html" title="Interface for handling messages in the TinyRobotics framework.">MessageHandler</a> to add. </td></tr>
+    <tr><td class="paramname">origin</td><td>(Optional) Only deliver messages with this origin. Use MessageOrigin::Undefined to accept all origins. </td></tr>
+    <tr><td class="paramname">content</td><td>(Optional) Only deliver messages with this content type. Use MessageContent::Undefined to accept all content types.</td></tr>
   </table>
   </dd>
 </dl>
-
+<p>Example: </p><div class="fragment"><div class="line">source.subscribe(handler); <span class="comment">// Receives all messages</span></div>
+<div class="line">source.subscribe(handler, MessageOrigin::RemoteControl); <span class="comment">// Only messages from remote control</span></div>
+<div class="line">source.subscribe(handler, MessageOrigin::Undefined, MessageContent::Throttle); <span class="comment">// Only throttle messages</span></div>
+</div><!-- fragment --> 
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>

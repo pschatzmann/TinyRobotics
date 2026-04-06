@@ -168,7 +168,7 @@ $(function() {
 <div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span> </div>
 <div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>    <span class="comment">// publish motor speed as message for telemetry</span></div>
 <div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>    <a class="code hl_class" href="structtinyrobotics_1_1Message.html">Message</a>&lt;<span class="keywordtype">float</span>&gt; msg(MessageContent::MotorSpeed, percent, Unit::Percent);</div>
-<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>    msg.source = MessageOrigin::Motor;</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>    msg.origin = MessageOrigin::Motor;</div>
 <div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>    sendMessage(msg);</div>
 <div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>  }</div>
 <div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span> </div>
@@ -177,7 +177,7 @@ $(function() {
 <div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>    servos_[Rudder].setAngle(angle);</div>
 <div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>    <span class="comment">// publish rudder update as message for telemetry</span></div>
 <div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>    <a class="code hl_class" href="structtinyrobotics_1_1Message.html">Message</a>&lt;<span class="keywordtype">float</span>&gt; msg(MessageContent::Yaw, angle, Unit::AngleDegree);</div>
-<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>    msg.source = MessageOrigin::Rudder;</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>    msg.origin = MessageOrigin::Rudder;</div>
 <div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>    sendMessage(msg);</div>
 <div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>  }</div>
 <div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span> </div>
@@ -186,7 +186,7 @@ $(function() {
 <div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>    servos_[Elevator].setAngle(angle);</div>
 <div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>    <span class="comment">// publish elevator update as message for telemetry</span></div>
 <div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>    <a class="code hl_class" href="structtinyrobotics_1_1Message.html">Message</a>&lt;<span class="keywordtype">float</span>&gt; msg(MessageContent::Pitch, angle, Unit::AngleDegree);</div>
-<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>    msg.source = MessageOrigin::Elevator;</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>    msg.origin = MessageOrigin::Elevator;</div>
 <div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>    sendMessage(msg);</div>
 <div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>  }</div>
 <div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span> </div>
@@ -196,12 +196,12 @@ $(function() {
 <div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>    servos_[AileronRight].setAngle(rightAngle);</div>
 <div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>    <span class="comment">// publish aileron update as message for telemetry</span></div>
 <div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>    <a class="code hl_class" href="structtinyrobotics_1_1Message.html">Message</a>&lt;<span class="keywordtype">float</span>&gt; msgLeft(MessageContent::Roll, leftAngle, Unit::AngleDegree);</div>
-<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>    msgLeft.source = MessageOrigin::Aileron;</div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>    msgLeft.origin = MessageOrigin::Aileron;</div>
 <div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>    msgLeft.source_id = 0;  <span class="comment">// Left aileron</span></div>
 <div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>    sendMessage(msgLeft);</div>
 <div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>    <a class="code hl_class" href="structtinyrobotics_1_1Message.html">Message</a>&lt;<span class="keywordtype">float</span>&gt; msgRight(MessageContent::Roll, rightAngle,</div>
 <div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>                            Unit::AngleDegree);</div>
-<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>    msgRight.source = MessageOrigin::Aileron;</div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>    msgRight.origin = MessageOrigin::Aileron;</div>
 <div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>    msgRight.source_id = 1;  <span class="comment">// Right aileron</span></div>
 <div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>    sendMessage(msgRight);</div>
 <div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>  }</div>
@@ -233,7 +233,7 @@ $(function() {
 <div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span> </div>
 <div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>  <span class="keywordtype">bool</span> <a class="code hl_function" href="classtinyrobotics_1_1AirPlane.html#ab78c06b51db5e63c8f7a84c54baf3842">onMessage</a>(<span class="keyword">const</span> <a class="code hl_class" href="structtinyrobotics_1_1Message.html">Message</a>&lt;<span class="keywordtype">float</span>&gt;&amp; msg) <span class="keyword">override</span> {</div>
 <div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>    <span class="keywordtype">float</span> angle;</div>
-<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>    <span class="keywordflow">if</span> (!isValidMessageSource(msg.source)) <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>    <span class="keywordflow">if</span> (!isValidMessageSource(msg.origin)) <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
 <div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>    <span class="keywordflow">switch</span> (msg.content) {</div>
 <div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>      <span class="keywordflow">case</span> MessageContent::Throttle:</div>
 <div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span>        <span class="keywordflow">if</span> (msg.unit != Unit::Percent) <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>

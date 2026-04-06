@@ -225,19 +225,19 @@ $(function() {
 <div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>    <span class="comment">// Publish position as message</span></div>
 <div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>    <a class="code hl_class" href="structtinyrobotics_1_1Message.html">Message</a>&lt;<a class="code hl_class" href="classtinyrobotics_1_1Coordinate.html">Coordinate</a>&lt;DistanceM&gt;&gt; msgPos{MessageContent::Position, position,</div>
 <div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>                                          Unit::Meters};</div>
-<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>    msgPos.source = MessageOrigin::IMU;</div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>    msgPos.origin = MessageOrigin::IMU;</div>
 <div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>    sendMessage(msgPos);</div>
 <div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span> </div>
 <div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>    <span class="comment">// Publish heading as float (radians)</span></div>
 <div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>    <a class="code hl_class" href="structtinyrobotics_1_1Message.html">Message</a>&lt;<span class="keywordtype">float</span>&gt; msgHeading{MessageContent::Heading, headingRad,</div>
 <div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>                              Unit::AngleRadian};</div>
-<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>    msgHeading.source = MessageOrigin::IMU;</div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>    msgHeading.origin = MessageOrigin::IMU;</div>
 <div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>    sendMessage(msgHeading);</div>
 <div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span> </div>
 <div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>    <span class="comment">// Publish speed as float (m/s)</span></div>
 <div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>    <a class="code hl_class" href="structtinyrobotics_1_1Message.html">Message</a>&lt;<span class="keywordtype">float</span>&gt; msgSpeed{MessageContent::Speed, speedMPS,</div>
 <div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span>                            Unit::MetersPerSecond};</div>
-<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>    msgSpeed.source = MessageOrigin::IMU;</div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>    msgSpeed.origin = MessageOrigin::IMU;</div>
 <div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span>    sendMessage(msgSpeed);</div>
 <div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span>  }</div>
 <div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span>};</div>
