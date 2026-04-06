@@ -134,7 +134,7 @@ $(function() {
 <div class="line"><span class="lineno">   56</span><span class="comment"> *    - This is convenient for direct message handling without manual type</span></div>
 <div class="line"><span class="lineno">   57</span><span class="comment"> * inspection.</span></div>
 <div class="line"><span class="lineno">   58</span><span class="comment"> *</span></div>
-<div class="line"><span class="lineno">   59</span><span class="comment"> * The parser reads the message header (prefix, size, source_id), then inspects</span></div>
+<div class="line"><span class="lineno">   59</span><span class="comment"> * The parser reads the message header (prefix, size, origin_id), then inspects</span></div>
 <div class="line"><span class="lineno">   60</span><span class="comment"> * the content field to determine the value type (float, Coordinate&lt;float&gt;,</span></div>
 <div class="line"><span class="lineno">   61</span><span class="comment"> * GPSCoordinate). It then reads the value and remaining fields accordingly.</span></div>
 <div class="line"><span class="lineno">   62</span><span class="comment"> *</span></div>
@@ -158,13 +158,13 @@ $(function() {
 <div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span> <span class="keyword">public</span>:</div>
 <div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>  <span class="comment">// Parses a message from the stream and fills out the correct type in result</span></div>
 <div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>  <span class="keywordtype">bool</span> parse(Stream&amp; io, <a class="code hl_struct" href="structtinyrobotics_1_1ParsedMessage.html">ParsedMessage</a>&amp; result) {</div>
-<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>    <span class="comment">// 1. Read prefix, size, and source_id</span></div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>    <span class="comment">// 1. Read prefix, size, and origin_id</span></div>
 <div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>    <span class="keywordtype">char</span> prefix[4] = {0};</div>
 <div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>    <span class="keywordflow">if</span> (io.readBytes(prefix, 3) != 3) <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
 <div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>    <span class="keywordflow">if</span> (strncmp(prefix, <span class="stringliteral">&quot;MSG&quot;</span>, 3) != 0) <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
 <div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span> </div>
 <div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>    uint8_t size = io.read();</div>
-<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>    uint8_t source_id = io.read();</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>    uint8_t origin_id = io.read();</div>
 <div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span> </div>
 <div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>    <span class="comment">// 2. Read content and unit fields (assuming they are next)</span></div>
 <div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>    MessageContent content;</div>
@@ -182,7 +182,7 @@ $(function() {
 <div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
 <div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>      result.coordMsg.prefix = <span class="stringliteral">&quot;MSG&quot;</span>;</div>
 <div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>      result.coordMsg.size = size;</div>
-<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>      result.coordMsg.source_id = source_id;</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>      result.coordMsg.origin_id = origin_id;</div>
 <div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>      result.coordMsg.content = content;</div>
 <div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>      result.coordMsg.unit = unit;</div>
 <div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>      <span class="comment">// Read source</span></div>
@@ -194,7 +194,7 @@ $(function() {
 <div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
 <div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>      result.gpsMsg.prefix = <span class="stringliteral">&quot;MSG&quot;</span>;</div>
 <div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>      result.gpsMsg.size = size;</div>
-<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>      result.gpsMsg.source_id = source_id;</div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>      result.gpsMsg.origin_id = origin_id;</div>
 <div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>      result.gpsMsg.content = content;</div>
 <div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>      result.gpsMsg.unit = unit;</div>
 <div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>      io.readBytes((<span class="keywordtype">char</span>*)&amp;result.gpsMsg.origin, <span class="keyword">sizeof</span>(MessageOrigin));</div>
@@ -205,7 +205,7 @@ $(function() {
 <div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
 <div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>      result.floatMsg.prefix = <span class="stringliteral">&quot;MSG&quot;</span>;</div>
 <div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>      result.floatMsg.size = size;</div>
-<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>      result.floatMsg.source_id = source_id;</div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>      result.floatMsg.origin_id = origin_id;</div>
 <div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>      result.floatMsg.content = content;</div>
 <div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>      result.floatMsg.unit = unit;</div>
 <div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>      io.readBytes((<span class="keywordtype">char</span>*)&amp;result.floatMsg.origin, <span class="keyword">sizeof</span>(MessageOrigin));</div>
