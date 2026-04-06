@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.6"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>TinyRobotics: ServoMotor Class Reference</title>
+<title>TinyRobotics: ServoMotor&lt; T &gt; Class Template Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -77,7 +77,7 @@ $(function() {
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pro-attribs">Protected Attributes</a> &#124;
 <a href="classtinyrobotics_1_1ServoMotor-members.html">List of all members</a>  </div>
-  <div class="headertitle"><div class="title">ServoMotor Class Reference<div class="ingroups"><a class="el" href="group__main.html">TinyRobotics</a> &raquo; <a class="el" href="group__motors.html">Motors</a></div></div></div>
+  <div class="headertitle"><div class="title">ServoMotor&lt; T &gt; Class Template Reference<div class="ingroups"><a class="el" href="group__main.html">TinyRobotics</a> &raquo; <a class="el" href="group__motors.html">Motors</a></div></div></div>
 </div><!--header-->
 <div class="contents">
 
@@ -86,21 +86,21 @@ $(function() {
 
 <p><code>#include &lt;<a class="el" href="ServoMotor_8h_source.html">ServoMotor.h</a>&gt;</code></p>
 <div class="dynheader">
-Inheritance diagram for ServoMotor:</div>
+Inheritance diagram for ServoMotor&lt; T &gt;:</div>
 <div class="dyncontent">
-<div class="center"><img src="classtinyrobotics_1_1ServoMotor__inherit__graph.png" border="0" usemap="#aServoMotor_inherit__map" alt="Inheritance graph"/></div>
-<map name="aServoMotor_inherit__map" id="aServoMotor_inherit__map">
-<area shape="rect" title="High&#45;level wrapper for Arduino Servo control (RC servo motors)." alt="" coords="5,79,103,104"/>
-<area shape="rect" href="classtinyrobotics_1_1Motor.html" title="Abstract base class for all motor driver types." alt="" coords="24,5,84,31"/>
+<div class="center"><img src="classtinyrobotics_1_1ServoMotor__inherit__graph.png" border="0" usemap="#aServoMotor_3_01T_01_4_inherit__map" alt="Inheritance graph"/></div>
+<map name="aServoMotor_3_01T_01_4_inherit__map" id="aServoMotor_3_01T_01_4_inherit__map">
+<area shape="rect" title="High&#45;level wrapper for Arduino Servo control (RC servo motors)." alt="" coords="5,79,140,104"/>
+<area shape="rect" href="classtinyrobotics_1_1Motor.html" title="Abstract base class for all motor driver types." alt="" coords="23,5,122,31"/>
 </map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <div class="dynheader">
-Collaboration diagram for ServoMotor:</div>
+Collaboration diagram for ServoMotor&lt; T &gt;:</div>
 <div class="dyncontent">
-<div class="center"><img src="classtinyrobotics_1_1ServoMotor__coll__graph.png" border="0" usemap="#aServoMotor_coll__map" alt="Collaboration graph"/></div>
-<map name="aServoMotor_coll__map" id="aServoMotor_coll__map">
-<area shape="rect" title="High&#45;level wrapper for Arduino Servo control (RC servo motors)." alt="" coords="5,79,103,104"/>
-<area shape="rect" href="classtinyrobotics_1_1Motor.html" title="Abstract base class for all motor driver types." alt="" coords="24,5,84,31"/>
+<div class="center"><img src="classtinyrobotics_1_1ServoMotor__coll__graph.png" border="0" usemap="#aServoMotor_3_01T_01_4_coll__map" alt="Collaboration graph"/></div>
+<map name="aServoMotor_3_01T_01_4_coll__map" id="aServoMotor_3_01T_01_4_coll__map">
+<area shape="rect" title="High&#45;level wrapper for Arduino Servo control (RC servo motors)." alt="" coords="5,79,140,104"/>
+<area shape="rect" href="classtinyrobotics_1_1Motor.html" title="Abstract base class for all motor driver types." alt="" coords="23,5,122,31"/>
 </map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
@@ -117,19 +117,28 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a7103642ee5456bfc478e19dd33eaa52e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a36459042a0cf20a8c10c020370e7f4ae"><td class="memItemLeft" align="right" valign="top">int8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1ServoMotor.html#a36459042a0cf20a8c10c020370e7f4ae">getAngle</a> ()</td></tr>
 <tr class="separator:a36459042a0cf20a8c10c020370e7f4ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2e11a2697648deba64ad0552421626f8"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1ServoMotor.html#a2e11a2697648deba64ad0552421626f8">setValuePercent</a> (T percent) override</td></tr>
+<tr class="separator:a2e11a2697648deba64ad0552421626f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adcf29aeda3502630e7e11cf2fb4f126b"><td class="memItemLeft" align="right" valign="top">T&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1ServoMotor.html#adcf29aeda3502630e7e11cf2fb4f126b">getValuePercent</a> () const override</td></tr>
+<tr class="separator:adcf29aeda3502630e7e11cf2fb4f126b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a45ae9b8e37c4c25dbacc230772bed168"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1ServoMotor.html#a45ae9b8e37c4c25dbacc230772bed168">setConstraints</a> (int minAngle, int maxAngle)</td></tr>
 <tr class="separator:a45ae9b8e37c4c25dbacc230772bed168"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a64e9fa75beda50a9e8400ee0d4e61984"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1ServoMotor.html#a64e9fa75beda50a9e8400ee0d4e61984">end</a> () override</td></tr>
 <tr class="separator:a64e9fa75beda50a9e8400ee0d4e61984"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aab121fc05ce8562504b0970668fe3f3f"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1ServoMotor.html#aab121fc05ce8562504b0970668fe3f3f">isPinsSet</a> () const</td></tr>
 <tr class="separator:aab121fc05ce8562504b0970668fe3f3f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="inherit_header pub_methods_classtinyrobotics_1_1Motor"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classtinyrobotics_1_1Motor')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classtinyrobotics_1_1Motor.html">Motor</a></td></tr>
+<tr class="inherit_header pub_methods_classtinyrobotics_1_1Motor"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classtinyrobotics_1_1Motor')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classtinyrobotics_1_1Motor.html">Motor&lt; T &gt;</a></td></tr>
 <tr class="memitem:ae8a0d9ca63f8bb3de100e347c3f3bca4 inherit pub_methods_classtinyrobotics_1_1Motor"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1Motor.html#ae8a0d9ca63f8bb3de100e347c3f3bca4">begin</a> ()=0</td></tr>
 <tr class="separator:ae8a0d9ca63f8bb3de100e347c3f3bca4 inherit pub_methods_classtinyrobotics_1_1Motor"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa540e86022c1f72380d1014d98f38f43 inherit pub_methods_classtinyrobotics_1_1Motor"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1Motor.html#aa540e86022c1f72380d1014d98f38f43">end</a> ()=0</td></tr>
 <tr class="separator:aa540e86022c1f72380d1014d98f38f43 inherit pub_methods_classtinyrobotics_1_1Motor"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae86cd58c8b7fe96c6d1ca5dd3c2834da inherit pub_methods_classtinyrobotics_1_1Motor"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1Motor.html#ae86cd58c8b7fe96c6d1ca5dd3c2834da">isPinsSet</a> () const =0</td></tr>
 <tr class="separator:ae86cd58c8b7fe96c6d1ca5dd3c2834da inherit pub_methods_classtinyrobotics_1_1Motor"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a112bed68a1b5f2194ad7bf0166b64c13 inherit pub_methods_classtinyrobotics_1_1Motor"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1Motor.html#a112bed68a1b5f2194ad7bf0166b64c13">setValuePercent</a> (T percent)=0</td></tr>
+<tr class="separator:a112bed68a1b5f2194ad7bf0166b64c13 inherit pub_methods_classtinyrobotics_1_1Motor"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:add9634f7f34b5b8709ae8bf2803249a7 inherit pub_methods_classtinyrobotics_1_1Motor"><td class="memItemLeft" align="right" valign="top"><a id="add9634f7f34b5b8709ae8bf2803249a7" name="add9634f7f34b5b8709ae8bf2803249a7"></a>
+virtual T&#160;</td><td class="memItemRight" valign="bottom"><b>getValuePercent</b> () const =0</td></tr>
+<tr class="separator:add9634f7f34b5b8709ae8bf2803249a7 inherit pub_methods_classtinyrobotics_1_1Motor"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3266095b7a7543fe56462040b3e47a70 inherit pub_methods_classtinyrobotics_1_1Motor"><td class="memItemLeft" align="right" valign="top"><a id="a3266095b7a7543fe56462040b3e47a70" name="a3266095b7a7543fe56462040b3e47a70"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>setID</b> (uint8_t id)</td></tr>
 <tr class="separator:a3266095b7a7543fe56462040b3e47a70 inherit pub_methods_classtinyrobotics_1_1Motor"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -154,13 +163,17 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>maxAngle</b> = 90</td>
 <tr class="memitem:a48df6d287d82e3a93beb8bbd33f6fd95"><td class="memItemLeft" align="right" valign="top"><a id="a48df6d287d82e3a93beb8bbd33f6fd95" name="a48df6d287d82e3a93beb8bbd33f6fd95"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>is_pin_asssigned</b> = false</td></tr>
 <tr class="separator:a48df6d287d82e3a93beb8bbd33f6fd95"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="inherit_header pro_attribs_classtinyrobotics_1_1Motor"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_classtinyrobotics_1_1Motor')"><img src="closed.png" alt="-"/>&#160;Protected Attributes inherited from <a class="el" href="classtinyrobotics_1_1Motor.html">Motor</a></td></tr>
+<tr class="memitem:a7db620c72533a2babad462a3afc39828"><td class="memItemLeft" align="right" valign="top"><a id="a7db620c72533a2babad462a3afc39828" name="a7db620c72533a2babad462a3afc39828"></a>
+T&#160;</td><td class="memItemRight" valign="bottom"><b>lastValuePercent</b> = 0.0f</td></tr>
+<tr class="separator:a7db620c72533a2babad462a3afc39828"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pro_attribs_classtinyrobotics_1_1Motor"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_classtinyrobotics_1_1Motor')"><img src="closed.png" alt="-"/>&#160;Protected Attributes inherited from <a class="el" href="classtinyrobotics_1_1Motor.html">Motor&lt; T &gt;</a></td></tr>
 <tr class="memitem:a1e6927fa1486224044e568f9c370519b inherit pro_attribs_classtinyrobotics_1_1Motor"><td class="memItemLeft" align="right" valign="top"><a id="a1e6927fa1486224044e568f9c370519b" name="a1e6927fa1486224044e568f9c370519b"></a>
 uint8_t&#160;</td><td class="memItemRight" valign="bottom"><b>id</b> = 0</td></tr>
 <tr class="separator:a1e6927fa1486224044e568f9c370519b inherit pro_attribs_classtinyrobotics_1_1Motor"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>High-level wrapper for Arduino Servo control (RC servo motors). </p>
+<div class="textblock"><div class="compoundTemplParams">template&lt;typename T = float&gt;<br />
+class tinyrobotics::ServoMotor&lt; T &gt;</div><p>High-level wrapper for Arduino Servo control (RC servo motors). </p>
 <p>This class provides an easy interface for controlling standard RC servo motors using the Arduino Servo library. It allows you to:</p><ul>
 <li>Attach/detach a servo to a digital pin</li>
 <li>Set the servo angle in degrees (using ROS right-handed convention: 0 is forward, +left, -right)</li>
@@ -174,10 +187,10 @@ uint8_t&#160;</td><td class="memItemRight" valign="bottom"><b>id</b> = 0</td></t
 <div class="line">servo.<a class="code hl_function" href="classtinyrobotics_1_1ServoMotor.html#a7103642ee5456bfc478e19dd33eaa52e">setAngle</a>(45);        <span class="comment">// Set to 45 degrees left</span></div>
 <div class="line"><span class="keywordtype">int</span> angle = servo.<a class="code hl_function" href="classtinyrobotics_1_1ServoMotor.html#a36459042a0cf20a8c10c020370e7f4ae">getAngle</a>(); <span class="comment">// Read last angle</span></div>
 <div class="line">servo.detach();            <span class="comment">// Detach when done</span></div>
-<div class="ttc" id="aclasstinyrobotics_1_1ServoMotor_html"><div class="ttname"><a href="classtinyrobotics_1_1ServoMotor.html">tinyrobotics::ServoMotor</a></div><div class="ttdoc">High-level wrapper for Arduino Servo control (RC servo motors).</div><div class="ttdef"><b>Definition:</b> ServoMotor.h:39</div></div>
-<div class="ttc" id="aclasstinyrobotics_1_1ServoMotor_html_a36459042a0cf20a8c10c020370e7f4ae"><div class="ttname"><a href="classtinyrobotics_1_1ServoMotor.html#a36459042a0cf20a8c10c020370e7f4ae">tinyrobotics::ServoMotor::getAngle</a></div><div class="ttdeci">int8_t getAngle()</div><div class="ttdef"><b>Definition:</b> ServoMotor.h:62</div></div>
-<div class="ttc" id="aclasstinyrobotics_1_1ServoMotor_html_a45ae9b8e37c4c25dbacc230772bed168"><div class="ttname"><a href="classtinyrobotics_1_1ServoMotor.html#a45ae9b8e37c4c25dbacc230772bed168">tinyrobotics::ServoMotor::setConstraints</a></div><div class="ttdeci">void setConstraints(int minAngle, int maxAngle)</div><div class="ttdef"><b>Definition:</b> ServoMotor.h:71</div></div>
-<div class="ttc" id="aclasstinyrobotics_1_1ServoMotor_html_a7103642ee5456bfc478e19dd33eaa52e"><div class="ttname"><a href="classtinyrobotics_1_1ServoMotor.html#a7103642ee5456bfc478e19dd33eaa52e">tinyrobotics::ServoMotor::setAngle</a></div><div class="ttdeci">void setAngle(int8_t rosAngleDegrees)</div><div class="ttdef"><b>Definition:</b> ServoMotor.h:53</div></div>
+<div class="ttc" id="aclasstinyrobotics_1_1ServoMotor_html"><div class="ttname"><a href="classtinyrobotics_1_1ServoMotor.html">tinyrobotics::ServoMotor</a></div><div class="ttdoc">High-level wrapper for Arduino Servo control (RC servo motors).</div><div class="ttdef"><b>Definition:</b> ServoMotor.h:40</div></div>
+<div class="ttc" id="aclasstinyrobotics_1_1ServoMotor_html_a36459042a0cf20a8c10c020370e7f4ae"><div class="ttname"><a href="classtinyrobotics_1_1ServoMotor.html#a36459042a0cf20a8c10c020370e7f4ae">tinyrobotics::ServoMotor::getAngle</a></div><div class="ttdeci">int8_t getAngle()</div><div class="ttdef"><b>Definition:</b> ServoMotor.h:63</div></div>
+<div class="ttc" id="aclasstinyrobotics_1_1ServoMotor_html_a45ae9b8e37c4c25dbacc230772bed168"><div class="ttname"><a href="classtinyrobotics_1_1ServoMotor.html#a45ae9b8e37c4c25dbacc230772bed168">tinyrobotics::ServoMotor::setConstraints</a></div><div class="ttdeci">void setConstraints(int minAngle, int maxAngle)</div><div class="ttdef"><b>Definition:</b> ServoMotor.h:86</div></div>
+<div class="ttc" id="aclasstinyrobotics_1_1ServoMotor_html_a7103642ee5456bfc478e19dd33eaa52e"><div class="ttname"><a href="classtinyrobotics_1_1ServoMotor.html#a7103642ee5456bfc478e19dd33eaa52e">tinyrobotics::ServoMotor::setAngle</a></div><div class="ttdeci">void setAngle(int8_t rosAngleDegrees)</div><div class="ttdef"><b>Definition:</b> ServoMotor.h:54</div></div>
 </div><!-- fragment --><dl class="section note"><dt>Note</dt><dd>Requires the Arduino Servo library. </dd></dl>
 </div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="a601fb7cf1fc15db50c71a826f084f934" name="a601fb7cf1fc15db50c71a826f084f934"></a>
@@ -203,7 +216,7 @@ uint8_t&#160;</td><td class="memItemRight" valign="bottom"><b>id</b> = 0</td></t
 </table>
 </div><div class="memdoc">
 
-<p>Implements <a class="el" href="classtinyrobotics_1_1Motor.html">Motor</a>.</p>
+<p>Implements <a class="el" href="classtinyrobotics_1_1Motor.html">Motor&lt; T &gt;</a>.</p>
 
 </div>
 </div>
@@ -230,7 +243,7 @@ uint8_t&#160;</td><td class="memItemRight" valign="bottom"><b>id</b> = 0</td></t
 </table>
 </div><div class="memdoc">
 
-<p>Implements <a class="el" href="classtinyrobotics_1_1Motor.html">Motor</a>.</p>
+<p>Implements <a class="el" href="classtinyrobotics_1_1Motor.html">Motor&lt; T &gt;</a>.</p>
 
 </div>
 </div>
@@ -260,6 +273,33 @@ uint8_t&#160;</td><td class="memItemRight" valign="bottom"><b>id</b> = 0</td></t
 
 </div>
 </div>
+<a id="adcf29aeda3502630e7e11cf2fb4f126b" name="adcf29aeda3502630e7e11cf2fb4f126b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adcf29aeda3502630e7e11cf2fb4f126b">&#9670;&#160;</a></span>getValuePercent()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">T getValuePercent </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="classtinyrobotics_1_1Motor.html">Motor&lt; T &gt;</a>.</p>
+
+</div>
+</div>
 <a id="aab121fc05ce8562504b0970668fe3f3f" name="aab121fc05ce8562504b0970668fe3f3f"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aab121fc05ce8562504b0970668fe3f3f">&#9670;&#160;</a></span>isPinsSet()</h2>
 
@@ -283,7 +323,7 @@ uint8_t&#160;</td><td class="memItemRight" valign="bottom"><b>id</b> = 0</td></t
 </table>
 </div><div class="memdoc">
 
-<p>Implements <a class="el" href="classtinyrobotics_1_1Motor.html">Motor</a>.</p>
+<p>Implements <a class="el" href="classtinyrobotics_1_1Motor.html">Motor&lt; T &gt;</a>.</p>
 
 </div>
 </div>
@@ -375,6 +415,35 @@ uint8_t&#160;</td><td class="memItemRight" valign="bottom"><b>id</b> = 0</td></t
 </table>
 </div><div class="memdoc">
 <p>Attach the servo to a pin </p>
+
+</div>
+</div>
+<a id="a2e11a2697648deba64ad0552421626f8" name="a2e11a2697648deba64ad0552421626f8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2e11a2697648deba64ad0552421626f8">&#9670;&#160;</a></span>setValuePercent()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool setValuePercent </td>
+          <td>(</td>
+          <td class="paramtype">T&#160;</td>
+          <td class="paramname"><em>percent</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Set servo position as a percentage (-100 to 100). -100 = minAngle, 0 = center, 100 = maxAngle </p>
+
+<p>Implements <a class="el" href="classtinyrobotics_1_1Motor.html">Motor&lt; T &gt;</a>.</p>
 
 </div>
 </div>

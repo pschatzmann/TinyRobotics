@@ -1,8 +1,8 @@
 <map id="Quadrotor&lt; MotorT &gt;" name="Quadrotor&lt; MotorT &gt;">
-<area shape="rect" id="node1" title="Simple quadrotor (quadcopter) model with 4&#45;motor control." alt="" coords="199,168,361,193"/>
-<area shape="rect" id="node2" href="$classtinyrobotics_1_1Vehicle.html" title="Abstract base class for all vehicle types." alt="" coords="188,80,257,105"/>
+<area shape="rect" id="node1" title="Simple quadrotor (quadcopter) model with 4&#45;motor control." alt="" coords="208,168,371,193"/>
+<area shape="rect" id="node2" href="$classtinyrobotics_1_1Vehicle.html" title="Abstract base class for all vehicle types." alt="" coords="183,80,252,105"/>
 <area shape="rect" id="node3" href="$classtinyrobotics_1_1MessageHandler.html" title="Interface for handling messages in the TinyRobotics framework." alt="" coords="5,5,136,31"/>
 <area shape="rect" id="node4" href="$classtinyrobotics_1_1MessageSource.html" title="Base class for message sources in the TinyRobotics communication framework." alt="" coords="161,5,285,31"/>
-<area shape="rect" id="node5" href="$classtinyrobotics_1_1BrushedMotor.html" title="High&#45;level H&#45;Bridge motor driver class for bidirectional DC motor control." alt="" coords="282,80,395,105"/>
-<area shape="rect" id="node6" href="$classtinyrobotics_1_1Motor.html" title="Abstract base class for all motor driver types." alt="" coords="309,5,369,31"/>
+<area shape="rect" id="node5" href="$classtinyrobotics_1_1BrushedMotor.html" title=" " alt="" coords="277,80,449,105"/>
+<area shape="rect" id="node6" href="$classtinyrobotics_1_1Motor.html" title="Abstract base class for all motor driver types." alt="" coords="313,5,412,31"/>
 </map>

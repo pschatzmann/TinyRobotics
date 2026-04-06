@@ -1,4 +1,4 @@
-<map id="GenericMotor" name="GenericMotor">
-<area shape="rect" id="node1" title="Motor abstraction for integrating external/custom motor drivers using callbacks." alt="" coords="5,79,116,104"/>
-<area shape="rect" id="node2" href="$classtinyrobotics_1_1Motor.html" title="Abstract base class for all motor driver types." alt="" coords="31,5,91,31"/>
+<map id="GenericMotor&lt; T &gt;" name="GenericMotor&lt; T &gt;">
+<area shape="rect" id="node1" title="Motor abstraction for integrating external/custom motor drivers using callbacks." alt="" coords="5,79,153,104"/>
+<area shape="rect" id="node2" href="$classtinyrobotics_1_1Motor.html" title="Abstract base class for all motor driver types." alt="" coords="30,5,129,31"/>
 </map>

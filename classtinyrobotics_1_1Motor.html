@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.6"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>TinyRobotics: Motor Class Reference</title>
+<title>TinyRobotics: Motor&lt; T &gt; Class Template Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -77,7 +77,7 @@ $(function() {
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pro-attribs">Protected Attributes</a> &#124;
 <a href="classtinyrobotics_1_1Motor-members.html">List of all members</a>  </div>
-  <div class="headertitle"><div class="title">Motor Class Reference<span class="mlabels"><span class="mlabel">abstract</span></span><div class="ingroups"><a class="el" href="group__main.html">TinyRobotics</a> &raquo; <a class="el" href="group__motors.html">Motors</a></div></div></div>
+  <div class="headertitle"><div class="title">Motor&lt; T &gt; Class Template Reference<span class="mlabels"><span class="mlabel">abstract</span></span><div class="ingroups"><a class="el" href="group__main.html">TinyRobotics</a> &raquo; <a class="el" href="group__motors.html">Motors</a></div></div></div>
 </div><!--header-->
 <div class="contents">
 
@@ -86,16 +86,18 @@ $(function() {
 
 <p><code>#include &lt;<a class="el" href="Motor_8h_source.html">Motor.h</a>&gt;</code></p>
 <div class="dynheader">
-Inheritance diagram for Motor:</div>
+Inheritance diagram for Motor&lt; T &gt;:</div>
 <div class="dyncontent">
-<div class="center"><img src="classtinyrobotics_1_1Motor__inherit__graph.png" border="0" usemap="#aMotor_inherit__map" alt="Inheritance graph"/></div>
-<map name="aMotor_inherit__map" id="aMotor_inherit__map">
-<area shape="rect" title="Abstract base class for all motor driver types." alt="" coords="316,5,376,31"/>
-<area shape="rect" href="classtinyrobotics_1_1BrushedMotor.html" title="High&#45;level H&#45;Bridge motor driver class for bidirectional DC motor control." alt="" coords="5,79,119,104"/>
-<area shape="rect" href="classtinyrobotics_1_1BrushlessMotor.html" title="Simple brushless DC motor (ESC) driver using Servo library for Arduino/ESP32." alt="" coords="143,79,266,104"/>
-<area shape="rect" href="classtinyrobotics_1_1GenericMotor.html" title="Motor abstraction for integrating external/custom motor drivers using callbacks." alt="" coords="291,79,401,104"/>
-<area shape="rect" href="classtinyrobotics_1_1ServoMotor.html" title="High&#45;level wrapper for Arduino Servo control (RC servo motors)." alt="" coords="425,79,523,104"/>
-<area shape="rect" href="classtinyrobotics_1_1StepperMotor.html" title="Stepper motor driver using FastAccelStepper for Arduino." alt="" coords="547,79,657,104"/>
+<div class="center"><img src="classtinyrobotics_1_1Motor__inherit__graph.png" border="0" usemap="#aMotor_3_01T_01_4_inherit__map" alt="Inheritance graph"/></div>
+<map name="aMotor_3_01T_01_4_inherit__map" id="aMotor_3_01T_01_4_inherit__map">
+<area shape="rect" title="Abstract base class for all motor driver types." alt="" coords="5,153,104,179"/>
+<area shape="rect" href="classtinyrobotics_1_1BrushedMotor.html" title=" " alt="" coords="152,5,324,31"/>
+<area shape="rect" href="classtinyrobotics_1_1ServoMotor.html" title=" " alt="" coords="160,55,316,80"/>
+<area shape="rect" href="classtinyrobotics_1_1BrushedMotor.html" title="High&#45;level H&#45;Bridge motor driver class for bidirectional DC motor control." alt="" coords="163,104,313,129"/>
+<area shape="rect" href="classtinyrobotics_1_1BrushlessMotor.html" title="Simple brushless DC motor (ESC) driver using Servo library for Arduino/ESP32." alt="" coords="157,153,319,179"/>
+<area shape="rect" href="classtinyrobotics_1_1GenericMotor.html" title="Motor abstraction for integrating external/custom motor drivers using callbacks." alt="" coords="164,203,312,228"/>
+<area shape="rect" href="classtinyrobotics_1_1ServoMotor.html" title="High&#45;level wrapper for Arduino Servo control (RC servo motors)." alt="" coords="171,252,305,277"/>
+<area shape="rect" href="classtinyrobotics_1_1StepperMotor.html" title="Stepper motor driver using FastAccelStepper for Arduino." alt="" coords="164,301,312,327"/>
 </map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
@@ -107,6 +109,11 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:aa540e86022c1f72380d1014d98f38f43"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae86cd58c8b7fe96c6d1ca5dd3c2834da"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1Motor.html#ae86cd58c8b7fe96c6d1ca5dd3c2834da">isPinsSet</a> () const =0</td></tr>
 <tr class="separator:ae86cd58c8b7fe96c6d1ca5dd3c2834da"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a112bed68a1b5f2194ad7bf0166b64c13"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1Motor.html#a112bed68a1b5f2194ad7bf0166b64c13">setValuePercent</a> (T percent)=0</td></tr>
+<tr class="separator:a112bed68a1b5f2194ad7bf0166b64c13"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:add9634f7f34b5b8709ae8bf2803249a7"><td class="memItemLeft" align="right" valign="top"><a id="add9634f7f34b5b8709ae8bf2803249a7" name="add9634f7f34b5b8709ae8bf2803249a7"></a>
+virtual T&#160;</td><td class="memItemRight" valign="bottom"><b>getValuePercent</b> () const =0</td></tr>
+<tr class="separator:add9634f7f34b5b8709ae8bf2803249a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3266095b7a7543fe56462040b3e47a70"><td class="memItemLeft" align="right" valign="top"><a id="a3266095b7a7543fe56462040b3e47a70" name="a3266095b7a7543fe56462040b3e47a70"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>setID</b> (uint8_t id)</td></tr>
 <tr class="separator:a3266095b7a7543fe56462040b3e47a70"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -121,7 +128,8 @@ uint8_t&#160;</td><td class="memItemRight" valign="bottom"><b>id</b> = 0</td></t
 <tr class="separator:a1e6927fa1486224044e568f9c370519b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Abstract base class for all motor driver types. </p>
+<div class="textblock"><div class="compoundTemplParams">template&lt;typename T = float&gt;<br />
+class tinyrobotics::Motor&lt; T &gt;</div><p>Abstract base class for all motor driver types. </p>
 <p>The <a class="el" href="classtinyrobotics_1_1Motor.html" title="Abstract base class for all motor driver types.">Motor</a> class defines a common interface for all motor drivers in the library. It enforces the implementation of:</p><ul>
 <li>end(): to safely stop or release the motor hardware</li>
 <li>isPinsSet(): to check if the required pins have been configured</li>
@@ -151,7 +159,7 @@ uint8_t&#160;</td><td class="memItemRight" valign="bottom"><b>id</b> = 0</td></t
 </table>
 </div><div class="memdoc">
 
-<p>Implemented in <a class="el" href="classtinyrobotics_1_1StepperMotor.html#a601fb7cf1fc15db50c71a826f084f934">StepperMotor</a>.</p>
+<p>Implemented in <a class="el" href="classtinyrobotics_1_1StepperMotor.html#a601fb7cf1fc15db50c71a826f084f934">StepperMotor&lt; T &gt;</a>.</p>
 
 </div>
 </div>
@@ -178,7 +186,7 @@ uint8_t&#160;</td><td class="memItemRight" valign="bottom"><b>id</b> = 0</td></t
 </table>
 </div><div class="memdoc">
 
-<p>Implemented in <a class="el" href="classtinyrobotics_1_1BrushedMotor.html#a64e9fa75beda50a9e8400ee0d4e61984">BrushedMotor</a>, and <a class="el" href="classtinyrobotics_1_1StepperMotor.html#a64e9fa75beda50a9e8400ee0d4e61984">StepperMotor</a>.</p>
+<p>Implemented in <a class="el" href="classtinyrobotics_1_1BrushedMotor.html#a64e9fa75beda50a9e8400ee0d4e61984">BrushedMotor&lt; T &gt;</a>, <a class="el" href="classtinyrobotics_1_1BrushedMotor.html#a64e9fa75beda50a9e8400ee0d4e61984">BrushedMotor&lt; float &gt;</a>, and <a class="el" href="classtinyrobotics_1_1StepperMotor.html#a64e9fa75beda50a9e8400ee0d4e61984">StepperMotor&lt; T &gt;</a>.</p>
 
 </div>
 </div>
@@ -205,7 +213,35 @@ uint8_t&#160;</td><td class="memItemRight" valign="bottom"><b>id</b> = 0</td></t
 </table>
 </div><div class="memdoc">
 
-<p>Implemented in <a class="el" href="classtinyrobotics_1_1BrushedMotor.html#aab121fc05ce8562504b0970668fe3f3f">BrushedMotor</a>, and <a class="el" href="classtinyrobotics_1_1GenericMotor.html#a8110b028f091407cff416cdc31032eca">GenericMotor</a>.</p>
+<p>Implemented in <a class="el" href="classtinyrobotics_1_1BrushedMotor.html#aab121fc05ce8562504b0970668fe3f3f">BrushedMotor&lt; T &gt;</a>, <a class="el" href="classtinyrobotics_1_1BrushedMotor.html#aab121fc05ce8562504b0970668fe3f3f">BrushedMotor&lt; float &gt;</a>, and <a class="el" href="classtinyrobotics_1_1GenericMotor.html#a8110b028f091407cff416cdc31032eca">GenericMotor&lt; T &gt;</a>.</p>
+
+</div>
+</div>
+<a id="a112bed68a1b5f2194ad7bf0166b64c13" name="a112bed68a1b5f2194ad7bf0166b64c13"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a112bed68a1b5f2194ad7bf0166b64c13">&#9670;&#160;</a></span>setValuePercent()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual bool setValuePercent </td>
+          <td>(</td>
+          <td class="paramtype">T&#160;</td>
+          <td class="paramname"><em>percent</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implemented in <a class="el" href="classtinyrobotics_1_1BrushedMotor.html#a2e11a2697648deba64ad0552421626f8">BrushedMotor&lt; T &gt;</a>, <a class="el" href="classtinyrobotics_1_1ServoMotor.html#a2e11a2697648deba64ad0552421626f8">ServoMotor&lt; T &gt;</a>, and <a class="el" href="classtinyrobotics_1_1StepperMotor.html#a2e11a2697648deba64ad0552421626f8">StepperMotor&lt; T &gt;</a>.</p>
 
 </div>
 </div>

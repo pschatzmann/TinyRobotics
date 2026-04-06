@@ -82,13 +82,15 @@ Overview</h1>
 <li><b>Stepper motors</b> (with optional FastAccelStepper integration)</li>
 <li><b>Custom and external motor drivers</b> (via the GenericMotor class and user-defined callbacks)</li>
 </ul>
-<p>Key features include:</p><ul>
+<p>Key features include:</p>
+<ul>
 <li>Consistent API for all supported motor types</li>
 <li>PWM and direction control for brushed and brushless motors</li>
 <li>Angle and pulse width control for servos and brushless motors</li>
 <li>Stepper motor support with acceleration and speed control</li>
 <li>Easy integration of custom motor drivers without external dependencies</li>
 <li>Modular design for use in robots, vehicles, and automation projects</li>
+<li>Provides template for defining the numeric type for the speed (default float)</li>
 </ul>
 <p>The module is designed for portability and can be configured to use or avoid external libraries as needed. All motor drivers inherit from a common base class, making it easy to swap implementations or extend functionality for new hardware.</p>
 <h1><a class="anchor" id="autotoc_md109"></a>
@@ -100,7 +102,8 @@ Motor Configuration (utils/Config.h)</h1>
 <li><code>USE_FASTACCEL_STEPPER</code> (default: <code>USE_EXTERNAL_MOTOR_LIBRARIES</code>): Use FastAccelStepper for stepper motors.</li>
 </ul>
 <p>You can override these macros before including TinyRobotics to customize which motor drivers are enabled.</p>
-<p>Example: </p><div class="fragment"><div class="line"><span class="preprocessor">#define USE_SERVO_LIBRARY false</span></div>
+<p>Example:</p>
+<div class="fragment"><div class="line"><span class="preprocessor">#define USE_SERVO_LIBRARY false</span></div>
 <div class="line"><span class="preprocessor">#include &lt;<a class="code" href="TinyRobotics_8h.html">TinyRobotics.h</a>&gt;</span></div>
 <div class="ttc" id="aTinyRobotics_8h_html"><div class="ttname"><a href="TinyRobotics_8h.html">TinyRobotics.h</a></div></div>
 </div><!-- fragment --><h1><a class="anchor" id="autotoc_md110"></a>
@@ -124,8 +127,8 @@ DC Motor (H-Bridge)</h2>
 <div class="line"><span class="keywordtype">void</span> setup() {</div>
 <div class="line">  motor.setPins(5, 6, 9); <span class="comment">// IN1=5, IN2=6, PWM=9)</span></div>
 <div class="line">  motor.begin();</div>
-<div class="line">  motor.setSpeed(50); <span class="comment">// Half speed forward</span></div>
-<div class="line">  motor.setSpeed(-50); <span class="comment">// Half speed reverse</span></div>
+<div class="line">  motor.setValuePercent(50); <span class="comment">// Half speed forward</span></div>
+<div class="line">  motor.setValuePercent(-50); <span class="comment">// Half speed reverse</span></div>
 <div class="line">  motor.end(); <span class="comment">// Brake</span></div>
 <div class="line">}</div>
 <div class="line"> </div>
@@ -156,37 +159,36 @@ Stepper Motor (if enabled)</h2>
 <div class="line"> </div>
 <div class="line">StepperMotor stepper;</div>
 <div class="line"><span class="keywordtype">void</span> setup() {</div>
-<div class="line">  stepper.<a class="code hl_function" href="classtinyrobotics_1_1GenericMotor.html#a6460c640ace6f5e09db29cd079c756f4">setPins</a>(2, 3, 4);</div>
+<div class="line">  stepper.setPins(2, 3, 4);</div>
 <div class="line">  stepper.setMaxSpeed(1000);</div>
 <div class="line">  stepper.setStepsPerRevolution(200);</div>
 <div class="line">  stepper.begin();</div>
-<div class="line">  motor.setSpeed(50); <span class="comment">// Half speed forward</span></div>
-<div class="line">  motor.setSpeed(-50); <span class="comment">// Half speed reverse</span></div>
+<div class="line">  motor.setValuePercent(50); <span class="comment">// Half speed forward</span></div>
+<div class="line">  motor.setValuePercent(-50); <span class="comment">// Half speed reverse</span></div>
 <div class="line">  stepper.end();</div>
 <div class="line">}</div>
-<div class="ttc" id="aclasstinyrobotics_1_1GenericMotor_html_a6460c640ace6f5e09db29cd079c756f4"><div class="ttname"><a href="classtinyrobotics_1_1GenericMotor.html#a6460c640ace6f5e09db29cd079c756f4">tinyrobotics::GenericMotor::setPins</a></div><div class="ttdeci">void setPins(int pin1, int pin2, int pwmPin=-1, int pwmFreq=20000)</div><div class="ttdoc">Not supported.</div><div class="ttdef"><b>Definition:</b> GenericMotor.h:115</div></div>
 </div><!-- fragment --><h2><a class="anchor" id="autotoc_md115"></a>
 Generic Motor (Custom Driver)</h2>
 <div class="fragment"><div class="line"><span class="preprocessor">#include &lt;<a class="code" href="TinyRobotics_8h.html">TinyRobotics.h</a>&gt;</span></div>
 <div class="line"> </div>
 <div class="line">MyMotorDriver driver;</div>
-<div class="line">GenericMotor motor(3, &amp;driver); <span class="comment">// #3</span></div>
+<div class="line">GenericMotor&lt;float&gt; motor(3, &amp;driver); <span class="comment">// #3</span></div>
 <div class="line"><span class="keywordtype">void</span> setup() {</div>
 <div class="line">  motor.setValueCallback([](int8_t value, GenericMotor&amp; m) {</div>
 <div class="line">    MyMotorDriver* drv = m.getMotor&lt;MyMotorDriver&gt;();</div>
 <div class="line">    drv-&gt;setPWM(value);</div>
 <div class="line">  });</div>
 <div class="line">  <span class="comment">// Optional: custom logic for begin and end</span></div>
-<div class="line">  motor.setBeginCallback([](GenericMotor&amp; m) {</div>
+<div class="line">  motor.setBeginCallback([](GenericMotor&lt;float&gt;&amp; m) {</div>
 <div class="line">    <span class="comment">// Custom start logic (e.g., enable power)</span></div>
 <div class="line">    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
 <div class="line">  });</div>
-<div class="line"><span class="comment">//   motor.setEndCallback([](GenericMotor&amp; m) {</span></div>
+<div class="line"><span class="comment">//   motor.setEndCallback([](GenericMotor&lt;float&gt;&amp; m) {</span></div>
 <div class="line"><span class="comment">//     // Custom stop logic (e.g., disable power)</span></div>
 <div class="line"><span class="comment">//   });</span></div>
 <div class="line">  motor.begin();</div>
-<div class="line">  motor.setSpeed(50); <span class="comment">// Half speed forward</span></div>
-<div class="line">  motor.setSpeed(-50); <span class="comment">// Half speed reverse</span></div>
+<div class="line">  motor.setValuePercent(50); <span class="comment">// Half speed forward</span></div>
+<div class="line">  motor.setValuePercent(-50); <span class="comment">// Half speed reverse</span></div>
 <div class="line">  motor.end();</div>
 <div class="line">}</div>
 </div><!-- fragment --><h1><a class="anchor" id="autotoc_md116"></a>

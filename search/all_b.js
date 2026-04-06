@@ -32,13 +32,14 @@ var searchData=
   ['motionstate2d_29',['MotionState2D',['../classtinyrobotics_1_1MotionState2D.html#a58b744f1648a80596fec8a4cceb8cb9c',1,'tinyrobotics::MotionState2D::MotionState2D()'],['../classtinyrobotics_1_1MotionState2D.html',1,'MotionState2D']]],
   ['motionstate3d_30',['MotionState3D',['../classtinyrobotics_1_1MotionState3D.html',1,'tinyrobotics']]],
   ['motor_31',['Motor',['../classtinyrobotics_1_1Motor.html',1,'tinyrobotics']]],
-  ['motorboat_32',['MotorBoat',['../classtinyrobotics_1_1MotorBoat.html',1,'tinyrobotics']]],
-  ['motors_33',['Motors',['../group__motors.html',1,'']]],
-  ['movingaverage_34',['MovingAverage',['../classtinyrobotics_1_1MovingAverage.html',1,'tinyrobotics']]],
-  ['multioutput_35',['MultiOutput',['../classtinyrobotics_1_1MultiOutput.html#afbfb0ac2b640d4c0b83727daa3743529',1,'tinyrobotics::MultiOutput::MultiOutput()=default'],['../classtinyrobotics_1_1MultiOutput.html#adc9b324c32cd3afda0f21523a0a02ddd',1,'tinyrobotics::MultiOutput::MultiOutput(Prints &amp;... outputs)'],['../classtinyrobotics_1_1MultiOutput.html',1,'MultiOutput']]],
-  ['mutex_36',['Mutex',['../group__concurrency.html#gade590cdeaf9b7f7f988bf41def6cd36f',1,'tinyrobotics']]],
-  ['mutexbase_37',['MutexBase',['../classtinyrobotics_1_1MutexBase.html',1,'tinyrobotics']]],
-  ['mutexrecursivertos_38',['MutexRecursiveRTOS',['../classtinyrobotics_1_1MutexRecursiveRTOS.html',1,'tinyrobotics']]],
-  ['mutexrp2040_39',['MutexRP2040',['../classtinyrobotics_1_1MutexRP2040.html',1,'tinyrobotics']]],
-  ['mutexrtos_40',['MutexRTOS',['../classtinyrobotics_1_1MutexRTOS.html',1,'tinyrobotics']]]
+  ['motor_3c_20float_20_3e_32',['Motor&lt; float &gt;',['../classtinyrobotics_1_1Motor.html',1,'tinyrobotics']]],
+  ['motorboat_33',['MotorBoat',['../classtinyrobotics_1_1MotorBoat.html',1,'tinyrobotics']]],
+  ['motors_34',['Motors',['../group__motors.html',1,'']]],
+  ['movingaverage_35',['MovingAverage',['../classtinyrobotics_1_1MovingAverage.html',1,'tinyrobotics']]],
+  ['multioutput_36',['MultiOutput',['../classtinyrobotics_1_1MultiOutput.html#afbfb0ac2b640d4c0b83727daa3743529',1,'tinyrobotics::MultiOutput::MultiOutput()=default'],['../classtinyrobotics_1_1MultiOutput.html#adc9b324c32cd3afda0f21523a0a02ddd',1,'tinyrobotics::MultiOutput::MultiOutput(Prints &amp;... outputs)'],['../classtinyrobotics_1_1MultiOutput.html',1,'MultiOutput']]],
+  ['mutex_37',['Mutex',['../group__concurrency.html#gade590cdeaf9b7f7f988bf41def6cd36f',1,'tinyrobotics']]],
+  ['mutexbase_38',['MutexBase',['../classtinyrobotics_1_1MutexBase.html',1,'tinyrobotics']]],
+  ['mutexrecursivertos_39',['MutexRecursiveRTOS',['../classtinyrobotics_1_1MutexRecursiveRTOS.html',1,'tinyrobotics']]],
+  ['mutexrp2040_40',['MutexRP2040',['../classtinyrobotics_1_1MutexRP2040.html',1,'tinyrobotics']]],
+  ['mutexrtos_41',['MutexRTOS',['../classtinyrobotics_1_1MutexRTOS.html',1,'tinyrobotics']]]
 ];

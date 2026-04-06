@@ -1,9 +1,9 @@
 <map id="CarAckerman&lt; MotorMT, ServoMT &gt;" name="CarAckerman&lt; MotorMT, ServoMT &gt;">
-<area shape="rect" id="node1" title="Car with Ackerman steering and single drive motor." alt="" coords="196,168,383,208"/>
-<area shape="rect" id="node2" href="$classtinyrobotics_1_1Vehicle.html" title="Abstract base class for all vehicle types." alt="" coords="139,80,208,105"/>
+<area shape="rect" id="node1" title="Car with Ackerman steering and single drive motor." alt="" coords="204,168,391,208"/>
+<area shape="rect" id="node2" href="$classtinyrobotics_1_1Vehicle.html" title="Abstract base class for all vehicle types." alt="" coords="117,80,187,105"/>
 <area shape="rect" id="node3" href="$classtinyrobotics_1_1MessageHandler.html" title="Interface for handling messages in the TinyRobotics framework." alt="" coords="5,5,136,31"/>
 <area shape="rect" id="node4" href="$classtinyrobotics_1_1MessageSource.html" title="Base class for message sources in the TinyRobotics communication framework." alt="" coords="161,5,285,31"/>
-<area shape="rect" id="node5" href="$classtinyrobotics_1_1BrushedMotor.html" title="High&#45;level H&#45;Bridge motor driver class for bidirectional DC motor control." alt="" coords="233,80,346,105"/>
-<area shape="rect" id="node6" href="$classtinyrobotics_1_1Motor.html" title="Abstract base class for all motor driver types." alt="" coords="325,5,385,31"/>
-<area shape="rect" id="node7" href="$classtinyrobotics_1_1ServoMotor.html" title="High&#45;level wrapper for Arduino Servo control (RC servo motors)." alt="" coords="370,80,467,105"/>
+<area shape="rect" id="node5" href="$classtinyrobotics_1_1BrushedMotor.html" title=" " alt="" coords="211,80,383,105"/>
+<area shape="rect" id="node6" href="$classtinyrobotics_1_1Motor.html" title="Abstract base class for all motor driver types." alt="" coords="331,5,429,31"/>
+<area shape="rect" id="node7" href="$classtinyrobotics_1_1ServoMotor.html" title=" " alt="" coords="407,80,563,105"/>
 </map>

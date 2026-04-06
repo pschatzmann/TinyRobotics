@@ -25,11 +25,12 @@ var searchData=
   ['motionstate2d_22',['MotionState2D',['../classtinyrobotics_1_1MotionState2D.html',1,'tinyrobotics']]],
   ['motionstate3d_23',['MotionState3D',['../classtinyrobotics_1_1MotionState3D.html',1,'tinyrobotics']]],
   ['motor_24',['Motor',['../classtinyrobotics_1_1Motor.html',1,'tinyrobotics']]],
-  ['motorboat_25',['MotorBoat',['../classtinyrobotics_1_1MotorBoat.html',1,'tinyrobotics']]],
-  ['movingaverage_26',['MovingAverage',['../classtinyrobotics_1_1MovingAverage.html',1,'tinyrobotics']]],
-  ['multioutput_27',['MultiOutput',['../classtinyrobotics_1_1MultiOutput.html',1,'tinyrobotics']]],
-  ['mutexbase_28',['MutexBase',['../classtinyrobotics_1_1MutexBase.html',1,'tinyrobotics']]],
-  ['mutexrecursivertos_29',['MutexRecursiveRTOS',['../classtinyrobotics_1_1MutexRecursiveRTOS.html',1,'tinyrobotics']]],
-  ['mutexrp2040_30',['MutexRP2040',['../classtinyrobotics_1_1MutexRP2040.html',1,'tinyrobotics']]],
-  ['mutexrtos_31',['MutexRTOS',['../classtinyrobotics_1_1MutexRTOS.html',1,'tinyrobotics']]]
+  ['motor_3c_20float_20_3e_25',['Motor&lt; float &gt;',['../classtinyrobotics_1_1Motor.html',1,'tinyrobotics']]],
+  ['motorboat_26',['MotorBoat',['../classtinyrobotics_1_1MotorBoat.html',1,'tinyrobotics']]],
+  ['movingaverage_27',['MovingAverage',['../classtinyrobotics_1_1MovingAverage.html',1,'tinyrobotics']]],
+  ['multioutput_28',['MultiOutput',['../classtinyrobotics_1_1MultiOutput.html',1,'tinyrobotics']]],
+  ['mutexbase_29',['MutexBase',['../classtinyrobotics_1_1MutexBase.html',1,'tinyrobotics']]],
+  ['mutexrecursivertos_30',['MutexRecursiveRTOS',['../classtinyrobotics_1_1MutexRecursiveRTOS.html',1,'tinyrobotics']]],
+  ['mutexrp2040_31',['MutexRP2040',['../classtinyrobotics_1_1MutexRP2040.html',1,'tinyrobotics']]],
+  ['mutexrtos_32',['MutexRTOS',['../classtinyrobotics_1_1MutexRTOS.html',1,'tinyrobotics']]]
 ];

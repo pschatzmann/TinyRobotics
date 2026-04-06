@@ -102,12 +102,12 @@ Collaboration diagram for AirPlane&lt; MotorMT, ServoMT &gt;:</div>
 <div class="dyncontent">
 <div class="center"><img src="classtinyrobotics_1_1AirPlane__coll__graph.png" border="0" usemap="#aAirPlane_3_01MotorMT_00_01ServoMT_01_4_coll__map" alt="Collaboration graph"/></div>
 <map name="aAirPlane_3_01MotorMT_00_01ServoMT_01_4_coll__map" id="aAirPlane_3_01MotorMT_00_01ServoMT_01_4_coll__map">
-<area shape="rect" title="Simple fixed&#45;wing airplane model with motor, rudder, elevator, and aileron control." alt="" coords="203,168,357,208"/>
-<area shape="rect" href="classtinyrobotics_1_1Vehicle.html" title="Abstract base class for all vehicle types." alt="" coords="188,80,257,105"/>
+<area shape="rect" title="Simple fixed&#45;wing airplane model with motor, rudder, elevator, and aileron control." alt="" coords="213,168,366,208"/>
+<area shape="rect" href="classtinyrobotics_1_1Vehicle.html" title="Abstract base class for all vehicle types." alt="" coords="183,80,252,105"/>
 <area shape="rect" href="classtinyrobotics_1_1MessageHandler.html" title="Interface for handling messages in the TinyRobotics framework." alt="" coords="5,5,136,31"/>
 <area shape="rect" href="classtinyrobotics_1_1MessageSource.html" title="Base class for message sources in the TinyRobotics communication framework." alt="" coords="161,5,285,31"/>
-<area shape="rect" href="classtinyrobotics_1_1BrushedMotor.html" title="High&#45;level H&#45;Bridge motor driver class for bidirectional DC motor control." alt="" coords="282,80,395,105"/>
-<area shape="rect" href="classtinyrobotics_1_1Motor.html" title="Abstract base class for all motor driver types." alt="" coords="309,5,369,31"/>
+<area shape="rect" href="classtinyrobotics_1_1BrushedMotor.html" title=" " alt="" coords="277,80,449,105"/>
+<area shape="rect" href="classtinyrobotics_1_1Motor.html" title="Abstract base class for all motor driver types." alt="" coords="313,5,412,31"/>
 </map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
@@ -235,7 +235,7 @@ std::vector&lt; <a class="el" href="classtinyrobotics_1_1MessageHandler.html">Me
 <tr class="separator:ae8917ae7a3eb87d29c94c514e1d5c981 inherit pro_attribs_classtinyrobotics_1_1MessageSource"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><div class="compoundTemplParams">template&lt;typename MotorMT = BrushedMotor, typename ServoMT = ServoMotor&gt;<br />
+<div class="textblock"><div class="compoundTemplParams">template&lt;typename MotorMT = BrushedMotor&lt;float&gt;, typename ServoMT = ServoMotor&lt;float&gt;&gt;<br />
 class tinyrobotics::AirPlane&lt; MotorMT, ServoMT &gt;</div><p>Simple fixed-wing airplane model with motor, rudder, elevator, and aileron control. </p>
 <p>This class abstracts the control of a basic RC airplane:</p><ul>
 <li><a class="el" href="classtinyrobotics_1_1Motor.html" title="Abstract base class for all motor driver types.">Motor</a> (throttle) via <a class="el" href="classtinyrobotics_1_1ServoMotor.html" title="High-level wrapper for Arduino Servo control (RC servo motors).">ServoMotor</a> (ESC)</li>
