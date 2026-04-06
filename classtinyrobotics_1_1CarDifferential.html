@@ -113,10 +113,10 @@ Collaboration diagram for CarDifferential&lt; N, MotorMT &gt;:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a792e4cb2a9669dcac2985b78a1f274ab"><td class="memItemLeft" align="right" valign="top"><a id="a792e4cb2a9669dcac2985b78a1f274ab" name="a792e4cb2a9669dcac2985b78a1f274ab"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setPins</b> (int motor, int in1, int in2, int pwm)</td></tr>
-<tr class="memdesc:a792e4cb2a9669dcac2985b78a1f274ab"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the pins for a specific motor (0=front left, 1=front right, 2=rear left, 3=rear right) <br /></td></tr>
-<tr class="separator:a792e4cb2a9669dcac2985b78a1f274ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afa87aa19e9bc521b9867702fd66cf628"><td class="memItemLeft" align="right" valign="top"><a id="afa87aa19e9bc521b9867702fd66cf628" name="afa87aa19e9bc521b9867702fd66cf628"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>setPins</b> (int motor, int in1, int in2)</td></tr>
+<tr class="memdesc:afa87aa19e9bc521b9867702fd66cf628"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the pins for a specific motor (0=front left, 1=front right, 2=rear left, 3=rear right) <br /></td></tr>
+<tr class="separator:afa87aa19e9bc521b9867702fd66cf628"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1a045d56b0e9a52b45615962d9f93a07"><td class="memItemLeft" align="right" valign="top"><a id="a1a045d56b0e9a52b45615962d9f93a07" name="a1a045d56b0e9a52b45615962d9f93a07"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>setSpeed</b> (float percent)</td></tr>
 <tr class="memdesc:a1a045d56b0e9a52b45615962d9f93a07"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set forward/reverse speed for all motors (percent, -100 to 100). Positive = forward, negative = reverse. <br /></td></tr>
@@ -229,10 +229,10 @@ class tinyrobotics::CarDifferential&lt; N, MotorMT &gt;</div><p>Car model with d
 <li>No steering servo: direction is controlled by varying motor speeds</li>
 </ul>
 <p>Usage Example: </p><div class="fragment"><div class="line">CarDifferentialWD&lt;4&gt; car;</div>
-<div class="line">car.setPins(0, 2, 3, 4); <span class="comment">// motor 0 (front left): in1=2, in2=3, pwm=4</span></div>
-<div class="line">car.setPins(1, 5, 6, 7); <span class="comment">// motor 1 (front right): in1=5, in2=6, pwm=7</span></div>
-<div class="line">car.setPins(2, 8, 9, 10); <span class="comment">// motor 2 (rear left): in1=8, in2=9, pwm=10</span></div>
-<div class="line">car.setPins(3, 11, 12, 13); <span class="comment">// motor 3 (rear right): in1=11, in2=12, pwm=13</span></div>
+<div class="line">car.setPins(0, 2, 3); <span class="comment">// motor 0 (front left): in1=2, in2=3</span></div>
+<div class="line">car.setPins(1, 5, 6); <span class="comment">// motor 1 (front right): in1=5, in2=6</span></div>
+<div class="line">car.setPins(2, 8, 9); <span class="comment">// motor 2 (rear left): in1=8, in2=9</span></div>
+<div class="line">car.setPins(3, 11, 12); <span class="comment">// motor 3 (rear right): in1=11, in2=12</span></div>
 <div class="line">car.setSpeed(60);      <span class="comment">// 60% forward</span></div>
 <div class="line">car.setTurn(30);       <span class="comment">// turn right by slowing left motors</span></div>
 <div class="line">car.end();            <span class="comment">// brake all motors</span></div>

@@ -113,9 +113,9 @@ Collaboration diagram for MotorBoat&lt; MotorMT, ServoMT &gt;:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ac787a164213b7fbbf7232469885e220e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1MotorBoat.html#ac787a164213b7fbbf7232469885e220e">setPins</a> (int in1, int in2, int pwm, int rudderPin)</td></tr>
-<tr class="memdesc:ac787a164213b7fbbf7232469885e220e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the pins for the drive motor and rudder servo.  <br /></td></tr>
-<tr class="separator:ac787a164213b7fbbf7232469885e220e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa8a3b4d4f1ea8db6f12225e2abddab95"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1MotorBoat.html#aa8a3b4d4f1ea8db6f12225e2abddab95">setPins</a> (int in1, int in2, int rudderPin)</td></tr>
+<tr class="memdesc:aa8a3b4d4f1ea8db6f12225e2abddab95"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the pins for the drive motor and rudder servo.  <br /></td></tr>
+<tr class="separator:aa8a3b4d4f1ea8db6f12225e2abddab95"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1a045d56b0e9a52b45615962d9f93a07"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1MotorBoat.html#a1a045d56b0e9a52b45615962d9f93a07">setSpeed</a> (float percent)</td></tr>
 <tr class="memdesc:a1a045d56b0e9a52b45615962d9f93a07"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the speed as a percentage (-100 to 100). Positive = forward. This applies the speed scaling factor (speedFactor) before setting throttle.  <br /></td></tr>
 <tr class="separator:a1a045d56b0e9a52b45615962d9f93a07"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -219,14 +219,14 @@ class tinyrobotics::MotorBoat&lt; MotorMT, ServoMT &gt;</div><p><a class="el" hr
 <li>1 rudder servo (<a class="el" href="classtinyrobotics_1_1ServoMotor.html" title="High-level wrapper for Arduino Servo control (RC servo motors).">ServoMotor</a>)</li>
 </ul>
 <p>Usage Example: </p><div class="fragment"><div class="line"><a class="code hl_class" href="classtinyrobotics_1_1MotorBoat.html">MotorBoat</a> boat;</div>
-<div class="line">boat.<a class="code hl_function" href="classtinyrobotics_1_1MotorBoat.html#ac787a164213b7fbbf7232469885e220e">setPins</a>(5, 6, 9, 10); <span class="comment">// in1, in2, pwm, rudderPin</span></div>
+<div class="line">boat.<a class="code hl_function" href="classtinyrobotics_1_1MotorBoat.html#aa8a3b4d4f1ea8db6f12225e2abddab95">setPins</a>(5, 6, 9); <span class="comment">// in1, in2, rudderPin</span></div>
 <div class="line">boat.<a class="code hl_function" href="classtinyrobotics_1_1MotorBoat.html#a62e98f7d05dd30e83c8bdd4010e5a186">setThrottle</a>(70);      <span class="comment">// 70% throttle</span></div>
 <div class="line">boat.<a class="code hl_function" href="classtinyrobotics_1_1MotorBoat.html#a71d8c1ab6db846ec90c71575f2c133aa">setRudder</a>(20);        <span class="comment">// 20 degrees left</span></div>
 <div class="line">boat.stop();               <span class="comment">// brake</span></div>
 <div class="ttc" id="aclasstinyrobotics_1_1MotorBoat_html"><div class="ttname"><a href="classtinyrobotics_1_1MotorBoat.html">tinyrobotics::MotorBoat</a></div><div class="ttdoc">Motor boat with 1 drive motor and 1 rudder servo.</div><div class="ttdef"><b>Definition:</b> MotorBoat.h:28</div></div>
 <div class="ttc" id="aclasstinyrobotics_1_1MotorBoat_html_a62e98f7d05dd30e83c8bdd4010e5a186"><div class="ttname"><a href="classtinyrobotics_1_1MotorBoat.html#a62e98f7d05dd30e83c8bdd4010e5a186">tinyrobotics::MotorBoat::setThrottle</a></div><div class="ttdeci">void setThrottle(float percent)</div><div class="ttdoc">Set throttle (percent, -100 to 100). Positive = forward.</div><div class="ttdef"><b>Definition:</b> MotorBoat.h:56</div></div>
 <div class="ttc" id="aclasstinyrobotics_1_1MotorBoat_html_a71d8c1ab6db846ec90c71575f2c133aa"><div class="ttname"><a href="classtinyrobotics_1_1MotorBoat.html#a71d8c1ab6db846ec90c71575f2c133aa">tinyrobotics::MotorBoat::setRudder</a></div><div class="ttdeci">void setRudder(float angle)</div><div class="ttdoc">Set rudder angle (degrees, left positive, right negative).</div><div class="ttdef"><b>Definition:</b> MotorBoat.h:67</div></div>
-<div class="ttc" id="aclasstinyrobotics_1_1MotorBoat_html_ac787a164213b7fbbf7232469885e220e"><div class="ttname"><a href="classtinyrobotics_1_1MotorBoat.html#ac787a164213b7fbbf7232469885e220e">tinyrobotics::MotorBoat::setPins</a></div><div class="ttdeci">void setPins(int in1, int in2, int pwm, int rudderPin)</div><div class="ttdoc">Set the pins for the drive motor and rudder servo.</div><div class="ttdef"><b>Definition:</b> MotorBoat.h:39</div></div>
+<div class="ttc" id="aclasstinyrobotics_1_1MotorBoat_html_aa8a3b4d4f1ea8db6f12225e2abddab95"><div class="ttname"><a href="classtinyrobotics_1_1MotorBoat.html#aa8a3b4d4f1ea8db6f12225e2abddab95">tinyrobotics::MotorBoat::setPins</a></div><div class="ttdeci">void setPins(int in1, int in2, int rudderPin)</div><div class="ttdoc">Set the pins for the drive motor and rudder servo.</div><div class="ttdef"><b>Definition:</b> MotorBoat.h:39</div></div>
 </div><!-- fragment --> </div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="aaf81d3fdaf258088d7692fa70cece087" name="aaf81d3fdaf258088d7692fa70cece087"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aaf81d3fdaf258088d7692fa70cece087">&#9670;&#160;</a></span>end()</h2>
@@ -350,8 +350,8 @@ class tinyrobotics::MotorBoat&lt; MotorMT, ServoMT &gt;</div><p><a class="el" hr
 
 </div>
 </div>
-<a id="ac787a164213b7fbbf7232469885e220e" name="ac787a164213b7fbbf7232469885e220e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac787a164213b7fbbf7232469885e220e">&#9670;&#160;</a></span>setPins()</h2>
+<a id="aa8a3b4d4f1ea8db6f12225e2abddab95" name="aa8a3b4d4f1ea8db6f12225e2abddab95"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa8a3b4d4f1ea8db6f12225e2abddab95">&#9670;&#160;</a></span>setPins()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -370,12 +370,6 @@ class tinyrobotics::MotorBoat&lt; MotorMT, ServoMT &gt;</div><p><a class="el" hr
           <td></td>
           <td class="paramtype">int&#160;</td>
           <td class="paramname"><em>in2</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>pwm</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>

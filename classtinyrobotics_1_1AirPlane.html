@@ -126,8 +126,8 @@ Public Types</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:aa8b9c2911b7371e664f3f8dad6900017"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1AirPlane.html#aa8b9c2911b7371e664f3f8dad6900017">setPinsMotor</a> (int in1, int in2, int pwm)</td></tr>
-<tr class="separator:aa8b9c2911b7371e664f3f8dad6900017"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a523e34db6b1a849234d2fd03691d842b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1AirPlane.html#a523e34db6b1a849234d2fd03691d842b">setPinsMotor</a> (int in1, int in2)</td></tr>
+<tr class="separator:a523e34db6b1a849234d2fd03691d842b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae3b70a0bf18812be704fdb26e1d21475"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1AirPlane.html#ae3b70a0bf18812be704fdb26e1d21475">setPinRudder</a> (int pin)</td></tr>
 <tr class="separator:ae3b70a0bf18812be704fdb26e1d21475"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0b0d2782b9f2d7877151c28f2f0a54a2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1AirPlane.html#a0b0d2782b9f2d7877151c28f2f0a54a2">setPinElevator</a> (int pin)</td></tr>
@@ -243,7 +243,7 @@ class tinyrobotics::AirPlane&lt; MotorMT, ServoMT &gt;</div><p>Simple fixed-wing
 </ul>
 <p>Usage Example: </p><div class="fragment"><div class="line"><a class="code hl_class" href="classtinyrobotics_1_1AirPlane.html">AirPlane</a> plane;</div>
 <div class="line"><span class="comment">// setup pins</span></div>
-<div class="line">plane.<a class="code hl_function" href="classtinyrobotics_1_1AirPlane.html#aa8b9c2911b7371e664f3f8dad6900017">setPinsMotor</a>(5, 6, 9);      <span class="comment">// HBridge pins</span></div>
+<div class="line">plane.<a class="code hl_function" href="classtinyrobotics_1_1AirPlane.html#a523e34db6b1a849234d2fd03691d842b">setPinsMotor</a>(5, 6);      <span class="comment">// HBridge pins</span></div>
 <div class="line">plane.<a class="code hl_function" href="classtinyrobotics_1_1AirPlane.html#ae3b70a0bf18812be704fdb26e1d21475">setPinRudder</a>(10);                         <span class="comment">// rudder servo</span></div>
 <div class="line">plane.<a class="code hl_function" href="classtinyrobotics_1_1AirPlane.html#a0b0d2782b9f2d7877151c28f2f0a54a2">setPinElevator</a>(11);                     <span class="comment">// elevator servo</span></div>
 <div class="line">plane.<a class="code hl_function" href="classtinyrobotics_1_1AirPlane.html#a02a21c0ff333022756296b191d8f2134">setPinsAilerons</a>(12, 13); <span class="comment">// aileron servos</span></div>
@@ -255,8 +255,8 @@ class tinyrobotics::AirPlane&lt; MotorMT, ServoMT &gt;</div><p>Simple fixed-wing
 <div class="ttc" id="aclasstinyrobotics_1_1AirPlane_html"><div class="ttname"><a href="classtinyrobotics_1_1AirPlane.html">tinyrobotics::AirPlane</a></div><div class="ttdoc">Simple fixed-wing airplane model with motor, rudder, elevator, and aileron control.</div><div class="ttdef"><b>Definition:</b> AirPlane.h:35</div></div>
 <div class="ttc" id="aclasstinyrobotics_1_1AirPlane_html_a02a21c0ff333022756296b191d8f2134"><div class="ttname"><a href="classtinyrobotics_1_1AirPlane.html#a02a21c0ff333022756296b191d8f2134">tinyrobotics::AirPlane::setPinsAilerons</a></div><div class="ttdeci">void setPinsAilerons(int leftPin, int rightPin)</div><div class="ttdef"><b>Definition:</b> AirPlane.h:69</div></div>
 <div class="ttc" id="aclasstinyrobotics_1_1AirPlane_html_a0b0d2782b9f2d7877151c28f2f0a54a2"><div class="ttname"><a href="classtinyrobotics_1_1AirPlane.html#a0b0d2782b9f2d7877151c28f2f0a54a2">tinyrobotics::AirPlane::setPinElevator</a></div><div class="ttdeci">void setPinElevator(int pin)</div><div class="ttdef"><b>Definition:</b> AirPlane.h:62</div></div>
+<div class="ttc" id="aclasstinyrobotics_1_1AirPlane_html_a523e34db6b1a849234d2fd03691d842b"><div class="ttname"><a href="classtinyrobotics_1_1AirPlane.html#a523e34db6b1a849234d2fd03691d842b">tinyrobotics::AirPlane::setPinsMotor</a></div><div class="ttdeci">void setPinsMotor(int in1, int in2)</div><div class="ttdef"><b>Definition:</b> AirPlane.h:49</div></div>
 <div class="ttc" id="aclasstinyrobotics_1_1AirPlane_html_a7a7a65afeb939777ea6002032999ea4f"><div class="ttname"><a href="classtinyrobotics_1_1AirPlane.html#a7a7a65afeb939777ea6002032999ea4f">tinyrobotics::AirPlane::setAilerons</a></div><div class="ttdeci">void setAilerons(int leftAngle, int rightAngle)</div><div class="ttdef"><b>Definition:</b> AirPlane.h:116</div></div>
-<div class="ttc" id="aclasstinyrobotics_1_1AirPlane_html_aa8b9c2911b7371e664f3f8dad6900017"><div class="ttname"><a href="classtinyrobotics_1_1AirPlane.html#aa8b9c2911b7371e664f3f8dad6900017">tinyrobotics::AirPlane::setPinsMotor</a></div><div class="ttdeci">void setPinsMotor(int in1, int in2, int pwm)</div><div class="ttdef"><b>Definition:</b> AirPlane.h:49</div></div>
 <div class="ttc" id="aclasstinyrobotics_1_1AirPlane_html_aa9f6fd69525e11e130b03df992adebd3"><div class="ttname"><a href="classtinyrobotics_1_1AirPlane.html#aa9f6fd69525e11e130b03df992adebd3">tinyrobotics::AirPlane::setElevator</a></div><div class="ttdeci">void setElevator(int angle)</div><div class="ttdef"><b>Definition:</b> AirPlane.h:107</div></div>
 <div class="ttc" id="aclasstinyrobotics_1_1AirPlane_html_ad1dc0b12cdbceec298589410750d2672"><div class="ttname"><a href="classtinyrobotics_1_1AirPlane.html#ad1dc0b12cdbceec298589410750d2672">tinyrobotics::AirPlane::setRudder</a></div><div class="ttdeci">void setRudder(int angle)</div><div class="ttdef"><b>Definition:</b> AirPlane.h:98</div></div>
 <div class="ttc" id="aclasstinyrobotics_1_1AirPlane_html_ae3b70a0bf18812be704fdb26e1d21475"><div class="ttname"><a href="classtinyrobotics_1_1AirPlane.html#ae3b70a0bf18812be704fdb26e1d21475">tinyrobotics::AirPlane::setPinRudder</a></div><div class="ttdeci">void setPinRudder(int pin)</div><div class="ttdef"><b>Definition:</b> AirPlane.h:55</div></div>
@@ -538,8 +538,8 @@ class tinyrobotics::AirPlane&lt; MotorMT, ServoMT &gt;</div><p>Simple fixed-wing
 
 </div>
 </div>
-<a id="aa8b9c2911b7371e664f3f8dad6900017" name="aa8b9c2911b7371e664f3f8dad6900017"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa8b9c2911b7371e664f3f8dad6900017">&#9670;&#160;</a></span>setPinsMotor()</h2>
+<a id="a523e34db6b1a849234d2fd03691d842b" name="a523e34db6b1a849234d2fd03691d842b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a523e34db6b1a849234d2fd03691d842b">&#9670;&#160;</a></span>setPinsMotor()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -557,13 +557,7 @@ class tinyrobotics::AirPlane&lt; MotorMT, ServoMT &gt;</div><p>Simple fixed-wing
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>in2</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>pwm</em>&#160;</td>
+          <td class="paramname"><em>in2</em>&#160;</td>
         </tr>
         <tr>
           <td></td>

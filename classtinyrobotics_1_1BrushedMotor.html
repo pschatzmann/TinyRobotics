@@ -111,10 +111,10 @@ Public Member Functions</h2></td></tr>
 &#160;</td><td class="memItemRight" valign="bottom"><b>BrushedMotor</b> (uint8_t id=0)</td></tr>
 <tr class="memdesc:a909e0a0620814c081987003cd859b3dc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Empty constructor for late pin assignment. <br /></td></tr>
 <tr class="separator:a909e0a0620814c081987003cd859b3dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6460c640ace6f5e09db29cd079c756f4"><td class="memItemLeft" align="right" valign="top"><a id="a6460c640ace6f5e09db29cd079c756f4" name="a6460c640ace6f5e09db29cd079c756f4"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setPins</b> (int pin1, int pin2, int pwmPin=-1, int pwmFreq=20000)</td></tr>
-<tr class="memdesc:a6460c640ace6f5e09db29cd079c756f4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the pins for the HBridge after construction. <br /></td></tr>
-<tr class="separator:a6460c640ace6f5e09db29cd079c756f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5f94b632deff7c57e796c13d0d476b5a"><td class="memItemLeft" align="right" valign="top"><a id="a5f94b632deff7c57e796c13d0d476b5a" name="a5f94b632deff7c57e796c13d0d476b5a"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>setPins</b> (int pin1, int pin2, int pwmFreq=20000)</td></tr>
+<tr class="memdesc:a5f94b632deff7c57e796c13d0d476b5a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the pins for the HBridge after construction. <br /></td></tr>
+<tr class="separator:a5f94b632deff7c57e796c13d0d476b5a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a601fb7cf1fc15db50c71a826f084f934"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1BrushedMotor.html#a601fb7cf1fc15db50c71a826f084f934">begin</a> ()</td></tr>
 <tr class="separator:a601fb7cf1fc15db50c71a826f084f934"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2918a0b2f305e7c1f31a20fc2307414c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1BrushedMotor.html#a2918a0b2f305e7c1f31a20fc2307414c">setConstraints</a> (T minSpeed, T maxSpeed)</td></tr>
@@ -166,9 +166,6 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>pinIn1</b> = -1</td></
 <tr class="memitem:a578ad48ac90fcf517304a654a66461a9"><td class="memItemLeft" align="right" valign="top"><a id="a578ad48ac90fcf517304a654a66461a9" name="a578ad48ac90fcf517304a654a66461a9"></a>
 int&#160;</td><td class="memItemRight" valign="bottom"><b>pinIn2</b> = -1</td></tr>
 <tr class="separator:a578ad48ac90fcf517304a654a66461a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6e2624493328e5f9558f94f9d9a0f008"><td class="memItemLeft" align="right" valign="top"><a id="a6e2624493328e5f9558f94f9d9a0f008" name="a6e2624493328e5f9558f94f9d9a0f008"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>pinPWM</b> = -1</td></tr>
-<tr class="separator:a6e2624493328e5f9558f94f9d9a0f008"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a487952c9eb175076b696bb9b8d51b5c9"><td class="memItemLeft" align="right" valign="top"><a id="a487952c9eb175076b696bb9b8d51b5c9" name="a487952c9eb175076b696bb9b8d51b5c9"></a>
 T&#160;</td><td class="memItemRight" valign="bottom"><b>minSpeed</b> = -255</td></tr>
 <tr class="separator:a487952c9eb175076b696bb9b8d51b5c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -199,7 +196,7 @@ class tinyrobotics::BrushedMotor&lt; T &gt;</div><p>High-level H-Bridge motor dr
 <li>Optional PWM frequency configuration (if supported by platform)</li>
 <li><a class="el" href="classtinyrobotics_1_1Speed.html" title="Represents a speed measurement with unit conversion support.">Speed</a> limiting for safety or motor tuning</li>
 </ul>
-<p>Usage Example: </p><div class="fragment"><div class="line">HBridge motor(5, 6, 9); <span class="comment">// IN1=5, IN2=6, PWM=9</span></div>
+<p>Usage Example: </p><div class="fragment"><div class="line">HBridge motor(5, 6); <span class="comment">// IN1=5, IN2=6,</span></div>
 <div class="line">motor.setConstraints(-200, 200); <span class="comment">// Limit speed range</span></div>
 <div class="line">motor.setSpeed(50);        <span class="comment">// Half speed forward</span></div>
 <div class="line">motor.setSpeed(-50);       <span class="comment">// Half speed reverse</span></div>
