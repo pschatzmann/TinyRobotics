@@ -69,7 +69,7 @@ struct Message {
   MessageOrigin origin =
       MessageOrigin::RemoteControl;  ///< Source of the message. @see
                                      ///< MessageOrigin
-  uint8_t source_id =
+  uint8_t origin_id =
       0;  /// Optional identifier for the source (e.g., sensor ID, motor ID)
   MessageContent content;  ///< Type of message content. @see MessageContent
   Unit unit;               ///< Unit of the value

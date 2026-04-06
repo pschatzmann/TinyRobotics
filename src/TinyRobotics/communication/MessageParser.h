@@ -56,7 +56,7 @@ struct ParsedMessage {
  *    - This is convenient for direct message handling without manual type
  * inspection.
  *
- * The parser reads the message header (prefix, size, source_id), then inspects
+ * The parser reads the message header (prefix, size, origin_id), then inspects
  * the content field to determine the value type (float, Coordinate<float>,
  * GPSCoordinate). It then reads the value and remaining fields accordingly.
  *
@@ -80,13 +80,13 @@ class MessageParser {
  public:
   // Parses a message from the stream and fills out the correct type in result
   bool parse(Stream& io, ParsedMessage& result) {
-    // 1. Read prefix, size, and source_id
+    // 1. Read prefix, size, and origin_id
     char prefix[4] = {0};
     if (io.readBytes(prefix, 3) != 3) return false;
     if (strncmp(prefix, "MSG", 3) != 0) return false;
 
     uint8_t size = io.read();
-    uint8_t source_id = io.read();
+    uint8_t origin_id = io.read();
 
     // 2. Read content and unit fields (assuming they are next)
     MessageContent content;
@@ -104,7 +104,7 @@ class MessageParser {
         return false;
       result.coordMsg.prefix = "MSG";
       result.coordMsg.size = size;
-      result.coordMsg.source_id = source_id;
+      result.coordMsg.origin_id = origin_id;
       result.coordMsg.content = content;
       result.coordMsg.unit = unit;
       // Read source
@@ -116,7 +116,7 @@ class MessageParser {
         return false;
       result.gpsMsg.prefix = "MSG";
       result.gpsMsg.size = size;
-      result.gpsMsg.source_id = source_id;
+      result.gpsMsg.origin_id = origin_id;
       result.gpsMsg.content = content;
       result.gpsMsg.unit = unit;
       io.readBytes((char*)&result.gpsMsg.origin, sizeof(MessageOrigin));
@@ -127,7 +127,7 @@ class MessageParser {
         return false;
       result.floatMsg.prefix = "MSG";
       result.floatMsg.size = size;
-      result.floatMsg.source_id = source_id;
+      result.floatMsg.origin_id = origin_id;
       result.floatMsg.content = content;
       result.floatMsg.unit = unit;
       io.readBytes((char*)&result.floatMsg.origin, sizeof(MessageOrigin));

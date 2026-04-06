@@ -158,7 +158,7 @@ class CarDifferential : public Vehicle {
     for (int i = 0; i < 4; ++i) {
       Message<float> msg(MessageContent::MotorSpeed, speed[i], Unit::Percent);
       msg.origin = MessageOrigin::Motor;
-      msg.source_id = i;  // Motor index
+      msg.origin_id = i;  // Motor index
       sendMessage(msg);
     }
   }

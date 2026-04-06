@@ -119,12 +119,12 @@ class AirPlane : public Vehicle {
     // publish aileron update as message for telemetry
     Message<float> msgLeft(MessageContent::Roll, leftAngle, Unit::AngleDegree);
     msgLeft.origin = MessageOrigin::Aileron;
-    msgLeft.source_id = 0;  // Left aileron
+    msgLeft.origin_id = 0;  // Left aileron
     sendMessage(msgLeft);
     Message<float> msgRight(MessageContent::Roll, rightAngle,
                             Unit::AngleDegree);
     msgRight.origin = MessageOrigin::Aileron;
-    msgRight.source_id = 1;  // Right aileron
+    msgRight.origin_id = 1;  // Right aileron
     sendMessage(msgRight);
   }
 
