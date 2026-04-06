@@ -142,7 +142,7 @@ You can use a platform specifc motor control library to implement the callbacks.
 ### H-Bridge (DC motor control) Logic
 
 - PWM Frequency: ~1 kHz – 20 kHz
-- Speed is driven by Duty cycle: 0–100%
+- Speed is driven by Duty cycle: 0–100% on EN pins
 
 ### Servo Motor Logic
 
@@ -162,13 +162,24 @@ You can use a platform specifc motor control library to implement the callbacks.
   - 16 – 25 kHz Above human hearing
   - 25 – 100 kHz Less common, more switching loss
 
-### Stepper Motor Logic
+### Stepper Motor Logic (e.g. using L298N driver)
 
 - One pulse is one step, so we can drive the motor speed by the pwm frequency: just keep the duty at 50%.
 - Very slow motion: ~1 Hz – 50 Hz
 - Normal range: ~100 Hz – 2 kHz
 - Common sweet spot: 200 Hz – 1000 Hz
 - Fast operation: 2 kHz – 10 kHz
+
+### Stepper Motor Logic (e.g. using L298N driver)
+- You need to drive the pins in steps (in1, in2, in3, in4):
+  - step 1: 1 0 1 0
+  - step 2: 0 1 1 0
+  - step 3: 0 1 0 1
+  - step 4: 1 0 0 1
+- The speed is determined by the speed in which you switch the steps.
+- Leave EN pins enabled!
+
+
 
 ## Dependencies
 
