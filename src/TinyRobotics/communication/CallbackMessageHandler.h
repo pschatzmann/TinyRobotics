@@ -48,7 +48,7 @@ class CallbackMessageHandler : public MessageHandler {
     ref = reference;
   }
 
- private:
+ protected:
   void* ref = nullptr;
   ValueCallback valueCallback_;
   CoordinateCallback coordinateCallback_;

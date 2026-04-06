@@ -111,7 +111,7 @@ class PIDAutoTuner {
 
   void setHysteresis(float h) { hysteresis = h; }
 
- private:
+ protected:
   enum class State { INIT, RUNNING };
 
   float target;

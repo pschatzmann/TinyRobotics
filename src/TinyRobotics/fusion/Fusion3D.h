@@ -127,7 +127,7 @@ class Fusion3D : public MessageSource {
     return Orientation3D(state.yaw, state.pitch, state.roll);
   }
 
- private:
+ protected:
   State3D state;
   uint32_t lastPredictTime = 0;
   float omegaXMeasured = 0.0f, omegaYMeasured = 0.0f, omegaZMeasured = 0.0f;

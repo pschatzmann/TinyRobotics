@@ -83,7 +83,7 @@ class RCGamepadMessageSource : public MessageSource {
     callback = cb;
   }
 
- private:
+ protected:
   GamepadServer gamepad;
   ControlScenario scenario;
   bool (*callback)(const GamepadState&, MessageSource& source) = nullptr;

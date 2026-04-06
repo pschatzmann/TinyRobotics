@@ -310,7 +310,7 @@ class Fusion2D : public IMotionState2D {
     // No resources to clean up in this implementation
   }
 
- private:
+ protected:
   State2D state;
   float P[5][5] = {};
   uint32_t lastPredictTime = 0;
