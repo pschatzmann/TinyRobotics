@@ -109,6 +109,12 @@ const char *&#160;</td><td class="memItemRight" valign="bottom"><b>toCString</b>
 <tr class="memitem:a0c5533c401e0fd05ad59faeb960de1b9"><td class="memItemLeft" align="right" valign="top"><a id="a0c5533c401e0fd05ad59faeb960de1b9" name="a0c5533c401e0fd05ad59faeb960de1b9"></a>
 virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>fromString</b> (const char *in)</td></tr>
 <tr class="separator:a0c5533c401e0fd05ad59faeb960de1b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a83761bc60f4961cf9e30d7fef0ec913b"><td class="memItemLeft" align="right" valign="top"><a id="a83761bc60f4961cf9e30d7fef0ec913b" name="a83761bc60f4961cf9e30d7fef0ec913b"></a>
+size_t&#160;</td><td class="memItemRight" valign="bottom"><b>writeTo</b> (Print &amp;out) const</td></tr>
+<tr class="separator:a83761bc60f4961cf9e30d7fef0ec913b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a08e02b3ad66460f20cebacc4ccbff021"><td class="memItemLeft" align="right" valign="top"><a id="a08e02b3ad66460f20cebacc4ccbff021" name="a08e02b3ad66460f20cebacc4ccbff021"></a>
+size_t&#160;</td><td class="memItemRight" valign="bottom"><b>readFrom</b> (Stream &amp;in)</td></tr>
+<tr class="separator:a08e02b3ad66460f20cebacc4ccbff021"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>This class defines an interface for serializable objects that can be converted to and from a string representation. It provides two pure virtual methods: toString() for converting the object to a string, and fromString() for populating the object from a string input. This interface can be implemented by any class that needs to support serialization and deserialization, allowing for easy storage, transmission, or logging of object state in a human-readable. </p>

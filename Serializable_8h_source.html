@@ -77,29 +77,54 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 <div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#</span><span class="preprocessor">pragma</span> <span class="preprocessor">once</span></div>
-<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#</span><span class="preprocessor">include</span> <span class="preprocessor">&quot;TinyRobotics/utils/Config.h&quot;</span></div>
-<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
-<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="keyword">namespace</span> tinyrobotics {</div>
-<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span> </div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment">/**</span></div>
-<div class="line"><span class="lineno">    7</span><span class="comment"> * @brief This class defines an interface for serializable objects that can be</span></div>
-<div class="line"><span class="lineno">    8</span><span class="comment"> * converted to and from a string representation. It provides two pure virtual</span></div>
-<div class="line"><span class="lineno">    9</span><span class="comment"> * methods: toString() for converting the object to a string, and fromString()</span></div>
-<div class="line"><span class="lineno">   10</span><span class="comment"> * for populating the object from a string input. This interface can be</span></div>
-<div class="line"><span class="lineno">   11</span><span class="comment"> * implemented by any class that needs to support serialization and</span></div>
-<div class="line"><span class="lineno">   12</span><span class="comment"> * deserialization, allowing for easy storage, transmission, or logging of</span></div>
-<div class="line"><span class="lineno">   13</span><span class="comment"> * object state in a human-readable</span></div>
-<div class="line"><span class="lineno">   14</span><span class="comment"> */</span></div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="keyword">class</span> <a class="code hl_class" href="classtinyrobotics_1_1Serializable.html">Serializable</a> {</div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span> <span class="keyword">public</span>:</div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>  <span class="keyword">virtual</span> std::string toString() <span class="keyword">const</span> = 0;</div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>  <span class="keyword">const</span> <span class="keywordtype">char</span>* toCString() <span class="keyword">const</span> { <span class="keywordflow">return</span> toString().c_str(); }</div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>  <span class="keyword">virtual</span> <span class="keywordtype">bool</span> fromString(<span class="keyword">const</span> std::string&amp; in) = 0;</div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>  <span class="keyword">virtual</span> <span class="keywordtype">bool</span> fromString(<span class="keyword">const</span> <span class="keywordtype">char</span>* in) { <span class="keywordflow">return</span> fromString(std::string(in)); }</div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>};</div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#</span><span class="preprocessor">include</span> <a class="code" href="Stream_8h.html">&quot;Stream.h&quot;</a></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#</span><span class="preprocessor">include</span> <span class="preprocessor">&quot;TinyRobotics/utils/Config.h&quot;</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span> </div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="keyword">namespace</span> tinyrobotics {</div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment">// Reads a line from the stream into a std::stream. Returns true if a line was</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment">// read, false on EOF.</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="keywordtype">bool</span> readLine(Stream&amp; s, std::string&amp; out) {</div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span>  out.clear();</div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>  <span class="keywordflow">while</span> (<span class="keyword">true</span>) {</div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>    <span class="keywordtype">int</span> c = s.read();</div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>    <span class="keywordflow">if</span> (c &lt; 0) {</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>      <span class="comment">// If nothing read, return false to signal EOF</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>      <span class="keywordflow">return</span> !out.empty();</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>    }</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>    <span class="keywordflow">if</span> (c == <span class="stringliteral">&#39;\n&#39;</span>) <span class="keywordflow">break</span>;</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>    out += <span class="keyword">static_cast</span>&lt;<span class="keywordtype">char</span>&gt;(c);</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>  }</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>  <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>}</div>
 <div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span> </div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>} <span class="comment">// namespace tinyrobotics</span></div>
-<div class="ttc" id="aclasstinyrobotics_1_1Serializable_html"><div class="ttname"><a href="classtinyrobotics_1_1Serializable.html">tinyrobotics::Serializable</a></div><div class="ttdoc">This class defines an interface for serializable objects that can be converted to and from a string r...</div><div class="ttdef"><b>Definition:</b> Serializable.h:15</div></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="comment">/**</span></div>
+<div class="line"><span class="lineno">   24</span><span class="comment"> * @brief This class defines an interface for serializable objects that can be</span></div>
+<div class="line"><span class="lineno">   25</span><span class="comment"> * converted to and from a string representation. It provides two pure virtual</span></div>
+<div class="line"><span class="lineno">   26</span><span class="comment"> * methods: toString() for converting the object to a string, and fromString()</span></div>
+<div class="line"><span class="lineno">   27</span><span class="comment"> * for populating the object from a string input. This interface can be</span></div>
+<div class="line"><span class="lineno">   28</span><span class="comment"> * implemented by any class that needs to support serialization and</span></div>
+<div class="line"><span class="lineno">   29</span><span class="comment"> * deserialization, allowing for easy storage, transmission, or logging of</span></div>
+<div class="line"><span class="lineno">   30</span><span class="comment"> * object state in a human-readable</span></div>
+<div class="line"><span class="lineno">   31</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span><span class="keyword">class</span> <a class="code hl_class" href="classtinyrobotics_1_1Serializable.html">Serializable</a> {</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span> <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>  <span class="keyword">virtual</span> std::string toString() <span class="keyword">const</span> = 0;</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>  <span class="keyword">const</span> <span class="keywordtype">char</span>* toCString() <span class="keyword">const</span> { <span class="keywordflow">return</span> toString().c_str(); }</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>  <span class="keyword">virtual</span> <span class="keywordtype">bool</span> fromString(<span class="keyword">const</span> std::string&amp; in) = 0;</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>  <span class="keyword">virtual</span> <span class="keywordtype">bool</span> fromString(<span class="keyword">const</span> <span class="keywordtype">char</span>* in) {</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    <span class="keywordflow">return</span> fromString(std::string(in));</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>  }</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>  size_t writeTo(Print&amp; out) <span class="keyword">const</span> { <span class="keywordflow">return</span> out.println(toCString()); }</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>  size_t readFrom(Stream&amp; in) {</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    std::string inStr;</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    <span class="keywordflow">if</span> (!readLine(in, inStr)) <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    <span class="keywordflow">return</span> fromString(inStr.c_str()) ? inStr.length() + 1 : 0;</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>  }</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>};</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span> </div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>}  <span class="comment">// namespace tinyrobotics</span></div>
+<div class="ttc" id="aclasstinyrobotics_1_1Serializable_html"><div class="ttname"><a href="classtinyrobotics_1_1Serializable.html">tinyrobotics::Serializable</a></div><div class="ttdoc">This class defines an interface for serializable objects that can be converted to and from a string r...</div><div class="ttdef"><b>Definition:</b> Serializable.h:32</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
