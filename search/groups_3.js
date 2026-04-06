@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['localization_20and_20mapping_0',['Localization and Mapping',['../group__localization.html',1,'']]]
+  ['maps_0',['Maps',['../group__maps.html',1,'']]],
+  ['motors_1',['Motors',['../group__motors.html',1,'']]]
 ];

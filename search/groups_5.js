@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['odometry_0',['Odometry',['../group__odometry.html',1,'']]]
+  ['planning_0',['Planning',['../group__planning.html',1,'']]]
 ];
