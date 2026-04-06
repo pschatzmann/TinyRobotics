@@ -1,10 +1,35 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$classtinyrobotics_1_1IMapNeighbors.html" title="Abstract interface for neighbor queries in map&#45;like data structures." alt="" coords="5,80,164,105"/>
-<area shape="rect" id="node2" href="$classtinyrobotics_1_1IMap.html" title=" " alt="" coords="229,5,382,31"/>
-<area shape="rect" id="node3" href="$classtinyrobotics_1_1IMap.html" title="Abstract interface for 2D grid maps and occupancy maps in TinyRobotics." alt="" coords="259,55,351,80"/>
-<area shape="rect" id="node7" href="$classtinyrobotics_1_1PathMap.html" title="Represents a graph of valid path segments (edges) between coordinates (nodes)." alt="" coords="212,104,399,129"/>
-<area shape="rect" id="node8" href="$classtinyrobotics_1_1PointCloud.html" title="Represents a 3D point cloud for robotics and mapping applications." alt="" coords="240,153,371,179"/>
-<area shape="rect" id="node4" href="$classtinyrobotics_1_1CallbackMap.html" title="A map&#45;like utility for generating and validating neighbor coordinates in a configurable pattern." alt="" coords="457,5,601,31"/>
-<area shape="rect" id="node5" href="$classtinyrobotics_1_1GridBitMap.html" title=" " alt="" coords="463,55,596,80"/>
-<area shape="rect" id="node6" href="$classtinyrobotics_1_1GridMap.html" title="A grid map for spatial representation, navigation, and planning." alt="" coords="447,104,612,129"/>
+<area shape="rect" id="node1" href="$classtinyrobotics_1_1IMotionState3D.html" title="Interface for representing the motion state of a robot in 3D space." alt="" coords="9,31,132,56"/>
+<area shape="rect" id="node2" href="$classtinyrobotics_1_1IMU3D.html" title="Basic 3D IMU dead&#45;reckoning class." alt="" coords="251,55,355,80"/>
+<area shape="rect" id="node3" href="$classtinyrobotics_1_1MotionState3D.html" title="Represents the full 3D motion state of a robot or vehicle." alt="" coords="243,5,362,31"/>
+<area shape="rect" id="node4" href="$classtinyrobotics_1_1MessageHandler.html" title="Interface for handling messages in the TinyRobotics framework." alt="" coords="5,819,136,844"/>
+<area shape="rect" id="node5" href="$classtinyrobotics_1_1CallbackMessageHandler.html" title="MessageHandler implementation using user&#45;provided callbacks." alt="" coords="209,893,396,919"/>
+<area shape="rect" id="node6" href="$classtinyrobotics_1_1MessageBus.html" title="A message handler that forwards messages to multiple registered handlers." alt="" coords="251,943,355,968"/>
+<area shape="rect" id="node7" href="$classtinyrobotics_1_1MessageHandlerBinary.html" title="Message handler that writes all received messages as raw binary to a Print stream." alt="" coords="216,992,389,1017"/>
+<area shape="rect" id="node8" href="$classtinyrobotics_1_1MessageHandlerPrint.html" title="Message handler that prints all received messages to a Print stream." alt="" coords="222,745,383,771"/>
+<area shape="rect" id="node9" href="$classtinyrobotics_1_1MessageHandlerPrintJSON.html" title="Message handler that prints all received messages as JSON to a Print stream." alt="" coords="206,795,399,820"/>
+<area shape="rect" id="node10" href="$classtinyrobotics_1_1MessageHandlerPrintXML.html" title="Message handler that prints all received messages as XML to a Print stream." alt="" coords="208,844,397,869"/>
+<area shape="rect" id="node11" href="$classtinyrobotics_1_1SpeedFromThrottle.html" title="Estimates vehicle speed from throttle percentage using calibration data." alt="" coords="229,696,376,721"/>
+<area shape="rect" id="node12" href="$classtinyrobotics_1_1Vehicle.html" title="Abstract base class for all vehicle types." alt="" coords="268,647,337,672"/>
+<area shape="rect" id="node13" href="$classtinyrobotics_1_1AirPlane.html" title="Simple fixed&#45;wing airplane model with motor, rudder, elevator, and aileron control." alt="" coords="486,697,639,737"/>
+<area shape="rect" id="node14" href="$classtinyrobotics_1_1CarAckerman.html" title="Car with Ackerman steering and single drive motor." alt="" coords="469,761,656,801"/>
+<area shape="rect" id="node15" href="$classtinyrobotics_1_1CarDifferential.html" title="Car model with differential drive. The direction is controlled by adjusting the speed of the motors...." alt="" coords="489,518,636,558"/>
+<area shape="rect" id="node16" href="$classtinyrobotics_1_1MotorBoat.html" title="Motor boat with 1 drive motor and 1 rudder servo." alt="" coords="479,582,646,622"/>
+<area shape="rect" id="node17" href="$classtinyrobotics_1_1Quadrotor.html" title="Simple quadrotor (quadcopter) model with 4&#45;motor control." alt="" coords="481,647,644,672"/>
+<area shape="rect" id="node18" href="$classtinyrobotics_1_1MessageSource.html" title="Base class for message sources in the TinyRobotics communication framework." alt="" coords="9,376,133,401"/>
+<area shape="rect" id="node19" href="$classtinyrobotics_1_1RangeSensor.html" title=" " alt="" coords="230,499,375,524"/>
+<area shape="rect" id="node20" href="$classtinyrobotics_1_1CameraEdgeFollower.html" title="Simple edge&#45;following algorithm for grayscale camera images." alt="" coords="223,548,383,573"/>
+<area shape="rect" id="node21" href="$classtinyrobotics_1_1CameraLineFollower.html" title="Simple line&#45;following algorithm for grayscale camera images." alt="" coords="225,597,380,623"/>
+<area shape="rect" id="node22" href="$classtinyrobotics_1_1CameraObstacleDetector.html" title="Simple obstacle detection algorithm for grayscale camera images." alt="" coords="209,104,396,129"/>
+<area shape="rect" id="node23" href="$classtinyrobotics_1_1Fusion3D.html" title="3D sensor fusion EKF for position, orientation, and velocity estimation." alt="" coords="261,153,344,179"/>
+<area shape="rect" id="node24" href="$classtinyrobotics_1_1IMotionState2D.html" title="Interface for representing the navigation state of a robot in 2D space." alt="" coords="241,203,364,228"/>
+<area shape="rect" id="node29" href="$classtinyrobotics_1_1LocalizationAndMapping2D.html" title="Modular 2D Simultaneous Localization and Mapping (SLAM) system with flexible map, IMU,..." alt="" coords="184,252,421,277"/>
+<area shape="rect" id="node30" href="$classtinyrobotics_1_1MotionController2D.html" title="2D motion controller for path following and vehicle control." alt="" coords="209,301,396,327"/>
+<area shape="rect" id="node31" href="$classtinyrobotics_1_1RCGamepadMessageSource.html" title="Message source for remote control via a virtual gamepad." alt="" coords="200,351,405,376"/>
+<area shape="rect" id="node32" href="$classtinyrobotics_1_1RangeSensor.html" title="Generic range sensor abstraction for LIDAR, ultrasonic, or similar sensors." alt="" coords="230,400,375,425"/>
+<area shape="rect" id="node33" href="$classtinyrobotics_1_1WheelEncoder.html" title="Measures wheel rotation and computes distance and speed using encoder ticks for mobile robots." alt="" coords="245,449,360,475"/>
+<area shape="rect" id="node25" href="$classtinyrobotics_1_1Fusion2D.html" title="2D sensor fusion EKF for position, heading, and speed estimation." alt="" coords="521,277,604,303"/>
+<area shape="rect" id="node26" href="$classtinyrobotics_1_1IMU2D.html" title="Basic 2D IMU dead&#45;reckoning class." alt="" coords="511,129,615,155"/>
+<area shape="rect" id="node27" href="$classtinyrobotics_1_1MotionState2D.html" title="Concrete implementation of INavigationState2D for storing and accessing 2D navigation state." alt="" coords="503,179,622,204"/>
+<area shape="rect" id="node28" href="$classtinyrobotics_1_1Odometry2D.html" title="Tracks 2D position and orientation of a robot using velocity and steering data." alt="" coords="510,228,615,253"/>
 </map>

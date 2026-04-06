@@ -91,7 +91,7 @@ Inheritance diagram for IMap&lt; T &gt;:</div>
 <map name="aIMap_3_01T_01_4_inherit__map" id="aIMap_3_01T_01_4_inherit__map">
 <area shape="rect" title="Abstract interface for 2D grid maps and occupancy maps in TinyRobotics." alt="" coords="194,79,286,104"/>
 <area shape="rect" href="classtinyrobotics_1_1CallbackMap.html" title="A map&#45;like utility for generating and validating neighbor coordinates in a configurable pattern." alt="" coords="5,152,149,177"/>
-<area shape="rect" href="classtinyrobotics_1_1GridBitMap.html" title=" " alt="" coords="173,152,307,177"/>
+<area shape="rect" href="classtinyrobotics_1_1GridBitMap.html" title="A grid map using two bit vectors to represent CellState efficiently." alt="" coords="173,152,307,177"/>
 <area shape="rect" href="classtinyrobotics_1_1GridMap.html" title="A grid map for spatial representation, navigation, and planning." alt="" coords="331,152,496,177"/>
 <area shape="rect" href="classtinyrobotics_1_1IMapNeighbors.html" title="Abstract interface for neighbor queries in map&#45;like data structures." alt="" coords="161,5,319,31"/>
 </map>
@@ -134,7 +134,7 @@ Public Member Functions</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><div class="compoundTemplParams">template&lt;typename T = DistanceM&gt;<br />
 class tinyrobotics::IMap&lt; T &gt;</div><p>Abstract interface for 2D grid maps and occupancy maps in TinyRobotics. </p>
-<p><a class="el" href="classtinyrobotics_1_1IMap.html" title="Abstract interface for 2D grid maps and occupancy maps in TinyRobotics.">IMap</a> extends <a class="el" href="classtinyrobotics_1_1IMapNeighbors.html" title="Abstract interface for neighbor queries in map-like data structures.">IMapNeighbors</a> and provides a comprehensive interface for grid-based or cell-based maps for frontier exploring. It supports cell access, coordinate transforms, and neighbor queries, making it suitable for pathfinding, navigation, and mapping algorithms. All grid or occupancy map implementations (e.g., <a class="el" href="classtinyrobotics_1_1GridMap.html" title="A grid map for spatial representation, navigation, and planning.">GridMap</a>, <a class="el" href="classtinyrobotics_1_1GridBitMap.html">GridBitMap</a>) should inherit from this interface and implement all pure virtual methods.</p>
+<p><a class="el" href="classtinyrobotics_1_1IMap.html" title="Abstract interface for 2D grid maps and occupancy maps in TinyRobotics.">IMap</a> extends <a class="el" href="classtinyrobotics_1_1IMapNeighbors.html" title="Abstract interface for neighbor queries in map-like data structures.">IMapNeighbors</a> and provides a comprehensive interface for grid-based or cell-based maps for frontier exploring. It supports cell access, coordinate transforms, and neighbor queries, making it suitable for pathfinding, navigation, and mapping algorithms. All grid or occupancy map implementations (e.g., <a class="el" href="classtinyrobotics_1_1GridMap.html" title="A grid map for spatial representation, navigation, and planning.">GridMap</a>, <a class="el" href="classtinyrobotics_1_1GridBitMap.html" title="A grid map using two bit vectors to represent CellState efficiently.">GridBitMap</a>) should inherit from this interface and implement all pure virtual methods.</p>
 <p>Features:</p><ul>
 <li>Query map dimensions and resolution</li>
 <li>Access cell state (FREE, OCCUPIED, UNKNOWN) by index</li>
