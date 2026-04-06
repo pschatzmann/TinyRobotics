@@ -3,28 +3,13 @@
 
 #include "TinyRobotics/maps/PathSegment.h"
 #include "TinyRobotics/utils/Common.h"
+#include "Serializable.h"
 
 namespace tinyrobotics {
 
-// Reads a line from the stream into 'out'. Returns true if a line was read,
-// false on EOF.
-// Reads a line from the stream into 'out'. Returns true if a line was read,
-// false on EOF.
-static bool readLine(Stream& s, std::string& out) {
-  out.clear();
-  while (true) {
-    int c = s.read();
-    if (c < 0) {
-      // If nothing read, return false to signal EOF
-      return !out.empty();
-    }
-    if (c == '\n') break;
-    out += static_cast<char>(c);
-  }
-  return true;
-}
 /**
  * @class GridMapSerializer
+ * @ingroup serialize
  * @brief Utility class for serializing and deserializing grid maps in CSV
  * format.
  *
@@ -85,7 +70,7 @@ class GridMapSerializer {
   }
 
   // read map from input
-  size_t readFrom(Map& map, Stream& in) {
+  size_t read(Map& map, Stream& in) {
     size_t total = 0;
     int x, y;
     float res;
@@ -123,6 +108,7 @@ class GridMapSerializer {
 
 /**
  * @class PathMapSerializer
+ * @ingroup serialize
  * @brief Utility class for serializing and deserializing path maps (sequences
  * of segments) in CSV format.
  *
@@ -178,7 +164,7 @@ class PathMapSerializer {
     return total;
   }
 
-  size_t readFrom(MapT& map, Stream& in) {
+  size_t read(MapT& map, Stream& in) {
     size_t total = 0;
     std::string line;
     while (readLine(in, line)) {
@@ -201,6 +187,7 @@ class PathMapSerializer {
 
 /**
  * @class PointCloudSerializer
+ * @ingroup serialize
  * @brief Utility class for serializing and deserializing PointCloud objects,
  * including points, voxels, and attributes.
  *
@@ -253,7 +240,7 @@ class PointCloudSerializer {
   }
 
   // Read all attributes, points, and voxels
-  size_t readFrom(PointCloudT& cloud, Stream& in) {
+  size_t read(PointCloudT& cloud, Stream& in) {
     size_t total = 0;
     std::string line;
     // Header

@@ -258,12 +258,12 @@ class GridMap : public IMap<T> {
 
   /// Write map to output
   size_t writeTo(Print& out) {
-    return serializer(*this, out);
+    return serializer.write(*this, out);
   }
 
   /// Read map from input
   size_t readFrom(Stream& in) {
-    return serializer.readFrom(*this, in);
+    return serializer.read(*this, in);
   }
 
  protected:
