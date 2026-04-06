@@ -143,7 +143,7 @@ class IMU3D : public MessageSource, public IMotionState3D {
     // Publish position as message
     Message<Coordinate<T>> msgPos{MessageContent::Position, position,
                                   Unit::Meters};
-    msgPos.source = MessageOrigin::IMU;
+    msgPos.origin = MessageOrigin::IMU;
     sendMessage(msgPos);
     // Publish orientation as float[3] (yaw, pitch, roll)
     // (You may want to define a custom message type for 3D orientation)

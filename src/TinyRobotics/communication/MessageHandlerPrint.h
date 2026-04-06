@@ -138,7 +138,7 @@ class MessageHandlerPrint : public MessageHandler {
     printer_.print(" ");
     printer_.print(unitStr[static_cast<int>(msg.unit)]);
     printer_.print(", Source: ");
-    printer_.println(originStr[static_cast<int>(msg.source)]);
+    printer_.println(originStr[static_cast<int>(msg.origin)]);
     return true;  // Indicate that the message was handled
   }
 
@@ -152,7 +152,7 @@ class MessageHandlerPrint : public MessageHandler {
     printer_.print(", Unit: ");
     printer_.print(unitStr[static_cast<int>(msg.unit)]);
     printer_.print(", Source: ");
-    printer_.println(originStr[static_cast<int>(msg.source)]);
+    printer_.println(originStr[static_cast<int>(msg.origin)]);
     return true;  // Indicate that the message was handled
   }
 
@@ -168,7 +168,7 @@ class MessageHandlerPrint : public MessageHandler {
     printer_.print(", Unit: ");
     printer_.print(unitStr[static_cast<int>(msg.unit)]);
     printer_.print(", Source: ");
-    printer_.println(originStr[static_cast<int>(msg.source)]);
+    printer_.println(originStr[static_cast<int>(msg.origin)]);
     return true;  // Indicate that the message was handled
   }
 
@@ -208,7 +208,7 @@ class MessageHandlerPrintXML : public MessageHandler {
     printer_.print("\" unit=\"");
     printer_.print(unitStr[static_cast<int>(msg.unit)]);
     printer_.print("\" source=\"");
-    printer_.print(originStr[static_cast<int>(msg.source)]);
+    printer_.print(originStr[static_cast<int>(msg.origin)]);
     printer_.print("\" value=\"");
     printer_.print(msg.value);
     printer_.println("\"/>");
@@ -221,7 +221,7 @@ class MessageHandlerPrintXML : public MessageHandler {
     printer_.print("\" unit=\"");
     printer_.print(unitStr[static_cast<int>(msg.unit)]);
     printer_.print("\" source=\"");
-    printer_.print(originStr[static_cast<int>(msg.source)]);
+    printer_.print(originStr[static_cast<int>(msg.origin)]);
     printer_.print("\"><X>");
     printer_.print(msg.value.x);
     printer_.print("</X><Y>");
@@ -236,7 +236,7 @@ class MessageHandlerPrintXML : public MessageHandler {
     printer_.print("\" unit=\"");
     printer_.print(unitStr[static_cast<int>(msg.unit)]);
     printer_.print("\" source=\"");
-    printer_.print(originStr[static_cast<int>(msg.source)]);
+    printer_.print(originStr[static_cast<int>(msg.origin)]);
     printer_.print("\"><Lat>");
     printer_.print(msg.value.latitude);
     printer_.print("</Lat><Lon>");
@@ -285,7 +285,7 @@ class MessageHandlerPrintJSON : public MessageHandler {
     printer_.print(",\"unit\":\"");
     printer_.print(unitStr[static_cast<int>(msg.unit)]);
     printer_.print("\",\"source\":\"");
-    printer_.print(originStr[static_cast<int>(msg.source)]);
+    printer_.print(originStr[static_cast<int>(msg.origin)]);
     printer_.println("\"}");
     return true;
   }
@@ -300,7 +300,7 @@ class MessageHandlerPrintJSON : public MessageHandler {
     printer_.print(",\"unit\":\"");
     printer_.print(unitStr[static_cast<int>(msg.unit)]);
     printer_.print("\",\"source\":\"");
-    printer_.print(originStr[static_cast<int>(msg.source)]);
+    printer_.print(originStr[static_cast<int>(msg.origin)]);
     printer_.println("\"}");
     return true;
   }
@@ -317,7 +317,7 @@ class MessageHandlerPrintJSON : public MessageHandler {
     printer_.print(",\"unit\":\"");
     printer_.print(unitStr[static_cast<int>(msg.unit)]);
     printer_.print("\",\"source\":\"");
-    printer_.print(originStr[static_cast<int>(msg.source)]);
+    printer_.print(originStr[static_cast<int>(msg.origin)]);
     printer_.println("\"}");
     return true;
   }

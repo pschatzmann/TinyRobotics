@@ -147,19 +147,19 @@ class IMU2D : public IMotionState2D {
     // Publish position as message
     Message<Coordinate<DistanceM>> msgPos{MessageContent::Position, position,
                                           Unit::Meters};
-    msgPos.source = MessageOrigin::IMU;
+    msgPos.origin = MessageOrigin::IMU;
     sendMessage(msgPos);
 
     // Publish heading as float (radians)
     Message<float> msgHeading{MessageContent::Heading, headingRad,
                               Unit::AngleRadian};
-    msgHeading.source = MessageOrigin::IMU;
+    msgHeading.origin = MessageOrigin::IMU;
     sendMessage(msgHeading);
 
     // Publish speed as float (m/s)
     Message<float> msgSpeed{MessageContent::Speed, speedMPS,
                             Unit::MetersPerSecond};
-    msgSpeed.source = MessageOrigin::IMU;
+    msgSpeed.origin = MessageOrigin::IMU;
     sendMessage(msgSpeed);
   }
 };

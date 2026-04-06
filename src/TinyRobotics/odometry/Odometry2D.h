@@ -219,20 +219,20 @@ class Odometry2D : public IMotionState2D {
     Message<Coordinate<float>> msgPos{MessageContent::Position,
                                       Coordinate<float>(position.x, position.y),
                                       Unit::Meters};
-    msgPos.source = MessageOrigin::System;
+    msgPos.origin = MessageOrigin::System;
     sendMessage(msgPos);
 
     // Publish heading as float (radians)
     Message<float> msgHeading{MessageContent::Heading, theta,
                               Unit::AngleRadian};
-    msgHeading.source = MessageOrigin::System;
+    msgHeading.origin = MessageOrigin::System;
     sendMessage(msgHeading);
 
     // Publish speed as float (meters/second)
     Message<float> msgSpeed{MessageContent::Speed,
                             speed.getValue(SpeedUnit::MPS),
                             Unit::MetersPerSecond};
-    msgSpeed.source = MessageOrigin::System;
+    msgSpeed.origin = MessageOrigin::System;
     sendMessage(msgSpeed);
   }
 };

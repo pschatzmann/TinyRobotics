@@ -108,19 +108,19 @@ class RangeSensor : public MessageSource {
     if (getObstacleCoordinate(obstacle)) {
       // publish distance
       Message<T> msgDistance(MessageContent::Distance, distanceM, Unit::Meters);
-      msgDistance.source = MessageOrigin::LIDAR;
+      msgDistance.origin = MessageOrigin::LIDAR;
       sendMessage(msgDistance);
 
       // publish angle to direction of movement
       Message<T> msgAngle(MessageContent::Angle, obstacle_deg_,
                           Unit::AngleDegree);
-      msgAngle.source = MessageOrigin::LIDAR;
+      msgAngle.origin = MessageOrigin::LIDAR;
       sendMessage(msgAngle);
 
       // publish obstacle coordinate
       Message<Coordinate<T>> msgLocation(MessageContent::Position, obstacle,
                                          Unit::Meters);
-      msgLocation.source = MessageOrigin::LIDAR;
+      msgLocation.origin = MessageOrigin::LIDAR;
       sendMessage(msgLocation);
     }
     return true;

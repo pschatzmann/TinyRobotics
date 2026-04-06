@@ -90,7 +90,7 @@ class AirPlane : public Vehicle {
 
     // publish motor speed as message for telemetry
     Message<float> msg(MessageContent::MotorSpeed, percent, Unit::Percent);
-    msg.source = MessageOrigin::Motor;
+    msg.origin = MessageOrigin::Motor;
     sendMessage(msg);
   }
 
@@ -99,7 +99,7 @@ class AirPlane : public Vehicle {
     servos_[Rudder].setAngle(angle);
     // publish rudder update as message for telemetry
     Message<float> msg(MessageContent::Yaw, angle, Unit::AngleDegree);
-    msg.source = MessageOrigin::Rudder;
+    msg.origin = MessageOrigin::Rudder;
     sendMessage(msg);
   }
 
@@ -108,7 +108,7 @@ class AirPlane : public Vehicle {
     servos_[Elevator].setAngle(angle);
     // publish elevator update as message for telemetry
     Message<float> msg(MessageContent::Pitch, angle, Unit::AngleDegree);
-    msg.source = MessageOrigin::Elevator;
+    msg.origin = MessageOrigin::Elevator;
     sendMessage(msg);
   }
 
@@ -118,12 +118,12 @@ class AirPlane : public Vehicle {
     servos_[AileronRight].setAngle(rightAngle);
     // publish aileron update as message for telemetry
     Message<float> msgLeft(MessageContent::Roll, leftAngle, Unit::AngleDegree);
-    msgLeft.source = MessageOrigin::Aileron;
+    msgLeft.origin = MessageOrigin::Aileron;
     msgLeft.source_id = 0;  // Left aileron
     sendMessage(msgLeft);
     Message<float> msgRight(MessageContent::Roll, rightAngle,
                             Unit::AngleDegree);
-    msgRight.source = MessageOrigin::Aileron;
+    msgRight.origin = MessageOrigin::Aileron;
     msgRight.source_id = 1;  // Right aileron
     sendMessage(msgRight);
   }
@@ -155,7 +155,7 @@ class AirPlane : public Vehicle {
 
   bool onMessage(const Message<float>& msg) override {
     float angle;
-    if (!isValidMessageSource(msg.source)) return false;
+    if (!isValidMessageSource(msg.origin)) return false;
     switch (msg.content) {
       case MessageContent::Throttle:
         if (msg.unit != Unit::Percent) return false;

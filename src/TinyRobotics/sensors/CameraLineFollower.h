@@ -123,7 +123,7 @@ class CameraLineFollower : public MessageSource {
 
     // publish angle to direction of movement
     Message<float> msgError(MessageContent::Error, error, Unit::Pixel);
-    msgError.source = MessageOrigin::Camera;
+    msgError.origin = MessageOrigin::Camera;
     sendMessage(msgError);
 
     return {true, position, error};

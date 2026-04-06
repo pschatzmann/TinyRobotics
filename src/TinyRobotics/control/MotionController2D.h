@@ -391,7 +391,7 @@ class MotionController2D : public MessageSource {
   /// Send control messages for throttle and steering angle
   void sendControlMessages(float throttlePercent, float steeringAngleDeg) {
     Message<float> msg;
-    msg.source = MessageOrigin::Autonomy;
+    msg.origin = MessageOrigin::Autonomy;
     msg.content = MessageContent::Throttle;
     msg.unit = Unit::Percent;
     msg.value = throttlePercent;

@@ -104,7 +104,7 @@ class Quadrotor : public Vehicle {
 
   bool onMessage(const Message<float>& msg) override {
     float angle;
-    if (msg.source != MessageOrigin::RemoteControl)
+    if (msg.origin != MessageOrigin::RemoteControl)
       return false;  // Only handle RC messages
     switch (msg.content) {
       case MessageContent::Throttle:
@@ -174,7 +174,7 @@ class Quadrotor : public Vehicle {
     // publish motor speeds as messages for telemetry
     for (int i = 0; i < 4; ++i) {
       Message<float> msg(MessageContent::MotorSpeed, m[i], Unit::Percent);
-      msg.source = MessageOrigin::Motor;
+      msg.origin = MessageOrigin::Motor;
       msg.source_id = i;  // Motor index
       sendMessage(msg);
     }

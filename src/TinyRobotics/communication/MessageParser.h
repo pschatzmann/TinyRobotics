@@ -108,7 +108,7 @@ class MessageParser {
       result.coordMsg.content = content;
       result.coordMsg.unit = unit;
       // Read source
-      io.readBytes((char*)&result.coordMsg.source, sizeof(MessageOrigin));
+      io.readBytes((char*)&result.coordMsg.origin, sizeof(MessageOrigin));
     } else if (content == MessageContent::PositionGPS) {
       result.type = MessageValueType::GPSCoordinate;
       if (io.readBytes((char*)&result.gpsMsg.value, sizeof(GPSCoordinate)) !=
@@ -119,7 +119,7 @@ class MessageParser {
       result.gpsMsg.source_id = source_id;
       result.gpsMsg.content = content;
       result.gpsMsg.unit = unit;
-      io.readBytes((char*)&result.gpsMsg.source, sizeof(MessageOrigin));
+      io.readBytes((char*)&result.gpsMsg.origin, sizeof(MessageOrigin));
     } else {
       result.type = MessageValueType::Float;
       if (io.readBytes((char*)&result.floatMsg.value, sizeof(float)) !=
@@ -130,7 +130,7 @@ class MessageParser {
       result.floatMsg.source_id = source_id;
       result.floatMsg.content = content;
       result.floatMsg.unit = unit;
-      io.readBytes((char*)&result.floatMsg.source, sizeof(MessageOrigin));
+      io.readBytes((char*)&result.floatMsg.origin, sizeof(MessageOrigin));
     }
     return true;
   }

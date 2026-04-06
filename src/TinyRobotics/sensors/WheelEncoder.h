@@ -204,12 +204,12 @@ class WheelEncoder : public MessageSource {
    */
   void sendMessage() {
     Message<float> msg(MessageContent::Distance, getDistanceM(), Unit::Meters);
-    msg.source = MessageOrigin::Sensor;
+    msg.origin = MessageOrigin::Sensor;
     MessageSource::sendMessage(msg);
 
     Message<float> speedMsg(MessageContent::Speed, getSpeedMPS(),
                             Unit::MetersPerSecond);
-    speedMsg.source = MessageOrigin::Sensor;
+    speedMsg.origin = MessageOrigin::Sensor;
     MessageSource::sendMessage(speedMsg);
   }
 

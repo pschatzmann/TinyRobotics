@@ -66,7 +66,7 @@ template <typename T = float>
 struct Message {
   const char* prefix = "MSG";  ///< prefix for message identification
   uint8_t size = sizeof(Message);
-  MessageOrigin source =
+  MessageOrigin origin =
       MessageOrigin::RemoteControl;  ///< Source of the message. @see
                                      ///< MessageOrigin
   uint8_t source_id =
@@ -88,7 +88,7 @@ struct Message {
    */
   Message(MessageContent c, T v, Unit u) : content(c), unit(u), value(v) {}
   Message(MessageContent c, T v, Unit u, MessageOrigin orig)
-    : source(orig), content(c), unit(u), value(v) {}
+    : origin(orig), content(c), unit(u), value(v) {}
 };
 
 }  // namespace tinyrobotics

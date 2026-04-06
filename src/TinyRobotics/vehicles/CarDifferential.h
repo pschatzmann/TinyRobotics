@@ -101,7 +101,7 @@ class CarDifferential : public Vehicle {
   }
 
   bool onMessage(const Message<float>& msg) override {
-    if (!isValidMessageSource(msg.source)) return false;
+    if (!isValidMessageSource(msg.origin)) return false;
     switch (msg.content) {
       case MessageContent::Throttle:
         if (msg.unit != Unit::Percent) return false;
@@ -157,7 +157,7 @@ class CarDifferential : public Vehicle {
     // publish motor speeds as messages for telemetry
     for (int i = 0; i < 4; ++i) {
       Message<float> msg(MessageContent::MotorSpeed, speed[i], Unit::Percent);
-      msg.source = MessageOrigin::Motor;
+      msg.origin = MessageOrigin::Motor;
       msg.source_id = i;  // Motor index
       sendMessage(msg);
     }
