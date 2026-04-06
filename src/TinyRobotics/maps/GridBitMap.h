@@ -10,7 +10,7 @@
 namespace tinyrobotics {
 
 /**
- * @class GridMapBitVector
+ * @class GridBitMap
  * @ingroup maps
  * @brief A grid map using two bit vectors to represent CellState efficiently.
  *
