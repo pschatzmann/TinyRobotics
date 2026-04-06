@@ -49,6 +49,7 @@ class GenericMotor : public Motor<T> {
     this->motor = motor;
   }
 
+  /// Start the motor using the optional begin callback
   bool begin() override {
     if (valueCB == nullptr) {
       return false;  // Callbacks not defined, cannot start
@@ -59,7 +60,7 @@ class GenericMotor : public Motor<T> {
     return result;
   }
 
-  // Set value as percentage (-100 to 100)
+  /// Set value as percentage (-100 to 100)
   bool setValuePercent(T percent) override {
     value = constrain(percent, -100.0f, 100.0f);
     if (valueCB) {
@@ -68,8 +69,10 @@ class GenericMotor : public Motor<T> {
     return true;
   }
 
+  /// Get current value percentage
   T getValuePercent() const override { return value; }
 
+  /// For Servo: Set angle in degrees (-90 to 90) by mapping it to percentage
   void setAngle(T angle) {
     float valuePercent =
         map(angle, -90.0f, 90.0f, -100.0f, 100.0f);  // Map angle to percentage
@@ -77,11 +80,13 @@ class GenericMotor : public Motor<T> {
         valuePercent);  // For simplicity, treat angle as a percentage value
   }
 
+  /// For Servo: Get angle in degrees by mapping percentage back to angle
   T getAngle() {
     return map(value, -100.0f, 100.0f, -90.0f,
                90.0f);  // Map percentage back to angle
   }
 
+  /// Stop the motor using the optional end callback
   void end() override {
     if (endCB) {
       endCB(*this);  // Call callback to stop the motor
@@ -112,13 +117,13 @@ class GenericMotor : public Motor<T> {
   /// Not supported
   bool isPinsSet() const override { return true; }
   /// Not supported
-  void setPin(int pin) { notSupported(); }
+  void setPin(int pin) { notSupported("setPin"); }
   /// Not supported
   void setPins(int pin1, int pin2, int pwmPin = -1, int pwmFreq = 20000) {
-    notSupported();
+    notSupported("setPins");
   }
   /// Not supported
-  void setPins(int stepPin, int dirPin, int enablePin = -1) { notSupported(); }
+  void setPins(int stepPin, int dirPin, int enablePin = -1) { notSupported("setPins"); }
 
  protected:
   void* motor = nullptr;  // Optional pointer to user motor object for callbacks
@@ -133,8 +138,10 @@ class GenericMotor : public Motor<T> {
     motor.setValuePercent(
         0);  // Default behavior: stop the motor by setting speed to 0
   }
-  void notSupported() {
-    TRLogger.error("This method is not supported for GenericMotor");
+  
+  /// Log an error for unsupported methods
+  void notSupported(const char* method) {
+    TRLogger.error("'%s' is not supported for GenericMotor", method);
   }
 };
 
