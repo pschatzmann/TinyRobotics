@@ -17,7 +17,7 @@ namespace tinyrobotics {
  * Usage Example:
  * @code
  * MotorBoat boat;
- * boat.setPins(5, 6, 9, 10); // in1, in2, pwm, rudderPin
+ * boat.setPins(5, 6, 9); // in1, in2, rudderPin
  * boat.setThrottle(70);      // 70% throttle
  * boat.setRudder(20);        // 20 degrees left
  * boat.stop();               // brake
@@ -36,8 +36,8 @@ class MotorBoat : public Vehicle {
    * @param pwm HBridge PWM
    * @param rudderPin Servo pin for rudder
    */
-  void setPins(int in1, int in2, int pwm, int rudderPin) {
-    motor_.setPins(in1, in2, pwm);
+  void setPins(int in1, int in2, int rudderPin) {
+    motor_.setPins(in1, in2);
     rudder_.attach(rudderPin);
   }
 

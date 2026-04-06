@@ -22,7 +22,7 @@ namespace tinyrobotics {
  *
  * Usage Example:
  * @code
- * HBridge motor(5, 6, 9); // IN1=5, IN2=6, PWM=9
+ * HBridge motor(5, 6); // IN1=5, IN2=6,
  * motor.setConstraints(-200, 200); // Limit speed range
  * motor.setSpeed(50);        // Half speed forward
  * motor.setSpeed(-50);       // Half speed reverse
@@ -43,10 +43,9 @@ class BrushedMotor : public Motor<T> {
   /**
    * @brief Set the pins for the HBridge after construction.
    */
-  void setPins(int pin1, int pin2, int pwmPin = -1, int pwmFreq = 20000) {
+  void setPins(int pin1, int pin2,  int pwmFreq = 20000) {
     pinIn1 = pin1;
     pinIn2 = pin2;
-    pinPWM = pwmPin;
     this->pwmFreq = pwmFreq;
   }
 
@@ -56,9 +55,9 @@ class BrushedMotor : public Motor<T> {
     pinMode(pinIn1, OUTPUT);
     pinMode(pinIn2, OUTPUT);
 
-    pinMode(pinPWM, OUTPUT);
 #ifdef SUPPORTS_ANALOG_WRITE_FREQ
-    if (pwmFreq > 0) analogWriteFreq(pinPWM, pwmFreq);
+    if (pwmFreq > 0) analogWriteFreq(pinIn1, pwmFreq);
+    if (pwmFreq > 0) analogWriteFreq(pinIn2, pwmFreq);
 #endif
     stop();
     return true;
@@ -94,13 +93,12 @@ class BrushedMotor : public Motor<T> {
 
   /// Check if the control pins have been set (i.e., not -1).
   bool isPinsSet() const {
-    return pinIn1 != -1 && pinIn2 != -1 && pinPWM != -1;
+    return pinIn1 != -1 && pinIn2 != -1;
   }
 
  protected:
   int pinIn1 = -1;
   int pinIn2 = -1;
-  int pinPWM = -1;
   T minSpeed = -255;
   T maxSpeed = 255;
   int pwmFreq = 20000;  // Default PWM frequency (20 kHz)
@@ -110,7 +108,6 @@ class BrushedMotor : public Motor<T> {
   bool stop() {
     digitalWrite(pinIn1, LOW);
     digitalWrite(pinIn2, LOW);
-    if (pinPWM != -1) analogWrite(pinPWM, 0);
     return true;
   }
 
@@ -118,14 +115,13 @@ class BrushedMotor : public Motor<T> {
    * forward) */
   void setSpeedValue(float speed) {
     speed = constrain(speed, minSpeed, maxSpeed);
+    if (is_reverse) speed = -speed;  // Invert speed if reverse is set
     if (speed > 0) {
-      digitalWrite(pinIn1, is_reverse ? LOW : HIGH);
-      digitalWrite(pinIn2, is_reverse ? HIGH : LOW);
-      if (pinPWM != -1) analogWrite(pinPWM, speed);
+      analogWrite(pinIn1, speed);
+      digitalWrite(pinIn2, LOW);
     } else if (speed < 0) {
-      digitalWrite(pinIn1, is_reverse ? HIGH : LOW);
-      digitalWrite(pinIn2, is_reverse ? LOW : HIGH);
-      if (pinPWM != -1) analogWrite(pinPWM, -speed);
+      digitalWrite(pinIn1, LOW);
+      analogWrite(pinIn2,  -speed);
     } else if (speed == 0) {
       stop();
     }

@@ -27,7 +27,7 @@
  * - VirtualGamePadArduino: https://github.com/pschatzmann/VirtualGamePadArduino
  *
  * ## Pinout Example
- *   car.setPins(5, 6, 9, 10); // in1, in2, pwm, steeringPin
+ *   car.setPins(5, 6, 9); // in1, in2, steeringPin
  *
  * @author Phil Schatzmann
  */
@@ -63,7 +63,7 @@ void setup() {
   Serial.println("RC Car example starting");
 
   // Set up the car pins (example for 1 drive motor and 1 steering servo)
-  car.setPins(5, 6, 9, 10);         // in1, in2, pwm, steeringPin
+  car.setPins(5, 6, 9);         // in1, in2, steeringPin
   rcSource.subscribe(car);  // Connect the car to the RC message source
 
   // Start the RC gamepad message source

@@ -19,7 +19,7 @@ namespace tinyrobotics {
  * @code
  * AirPlane plane;
  * // setup pins
- * plane.setPinsMotor(5, 6, 9);      // HBridge pins
+ * plane.setPinsMotor(5, 6);      // HBridge pins
  * plane.setPinRudder(10);                         // rudder servo
  * plane.setPinElevator(11);                     // elevator servo
  * plane.setPinsAilerons(12, 13); // aileron servos
@@ -46,8 +46,8 @@ class AirPlane : public Vehicle {
   AirPlane() = default;
 
   /** Attach the motor HBridge. */
-  void setPinsMotor(int in1, int in2, int pwm) {
-    motor_.setPins(in1, in2, pwm);
+  void setPinsMotor(int in1, int in2) {
+    motor_.setPins(in1, in2);
     motor_.setID(0);  // Motor ID 0
   }
 

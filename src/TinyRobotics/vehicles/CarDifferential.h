@@ -21,10 +21,10 @@ namespace tinyrobotics {
  * Usage Example:
  * @code
  * CarDifferentialWD<4> car;
- * car.setPins(0, 2, 3, 4); // motor 0 (front left): in1=2, in2=3, pwm=4
- * car.setPins(1, 5, 6, 7); // motor 1 (front right): in1=5, in2=6, pwm=7
- * car.setPins(2, 8, 9, 10); // motor 2 (rear left): in1=8, in2=9, pwm=10
- * car.setPins(3, 11, 12, 13); // motor 3 (rear right): in1=11, in2=12, pwm=13
+ * car.setPins(0, 2, 3); // motor 0 (front left): in1=2, in2=3
+ * car.setPins(1, 5, 6); // motor 1 (front right): in1=5, in2=6
+ * car.setPins(2, 8, 9); // motor 2 (rear left): in1=8, in2=9
+ * car.setPins(3, 11, 12); // motor 3 (rear right): in1=11, in2=12
  * car.setSpeed(60);      // 60% forward
  * car.setTurn(30);       // turn right by slowing left motors
  * car.end();            // brake all motors
@@ -40,9 +40,9 @@ class CarDifferential : public Vehicle {
    * @brief Set the pins for a specific motor (0=front left, 1=front right,
    * 2=rear left, 3=rear right)
    */
-  void setPins(int motor, int in1, int in2, int pwm) {
+  void setPins(int motor, int in1, int in2) {
     if (motor >= 0 && motor < 4) {
-      motors_[motor].setPins(in1, in2, pwm);
+      motors_[motor].setPins(in1, in2);
       motors_[motor].setID((uint8_t)motor);
     }
   }

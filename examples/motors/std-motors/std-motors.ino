@@ -31,7 +31,7 @@ StepperMotor stepper(3);
 void setup() {
   Serial.begin(115200);
   // Brushed Motor
-  brushed.setPins(5, 6, 9);  // Example pins
+  brushed.setPins(5, 6);  // Example pins
   brushed.begin();
   brushed.setValuePercent(50); // Percent
 

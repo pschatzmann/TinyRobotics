@@ -82,7 +82,7 @@ void setup() {
   TRLogger.begin(LoggerClass::INFO, Serial);  // Initialize logger with Serial output and INFO level
 
   buildMap();
-  car.setPins(4, 5, 6, 7);  // int in1, int in2, int pwm, int steeringPin
+  car.setPins(4, 5, 6);  // int in1, int in2, int steeringPin
 
   // find path using A*
   auto path = astar.findPath(pathMap, start, goal);

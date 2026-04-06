@@ -17,7 +17,7 @@ namespace tinyrobotics {
  * Usage Example:
  * @code
  * CarAckerman car;
- * car.setPins(5, 6, 9, 10); // in1, in2, pwm, steeringPin
+ * car.setPins(5, 6, 9); // in1, in2, steeringPin
  * car.setSpeed(60);         // 60% forward
  * car.setSteering(30);      // 30 degrees left
  * car.end();               // brake
@@ -36,8 +36,8 @@ class CarAckerman : public Vehicle {
    * @param pwm HBridge PWM
    * @param steeringPin Servo pin for steering
    */
-  void setPins(int in1, int in2, int pwm, int steeringPin) {
-    motor_.setPins(in1, in2, pwm);
+  void setPins(int in1, int in2, int steeringPin) {
+    motor_.setPins(in1, in2);
     steering_.setPin(steeringPin);
   }
 

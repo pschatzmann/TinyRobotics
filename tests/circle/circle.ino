@@ -45,7 +45,7 @@ void update(void*) {
 void setup() {
   Serial.begin(115200);
 
-  car.setPins(4, 5, 6, 7);  // int in1, int in2, int pwm, int steeringPin
+  car.setPins(4, 5, 6);  // int in1, int in2, int steeringPin
   odometry.setWheelBase(wheelBase);
   odometry.subscribe(json_printer);
   odometry.begin(base);

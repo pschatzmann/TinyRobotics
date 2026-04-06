@@ -26,10 +26,10 @@ enum QuadrotorMotorNo {
  * Usage Example (with setPins):
  * @code
  * Quadrotor quad;
- * quad.setPins(FRONT_LEFT, m1_in1, m1_in2, m1_pwm); // front left
- * quad.setPins(FRONT_RIGHT, m2_in1, m2_in2, m2_pwm); // front right
- * quad.setPins(REAR_LEFT, m3_in1, m3_in2, m3_pwm); // rear left
- * quad.setPins(REAR_RIGHT, m4_in1, m4_in2, m4_pwm); // rear right
+ * quad.setPins(FRONT_LEFT, m1_in1, m1_in2); // front left
+ * quad.setPins(FRONT_RIGHT, m2_in1, m2_in2); // front right
+ * quad.setPins(REAR_LEFT, m3_in1, m3_in2); // rear left
+ * quad.setPins(REAR_RIGHT, m4_in1, m4_in2); // rear right
  * quad.setThrottle(60); // 60% throttle
  * quad.setRoll(10);     // roll right
  * quad.setPitch(-5);    // pitch down
@@ -46,8 +46,8 @@ class Quadrotor : public Vehicle {
    * @brief Set the pins for a specific motor (0=front left, 1=front right,
    * 2=rear left, 3=rear right)
    */
-  void setPins(QuadrotorMotorNo motor, int in1, int in2, int pwm) {
-    motors_[motor].setPins(in1, in2, pwm);
+  void setPins(QuadrotorMotorNo motor, int in1, int in2) {
+    motors_[motor].setPins(in1, in2);
     motors_[motor].setID((uint8_t)motor);
   }
 
