@@ -198,7 +198,7 @@ Generic Motor Implementation Approaches</h1>
 H-Bridge (DC motor control) Logic</h2>
 <ul>
 <li>PWM Frequency: ~1 kHz – 20 kHz</li>
-<li>Speed is driven by Duty cycle: 0–100%</li>
+<li>Speed is driven by Duty cycle: 0–100% on EN pins</li>
 </ul>
 <h2><a class="anchor" id="autotoc_md118"></a>
 Servo Motor Logic</h2>
@@ -225,7 +225,7 @@ Brushed Motor Logic</h2>
 </li>
 </ul>
 <h2><a class="anchor" id="autotoc_md120"></a>
-Stepper Motor Logic</h2>
+Stepper Motor Logic (e.g. using L298N driver)</h2>
 <ul>
 <li>One pulse is one step, so we can drive the motor speed by the pwm frequency: just keep the duty at 50%.</li>
 <li>Very slow motion: ~1 Hz – 50 Hz</li>
@@ -233,14 +233,27 @@ Stepper Motor Logic</h2>
 <li>Common sweet spot: 200 Hz – 1000 Hz</li>
 <li>Fast operation: 2 kHz – 10 kHz</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md121"></a>
+<h2><a class="anchor" id="autotoc_md121"></a>
+Stepper Motor Logic (e.g. using L298N driver)</h2>
+<ul>
+<li>You need to drive the pins in steps (in1, in2, in3, in4):<ul>
+<li>step 1: 1 0 1 0</li>
+<li>step 2: 0 1 1 0</li>
+<li>step 3: 0 1 0 1</li>
+<li>step 4: 1 0 0 1</li>
+</ul>
+</li>
+<li>The speed is determined by the speed in which you switch the steps.</li>
+<li>Leave EN pins enabled!</li>
+</ul>
+<h1><a class="anchor" id="autotoc_md122"></a>
 Dependencies</h1>
 <ul>
 <li><a href="https://github.com/jkb-git/ESP32Servo">ESP32Servo</a></li>
 <li><a href="https://docs.arduino.cc/libraries/servo/">Servo</a></li>
 <li><a href="https://github.com/ESP32DIYer/FastAccelStepper">FastAccelStepper</a> (for StepperMotor support)</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md122"></a>
+<h1><a class="anchor" id="autotoc_md123"></a>
 See Also</h1>
 <ul>
 <li><a class="el" href="md_src_TinyRobotics_control_README.html">Control Module</a></li>
