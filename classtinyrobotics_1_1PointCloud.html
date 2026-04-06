@@ -122,9 +122,9 @@ using&#160;</td><td class="memItemRight" valign="bottom"><b>value_type</b> = T</
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:af55c41c60ef0afc009f5a5dddcae520b"><td class="memItemLeft" align="right" valign="top"><a id="af55c41c60ef0afc009f5a5dddcae520b" name="af55c41c60ef0afc009f5a5dddcae520b"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>PointCloud</b> (bool isliveVoxel=false)</td></tr>
-<tr class="separator:af55c41c60ef0afc009f5a5dddcae520b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3f4dadc1e7631056598d3dbcf2a5e6a3"><td class="memItemLeft" align="right" valign="top"><a id="a3f4dadc1e7631056598d3dbcf2a5e6a3" name="a3f4dadc1e7631056598d3dbcf2a5e6a3"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>PointCloud</b> (T voxalSize, bool isliveVoxel=false)</td></tr>
+<tr class="separator:a3f4dadc1e7631056598d3dbcf2a5e6a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af4da019fb9709f760edd7a55ea4d1a57"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1PointCloud.html#af4da019fb9709f760edd7a55ea4d1a57">setLiveVoxelGrid</a> (bool live)</td></tr>
 <tr class="separator:af4da019fb9709f760edd7a55ea4d1a57"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a952ff0502847235a3508c6de6b3fa1c5"><td class="memItemLeft" align="right" valign="top"><a id="a952ff0502847235a3508c6de6b3fa1c5" name="a952ff0502847235a3508c6de6b3fa1c5"></a>
@@ -159,43 +159,39 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>isEmpty</b> () const<
 Bounds&#160;</td><td class="memItemRight" valign="bottom"><b>bounds</b> () const</td></tr>
 <tr class="memdesc:ac1d9d51352abc84e536ac4d3e3b2e630"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the bounding box of the point cloud, which is defined by the minimum and maximum coordinates along each axis (x, y, z). The bounding box is updated whenever new points are added to the cloud, allowing for efficient retrieval of the spatial extent of the point cloud. <br /></td></tr>
 <tr class="separator:ac1d9d51352abc84e536ac4d3e3b2e630"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a47493d0711a91c9f4f4a00f618c62550"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classtinyrobotics_1_1PointCloud.html">PointCloud</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1PointCloud.html#a47493d0711a91c9f4f4a00f618c62550">voxelDownsample</a> (float voxelSize) const</td></tr>
-<tr class="separator:a47493d0711a91c9f4f4a00f618c62550"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af6992125317ddc408237467ef80fda56"><td class="memItemLeft" align="right" valign="top"><a id="af6992125317ddc408237467ef80fda56" name="af6992125317ddc408237467ef80fda56"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>buildVoxelGrid</b> (float voxelSize)</td></tr>
-<tr class="memdesc:af6992125317ddc408237467ef80fda56"><td class="mdescLeft">&#160;</td><td class="mdescRight">Builds a voxel grid for fast occupancy queries: A voxel is a grid cell. <br /></td></tr>
-<tr class="separator:af6992125317ddc408237467ef80fda56"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8b2fe6b364e64944d38dc15d42669f64"><td class="memItemLeft" align="right" valign="top"><a id="a8b2fe6b364e64944d38dc15d42669f64" name="a8b2fe6b364e64944d38dc15d42669f64"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>addVoxel</b> (float x, float y, float z)</td></tr>
-<tr class="memdesc:a8b2fe6b364e64944d38dc15d42669f64"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a point to the voxel grid if voxelSize_ &gt; 0. <br /></td></tr>
-<tr class="separator:a8b2fe6b364e64944d38dc15d42669f64"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab47306687399fcea999ae55c9f26f0df"><td class="memItemLeft" align="right" valign="top"><a id="ab47306687399fcea999ae55c9f26f0df" name="ab47306687399fcea999ae55c9f26f0df"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>isOccupied</b> (float x, float y, float z) const</td></tr>
-<tr class="memdesc:ab47306687399fcea999ae55c9f26f0df"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if a given point is occupied based on the voxel grid. <br /></td></tr>
-<tr class="separator:ab47306687399fcea999ae55c9f26f0df"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af46237ba371f74f0e5027b72d73de82b"><td class="memItemLeft" align="right" valign="top"><a id="af46237ba371f74f0e5027b72d73de82b" name="af46237ba371f74f0e5027b72d73de82b"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>buildVoxelGrid</b> ()</td></tr>
+<tr class="memdesc:af46237ba371f74f0e5027b72d73de82b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Builds a voxel grid for fast occupancy queries: A voxel is a grid cell. <br /></td></tr>
+<tr class="separator:af46237ba371f74f0e5027b72d73de82b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2b84733531108a9e0c3303124b3fdb85"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="classtinyrobotics_1_1Coordinate.html">Coordinate</a>&lt; T &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1PointCloud.html#a2b84733531108a9e0c3303124b3fdb85">getNeighbors</a> (<a class="el" href="classtinyrobotics_1_1Coordinate.html">Coordinate</a>&lt; T &gt; from) const override</td></tr>
 <tr class="memdesc:a2b84733531108a9e0c3303124b3fdb85"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the free (unoccupied) neighboring coordinates of a given point in the voxel grid.  <br /></td></tr>
 <tr class="separator:a2b84733531108a9e0c3303124b3fdb85"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aaa6ca19bebccbd26d9918bc16ad2d1e3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classtinyrobotics_1_1Coordinate.html">Coordinate</a>&lt; T &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1PointCloud.html#aaa6ca19bebccbd26d9918bc16ad2d1e3">toVoxel</a> (int cx, int cy) const</td></tr>
-<tr class="separator:aaa6ca19bebccbd26d9918bc16ad2d1e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acd36e583c322526e2754082d9f8ad050"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1PointCloud.html#acd36e583c322526e2754082d9f8ad050">set3D</a> (bool is3d)</td></tr>
 <tr class="separator:acd36e583c322526e2754082d9f8ad050"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8ea428e64b581cd88474197763f418e6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1PointCloud.html#a8ea428e64b581cd88474197763f418e6">setBounds</a> (float minX, float minY, float minZ, float maxX, float maxY, float maxZ)</td></tr>
 <tr class="separator:a8ea428e64b581cd88474197763f418e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab47306687399fcea999ae55c9f26f0df"><td class="memItemLeft" align="right" valign="top"><a id="ab47306687399fcea999ae55c9f26f0df" name="ab47306687399fcea999ae55c9f26f0df"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>isOccupied</b> (float x, float y, float z) const</td></tr>
+<tr class="memdesc:ab47306687399fcea999ae55c9f26f0df"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if a given point is occupied based on the voxel grid. <br /></td></tr>
+<tr class="separator:ab47306687399fcea999ae55c9f26f0df"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a41d7d13067fa1e7b650f367d9d8a1e97"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1PointCloud.html#a41d7d13067fa1e7b650f367d9d8a1e97">isValid</a> (const <a class="el" href="classtinyrobotics_1_1Coordinate.html">Coordinate</a>&lt; T &gt; &amp;coord) const override</td></tr>
 <tr class="memdesc:a41d7d13067fa1e7b650f367d9d8a1e97"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if a coordinate is valid (within bounds and not occupied)  <br /></td></tr>
 <tr class="separator:a41d7d13067fa1e7b650f367d9d8a1e97"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad44953acdf3f4444e7e80de4d5c373d1"><td class="memItemLeft" align="right" valign="top"><a id="ad44953acdf3f4444e7e80de4d5c373d1" name="ad44953acdf3f4444e7e80de4d5c373d1"></a>
 auto&#160;</td><td class="memItemRight" valign="bottom"><b>beginVoxels</b> ()</td></tr>
+<tr class="memdesc:ad44953acdf3f4444e7e80de4d5c373d1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Provides sequential (iterator) access to all occupied voxels. <br /></td></tr>
 <tr class="separator:ad44953acdf3f4444e7e80de4d5c373d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aaa8b79cd7a60d008bbc2525bfbb354bf"><td class="memItemLeft" align="right" valign="top"><a id="aaa8b79cd7a60d008bbc2525bfbb354bf" name="aaa8b79cd7a60d008bbc2525bfbb354bf"></a>
 auto&#160;</td><td class="memItemRight" valign="bottom"><b>endVoxels</b> ()</td></tr>
+<tr class="memdesc:aaa8b79cd7a60d008bbc2525bfbb354bf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Provides sequential (iterator) access to all occupied voxels. <br /></td></tr>
 <tr class="separator:aaa8b79cd7a60d008bbc2525bfbb354bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a998ad2d5ed668646ad94d6cf60c7220b"><td class="memItemLeft" align="right" valign="top"><a id="a998ad2d5ed668646ad94d6cf60c7220b" name="a998ad2d5ed668646ad94d6cf60c7220b"></a>
 auto&#160;</td><td class="memItemRight" valign="bottom"><b>beginVoxels</b> () const</td></tr>
+<tr class="memdesc:a998ad2d5ed668646ad94d6cf60c7220b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Provides sequential (iterator) access to all occupied voxels. <br /></td></tr>
 <tr class="separator:a998ad2d5ed668646ad94d6cf60c7220b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a11a3afee77907a66f60e1fa8d8472310"><td class="memItemLeft" align="right" valign="top"><a id="a11a3afee77907a66f60e1fa8d8472310" name="a11a3afee77907a66f60e1fa8d8472310"></a>
 auto&#160;</td><td class="memItemRight" valign="bottom"><b>endVoxels</b> () const</td></tr>
+<tr class="memdesc:a11a3afee77907a66f60e1fa8d8472310"><td class="mdescLeft">&#160;</td><td class="mdescRight">Provides sequential (iterator) access to all occupied voxels. <br /></td></tr>
 <tr class="separator:a11a3afee77907a66f60e1fa8d8472310"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a34b411763bb3c1bc8c61cc30a00f6484"><td class="memItemLeft" align="right" valign="top"><a id="a34b411763bb3c1bc8c61cc30a00f6484" name="a34b411763bb3c1bc8c61cc30a00f6484"></a>
 size_t&#160;</td><td class="memItemRight" valign="bottom"><b>writeTo</b> (Print &amp;out)</td></tr>
@@ -230,6 +226,12 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>resetBounds</b> ()</t
 <tr class="memitem:a0cf6f8621d5b267ab9c1c0af83b42f5d"><td class="memItemLeft" align="right" valign="top"><a id="a0cf6f8621d5b267ab9c1c0af83b42f5d" name="a0cf6f8621d5b267ab9c1c0af83b42f5d"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>updateBounds</b> (const <a class="el" href="structtinyrobotics_1_1Point3D.html">Point3D</a>&lt; T &gt; &amp;p)</td></tr>
 <tr class="separator:a0cf6f8621d5b267ab9c1c0af83b42f5d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8b2fe6b364e64944d38dc15d42669f64"><td class="memItemLeft" align="right" valign="top"><a id="a8b2fe6b364e64944d38dc15d42669f64" name="a8b2fe6b364e64944d38dc15d42669f64"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>addVoxel</b> (float x, float y, float z)</td></tr>
+<tr class="memdesc:a8b2fe6b364e64944d38dc15d42669f64"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a point to the voxel grid if voxelSize_ &gt; 0. <br /></td></tr>
+<tr class="separator:a8b2fe6b364e64944d38dc15d42669f64"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaa6ca19bebccbd26d9918bc16ad2d1e3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classtinyrobotics_1_1Coordinate.html">Coordinate</a>&lt; T &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1PointCloud.html#aaa6ca19bebccbd26d9918bc16ad2d1e3">toVoxel</a> (int cx, int cy) const</td></tr>
+<tr class="separator:aaa6ca19bebccbd26d9918bc16ad2d1e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
@@ -273,14 +275,11 @@ class tinyrobotics::PointCloud&lt; T &gt;</div><p>Represents a 3D point cloud fo
 <li>Build and query a voxel occupancy grid for fast lookups.</li>
 <li>Optionally enable live voxel grid updates for real-time occupancy.</li>
 </ul>
-<p>Example: </p><div class="fragment"><div class="line"><a class="code hl_class" href="classtinyrobotics_1_1PointCloud.html">PointCloud</a> cloud;</div>
-<div class="line">cloud.<a class="code hl_function" href="classtinyrobotics_1_1PointCloud.html#a952ff0502847235a3508c6de6b3fa1c5">add</a>(1.0, 2.0, 0.5);</div>
-<div class="line">cloud.<a class="code hl_function" href="classtinyrobotics_1_1PointCloud.html#af6992125317ddc408237467ef80fda56">buildVoxelGrid</a>(0.1f); <span class="comment">// 10cm voxels</span></div>
-<div class="line"><span class="keywordtype">bool</span> occ = cloud.<a class="code hl_function" href="classtinyrobotics_1_1PointCloud.html#ab47306687399fcea999ae55c9f26f0df">isOccupied</a>(1.0, 2.0, 0.5);</div>
-<div class="ttc" id="aclasstinyrobotics_1_1PointCloud_html"><div class="ttname"><a href="classtinyrobotics_1_1PointCloud.html">tinyrobotics::PointCloud</a></div><div class="ttdoc">Represents a 3D point cloud for robotics and mapping applications.</div><div class="ttdef"><b>Definition:</b> PointCloud.h:65</div></div>
-<div class="ttc" id="aclasstinyrobotics_1_1PointCloud_html_a952ff0502847235a3508c6de6b3fa1c5"><div class="ttname"><a href="classtinyrobotics_1_1PointCloud.html#a952ff0502847235a3508c6de6b3fa1c5">tinyrobotics::PointCloud::add</a></div><div class="ttdeci">void add(T x, T y, T z=0.0f)</div><div class="ttdoc">Add a single point.</div><div class="ttdef"><b>Definition:</b> PointCloud.h:100</div></div>
-<div class="ttc" id="aclasstinyrobotics_1_1PointCloud_html_ab47306687399fcea999ae55c9f26f0df"><div class="ttname"><a href="classtinyrobotics_1_1PointCloud.html#ab47306687399fcea999ae55c9f26f0df">tinyrobotics::PointCloud::isOccupied</a></div><div class="ttdeci">bool isOccupied(float x, float y, float z) const</div><div class="ttdoc">Checks if a given point is occupied based on the voxel grid.</div><div class="ttdef"><b>Definition:</b> PointCloud.h:183</div></div>
-<div class="ttc" id="aclasstinyrobotics_1_1PointCloud_html_af6992125317ddc408237467ef80fda56"><div class="ttname"><a href="classtinyrobotics_1_1PointCloud.html#af6992125317ddc408237467ef80fda56">tinyrobotics::PointCloud::buildVoxelGrid</a></div><div class="ttdeci">void buildVoxelGrid(float voxelSize)</div><div class="ttdoc">Builds a voxel grid for fast occupancy queries: A voxel is a grid cell.</div><div class="ttdef"><b>Definition:</b> PointCloud.h:157</div></div>
+<p>Example: </p><div class="fragment"><div class="line"><a class="code hl_class" href="classtinyrobotics_1_1PointCloud.html">PointCloud</a> cloud(0.1f);</div>
+<div class="line">cloud.add(1.0, 2.0, 0.5);</div>
+<div class="line">cloud.buildVoxelGrid(); <span class="comment">// 10cm voxels</span></div>
+<div class="line"><span class="keywordtype">bool</span> occ = cloud.isOccupied(1.0, 2.0, 0.5);</div>
+<div class="ttc" id="aclasstinyrobotics_1_1PointCloud_html"><div class="ttname"><a href="classtinyrobotics_1_1PointCloud.html">tinyrobotics::PointCloud</a></div><div class="ttdoc">Represents a 3D point cloud for robotics and mapping applications.</div><div class="ttdef"><b>Definition:</b> PointCloud.h:64</div></div>
 </div><!-- fragment --> </div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="a2b84733531108a9e0c3303124b3fdb85" name="a2b84733531108a9e0c3303124b3fdb85"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a2b84733531108a9e0c3303124b3fdb85">&#9670;&#160;</a></span>getNeighbors()</h2>
@@ -494,38 +493,11 @@ class tinyrobotics::PointCloud&lt; T &gt;</div><p>Represents a 3D point cloud fo
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">protected</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 <p>Convert voxel grid index (cx, cy) to world coordinate (center of voxel, z=0) </p>
-
-</div>
-</div>
-<a id="a47493d0711a91c9f4f4a00f618c62550" name="a47493d0711a91c9f4f4a00f618c62550"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a47493d0711a91c9f4f4a00f618c62550">&#9670;&#160;</a></span>voxelDownsample()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classtinyrobotics_1_1PointCloud.html">PointCloud</a> voxelDownsample </td>
-          <td>(</td>
-          <td class="paramtype">float&#160;</td>
-          <td class="paramname"><em>voxelSize</em></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<p>Simple voxel downsampling: e.g. 0.5 m to reduce number of points while keeping overall structure. </p>
 
 </div>
 </div>
