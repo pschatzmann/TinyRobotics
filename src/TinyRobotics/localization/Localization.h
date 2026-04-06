@@ -1,6 +1,6 @@
 #pragma once
  /**
- * @defgroup localization Localization and Mapping
+ * @defgroup localization SLAM
  * @ingroup main
  * @brief Simultaneous Localization and Mapping (SLAM)
  */
