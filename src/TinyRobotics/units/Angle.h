@@ -62,26 +62,6 @@ class Angle {
     return -1;  // Invalid conversion
   }
 
-  void add(Angle other) {
-    float otherAngle = other.getValue(unit);
-    if (otherAngle >= 0) {
-      angle += otherAngle;
-    }
-    float maxValue = getMaxValue(unit);
-    if (angle >= maxValue) angle -= maxValue;
-    if (angle < 0) angle += maxValue;
-  }
-
-  float getMaxValue(AngleUnit desiredUnit) const {
-    switch (desiredUnit) {
-      case AngleUnit::DEG:
-        return 360.0f;
-      case AngleUnit::RAD:
-        return 2.0f * (float)M_PI;
-    }
-    return -1;  // Invalid unit
-  }
-
   Angle operator+(const Angle& other) const {
     Angle result = *this;
     result.add(other);
@@ -90,19 +70,51 @@ class Angle {
 
   Angle operator-(const Angle& other) const {
     Angle result = *this;
-    float otherAngle = other.getValue(unit);
-    if (otherAngle >= 0) {
-      result.angle -= otherAngle;
-    }
-    float maxValue = getMaxValue(unit);
-    if (result.angle >= maxValue) result.angle -= maxValue;
-    if (result.angle < 0) result.angle += maxValue;
+    result.subtract(other);
     return result;
+  }
+
+  Angle& operator+=(const Angle& other) {
+    this->add(other);
+    return *this;
+  }
+
+  Angle& operator-=(const Angle& other) {
+    this->subtract(other);
+    return *this;
   }
 
  protected:
   float angle = 0.0f;
   AngleUnit unit = AngleUnit::DEG;
+
+  void add(Angle other) {
+    float otherAngle = other.getValue(unit);
+    angle += otherAngle;
+    switch (unit) {
+      case AngleUnit::DEG:
+        angle = normalizeAngleDeg(angle);
+        break;
+      case AngleUnit::RAD:
+        angle = normalizeAngleRad(angle);
+        break;
+    }
+  }
+
+  void subtract(Angle other) {
+    float otherAngle = other.getValue(unit);
+    angle -= otherAngle;
+    switch (unit) {
+      case AngleUnit::DEG:
+        angle = normalizeAngleDeg(angle);
+        break;
+      case AngleUnit::RAD:
+        angle = normalizeAngleRad(angle);
+        break;
+    }
+  }
+
+
 };
 
 }  // namespace tinyrobotics
