@@ -24,5 +24,5 @@ var searchData=
   ['ringbuffer_21',['RingBuffer',['../classtinyrobotics_1_1RingBuffer.html',1,'tinyrobotics']]],
   ['ringbuffer_3c_20uint8_5ft_20_3e_22',['RingBuffer&lt; uint8_t &gt;',['../classtinyrobotics_1_1RingBuffer.html',1,'tinyrobotics']]],
   ['roll_23',['roll',['../classtinyrobotics_1_1Orientation3D.html#a26fd84d522945b6038221d9e38c7cc39',1,'tinyrobotics::Orientation3D::roll()'],['../structtinyrobotics_1_1Fusion3D_1_1State3D.html#a26fd84d522945b6038221d9e38c7cc39',1,'tinyrobotics::Fusion3D::State3D::roll()']]],
-  ['run_24',['run',['../classtinyrobotics_1_1MessageDispatcher.html#a0f1d8081805e8e7710b5acb4a15f4ab9',1,'tinyrobotics::MessageDispatcher']]]
+  ['run_24',['run',['../classtinyrobotics_1_1MessageDispatcher.html#a0f1d8081805e8e7710b5acb4a15f4ab9',1,'tinyrobotics::MessageDispatcher::run()'],['../classtinyrobotics_1_1SpektrumSatelliteMessageSource.html#a13a43e6d814de94978c515cb084873b1',1,'tinyrobotics::SpektrumSatelliteMessageSource::run()']]]
 ];

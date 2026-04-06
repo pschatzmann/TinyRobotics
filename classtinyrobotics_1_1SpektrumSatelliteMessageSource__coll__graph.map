@@ -1,0 +1,4 @@
+<map id="SpektrumSatelliteMessageSource&lt; T &gt;" name="SpektrumSatelliteMessageSource&lt; T &gt;">
+<area shape="rect" id="node1" title="Publishes control messages from a Spektrum satellite receiver to the TinyRobotics message bus." alt="" coords="5,79,203,119"/>
+<area shape="rect" id="node2" href="$classtinyrobotics_1_1MessageSource.html" title="Base class for message sources in the TinyRobotics communication framework." alt="" coords="42,5,166,31"/>
+</map>
