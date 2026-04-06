@@ -60,8 +60,8 @@ BrushedMotor motor(1); // #1
 void setup() {
   motor.setPins(5, 6, 9); // IN1=5, IN2=6, PWM=9)
   motor.begin();
-  motor.setValuePercent(50); // Half speed forward
-  motor.setValuePercent(-50); // Half speed reverse
+  motor.setValuePercent(50.0f); // Half speed forward
+  motor.setValuePercent(-50.0f); // Half speed reverse
   motor.end(); // Brake
 }
 
@@ -81,8 +81,8 @@ void setup() {
   servo.setPin(9);           // Attach to pin 9
   servo.begin()
   //servo.setConstraints(-45, 45); // Limit range to -45..45 degrees
-  servo.setAngle(45);        // Set to 45 degrees left
-  int angle = servo.getAngle(); // Read last angle
+  servo.setAngle(45.0f);        // Set to 45 degrees left
+  float angle = servo.getAngle(); // Read last angle
   servo.end();            // Detach when done
 }
 
@@ -99,11 +99,11 @@ void loop() {
 StepperMotor stepper;
 void setup() {
   stepper.setPins(2, 3, 4);
-  stepper.setMaxSpeed(1000);
+  stepper.setMaxSpeed(1000.0f);
   stepper.setStepsPerRevolution(200);
   stepper.begin();
-  motor.setValuePercent(50); // Half speed forward
-  motor.setValuePercent(-50); // Half speed reverse
+  motor.setValuePercent(50.0f); // Half speed forward
+  motor.setValuePercent(-50.0f); // Half speed reverse
   stepper.end();
 }
 ```
@@ -116,7 +116,7 @@ void setup() {
 MyMotorDriver driver;
 GenericMotor<float> motor(3, &driver); // #3
 void setup() {
-  motor.setValueCallback([](int8_t value, GenericMotor& m) {
+  motor.setValueCallback([](float value, GenericMotor& m) {
     MyMotorDriver* drv = m.getMotor<MyMotorDriver>();
     drv->setPWM(value);
   });
@@ -129,8 +129,8 @@ void setup() {
 //     // Custom stop logic (e.g., disable power)
 //   });
   motor.begin();
-  motor.setValuePercent(50); // Half speed forward
-  motor.setValuePercent(-50); // Half speed reverse
+  motor.setValuePercent(50.0f); // Half speed forward
+  motor.setValuePercent(-50.0f); // Half speed reverse
   motor.end();
 }
 ```
@@ -139,9 +139,11 @@ void setup() {
 
 You can use a platform specifc motor control library to implement the callbacks. Alternatively you can just the PWM functionality provided by your platform:
 
-### H-Bridge (DC motor control) Logic
+### H-Bridge (DC motor control) Logic (e.g using L298N)
 
-- PWM Frequency: ~1 kHz – 20 kHz
+- PWM Frequency: ~5 kHz – 20 kHz
+  - small motors: 5 kHz – 20 kHz
+  - large motors: 20 kHz – 25 kHz
 - Speed is driven by Duty cycle: 0–100% on EN pins
 
 ### Servo Motor Logic
@@ -171,7 +173,7 @@ You can use a platform specifc motor control library to implement the callbacks.
 - Fast operation: 2 kHz – 10 kHz
 
 ### Stepper Motor Logic (e.g. using L298N driver)
-- You need to drive the pins in steps (in1, in2, in3, in4):
+- You need to drive the following pins in steps: in1, in2, in3, in4:
   - step 1: 1 0 1 0
   - step 2: 0 1 1 0
   - step 3: 0 1 0 1
