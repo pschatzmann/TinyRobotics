@@ -1,4 +1,5 @@
 <map id="Fusion3D" name="Fusion3D">
-<area shape="rect" id="node1" title="3D sensor fusion EKF for position, orientation, and velocity estimation." alt="" coords="26,79,109,104"/>
+<area shape="rect" id="node1" title="3D sensor fusion EKF for position, orientation, and velocity estimation." alt="" coords="87,93,170,119"/>
 <area shape="rect" id="node2" href="$classtinyrobotics_1_1MessageSource.html" title="Base class for message sources in the TinyRobotics communication framework." alt="" coords="5,5,129,31"/>
+<area shape="rect" id="node3" href="$structtinyrobotics_1_1Fusion3D_1_1State3D.html" title=" " alt="" coords="154,5,229,31"/>
 </map>

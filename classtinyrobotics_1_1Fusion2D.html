@@ -76,6 +76,8 @@ $(function() {
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pro-methods">Protected Member Functions</a> &#124;
+<a href="#pro-attribs">Protected Attributes</a> &#124;
 <a href="classtinyrobotics_1_1Fusion2D-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">Fusion2D Class Reference<div class="ingroups"><a class="el" href="group__main.html">TinyRobotics</a> &raquo; <a class="el" href="group__fusion.html">Fusion</a></div></div></div>
 </div><!--header-->
@@ -100,9 +102,10 @@ Collaboration diagram for Fusion2D:</div>
 <div class="dyncontent">
 <div class="center"><img src="classtinyrobotics_1_1Fusion2D__coll__graph.png" border="0" usemap="#aFusion2D_coll__map" alt="Collaboration graph"/></div>
 <map name="aFusion2D_coll__map" id="aFusion2D_coll__map">
-<area shape="rect" title="2D sensor fusion EKF for position, heading, and speed estimation." alt="" coords="26,152,109,177"/>
-<area shape="rect" href="classtinyrobotics_1_1IMotionState2D.html" title="Interface for representing the navigation state of a robot in 2D space." alt="" coords="6,79,129,104"/>
+<area shape="rect" title="2D sensor fusion EKF for position, heading, and speed estimation." alt="" coords="118,168,201,193"/>
+<area shape="rect" href="classtinyrobotics_1_1IMotionState2D.html" title="Interface for representing the navigation state of a robot in 2D space." alt="" coords="6,80,129,105"/>
 <area shape="rect" href="classtinyrobotics_1_1MessageSource.html" title="Base class for message sources in the TinyRobotics communication framework." alt="" coords="5,5,129,31"/>
+<area shape="rect" href="structtinyrobotics_1_1Fusion2D_1_1State2D.html" title="Holds the estimated 2D state." alt="" coords="153,80,227,105"/>
 </map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
@@ -208,8 +211,38 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>sendMessage</b> (cons
 void&#160;</td><td class="memItemRight" valign="bottom"><b>sendMessage</b> (const <a class="el" href="structtinyrobotics_1_1Message.html">Message</a>&lt; <a class="el" href="classtinyrobotics_1_1GPSCoordinate.html">GPSCoordinate</a> &gt; &amp;msg)</td></tr>
 <tr class="separator:a8c365effddc5ffc78b8a3532b01047b3 inherit pub_methods_classtinyrobotics_1_1MessageSource"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="inherited" name="inherited"></a>
-Additional Inherited Members</h2></td></tr>
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-methods" name="pro-methods"></a>
+Protected Member Functions</h2></td></tr>
+<tr class="memitem:ace2e6871108552609bfd50ede9b61c24"><td class="memItemLeft" align="right" valign="top"><a id="ace2e6871108552609bfd50ede9b61c24" name="ace2e6871108552609bfd50ede9b61c24"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>applyUpdate</b> (float K[5], float residual)</td></tr>
+<tr class="separator:ace2e6871108552609bfd50ede9b61c24"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aed3b748cb2e072bf2407ec6d86dd642e"><td class="memItemLeft" align="right" valign="top"><a id="aed3b748cb2e072bf2407ec6d86dd642e" name="aed3b748cb2e072bf2407ec6d86dd642e"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>updateCovariance</b> (float K[5], int idx)</td></tr>
+<tr class="separator:aed3b748cb2e072bf2407ec6d86dd642e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5e25b956b56f2a662abe6d22660977b5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1Fusion2D.html#a5e25b956b56f2a662abe6d22660977b5">reset</a> (uint32_t timeMs=millis())</td></tr>
+<tr class="memdesc:a5e25b956b56f2a662abe6d22660977b5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reset the EKF state and covariance.  <br /></td></tr>
+<tr class="separator:a5e25b956b56f2a662abe6d22660977b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
+Protected Attributes</h2></td></tr>
+<tr class="memitem:a00aca42e39575fdb259dcf3ea7e6778d"><td class="memItemLeft" align="right" valign="top"><a id="a00aca42e39575fdb259dcf3ea7e6778d" name="a00aca42e39575fdb259dcf3ea7e6778d"></a>
+<a class="el" href="structtinyrobotics_1_1Fusion2D_1_1State2D.html">State2D</a>&#160;</td><td class="memItemRight" valign="bottom"><b>state</b></td></tr>
+<tr class="separator:a00aca42e39575fdb259dcf3ea7e6778d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a46d0e0392201a2537bb9d07f81dabf03"><td class="memItemLeft" align="right" valign="top"><a id="a46d0e0392201a2537bb9d07f81dabf03" name="a46d0e0392201a2537bb9d07f81dabf03"></a>
+float&#160;</td><td class="memItemRight" valign="bottom"><b>P</b> [5][5] = {}</td></tr>
+<tr class="separator:a46d0e0392201a2537bb9d07f81dabf03"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab2c30d5849c29efb3759cf79ef797d5a"><td class="memItemLeft" align="right" valign="top"><a id="ab2c30d5849c29efb3759cf79ef797d5a" name="ab2c30d5849c29efb3759cf79ef797d5a"></a>
+uint32_t&#160;</td><td class="memItemRight" valign="bottom"><b>lastPredictTime</b> = 0</td></tr>
+<tr class="separator:ab2c30d5849c29efb3759cf79ef797d5a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:add69e72a26dfa56d1f869bb62e93bb78"><td class="memItemLeft" align="right" valign="top"><a id="add69e72a26dfa56d1f869bb62e93bb78" name="add69e72a26dfa56d1f869bb62e93bb78"></a>
+float&#160;</td><td class="memItemRight" valign="bottom"><b>omegaMeasured</b> = 0.0f</td></tr>
+<tr class="separator:add69e72a26dfa56d1f869bb62e93bb78"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7bb2198cfe157089543e9a4361b9e546"><td class="memItemLeft" align="right" valign="top"><a id="a7bb2198cfe157089543e9a4361b9e546" name="a7bb2198cfe157089543e9a4361b9e546"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>hasWheelSpeed</b> = false</td></tr>
+<tr class="separator:a7bb2198cfe157089543e9a4361b9e546"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a344c8aa9c61f85e66b300c911ba2583e"><td class="memItemLeft" align="right" valign="top"><a id="a344c8aa9c61f85e66b300c911ba2583e" name="a344c8aa9c61f85e66b300c911ba2583e"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>hasIMU</b> = false</td></tr>
+<tr class="separator:a344c8aa9c61f85e66b300c911ba2583e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_attribs_classtinyrobotics_1_1MessageSource"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_classtinyrobotics_1_1MessageSource')"><img src="closed.png" alt="-"/>&#160;Protected Attributes inherited from <a class="el" href="classtinyrobotics_1_1MessageSource.html">MessageSource</a></td></tr>
 <tr class="memitem:ae8917ae7a3eb87d29c94c514e1d5c981 inherit pro_attribs_classtinyrobotics_1_1MessageSource"><td class="memItemLeft" align="right" valign="top"><a id="ae8917ae7a3eb87d29c94c514e1d5c981" name="ae8917ae7a3eb87d29c94c514e1d5c981"></a>
 std::vector&lt; <a class="el" href="classtinyrobotics_1_1MessageHandler.html">MessageHandler</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>messageHandlers_</b></td></tr>
@@ -547,6 +580,40 @@ std::vector&lt; <a class="el" href="classtinyrobotics_1_1MessageHandler.html">Me
     <tr><td class="paramname">timeMs</td><td>Current timestamp in milliseconds. </td></tr>
     <tr><td class="paramname">ax</td><td>Optional IMU acceleration along body-forward axis (m/s²). Used only if no wheel speed. </td></tr>
     <tr><td class="paramname">ay</td><td>Optional IMU acceleration along body-sideways axis (m/s²). Used only if no wheel speed. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a5e25b956b56f2a662abe6d22660977b5" name="a5e25b956b56f2a662abe6d22660977b5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5e25b956b56f2a662abe6d22660977b5">&#9670;&#160;</a></span>reset()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void reset </td>
+          <td>(</td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>timeMs</em> = <code>millis()</code></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Reset the EKF state and covariance. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">timeMs</td><td>Optional timestamp to set the initial state time. </td></tr>
   </table>
   </dd>
 </dl>

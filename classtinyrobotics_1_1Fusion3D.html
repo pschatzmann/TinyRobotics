@@ -76,6 +76,8 @@ $(function() {
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pro-methods">Protected Member Functions</a> &#124;
+<a href="#pro-attribs">Protected Attributes</a> &#124;
 <a href="classtinyrobotics_1_1Fusion3D-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">Fusion3D Class Reference<div class="ingroups"><a class="el" href="group__main.html">TinyRobotics</a> &raquo; <a class="el" href="group__fusion.html">Fusion</a></div></div></div>
 </div><!--header-->
@@ -99,8 +101,9 @@ Collaboration diagram for Fusion3D:</div>
 <div class="dyncontent">
 <div class="center"><img src="classtinyrobotics_1_1Fusion3D__coll__graph.png" border="0" usemap="#aFusion3D_coll__map" alt="Collaboration graph"/></div>
 <map name="aFusion3D_coll__map" id="aFusion3D_coll__map">
-<area shape="rect" title="3D sensor fusion EKF for position, orientation, and velocity estimation." alt="" coords="26,79,109,104"/>
+<area shape="rect" title="3D sensor fusion EKF for position, orientation, and velocity estimation." alt="" coords="87,93,170,119"/>
 <area shape="rect" href="classtinyrobotics_1_1MessageSource.html" title="Base class for message sources in the TinyRobotics communication framework." alt="" coords="5,5,129,31"/>
+<area shape="rect" href="structtinyrobotics_1_1Fusion3D_1_1State3D.html" title=" " alt="" coords="154,5,229,31"/>
 </map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
@@ -156,8 +159,35 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>sendMessage</b> (cons
 void&#160;</td><td class="memItemRight" valign="bottom"><b>sendMessage</b> (const <a class="el" href="structtinyrobotics_1_1Message.html">Message</a>&lt; <a class="el" href="classtinyrobotics_1_1GPSCoordinate.html">GPSCoordinate</a> &gt; &amp;msg)</td></tr>
 <tr class="separator:a8c365effddc5ffc78b8a3532b01047b3 inherit pub_methods_classtinyrobotics_1_1MessageSource"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="inherited" name="inherited"></a>
-Additional Inherited Members</h2></td></tr>
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-methods" name="pro-methods"></a>
+Protected Member Functions</h2></td></tr>
+<tr class="memitem:a19aee0993a8b57149b3d52feedb1ba1c"><td class="memItemLeft" align="right" valign="top"><a id="a19aee0993a8b57149b3d52feedb1ba1c" name="a19aee0993a8b57149b3d52feedb1ba1c"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>wrapAngles</b> ()</td></tr>
+<tr class="separator:a19aee0993a8b57149b3d52feedb1ba1c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5e25b956b56f2a662abe6d22660977b5"><td class="memItemLeft" align="right" valign="top"><a id="a5e25b956b56f2a662abe6d22660977b5" name="a5e25b956b56f2a662abe6d22660977b5"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>reset</b> (uint32_t timeMs=millis())</td></tr>
+<tr class="separator:a5e25b956b56f2a662abe6d22660977b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
+Protected Attributes</h2></td></tr>
+<tr class="memitem:ac3b3dfa3ce023359218cfe1ebe937a90"><td class="memItemLeft" align="right" valign="top"><a id="ac3b3dfa3ce023359218cfe1ebe937a90" name="ac3b3dfa3ce023359218cfe1ebe937a90"></a>
+<a class="el" href="structtinyrobotics_1_1Fusion3D_1_1State3D.html">State3D</a>&#160;</td><td class="memItemRight" valign="bottom"><b>state</b></td></tr>
+<tr class="separator:ac3b3dfa3ce023359218cfe1ebe937a90"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab2c30d5849c29efb3759cf79ef797d5a"><td class="memItemLeft" align="right" valign="top"><a id="ab2c30d5849c29efb3759cf79ef797d5a" name="ab2c30d5849c29efb3759cf79ef797d5a"></a>
+uint32_t&#160;</td><td class="memItemRight" valign="bottom"><b>lastPredictTime</b> = 0</td></tr>
+<tr class="separator:ab2c30d5849c29efb3759cf79ef797d5a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a46879612656e87de78260286d61e5b9d"><td class="memItemLeft" align="right" valign="top"><a id="a46879612656e87de78260286d61e5b9d" name="a46879612656e87de78260286d61e5b9d"></a>
+float&#160;</td><td class="memItemRight" valign="bottom"><b>omegaXMeasured</b> = 0.0f</td></tr>
+<tr class="separator:a46879612656e87de78260286d61e5b9d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a77c4334d97aa9fe23b09866810b55c87"><td class="memItemLeft" align="right" valign="top"><a id="a77c4334d97aa9fe23b09866810b55c87" name="a77c4334d97aa9fe23b09866810b55c87"></a>
+float&#160;</td><td class="memItemRight" valign="bottom"><b>omegaYMeasured</b> = 0.0f</td></tr>
+<tr class="separator:a77c4334d97aa9fe23b09866810b55c87"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8a0e7c91c3bc5fa2518f8f6324207821"><td class="memItemLeft" align="right" valign="top"><a id="a8a0e7c91c3bc5fa2518f8f6324207821" name="a8a0e7c91c3bc5fa2518f8f6324207821"></a>
+float&#160;</td><td class="memItemRight" valign="bottom"><b>omegaZMeasured</b> = 0.0f</td></tr>
+<tr class="separator:a8a0e7c91c3bc5fa2518f8f6324207821"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a344c8aa9c61f85e66b300c911ba2583e"><td class="memItemLeft" align="right" valign="top"><a id="a344c8aa9c61f85e66b300c911ba2583e" name="a344c8aa9c61f85e66b300c911ba2583e"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>hasIMU</b> = false</td></tr>
+<tr class="separator:a344c8aa9c61f85e66b300c911ba2583e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_attribs_classtinyrobotics_1_1MessageSource"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_classtinyrobotics_1_1MessageSource')"><img src="closed.png" alt="-"/>&#160;Protected Attributes inherited from <a class="el" href="classtinyrobotics_1_1MessageSource.html">MessageSource</a></td></tr>
 <tr class="memitem:ae8917ae7a3eb87d29c94c514e1d5c981 inherit pro_attribs_classtinyrobotics_1_1MessageSource"><td class="memItemLeft" align="right" valign="top"><a id="ae8917ae7a3eb87d29c94c514e1d5c981" name="ae8917ae7a3eb87d29c94c514e1d5c981"></a>
 std::vector&lt; <a class="el" href="classtinyrobotics_1_1MessageHandler.html">MessageHandler</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>messageHandlers_</b></td></tr>

@@ -112,18 +112,24 @@ Public Member Functions</h2></td></tr>
 &#160;</td><td class="memItemRight" valign="bottom"><b>GenericMotor</b> (uint8_t id, void *motor=nullptr)</td></tr>
 <tr class="separator:ab48c201929dbb0289f501eede82ff917"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acba365cc28eb702040c382646cfb0a7a"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1GenericMotor.html#acba365cc28eb702040c382646cfb0a7a">begin</a> () override</td></tr>
+<tr class="memdesc:acba365cc28eb702040c382646cfb0a7a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Start the motor using the optional begin callback.  <br /></td></tr>
 <tr class="separator:acba365cc28eb702040c382646cfb0a7a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2e11a2697648deba64ad0552421626f8"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1GenericMotor.html#a2e11a2697648deba64ad0552421626f8">setValuePercent</a> (T percent) override</td></tr>
+<tr class="memdesc:a2e11a2697648deba64ad0552421626f8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set value as percentage (-100 to 100)  <br /></td></tr>
 <tr class="separator:a2e11a2697648deba64ad0552421626f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adcf29aeda3502630e7e11cf2fb4f126b"><td class="memItemLeft" align="right" valign="top">T&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1GenericMotor.html#adcf29aeda3502630e7e11cf2fb4f126b">getValuePercent</a> () const override</td></tr>
+<tr class="memdesc:adcf29aeda3502630e7e11cf2fb4f126b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get current value percentage.  <br /></td></tr>
 <tr class="separator:adcf29aeda3502630e7e11cf2fb4f126b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a20086f7e5f3d05227e783289361ebb14"><td class="memItemLeft" align="right" valign="top"><a id="a20086f7e5f3d05227e783289361ebb14" name="a20086f7e5f3d05227e783289361ebb14"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>setAngle</b> (T angle)</td></tr>
+<tr class="memdesc:a20086f7e5f3d05227e783289361ebb14"><td class="mdescLeft">&#160;</td><td class="mdescRight">For Servo: Set angle in degrees (-90 to 90) by mapping it to percentage. <br /></td></tr>
 <tr class="separator:a20086f7e5f3d05227e783289361ebb14"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a90c6cc282a3383e12a0b74b99b4a8fdd"><td class="memItemLeft" align="right" valign="top"><a id="a90c6cc282a3383e12a0b74b99b4a8fdd" name="a90c6cc282a3383e12a0b74b99b4a8fdd"></a>
 T&#160;</td><td class="memItemRight" valign="bottom"><b>getAngle</b> ()</td></tr>
+<tr class="memdesc:a90c6cc282a3383e12a0b74b99b4a8fdd"><td class="mdescLeft">&#160;</td><td class="mdescRight">For Servo: Get angle in degrees by mapping percentage back to angle. <br /></td></tr>
 <tr class="separator:a90c6cc282a3383e12a0b74b99b4a8fdd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a64e9fa75beda50a9e8400ee0d4e61984"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1GenericMotor.html#a64e9fa75beda50a9e8400ee0d4e61984">end</a> () override</td></tr>
+<tr class="memdesc:a64e9fa75beda50a9e8400ee0d4e61984"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stop the motor using the optional end callback.  <br /></td></tr>
 <tr class="separator:a64e9fa75beda50a9e8400ee0d4e61984"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a473470b8bb536d13887fdc28608eba3b"><td class="memItemLeft" align="right" valign="top"><a id="a473470b8bb536d13887fdc28608eba3b" name="a473470b8bb536d13887fdc28608eba3b"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>setValueCallback</b> (void(*valueCB)(T value, <a class="el" href="classtinyrobotics_1_1GenericMotor.html">GenericMotor</a> &amp;motor))</td></tr>
@@ -166,8 +172,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>setPins</b> (int step
 <tr class="separator:ae86cd58c8b7fe96c6d1ca5dd3c2834da inherit pub_methods_classtinyrobotics_1_1Motor"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a112bed68a1b5f2194ad7bf0166b64c13 inherit pub_methods_classtinyrobotics_1_1Motor"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1Motor.html#a112bed68a1b5f2194ad7bf0166b64c13">setValuePercent</a> (T percent)=0</td></tr>
 <tr class="separator:a112bed68a1b5f2194ad7bf0166b64c13 inherit pub_methods_classtinyrobotics_1_1Motor"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:add9634f7f34b5b8709ae8bf2803249a7 inherit pub_methods_classtinyrobotics_1_1Motor"><td class="memItemLeft" align="right" valign="top"><a id="add9634f7f34b5b8709ae8bf2803249a7" name="add9634f7f34b5b8709ae8bf2803249a7"></a>
-virtual T&#160;</td><td class="memItemRight" valign="bottom"><b>getValuePercent</b> () const =0</td></tr>
+<tr class="memitem:add9634f7f34b5b8709ae8bf2803249a7 inherit pub_methods_classtinyrobotics_1_1Motor"><td class="memItemLeft" align="right" valign="top">virtual T&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1Motor.html#add9634f7f34b5b8709ae8bf2803249a7">getValuePercent</a> () const =0</td></tr>
 <tr class="separator:add9634f7f34b5b8709ae8bf2803249a7 inherit pub_methods_classtinyrobotics_1_1Motor"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3266095b7a7543fe56462040b3e47a70 inherit pub_methods_classtinyrobotics_1_1Motor"><td class="memItemLeft" align="right" valign="top"><a id="a3266095b7a7543fe56462040b3e47a70" name="a3266095b7a7543fe56462040b3e47a70"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>setID</b> (uint8_t id)</td></tr>
@@ -178,9 +183,10 @@ uint8_t&#160;</td><td class="memItemRight" valign="bottom"><b>getID</b> () const
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-methods" name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
-<tr class="memitem:aa4573f04ecc7923dd89286742e492d64"><td class="memItemLeft" align="right" valign="top"><a id="aa4573f04ecc7923dd89286742e492d64" name="aa4573f04ecc7923dd89286742e492d64"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>notSupported</b> ()</td></tr>
-<tr class="separator:aa4573f04ecc7923dd89286742e492d64"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5a44c55c83a07751605f0c5a1831f197"><td class="memItemLeft" align="right" valign="top"><a id="a5a44c55c83a07751605f0c5a1831f197" name="a5a44c55c83a07751605f0c5a1831f197"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>notSupported</b> (const char *method)</td></tr>
+<tr class="memdesc:a5a44c55c83a07751605f0c5a1831f197"><td class="mdescLeft">&#160;</td><td class="mdescRight">Log an error for unsupported methods. <br /></td></tr>
+<tr class="separator:a5a44c55c83a07751605f0c5a1831f197"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-static-methods" name="pro-static-methods"></a>
 Static Protected Member Functions</h2></td></tr>
@@ -233,7 +239,7 @@ class tinyrobotics::GenericMotor&lt; T &gt;</div><p><a class="el" href="classtin
 <div class="line">  <span class="comment">// Custom stop logic</span></div>
 <div class="line">});</div>
 <div class="ttc" id="aclasstinyrobotics_1_1GenericMotor_html"><div class="ttname"><a href="classtinyrobotics_1_1GenericMotor.html">tinyrobotics::GenericMotor</a></div><div class="ttdoc">Motor abstraction for integrating external/custom motor drivers using callbacks.</div><div class="ttdef"><b>Definition:</b> GenericMotor.h:44</div></div>
-<div class="ttc" id="aclasstinyrobotics_1_1GenericMotor_html_aea2724ff627dde61a4990106b90135d1"><div class="ttname"><a href="classtinyrobotics_1_1GenericMotor.html#aea2724ff627dde61a4990106b90135d1">tinyrobotics::GenericMotor::getMotor</a></div><div class="ttdeci">MotorT &amp; getMotor()</div><div class="ttdoc">Provides the user motor object.</div><div class="ttdef"><b>Definition:</b> GenericMotor.h:108</div></div>
+<div class="ttc" id="aclasstinyrobotics_1_1GenericMotor_html_aea2724ff627dde61a4990106b90135d1"><div class="ttname"><a href="classtinyrobotics_1_1GenericMotor.html#aea2724ff627dde61a4990106b90135d1">tinyrobotics::GenericMotor::getMotor</a></div><div class="ttdeci">MotorT &amp; getMotor()</div><div class="ttdoc">Provides the user motor object.</div><div class="ttdef"><b>Definition:</b> GenericMotor.h:113</div></div>
 </div><!-- fragment --> </div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="acba365cc28eb702040c382646cfb0a7a" name="acba365cc28eb702040c382646cfb0a7a"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#acba365cc28eb702040c382646cfb0a7a">&#9670;&#160;</a></span>begin()</h2>
@@ -257,6 +263,8 @@ class tinyrobotics::GenericMotor&lt; T &gt;</div><p><a class="el" href="classtin
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Start the motor using the optional begin callback. </p>
 
 <p>Implements <a class="el" href="classtinyrobotics_1_1Motor.html">Motor&lt; T &gt;</a>.</p>
 
@@ -285,6 +293,8 @@ class tinyrobotics::GenericMotor&lt; T &gt;</div><p><a class="el" href="classtin
 </table>
 </div><div class="memdoc">
 
+<p>Stop the motor using the optional end callback. </p>
+
 <p>Implements <a class="el" href="classtinyrobotics_1_1Motor.html">Motor&lt; T &gt;</a>.</p>
 
 </div>
@@ -311,6 +321,8 @@ class tinyrobotics::GenericMotor&lt; T &gt;</div><p><a class="el" href="classtin
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Get current value percentage. </p>
 
 <p>Implements <a class="el" href="classtinyrobotics_1_1Motor.html">Motor&lt; T &gt;</a>.</p>
 
@@ -368,6 +380,8 @@ class tinyrobotics::GenericMotor&lt; T &gt;</div><p><a class="el" href="classtin
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Set value as percentage (-100 to 100) </p>
 
 <p>Implements <a class="el" href="classtinyrobotics_1_1Motor.html">Motor&lt; T &gt;</a>.</p>
 

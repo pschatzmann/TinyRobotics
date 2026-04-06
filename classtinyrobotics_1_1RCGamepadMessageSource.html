@@ -75,6 +75,8 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pro-methods">Protected Member Functions</a> &#124;
+<a href="#pro-attribs">Protected Attributes</a> &#124;
 <a href="classtinyrobotics_1_1RCGamepadMessageSource-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">RCGamepadMessageSource Class Reference<div class="ingroups"><a class="el" href="group__main.html">TinyRobotics</a> &raquo; <a class="el" href="group__communication.html">Communication</a></div></div></div>
 </div><!--header-->
@@ -140,8 +142,41 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>sendMessage</b> (cons
 void&#160;</td><td class="memItemRight" valign="bottom"><b>sendMessage</b> (const <a class="el" href="structtinyrobotics_1_1Message.html">Message</a>&lt; <a class="el" href="classtinyrobotics_1_1GPSCoordinate.html">GPSCoordinate</a> &gt; &amp;msg)</td></tr>
 <tr class="separator:a8c365effddc5ffc78b8a3532b01047b3 inherit pub_methods_classtinyrobotics_1_1MessageSource"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="inherited" name="inherited"></a>
-Additional Inherited Members</h2></td></tr>
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-methods" name="pro-methods"></a>
+Protected Member Functions</h2></td></tr>
+<tr class="memitem:af2cd2bf59b375ad5799b6fbebb2c5da6"><td class="memItemLeft" align="right" valign="top"><a id="af2cd2bf59b375ad5799b6fbebb2c5da6" name="af2cd2bf59b375ad5799b6fbebb2c5da6"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>publish</b> (const GamepadState &amp;state)</td></tr>
+<tr class="separator:af2cd2bf59b375ad5799b6fbebb2c5da6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a083310dba2579e8c8a35e008d97ee9dc"><td class="memItemLeft" align="right" valign="top"><a id="a083310dba2579e8c8a35e008d97ee9dc" name="a083310dba2579e8c8a35e008d97ee9dc"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>publish</b> (const <a class="el" href="structtinyrobotics_1_1Message.html">Message</a>&lt; float &gt; &amp;msg)</td></tr>
+<tr class="separator:a083310dba2579e8c8a35e008d97ee9dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4d215421ab5468c21797b86f6e655878"><td class="memItemLeft" align="right" valign="top"><a id="a4d215421ab5468c21797b86f6e655878" name="a4d215421ab5468c21797b86f6e655878"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>publishCar</b> (const GamepadState &amp;state)</td></tr>
+<tr class="separator:a4d215421ab5468c21797b86f6e655878"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af05ca9b968398d0519f3624230f2c301"><td class="memItemLeft" align="right" valign="top"><a id="af05ca9b968398d0519f3624230f2c301" name="af05ca9b968398d0519f3624230f2c301"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>publishDrone</b> (const GamepadState &amp;state)</td></tr>
+<tr class="separator:af05ca9b968398d0519f3624230f2c301"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a674534ff567970bbd2acf1b694782c0b"><td class="memItemLeft" align="right" valign="top"><a id="a674534ff567970bbd2acf1b694782c0b" name="a674534ff567970bbd2acf1b694782c0b"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>publishPlane</b> (const GamepadState &amp;state)</td></tr>
+<tr class="separator:a674534ff567970bbd2acf1b694782c0b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a94444d9db9a5c2ae8d99f0abfe07b15e"><td class="memItemLeft" align="right" valign="top"><a id="a94444d9db9a5c2ae8d99f0abfe07b15e" name="a94444d9db9a5c2ae8d99f0abfe07b15e"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>publishBoat</b> (const GamepadState &amp;state)</td></tr>
+<tr class="separator:a94444d9db9a5c2ae8d99f0abfe07b15e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
+Protected Attributes</h2></td></tr>
+<tr class="memitem:ae0f1f0eb9f35fd88f168fa3b9b214a7d"><td class="memItemLeft" align="right" valign="top"><a id="ae0f1f0eb9f35fd88f168fa3b9b214a7d" name="ae0f1f0eb9f35fd88f168fa3b9b214a7d"></a>
+GamepadServer&#160;</td><td class="memItemRight" valign="bottom"><b>gamepad</b></td></tr>
+<tr class="separator:ae0f1f0eb9f35fd88f168fa3b9b214a7d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8fe2144b9bde99adecb56149b279b5e7"><td class="memItemLeft" align="right" valign="top"><a id="a8fe2144b9bde99adecb56149b279b5e7" name="a8fe2144b9bde99adecb56149b279b5e7"></a>
+ControlScenario&#160;</td><td class="memItemRight" valign="bottom"><b>scenario</b></td></tr>
+<tr class="separator:a8fe2144b9bde99adecb56149b279b5e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae6b117a408255f0380bda764c4622320"><td class="memItemLeft" align="right" valign="top"><a id="ae6b117a408255f0380bda764c4622320" name="ae6b117a408255f0380bda764c4622320"></a>
+bool(*&#160;</td><td class="memItemRight" valign="bottom"><b>callback</b> )(const GamepadState &amp;, <a class="el" href="classtinyrobotics_1_1MessageSource.html">MessageSource</a> &amp;source) = nullptr</td></tr>
+<tr class="separator:ae6b117a408255f0380bda764c4622320"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6eaf1abc6903a9ffe52dbde4383a69f1"><td class="memItemLeft" align="right" valign="top"><a id="a6eaf1abc6903a9ffe52dbde4383a69f1" name="a6eaf1abc6903a9ffe52dbde4383a69f1"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>is_active_</b> = false</td></tr>
+<tr class="separator:a6eaf1abc6903a9ffe52dbde4383a69f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_attribs_classtinyrobotics_1_1MessageSource"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_classtinyrobotics_1_1MessageSource')"><img src="closed.png" alt="-"/>&#160;Protected Attributes inherited from <a class="el" href="classtinyrobotics_1_1MessageSource.html">MessageSource</a></td></tr>
 <tr class="memitem:ae8917ae7a3eb87d29c94c514e1d5c981 inherit pro_attribs_classtinyrobotics_1_1MessageSource"><td class="memItemLeft" align="right" valign="top"><a id="ae8917ae7a3eb87d29c94c514e1d5c981" name="ae8917ae7a3eb87d29c94c514e1d5c981"></a>
 std::vector&lt; <a class="el" href="classtinyrobotics_1_1MessageHandler.html">MessageHandler</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>messageHandlers_</b></td></tr>

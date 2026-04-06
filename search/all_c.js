@@ -6,6 +6,7 @@ var searchData=
   ['nmeaparser_3',['NMEAParser',['../classtinyrobotics_1_1NMEAParser.html',1,'tinyrobotics']]],
   ['noderecord_4',['NodeRecord',['../structtinyrobotics_1_1AStar_1_1NodeRecord.html',1,'tinyrobotics::AStar']]],
   ['nointerrupthandler_5',['NoInterruptHandler',['../classtinyrobotics_1_1NoInterruptHandler.html',1,'tinyrobotics']]],
-  ['nullopt_5ft_6',['nullopt_t',['../structstd_1_1nullopt__t.html',1,'std']]],
-  ['nullprintclass_7',['NullPrintClass',['../classtinyrobotics_1_1NullPrintClass.html',1,'tinyrobotics']]]
+  ['notsupported_6',['notSupported',['../classtinyrobotics_1_1GenericMotor.html#a5a44c55c83a07751605f0c5a1831f197',1,'tinyrobotics::GenericMotor']]],
+  ['nullopt_5ft_7',['nullopt_t',['../structstd_1_1nullopt__t.html',1,'std']]],
+  ['nullprintclass_8',['NullPrintClass',['../classtinyrobotics_1_1NullPrintClass.html',1,'tinyrobotics']]]
 ];

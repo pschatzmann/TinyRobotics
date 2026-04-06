@@ -76,6 +76,9 @@ $(function() {
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pro-types">Protected Types</a> &#124;
+<a href="#pro-methods">Protected Member Functions</a> &#124;
+<a href="#pro-attribs">Protected Attributes</a> &#124;
 <a href="classtinyrobotics_1_1PIDAutoTuner-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">PIDAutoTuner Class Reference<div class="ingroups"><a class="el" href="group__main.html">TinyRobotics</a> &raquo; <a class="el" href="group__control.html">Control</a></div></div></div>
 </div><!--header-->
@@ -111,6 +114,76 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>isFinished</b> () con
 <tr class="memitem:a957a9995893b782e4916e8f5d38cbc62"><td class="memItemLeft" align="right" valign="top"><a id="a957a9995893b782e4916e8f5d38cbc62" name="a957a9995893b782e4916e8f5d38cbc62"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>setHysteresis</b> (float h)</td></tr>
 <tr class="separator:a957a9995893b782e4916e8f5d38cbc62"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-types" name="pro-types"></a>
+Protected Types</h2></td></tr>
+<tr class="memitem:a5d74787dedbc4e11c1ab15bf487e61f8"><td class="memItemLeft" align="right" valign="top"><a id="a5d74787dedbc4e11c1ab15bf487e61f8" name="a5d74787dedbc4e11c1ab15bf487e61f8"></a>enum class &#160;</td><td class="memItemRight" valign="bottom"><b>State</b> { <b>INIT</b>
+, <b>RUNNING</b>
+ }</td></tr>
+<tr class="separator:a5d74787dedbc4e11c1ab15bf487e61f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-methods" name="pro-methods"></a>
+Protected Member Functions</h2></td></tr>
+<tr class="memitem:a673cfca5630ae205ac794978cd870e53"><td class="memItemLeft" align="right" valign="top"><a id="a673cfca5630ae205ac794978cd870e53" name="a673cfca5630ae205ac794978cd870e53"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>detectPeaks</b> (float y)</td></tr>
+<tr class="separator:a673cfca5630ae205ac794978cd870e53"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adb16fcad77c67b8cd4840e9e8974ecb8"><td class="memItemLeft" align="right" valign="top"><a id="adb16fcad77c67b8cd4840e9e8974ecb8" name="adb16fcad77c67b8cd4840e9e8974ecb8"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>registerPeak</b> (bool isMax)</td></tr>
+<tr class="separator:adb16fcad77c67b8cd4840e9e8974ecb8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
+Protected Attributes</h2></td></tr>
+<tr class="memitem:af0df2177301e4061ab72ade2ea437bcd"><td class="memItemLeft" align="right" valign="top"><a id="af0df2177301e4061ab72ade2ea437bcd" name="af0df2177301e4061ab72ade2ea437bcd"></a>
+float&#160;</td><td class="memItemRight" valign="bottom"><b>target</b></td></tr>
+<tr class="separator:af0df2177301e4061ab72ade2ea437bcd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5d8d0f618dee03b42de4367e7bbd5363"><td class="memItemLeft" align="right" valign="top"><a id="a5d8d0f618dee03b42de4367e7bbd5363" name="a5d8d0f618dee03b42de4367e7bbd5363"></a>
+float&#160;</td><td class="memItemRight" valign="bottom"><b>relayAmp</b></td></tr>
+<tr class="separator:a5d8d0f618dee03b42de4367e7bbd5363"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a778e38aa889751afffa2dea6b803e67a"><td class="memItemLeft" align="right" valign="top"><a id="a778e38aa889751afffa2dea6b803e67a" name="a778e38aa889751afffa2dea6b803e67a"></a>
+float&#160;</td><td class="memItemRight" valign="bottom"><b>dt</b></td></tr>
+<tr class="separator:a778e38aa889751afffa2dea6b803e67a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac536a17c5e8e62ccacb280f7c4597a74"><td class="memItemLeft" align="right" valign="top"><a id="ac536a17c5e8e62ccacb280f7c4597a74" name="ac536a17c5e8e62ccacb280f7c4597a74"></a>
+float&#160;</td><td class="memItemRight" valign="bottom"><b>hysteresis</b> = 0.01f</td></tr>
+<tr class="separator:ac536a17c5e8e62ccacb280f7c4597a74"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1084d7e47a5571b229a33ad347cc9453"><td class="memItemLeft" align="right" valign="top"><a id="a1084d7e47a5571b229a33ad347cc9453" name="a1084d7e47a5571b229a33ad347cc9453"></a>
+float&#160;</td><td class="memItemRight" valign="bottom"><b>output</b> = 0</td></tr>
+<tr class="separator:a1084d7e47a5571b229a33ad347cc9453"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8b8dfe2335a5bf90695960dc6a1c5d3b"><td class="memItemLeft" align="right" valign="top"><a id="a8b8dfe2335a5bf90695960dc6a1c5d3b" name="a8b8dfe2335a5bf90695960dc6a1c5d3b"></a>
+float&#160;</td><td class="memItemRight" valign="bottom"><b>time</b> = 0</td></tr>
+<tr class="separator:a8b8dfe2335a5bf90695960dc6a1c5d3b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9d5b8dfd025caf1c0ed043132515f587"><td class="memItemLeft" align="right" valign="top"><a id="a9d5b8dfd025caf1c0ed043132515f587" name="a9d5b8dfd025caf1c0ed043132515f587"></a>
+float&#160;</td><td class="memItemRight" valign="bottom"><b>lastY</b> = 0</td></tr>
+<tr class="separator:a9d5b8dfd025caf1c0ed043132515f587"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a354c4612efa861f85bf82ec83eeca0c9"><td class="memItemLeft" align="right" valign="top"><a id="a354c4612efa861f85bf82ec83eeca0c9" name="a354c4612efa861f85bf82ec83eeca0c9"></a>
+float&#160;</td><td class="memItemRight" valign="bottom"><b>maxY</b> = -1e9</td></tr>
+<tr class="separator:a354c4612efa861f85bf82ec83eeca0c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5236f6cb60e99e5948caad132dd8c357"><td class="memItemLeft" align="right" valign="top"><a id="a5236f6cb60e99e5948caad132dd8c357" name="a5236f6cb60e99e5948caad132dd8c357"></a>
+float&#160;</td><td class="memItemRight" valign="bottom"><b>minY</b> = 1e9</td></tr>
+<tr class="separator:a5236f6cb60e99e5948caad132dd8c357"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad66204a1fd3856e2cd7f4c03e6012d5f"><td class="memItemLeft" align="right" valign="top"><a id="ad66204a1fd3856e2cd7f4c03e6012d5f" name="ad66204a1fd3856e2cd7f4c03e6012d5f"></a>
+float&#160;</td><td class="memItemRight" valign="bottom"><b>avgMax</b> = 0</td></tr>
+<tr class="separator:ad66204a1fd3856e2cd7f4c03e6012d5f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5aa82aef69d0975cf49d07bcb2f531da"><td class="memItemLeft" align="right" valign="top"><a id="a5aa82aef69d0975cf49d07bcb2f531da" name="a5aa82aef69d0975cf49d07bcb2f531da"></a>
+float&#160;</td><td class="memItemRight" valign="bottom"><b>avgMin</b> = 0</td></tr>
+<tr class="separator:a5aa82aef69d0975cf49d07bcb2f531da"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a672595eef412c9df18df9719770a837a"><td class="memItemLeft" align="right" valign="top"><a id="a672595eef412c9df18df9719770a837a" name="a672595eef412c9df18df9719770a837a"></a>
+float&#160;</td><td class="memItemRight" valign="bottom"><b>avgPeriod</b> = 0</td></tr>
+<tr class="separator:a672595eef412c9df18df9719770a837a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aae0592147fb0a3babda68ffd638adc40"><td class="memItemLeft" align="right" valign="top"><a id="aae0592147fb0a3babda68ffd638adc40" name="aae0592147fb0a3babda68ffd638adc40"></a>
+float&#160;</td><td class="memItemRight" valign="bottom"><b>lastPeakTime</b> = 0</td></tr>
+<tr class="separator:aae0592147fb0a3babda68ffd638adc40"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a52a93cf8296cc29e54922ae886975e55"><td class="memItemLeft" align="right" valign="top"><a id="a52a93cf8296cc29e54922ae886975e55" name="a52a93cf8296cc29e54922ae886975e55"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>peakCount</b> = 0</td></tr>
+<tr class="separator:a52a93cf8296cc29e54922ae886975e55"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a347b8f1b823d8c4f95994f25c018c4f5"><td class="memItemLeft" align="right" valign="top"><a id="a347b8f1b823d8c4f95994f25c018c4f5" name="a347b8f1b823d8c4f95994f25c018c4f5"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>lastWasMax</b> = false</td></tr>
+<tr class="separator:a347b8f1b823d8c4f95994f25c018c4f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7960f9c558f9ee2c3d4a8fdea096fb56"><td class="memItemLeft" align="right" valign="top"><a id="a7960f9c558f9ee2c3d4a8fdea096fb56" name="a7960f9c558f9ee2c3d4a8fdea096fb56"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>success</b> = false</td></tr>
+<tr class="separator:a7960f9c558f9ee2c3d4a8fdea096fb56"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a876b486d3a5241a126bd5751c5f70f79"><td class="memItemLeft" align="right" valign="top"><a id="a876b486d3a5241a126bd5751c5f70f79" name="a876b486d3a5241a126bd5751c5f70f79"></a>
+State&#160;</td><td class="memItemRight" valign="bottom"><b>state</b> = State::INIT</td></tr>
+<tr class="separator:a876b486d3a5241a126bd5751c5f70f79"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Automatic PID tuning using the relay (Åström-Hägglund) method. </p>
