@@ -127,8 +127,8 @@ DC Motor (H-Bridge)</h2>
 <div class="line"><span class="keywordtype">void</span> setup() {</div>
 <div class="line">  motor.setPins(5, 6, 9); <span class="comment">// IN1=5, IN2=6, PWM=9)</span></div>
 <div class="line">  motor.begin();</div>
-<div class="line">  motor.setValuePercent(50); <span class="comment">// Half speed forward</span></div>
-<div class="line">  motor.setValuePercent(-50); <span class="comment">// Half speed reverse</span></div>
+<div class="line">  motor.setValuePercent(50.0f); <span class="comment">// Half speed forward</span></div>
+<div class="line">  motor.setValuePercent(-50.0f); <span class="comment">// Half speed reverse</span></div>
 <div class="line">  motor.end(); <span class="comment">// Brake</span></div>
 <div class="line">}</div>
 <div class="line"> </div>
@@ -145,8 +145,8 @@ Servo Motor</h2>
 <div class="line">  servo.setPin(9);           <span class="comment">// Attach to pin 9</span></div>
 <div class="line">  servo.begin()</div>
 <div class="line">  <span class="comment">//servo.setConstraints(-45, 45); // Limit range to -45..45 degrees</span></div>
-<div class="line">  servo.setAngle(45);        <span class="comment">// Set to 45 degrees left</span></div>
-<div class="line">  <span class="keywordtype">int</span> angle = servo.getAngle(); <span class="comment">// Read last angle</span></div>
+<div class="line">  servo.setAngle(45.0f);        <span class="comment">// Set to 45 degrees left</span></div>
+<div class="line">  <span class="keywordtype">float</span> angle = servo.getAngle(); <span class="comment">// Read last angle</span></div>
 <div class="line">  servo.end();            <span class="comment">// Detach when done</span></div>
 <div class="line">}</div>
 <div class="line"> </div>
@@ -160,11 +160,11 @@ Stepper Motor (if enabled)</h2>
 <div class="line">StepperMotor stepper;</div>
 <div class="line"><span class="keywordtype">void</span> setup() {</div>
 <div class="line">  stepper.setPins(2, 3, 4);</div>
-<div class="line">  stepper.setMaxSpeed(1000);</div>
+<div class="line">  stepper.setMaxSpeed(1000.0f);</div>
 <div class="line">  stepper.setStepsPerRevolution(200);</div>
 <div class="line">  stepper.begin();</div>
-<div class="line">  motor.setValuePercent(50); <span class="comment">// Half speed forward</span></div>
-<div class="line">  motor.setValuePercent(-50); <span class="comment">// Half speed reverse</span></div>
+<div class="line">  motor.setValuePercent(50.0f); <span class="comment">// Half speed forward</span></div>
+<div class="line">  motor.setValuePercent(-50.0f); <span class="comment">// Half speed reverse</span></div>
 <div class="line">  stepper.end();</div>
 <div class="line">}</div>
 </div><!-- fragment --><h2><a class="anchor" id="autotoc_md115"></a>
@@ -174,7 +174,7 @@ Generic Motor (Custom Driver)</h2>
 <div class="line">MyMotorDriver driver;</div>
 <div class="line">GenericMotor&lt;float&gt; motor(3, &amp;driver); <span class="comment">// #3</span></div>
 <div class="line"><span class="keywordtype">void</span> setup() {</div>
-<div class="line">  motor.setValueCallback([](int8_t value, GenericMotor&amp; m) {</div>
+<div class="line">  motor.setValueCallback([](<span class="keywordtype">float</span> value, GenericMotor&amp; m) {</div>
 <div class="line">    MyMotorDriver* drv = m.getMotor&lt;MyMotorDriver&gt;();</div>
 <div class="line">    drv-&gt;setPWM(value);</div>
 <div class="line">  });</div>
@@ -187,17 +187,21 @@ Generic Motor (Custom Driver)</h2>
 <div class="line"><span class="comment">//     // Custom stop logic (e.g., disable power)</span></div>
 <div class="line"><span class="comment">//   });</span></div>
 <div class="line">  motor.begin();</div>
-<div class="line">  motor.setValuePercent(50); <span class="comment">// Half speed forward</span></div>
-<div class="line">  motor.setValuePercent(-50); <span class="comment">// Half speed reverse</span></div>
+<div class="line">  motor.setValuePercent(50.0f); <span class="comment">// Half speed forward</span></div>
+<div class="line">  motor.setValuePercent(-50.0f); <span class="comment">// Half speed reverse</span></div>
 <div class="line">  motor.end();</div>
 <div class="line">}</div>
 </div><!-- fragment --><h1><a class="anchor" id="autotoc_md116"></a>
 Generic Motor Implementation Approaches</h1>
 <p>You can use a platform specifc motor control library to implement the callbacks. Alternatively you can just the PWM functionality provided by your platform:</p>
 <h2><a class="anchor" id="autotoc_md117"></a>
-H-Bridge (DC motor control) Logic</h2>
+H-Bridge (DC motor control) Logic (e.g using L298N)</h2>
 <ul>
-<li>PWM Frequency: ~1 kHz – 20 kHz</li>
+<li>PWM Frequency: ~5 kHz – 20 kHz<ul>
+<li>small motors: 5 kHz – 20 kHz</li>
+<li>large motors: 20 kHz – 25 kHz</li>
+</ul>
+</li>
 <li>Speed is driven by Duty cycle: 0–100% on EN pins</li>
 </ul>
 <h2><a class="anchor" id="autotoc_md118"></a>
@@ -236,7 +240,7 @@ Stepper Motor Logic (e.g. using L298N driver)</h2>
 <h2><a class="anchor" id="autotoc_md121"></a>
 Stepper Motor Logic (e.g. using L298N driver)</h2>
 <ul>
-<li>You need to drive the pins in steps (in1, in2, in3, in4):<ul>
+<li>You need to drive the following pins in steps: in1, in2, in3, in4:<ul>
 <li>step 1: 1 0 1 0</li>
 <li>step 2: 0 1 1 0</li>
 <li>step 3: 0 1 0 1</li>
