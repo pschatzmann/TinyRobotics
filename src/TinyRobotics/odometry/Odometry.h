@@ -11,4 +11,6 @@
 #include "WheelEncoder.h"
 #include "SpeedFromThrottle.h"
 #include "SpeedFromThrottleWithInertia.h"
+#include "AirplaneOdometryModel3D.h"
+#include "DroneOdometryModel3D.h"
 

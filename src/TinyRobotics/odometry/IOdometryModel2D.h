@@ -13,6 +13,12 @@ class IOdometryModel2D {
   virtual void setSpeed(Speed speedLeft, Speed speedRight)  = 0;
   virtual void setSteeringAngle(Angle angle) = 0;
   /**
+   * @brief Register a callback to be invoked on relevant events (e.g., input change, update).
+   * @param callback Function pointer with signature void callback(void* userData)
+   * @param userData User-provided pointer passed to the callback
+   */
+  virtual void registerCallback(void (*callback)(void*), void* userData) = 0;
+  /**
    * @brief Compute heading change (deltaTheta) for odometry kinematics.
    * @param speed Speed of the vehicle (meters/second)
    * @param steeringAngle Steering angle (radians)

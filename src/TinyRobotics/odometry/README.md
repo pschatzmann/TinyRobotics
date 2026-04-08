@@ -12,6 +12,12 @@ This module provides a flexible, extensible framework for estimating the positio
 - **Message-driven**: Odometry can subscribe to vehicle/motor messages for speed and steering updates.
 - **Extensible**: Add your own heading models by implementing `IOdometryModel2D`.
 
+### 3D Odometry Key Concepts
+- **Odometry3D**: Tracks 3D position and orientation (yaw, pitch, roll) using modular 3D kinematic models. Suitable for drones, airplanes, and underwater robots.
+- **IOdometryModel3D**: Interface for 3D kinematic models. Implement this to define custom 3D vehicle kinematics for use with Odometry3D.
+- **AirplaneOdometryModel3D**: Implements IOdometryModel3D for fixed-wing airplanes using throttle and control surface inputs (aileron, elevator, rudder).
+- **DroneOdometryModel3D**: Implements IOdometryModel3D for quadcopters/drones using per-motor percentage inputs. Maps motor outputs to 3D velocities and angular rates.
+
 ---
 
 ## Odometry2D
@@ -153,54 +159,99 @@ Estimates vehicle speed from throttle percentage using calibration data. Useful 
 
 ---
 
+
 ## Advanced Topics
 
-- **Message Integration:** Odometry2D can subscribe to messages from vehicles/motors for automatic speed/steering updates.
-- **Custom Models:** Implement `IOdometryModel2D` for holonomic, omnidirectional, or other robot types.
-- **3D Odometry:** See `Odometry3D` for drones, underwater, or aerial robots (not covered in detail here).
+- **Message Integration:** Odometry2D and Odometry3D can subscribe to messages from vehicles/motors for automatic speed, steering, or control updates.
+- **Custom Models:** Implement `IOdometryModel2D` or `IOdometryModel3D` for holonomic, omnidirectional, airplane, drone, or other robot types.
 
 ---
 
-## See Also
-
-- `CarAckerman`, `GenericMotor`, `MotionController2D`, `Frame2D`, `Coordinate`, `Angle`, `Speed`, `Distance`
-- Example sketches in the `examples/` folder for real-world usage patterns.
+## 3D Odometry and Kinematic Models
 
 ### Odometry3D
-Tracks the 3D position (x, y, z) and orientation (yaw, pitch, roll) of a robot using linear and angular velocity inputs. Suitable for drones, underwater vehicles, and robots operating in 3D environments.
+Tracks the 3D position (x, y, z) and orientation (yaw, pitch, roll) of a robot using linear and angular velocity inputs. Suitable for drones, airplanes, underwater vehicles, and robots operating in 3D environments.
 
 **Features:**
 - Integrates 3D linear and angular velocities to estimate robot pose
-- Uses an Orientation3D object for modular orientation handling
+- Uses an `Orientation3D` object for modular orientation handling
+- Pluggable kinematic model via `IOdometryModel3D` (see below)
+- Message-driven: can subscribe to control/velocity messages for updates
 - Provides access to position, orientation, distance traveled, and last update delta
 - Allows resetting and setting the odometry state
 
 **Key Methods:**
+- `Odometry3D(MessageSource& vehicle, IOdometryModel3D& model)`: Constructor with message-driven integration
 - `begin(initialPosition, initialOrientation)`: Initialize odometry state with position and orientation
-- `update(vx, vy, vz, wx, wy, wz, deltaTimeMs)`: Update pose with new velocities (optionally with time delta)
-- `update(vx, vy, vz, wx, wy, wz)`: Update pose using automatic time delta (uses millis())
+- `update()`: Integrates pose using the latest velocities from the model
 - `getPosition()`: Get current position (x, y, z)
-- `getOrientation()`: Get current orientation as Orientation3D
+- `getOrientation()`: Get current orientation as `Orientation3D`
 - `getTotalDistance()`: Get total distance traveled
 - `getLastDelta()`: Get last (dx, dy, dz) update
 
 **Example:**
 ```cpp
 #include <TinyRobotics.h>
-using namespace tinyrobotics;
 
-Odometry3D odom3d;
+DroneOdometryModel3D droneModel;
+Odometry3D odom3d(vehicle, droneModel);
 void setup() {
-	Coordinate<float> startPos(0, 0, 0);
-	Orientation3D startOri(0.0f, 0.0f, 0.0f); // yaw, pitch, roll in radians
-	odom3d.begin(startPos, startOri);
+    Coordinate<float> startPos(0, 0, 0);
+    Orientation3D startOri(0.0f, 0.0f, 0.0f); // yaw, pitch, roll in radians
+    odom3d.begin(startPos, startOri);
 }
 void loop() {
-	// Example velocities (vx, vy, vz, wx, wy, wz)
-	odom3d.update(0.1, 0, 0, 0, 0, 0); // Move forward
-	auto pos = odom3d.getPosition();
-	auto ori = odom3d.getOrientation();
-	Serial.printf("x=%.2f, y=%.2f, z=%.2f, yaw=%.2f, pitch=%.2f, roll=%.2f\n",
-		pos.x, pos.y, pos.z, ori.yaw, ori.pitch, ori.roll);
+    // Update odometry (message-driven or direct input)
+    odom3d.update();
+    auto pos = odom3d.getPosition();
+    auto ori = odom3d.getOrientation();
+    Serial.printf("x=%.2f, y=%.2f, z=%.2f, yaw=%.2f, pitch=%.2f, roll=%.2f\n",
+        pos.x, pos.y, pos.z, ori.yaw, ori.pitch, ori.roll);
 }
 ```
+
+### IOdometryModel3D (Interface)
+Defines the interface for 3D kinematic models. Implement this to add custom 3D kinematics for drones, airplanes, or other vehicles. Used by `Odometry3D` for pose integration.
+
+**Key Methods:**
+- `getLinearVelocity(float& vx, float& vy, float& vz)`: Returns current linear velocity (m/s)
+- `getAngularVelocity(float& wx, float& wy, float& wz)`: Returns current angular velocity (rad/s)
+- `registerCallback(void (*callback)(void*), void* userData)`: Register a callback for input changes (optional)
+
+---
+
+### AirplaneOdometryModel3D
+Implements `IOdometryModel3D` for fixed-wing airplanes using throttle and control surface inputs (aileron, elevator, rudder).
+
+**Features:**
+- Maps throttle (0–100%) and control surface deflections (degrees) to body-frame velocities
+- Supports message-driven control (handles `MessageContent::Throttle`, `::Roll`, `::Pitch`, `::Yaw`)
+- All input values are clamped to safe ranges
+- Suitable for simulation, estimation, or as a reference model for real-time control
+
+**Key Methods:**
+- `setThrottle(float percent)`: Set throttle (0–100%)
+- `setAileron(float deg)`, `setElevator(float deg)`, `setRudder(float deg)`: Set control surfaces (degrees)
+- `onMessage(const Message<float>& msg)`: Handle incoming control messages
+- `registerCallback(void (*callback)(void*), void* userData)`: Register callback for input changes
+
+
+### DroneOdometryModel3D
+Implements `IOdometryModel3D` for quadcopters/drones using per-motor percentage inputs.
+
+**Features:**
+- Maps motor percentages (0–100%) for four motors to body-frame velocities
+- Supports message-driven control (handles `MessageContent::MotorSpeed` with `origin_id` 0..3)
+- All input values are clamped to 0–100%
+- Suitable for simulation, estimation, or as a reference model for real-time control
+
+**Key Methods:**
+- `setMotorPercent(int motor, float percent)`: Set percentage for a given motor (0..3)
+- `onMessage(const Message<float>& msg)`: Handle incoming motor speed messages
+- `registerCallback(void (*callback)(void*), void* userData)`: Register callback for input changes
+
+
+## See Also
+
+- `CarAckerman`, `GenericMotor`, `MotionController2D`, `Frame2D`, `Coordinate`, `Angle`, `Speed`, `Distance`, `Orientation3D`
+- Example sketches in the `examples/` folder for real-world usage patterns.

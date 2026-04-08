@@ -6,6 +6,7 @@
 #include "TinyRobotics/coordinates/Coordinate.h"
 #include "TinyRobotics/coordinates/Orientation3D.h"
 #include "TinyRobotics/units/Units.h"
+#include "TinyRobotics/odometry/IOdometryModel3D.h"
 
 namespace tinyrobotics {
 
@@ -36,9 +37,17 @@ namespace tinyrobotics {
  * @author TinyRobotics contributors
  * @date 2026-03-31
  */
+
 class Odometry3D {
- public:
-  Odometry3D() = default;
+public:
+  Odometry3D(MessageSource& vehicle, IOdometryModel3D& model)
+    : vehicle(vehicle), model(model) {
+      vehicle.subscribe(model);  // Subscribe to model messages if needed
+      model.registerCallback([](void* userData) {
+        Odometry3D* odometry = static_cast<Odometry3D*>(userData);
+        odometry->update();
+      }, this);
+    }
 
   /**
    * @brief Initialize the odometry state.
@@ -58,69 +67,45 @@ class Odometry3D {
 
   /**
    * @brief Update the odometry state with new velocities and angular rates.
-   * @param vx Linear velocity in x (m/s, robot frame)
-   * @param vy Linear velocity in y (m/s, robot frame)
-   * @param vz Linear velocity in z (m/s, robot frame)
-   * @param wx Angular velocity in x (rad/s, robot frame)
-   * @param wy Angular velocity in y (rad/s, robot frame)
-   * @param wz Angular velocity in z (rad/s, robot frame)
-   * @param deltaTimeMs Time since last update in milliseconds
    */
-  void update(float vx, float vy, float vz, float wx, float wy, float wz,
-              uint32_t deltaTimeMs) {
-    float dt = static_cast<float>(deltaTimeMs) / 1000.0f;
-    // Integrate orientation (Euler angles, simple integration)
-    orientation.roll += wx * dt;
-    orientation.pitch += wy * dt;
-    orientation.yaw += wz * dt;
-    orientation.wrap();
-    // Rotate velocity to world frame (using current orientation)
-    float cr = std::cos(orientation.roll), sr = std::sin(orientation.roll);
-    float cp = std::cos(orientation.pitch), sp = std::sin(orientation.pitch);
-    float cy = std::cos(orientation.yaw), sy = std::sin(orientation.yaw);
-    // Rotation matrix (ZYX convention)
-    float vx_world = cy * cp * vx + (cy * sp * sr - sy * cr) * vy +
-                     (cy * sp * cr + sy * sr) * vz;
-    float vy_world = sy * cp * vx + (sy * sp * sr + cy * cr) * vy +
-                     (sy * sp * cr - cy * sr) * vz;
-    float vz_world = -sp * vx + cp * sr * vy + cp * cr * vz;
-    // Integrate velocity for position
-    float dx = vx_world * dt;
-    float dy = vy_world * dt;
-    float dz = vz_world * dt;
-    position.x += dx;
-    position.y += dy;
-    position.z += dz;
-    totalDistance += std::sqrt(dx * dx + dy * dy + dz * dz);
-    lastDelta = Distance3D(dx, dy, dz, DistanceUnit::M);
-  }
-
-  void update(Velocity3D velocity, AngularVelocity3D angularVelocity,
-              uint32_t deltaTimeMs) {
-    update(velocity.getX(SpeedUnit::MPS), velocity.getY(SpeedUnit::MPS),
-           velocity.getZ(SpeedUnit::MPS),
-           angularVelocity.getX(AngularVelocityUnit::RadPerSec),
-           angularVelocity.getY(AngularVelocityUnit::RadPerSec),
-           angularVelocity.getZ(AngularVelocityUnit::RadPerSec), deltaTimeMs);
-  }
-
-  /**
-   * @brief Update with automatic time delta (uses millis()).
-   */
-  void update(float vx, float vy, float vz, float wx, float wy, float wz) {
+  void update() {
     uint32_t now = millis();
     uint32_t deltaTimeMs = now - lastUpdateTimeMs;
-    if (lastUpdateTimeMs > 0) update(vx, vy, vz, wx, wy, wz, deltaTimeMs);
+    if (lastUpdateTimeMs > 0) {
+      float vx, vy, vz, wx, wy, wz;
+      model.getLinearVelocity(vx, vy, vz);
+      model.getAngularVelocity(wx, wy, wz);
+      float dt = static_cast<float>(deltaTimeMs) / 1000.0f;
+      // Integrate orientation (Euler angles, simple integration)
+      orientation.roll += wx * dt;
+      orientation.pitch += wy * dt;
+      orientation.yaw += wz * dt;
+      orientation.wrap();
+      // Rotate velocity to world frame (using current orientation)
+      float cr = std::cos(orientation.roll), sr = std::sin(orientation.roll);
+      float cp = std::cos(orientation.pitch), sp = std::sin(orientation.pitch);
+      float cy = std::cos(orientation.yaw), sy = std::sin(orientation.yaw);
+      // Rotation matrix (ZYX convention)
+      float vx_world = cy * cp * vx + (cy * sp * sr - sy * cr) * vy +
+                       (cy * sp * cr + sy * sr) * vz;
+      float vy_world = sy * cp * vx + (sy * sp * sr + cy * cr) * vy +
+                       (sy * sp * cr - cy * sr) * vz;
+      float vz_world = -sp * vx + cp * sr * vy + cp * cr * vz;
+      // Integrate velocity for position
+      float dx = vx_world * dt;
+      float dy = vy_world * dt;
+      float dz = vz_world * dt;
+      position.x += dx;
+      position.y += dy;
+      position.z += dz;
+      totalDistance += std::sqrt(dx * dx + dy * dy + dz * dz);
+      lastDelta = Distance3D(dx, dy, dz, DistanceUnit::M);
+    }
     lastUpdateTimeMs = now;
   }
 
-  void update(Velocity3D velocity, AngularVelocity3D angularVelocity) {
-    update(velocity.getX(SpeedUnit::MPS), velocity.getY(SpeedUnit::MPS),
-           velocity.getZ(SpeedUnit::MPS),
-           angularVelocity.getX(AngularVelocityUnit::RadPerSec),
-           angularVelocity.getY(AngularVelocityUnit::RadPerSec),
-           angularVelocity.getZ(AngularVelocityUnit::RadPerSec));
-  }
+
+  // Remove all parameterized update methods for clarity and consistency
 
   /// @brief Get the current 3D position (meters)
   Coordinate<float> getPosition() const { return position; }
@@ -134,7 +119,9 @@ class Odometry3D {
   /// @brief Get the last delta update (dx, dy, dz)
   Distance3D getLastDelta() const { return lastDelta; }
 
- protected:
+protected:
+  MessageSource& vehicle;
+  IOdometryModel3D& model;
   Coordinate<float> position;
   Orientation3D orientation;
   float totalDistance = 0.0f;

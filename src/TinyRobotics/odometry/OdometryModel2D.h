@@ -28,6 +28,7 @@ namespace tinyrobotics {
  * @date 2026-04-07
  */
 class OdometryModel2D : public IOdometryModel2D {
+  void registerCallback(void (*callback)(void*), void* userData) override {}
  public:
 
   OdometryModel2D(Distance wheelBase) : wheelBase(wheelBase) {}
