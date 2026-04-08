@@ -28,7 +28,7 @@ class IOdometryHeadingModel2D {
    * @param[out] deltaX Change in X position (meters)
    * @param[out] deltaY Change in Y position (meters)
    */
-  virtual void computeDeltaXY(float theta, float deltaTimeMs, float& deltaX, float& deltaY) const = 0;
+  virtual void computeDeltaXY(float theta, uint32_t deltaTimeMs, float& deltaX, float& deltaY) const = 0;
 };
 
 } // namespace tinyrobotics

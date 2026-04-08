@@ -27,10 +27,10 @@ namespace tinyrobotics {
  * @author TinyRobotics contributors
  * @date 2026-04-07
  */
-class OdometryHeadingModel : public IOdometryHeadingModel2D {
+class OdometryHeadingModel2D : public IOdometryHeadingModel2D {
  public:
 
-  OdometryHeadingModel(Distance wheelBase) : wheelBase(wheelBase) {}
+  OdometryHeadingModel2D(Distance wheelBase) : wheelBase(wheelBase) {}
 
   void setSteeringAngle(Angle angle) { this->steeringAngle = angle; }
   virtual void setSpeed(Speed speedLeft, Speed speedRight)  {}
@@ -51,7 +51,7 @@ class OdometryHeadingModel : public IOdometryHeadingModel2D {
     return omega * static_cast<float>(deltaTimeMs) / 1000.0f;
   }
 
-  void computeDeltaXY(float theta, float deltaTimeMs, float& deltaX, float& deltaY) const override {
+  void computeDeltaXY(float theta, uint32_t deltaTimeMs, float& deltaX, float& deltaY) const override {
     float speedMps = speed.getValue(SpeedUnit::MPS);
     float dt = deltaTimeMs / 1000.0f;
     deltaX = speedMps * std::cos(theta) * dt;

@@ -7,7 +7,7 @@
 #include "TinyRobotics/communication/MessageSource.h"
 #include "TinyRobotics/control/MotionState2D.h"
 #include "TinyRobotics/coordinates/Coordinate.h"
-#include "TinyRobotics/odometry/OdometryHeadingModel.h"
+#include "TinyRobotics/odometry/OdometryHeadingModel2D.h"
 #include "TinyRobotics/units/Units.h"
 
 namespace tinyrobotics {

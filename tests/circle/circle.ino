@@ -24,7 +24,7 @@
 #include <TinyRobotics.h>
 
 CarAckerman car;
-OdometryHeadingModel headingModel(Distance(0.3f, DistanceUnit::M));  // wheelbase of 0.3m
+OdometryHeadingModel2D headingModel(Distance(0.3f, DistanceUnit::M));  // wheelbase of 0.3m
 SpeedFromThrottle speedEstimator(2.0f);  // max speed 2 m/s (adjust as needed)
 Odometry2D odometry(car, speedEstimator, headingModel);
 Speed maxSpeedKmh(5, SpeedUnit::KPH);    // max speed in km/h

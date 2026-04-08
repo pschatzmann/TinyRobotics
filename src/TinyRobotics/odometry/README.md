@@ -6,7 +6,7 @@ This module provides a flexible, extensible framework for estimating the positio
 ## Key Concepts
 
 - **Odometry2D**: Tracks 2D position and orientation using modular heading models and speed sources. Supports Ackermann, differential drive, and custom kinematics.
-- **OdometryHeadingModel / OdometryDifferentialDriveModel**: Pluggable models implementing the `IOdometryHeadingModel2D` interface for heading (theta) integration.
+- **OdometryHeadingModel2D / OdometryDifferentialDriveModel**: Pluggable models implementing the `IOdometryHeadingModel2D` interface for heading (theta) integration.
 - **WheelEncoder**: Multi-wheel, vectorized encoder for per-wheel distance and speed measurement, modular and ISpeedSource-compliant.
 - **SpeedFromThrottle**: Estimates speed from throttle percentage using calibration data.
 - **Message-driven**: Odometry can subscribe to vehicle/motor messages for speed and steering updates.
@@ -37,7 +37,7 @@ Tracks the 2D position (x, y) and orientation (theta) of a robot using velocity 
 #include <TinyRobotics.h>
 CarAckerman car;
 Distance wheelBase(0.3f, DistanceUnit::M);
-OdometryHeadingModel odomModel(wheelBase);
+OdometryHeadingModel2D odomModel(wheelBase);
 SpeedFromThrottle speedEstimator(Speed(5, SpeedUnit::KPH));
 Odometry2D odometry(car, speedEstimator, odomModel);
 
@@ -74,7 +74,7 @@ Defines the interface for heading (theta) integration models. Implement this to 
 - `setSpeed(Speed left, Speed right)`
 - `setSteeringAngle(Angle angle)`
 
-### OdometryHeadingModel (Ackermann/Boat/Default)
+### OdometryHeadingModel2D (Ackermann/Boat/Default)
 Implements Ackermann and default (steering as angular velocity) kinematics. Use for car-like robots or boats.
 
 ### OdometryDifferentialDriveModel

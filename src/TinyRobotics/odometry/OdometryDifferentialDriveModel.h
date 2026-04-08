@@ -38,7 +38,7 @@ class OdometryDifferentialDriveModel : public IOdometryHeadingModel2D {
     return omega * static_cast<float>(deltaTimeMs) / 1000.0f;
   }
 
-  void computeDeltaXY(float theta, float deltaTimeMs, float& deltaX,
+  void computeDeltaXY(float theta, uint32_t deltaTimeMs, float& deltaX,
                       float& deltaY) const override {
     // Differential drive: use average wheel speed for linear velocity
     float vLeft = leftSpeed.getValue(SpeedUnit::MPS);
