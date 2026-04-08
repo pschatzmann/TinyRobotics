@@ -74,6 +74,71 @@ class Speed {
     return -1;  // Invalid conversion
   }
 
+  Speed operator+(const Speed& other) const {
+    float otherSpeed = other.getValue(unit);
+    return Speed(speed + otherSpeed, unit);
+  }
+
+  Speed operator-(const Speed& other) const {
+    float otherSpeed = other.getValue(unit);
+    return Speed(speed - otherSpeed, unit);
+  }
+
+  Speed operator*(float scalar) const {
+    return Speed(speed * scalar, unit);
+  }
+
+  Speed operator/(float scalar) const {
+    if (scalar == 0) return Speed(0, unit);  // Avoid division by zero
+    return Speed(speed / scalar, unit);
+  }
+
+  bool operator==(const Speed& other) const {
+    return speed == other.getValue(unit);
+  }
+
+  bool operator!=(const Speed& other) const { return !(*this == other); }
+
+  bool operator<(const Speed& other) const {
+    return speed < other.getValue(unit);
+  }
+
+  bool operator<=(const Speed& other) const {
+    return speed <= other.getValue(unit);
+  }
+
+  bool operator>(const Speed& other) const {
+    return speed > other.getValue(unit);
+  }
+
+  bool operator>=(const Speed& other) const {
+    return speed >= other.getValue(unit);
+  }
+
+  Speed& operator+=(const Speed& other) {
+    speed += other.getValue(unit);
+    return *this;
+  }
+
+  Speed& operator-=(const Speed& other) {
+    speed -= other.getValue(unit);
+    return *this;
+  }
+  
+  Speed& operator*=(float scalar) {
+    speed *= scalar;
+    return *this;
+  }
+
+  Speed& operator/=(float scalar) {
+    if (scalar == 0) {
+      speed = 0;
+    } else {
+      speed /= scalar;
+    }
+    return *this;
+  }
+
  protected:
   float speed = 0.0f;
   SpeedUnit unit = SpeedUnit::MPS;  ///< Unit of the speed. @see SpeedUnit

@@ -57,7 +57,7 @@ class MotorBoat : public Vehicle {
     motor_.setSpeedPercent(percent);
     // publish throttle as message for telemetry
     Message<float> msg(MessageContent::MotorSpeed, percent, Unit::Percent);
-    msg.origin = MessageOrigin::Motor;
+    msg.origin = MessageOrigin::Vehicle;
     sendMessage(msg);
   }
 
@@ -68,7 +68,7 @@ class MotorBoat : public Vehicle {
     rudder_.setAngle(angle);
     // publish rudder angle as message for telemetry
     Message<float> msg(MessageContent::SteeringAngle, angle, Unit::AngleDegree);
-    msg.origin = MessageOrigin::Rudder;
+    msg.origin = MessageOrigin::Vehicle;
     sendMessage(msg);
   }
 

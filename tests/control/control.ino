@@ -47,8 +47,9 @@ Frame2D base{FrameType::BASE, 0, world, Transform2D(start, 0)};
 
 AStar astar;
 CarAckerman car;
-Odometry2D odometry;
+OdometryHeadingModel headingModel(Distance(0.3f, DistanceUnit::M));  // wheelbase of 0.3m
 SpeedFromThrottle speedEstimator(2.0f);  // max speed 2 m/s (adjust as needed)
+Odometry2D odometry(car, speedEstimator, headingModel);
 Speed maxSpeedKmh(5, SpeedUnit::KPH);  // max speed in km/h
 Distance accelDistanceM(0.5, DistanceUnit::M); // distance to start decelerating in meters
 Distance wheelBase(0.3f, DistanceUnit::M);  // distance between front and rear axles in meters
@@ -72,10 +73,8 @@ void updateController(void*) {
   if (controller.isGoalReached()) return;  // stop updating if goal is reached
   // Move to next waypoint
   controller.update();
-  // estimate speed from throttle
-  float speed = speedEstimator.getSpeedMPS(controller.getThrottlePercent());
-  // update odometry with estimated speed and current steering angle
-  odometry.update(Speed(speed, SpeedUnit::MPS), controller.getSteeringAngle());
+  // update odometry (uses speed source and steering angle internally)
+  odometry.update();
 }
 
 void setup() {
@@ -88,7 +87,6 @@ void setup() {
   auto path = astar.findPath(pathMap, start, goal);
   if (path.size() > 1) {
     // setup odometry first
-    odometry.setWheelBase(wheelBase);
     odometry.subscribe(json_printer);  // subscribe to odometry messages for telemetry
     odometry.begin(base);
     // then setup controller which depends on odometry

@@ -1,9 +1,11 @@
 #pragma once
 #include <cmath>
+#include <vector>
 
 #include "TinyRobotics/communication/Message.h"
 #include "TinyRobotics/communication/MessageSource.h"
 #include "TinyRobotics/control/Scheduler.h"
+#include "TinyRobotics/odometry/ISpeedSource.h"
 #include "TinyRobotics/units/Distance.h"
 #include "TinyRobotics/units/Units.h"
 
@@ -12,55 +14,70 @@ namespace tinyrobotics {
 /**
  * @class WheelEncoder
  * @ingroup sensors
- * @brief Measures wheel rotation and computes distance and speed using encoder
- * ticks for mobile robots.
+ * @brief Measures wheel rotation and computes per-wheel distance and speed
+ * using encoder ticks for mobile robots.
  *
- * The WheelEncoder class provides an interface for tracking the movement of a
- * robot's wheel using an incremental encoder. It accumulates encoder ticks to
- * estimate the distance traveled and calculates speed based on tick timing.
+ * The WheelEncoder class provides a multi-wheel, vectorized interface for
+ * tracking the movement of a robot's wheels using incremental encoders. It
+ * accumulates encoder ticks for each wheel to estimate the distance traveled
+ * and calculates speed based on tick timing, supporting robust odometry for
+ * differential, skid-steer, and multi-motor vehicles.
  *
  * Key features:
+ * - Supports any number of wheels (configurable at construction).
+ * - Vectorized state for distance, speed, and tick timing per wheel.
+ * - Interface-compliant with ISpeedSource for modular odometry integration.
  * - Configurable wheel diameter and ticks per revolution for accurate distance
  * estimation.
  * - Periodic reporting of distance and speed via the MessageSource interface.
  * - Slip calibration support to compensate for wheel slip or surface effects.
  * - Designed for use with interrupt-driven tick updates (call setTick() in your
- * ISR).
+ * ISR, specifying the wheel index).
  *
  * Usage:
- * 1. Create a WheelEncoder instance and configure the wheel diameter and ticks
- * per revolution.
+ * 1. Create a WheelEncoder instance, specifying the number of wheels if needed,
+ * and configure the wheel diameter and ticks per revolution.
  * 2. Call begin() to reset and start periodic reporting.
- * 3. In your encoder interrupt handler, call setTick() to update the encoder
- * state.
- * 4. Use getDistanceM(), getSpeedMPS(), or getDistance() to retrieve odometry
- * data.
+ * 3. In your encoder interrupt handler, call setTick(motor) to update the
+ * encoder state for the correct wheel.
+ * 4. Use getDistanceM(motor), getSpeedMPS(motor), or getDistance(unit, motor)
+ * to retrieve odometry data for each wheel.
  * 5. Optionally, calibrate slip using calibrateSlip() if you observe systematic
  * odometry errors.
  *
  * Example:
  * @code
- * WheelEncoder encoder;
+ * WheelEncoder encoder(2); // Two wheels (differential drive)
  * encoder.setWheelDiameter(0.065); // 65mm wheel
  * encoder.setTicksPerRevolution(20);
  * encoder.begin();
  * // In your interrupt:
- * encoder.setTick();
+ * encoder.setTick(0); // Left wheel
+ * encoder.setTick(1); // Right wheel
  * // In your main loop:
- * float distance = encoder.getDistanceM();
- * float speed = encoder.getSpeedMPS();
+ * float leftDistance = encoder.getDistanceM(0);
+ * float rightDistance = encoder.getDistanceM(1);
+ * float leftSpeed = encoder.getSpeedMPS(0);
+ * float rightSpeed = encoder.getSpeedMPS(1);
  * @endcode
  *
  * This class is intended for embedded robotics applications (Arduino, ESP32,
- * etc.) and integrates with the TinyRobotics messaging framework.
+ * etc.) and integrates with the TinyRobotics messaging framework. It is
+ * suitable for use as a modular speed/distance source in extensible odometry
+ * pipelines.
  */
-class WheelEncoder : public MessageSource {
+class WheelEncoder : public MessageSource, public ISpeedSource {
  public:
   /**
    * @brief Default constructor. Wheel diameter and ticks per revolution must be
    * set before use.
    */
-  WheelEncoder() = default;
+  WheelEncoder(size_t numWheels = 1)
+      : speedMPS(numWheels, 0.0f),
+        distanceM(numWheels, 0.0f),
+        lastDistanceM(numWheels, 0.0f),
+        lastSpeedCalcTimeMs(numWheels, 0),
+        numWheels(numWheels) {}
 
   /**
    * @brief Constructor with wheel diameter and ticks per revolution.
@@ -68,8 +85,9 @@ class WheelEncoder : public MessageSource {
    * @param ticksPerRevolution Number of encoder ticks per full wheel
    * revolution.
    */
-  WheelEncoder(Distance wheelDiameterM, int ticksPerRevolution = 1)
-      : WheelEncoder() {
+  WheelEncoder(Distance wheelDiameterM, int ticksPerRevolution = 1,
+               size_t numWheels = 1)
+      : WheelEncoder(numWheels) {
     setWheelDiameter(wheelDiameterM);
     setTicksPerRevolution(ticksPerRevolution);
   }
@@ -113,21 +131,24 @@ class WheelEncoder : public MessageSource {
    * @brief Get the total distance traveled since last reset.
    * @return Distance object representing the traveled distance in meters.
    */
-  Distance getDistance() const { return Distance(distanceM, DistanceUnit::M); }
+  // Removed: getDistance() returning Distance from a vector (invalid)
 
   /**
    * @brief Get the total distance traveled in meters.
    * @return Distance in meters.
    */
-  float getDistanceM() const { return distanceM * slipFactor; }
+  float getDistanceM(size_t motor = 0) const {
+    if (motor >= numWheels) return 0.0f;
+    return distanceM[motor] * slipFactor;
+  }
 
   /**
    * @brief Get the total distance traveled in the specified unit.
    * @param unit The distance unit.
    * @return Distance in the specified unit.
    */
-  float getDistance(DistanceUnit unit) const {
-    Distance dist(distanceM, DistanceUnit::M);
+  float getDistance(DistanceUnit unit, size_t motor = 0) const {
+    Distance dist(getDistanceM(motor), DistanceUnit::M);
     return dist.getValue(unit);
   }
 
@@ -153,24 +174,6 @@ class WheelEncoder : public MessageSource {
   }
 
   /**
-   * @brief Calculate speed in meters per second based on distance traveled
-   * since last calculation and elapsed time.
-   * @return Speed in meters per second.
-   */
-  float getSpeedMPS() {
-    float speedMPS = 0;
-    uint32_t currentTimeMs = millis();
-    uint32_t elapsedTimeMs = currentTimeMs - lastSpeedCalcTimeMs;
-    if (elapsedTimeMs > 0) {
-      float distanceTraveledM = (distanceM - lastDistanceM) * slipFactor;
-      speedMPS = distanceTraveledM / (elapsedTimeMs / 1000.0f);
-      lastSpeedCalcTimeMs = currentTimeMs;
-      lastDistanceM = distanceM;
-    }
-    return speedMPS;
-  }
-
-  /**
    * @brief Resets the encoder counts and distance.
    *
    * Also starts periodic reporting if not already active.
@@ -178,9 +181,16 @@ class WheelEncoder : public MessageSource {
    * ticks per revolution are set).
    */
   bool begin() {
-    distanceM = 0;
-    lastSpeedCalcTimeMs = millis();
-    // Default to 1 second reporting if not already set
+    distanceM.resize(numWheels, 0.0f);
+    lastSpeedCalcTimeMs.resize(numWheels, 0);
+    lastDistanceM.resize(numWheels, 0.0f);
+    speedMPS.resize(numWheels, 0.0f);
+    for (size_t i = 0; i < numWheels; ++i) {
+      distanceM[i] = 0;
+      lastSpeedCalcTimeMs[i] = millis();
+      lastDistanceM[i] = 0;
+      speedMPS[i] = 0;
+    }
     if (!reportingScheduler.isActive()) {
       setReportingFrequencyMs(1000);
     }
@@ -192,9 +202,23 @@ class WheelEncoder : public MessageSource {
    *
    * Updates the distance and triggers reporting if needed.
    */
-  void setTick() {
-    distanceM += distancePerTickM;
+  void setTick(size_t motor = 0) {
+    if (motor >= numWheels) return;
+    distanceM[motor] += distancePerTickM;
     reportingScheduler.run();
+  }
+
+  Speed getSpeed(uint8_t motor = 0) const override {
+    if (motor >= numWheels) return Speed(0.0f, SpeedUnit::MPS);
+    return Speed(const_cast<WheelEncoder*>(this)->getSpeedMPS(motor),
+                 SpeedUnit::MPS);
+  }
+
+  /// Just provide the last reported speed without inertia modeling
+
+  Speed updateSpeed(uint32_t deltaTimeMs, uint8_t motor = 0) override {
+    if (motor >= numWheels) return Speed(0.0f, SpeedUnit::MPS);
+    return Speed(speedMPS[motor], SpeedUnit::MPS);
   }
 
   /**
@@ -203,17 +227,18 @@ class WheelEncoder : public MessageSource {
    * Sends the current distance and speed as messages.
    */
   void sendMessage() {
-    Message<float> msg(MessageContent::Distance, getDistanceM(), Unit::Meters);
-    msg.origin = MessageOrigin::Sensor;
-    MessageSource::sendMessage(msg);
+    for (size_t i = 0; i < numWheels; ++i) {
+      Message<float> msg(MessageContent::Distance, getDistanceM(i),
+                         Unit::Meters);
+      msg.origin = MessageOrigin::Sensor;
+      MessageSource::sendMessage(msg);
 
-    Message<float> speedMsg(MessageContent::Speed, getSpeedMPS(),
-                            Unit::MetersPerSecond);
-    speedMsg.origin = MessageOrigin::Sensor;
-    MessageSource::sendMessage(speedMsg);
+      Message<float> speedMsg(MessageContent::Speed, getSpeedMPS(i),
+                              Unit::MetersPerSecond);
+      speedMsg.origin = MessageOrigin::Sensor;
+      MessageSource::sendMessage(speedMsg);
+    }
   }
-
-  void end() { reportingScheduler.end(); }
 
   /**
    * @brief Set the slip correction factor.
@@ -249,17 +274,30 @@ class WheelEncoder : public MessageSource {
    * @brief Get the raw (uncorrected) distance in meters from the encoder.
    * @return Raw encoder distance in meters.
    */
-  float getRawDistanceM() const { return distanceM; }
+  float getRawDistanceM(size_t motor = 0) const {
+    if (motor >= numWheels) return 0.0f;
+    return distanceM[motor];
+  }
+
+  /// Not used
+  void setThrottlePercent(float value, uint8_t motor = 0) override {}
 
  protected:
-  volatile float distanceM = 0.0f;
+  std::vector<float> speedMPS;
+  std::vector<float> distanceM;
+  // Returns the distance for a specific motor (default 0)
+  Distance getDistance(size_t motor = 0) const {
+    if (motor >= numWheels) return Distance(0.0f, DistanceUnit::M);
+    return Distance(distanceM[motor], DistanceUnit::M);
+  }
   float wheelDiameterM = 0.0f;
   float distancePerTickM = 0.0f;
-  float lastDistanceM = 0.0f;
+  std::vector<float> lastDistanceM;
   float slipFactor = 1.0f;
   uint32_t ticksPerRevolution = 0;
-  uint32_t lastSpeedCalcTimeMs = 0;
+  std::vector<uint32_t> lastSpeedCalcTimeMs;
   Scheduler reportingScheduler;
+  size_t numWheels = 1;
 
   /**
    * @brief Static callback for the reporting scheduler to send messages.
@@ -268,6 +306,26 @@ class WheelEncoder : public MessageSource {
   static void sendMessageCB(void* ref) {
     WheelEncoder* encoder = static_cast<WheelEncoder*>(ref);
     encoder->sendMessage();
+  }
+
+  /**
+   * @brief Calculate speed in meters per second based on distance traveled
+   * since last calculation and elapsed time.
+   * @return Speed in meters per second.
+   */
+  float getSpeedMPS(size_t motor = 0) {
+    if (motor >= numWheels) return 0.0f;
+    speedMPS[motor] = 0;
+    uint32_t currentTimeMs = millis();
+    uint32_t elapsedTimeMs = currentTimeMs - lastSpeedCalcTimeMs[motor];
+    if (elapsedTimeMs > 0) {
+      float distanceTraveledM =
+          (distanceM[motor] - lastDistanceM[motor]) * slipFactor;
+      speedMPS[motor] = distanceTraveledM / (elapsedTimeMs / 1000.0f);
+      lastSpeedCalcTimeMs[motor] = currentTimeMs;
+      lastDistanceM[motor] = distanceM[motor];
+    }
+    return speedMPS[motor];
   }
 };
 

@@ -26,7 +26,6 @@ void IRAM_ATTR onEncoderTick() {
 void setup() {
   Serial.begin(115200);
 
-  encoder.setWheelDiameter(0.065); // 65mm wheel
   encoder.setTicksPerRevolution(20);
   encoder.setReportingFrequencyMs(1000); // Report every 1 second
   encoder.subscribe(printer);

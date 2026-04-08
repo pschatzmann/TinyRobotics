@@ -29,8 +29,6 @@
  */
 #include "TinyRobotics.h"
 #include "TinyRobotics/communication/MicroROS.h"
-#include "TinyRobotics/odometry/Odometry2D.h"
-#include "TinyRobotics/odometry/SpeedFromThrottle.h"
 
 
 MicroROS ros;
@@ -39,9 +37,10 @@ MessageHandlerPrint printer(Serial);
 Scheduler scheduler;
 
 // Odometry and speed estimation
-Odometry2D odom;
 SpeedFromThrottle speedEstimator(2.0f);  // max speed 2 m/s (adjust as needed)
 const float wheelbase = 0.25;  // meters
+OdometryHeadingModel odomModel(Distance(wheelbase, DistanceUnit::M));
+Odometry2D odom(car, speedEstimator, odomModel);
 
 void sendOdometryToROS(void* ref) {
   rclc_executor_spin_some(&ros.getExecutor(), RCL_MS_TO_NS(10));
@@ -84,9 +83,7 @@ void onDataFromROS(const void* msgin) {
   car.setSteeringAngle((int)(current_steering / M_PI * 180));
 
   // Update odometry using estimated speed
-  Speed speed = speedEstimator.getSpeed(current_throttle);
-  Angle steering(current_steering, AngleUnit::RAD);
-  odom.update(speed, steering);
+  odom.update();
 }
 
 void setup() {

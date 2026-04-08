@@ -24,7 +24,8 @@ namespace tinyrobotics {
  * @endcode
  */
 
-template <typename MotorMT = BrushedMotor<float>, typename ServoMT = ServoMotor<float>>
+template <typename MotorMT = BrushedMotor<float>,
+          typename ServoMT = ServoMotor<float>>
 class CarAckerman : public Vehicle {
  public:
   CarAckerman() = default;
@@ -49,7 +50,7 @@ class CarAckerman : public Vehicle {
     motor_.setValuePercent(speed_);
     // publish speed as message for telemetry
     Message<float> msg(MessageContent::MotorSpeed, percent, Unit::Percent);
-    msg.origin = MessageOrigin::Motor;
+    msg.origin = MessageOrigin::Vehicle;
     sendMessage(msg);
   }
 
@@ -61,15 +62,15 @@ class CarAckerman : public Vehicle {
     steering_.setAngle(angle);
     // publish steering angle as message for telemetry
     Message<float> msg(MessageContent::SteeringAngle, angle, Unit::AngleDegree);
-    msg.origin = MessageOrigin::Servo;
+    msg.origin = MessageOrigin::Vehicle;
     sendMessage(msg);
   }
 
-  void setSteeringAngle(Angle angle){
+  void setSteeringAngle(Angle angle) {
     setSteeringAngle(static_cast<int>(angle.getValue(AngleUnit::DEG)));
   }
 
-  Angle getSteeringAngle() const { return Angle(angleDeg_,AngleUnit::DEG); }
+  Angle getSteeringAngle() const { return Angle(angleDeg_, AngleUnit::DEG); }
 
   float getSpeed() const { return speed_; }
 

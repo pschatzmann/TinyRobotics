@@ -26,7 +26,7 @@ int grid[height][width] = {{0, 0, 0, 0, 0},
                            {0, 1, 0, 0, 0},
                            {0, 0, 0, 1, 0}};
 
-PointCloud cloud;
+PointCloud<float> cloud(1.0f, false);
 
 void setup() {
   Serial.begin(115200);
@@ -43,7 +43,7 @@ void setup() {
   // This example has no upper, left and right bounds: we want to allow the full range
   cloud.setBounds(0, 0, 0, 5, 5, 0);
   // Build voxel grid for fast occupancy queries
-  cloud.buildVoxelGrid(1.0f);  // 1m unit voxels for 2D grid
+  cloud.buildVoxelGrid();  // 1m unit voxels for 2D grid
 }
 
 void loop() {

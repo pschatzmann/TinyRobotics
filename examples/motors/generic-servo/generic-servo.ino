@@ -26,14 +26,14 @@ void setup() {
   Serial.begin(115200);
   // Define value callback to handle -90..90 degree angle control
   motor.setValueCallback([](float value, GenericMotor<float>& motor) {
-    motor.getMotor<Servo>().write(map((int)value, -90, 90, 0, 180));
+    motor.getDriver<Servo>().write(map((int)value, -90, 90, 0, 180));
   });
   motor.setBeginCallback([](GenericMotor<float>& motor) {
     myServo.attach(9);  // Attach the servo to pin 9
     return true;        // Return true to indicate successful start
   });
   motor.setEndCallback(
-      [](GenericMotor<float>& motor) { motor.getMotor<Servo>().detach(); });
+      [](GenericMotor<float>& motor) { motor.getDriver<Servo>().detach(); });
 
   motor.begin();
 }

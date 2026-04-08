@@ -157,7 +157,7 @@ class CarDifferential : public Vehicle {
     // publish motor speeds as messages for telemetry
     for (int i = 0; i < 4; ++i) {
       Message<float> msg(MessageContent::MotorSpeed, speed[i], Unit::Percent);
-      msg.origin = MessageOrigin::Motor;
+      msg.origin = MessageOrigin::Vehicle;
       msg.origin_id = i;  // Motor index
       sendMessage(msg);
     }

@@ -24,8 +24,9 @@
 #include <TinyRobotics.h>
 
 CarAckerman car;
-Odometry2D odometry;
+OdometryHeadingModel headingModel(Distance(0.3f, DistanceUnit::M));  // wheelbase of 0.3m
 SpeedFromThrottle speedEstimator(2.0f);  // max speed 2 m/s (adjust as needed)
+Odometry2D odometry(car, speedEstimator, headingModel);
 Speed maxSpeedKmh(5, SpeedUnit::KPH);    // max speed in km/h
 Distance wheelBase(
     0.3f, DistanceUnit::M);  // distance between front and rear axles in meters
@@ -36,21 +37,18 @@ Scheduler scheduler;
 MessageHandlerPrintJSON json_printer(Serial);  // Print to Serial in JSON format
 
 void update(void*) {
-  // estimate speed from throttle
-  Speed speed = speedEstimator.getSpeed(car.getSpeed());
-  // update odometry with estimated speed and current steering angle
-  odometry.update(speed, car.getSteeringAngle());
+  // update odometry (uses speed source and steering angle internally)
+  odometry.update();
 }
 
 void setup() {
   Serial.begin(115200);
 
   car.setPins(4, 5, 6);  // int in1, int in2, int steeringPin
-  odometry.setWheelBase(wheelBase);
   odometry.subscribe(json_printer);
   odometry.begin(base);
   car.subscribe(json_printer);
-  car.setSpeed(50);  
+  car.setSpeed(50);
   car.setSteeringAngle(30);  // 30 degrees steering angle for circular path
 
   scheduler.begin(100, update);  // Update every 50 ms

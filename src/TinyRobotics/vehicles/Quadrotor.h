@@ -37,7 +37,7 @@ enum QuadrotorMotorNo {
  * @endcode
  */
 
-template <typename MotorT = BrushedMotor<float>>
+template <typename DriverT = BrushedMotor<float>>
 class Quadrotor : public Vehicle {
  public:
   Quadrotor() = default;
@@ -139,10 +139,10 @@ class Quadrotor : public Vehicle {
             MessageContent::Yaw};
   }
 
-  MotorT& getMotor(QuadrotorMotorNo motor) { return motors_[motor]; }
+  DriverT& getMotor(QuadrotorMotorNo motor) { return motors_[motor]; }
 
  protected:
-  MotorT motors_[4];
+  DriverT motors_[4];
   float motorGain_[4] = {1.0f, 1.0f, 1.0f, 1.0f};
   float throttle_ = 0;
   float roll_ = 0;

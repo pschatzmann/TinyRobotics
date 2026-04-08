@@ -24,6 +24,7 @@ enum class MessageOrigin {
   LIDAR,     ///< Message from a LIDAR or IR distance sensor
   Camera,    ///< Message from a camera or vision sensor
   GPS,       ///< Message from a GPS module
+  Vehicle,   ///< Message from the vehicle itself (e.g., for telemetry or state updates)
 };
 
 /**

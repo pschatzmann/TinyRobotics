@@ -3,8 +3,11 @@
 #include <vector>
 
 #include "Arduino.h"  // for millis()
+#include "TinyRobotics/communication/MessageHandler.h"
+#include "TinyRobotics/communication/MessageSource.h"
 #include "TinyRobotics/control/MotionState2D.h"
 #include "TinyRobotics/coordinates/Coordinate.h"
+#include "TinyRobotics/odometry/OdometryHeadingModel.h"
 #include "TinyRobotics/units/Units.h"
 
 namespace tinyrobotics {
@@ -13,19 +16,19 @@ namespace tinyrobotics {
  * @class Odometry2D
  * @ingroup odometry
  * @brief Tracks 2D position and orientation of a robot using velocity and
- * steering data.
+ * steering data from external sources.
  *
- * This class provides simple 2D odometry for mobile robots, such as
- * differential drive or Ackermann vehicles. It integrates velocity and steering
- * angle over time to estimate the robot's position (x, y) in meters.
+ * This class provides 2D odometry for mobile robots, such as differential drive
+ * or Ackermann vehicles. It integrates velocity and steering angle over time to
+ * estimate the robot's position (x, y) in meters.
  *
  * ## Supported Kinematics
- * - Differential drive (default model)
- * - Ackermann steering (if steering angle is provided)
+ * - Differential drive (default model, via steering angle is provided, via
+ * IOdometryHeadingModel2D)
  *
  * ## Inputs
- * - Speed (as a Speed object, e.g., meters per second)
- * - Steering angle (as an Angle object, e.g., radians)
+ * - Speed (from an ISpeedSource, e.g., WheelEncoder)
+ * - Steering angle (from messages or sensors)
  * - Time delta (in milliseconds, or uses millis() if not provided)
  *
  * ## Outputs
@@ -36,24 +39,32 @@ namespace tinyrobotics {
  * left/right.
  *
  * ## Update Method
- * - Call update() with new speed and steering angle at each control loop
- * iteration.
+ * - Call update() in your control loop to update odometry using the latest
+ * speed and steering angle.
  * - Optionally provide delta time, or let the class compute it using millis().
  *
  * ## Integration Method
  * - Uses simple Euler integration for position updates.
  *
+ * ## Construction
+ * - Construct with references to an IMessageSource (vehicle), an ISpeedSource
+ * (e.g., WheelEncoder), and an IOdometryHeadingModel2D (kinematics model).
+ * - The vehicle is subscribed to receive messages for speed/throttle/steering
+ * updates.
+ *
  * ## Limitations
- * - Assumes no wheel slip or drift.
+ * - Assumes no wheel slip or drift unless compensated by the speed source.
  * - Not suitable for holonomic or omnidirectional robots.
  * - Orientation (theta) is not explicitly tracked in this class.
  *
  * ## Example Usage
  * @code
- *   Odometry2D odom;
+ *   WheelEncoder encoder(...);
+ *   OdometryModelAckerman model(...);
+ *   Odometry2D odom(vehicle, encoder, model);
  *   odom.begin(Coordinate<DistanceM>(0, 0));
  *   // In your control loop:
- *   odom.update(currentSpeed, currentSteeringAngle);
+ *   odom.update();
  *   auto pos = odom.getPosition();
  *   Serial.printf("x=%.2f, y=%.2f\n", pos.x, pos.y);
  * @endcode
@@ -62,12 +73,13 @@ namespace tinyrobotics {
  * @date 2026-03-30
  */
 
-class Odometry2D : public IMotionState2D {
+class Odometry2D : public IMotionState2D, public MessageHandler {
  public:
-  Odometry2D() = default;
-  Odometry2D(Distance wheelBase) { setWheelBase(wheelBase); }
-
-  void setWheelBase(Distance wheelBase) { this->wheelBase = wheelBase; }
+  Odometry2D(MessageSource& vehicle, ISpeedSource& speedSource,
+             IOdometryHeadingModel2D& model)
+      : vehicle(vehicle), speedSource(speedSource), model(model) {
+    vehicle.subscribe(*this);
+  }
 
   /**
    * @brief Initialize the odometry state.
@@ -104,6 +116,8 @@ class Odometry2D : public IMotionState2D {
    * @return true on success
    */
   bool begin(const Frame2D& frame) {
+    // Ensure speed vector is initialized
+    speed.resize(1);
     // Extract position and orientation from the frame's transform
     auto tf = frame.getTransform();
     // tf.translation is a Coordinate<float>, convert to Coordinate<DistanceM>
@@ -113,61 +127,13 @@ class Odometry2D : public IMotionState2D {
   void end() {}
 
   /**
-   * @brief Update the odometry state with new speed and steering angle.
-   *
-   * @param speed The current speed of the robot (with units).
-   * @param steeringAngle The current steering angle (radians for
-   * Ackermann/rudder, or angular velocity for differential drive).
-   * @param deltaTimeMs Time since last update in milliseconds.
-   *
-   * If wheelBase is set (>0), uses Ackermann/boat kinematics for heading
-   * update: omega = v * tan(steeringAngle) / wheelBase If wheelBase is zero,
-   * uses differential drive kinematics: deltaTheta = steeringAngle (angular
-   * velocity) * deltaTime
+   * @brief Update the odometry state with new speed and steering angle
+   * Call this method in your control loop
    */
-  void update(Speed speed, Angle steeringAngle, float deltaTimeMs) {
-    this->steeringAngle = steeringAngle;
-    this->speed = speed;
-    float speedMps = speed.getValue(SpeedUnit::MPS);
-    float steeringAngleRad = steeringAngle.getValue(AngleUnit::RAD);
-    float deltaTheta = 0.0f;
-    // Use Ackermann if wheelBase is set, else differential drive
-    if (wheelBase.getValue(DistanceUnit::M) > 0.0f) {
-      float wb = wheelBase.getValue(DistanceUnit::M);
-      float omega =
-          (wb > 0.0f) ? speedMps * std::tan(steeringAngleRad) / wb : 0.0f;
-      deltaTheta = omega * deltaTimeMs / 1000.0f;
-    } else {
-      // Differential drive: steeringAngleRad is angular velocity
-      deltaTheta = steeringAngleRad * deltaTimeMs / 1000.0f;
-    }
-    theta += deltaTheta;
-    // Normalize theta to [-pi, pi)
-    theta = normalizeAngleRad(theta);
-    float deltaX = speedMps * std::cos(theta) * deltaTimeMs / 1000.0f;
-    float deltaY = speedMps * std::sin(theta) * deltaTimeMs / 1000.0f;
-    position.x += deltaX;
-    position.y += deltaY;
-    lastDelta = {deltaX, deltaY, deltaTheta};
-    totalDistance += std::sqrt(deltaX * deltaX + deltaY * deltaY);
-
-    publish();
-  }
-
-  /**
-   * @brief Update the odometry state with new speed and steering angle, using
-   * automatic time delta.
-   *
-   * @param speed The current speed of the robot (with units).
-   * @param steeringAngle The current steering angle (radians for
-   * Ackermann/rudder, or angular velocity for differential drive).
-   *
-   * Uses millis() to compute the time since the last update.
-   */
-  void update(Speed speed, Angle steeringAngle) {
+  void update() {
     auto now = millis();
     float deltaTimeMs = now - lastUpdateTimeMs;
-    if (lastUpdateTimeMs > 0) update(speed, steeringAngle, deltaTimeMs);
+    if (lastUpdateTimeMs > 0) update(deltaTimeMs);
     lastUpdateTimeMs = now;
   }
 
@@ -178,11 +144,11 @@ class Odometry2D : public IMotionState2D {
   /// @brief Get the current heading as an Angle (radians)
   Angle getHeading() const { return Angle(theta, AngleUnit::RAD); }
   /// @brief Get the current speed (meters/second)
-  Speed getSpeed() const { return speed; }
+  Speed getSpeed() const { return speedAvg; }
   /// @brief Get the current orientation (radians)
   float getTheta() const { return theta; }
   /// @brief Get the current linear velocity (meters/second)
-  float getLinearVelocity() const { return speed.getValue(SpeedUnit::MPS); }
+  float getLinearVelocity() const { return speedAvg.getValue(SpeedUnit::MPS); }
   /// @brief Get the current angular velocity (radians/second)
   float getAngularVelocity() const {
     return steeringAngle.getValue(AngleUnit::RAD);
@@ -204,6 +170,57 @@ class Odometry2D : public IMotionState2D {
     return Transform2D(position, getHeading().getValue(AngleUnit::DEG));
   }
 
+  bool onMessage(const Message<float>& msg) {
+    if (msg.origin != MessageOrigin::Vehicle &&
+        msg.origin != MessageOrigin::Motor)
+      return false;
+    //  update speed and steering angle from messages
+    switch (msg.content) {
+      case MessageContent::MotorSpeed:
+        if (msg.unit != Unit::Percent) return false;
+        speedSource.setThrottlePercent(msg.value, msg.origin_id);
+        if (msg.origin == MessageOrigin::Motor) {
+          // differential motor with left = 0 and right = 1
+          is_differential = true;
+          if (speed.size() != 2) speed.resize(2);
+          switch (msg.origin_id) {
+            case 0:
+              speed[0] = speedSource.getSpeed(0);
+              break;
+            case 1:
+              speed[1] = speedSource.getSpeed(1);
+              update();
+              break;
+            default:
+              // ignore other motors
+              break;
+          }
+          // We just consider the first 2 motors
+          if (msg.origin_id < 2) {
+            speed[msg.origin_id] = speedSource.getSpeed(msg.origin_id);
+            if (msg.origin_id == 1) update();
+          }
+        } else {
+          // regular motor
+          is_differential = false;
+          update();
+        }
+        return true;
+      case MessageContent::Speed:
+        if (msg.unit != Unit::MetersPerSecond) return false;
+        speedAvg = Speed(msg.value, SpeedUnit::MPS);
+        update();
+        return true;
+      case MessageContent::SteeringAngle:
+        if (msg.unit != Unit::AngleRadian) return false;
+        steeringAngle = Angle(msg.value, AngleUnit::RAD);
+        update();
+        return true;
+      default:
+        return false;  // Unhandled message content
+    }
+  }
+
  protected:
   Coordinate<float> position;
   float theta = 0.0f;
@@ -211,8 +228,13 @@ class Odometry2D : public IMotionState2D {
   Delta2D lastDelta = {0.0f, 0.0f, 0.0f};  // (dx, dy, dtheta)
   uint32_t lastUpdateTimeMs = 0;
   Angle steeringAngle;
-  Speed speed;
+  std::vector<Speed> speed;
+  Speed speedAvg;
   Distance wheelBase;
+  IOdometryHeadingModel2D& model;
+  ISpeedSource& speedSource;
+  MessageSource& vehicle;
+  bool is_differential = false;
 
   void publish() {
     // Publish position as message
@@ -229,11 +251,68 @@ class Odometry2D : public IMotionState2D {
     sendMessage(msgHeading);
 
     // Publish speed as float (meters/second)
-    Message<float> msgSpeed{MessageContent::Speed,
-                            speed.getValue(SpeedUnit::MPS),
-                            Unit::MetersPerSecond};
-    msgSpeed.origin = MessageOrigin::System;
-    sendMessage(msgSpeed);
+    int id = 0;
+    for (auto& s : speed) {
+      Message<float> msgSpeed{MessageContent::Speed, s.getValue(SpeedUnit::MPS),
+                              Unit::MetersPerSecond};
+      msgSpeed.origin = MessageOrigin::System;
+      msgSpeed.origin_id = id;
+      sendMessage(msgSpeed);
+      id++;
+    }
+  }
+
+  /**
+   * @brief Update the odometry state with new speed and steering angle.
+   *
+   * @param speed The current speed of the robot (with units).
+   * @param steeringAngle The current steering angle (radians for
+   * Ackermann/rudder, or angular velocity for differential drive).
+   * @param deltaTimeMs Time since last update in milliseconds.
+   *
+   * If wheelBase is set (>0), uses Ackermann/boat kinematics for heading
+   * update: omega = v * tan(steeringAngle) / wheelBase If wheelBase is zero,
+   * uses differential drive kinematics: deltaTheta = steeringAngle (angular
+   * velocity) * deltaTime
+   */
+  void update(uint32_t deltaTimeMs) {
+    // handle inertial modelling e.g. for boats
+    float speedMps = 0;
+    for (int j = 0; j < speed.size(); j++) {
+      speed[j] = speedSource.updateSpeed(deltaTimeMs, j);
+    }
+    speedAvg = calculateAverageSpeed();
+    float steeringAngleRad = steeringAngle.getValue(AngleUnit::RAD);
+    float deltaTheta = 0.0f;
+    // for Ackermann/boat kinematics, we set the speed and steering angle in the
+    // model
+    model.setSpeed(speedAvg);
+    model.setSpeed(speed[0], speed[1]);
+    model.setSteeringAngle(steeringAngle);
+    deltaTheta = model.computeDeltaTheta(deltaTimeMs);
+    theta += deltaTheta;
+    // Normalize theta to [-pi, pi)
+    theta = normalizeAngleRad(theta);
+    float deltaX = 0.0f, deltaY = 0.0f;
+    model.computeDeltaXY(theta, deltaTimeMs, deltaX, deltaY);
+    position.x += deltaX;
+    position.y += deltaY;
+    lastDelta = {deltaX, deltaY, deltaTheta};
+    totalDistance += std::sqrt(deltaX * deltaX + deltaY * deltaY);
+
+    publish();
+  }
+
+  /// @brief Calculate the average speed from the speed vector
+  Speed calculateAverageSpeed() {
+    Speed speedAvg{};
+    for (const auto& s : speed) {
+      speedAvg += s;
+    }
+    if (!speed.empty()) {
+      speedAvg /= speed.size();
+    }
+    return speedAvg;
   }
 };
 

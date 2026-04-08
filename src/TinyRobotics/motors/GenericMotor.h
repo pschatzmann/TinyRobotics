@@ -1,6 +1,7 @@
 #pragma once
 #include "Motor.h"
 #include "stdint.h"
+#include "assert.h"
 
 namespace tinyrobotics {
 
@@ -44,9 +45,9 @@ template <typename T = float>
 class GenericMotor : public Motor<T> {
  public:
   GenericMotor() = default;
-  GenericMotor(uint8_t id, void* motor = nullptr) {
+  GenericMotor(uint8_t id, void* driver = nullptr) {
     this->setID(id);
-    this->motor = motor;
+    this->driver = driver;
   }
 
   /// Start the motor using the optional begin callback
@@ -109,9 +110,10 @@ class GenericMotor : public Motor<T> {
   }
 
   /// Provides the user motor object
-  template <typename MotorT>
-  MotorT& getMotor() {
-    return *static_cast<MotorT*>(motor);
+  template <typename DriverT>
+  DriverT& getDriver() {
+    assert(driver != nullptr);
+    return *static_cast<DriverT*>(driver);
   }
 
   /// Not supported
@@ -119,14 +121,10 @@ class GenericMotor : public Motor<T> {
   /// Not supported
   void setPin(int pin) { notSupported("setPin"); }
   /// Not supported
-  void setPins(int pin1, int pin2, int pwmPin = -1, int pwmFreq = 20000) {
-    notSupported("setPins");
-  }
-  /// Not supported
-  void setPins(int stepPin, int dirPin, int enablePin = -1) { notSupported("setPins"); }
+  void setPins(int, int, int na = -1) { notSupported("setPins"); }
 
  protected:
-  void* motor = nullptr;  // Optional pointer to user motor object for callbacks
+  void* driver = nullptr;  // Optional pointer to user motor object for callbacks
   T value = 0.0f;         // Current value percentage
   bool (*beginCB)(GenericMotor& motor) = nullptr;
   void (*endCB)(GenericMotor& motor) = defaultEnd;

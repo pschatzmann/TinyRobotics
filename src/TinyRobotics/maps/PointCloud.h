@@ -95,6 +95,8 @@ class PointCloud : public IMapNeighbors<T> {
   /// Update the voxel grid as points are added (for real-time occupancy
   /// updates).
   void setLiveVoxelGrid(bool live) { liveVocelGrid_ = live; }
+  /// Set the size of each voxel in the grid (e.g., 0.1 m for 10cm voxels).
+  void setVoxalSize(T size) { voxelSize_ = size; }
 
   /// Add a single point
   void add(T x, T y, T z = 0.0f) {

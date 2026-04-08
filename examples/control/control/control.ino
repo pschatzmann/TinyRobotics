@@ -45,14 +45,16 @@ Frame2D world{FrameType::WORLD, 0};
 Frame2D base{FrameType::BASE, 0, world, Transform2D(start, 0)};
 
 AStar astar;
+
 CarAckerman car;
-Odometry2D odometry;
-SpeedFromThrottle speedEstimator(2.0f);  // max speed 2 m/s (adjust as needed)
+Distance wheelBase(0.3f, DistanceUnit::M);
+OdometryHeadingModel odomModel(wheelBase);
+SpeedFromThrottle speedEstimator(Speed(5, SpeedUnit::KPH));
+Odometry2D odometry(car, speedEstimator, odomModel);
 Speed maxSpeedKmh(5, SpeedUnit::KPH);  // max speed in km/h
 Distance accelDistanceM(0.5, DistanceUnit::M); // distance to start decelerating in meters
-Distance wheelBase(0.3f, DistanceUnit::M);  // distance between front and rear axles in meters
 Angle maxSteeringAngle(30.0f, AngleUnit::DEG);
-MotionController2D<float> controller(odometry, maxSpeedKmh,maxSteeringAngle,accelDistanceM);
+MotionController2D<float> controller(odometry, maxSpeedKmh, maxSteeringAngle, accelDistanceM);
 
 Scheduler scheduler;
 MessageHandlerPrintJSON json_printer(Serial);  // Print to Serial in JSON format
@@ -71,10 +73,8 @@ void updateController(void*) {
   if (controller.isGoalReached()) return;  // stop updating if goal is reached
   // Move to next waypoint
   controller.update();
-  // estimate speed from throttle
-  float speed = speedEstimator.getSpeedMPS(controller.getThrottlePercent());
-  // update odometry with estimated speed and current steering angle
-  odometry.update(Speed(speed, SpeedUnit::MPS), controller.getSteeringAngle());
+  // update odometry (uses speed source and steering angle internally)
+  odometry.update();
 }
 
 void setup() {
@@ -88,7 +88,6 @@ void setup() {
   auto path = astar.findPath(pathMap, start, goal);
   if (path.size() > 1) {
     // setup odometry firs
-    odometry.setWheelBase(wheelBase);
     odometry.subscribe(json_printer);  // subscribe to odometry messages for telemetry
     odometry.begin(base);
     // then setup controller which depends on odometry

@@ -47,20 +47,21 @@ constexpr const char* unitStr[] = {
 // from enum class MessageOrigin in Message.h - update this array to match all
 // values in the MessageOrigin enum
 constexpr const char* originStr[] = {
-    "Undefined",      // 0
-    "RemoteControl",  // 1
-    "Autonomy",       // 2
-    "Sensor",         // 3
-    "System",         // 4
-    "Motor",          // 5
-    "Servo",          // 6
-    "Rudder",         // 7
-    "Aileron",        // 8
-    "Elevator",       // 9
-    "IMU",            // 10
-    "LIDAR",          // 11
-    "Camera",         // 12
-    "GPS"             // 13
+  "Undefined",      // 0
+  "RemoteControl",  // 1
+  "Autonomy",       // 2
+  "Sensor",         // 3
+  "System",         // 4
+  "Motor",          // 5
+  "Servo",          // 6
+  "Rudder",         // 7
+  "Aileron",        // 8
+  "Elevator",       // 9
+  "IMU",            // 10
+  "LIDAR",          // 11
+  "Camera",         // 12
+  "GPS",            // 13
+  "Vehicle"         // 14
 };
 
 /**
