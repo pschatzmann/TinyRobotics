@@ -139,122 +139,123 @@ $(function() {
 <div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>  SpeedFromThrottle(<span class="keywordtype">float</span> maxSpeedMps, uint8_t numMotors = 1) {</div>
 <div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    <span class="keyword">this</span>-&gt;numMotors = numMotors;</div>
 <div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>    <span class="keyword">this</span>-&gt;maxSpeedMps = maxSpeedMps;</div>
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>  }</div>
-<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span> </div>
-<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>  SpeedFromThrottle(<a class="code hl_class" href="classtinyrobotics_1_1Speed.html">Speed</a> maxSpeed, uint8_t numMotors = 1)</div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>      : <a class="code hl_class" href="classtinyrobotics_1_1SpeedFromThrottle.html">SpeedFromThrottle</a>(maxSpeed.getValue(<a class="code hl_enumeration" href="group__units.html#ga877e4fdbe9d3581dfa3431b6436b1615">SpeedUnit</a>::MPS), numMotors) {}</div>
-<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span> </div>
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>  <span class="keywordtype">void</span> setMaxSpeed(<a class="code hl_class" href="classtinyrobotics_1_1Speed.html">Speed</a> speed) {</div>
-<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>    <span class="keyword">this</span>-&gt;maxSpeedMps = speed.getValue(<a class="code hl_enumeration" href="group__units.html#ga877e4fdbe9d3581dfa3431b6436b1615">SpeedUnit</a>::MPS);</div>
-<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>  }</div>
-<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span> </div>
-<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>  <span class="comment">// Overload for multi-motor begin</span></div>
-<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>  <span class="keywordtype">bool</span> begin() {</div>
-<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>    speedMps.resize(numMotors, 0.0f);</div>
-<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>    calibrationData.clear();</div>
-<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>    <a class="code hl_function" href="classtinyrobotics_1_1SpeedFromThrottle.html#aa9722aafd9aa6ec4ec9e2237164f6ac9">addSpeedCalibration</a><a class="code hl_function" href="classtinyrobotics_1_1SpeedFromThrottle.html#aa9722aafd9aa6ec4ec9e2237164f6ac9">(</a>0.0f<a class="code hl_function" href="classtinyrobotics_1_1SpeedFromThrottle.html#aa9722aafd9aa6ec4ec9e2237164f6ac9">,</a> 0.0f<a class="code hl_function" href="classtinyrobotics_1_1SpeedFromThrottle.html#aa9722aafd9aa6ec4ec9e2237164f6ac9">)</a>;           <span class="comment">// 0% throttle = 0 m/s</span></div>
-<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>    <a class="code hl_function" href="classtinyrobotics_1_1SpeedFromThrottle.html#aa9722aafd9aa6ec4ec9e2237164f6ac9">addSpeedCalibration</a><a class="code hl_function" href="classtinyrobotics_1_1SpeedFromThrottle.html#aa9722aafd9aa6ec4ec9e2237164f6ac9">(</a>100.0f<a class="code hl_function" href="classtinyrobotics_1_1SpeedFromThrottle.html#aa9722aafd9aa6ec4ec9e2237164f6ac9">,</a> maxSpeedMps<a class="code hl_function" href="classtinyrobotics_1_1SpeedFromThrottle.html#aa9722aafd9aa6ec4ec9e2237164f6ac9">)</a>;  <span class="comment">// 100% throttle = max speed</span></div>
-<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>    <a class="code hl_function" href="classtinyrobotics_1_1SpeedFromThrottle.html#aa9722aafd9aa6ec4ec9e2237164f6ac9">addSpeedCalibration</a><a class="code hl_function" href="classtinyrobotics_1_1SpeedFromThrottle.html#aa9722aafd9aa6ec4ec9e2237164f6ac9">(</a>-100.0f<a class="code hl_function" href="classtinyrobotics_1_1SpeedFromThrottle.html#aa9722aafd9aa6ec4ec9e2237164f6ac9">,</a></div>
-<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>                        maxSpeedMps<a class="code hl_function" href="classtinyrobotics_1_1SpeedFromThrottle.html#aa9722aafd9aa6ec4ec9e2237164f6ac9">)</a>;  <span class="comment">// -100% throttle = max reverse speed</span></div>
-<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>  }</div>
-<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span> </div>
-<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>  <span class="comment">/// Handle Throttle messages to update speed</span></div>
-<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>  <span class="keywordtype">bool</span> <a class="code hl_function" href="classtinyrobotics_1_1SpeedFromThrottle.html#ab78c06b51db5e63c8f7a84c54baf3842">onMessage</a>(<span class="keyword">const</span> <a class="code hl_class" href="structtinyrobotics_1_1Message.html">Message</a>&lt;<span class="keywordtype">float</span>&gt;&amp; msg) <span class="keyword">override</span> {</div>
-<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>    <span class="keywordflow">if</span> (msg.content == MessageContent::Throttle) {</div>
-<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>      setThrottlePercent(msg.value);</div>
-<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>      <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>    }</div>
-<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>    <span class="keywordflow">return</span> <span class="keyword">false</span>;  <span class="comment">// Not handled</span></div>
-<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>  }</div>
-<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span> </div>
-<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>  <span class="comment">/// Add or update a calibration point (throttlePercent, speedMps)</span></div>
-<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classtinyrobotics_1_1SpeedFromThrottle.html#aa9722aafd9aa6ec4ec9e2237164f6ac9">addSpeedCalibration</a>(<span class="keywordtype">float</span> throttlePercent, <span class="keywordtype">float</span> speedMps) {</div>
-<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>    <span class="keyword">auto</span> it = calibrationData.begin();</div>
-<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>    <span class="keywordflow">while</span> (it != calibrationData.end() &amp;&amp; it-&gt;first &lt; throttlePercent) {</div>
-<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>      ++it;</div>
-<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>    }</div>
-<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>    <span class="keywordflow">if</span> (it != calibrationData.end() &amp;&amp; it-&gt;first == throttlePercent) {</div>
-<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>      it-&gt;second = speedMps;  <span class="comment">// Replace existing</span></div>
-<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>    } <span class="keywordflow">else</span> {</div>
-<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>      calibrationData.insert(</div>
-<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>          it, std::pair&lt;<span class="keywordtype">float</span>, <span class="keywordtype">float</span>&gt;(throttlePercent, speedMps));</div>
-<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>    }</div>
-<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>  }</div>
-<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span> </div>
-<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>  <span class="comment">/// Clear all calibration data</span></div>
-<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classtinyrobotics_1_1SpeedFromThrottle.html#aab4000a37e0626ad6a8ab5d0c6a35424">clearCalibration</a>() { calibrationData.clear(); }</div>
-<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span> </div>
-<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>  <span class="comment">/// Define the actual throttle value</span></div>
-<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classtinyrobotics_1_1SpeedFromThrottle.html#aaa3bc8b8aeb24aa1aa20e207f6a0df29">setThrottlePercent</a>(<span class="keywordtype">float</span> throttlePercent, uint8_t motor = 0) <span class="keyword">override</span> {</div>
-<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>    assert(motor &lt; numMotors);</div>
-<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>    speedMps[motor] = getSpeedMPS(throttlePercent);</div>
-<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>    sendSpeedMessage(motor);</div>
-<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>  }</div>
-<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span> </div>
-<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>  <span class="comment">/// Get the actual speed based on the last throttle value</span></div>
-<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>  <a class="code hl_class" href="classtinyrobotics_1_1Speed.html">Speed</a> <a class="code hl_function" href="classtinyrobotics_1_1SpeedFromThrottle.html#a6ed21154d02ecabbb30349c57489e86d">getSpeed</a>(uint8_t motor = 0) <span class="keyword">const</span> <span class="keyword">override</span> {</div>
-<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>    assert(motor &lt; numMotors);</div>
-<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>    <span class="keywordflow">return</span> Speed(speedMps[motor], SpeedUnit::MPS);</div>
-<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>  }</div>
-<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span> </div>
-<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>  <a class="code hl_class" href="classtinyrobotics_1_1Speed.html">Speed</a> <a class="code hl_function" href="classtinyrobotics_1_1SpeedFromThrottle.html#a80ef031e116658585424a3f8ae51eb12">updateSpeed</a>(uint32_t deltaTimeMs, uint8_t motor = 0) <span class="keyword">override</span> {</div>
-<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>    assert(motor &lt; numMotors);</div>
-<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>    <span class="keywordflow">return</span> Speed(speedMps[motor], SpeedUnit::MPS);</div>
-<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>  }</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>    speedMps.resize(numMotors, 0.0f);</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>    init();</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>  }</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span> </div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>  SpeedFromThrottle(<a class="code hl_class" href="classtinyrobotics_1_1Speed.html">Speed</a> maxSpeed, uint8_t numMotors = 1)</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>      : <a class="code hl_class" href="classtinyrobotics_1_1SpeedFromThrottle.html">SpeedFromThrottle</a>(maxSpeed.getValue(<a class="code hl_enumeration" href="group__units.html#ga877e4fdbe9d3581dfa3431b6436b1615">SpeedUnit</a>::MPS), numMotors) {}</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span> </div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>  <span class="keywordtype">void</span> setMaxSpeed(<a class="code hl_class" href="classtinyrobotics_1_1Speed.html">Speed</a> speed) {</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>    <span class="keyword">this</span>-&gt;maxSpeedMps = speed.getValue(<a class="code hl_enumeration" href="group__units.html#ga877e4fdbe9d3581dfa3431b6436b1615">SpeedUnit</a>::MPS);</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>    init();</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>  }</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span> </div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>  <span class="comment">/// Handle Throttle messages to update speed</span></div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>  <span class="keywordtype">bool</span> <a class="code hl_function" href="classtinyrobotics_1_1SpeedFromThrottle.html#ab78c06b51db5e63c8f7a84c54baf3842">onMessage</a>(<span class="keyword">const</span> <a class="code hl_class" href="structtinyrobotics_1_1Message.html">Message</a>&lt;<span class="keywordtype">float</span>&gt;&amp; msg) <span class="keyword">override</span> {</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>    <span class="keywordflow">if</span> (msg.content == MessageContent::Throttle) {</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>      setThrottlePercent(msg.value);</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>      <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>    }</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>    <span class="keywordflow">return</span> <span class="keyword">false</span>;  <span class="comment">// Not handled</span></div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>  }</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span> </div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>  <span class="comment">/// Add or update a calibration point (throttlePercent, speedMps)</span></div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classtinyrobotics_1_1SpeedFromThrottle.html#aa9722aafd9aa6ec4ec9e2237164f6ac9">addSpeedCalibration</a>(<span class="keywordtype">float</span> throttlePercent, <span class="keywordtype">float</span> speedMps) {</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>    <span class="keyword">auto</span> it = calibrationData.begin();</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>    <span class="keywordflow">while</span> (it != calibrationData.end() &amp;&amp; it-&gt;first &lt; throttlePercent) {</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>      ++it;</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>    }</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>    <span class="keywordflow">if</span> (it != calibrationData.end() &amp;&amp; it-&gt;first == throttlePercent) {</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>      it-&gt;second = speedMps;  <span class="comment">// Replace existing</span></div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>    } <span class="keywordflow">else</span> {</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>      calibrationData.insert(</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>          it, std::pair&lt;<span class="keywordtype">float</span>, <span class="keywordtype">float</span>&gt;(throttlePercent, speedMps));</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>    }</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>  }</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span> </div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>  <span class="comment">/// Clear all calibration data</span></div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classtinyrobotics_1_1SpeedFromThrottle.html#aab4000a37e0626ad6a8ab5d0c6a35424">clearCalibration</a>() { calibrationData.clear(); }</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span> </div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>  <span class="comment">/// Define the actual throttle value</span></div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classtinyrobotics_1_1SpeedFromThrottle.html#aaa3bc8b8aeb24aa1aa20e207f6a0df29">setThrottlePercent</a>(<span class="keywordtype">float</span> throttlePercent, uint8_t motor = 0) <span class="keyword">override</span> {</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>    assert(motor &lt; numMotors);</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>    speedMps[motor] = getSpeedMPS(throttlePercent);</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>    sendSpeedMessage(motor);</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>  }</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span> </div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>  <span class="comment">/// Get the actual speed based on the last throttle value</span></div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>  <a class="code hl_class" href="classtinyrobotics_1_1Speed.html">Speed</a> <a class="code hl_function" href="classtinyrobotics_1_1SpeedFromThrottle.html#a6ed21154d02ecabbb30349c57489e86d">getSpeed</a>(uint8_t motor = 0) <span class="keyword">const</span> <span class="keyword">override</span> {</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>    assert(motor &lt; numMotors);</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>    <span class="keywordflow">return</span> Speed(speedMps[motor], SpeedUnit::MPS);</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>  }</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span> </div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>  <a class="code hl_class" href="classtinyrobotics_1_1Speed.html">Speed</a> <a class="code hl_function" href="classtinyrobotics_1_1SpeedFromThrottle.html#a80ef031e116658585424a3f8ae51eb12">updateSpeed</a>(uint32_t deltaTimeMs, uint8_t motor = 0) <span class="keyword">override</span> {</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>    assert(motor &lt; numMotors);</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>    <span class="keywordflow">return</span> Speed(speedMps[motor], SpeedUnit::MPS);</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>  }</div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span> </div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>  size_t getMotorCount() <span class="keyword">const</span> <span class="keyword">override</span> { <span class="keywordflow">return</span> numMotors; }</div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span> </div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>  <span class="keyword">protected</span>:</div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>  std::vector&lt;std::pair&lt;<span class="keywordtype">float</span>, <span class="keywordtype">float</span>&gt;&gt; calibrationData;</div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>  std::vector&lt;<span class="keywordtype">float</span>&gt; speedMps;</div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>  uint8_t numMotors = 1;</div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>  <span class="keywordtype">float</span> maxSpeedMps = 0.0f;</div>
 <div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span> </div>
-<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>  size_t getMotorCount() <span class="keyword">const</span> <span class="keyword">override</span> { <span class="keywordflow">return</span> numMotors; }</div>
-<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span> </div>
-<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>  <span class="keyword">protected</span>:</div>
-<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>  std::vector&lt;std::pair&lt;<span class="keywordtype">float</span>, <span class="keywordtype">float</span>&gt;&gt; calibrationData;</div>
-<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>  std::vector&lt;<span class="keywordtype">float</span>&gt; speedMps;</div>
-<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>  uint8_t numMotors = 1;</div>
-<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>  <span class="keywordtype">float</span> maxSpeedMps = 0.0f;</div>
-<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span> </div>
-<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>  <span class="keywordtype">void</span> sendSpeedMessage(uint8_t motor = 0) {</div>
-<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>    <span class="keywordflow">if</span> (motor &gt;= numMotors) <span class="keywordflow">return</span>;</div>
-<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>    <a class="code hl_class" href="structtinyrobotics_1_1Message.html">Message</a>&lt;<span class="keywordtype">float</span>&gt; msg(MessageContent::Speed, speedMps[motor],</div>
-<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>                       Unit::MetersPerSecond, MessageOrigin::System);</div>
-<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span>    msg.origin_id = motor;</div>
-<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span>    MessageSource::sendMessage(msg);</div>
-<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span>  }</div>
-<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span> </div>
-<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span>  <span class="comment">/// Get speed in meters per second by interpolating calibration data</span></div>
-<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span>  <span class="keywordtype">float</span> <a class="code hl_function" href="classtinyrobotics_1_1SpeedFromThrottle.html#adb0aa0603882263daa15121be8a6b2f5">getSpeedMPS</a>(<span class="keywordtype">float</span> throttlePercent) <span class="keyword">const</span> {</div>
-<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>    <span class="keywordflow">if</span> (calibrationData.empty()) <span class="keywordflow">return</span> 0.0f;</div>
-<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>    <span class="comment">// Clamp below</span></div>
-<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>    <span class="keywordflow">if</span> (throttlePercent &lt;= calibrationData.front().first)</div>
-<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>      <span class="keywordflow">return</span> calibrationData.front().second;</div>
-<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>    <span class="comment">// Clamp above</span></div>
-<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>    <span class="keywordflow">if</span> (throttlePercent &gt;= calibrationData.back().first)</div>
-<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>      <span class="keywordflow">return</span> calibrationData.back().second;</div>
-<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>    <span class="comment">// Find interval</span></div>
-<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>    <span class="keywordflow">for</span> (size_t i = 1; i &lt; calibrationData.size(); ++i) {</div>
-<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>      <span class="keywordtype">float</span> t0 = calibrationData[i - 1].first;</div>
-<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>      <span class="keywordtype">float</span> t1 = calibrationData[i].first;</div>
-<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>      <span class="keywordflow">if</span> (throttlePercent &gt;= t0 &amp;&amp; throttlePercent &lt;= t1) {</div>
-<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>        <span class="keywordtype">float</span> s0 = calibrationData[i - 1].second;</div>
-<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>        <span class="keywordtype">float</span> s1 = calibrationData[i].second;</div>
-<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>        <span class="keywordtype">float</span> alpha = (throttlePercent - t0) / (t1 - t0);</div>
-<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span>        <span class="keywordflow">return</span> s0 + alpha * (s1 - s0);</div>
-<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>      }</div>
-<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span>    }</div>
-<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span>    <span class="comment">// Should not reach here</span></div>
-<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span>    <span class="keywordflow">return</span> 0.0f;</div>
-<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span>  }</div>
-<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span>};</div>
-<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span> </div>
-<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span>}  <span class="comment">// namespace tinyrobotics</span></div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>  <span class="comment">// Overload for multi-motor begin</span></div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>  <span class="keywordtype">bool</span> init() {</div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>    calibrationData.clear();</div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>    <a class="code hl_function" href="classtinyrobotics_1_1SpeedFromThrottle.html#aa9722aafd9aa6ec4ec9e2237164f6ac9">addSpeedCalibration</a><a class="code hl_function" href="classtinyrobotics_1_1SpeedFromThrottle.html#aa9722aafd9aa6ec4ec9e2237164f6ac9">(</a>0.0f<a class="code hl_function" href="classtinyrobotics_1_1SpeedFromThrottle.html#aa9722aafd9aa6ec4ec9e2237164f6ac9">,</a> 0.0f<a class="code hl_function" href="classtinyrobotics_1_1SpeedFromThrottle.html#aa9722aafd9aa6ec4ec9e2237164f6ac9">)</a>;           <span class="comment">// 0% throttle = 0 m/s</span></div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>    <a class="code hl_function" href="classtinyrobotics_1_1SpeedFromThrottle.html#aa9722aafd9aa6ec4ec9e2237164f6ac9">addSpeedCalibration</a><a class="code hl_function" href="classtinyrobotics_1_1SpeedFromThrottle.html#aa9722aafd9aa6ec4ec9e2237164f6ac9">(</a>100.0f<a class="code hl_function" href="classtinyrobotics_1_1SpeedFromThrottle.html#aa9722aafd9aa6ec4ec9e2237164f6ac9">,</a> maxSpeedMps<a class="code hl_function" href="classtinyrobotics_1_1SpeedFromThrottle.html#aa9722aafd9aa6ec4ec9e2237164f6ac9">)</a>;  <span class="comment">// 100% throttle = max speed</span></div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>    <a class="code hl_function" href="classtinyrobotics_1_1SpeedFromThrottle.html#aa9722aafd9aa6ec4ec9e2237164f6ac9">addSpeedCalibration</a><a class="code hl_function" href="classtinyrobotics_1_1SpeedFromThrottle.html#aa9722aafd9aa6ec4ec9e2237164f6ac9">(</a>-100.0f<a class="code hl_function" href="classtinyrobotics_1_1SpeedFromThrottle.html#aa9722aafd9aa6ec4ec9e2237164f6ac9">,</a></div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>                        maxSpeedMps<a class="code hl_function" href="classtinyrobotics_1_1SpeedFromThrottle.html#aa9722aafd9aa6ec4ec9e2237164f6ac9">)</a>;  <span class="comment">// -100% throttle = max reverse speed</span></div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>  }</div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>  <span class="keywordtype">void</span> sendSpeedMessage(uint8_t motor = 0) {</div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>    assert(motor &lt; numMotors);</div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>    <a class="code hl_class" href="structtinyrobotics_1_1Message.html">Message</a>&lt;<span class="keywordtype">float</span>&gt; msg(MessageContent::Speed, speedMps[motor],</div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span>                       Unit::MetersPerSecond, MessageOrigin::System);</div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span>    msg.origin_id = motor;</div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span>    MessageSource::sendMessage(msg);</div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span>  }</div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span> </div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span>  <span class="comment">/// Get speed in meters per second by interpolating calibration data</span></div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>  <span class="keywordtype">float</span> <a class="code hl_function" href="classtinyrobotics_1_1SpeedFromThrottle.html#adb0aa0603882263daa15121be8a6b2f5">getSpeedMPS</a>(<span class="keywordtype">float</span> throttlePercent) <span class="keyword">const</span> {</div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>    <span class="keywordflow">if</span> (calibrationData.empty()) <span class="keywordflow">return</span> 0.0f;</div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>    <span class="comment">// Clamp below</span></div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>    <span class="keywordflow">if</span> (throttlePercent &lt;= calibrationData.front().first)</div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>      <span class="keywordflow">return</span> calibrationData.front().second;</div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>    <span class="comment">// Clamp above</span></div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>    <span class="keywordflow">if</span> (throttlePercent &gt;= calibrationData.back().first)</div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>      <span class="keywordflow">return</span> calibrationData.back().second;</div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>    <span class="comment">// Find interval</span></div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>    <span class="keywordflow">for</span> (size_t i = 1; i &lt; calibrationData.size(); ++i) {</div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>      <span class="keywordtype">float</span> t0 = calibrationData[i - 1].first;</div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>      <span class="keywordtype">float</span> t1 = calibrationData[i].first;</div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>      <span class="keywordflow">if</span> (throttlePercent &gt;= t0 &amp;&amp; throttlePercent &lt;= t1) {</div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>        <span class="keywordtype">float</span> s0 = calibrationData[i - 1].second;</div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>        <span class="keywordtype">float</span> s1 = calibrationData[i].second;</div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span>        <span class="keywordtype">float</span> alpha = (throttlePercent - t0) / (t1 - t0);</div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>        <span class="keywordflow">return</span> s0 + alpha * (s1 - s0);</div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span>      }</div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span>    }</div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span>    <span class="comment">// Should not reach here</span></div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span>    <span class="keywordflow">return</span> 0.0f;</div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span>  }</div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span>};</div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span> </div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span>}  <span class="comment">// namespace tinyrobotics</span></div>
 <div class="ttc" id="aclasstinyrobotics_1_1ISpeedSource_html"><div class="ttname"><a href="classtinyrobotics_1_1ISpeedSource.html">tinyrobotics::ISpeedSource</a></div><div class="ttdoc">Interface for speed sources.</div><div class="ttdef"><b>Definition:</b> ISpeedSource.h:9</div></div>
 <div class="ttc" id="aclasstinyrobotics_1_1MessageHandler_html"><div class="ttname"><a href="classtinyrobotics_1_1MessageHandler.html">tinyrobotics::MessageHandler</a></div><div class="ttdoc">Interface for handling messages in the TinyRobotics framework.</div><div class="ttdef"><b>Definition:</b> MessageHandler.h:16</div></div>
 <div class="ttc" id="aclasstinyrobotics_1_1SpeedFromThrottle_html"><div class="ttname"><a href="classtinyrobotics_1_1SpeedFromThrottle.html">tinyrobotics::SpeedFromThrottle</a></div><div class="ttdoc">Estimates vehicle speed from throttle percentage using calibration data.</div><div class="ttdef"><b>Definition:</b> SpeedFromThrottle.h:59</div></div>
-<div class="ttc" id="aclasstinyrobotics_1_1SpeedFromThrottle_html_a6ed21154d02ecabbb30349c57489e86d"><div class="ttname"><a href="classtinyrobotics_1_1SpeedFromThrottle.html#a6ed21154d02ecabbb30349c57489e86d">tinyrobotics::SpeedFromThrottle::getSpeed</a></div><div class="ttdeci">Speed getSpeed(uint8_t motor=0) const override</div><div class="ttdoc">Get the actual speed based on the last throttle value.</div><div class="ttdef"><b>Definition:</b> SpeedFromThrottle.h:118</div></div>
-<div class="ttc" id="aclasstinyrobotics_1_1SpeedFromThrottle_html_a80ef031e116658585424a3f8ae51eb12"><div class="ttname"><a href="classtinyrobotics_1_1SpeedFromThrottle.html#a80ef031e116658585424a3f8ae51eb12">tinyrobotics::SpeedFromThrottle::updateSpeed</a></div><div class="ttdeci">Speed updateSpeed(uint32_t deltaTimeMs, uint8_t motor=0) override</div><div class="ttdoc">For sources with inertia, call this in your main loop with the elapsed time (in milliseconds) to upda...</div><div class="ttdef"><b>Definition:</b> SpeedFromThrottle.h:123</div></div>
-<div class="ttc" id="aclasstinyrobotics_1_1SpeedFromThrottle_html_aa9722aafd9aa6ec4ec9e2237164f6ac9"><div class="ttname"><a href="classtinyrobotics_1_1SpeedFromThrottle.html#aa9722aafd9aa6ec4ec9e2237164f6ac9">tinyrobotics::SpeedFromThrottle::addSpeedCalibration</a></div><div class="ttdeci">void addSpeedCalibration(float throttlePercent, float speedMps)</div><div class="ttdoc">Add or update a calibration point (throttlePercent, speedMps)</div><div class="ttdef"><b>Definition:</b> SpeedFromThrottle.h:94</div></div>
-<div class="ttc" id="aclasstinyrobotics_1_1SpeedFromThrottle_html_aaa3bc8b8aeb24aa1aa20e207f6a0df29"><div class="ttname"><a href="classtinyrobotics_1_1SpeedFromThrottle.html#aaa3bc8b8aeb24aa1aa20e207f6a0df29">tinyrobotics::SpeedFromThrottle::setThrottlePercent</a></div><div class="ttdeci">void setThrottlePercent(float throttlePercent, uint8_t motor=0) override</div><div class="ttdoc">Define the actual throttle value.</div><div class="ttdef"><b>Definition:</b> SpeedFromThrottle.h:111</div></div>
-<div class="ttc" id="aclasstinyrobotics_1_1SpeedFromThrottle_html_aab4000a37e0626ad6a8ab5d0c6a35424"><div class="ttname"><a href="classtinyrobotics_1_1SpeedFromThrottle.html#aab4000a37e0626ad6a8ab5d0c6a35424">tinyrobotics::SpeedFromThrottle::clearCalibration</a></div><div class="ttdeci">void clearCalibration()</div><div class="ttdoc">Clear all calibration data.</div><div class="ttdef"><b>Definition:</b> SpeedFromThrottle.h:108</div></div>
-<div class="ttc" id="aclasstinyrobotics_1_1SpeedFromThrottle_html_ab78c06b51db5e63c8f7a84c54baf3842"><div class="ttname"><a href="classtinyrobotics_1_1SpeedFromThrottle.html#ab78c06b51db5e63c8f7a84c54baf3842">tinyrobotics::SpeedFromThrottle::onMessage</a></div><div class="ttdeci">bool onMessage(const Message&lt; float &gt; &amp;msg) override</div><div class="ttdoc">Handle Throttle messages to update speed.</div><div class="ttdef"><b>Definition:</b> SpeedFromThrottle.h:85</div></div>
-<div class="ttc" id="aclasstinyrobotics_1_1SpeedFromThrottle_html_adb0aa0603882263daa15121be8a6b2f5"><div class="ttname"><a href="classtinyrobotics_1_1SpeedFromThrottle.html#adb0aa0603882263daa15121be8a6b2f5">tinyrobotics::SpeedFromThrottle::getSpeedMPS</a></div><div class="ttdeci">float getSpeedMPS(float throttlePercent) const</div><div class="ttdoc">Get speed in meters per second by interpolating calibration data.</div><div class="ttdef"><b>Definition:</b> SpeedFromThrottle.h:145</div></div>
+<div class="ttc" id="aclasstinyrobotics_1_1SpeedFromThrottle_html_a6ed21154d02ecabbb30349c57489e86d"><div class="ttname"><a href="classtinyrobotics_1_1SpeedFromThrottle.html#a6ed21154d02ecabbb30349c57489e86d">tinyrobotics::SpeedFromThrottle::getSpeed</a></div><div class="ttdeci">Speed getSpeed(uint8_t motor=0) const override</div><div class="ttdoc">Get the actual speed based on the last throttle value.</div><div class="ttdef"><b>Definition:</b> SpeedFromThrottle.h:110</div></div>
+<div class="ttc" id="aclasstinyrobotics_1_1SpeedFromThrottle_html_a80ef031e116658585424a3f8ae51eb12"><div class="ttname"><a href="classtinyrobotics_1_1SpeedFromThrottle.html#a80ef031e116658585424a3f8ae51eb12">tinyrobotics::SpeedFromThrottle::updateSpeed</a></div><div class="ttdeci">Speed updateSpeed(uint32_t deltaTimeMs, uint8_t motor=0) override</div><div class="ttdoc">For sources with inertia, call this in your main loop with the elapsed time (in milliseconds) to upda...</div><div class="ttdef"><b>Definition:</b> SpeedFromThrottle.h:115</div></div>
+<div class="ttc" id="aclasstinyrobotics_1_1SpeedFromThrottle_html_aa9722aafd9aa6ec4ec9e2237164f6ac9"><div class="ttname"><a href="classtinyrobotics_1_1SpeedFromThrottle.html#aa9722aafd9aa6ec4ec9e2237164f6ac9">tinyrobotics::SpeedFromThrottle::addSpeedCalibration</a></div><div class="ttdeci">void addSpeedCalibration(float throttlePercent, float speedMps)</div><div class="ttdoc">Add or update a calibration point (throttlePercent, speedMps)</div><div class="ttdef"><b>Definition:</b> SpeedFromThrottle.h:86</div></div>
+<div class="ttc" id="aclasstinyrobotics_1_1SpeedFromThrottle_html_aaa3bc8b8aeb24aa1aa20e207f6a0df29"><div class="ttname"><a href="classtinyrobotics_1_1SpeedFromThrottle.html#aaa3bc8b8aeb24aa1aa20e207f6a0df29">tinyrobotics::SpeedFromThrottle::setThrottlePercent</a></div><div class="ttdeci">void setThrottlePercent(float throttlePercent, uint8_t motor=0) override</div><div class="ttdoc">Define the actual throttle value.</div><div class="ttdef"><b>Definition:</b> SpeedFromThrottle.h:103</div></div>
+<div class="ttc" id="aclasstinyrobotics_1_1SpeedFromThrottle_html_aab4000a37e0626ad6a8ab5d0c6a35424"><div class="ttname"><a href="classtinyrobotics_1_1SpeedFromThrottle.html#aab4000a37e0626ad6a8ab5d0c6a35424">tinyrobotics::SpeedFromThrottle::clearCalibration</a></div><div class="ttdeci">void clearCalibration()</div><div class="ttdoc">Clear all calibration data.</div><div class="ttdef"><b>Definition:</b> SpeedFromThrottle.h:100</div></div>
+<div class="ttc" id="aclasstinyrobotics_1_1SpeedFromThrottle_html_ab78c06b51db5e63c8f7a84c54baf3842"><div class="ttname"><a href="classtinyrobotics_1_1SpeedFromThrottle.html#ab78c06b51db5e63c8f7a84c54baf3842">tinyrobotics::SpeedFromThrottle::onMessage</a></div><div class="ttdeci">bool onMessage(const Message&lt; float &gt; &amp;msg) override</div><div class="ttdoc">Handle Throttle messages to update speed.</div><div class="ttdef"><b>Definition:</b> SpeedFromThrottle.h:77</div></div>
+<div class="ttc" id="aclasstinyrobotics_1_1SpeedFromThrottle_html_adb0aa0603882263daa15121be8a6b2f5"><div class="ttname"><a href="classtinyrobotics_1_1SpeedFromThrottle.html#adb0aa0603882263daa15121be8a6b2f5">tinyrobotics::SpeedFromThrottle::getSpeedMPS</a></div><div class="ttdeci">float getSpeedMPS(float throttlePercent) const</div><div class="ttdoc">Get speed in meters per second by interpolating calibration data.</div><div class="ttdef"><b>Definition:</b> SpeedFromThrottle.h:146</div></div>
 <div class="ttc" id="aclasstinyrobotics_1_1Speed_html"><div class="ttname"><a href="classtinyrobotics_1_1Speed.html">tinyrobotics::Speed</a></div><div class="ttdoc">Represents a speed measurement with unit conversion support.</div><div class="ttdef"><b>Definition:</b> Speed.h:40</div></div>
 <div class="ttc" id="agroup__units_html_ga877e4fdbe9d3581dfa3431b6436b1615"><div class="ttname"><a href="group__units.html#ga877e4fdbe9d3581dfa3431b6436b1615">tinyrobotics::SpeedUnit</a></div><div class="ttdeci">SpeedUnit</div><div class="ttdoc">Supported speed units for conversion and representation.</div><div class="ttdef"><b>Definition:</b> Speed.h:10</div></div>
 <div class="ttc" id="astructtinyrobotics_1_1Message_html"><div class="ttname"><a href="structtinyrobotics_1_1Message.html">tinyrobotics::Message</a></div><div class="ttdoc">Generic message structure for communication, parameterized by value type.</div><div class="ttdef"><b>Definition:</b> Message.h:67</div></div>

@@ -1,5 +1,5 @@
 <map id="OdometryModel2D" name="OdometryModel2D">
-<area shape="rect" id="node1" title=" " alt="" coords="7,152,153,177"/>
+<area shape="rect" id="node1" title="Odometry model for Ackermann, differential drive, and boat kinematics." alt="" coords="7,152,153,177"/>
 <area shape="rect" id="node2" href="$classtinyrobotics_1_1IOdometryModel2D.html" title="Abstract interface for 2D odometry models." alt="" coords="5,79,155,104"/>
 <area shape="rect" id="node3" href="$classtinyrobotics_1_1MessageHandler.html" title="Interface for handling messages in the TinyRobotics framework." alt="" coords="15,5,145,31"/>
 </map>

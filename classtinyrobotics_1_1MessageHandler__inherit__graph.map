@@ -11,7 +11,7 @@
 <area shape="rect" id="node14" href="$classtinyrobotics_1_1SpeedFromThrottle.html" title="Estimates vehicle speed from throttle percentage using calibration data." alt="" coords="207,415,354,441"/>
 <area shape="rect" id="node16" href="$classtinyrobotics_1_1Vehicle.html" title="Abstract base class for all vehicle types." alt="" coords="246,517,315,542"/>
 <area shape="rect" id="node4" href="$classtinyrobotics_1_1OdometryDifferentialDriveModel.html" title="Odometry model for differential drive robots." alt="" coords="437,5,632,45"/>
-<area shape="rect" id="node5" href="$classtinyrobotics_1_1OdometryModel2D.html" title=" " alt="" coords="462,70,607,95"/>
+<area shape="rect" id="node5" href="$classtinyrobotics_1_1OdometryModel2D.html" title="Odometry model for Ackermann, differential drive, and boat kinematics." alt="" coords="462,70,607,95"/>
 <area shape="rect" id="node7" href="$classtinyrobotics_1_1AirplaneOdometryModel3D.html" title="IOdometryModel3D implementation for fixed&#45;wing airplanes using control surface and throttle inputs." alt="" coords="435,119,634,145"/>
 <area shape="rect" id="node8" href="$classtinyrobotics_1_1DroneOdometryModel3D.html" title="IOdometryModel3D implementation for quadcopters/drones using motor percentages." alt="" coords="443,169,627,194"/>
 <area shape="rect" id="node15" href="$classtinyrobotics_1_1SpeedFromThrottleWithInertia.html" title="Estimates speed from throttle with acceleration/inertia modeling (for boats, etc)." alt="" coords="425,363,644,389"/>
