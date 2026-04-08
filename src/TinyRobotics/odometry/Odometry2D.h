@@ -7,7 +7,7 @@
 #include "TinyRobotics/communication/MessageSource.h"
 #include "TinyRobotics/control/MotionState2D.h"
 #include "TinyRobotics/coordinates/Coordinate.h"
-#include "TinyRobotics/odometry/OdometryHeadingModel2D.h"
+#include "TinyRobotics/odometry/OdometryModel2D.h"
 #include "TinyRobotics/units/Units.h"
 
 namespace tinyrobotics {
@@ -24,7 +24,7 @@ namespace tinyrobotics {
  *
  * ## Supported Kinematics
  * - Differential drive (default model, via steering angle is provided, via
- * IOdometryHeadingModel2D)
+ * IOdometryModel2D)
  *
  * ## Inputs
  * - Speed (from an ISpeedSource, e.g., WheelEncoder)
@@ -48,7 +48,7 @@ namespace tinyrobotics {
  *
  * ## Construction
  * - Construct with references to an IMessageSource (vehicle), an ISpeedSource
- * (e.g., WheelEncoder), and an IOdometryHeadingModel2D (kinematics model).
+ * (e.g., WheelEncoder), and an IOdometryModel2D (kinematics model).
  * - The vehicle is subscribed to receive messages for speed/throttle/steering
  * updates.
  *
@@ -76,7 +76,7 @@ namespace tinyrobotics {
 class Odometry2D : public IMotionState2D, public MessageHandler {
  public:
   Odometry2D(MessageSource& vehicle, ISpeedSource& speedSource,
-             IOdometryHeadingModel2D& model)
+             IOdometryModel2D& model)
       : vehicle(vehicle), speedSource(speedSource), model(model) {
     vehicle.subscribe(*this);
   }
@@ -231,7 +231,7 @@ class Odometry2D : public IMotionState2D, public MessageHandler {
   std::vector<Speed> speed;
   Speed speedAvg;
   Distance wheelBase;
-  IOdometryHeadingModel2D& model;
+  IOdometryModel2D& model;
   ISpeedSource& speedSource;
   MessageSource& vehicle;
   bool is_differential = false;

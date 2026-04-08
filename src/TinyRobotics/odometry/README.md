@@ -6,11 +6,11 @@ This module provides a flexible, extensible framework for estimating the positio
 ## Key Concepts
 
 - **Odometry2D**: Tracks 2D position and orientation using modular heading models and speed sources. Supports Ackermann, differential drive, and custom kinematics.
-- **OdometryHeadingModel2D / OdometryDifferentialDriveModel**: Pluggable models implementing the `IOdometryHeadingModel2D` interface for heading (theta) integration.
+- **OdometryModel2D / OdometryDifferentialDriveModel**: Pluggable models implementing the `IOdometryModel2D` interface for heading (theta) integration.
 - **WheelEncoder**: Multi-wheel, vectorized encoder for per-wheel distance and speed measurement, modular and ISpeedSource-compliant.
 - **SpeedFromThrottle**: Estimates speed from throttle percentage using calibration data.
 - **Message-driven**: Odometry can subscribe to vehicle/motor messages for speed and steering updates.
-- **Extensible**: Add your own heading models by implementing `IOdometryHeadingModel2D`.
+- **Extensible**: Add your own heading models by implementing `IOdometryModel2D`.
 
 ---
 
@@ -20,13 +20,13 @@ Tracks the 2D position (x, y) and orientation (theta) of a robot using velocity 
 
 **Features:**
 - Integrates speed and steering angle to estimate robot pose
-- Modular: accepts any `IOdometryHeadingModel2D` implementation
+- Modular: accepts any `IOdometryModel2D` implementation
 - Message-driven: can subscribe to vehicle/motor messages for updates
 - Provides access to position, orientation, velocity, distance traveled, and last update delta
 - Allows resetting and setting the odometry state
 
 **Key Methods:**
-- `Odometry2D(MessageSource& vehicle, ISpeedSource& speedSource, IOdometryHeadingModel2D& model)`: Constructor
+- `Odometry2D(MessageSource& vehicle, ISpeedSource& speedSource, IOdometryModel2D& model)`: Constructor
 - `begin(initialPosition, initialTheta, wheelBase)`: Initialize odometry state
 - `update()`: Integrates pose using the latest speed/steering (set via setters or messages)
 - `getPosition()`, `getTheta()`, `getLinearVelocity()`, `getAngularVelocity()`, `getTotalDistance()`, `getLastDelta()`
@@ -37,7 +37,7 @@ Tracks the 2D position (x, y) and orientation (theta) of a robot using velocity 
 #include <TinyRobotics.h>
 CarAckerman car;
 Distance wheelBase(0.3f, DistanceUnit::M);
-OdometryHeadingModel2D odomModel(wheelBase);
+OdometryModel2D odomModel(wheelBase);
 SpeedFromThrottle speedEstimator(Speed(5, SpeedUnit::KPH));
 Odometry2D odometry(car, speedEstimator, odomModel);
 
@@ -65,7 +65,7 @@ void loop() {
 
 ## Modular Heading Models
 
-### IOdometryHeadingModel2D (Interface)
+### IOdometryModel2D (Interface)
 Defines the interface for heading (theta) integration models. Implement this to add custom kinematics and is automatically updated by Odometry2D.
 
 **Key Methods:**
@@ -74,7 +74,7 @@ Defines the interface for heading (theta) integration models. Implement this to 
 - `setSpeed(Speed left, Speed right)`
 - `setSteeringAngle(Angle angle)`
 
-### OdometryHeadingModel2D (Ackermann/Boat/Default)
+### OdometryModel2D (Ackermann/Boat/Default)
 Implements Ackermann and default (steering as angular velocity) kinematics. Use for car-like robots or boats.
 
 ### OdometryDifferentialDriveModel
@@ -156,7 +156,7 @@ Estimates vehicle speed from throttle percentage using calibration data. Useful 
 ## Advanced Topics
 
 - **Message Integration:** Odometry2D can subscribe to messages from vehicles/motors for automatic speed/steering updates.
-- **Custom Models:** Implement `IOdometryHeadingModel2D` for holonomic, omnidirectional, or other robot types.
+- **Custom Models:** Implement `IOdometryModel2D` for holonomic, omnidirectional, or other robot types.
 - **3D Odometry:** See `Odometry3D` for drones, underwater, or aerial robots (not covered in detail here).
 
 ---

@@ -6,9 +6,9 @@ namespace tinyrobotics {
 /**
  * @brief Abstract interface for 2D odometry models.
  */
-class IOdometryHeadingModel2D {
+class IOdometryModel2D {
  public:
-  virtual ~IOdometryHeadingModel2D() = default;
+  virtual ~IOdometryModel2D() = default;
   virtual void setSpeed(Speed speed)  = 0;
   virtual void setSpeed(Speed speedLeft, Speed speedRight)  = 0;
   virtual void setSteeringAngle(Angle angle) = 0;

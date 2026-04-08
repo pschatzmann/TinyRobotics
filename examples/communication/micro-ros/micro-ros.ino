@@ -39,7 +39,7 @@ Scheduler scheduler;
 // Odometry and speed estimation
 SpeedFromThrottle speedEstimator(2.0f);  // max speed 2 m/s (adjust as needed)
 const float wheelbase = 0.25;  // meters
-OdometryHeadingModel2D odomModel(Distance(wheelbase, DistanceUnit::M));
+OdometryModel2D odomModel(Distance(wheelbase, DistanceUnit::M));
 Odometry2D odom(car, speedEstimator, odomModel);
 
 void sendOdometryToROS(void* ref) {

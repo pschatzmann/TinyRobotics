@@ -2,7 +2,7 @@
 #include <cmath>
 
 #include "TinyRobotics/units/Units.h"
-#include "TinyRobotics/odometry/IOdometryHeadingModel2D.h"
+#include "TinyRobotics/odometry/IOdometryModel2D.h"
 #include "TinyRobotics/odometry/ISpeedSource.h"
 
 namespace tinyrobotics {
@@ -27,10 +27,10 @@ namespace tinyrobotics {
  * @author TinyRobotics contributors
  * @date 2026-04-07
  */
-class OdometryHeadingModel2D : public IOdometryHeadingModel2D {
+class OdometryModel2D : public IOdometryModel2D {
  public:
 
-  OdometryHeadingModel2D(Distance wheelBase) : wheelBase(wheelBase) {}
+  OdometryModel2D(Distance wheelBase) : wheelBase(wheelBase) {}
 
   void setSteeringAngle(Angle angle) { this->steeringAngle = angle; }
   virtual void setSpeed(Speed speedLeft, Speed speedRight)  {}

@@ -1,7 +1,7 @@
 #pragma once
 #include <cmath>
 
-#include "TinyRobotics/odometry/IOdometryHeadingModel2D.h"
+#include "TinyRobotics/odometry/IOdometryModel2D.h"
 #include "TinyRobotics/units/Units.h"
 #include "stdint.h"
 
@@ -14,7 +14,7 @@ namespace tinyrobotics {
  *
  * Computes heading change (deltaTheta) using left and right wheel speeds.
  */
-class OdometryDifferentialDriveModel : public IOdometryHeadingModel2D {
+class OdometryDifferentialDriveModel : public IOdometryModel2D {
  public:
   OdometryDifferentialDriveModel(Distance wheelBase) : wheelBase(wheelBase) {}
 

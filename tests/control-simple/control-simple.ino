@@ -35,7 +35,7 @@ Coordinate<float> target(10, 0);
 
 CarAckerman car;
 Speed maxSpeedKmh(5, SpeedUnit::KPH);  // max speed in km/h
-OdometryHeadingModel2D headingModel(Distance(0.3f, DistanceUnit::M));  // wheelbase of 0.3m
+OdometryModel2D headingModel(Distance(0.3f, DistanceUnit::M));  // wheelbase of 0.3m
 SpeedFromThrottle speedEstimator(maxSpeedKmh);  // max speed estimator
 Odometry2D odometry(car, speedEstimator, headingModel);
 Distance accelDistanceM(0.5, DistanceUnit::M);
