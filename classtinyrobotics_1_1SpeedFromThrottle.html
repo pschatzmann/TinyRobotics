@@ -91,9 +91,11 @@ Inheritance diagram for SpeedFromThrottle:</div>
 <div class="dyncontent">
 <div class="center"><img src="classtinyrobotics_1_1SpeedFromThrottle__inherit__graph.png" border="0" usemap="#aSpeedFromThrottle_inherit__map" alt="Inheritance graph"/></div>
 <map name="aSpeedFromThrottle_inherit__map" id="aSpeedFromThrottle_inherit__map">
-<area shape="rect" title="Estimates vehicle speed from throttle percentage using calibration data." alt="" coords="70,79,217,104"/>
+<area shape="rect" title="Estimates vehicle speed from throttle percentage using calibration data." alt="" coords="146,79,293,104"/>
+<area shape="rect" href="classtinyrobotics_1_1SpeedFromThrottleWithInertia.html" title="Estimates speed from throttle with acceleration/inertia modeling (for boats, etc)." alt="" coords="110,152,329,177"/>
 <area shape="rect" href="classtinyrobotics_1_1MessageSource.html" title="Base class for message sources in the TinyRobotics communication framework." alt="" coords="5,5,129,31"/>
 <area shape="rect" href="classtinyrobotics_1_1MessageHandler.html" title="Interface for handling messages in the TinyRobotics framework." alt="" coords="154,5,285,31"/>
+<area shape="rect" href="classtinyrobotics_1_1ISpeedSource.html" title="Interface for speed sources." alt="" coords="309,5,420,31"/>
 </map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <div class="dynheader">
@@ -101,30 +103,27 @@ Collaboration diagram for SpeedFromThrottle:</div>
 <div class="dyncontent">
 <div class="center"><img src="classtinyrobotics_1_1SpeedFromThrottle__coll__graph.png" border="0" usemap="#aSpeedFromThrottle_coll__map" alt="Collaboration graph"/></div>
 <map name="aSpeedFromThrottle_coll__map" id="aSpeedFromThrottle_coll__map">
-<area shape="rect" title="Estimates vehicle speed from throttle percentage using calibration data." alt="" coords="70,79,217,104"/>
+<area shape="rect" title="Estimates vehicle speed from throttle percentage using calibration data." alt="" coords="146,79,293,104"/>
 <area shape="rect" href="classtinyrobotics_1_1MessageSource.html" title="Base class for message sources in the TinyRobotics communication framework." alt="" coords="5,5,129,31"/>
 <area shape="rect" href="classtinyrobotics_1_1MessageHandler.html" title="Interface for handling messages in the TinyRobotics framework." alt="" coords="154,5,285,31"/>
+<area shape="rect" href="classtinyrobotics_1_1ISpeedSource.html" title="Interface for speed sources." alt="" coords="309,5,420,31"/>
 </map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ab1570c4fbc44267b84131ac4826c46e7"><td class="memItemLeft" align="right" valign="top"><a id="ab1570c4fbc44267b84131ac4826c46e7" name="ab1570c4fbc44267b84131ac4826c46e7"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>SpeedFromThrottle</b> (float maxSpeedMps)</td></tr>
-<tr class="separator:ab1570c4fbc44267b84131ac4826c46e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa19c8e2586f325758e6dcdb41c52f04b"><td class="memItemLeft" align="right" valign="top"><a id="aa19c8e2586f325758e6dcdb41c52f04b" name="aa19c8e2586f325758e6dcdb41c52f04b"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>SpeedFromThrottle</b> (<a class="el" href="classtinyrobotics_1_1Speed.html">Speed</a> maxSpeed)</td></tr>
-<tr class="separator:aa19c8e2586f325758e6dcdb41c52f04b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afe657c68ccee842c43680dcff65bcbfb"><td class="memItemLeft" align="right" valign="top"><a id="afe657c68ccee842c43680dcff65bcbfb" name="afe657c68ccee842c43680dcff65bcbfb"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>begin</b> (float maxSpeedMps)</td></tr>
-<tr class="separator:afe657c68ccee842c43680dcff65bcbfb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a86d80d9fcf27fdb04476a02fee43d76e"><td class="memItemLeft" align="right" valign="top"><a id="a86d80d9fcf27fdb04476a02fee43d76e" name="a86d80d9fcf27fdb04476a02fee43d76e"></a>
-<a class="el" href="classtinyrobotics_1_1Speed.html">Speed</a>&#160;</td><td class="memItemRight" valign="bottom"><b>getSpeed</b> (float throttlePercent) const</td></tr>
-<tr class="separator:a86d80d9fcf27fdb04476a02fee43d76e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adb0aa0603882263daa15121be8a6b2f5"><td class="memItemLeft" align="right" valign="top"><a id="adb0aa0603882263daa15121be8a6b2f5" name="adb0aa0603882263daa15121be8a6b2f5"></a>
-float&#160;</td><td class="memItemRight" valign="bottom"><b>getSpeedMPS</b> (float throttlePercent) const</td></tr>
-<tr class="memdesc:adb0aa0603882263daa15121be8a6b2f5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get speed in meters per second by interpolating calibration data. <br /></td></tr>
-<tr class="separator:adb0aa0603882263daa15121be8a6b2f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af56d115178725dd7a32d8fd0da624eed"><td class="memItemLeft" align="right" valign="top"><a id="af56d115178725dd7a32d8fd0da624eed" name="af56d115178725dd7a32d8fd0da624eed"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>SpeedFromThrottle</b> (float maxSpeedMps, uint8_t numMotors=1)</td></tr>
+<tr class="separator:af56d115178725dd7a32d8fd0da624eed"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2e0bfc3944b2d60f3a1f666c136cda32"><td class="memItemLeft" align="right" valign="top"><a id="a2e0bfc3944b2d60f3a1f666c136cda32" name="a2e0bfc3944b2d60f3a1f666c136cda32"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>SpeedFromThrottle</b> (<a class="el" href="classtinyrobotics_1_1Speed.html">Speed</a> maxSpeed, uint8_t numMotors=1)</td></tr>
+<tr class="separator:a2e0bfc3944b2d60f3a1f666c136cda32"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af82ac3b16e2acf9d60fca78f72c78342"><td class="memItemLeft" align="right" valign="top"><a id="af82ac3b16e2acf9d60fca78f72c78342" name="af82ac3b16e2acf9d60fca78f72c78342"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>setMaxSpeed</b> (<a class="el" href="classtinyrobotics_1_1Speed.html">Speed</a> speed)</td></tr>
+<tr class="separator:af82ac3b16e2acf9d60fca78f72c78342"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a601fb7cf1fc15db50c71a826f084f934"><td class="memItemLeft" align="right" valign="top"><a id="a601fb7cf1fc15db50c71a826f084f934" name="a601fb7cf1fc15db50c71a826f084f934"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>begin</b> ()</td></tr>
+<tr class="separator:a601fb7cf1fc15db50c71a826f084f934"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab78c06b51db5e63c8f7a84c54baf3842"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1SpeedFromThrottle.html#ab78c06b51db5e63c8f7a84c54baf3842">onMessage</a> (const <a class="el" href="structtinyrobotics_1_1Message.html">Message</a>&lt; float &gt; &amp;msg) override</td></tr>
 <tr class="memdesc:ab78c06b51db5e63c8f7a84c54baf3842"><td class="mdescLeft">&#160;</td><td class="mdescRight">Handle Throttle messages to update speed.  <br /></td></tr>
 <tr class="separator:ab78c06b51db5e63c8f7a84c54baf3842"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -136,6 +135,15 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>addSpeedCalibration</
 void&#160;</td><td class="memItemRight" valign="bottom"><b>clearCalibration</b> ()</td></tr>
 <tr class="memdesc:aab4000a37e0626ad6a8ab5d0c6a35424"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clear all calibration data. <br /></td></tr>
 <tr class="separator:aab4000a37e0626ad6a8ab5d0c6a35424"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaa3bc8b8aeb24aa1aa20e207f6a0df29"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1SpeedFromThrottle.html#aaa3bc8b8aeb24aa1aa20e207f6a0df29">setThrottlePercent</a> (float throttlePercent, uint8_t motor=0) override</td></tr>
+<tr class="memdesc:aaa3bc8b8aeb24aa1aa20e207f6a0df29"><td class="mdescLeft">&#160;</td><td class="mdescRight">Define the actual throttle value.  <br /></td></tr>
+<tr class="separator:aaa3bc8b8aeb24aa1aa20e207f6a0df29"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6ed21154d02ecabbb30349c57489e86d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classtinyrobotics_1_1Speed.html">Speed</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1SpeedFromThrottle.html#a6ed21154d02ecabbb30349c57489e86d">getSpeed</a> (uint8_t motor=0) const override</td></tr>
+<tr class="memdesc:a6ed21154d02ecabbb30349c57489e86d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the actual speed based on the last throttle value.  <br /></td></tr>
+<tr class="separator:a6ed21154d02ecabbb30349c57489e86d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a80ef031e116658585424a3f8ae51eb12"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classtinyrobotics_1_1Speed.html">Speed</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1SpeedFromThrottle.html#a80ef031e116658585424a3f8ae51eb12">updateSpeed</a> (uint32_t deltaTimeMs, uint8_t motor=0) override</td></tr>
+<tr class="memdesc:a80ef031e116658585424a3f8ae51eb12"><td class="mdescLeft">&#160;</td><td class="mdescRight">For sources with inertia, call this in your main loop with the elapsed time (in milliseconds) to update the speed estimate for a specific motor.  <br /></td></tr>
+<tr class="separator:a80ef031e116658585424a3f8ae51eb12"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classtinyrobotics_1_1MessageSource"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classtinyrobotics_1_1MessageSource')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classtinyrobotics_1_1MessageSource.html">MessageSource</a></td></tr>
 <tr class="memitem:ac3cabbec9037e5565dff2a698aa8dc8c inherit pub_methods_classtinyrobotics_1_1MessageSource"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1MessageSource.html#ac3cabbec9037e5565dff2a698aa8dc8c">subscribe</a> (<a class="el" href="classtinyrobotics_1_1MessageHandler.html">MessageHandler</a> &amp;handler, MessageOrigin origin=MessageOrigin::Undefined, MessageContent content=MessageContent::Undefined)</td></tr>
 <tr class="memdesc:ac3cabbec9037e5565dff2a698aa8dc8c inherit pub_methods_classtinyrobotics_1_1MessageSource"><td class="mdescLeft">&#160;</td><td class="mdescRight">Subscribe a message handler to this source, with optional filtering.  <br /></td></tr>
@@ -161,18 +169,40 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>unsubscribeAll</b> ()
 <tr class="separator:a4af96c354ff0dd13a830c90ee4e21eef inherit pub_methods_classtinyrobotics_1_1MessageHandler"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3bcbb37bf9779c6df8b71a20f2aa5edd inherit pub_methods_classtinyrobotics_1_1MessageHandler"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1MessageHandler.html#a3bcbb37bf9779c6df8b71a20f2aa5edd">onMessage</a> (const <a class="el" href="structtinyrobotics_1_1Message.html">Message</a>&lt; <a class="el" href="classtinyrobotics_1_1GPSCoordinate.html">GPSCoordinate</a> &gt; &amp;msg)</td></tr>
 <tr class="separator:a3bcbb37bf9779c6df8b71a20f2aa5edd inherit pub_methods_classtinyrobotics_1_1MessageHandler"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2c8a4186c531f5cfc3614076f5433588"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classtinyrobotics_1_1Speed.html">Speed</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1ISpeedSource.html#a2c8a4186c531f5cfc3614076f5433588">getSpeed</a> (uint8_t motor=0) const =0</td></tr>
+<tr class="memdesc:a2c8a4186c531f5cfc3614076f5433588"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the current speed.  <br /></td></tr>
+<tr class="separator:a2c8a4186c531f5cfc3614076f5433588"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3731f9e472e55d6cae74554af358ad13"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1ISpeedSource.html#a3731f9e472e55d6cae74554af358ad13">setThrottlePercent</a> (float value, uint8_t motor=0)=0</td></tr>
+<tr class="memdesc:a3731f9e472e55d6cae74554af358ad13"><td class="mdescLeft">&#160;</td><td class="mdescRight">Publish actual speed for a specific motor.  <br /></td></tr>
+<tr class="separator:a3731f9e472e55d6cae74554af358ad13"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5f0b385a8d63b7df60a0895c8519fbc0"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classtinyrobotics_1_1Speed.html">Speed</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1ISpeedSource.html#a5f0b385a8d63b7df60a0895c8519fbc0">updateSpeed</a> (uint32_t deltaTimeMs, uint8_t motor=0)=0</td></tr>
+<tr class="memdesc:a5f0b385a8d63b7df60a0895c8519fbc0"><td class="mdescLeft">&#160;</td><td class="mdescRight">For sources with inertia, call this in your main loop with the elapsed time (in milliseconds) to update the speed estimate for a specific motor.  <br /></td></tr>
+<tr class="separator:a5f0b385a8d63b7df60a0895c8519fbc0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-methods" name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
-<tr class="memitem:ae904c825056ef281fa5943c91d82286c"><td class="memItemLeft" align="right" valign="top"><a id="ae904c825056ef281fa5943c91d82286c" name="ae904c825056ef281fa5943c91d82286c"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setThrottle</b> (float throttlePercent)</td></tr>
-<tr class="separator:ae904c825056ef281fa5943c91d82286c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae9e1fdd5c385c3249e0d21dec0b01e98"><td class="memItemLeft" align="right" valign="top"><a id="ae9e1fdd5c385c3249e0d21dec0b01e98" name="ae9e1fdd5c385c3249e0d21dec0b01e98"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>sendSpeedMessage</b> (uint8_t motor=0)</td></tr>
+<tr class="separator:ae9e1fdd5c385c3249e0d21dec0b01e98"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adb0aa0603882263daa15121be8a6b2f5"><td class="memItemLeft" align="right" valign="top"><a id="adb0aa0603882263daa15121be8a6b2f5" name="adb0aa0603882263daa15121be8a6b2f5"></a>
+float&#160;</td><td class="memItemRight" valign="bottom"><b>getSpeedMPS</b> (float throttlePercent) const</td></tr>
+<tr class="memdesc:adb0aa0603882263daa15121be8a6b2f5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get speed in meters per second by interpolating calibration data. <br /></td></tr>
+<tr class="separator:adb0aa0603882263daa15121be8a6b2f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
 <tr class="memitem:a8f139af0ca1c3e70ba0ecb9f6387fb56"><td class="memItemLeft" align="right" valign="top"><a id="a8f139af0ca1c3e70ba0ecb9f6387fb56" name="a8f139af0ca1c3e70ba0ecb9f6387fb56"></a>
 std::vector&lt; std::pair&lt; float, float &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>calibrationData</b></td></tr>
 <tr class="separator:a8f139af0ca1c3e70ba0ecb9f6387fb56"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abaa72381f258bebb47877ad3ce88f117"><td class="memItemLeft" align="right" valign="top"><a id="abaa72381f258bebb47877ad3ce88f117" name="abaa72381f258bebb47877ad3ce88f117"></a>
+std::vector&lt; float &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>speedMps</b></td></tr>
+<tr class="separator:abaa72381f258bebb47877ad3ce88f117"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac074fbecc86b400e568f4c546d9b4d2d"><td class="memItemLeft" align="right" valign="top"><a id="ac074fbecc86b400e568f4c546d9b4d2d" name="ac074fbecc86b400e568f4c546d9b4d2d"></a>
+uint8_t&#160;</td><td class="memItemRight" valign="bottom"><b>numMotors</b> = 1</td></tr>
+<tr class="separator:ac074fbecc86b400e568f4c546d9b4d2d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab3eceea0bef68afe8a1c95bce59dbf1c"><td class="memItemLeft" align="right" valign="top"><a id="ab3eceea0bef68afe8a1c95bce59dbf1c" name="ab3eceea0bef68afe8a1c95bce59dbf1c"></a>
+float&#160;</td><td class="memItemRight" valign="bottom"><b>maxSpeedMps</b> = 0.0f</td></tr>
+<tr class="separator:ab3eceea0bef68afe8a1c95bce59dbf1c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_attribs_classtinyrobotics_1_1MessageSource"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_classtinyrobotics_1_1MessageSource')"><img src="closed.png" alt="-"/>&#160;Protected Attributes inherited from <a class="el" href="classtinyrobotics_1_1MessageSource.html">MessageSource</a></td></tr>
 <tr class="memitem:a61506a2328621ddeb80f3c83146db0d8 inherit pro_attribs_classtinyrobotics_1_1MessageSource"><td class="memItemLeft" align="right" valign="top"><a id="a61506a2328621ddeb80f3c83146db0d8" name="a61506a2328621ddeb80f3c83146db0d8"></a>
 std::vector&lt; <a class="el" href="structtinyrobotics_1_1MessageSource_1_1MessageHandlerEntry.html">MessageHandlerEntry</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>messageHandlers_</b></td></tr>
@@ -189,19 +219,52 @@ std::vector&lt; <a class="el" href="structtinyrobotics_1_1MessageSource_1_1Messa
 <li>When used as a <a class="el" href="classtinyrobotics_1_1MessageHandler.html" title="Interface for handling messages in the TinyRobotics framework.">MessageHandler</a>, it listens for Throttle messages and emits <a class="el" href="classtinyrobotics_1_1Speed.html" title="Represents a speed measurement with unit conversion support.">Speed</a> messages via <a class="el" href="classtinyrobotics_1_1MessageSource.html" title="Base class for message sources in the TinyRobotics communication framework.">MessageSource</a>.</li>
 <li>Calibration data can be cleared and redefined at runtime.</li>
 </ul>
-<p><b>Typical usage:</b> </p><div class="fragment"><div class="line"><a class="code hl_class" href="classtinyrobotics_1_1SpeedFromThrottle.html">SpeedFromThrottle</a> speedMap(2.0f); <span class="comment">// 2 m/s at 100% throttle</span></div>
-<div class="line">speedMap.addSpeedCalibration(50.0f, 1.0f); <span class="comment">// 1 m/s at 50%</span></div>
-<div class="line"><span class="keywordtype">float</span> speed = speedMap.getSpeedMPS(75.0f); <span class="comment">// Interpolated speed</span></div>
-<div class="line"><span class="comment">// As a message handler/source:</span></div>
-<div class="line">bus.subscribe(speedMap); <span class="comment">// Receives Throttle messages, emits Speed messages</span></div>
-<div class="ttc" id="aclasstinyrobotics_1_1SpeedFromThrottle_html"><div class="ttname"><a href="classtinyrobotics_1_1SpeedFromThrottle.html">tinyrobotics::SpeedFromThrottle</a></div><div class="ttdoc">Estimates vehicle speed from throttle percentage using calibration data.</div><div class="ttdef"><b>Definition:</b> SpeedFromThrottle.h:45</div></div>
+<p><b>Typical usage:</b> </p><div class="fragment"><div class="line">  <a class="code hl_class" href="classtinyrobotics_1_1SpeedFromThrottle.html">SpeedFromThrottle</a> speedMap(2.0f); <span class="comment">// 2 m/s at 100% throttle</span></div>
+<div class="line">  speedMap.addSpeedCalibration(50.0f, 1.0f); <span class="comment">// 1 m/s at 50%</span></div>
+<div class="line">  <span class="keywordtype">float</span> speed = speedMap.getSpeedMPS(75.0f); <span class="comment">// Interpolated speed</span></div>
+<div class="line">  <span class="comment">// As a message handler/source:</span></div>
+<div class="line">  bus.subscribe(speedMap); <span class="comment">// Receives Throttle messages, emits Speed</span></div>
+<div class="line">messages</div>
+<div class="ttc" id="aclasstinyrobotics_1_1SpeedFromThrottle_html"><div class="ttname"><a href="classtinyrobotics_1_1SpeedFromThrottle.html">tinyrobotics::SpeedFromThrottle</a></div><div class="ttdoc">Estimates vehicle speed from throttle percentage using calibration data.</div><div class="ttdef"><b>Definition:</b> SpeedFromThrottle.h:59</div></div>
 </div><!-- fragment --><p><b>Integration:</b></p><ul>
 <li>Use as a standalone utility for throttle-to-speed conversion.</li>
 <li>Or, connect to a <a class="el" href="classtinyrobotics_1_1MessageBus.html" title="A message handler that forwards messages to multiple registered handlers.">MessageBus</a> to automatically convert Throttle messages to <a class="el" href="classtinyrobotics_1_1Speed.html" title="Represents a speed measurement with unit conversion support.">Speed</a> messages.</li>
 </ul>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="classtinyrobotics_1_1SpeedFromThrottle.html#aa9722aafd9aa6ec4ec9e2237164f6ac9" title="Add or update a calibration point (throttlePercent, speedMps)">addSpeedCalibration</a>, getSpeed, <a class="el" href="classtinyrobotics_1_1SpeedFromThrottle.html#adb0aa0603882263daa15121be8a6b2f5" title="Get speed in meters per second by interpolating calibration data.">getSpeedMPS</a>, <a class="el" href="classtinyrobotics_1_1SpeedFromThrottle.html#ab78c06b51db5e63c8f7a84c54baf3842" title="Handle Throttle messages to update speed.">onMessage</a>, <a class="el" href="classtinyrobotics_1_1SpeedFromThrottle.html#aab4000a37e0626ad6a8ab5d0c6a35424" title="Clear all calibration data.">clearCalibration</a></dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="classtinyrobotics_1_1SpeedFromThrottle.html#aa9722aafd9aa6ec4ec9e2237164f6ac9" title="Add or update a calibration point (throttlePercent, speedMps)">addSpeedCalibration</a>, <a class="el" href="classtinyrobotics_1_1SpeedFromThrottle.html#a6ed21154d02ecabbb30349c57489e86d" title="Get the actual speed based on the last throttle value.">getSpeed</a>, <a class="el" href="classtinyrobotics_1_1SpeedFromThrottle.html#adb0aa0603882263daa15121be8a6b2f5" title="Get speed in meters per second by interpolating calibration data.">getSpeedMPS</a>, <a class="el" href="classtinyrobotics_1_1SpeedFromThrottle.html#ab78c06b51db5e63c8f7a84c54baf3842" title="Handle Throttle messages to update speed.">onMessage</a>, <a class="el" href="classtinyrobotics_1_1SpeedFromThrottle.html#aab4000a37e0626ad6a8ab5d0c6a35424" title="Clear all calibration data.">clearCalibration</a></dd></dl>
 <dl class="section author"><dt>Author</dt><dd>Phil Schatzmann </dd></dl>
 </div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="a6ed21154d02ecabbb30349c57489e86d" name="a6ed21154d02ecabbb30349c57489e86d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6ed21154d02ecabbb30349c57489e86d">&#9670;&#160;</a></span>getSpeed()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classtinyrobotics_1_1Speed.html">Speed</a> getSpeed </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>motor</em> = <code>0</code></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get the actual speed based on the last throttle value. </p>
+
+<p>Implements <a class="el" href="classtinyrobotics_1_1ISpeedSource.html#a2c8a4186c531f5cfc3614076f5433588">ISpeedSource</a>.</p>
+
+<p>Reimplemented in <a class="el" href="classtinyrobotics_1_1SpeedFromThrottleWithInertia.html#a6ed21154d02ecabbb30349c57489e86d">SpeedFromThrottleWithInertia</a>.</p>
+
+</div>
+</div>
 <a id="ab78c06b51db5e63c8f7a84c54baf3842" name="ab78c06b51db5e63c8f7a84c54baf3842"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ab78c06b51db5e63c8f7a84c54baf3842">&#9670;&#160;</a></span>onMessage()</h2>
 
@@ -229,6 +292,90 @@ std::vector&lt; <a class="el" href="structtinyrobotics_1_1MessageSource_1_1Messa
 <p>Handle Throttle messages to update speed. </p>
 
 <p>Implements <a class="el" href="classtinyrobotics_1_1MessageHandler.html#ad4db64cdd50701eba69a319785dac84b">MessageHandler</a>.</p>
+
+</div>
+</div>
+<a id="aaa3bc8b8aeb24aa1aa20e207f6a0df29" name="aaa3bc8b8aeb24aa1aa20e207f6a0df29"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaa3bc8b8aeb24aa1aa20e207f6a0df29">&#9670;&#160;</a></span>setThrottlePercent()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void setThrottlePercent </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>throttlePercent</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>motor</em> = <code>0</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Define the actual throttle value. </p>
+
+<p>Implements <a class="el" href="classtinyrobotics_1_1ISpeedSource.html#a3731f9e472e55d6cae74554af358ad13">ISpeedSource</a>.</p>
+
+<p>Reimplemented in <a class="el" href="classtinyrobotics_1_1SpeedFromThrottleWithInertia.html#a38cd936693d3cc95e6091cd0a84acf3c">SpeedFromThrottleWithInertia</a>.</p>
+
+</div>
+</div>
+<a id="a80ef031e116658585424a3f8ae51eb12" name="a80ef031e116658585424a3f8ae51eb12"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a80ef031e116658585424a3f8ae51eb12">&#9670;&#160;</a></span>updateSpeed()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classtinyrobotics_1_1Speed.html">Speed</a> updateSpeed </td>
+          <td>(</td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>deltaTimeMs</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>motor</em> = <code>0</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>For sources with inertia, call this in your main loop with the elapsed time (in milliseconds) to update the speed estimate for a specific motor. </p>
+
+<p>Implements <a class="el" href="classtinyrobotics_1_1ISpeedSource.html#a5f0b385a8d63b7df60a0895c8519fbc0">ISpeedSource</a>.</p>
+
+<p>Reimplemented in <a class="el" href="classtinyrobotics_1_1SpeedFromThrottleWithInertia.html#a80ef031e116658585424a3f8ae51eb12">SpeedFromThrottleWithInertia</a>.</p>
 
 </div>
 </div>

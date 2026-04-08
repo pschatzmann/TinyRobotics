@@ -4,7 +4,7 @@
 <area shape="rect" id="node5" href="$classtinyrobotics_1_1CarAckerman.html" title="Car with Ackerman steering and single drive motor." alt="" coords="301,69,488,109"/>
 <area shape="rect" id="node6" href="$classtinyrobotics_1_1CarDifferential.html" title="Car model with differential drive. The direction is controlled by adjusting the speed of the motors...." alt="" coords="321,133,468,173"/>
 <area shape="rect" id="node7" href="$classtinyrobotics_1_1MotorBoat.html" title="Motor boat with 1 drive motor and 1 rudder servo." alt="" coords="311,197,478,237"/>
-<area shape="rect" id="node8" href="$classtinyrobotics_1_1Quadrotor.html" title="Simple quadrotor (quadcopter) model with 4&#45;motor control." alt="" coords="313,262,476,287"/>
+<area shape="rect" id="node8" href="$classtinyrobotics_1_1Quadrotor.html" title="Simple quadrotor (quadcopter) model with 4&#45;motor control." alt="" coords="312,262,477,287"/>
 <area shape="rect" id="node2" href="$classtinyrobotics_1_1MessageHandler.html" title="Interface for handling messages in the TinyRobotics framework." alt="" coords="5,115,136,141"/>
 <area shape="rect" id="node3" href="$classtinyrobotics_1_1MessageSource.html" title="Base class for message sources in the TinyRobotics communication framework." alt="" coords="9,165,133,190"/>
 </map>

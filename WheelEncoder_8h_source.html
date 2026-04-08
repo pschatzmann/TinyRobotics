@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.6"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>TinyRobotics: src/TinyRobotics/sensors/WheelEncoder.h Source File</title>
+<title>TinyRobotics: src/TinyRobotics/odometry/WheelEncoder.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -69,7 +69,7 @@ $(function() {
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_f5c5a1746720ec892b198327006ae81b.html">TinyRobotics</a></li><li class="navelem"><a class="el" href="dir_47ec8b25eeecec0583e4add218076164.html">sensors</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_f5c5a1746720ec892b198327006ae81b.html">TinyRobotics</a></li><li class="navelem"><a class="el" href="dir_aab93a7661beeb1eef1df41c0157ffb5.html">odometry</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -78,304 +78,366 @@ $(function() {
 <div class="contents">
 <div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#</span><span class="preprocessor">pragma</span> <span class="preprocessor">once</span></div>
 <div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#</span><span class="preprocessor">include</span> <span class="preprocessor">&lt;</span><span class="preprocessor">cmath</span><span class="preprocessor">&gt;</span></div>
-<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
-<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#</span><span class="preprocessor">include</span> <span class="preprocessor">&quot;TinyRobotics/communication/Message.h&quot;</span></div>
-<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#</span><span class="preprocessor">include</span> <span class="preprocessor">&quot;TinyRobotics/communication/MessageSource.h&quot;</span></div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#</span><span class="preprocessor">include</span> <span class="preprocessor">&quot;TinyRobotics/control/Scheduler.h&quot;</span></div>
-<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#</span><span class="preprocessor">include</span> <span class="preprocessor">&quot;TinyRobotics/units/Distance.h&quot;</span></div>
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#</span><span class="preprocessor">include</span> <span class="preprocessor">&quot;TinyRobotics/units/Units.h&quot;</span></div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="keyword">namespace</span> tinyrobotics {</div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#</span><span class="preprocessor">include</span> <span class="preprocessor">&lt;</span><span class="preprocessor">vector</span><span class="preprocessor">&gt;</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span> </div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#</span><span class="preprocessor">include</span> <span class="preprocessor">&quot;TinyRobotics/communication/Message.h&quot;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#</span><span class="preprocessor">include</span> <span class="preprocessor">&quot;TinyRobotics/communication/MessageSource.h&quot;</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#</span><span class="preprocessor">include</span> <span class="preprocessor">&quot;TinyRobotics/control/Scheduler.h&quot;</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#</span><span class="preprocessor">include</span> <span class="preprocessor">&quot;TinyRobotics/odometry/ISpeedSource.h&quot;</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#</span><span class="preprocessor">include</span> <span class="preprocessor">&quot;TinyRobotics/units/Distance.h&quot;</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#</span><span class="preprocessor">include</span> <span class="preprocessor">&quot;TinyRobotics/units/Units.h&quot;</span></div>
 <div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span> </div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="comment">/**</span></div>
-<div class="line"><span class="lineno">   13</span><span class="comment"> * @class WheelEncoder</span></div>
-<div class="line"><span class="lineno">   14</span><span class="comment"> * @ingroup sensors</span></div>
-<div class="line"><span class="lineno">   15</span><span class="comment"> * @brief Measures wheel rotation and computes distance and speed using encoder</span></div>
-<div class="line"><span class="lineno">   16</span><span class="comment"> * ticks for mobile robots.</span></div>
-<div class="line"><span class="lineno">   17</span><span class="comment"> *</span></div>
-<div class="line"><span class="lineno">   18</span><span class="comment"> * The WheelEncoder class provides an interface for tracking the movement of a</span></div>
-<div class="line"><span class="lineno">   19</span><span class="comment"> * robot&#39;s wheel using an incremental encoder. It accumulates encoder ticks to</span></div>
-<div class="line"><span class="lineno">   20</span><span class="comment"> * estimate the distance traveled and calculates speed based on tick timing.</span></div>
-<div class="line"><span class="lineno">   21</span><span class="comment"> *</span></div>
-<div class="line"><span class="lineno">   22</span><span class="comment"> * Key features:</span></div>
-<div class="line"><span class="lineno">   23</span><span class="comment"> * - Configurable wheel diameter and ticks per revolution for accurate distance</span></div>
-<div class="line"><span class="lineno">   24</span><span class="comment"> * estimation.</span></div>
-<div class="line"><span class="lineno">   25</span><span class="comment"> * - Periodic reporting of distance and speed via the MessageSource interface.</span></div>
-<div class="line"><span class="lineno">   26</span><span class="comment"> * - Slip calibration support to compensate for wheel slip or surface effects.</span></div>
-<div class="line"><span class="lineno">   27</span><span class="comment"> * - Designed for use with interrupt-driven tick updates (call setTick() in your</span></div>
-<div class="line"><span class="lineno">   28</span><span class="comment"> * ISR).</span></div>
-<div class="line"><span class="lineno">   29</span><span class="comment"> *</span></div>
-<div class="line"><span class="lineno">   30</span><span class="comment"> * Usage:</span></div>
-<div class="line"><span class="lineno">   31</span><span class="comment"> * 1. Create a WheelEncoder instance and configure the wheel diameter and ticks</span></div>
-<div class="line"><span class="lineno">   32</span><span class="comment"> * per revolution.</span></div>
-<div class="line"><span class="lineno">   33</span><span class="comment"> * 2. Call begin() to reset and start periodic reporting.</span></div>
-<div class="line"><span class="lineno">   34</span><span class="comment"> * 3. In your encoder interrupt handler, call setTick() to update the encoder</span></div>
-<div class="line"><span class="lineno">   35</span><span class="comment"> * state.</span></div>
-<div class="line"><span class="lineno">   36</span><span class="comment"> * 4. Use getDistanceM(), getSpeedMPS(), or getDistance() to retrieve odometry</span></div>
-<div class="line"><span class="lineno">   37</span><span class="comment"> * data.</span></div>
-<div class="line"><span class="lineno">   38</span><span class="comment"> * 5. Optionally, calibrate slip using calibrateSlip() if you observe systematic</span></div>
-<div class="line"><span class="lineno">   39</span><span class="comment"> * odometry errors.</span></div>
-<div class="line"><span class="lineno">   40</span><span class="comment"> *</span></div>
-<div class="line"><span class="lineno">   41</span><span class="comment"> * Example:</span></div>
-<div class="line"><span class="lineno">   42</span><span class="comment"> * @code</span></div>
-<div class="line"><span class="lineno">   43</span><span class="comment"> * WheelEncoder encoder;</span></div>
-<div class="line"><span class="lineno">   44</span><span class="comment"> * encoder.setWheelDiameter(0.065); // 65mm wheel</span></div>
-<div class="line"><span class="lineno">   45</span><span class="comment"> * encoder.setTicksPerRevolution(20);</span></div>
-<div class="line"><span class="lineno">   46</span><span class="comment"> * encoder.begin();</span></div>
-<div class="line"><span class="lineno">   47</span><span class="comment"> * // In your interrupt:</span></div>
-<div class="line"><span class="lineno">   48</span><span class="comment"> * encoder.setTick();</span></div>
-<div class="line"><span class="lineno">   49</span><span class="comment"> * // In your main loop:</span></div>
-<div class="line"><span class="lineno">   50</span><span class="comment"> * float distance = encoder.getDistanceM();</span></div>
-<div class="line"><span class="lineno">   51</span><span class="comment"> * float speed = encoder.getSpeedMPS();</span></div>
-<div class="line"><span class="lineno">   52</span><span class="comment"> * @endcode</span></div>
-<div class="line"><span class="lineno">   53</span><span class="comment"> *</span></div>
-<div class="line"><span class="lineno">   54</span><span class="comment"> * This class is intended for embedded robotics applications (Arduino, ESP32,</span></div>
-<div class="line"><span class="lineno">   55</span><span class="comment"> * etc.) and integrates with the TinyRobotics messaging framework.</span></div>
-<div class="line"><span class="lineno">   56</span><span class="comment"> */</span></div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span><span class="keyword">class</span> <a class="code hl_class" href="classtinyrobotics_1_1WheelEncoder.html">WheelEncoder</a> : <span class="keyword">public</span> <a class="code hl_class" href="classtinyrobotics_1_1MessageSource.html">MessageSource</a> {</div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span> <span class="keyword">public</span>:</div>
-<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>  <span class="comment">/**</span></div>
-<div class="line"><span class="lineno">   60</span><span class="comment">   * @brief Default constructor. Wheel diameter and ticks per revolution must be</span></div>
-<div class="line"><span class="lineno">   61</span><span class="comment">   * set before use.</span></div>
-<div class="line"><span class="lineno">   62</span><span class="comment">   */</span></div>
-<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>  <a class="code hl_function" href="classtinyrobotics_1_1WheelEncoder.html#a43948159b2c7344eedf0bc94c8cb4a5d">WheelEncoder</a>() = <span class="keywordflow">default</span>;</div>
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span> </div>
-<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>  <span class="comment">/**</span></div>
-<div class="line"><span class="lineno">   66</span><span class="comment">   * @brief Constructor with wheel diameter and ticks per revolution.</span></div>
-<div class="line"><span class="lineno">   67</span><span class="comment">   * @param wheelDiameterM The diameter of the wheel (Distance object).</span></div>
-<div class="line"><span class="lineno">   68</span><span class="comment">   * @param ticksPerRevolution Number of encoder ticks per full wheel</span></div>
-<div class="line"><span class="lineno">   69</span><span class="comment">   * revolution.</span></div>
-<div class="line"><span class="lineno">   70</span><span class="comment">   */</span></div>
-<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>  <a class="code hl_function" href="classtinyrobotics_1_1WheelEncoder.html#a753a8644e4aa9513a8c359a4f2bb56d9">WheelEncoder</a>(<a class="code hl_class" href="classtinyrobotics_1_1Distance.html">Distance</a> wheelDiameterM, <span class="keywordtype">int</span> ticksPerRevolution = 1)</div>
-<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>      : <a class="code hl_class" href="classtinyrobotics_1_1WheelEncoder.html">WheelEncoder</a><a class="code hl_function" href="classtinyrobotics_1_1WheelEncoder.html#a43948159b2c7344eedf0bc94c8cb4a5d">(</a><a class="code hl_function" href="classtinyrobotics_1_1WheelEncoder.html#a43948159b2c7344eedf0bc94c8cb4a5d">)</a> {</div>
-<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>    <a class="code hl_function" href="classtinyrobotics_1_1WheelEncoder.html#adee886ee12b8cc045d18bf1e31b72e5c">setWheelDiameter</a><a class="code hl_function" href="classtinyrobotics_1_1WheelEncoder.html#adee886ee12b8cc045d18bf1e31b72e5c">(</a>wheelDiameterM<a class="code hl_function" href="classtinyrobotics_1_1WheelEncoder.html#adee886ee12b8cc045d18bf1e31b72e5c">)</a>;</div>
-<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>    <a class="code hl_function" href="classtinyrobotics_1_1WheelEncoder.html#ac1f5b4274e3f63f7abf79ed301a8dfc1">setTicksPerRevolution</a><a class="code hl_function" href="classtinyrobotics_1_1WheelEncoder.html#ac1f5b4274e3f63f7abf79ed301a8dfc1">(</a>ticksPerRevolution<a class="code hl_function" href="classtinyrobotics_1_1WheelEncoder.html#ac1f5b4274e3f63f7abf79ed301a8dfc1">)</a>;</div>
-<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>  }</div>
-<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span> </div>
-<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>  <span class="comment">/**</span></div>
-<div class="line"><span class="lineno">   78</span><span class="comment">   * @brief Set the wheel diameter using a Distance object.</span></div>
-<div class="line"><span class="lineno">   79</span><span class="comment">   * @param wheelDiameter The wheel diameter.</span></div>
-<div class="line"><span class="lineno">   80</span><span class="comment">   */</span></div>
-<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classtinyrobotics_1_1WheelEncoder.html#adee886ee12b8cc045d18bf1e31b72e5c">setWheelDiameter</a>(<a class="code hl_class" href="classtinyrobotics_1_1Distance.html">Distance</a> wheelDiameter) {</div>
-<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>    wheelDiameterM = wheelDiameter.getValue(<a class="code hl_enumeration" href="group__units.html#ga4c67a7b952f3804e2bd056cf95c4161a">DistanceUnit</a>::M);</div>
-<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>  }</div>
-<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span> </div>
-<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>  <span class="comment">/**</span></div>
-<div class="line"><span class="lineno">   86</span><span class="comment">   * @brief Set the wheel diameter using a float value and unit.</span></div>
-<div class="line"><span class="lineno">   87</span><span class="comment">   * @param diameter The wheel diameter value.</span></div>
-<div class="line"><span class="lineno">   88</span><span class="comment">   * @param unit The unit of the diameter (default: meters).</span></div>
-<div class="line"><span class="lineno">   89</span><span class="comment">   */</span></div>
-<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classtinyrobotics_1_1WheelEncoder.html#a2fe8fb3046c31aa501d149d05b91e279">setWheelDiameter</a>(<span class="keywordtype">float</span> diameter, <a class="code hl_enumeration" href="group__units.html#ga4c67a7b952f3804e2bd056cf95c4161a">DistanceUnit</a> unit = <a class="code hl_enumeration" href="group__units.html#ga4c67a7b952f3804e2bd056cf95c4161a">DistanceUnit</a>::M) {</div>
-<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>    <a class="code hl_function" href="classtinyrobotics_1_1WheelEncoder.html#adee886ee12b8cc045d18bf1e31b72e5c">setWheelDiameter</a><a class="code hl_function" href="classtinyrobotics_1_1WheelEncoder.html#adee886ee12b8cc045d18bf1e31b72e5c">(</a><a class="code hl_class" href="classtinyrobotics_1_1Distance.html">Distance</a>(diameter, unit)<a class="code hl_function" href="classtinyrobotics_1_1WheelEncoder.html#adee886ee12b8cc045d18bf1e31b72e5c">)</a>;</div>
-<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>  }</div>
-<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span> </div>
-<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>  <span class="comment">/**</span></div>
-<div class="line"><span class="lineno">   95</span><span class="comment">   * @brief Set the number of encoder ticks per wheel revolution.</span></div>
-<div class="line"><span class="lineno">   96</span><span class="comment">   * @param ticks Number of ticks per revolution.</span></div>
-<div class="line"><span class="lineno">   97</span><span class="comment">   */</span></div>
-<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classtinyrobotics_1_1WheelEncoder.html#ac1f5b4274e3f63f7abf79ed301a8dfc1">setTicksPerRevolution</a>(<span class="keywordtype">int</span> ticks) {</div>
-<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>    ticksPerRevolution = ticks;</div>
-<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>    distancePerTickM =</div>
-<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>        <span class="keyword">static_cast</span>&lt;<span class="keywordtype">float</span>&gt;(M_PI) * wheelDiameterM / ticksPerRevolution;</div>
-<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>  }</div>
-<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span> </div>
-<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>  <span class="comment">/**</span></div>
-<div class="line"><span class="lineno">  105</span><span class="comment">   * @brief Defines the reporint frequency for distance and speed messages.</span></div>
-<div class="line"><span class="lineno">  106</span><span class="comment">   * @param ms Reporting interval in milliseconds.</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="keyword">namespace</span> tinyrobotics {</div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span> </div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="comment">/**</span></div>
+<div class="line"><span class="lineno">   15</span><span class="comment"> * @class WheelEncoder</span></div>
+<div class="line"><span class="lineno">   16</span><span class="comment"> * @ingroup sensors</span></div>
+<div class="line"><span class="lineno">   17</span><span class="comment"> * @brief Measures wheel rotation and computes per-wheel distance and speed</span></div>
+<div class="line"><span class="lineno">   18</span><span class="comment"> * using encoder ticks for mobile robots.</span></div>
+<div class="line"><span class="lineno">   19</span><span class="comment"> *</span></div>
+<div class="line"><span class="lineno">   20</span><span class="comment"> * The WheelEncoder class provides a multi-wheel, vectorized interface for</span></div>
+<div class="line"><span class="lineno">   21</span><span class="comment"> * tracking the movement of a robot&#39;s wheels using incremental encoders. It</span></div>
+<div class="line"><span class="lineno">   22</span><span class="comment"> * accumulates encoder ticks for each wheel to estimate the distance traveled</span></div>
+<div class="line"><span class="lineno">   23</span><span class="comment"> * and calculates speed based on tick timing, supporting robust odometry for</span></div>
+<div class="line"><span class="lineno">   24</span><span class="comment"> * differential, skid-steer, and multi-motor vehicles.</span></div>
+<div class="line"><span class="lineno">   25</span><span class="comment"> *</span></div>
+<div class="line"><span class="lineno">   26</span><span class="comment"> * Key features:</span></div>
+<div class="line"><span class="lineno">   27</span><span class="comment"> * - Supports any number of wheels (configurable at construction).</span></div>
+<div class="line"><span class="lineno">   28</span><span class="comment"> * - Vectorized state for distance, speed, and tick timing per wheel.</span></div>
+<div class="line"><span class="lineno">   29</span><span class="comment"> * - Interface-compliant with ISpeedSource for modular odometry integration.</span></div>
+<div class="line"><span class="lineno">   30</span><span class="comment"> * - Configurable wheel diameter and ticks per revolution for accurate distance</span></div>
+<div class="line"><span class="lineno">   31</span><span class="comment"> * estimation.</span></div>
+<div class="line"><span class="lineno">   32</span><span class="comment"> * - Periodic reporting of distance and speed via the MessageSource interface.</span></div>
+<div class="line"><span class="lineno">   33</span><span class="comment"> * - Slip calibration support to compensate for wheel slip or surface effects.</span></div>
+<div class="line"><span class="lineno">   34</span><span class="comment"> * - Designed for use with interrupt-driven tick updates (call setTick() in your</span></div>
+<div class="line"><span class="lineno">   35</span><span class="comment"> * ISR, specifying the wheel index).</span></div>
+<div class="line"><span class="lineno">   36</span><span class="comment"> *</span></div>
+<div class="line"><span class="lineno">   37</span><span class="comment"> * Usage:</span></div>
+<div class="line"><span class="lineno">   38</span><span class="comment"> * 1. Create a WheelEncoder instance, specifying the number of wheels if needed,</span></div>
+<div class="line"><span class="lineno">   39</span><span class="comment"> * and configure the wheel diameter and ticks per revolution.</span></div>
+<div class="line"><span class="lineno">   40</span><span class="comment"> * 2. Call begin() to reset and start periodic reporting.</span></div>
+<div class="line"><span class="lineno">   41</span><span class="comment"> * 3. In your encoder interrupt handler, call setTick(motor) to update the</span></div>
+<div class="line"><span class="lineno">   42</span><span class="comment"> * encoder state for the correct wheel.</span></div>
+<div class="line"><span class="lineno">   43</span><span class="comment"> * 4. Use getDistanceM(motor), getSpeedMPS(motor), or getDistance(unit, motor)</span></div>
+<div class="line"><span class="lineno">   44</span><span class="comment"> * to retrieve odometry data for each wheel.</span></div>
+<div class="line"><span class="lineno">   45</span><span class="comment"> * 5. Optionally, calibrate slip using calibrateSlip() if you observe systematic</span></div>
+<div class="line"><span class="lineno">   46</span><span class="comment"> * odometry errors.</span></div>
+<div class="line"><span class="lineno">   47</span><span class="comment"> *</span></div>
+<div class="line"><span class="lineno">   48</span><span class="comment"> * Example:</span></div>
+<div class="line"><span class="lineno">   49</span><span class="comment"> * @code</span></div>
+<div class="line"><span class="lineno">   50</span><span class="comment"> * WheelEncoder encoder(2); // Two wheels (differential drive)</span></div>
+<div class="line"><span class="lineno">   51</span><span class="comment"> * encoder.setWheelDiameter(0.065); // 65mm wheel</span></div>
+<div class="line"><span class="lineno">   52</span><span class="comment"> * encoder.setTicksPerRevolution(20);</span></div>
+<div class="line"><span class="lineno">   53</span><span class="comment"> * encoder.begin();</span></div>
+<div class="line"><span class="lineno">   54</span><span class="comment"> * // In your interrupt:</span></div>
+<div class="line"><span class="lineno">   55</span><span class="comment"> * encoder.setTick(0); // Left wheel</span></div>
+<div class="line"><span class="lineno">   56</span><span class="comment"> * encoder.setTick(1); // Right wheel</span></div>
+<div class="line"><span class="lineno">   57</span><span class="comment"> * // In your main loop:</span></div>
+<div class="line"><span class="lineno">   58</span><span class="comment"> * float leftDistance = encoder.getDistanceM(0);</span></div>
+<div class="line"><span class="lineno">   59</span><span class="comment"> * float rightDistance = encoder.getDistanceM(1);</span></div>
+<div class="line"><span class="lineno">   60</span><span class="comment"> * float leftSpeed = encoder.getSpeedMPS(0);</span></div>
+<div class="line"><span class="lineno">   61</span><span class="comment"> * float rightSpeed = encoder.getSpeedMPS(1);</span></div>
+<div class="line"><span class="lineno">   62</span><span class="comment"> * @endcode</span></div>
+<div class="line"><span class="lineno">   63</span><span class="comment"> *</span></div>
+<div class="line"><span class="lineno">   64</span><span class="comment"> * This class is intended for embedded robotics applications (Arduino, ESP32,</span></div>
+<div class="line"><span class="lineno">   65</span><span class="comment"> * etc.) and integrates with the TinyRobotics messaging framework. It is</span></div>
+<div class="line"><span class="lineno">   66</span><span class="comment"> * suitable for use as a modular speed/distance source in extensible odometry</span></div>
+<div class="line"><span class="lineno">   67</span><span class="comment"> * pipelines.</span></div>
+<div class="line"><span class="lineno">   68</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span><span class="keyword">class</span> <a class="code hl_class" href="classtinyrobotics_1_1WheelEncoder.html">WheelEncoder</a> : <span class="keyword">public</span> <a class="code hl_class" href="classtinyrobotics_1_1MessageSource.html">MessageSource</a>, <span class="keyword">public</span> <a class="code hl_class" href="classtinyrobotics_1_1ISpeedSource.html">ISpeedSource</a> {</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span> <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>  <span class="comment">/**</span></div>
+<div class="line"><span class="lineno">   72</span><span class="comment">   * @brief Default constructor. Wheel diameter and ticks per revolution must be</span></div>
+<div class="line"><span class="lineno">   73</span><span class="comment">   * set before use.</span></div>
+<div class="line"><span class="lineno">   74</span><span class="comment">   */</span></div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>  <a class="code hl_function" href="classtinyrobotics_1_1WheelEncoder.html#ae74f348057d294351e0d8a33cfdc950b">WheelEncoder</a>(size_t numWheels = 1)</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>      : <a class="code hl_function" href="classtinyrobotics_1_1WheelEncoder.html#ae74f348057d294351e0d8a33cfdc950b">speedMPS</a>(<a class="code hl_function" href="classtinyrobotics_1_1WheelEncoder.html#ae74f348057d294351e0d8a33cfdc950b">numWheels</a>, 0.0f),</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>        <a class="code hl_function" href="classtinyrobotics_1_1WheelEncoder.html#ae74f348057d294351e0d8a33cfdc950b">distanceM</a>(<a class="code hl_function" href="classtinyrobotics_1_1WheelEncoder.html#ae74f348057d294351e0d8a33cfdc950b">numWheels</a>, 0.0f),</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>        <a class="code hl_function" href="classtinyrobotics_1_1WheelEncoder.html#ae74f348057d294351e0d8a33cfdc950b">lastDistanceM</a>(<a class="code hl_function" href="classtinyrobotics_1_1WheelEncoder.html#ae74f348057d294351e0d8a33cfdc950b">numWheels</a>, 0.0f),</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>        <a class="code hl_function" href="classtinyrobotics_1_1WheelEncoder.html#ae74f348057d294351e0d8a33cfdc950b">lastSpeedCalcTimeMs</a>(<a class="code hl_function" href="classtinyrobotics_1_1WheelEncoder.html#ae74f348057d294351e0d8a33cfdc950b">numWheels</a>, 0),</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>        <a class="code hl_function" href="classtinyrobotics_1_1WheelEncoder.html#ae74f348057d294351e0d8a33cfdc950b">numWheels</a>(<a class="code hl_function" href="classtinyrobotics_1_1WheelEncoder.html#ae74f348057d294351e0d8a33cfdc950b">numWheels</a>) {}</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span> </div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>  <span class="comment">/**</span></div>
+<div class="line"><span class="lineno">   83</span><span class="comment">   * @brief Constructor with wheel diameter and ticks per revolution.</span></div>
+<div class="line"><span class="lineno">   84</span><span class="comment">   * @param wheelDiameterM The diameter of the wheel (Distance object).</span></div>
+<div class="line"><span class="lineno">   85</span><span class="comment">   * @param ticksPerRevolution Number of encoder ticks per full wheel</span></div>
+<div class="line"><span class="lineno">   86</span><span class="comment">   * revolution.</span></div>
+<div class="line"><span class="lineno">   87</span><span class="comment">   */</span></div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>  <a class="code hl_function" href="classtinyrobotics_1_1WheelEncoder.html#a4af186736e1a1c607eff8551f98d490b">WheelEncoder</a>(<a class="code hl_class" href="classtinyrobotics_1_1Distance.html">Distance</a> wheelDiameterM, <span class="keywordtype">int</span> ticksPerRevolution = 1,</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>               size_t numWheels = 1)</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>      : <a class="code hl_function" href="classtinyrobotics_1_1WheelEncoder.html#a4af186736e1a1c607eff8551f98d490b">WheelEncoder</a>(<a class="code hl_function" href="classtinyrobotics_1_1WheelEncoder.html#a4af186736e1a1c607eff8551f98d490b">numWheels</a>) {</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>    <a class="code hl_function" href="classtinyrobotics_1_1WheelEncoder.html#adee886ee12b8cc045d18bf1e31b72e5c">setWheelDiameter</a><a class="code hl_function" href="classtinyrobotics_1_1WheelEncoder.html#adee886ee12b8cc045d18bf1e31b72e5c">(</a>wheelDiameterM<a class="code hl_function" href="classtinyrobotics_1_1WheelEncoder.html#adee886ee12b8cc045d18bf1e31b72e5c">)</a>;</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>    <a class="code hl_function" href="classtinyrobotics_1_1WheelEncoder.html#ac1f5b4274e3f63f7abf79ed301a8dfc1">setTicksPerRevolution</a><a class="code hl_function" href="classtinyrobotics_1_1WheelEncoder.html#ac1f5b4274e3f63f7abf79ed301a8dfc1">(</a>ticksPerRevolution<a class="code hl_function" href="classtinyrobotics_1_1WheelEncoder.html#ac1f5b4274e3f63f7abf79ed301a8dfc1">)</a>;</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>  }</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span> </div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>  <span class="comment">/**</span></div>
+<div class="line"><span class="lineno">   96</span><span class="comment">   * @brief Set the wheel diameter using a Distance object.</span></div>
+<div class="line"><span class="lineno">   97</span><span class="comment">   * @param wheelDiameter The wheel diameter.</span></div>
+<div class="line"><span class="lineno">   98</span><span class="comment">   */</span></div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classtinyrobotics_1_1WheelEncoder.html#adee886ee12b8cc045d18bf1e31b72e5c">setWheelDiameter</a>(<a class="code hl_class" href="classtinyrobotics_1_1Distance.html">Distance</a> wheelDiameter) {</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>    wheelDiameterM = wheelDiameter.getValue(<a class="code hl_enumeration" href="group__units.html#ga4c67a7b952f3804e2bd056cf95c4161a">DistanceUnit</a>::M);</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>  }</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span> </div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>  <span class="comment">/**</span></div>
+<div class="line"><span class="lineno">  104</span><span class="comment">   * @brief Set the wheel diameter using a float value and unit.</span></div>
+<div class="line"><span class="lineno">  105</span><span class="comment">   * @param diameter The wheel diameter value.</span></div>
+<div class="line"><span class="lineno">  106</span><span class="comment">   * @param unit The unit of the diameter (default: meters).</span></div>
 <div class="line"><span class="lineno">  107</span><span class="comment">   */</span></div>
-<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classtinyrobotics_1_1WheelEncoder.html#a7dc8d23f1fcaeeb69211f7b92ef5584a">setReportingFrequencyMs</a>(uint16_t ms) {</div>
-<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>    reportingScheduler.begin(ms, <a class="code hl_function" href="classtinyrobotics_1_1WheelEncoder.html#a1a3971195a9893edc5ed9e0532110c33">sendMessageCB</a>, <span class="keyword">this</span>);</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classtinyrobotics_1_1WheelEncoder.html#a2fe8fb3046c31aa501d149d05b91e279">setWheelDiameter</a>(<span class="keywordtype">float</span> diameter, <a class="code hl_enumeration" href="group__units.html#ga4c67a7b952f3804e2bd056cf95c4161a">DistanceUnit</a> unit = <a class="code hl_enumeration" href="group__units.html#ga4c67a7b952f3804e2bd056cf95c4161a">DistanceUnit</a>::M) {</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>    <a class="code hl_function" href="classtinyrobotics_1_1WheelEncoder.html#adee886ee12b8cc045d18bf1e31b72e5c">setWheelDiameter</a><a class="code hl_function" href="classtinyrobotics_1_1WheelEncoder.html#adee886ee12b8cc045d18bf1e31b72e5c">(</a><a class="code hl_class" href="classtinyrobotics_1_1Distance.html">Distance</a>(diameter, unit)<a class="code hl_function" href="classtinyrobotics_1_1WheelEncoder.html#adee886ee12b8cc045d18bf1e31b72e5c">)</a>;</div>
 <div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>  }</div>
 <div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span> </div>
 <div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>  <span class="comment">/**</span></div>
-<div class="line"><span class="lineno">  113</span><span class="comment">   * @brief Get the total distance traveled since last reset.</span></div>
-<div class="line"><span class="lineno">  114</span><span class="comment">   * @return Distance object representing the traveled distance in meters.</span></div>
+<div class="line"><span class="lineno">  113</span><span class="comment">   * @brief Set the number of encoder ticks per wheel revolution.</span></div>
+<div class="line"><span class="lineno">  114</span><span class="comment">   * @param ticks Number of ticks per revolution.</span></div>
 <div class="line"><span class="lineno">  115</span><span class="comment">   */</span></div>
-<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>  <a class="code hl_class" href="classtinyrobotics_1_1Distance.html">Distance</a> <a class="code hl_function" href="classtinyrobotics_1_1WheelEncoder.html#ae4404fee813c423e582760dbaf687c8f">getDistance</a>() <span class="keyword">const</span> { <span class="keywordflow">return</span> <a class="code hl_class" href="classtinyrobotics_1_1Distance.html">Distance</a>(distanceM, <a class="code hl_enumeration" href="group__units.html#ga4c67a7b952f3804e2bd056cf95c4161a">DistanceUnit</a>::M); }</div>
-<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span> </div>
-<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>  <span class="comment">/**</span></div>
-<div class="line"><span class="lineno">  119</span><span class="comment">   * @brief Get the total distance traveled in meters.</span></div>
-<div class="line"><span class="lineno">  120</span><span class="comment">   * @return Distance in meters.</span></div>
-<div class="line"><span class="lineno">  121</span><span class="comment">   */</span></div>
-<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>  <span class="keywordtype">float</span> <a class="code hl_function" href="classtinyrobotics_1_1WheelEncoder.html#a2bdb4c9f4afb748ea1399788427e5a03">getDistanceM</a>() <span class="keyword">const</span> { <span class="keywordflow">return</span> distanceM * slipFactor; }</div>
-<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span> </div>
-<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>  <span class="comment">/**</span></div>
-<div class="line"><span class="lineno">  125</span><span class="comment">   * @brief Get the total distance traveled in the specified unit.</span></div>
-<div class="line"><span class="lineno">  126</span><span class="comment">   * @param unit The distance unit.</span></div>
-<div class="line"><span class="lineno">  127</span><span class="comment">   * @return Distance in the specified unit.</span></div>
-<div class="line"><span class="lineno">  128</span><span class="comment">   */</span></div>
-<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>  <span class="keywordtype">float</span> <a class="code hl_function" href="classtinyrobotics_1_1WheelEncoder.html#a08d4be1757831ea093bea7725e3239c1">getDistance</a>(<a class="code hl_enumeration" href="group__units.html#ga4c67a7b952f3804e2bd056cf95c4161a">DistanceUnit</a> unit) <span class="keyword">const</span> {</div>
-<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>    <a class="code hl_class" href="classtinyrobotics_1_1Distance.html">Distance</a> dist(distanceM, <a class="code hl_enumeration" href="group__units.html#ga4c67a7b952f3804e2bd056cf95c4161a">DistanceUnit</a>::M);</div>
-<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>    <span class="keywordflow">return</span> dist.getValue(unit);</div>
-<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>  }</div>
-<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span> </div>
-<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>  <span class="comment">/**</span></div>
-<div class="line"><span class="lineno">  135</span><span class="comment">   * @brief Get the distance corresponding to a given number of ticks (in</span></div>
-<div class="line"><span class="lineno">  136</span><span class="comment">   * meters).</span></div>
-<div class="line"><span class="lineno">  137</span><span class="comment">   * @param ticks Number of encoder ticks.</span></div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classtinyrobotics_1_1WheelEncoder.html#ac1f5b4274e3f63f7abf79ed301a8dfc1">setTicksPerRevolution</a>(<span class="keywordtype">int</span> ticks) {</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>    ticksPerRevolution = ticks;</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>    distancePerTickM =</div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>        <span class="keyword">static_cast</span>&lt;<span class="keywordtype">float</span>&gt;(M_PI) * wheelDiameterM / ticksPerRevolution;</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>  }</div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span> </div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>  <span class="comment">/**</span></div>
+<div class="line"><span class="lineno">  123</span><span class="comment">   * @brief Defines the reporint frequency for distance and speed messages.</span></div>
+<div class="line"><span class="lineno">  124</span><span class="comment">   * @param ms Reporting interval in milliseconds.</span></div>
+<div class="line"><span class="lineno">  125</span><span class="comment">   */</span></div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classtinyrobotics_1_1WheelEncoder.html#a7dc8d23f1fcaeeb69211f7b92ef5584a">setReportingFrequencyMs</a>(uint16_t ms) {</div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>    reportingScheduler.begin(ms, <a class="code hl_function" href="classtinyrobotics_1_1WheelEncoder.html#a1a3971195a9893edc5ed9e0532110c33">sendMessageCB</a>, <span class="keyword">this</span>);</div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>  }</div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span> </div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>  <span class="comment">/**</span></div>
+<div class="line"><span class="lineno">  131</span><span class="comment">   * @brief Get the total distance traveled since last reset.</span></div>
+<div class="line"><span class="lineno">  132</span><span class="comment">   * @return Distance object representing the traveled distance in meters.</span></div>
+<div class="line"><span class="lineno">  133</span><span class="comment">   */</span></div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>  <span class="comment">// Removed: getDistance() returning Distance from a vector (invalid)</span></div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span> </div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>  <span class="comment">/**</span></div>
+<div class="line"><span class="lineno">  137</span><span class="comment">   * @brief Get the total distance traveled in meters.</span></div>
 <div class="line"><span class="lineno">  138</span><span class="comment">   * @return Distance in meters.</span></div>
 <div class="line"><span class="lineno">  139</span><span class="comment">   */</span></div>
-<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span>  <span class="keywordtype">float</span> <a class="code hl_function" href="classtinyrobotics_1_1WheelEncoder.html#ab192863d4018b5b215425b01bb0c025f">getDistanceForTicksM</a>(size_t ticks) <span class="keyword">const</span> {</div>
-<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span>    <span class="keywordflow">return</span> ticks * distancePerTickM;</div>
-<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span>  }</div>
-<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span> </div>
-<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span>  <span class="comment">/**</span></div>
-<div class="line"><span class="lineno">  145</span><span class="comment">   * @brief Get the distance for a given number of ticks in the specified unit.</span></div>
-<div class="line"><span class="lineno">  146</span><span class="comment">   * @param ticks Number of encoder ticks.</span></div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span>  <span class="keywordtype">float</span> <a class="code hl_function" href="classtinyrobotics_1_1WheelEncoder.html#a2f62b093c6daa6551c3595b50ab3da3d">getDistanceM</a>(size_t motor = 0) <span class="keyword">const</span> {</div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span>    <span class="keywordflow">if</span> (motor &gt;= numWheels) <span class="keywordflow">return</span> 0.0f;</div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span>    <span class="keywordflow">return</span> distanceM[motor] * slipFactor;</div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span>  }</div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span> </div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span>  <span class="comment">/**</span></div>
+<div class="line"><span class="lineno">  146</span><span class="comment">   * @brief Get the total distance traveled in the specified unit.</span></div>
 <div class="line"><span class="lineno">  147</span><span class="comment">   * @param unit The distance unit.</span></div>
 <div class="line"><span class="lineno">  148</span><span class="comment">   * @return Distance in the specified unit.</span></div>
 <div class="line"><span class="lineno">  149</span><span class="comment">   */</span></div>
-<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>  <span class="keywordtype">float</span> <a class="code hl_function" href="classtinyrobotics_1_1WheelEncoder.html#a887add573faa2f87f33de7cce9087561">getDistanceForTicks</a>(size_t ticks, <a class="code hl_enumeration" href="group__units.html#ga4c67a7b952f3804e2bd056cf95c4161a">DistanceUnit</a> unit) <span class="keyword">const</span> {</div>
-<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>    <a class="code hl_class" href="classtinyrobotics_1_1Distance.html">Distance</a> dist(getDistanceForTicksM(ticks), DistanceUnit::M);</div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>  <span class="keywordtype">float</span> <a class="code hl_function" href="classtinyrobotics_1_1WheelEncoder.html#a2f67e48d474a61b1d8e03be174d735a9">getDistance</a>(<a class="code hl_enumeration" href="group__units.html#ga4c67a7b952f3804e2bd056cf95c4161a">DistanceUnit</a> unit, size_t motor = 0) <span class="keyword">const</span> {</div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>    <a class="code hl_class" href="classtinyrobotics_1_1Distance.html">Distance</a> dist(getDistanceM(motor), DistanceUnit::M);</div>
 <div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>    <span class="keywordflow">return</span> dist.getValue(unit);</div>
 <div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>  }</div>
 <div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span> </div>
 <div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>  <span class="comment">/**</span></div>
-<div class="line"><span class="lineno">  156</span><span class="comment">   * @brief Calculate speed in meters per second based on distance traveled</span></div>
-<div class="line"><span class="lineno">  157</span><span class="comment">   * since last calculation and elapsed time.</span></div>
-<div class="line"><span class="lineno">  158</span><span class="comment">   * @return Speed in meters per second.</span></div>
-<div class="line"><span class="lineno">  159</span><span class="comment">   */</span></div>
-<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>  <span class="keywordtype">float</span> <a class="code hl_function" href="classtinyrobotics_1_1WheelEncoder.html#a1d6725717d5442ca2b6c0598e7a0b175">getSpeedMPS</a>() {</div>
-<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span>    <span class="keywordtype">float</span> speedMPS = 0;</div>
-<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>    uint32_t currentTimeMs = millis();</div>
-<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span>    uint32_t elapsedTimeMs = currentTimeMs - lastSpeedCalcTimeMs;</div>
-<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span>    <span class="keywordflow">if</span> (elapsedTimeMs &gt; 0) {</div>
-<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span>      <span class="keywordtype">float</span> distanceTraveledM = (distanceM - lastDistanceM) * slipFactor;</div>
-<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span>      speedMPS = distanceTraveledM / (elapsedTimeMs / 1000.0f);</div>
-<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span>      lastSpeedCalcTimeMs = currentTimeMs;</div>
-<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span>      lastDistanceM = distanceM;</div>
-<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span>    }</div>
-<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span>    <span class="keywordflow">return</span> speedMPS;</div>
-<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span>  }</div>
-<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span> </div>
-<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span>  <span class="comment">/**</span></div>
-<div class="line"><span class="lineno">  174</span><span class="comment">   * @brief Resets the encoder counts and distance.</span></div>
-<div class="line"><span class="lineno">  175</span><span class="comment">   *</span></div>
-<div class="line"><span class="lineno">  176</span><span class="comment">   * Also starts periodic reporting if not already active.</span></div>
-<div class="line"><span class="lineno">  177</span><span class="comment">   * @return true if the encoder is properly configured (wheel diameter and</span></div>
-<div class="line"><span class="lineno">  178</span><span class="comment">   * ticks per revolution are set).</span></div>
-<div class="line"><span class="lineno">  179</span><span class="comment">   */</span></div>
-<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span>  <span class="keywordtype">bool</span> <a class="code hl_function" href="classtinyrobotics_1_1WheelEncoder.html#a601fb7cf1fc15db50c71a826f084f934">begin</a>() {</div>
-<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span>    distanceM = 0;</div>
-<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span>    lastSpeedCalcTimeMs = millis();</div>
-<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span>    <span class="comment">// Default to 1 second reporting if not already set</span></div>
-<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span>    <span class="keywordflow">if</span> (!reportingScheduler.isActive()) {</div>
-<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span>      <a class="code hl_function" href="classtinyrobotics_1_1WheelEncoder.html#a7dc8d23f1fcaeeb69211f7b92ef5584a">setReportingFrequencyMs</a><a class="code hl_function" href="classtinyrobotics_1_1WheelEncoder.html#a7dc8d23f1fcaeeb69211f7b92ef5584a">(</a>1000<a class="code hl_function" href="classtinyrobotics_1_1WheelEncoder.html#a7dc8d23f1fcaeeb69211f7b92ef5584a">)</a>;</div>
-<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span>    }</div>
-<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span>    <span class="keywordflow">return</span> wheelDiameterM &gt; 0 &amp;&amp; ticksPerRevolution &gt; 0;</div>
-<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span>  }</div>
-<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span> </div>
-<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span>  <span class="comment">/**</span></div>
-<div class="line"><span class="lineno">  191</span><span class="comment">   * @brief To be called by the pin interrupt handler when a tick is detected.</span></div>
-<div class="line"><span class="lineno">  192</span><span class="comment">   *</span></div>
-<div class="line"><span class="lineno">  193</span><span class="comment">   * Updates the distance and triggers reporting if needed.</span></div>
-<div class="line"><span class="lineno">  194</span><span class="comment">   */</span></div>
-<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classtinyrobotics_1_1WheelEncoder.html#a15be2bec6f6c3a6f140f53ab16193a6b">setTick</a>() {</div>
-<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span>    distanceM += distancePerTickM;</div>
-<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span>    reportingScheduler.run();</div>
+<div class="line"><span class="lineno">  156</span><span class="comment">   * @brief Get the distance corresponding to a given number of ticks (in</span></div>
+<div class="line"><span class="lineno">  157</span><span class="comment">   * meters).</span></div>
+<div class="line"><span class="lineno">  158</span><span class="comment">   * @param ticks Number of encoder ticks.</span></div>
+<div class="line"><span class="lineno">  159</span><span class="comment">   * @return Distance in meters.</span></div>
+<div class="line"><span class="lineno">  160</span><span class="comment">   */</span></div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span>  <span class="keywordtype">float</span> <a class="code hl_function" href="classtinyrobotics_1_1WheelEncoder.html#ab192863d4018b5b215425b01bb0c025f">getDistanceForTicksM</a>(size_t ticks) <span class="keyword">const</span> {</div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>    <span class="keywordflow">return</span> ticks * distancePerTickM;</div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span>  }</div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span> </div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span>  <span class="comment">/**</span></div>
+<div class="line"><span class="lineno">  166</span><span class="comment">   * @brief Get the distance for a given number of ticks in the specified unit.</span></div>
+<div class="line"><span class="lineno">  167</span><span class="comment">   * @param ticks Number of encoder ticks.</span></div>
+<div class="line"><span class="lineno">  168</span><span class="comment">   * @param unit The distance unit.</span></div>
+<div class="line"><span class="lineno">  169</span><span class="comment">   * @return Distance in the specified unit.</span></div>
+<div class="line"><span class="lineno">  170</span><span class="comment">   */</span></div>
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span>  <span class="keywordtype">float</span> <a class="code hl_function" href="classtinyrobotics_1_1WheelEncoder.html#a887add573faa2f87f33de7cce9087561">getDistanceForTicks</a>(size_t ticks, <a class="code hl_enumeration" href="group__units.html#ga4c67a7b952f3804e2bd056cf95c4161a">DistanceUnit</a> unit) <span class="keyword">const</span> {</div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span>    <a class="code hl_class" href="classtinyrobotics_1_1Distance.html">Distance</a> dist(getDistanceForTicksM(ticks), DistanceUnit::M);</div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span>    <span class="keywordflow">return</span> dist.getValue(unit);</div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span>  }</div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span> </div>
+<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span>  <span class="comment">/**</span></div>
+<div class="line"><span class="lineno">  177</span><span class="comment">   * @brief Resets the encoder counts and distance.</span></div>
+<div class="line"><span class="lineno">  178</span><span class="comment">   *</span></div>
+<div class="line"><span class="lineno">  179</span><span class="comment">   * Also starts periodic reporting if not already active.</span></div>
+<div class="line"><span class="lineno">  180</span><span class="comment">   * @return true if the encoder is properly configured (wheel diameter and</span></div>
+<div class="line"><span class="lineno">  181</span><span class="comment">   * ticks per revolution are set).</span></div>
+<div class="line"><span class="lineno">  182</span><span class="comment">   */</span></div>
+<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span>  <span class="keywordtype">bool</span> <a class="code hl_function" href="classtinyrobotics_1_1WheelEncoder.html#a601fb7cf1fc15db50c71a826f084f934">begin</a>() {</div>
+<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span>    distanceM.resize(numWheels, 0.0f);</div>
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span>    lastSpeedCalcTimeMs.resize(numWheels, 0);</div>
+<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span>    lastDistanceM.resize(numWheels, 0.0f);</div>
+<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span>    speedMPS.resize(numWheels, 0.0f);</div>
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span>    <span class="keywordflow">for</span> (size_t i = 0; i &lt; numWheels; ++i) {</div>
+<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span>      distanceM[i] = 0;</div>
+<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span>      lastSpeedCalcTimeMs[i] = millis();</div>
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span>      lastDistanceM[i] = 0;</div>
+<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span>      speedMPS[i] = 0;</div>
+<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span>    }</div>
+<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span>    <span class="keywordflow">if</span> (!reportingScheduler.isActive()) {</div>
+<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span>      <a class="code hl_function" href="classtinyrobotics_1_1WheelEncoder.html#a7dc8d23f1fcaeeb69211f7b92ef5584a">setReportingFrequencyMs</a><a class="code hl_function" href="classtinyrobotics_1_1WheelEncoder.html#a7dc8d23f1fcaeeb69211f7b92ef5584a">(</a>1000<a class="code hl_function" href="classtinyrobotics_1_1WheelEncoder.html#a7dc8d23f1fcaeeb69211f7b92ef5584a">)</a>;</div>
+<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span>    }</div>
+<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span>    <span class="keywordflow">return</span> wheelDiameterM &gt; 0 &amp;&amp; ticksPerRevolution &gt; 0;</div>
 <div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span>  }</div>
 <div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span> </div>
 <div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span>  <span class="comment">/**</span></div>
-<div class="line"><span class="lineno">  201</span><span class="comment">   * @brief Trigger sending messages for distance and speed.</span></div>
+<div class="line"><span class="lineno">  201</span><span class="comment">   * @brief To be called by the pin interrupt handler when a tick is detected.</span></div>
 <div class="line"><span class="lineno">  202</span><span class="comment">   *</span></div>
-<div class="line"><span class="lineno">  203</span><span class="comment">   * Sends the current distance and speed as messages.</span></div>
+<div class="line"><span class="lineno">  203</span><span class="comment">   * Updates the distance and triggers reporting if needed.</span></div>
 <div class="line"><span class="lineno">  204</span><span class="comment">   */</span></div>
-<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classtinyrobotics_1_1WheelEncoder.html#abffb3f33e85a42e2cc8b6def1d454c08">sendMessage</a>() {</div>
-<div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span>    <a class="code hl_class" href="structtinyrobotics_1_1Message.html">Message</a>&lt;<span class="keywordtype">float</span>&gt; msg(MessageContent::Distance, getDistanceM(), Unit::Meters);</div>
-<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span>    msg.origin = MessageOrigin::Sensor;</div>
-<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span>    MessageSource::sendMessage(msg);</div>
-<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span> </div>
-<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span>    <a class="code hl_class" href="structtinyrobotics_1_1Message.html">Message</a>&lt;<span class="keywordtype">float</span>&gt; speedMsg(MessageContent::Speed, getSpeedMPS(),</div>
-<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span>                            Unit::MetersPerSecond);</div>
-<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span>    speedMsg.origin = MessageOrigin::Sensor;</div>
-<div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span>    MessageSource::sendMessage(speedMsg);</div>
-<div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span>  }</div>
-<div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span> </div>
-<div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span>  <span class="keywordtype">void</span> end() { reportingScheduler.end(); }</div>
-<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span> </div>
-<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span>  <span class="comment">/**</span></div>
-<div class="line"><span class="lineno">  219</span><span class="comment">   * @brief Set the slip correction factor.</span></div>
-<div class="line"><span class="lineno">  220</span><span class="comment">   *</span></div>
-<div class="line"><span class="lineno">  221</span><span class="comment">   * The slip factor is used to correct encoder-based distance and speed</span></div>
-<div class="line"><span class="lineno">  222</span><span class="comment">   * estimates. It should be set to (actual_distance / encoder_distance) after</span></div>
-<div class="line"><span class="lineno">  223</span><span class="comment">   * calibration. Default is 1.0 (no slip).</span></div>
-<div class="line"><span class="lineno">  224</span><span class="comment">   * @param slipFactor The slip correction factor (typically &lt;= 1.0).</span></div>
-<div class="line"><span class="lineno">  225</span><span class="comment">   */</span></div>
-<div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classtinyrobotics_1_1WheelEncoder.html#a11f103c03c7e0fda74b6f2c8cdd60029">setSlipFactor</a>(<span class="keywordtype">float</span> slipFactor) { <span class="keyword">this</span>-&gt;slipFactor = slipFactor; }</div>
-<div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span> </div>
-<div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span>  <span class="comment">/**</span></div>
-<div class="line"><span class="lineno">  229</span><span class="comment">   * @brief Calibrate slip by providing a known actual distance.</span></div>
-<div class="line"><span class="lineno">  230</span><span class="comment">   *</span></div>
-<div class="line"><span class="lineno">  231</span><span class="comment">   * Call this after moving the robot a known distance and accumulating encoder</span></div>
-<div class="line"><span class="lineno">  232</span><span class="comment">   * ticks. The slip factor will be set to (actual_distance / encoder_distance).</span></div>
-<div class="line"><span class="lineno">  233</span><span class="comment">   * @param actualDistanceM The actual distance traveled in meters.</span></div>
-<div class="line"><span class="lineno">  234</span><span class="comment">   */</span></div>
-<div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classtinyrobotics_1_1WheelEncoder.html#ad56a0ccb97a9351685d8bb924a913a72">calibrateSlip</a>(<span class="keywordtype">float</span> actualDistanceM) {</div>
-<div class="line"><a id="l00236" name="l00236"></a><span class="lineno">  236</span>    <span class="keywordtype">float</span> encoderDistance = <a class="code hl_function" href="classtinyrobotics_1_1WheelEncoder.html#a2650795023fb6de0f481d3d28a13dab1">getRawDistanceM</a><a class="code hl_function" href="classtinyrobotics_1_1WheelEncoder.html#a2650795023fb6de0f481d3d28a13dab1">(</a><a class="code hl_function" href="classtinyrobotics_1_1WheelEncoder.html#a2650795023fb6de0f481d3d28a13dab1">)</a>;</div>
-<div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span>    <span class="keywordflow">if</span> (encoderDistance &gt; 0) {</div>
-<div class="line"><a id="l00238" name="l00238"></a><span class="lineno">  238</span>      slipFactor = actualDistanceM / encoderDistance;</div>
-<div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span>    }</div>
-<div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span>  }</div>
-<div class="line"><a id="l00241" name="l00241"></a><span class="lineno">  241</span> </div>
-<div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span>  <span class="comment">/**</span></div>
-<div class="line"><span class="lineno">  243</span><span class="comment">   * @brief Get the slip correction factor.</span></div>
-<div class="line"><span class="lineno">  244</span><span class="comment">   * @return The slip factor (1.0 = no slip, &lt;1.0 = slip present).</span></div>
-<div class="line"><span class="lineno">  245</span><span class="comment">   */</span></div>
-<div class="line"><a id="l00246" name="l00246"></a><span class="lineno">  246</span>  <span class="keywordtype">float</span> <a class="code hl_function" href="classtinyrobotics_1_1WheelEncoder.html#a65ae7d69340a4dfd73267c6cf7f76935">getSlipFactor</a>() <span class="keyword">const</span> { <span class="keywordflow">return</span> slipFactor; }</div>
-<div class="line"><a id="l00247" name="l00247"></a><span class="lineno">  247</span> </div>
-<div class="line"><a id="l00248" name="l00248"></a><span class="lineno">  248</span>  <span class="comment">/**</span></div>
-<div class="line"><span class="lineno">  249</span><span class="comment">   * @brief Get the raw (uncorrected) distance in meters from the encoder.</span></div>
-<div class="line"><span class="lineno">  250</span><span class="comment">   * @return Raw encoder distance in meters.</span></div>
-<div class="line"><span class="lineno">  251</span><span class="comment">   */</span></div>
-<div class="line"><a id="l00252" name="l00252"></a><span class="lineno">  252</span>  <span class="keywordtype">float</span> <a class="code hl_function" href="classtinyrobotics_1_1WheelEncoder.html#a2650795023fb6de0f481d3d28a13dab1">getRawDistanceM</a>() <span class="keyword">const</span> { <span class="keywordflow">return</span> distanceM; }</div>
-<div class="line"><a id="l00253" name="l00253"></a><span class="lineno">  253</span> </div>
-<div class="line"><a id="l00254" name="l00254"></a><span class="lineno">  254</span> <span class="keyword">protected</span>:</div>
-<div class="line"><a id="l00255" name="l00255"></a><span class="lineno">  255</span>  <span class="keyword">volatile</span> <span class="keywordtype">float</span> distanceM = 0.0f;</div>
-<div class="line"><a id="l00256" name="l00256"></a><span class="lineno">  256</span>  <span class="keywordtype">float</span> wheelDiameterM = 0.0f;</div>
-<div class="line"><a id="l00257" name="l00257"></a><span class="lineno">  257</span>  <span class="keywordtype">float</span> distancePerTickM = 0.0f;</div>
-<div class="line"><a id="l00258" name="l00258"></a><span class="lineno">  258</span>  <span class="keywordtype">float</span> lastDistanceM = 0.0f;</div>
-<div class="line"><a id="l00259" name="l00259"></a><span class="lineno">  259</span>  <span class="keywordtype">float</span> slipFactor = 1.0f;</div>
-<div class="line"><a id="l00260" name="l00260"></a><span class="lineno">  260</span>  uint32_t ticksPerRevolution = 0;</div>
-<div class="line"><a id="l00261" name="l00261"></a><span class="lineno">  261</span>  uint32_t lastSpeedCalcTimeMs = 0;</div>
-<div class="line"><a id="l00262" name="l00262"></a><span class="lineno">  262</span>  <a class="code hl_class" href="classtinyrobotics_1_1Scheduler.html">Scheduler</a> reportingScheduler;</div>
-<div class="line"><a id="l00263" name="l00263"></a><span class="lineno">  263</span> </div>
-<div class="line"><a id="l00264" name="l00264"></a><span class="lineno">  264</span>  <span class="comment">/**</span></div>
-<div class="line"><span class="lineno">  265</span><span class="comment">   * @brief Static callback for the reporting scheduler to send messages.</span></div>
-<div class="line"><span class="lineno">  266</span><span class="comment">   * @param ref Pointer to the WheelEncoder instance.</span></div>
-<div class="line"><span class="lineno">  267</span><span class="comment">   */</span></div>
-<div class="line"><a id="l00268" name="l00268"></a><span class="lineno">  268</span>  <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classtinyrobotics_1_1WheelEncoder.html#a1a3971195a9893edc5ed9e0532110c33">sendMessageCB</a>(<span class="keywordtype">void</span>* ref) {</div>
-<div class="line"><a id="l00269" name="l00269"></a><span class="lineno">  269</span>    <a class="code hl_class" href="classtinyrobotics_1_1WheelEncoder.html">WheelEncoder</a>* encoder = <span class="keyword">static_cast</span>&lt;<a class="code hl_class" href="classtinyrobotics_1_1WheelEncoder.html">WheelEncoder</a>*&gt;(ref);</div>
-<div class="line"><a id="l00270" name="l00270"></a><span class="lineno">  270</span>    encoder<a class="code hl_function" href="classtinyrobotics_1_1WheelEncoder.html#abffb3f33e85a42e2cc8b6def1d454c08">-&gt;</a><a class="code hl_function" href="classtinyrobotics_1_1WheelEncoder.html#abffb3f33e85a42e2cc8b6def1d454c08">sendMessage</a><a class="code hl_function" href="classtinyrobotics_1_1WheelEncoder.html#abffb3f33e85a42e2cc8b6def1d454c08">(</a><a class="code hl_function" href="classtinyrobotics_1_1WheelEncoder.html#abffb3f33e85a42e2cc8b6def1d454c08">)</a>;</div>
-<div class="line"><a id="l00271" name="l00271"></a><span class="lineno">  271</span>  }</div>
-<div class="line"><a id="l00272" name="l00272"></a><span class="lineno">  272</span>};</div>
-<div class="line"><a id="l00273" name="l00273"></a><span class="lineno">  273</span> </div>
-<div class="line"><a id="l00274" name="l00274"></a><span class="lineno">  274</span>}  <span class="comment">// namespace tinyrobotics</span></div>
+<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classtinyrobotics_1_1WheelEncoder.html#abcb0dbb59323a95666dc3ab4b6c1eabf">setTick</a>(size_t motor = 0) {</div>
+<div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span>    <span class="keywordflow">if</span> (motor &gt;= numWheels) <span class="keywordflow">return</span>;</div>
+<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span>    distanceM[motor] += distancePerTickM;</div>
+<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span>    reportingScheduler.run();</div>
+<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span>  }</div>
+<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span> </div>
+<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span>  <a class="code hl_class" href="classtinyrobotics_1_1Speed.html">Speed</a> <a class="code hl_function" href="classtinyrobotics_1_1WheelEncoder.html#a6ed21154d02ecabbb30349c57489e86d">getSpeed</a>(uint8_t motor = 0) <span class="keyword">const</span> <span class="keyword">override</span> {</div>
+<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span>    <span class="keywordflow">if</span> (motor &gt;= numWheels) <span class="keywordflow">return</span> <a class="code hl_class" href="classtinyrobotics_1_1Speed.html">Speed</a>(0.0f, <a class="code hl_enumeration" href="group__units.html#ga877e4fdbe9d3581dfa3431b6436b1615">SpeedUnit</a>::MPS);</div>
+<div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span>    <span class="keywordflow">return</span> <a class="code hl_class" href="classtinyrobotics_1_1Speed.html">Speed</a>(<span class="keyword">const_cast</span>&lt;<a class="code hl_class" href="classtinyrobotics_1_1WheelEncoder.html">WheelEncoder</a>*&gt;(<span class="keyword">this</span>)-&gt;getSpeedMPS(motor),</div>
+<div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span>                 <a class="code hl_enumeration" href="group__units.html#ga877e4fdbe9d3581dfa3431b6436b1615">SpeedUnit</a>::MPS);</div>
+<div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span>  }</div>
+<div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span> </div>
+<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span>  <span class="comment">/// Just provide the last reported speed without inertia modeling</span></div>
+<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span> </div>
+<div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span>  <a class="code hl_class" href="classtinyrobotics_1_1Speed.html">Speed</a> <a class="code hl_function" href="classtinyrobotics_1_1WheelEncoder.html#a80ef031e116658585424a3f8ae51eb12">updateSpeed</a>(uint32_t deltaTimeMs, uint8_t motor = 0) <span class="keyword">override</span> {</div>
+<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span>    <span class="keywordflow">if</span> (motor &gt;= numWheels) <span class="keywordflow">return</span> <a class="code hl_class" href="classtinyrobotics_1_1Speed.html">Speed</a>(0.0f, <a class="code hl_enumeration" href="group__units.html#ga877e4fdbe9d3581dfa3431b6436b1615">SpeedUnit</a>::MPS);</div>
+<div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span>    <span class="keywordflow">return</span> Speed(speedMPS[motor], SpeedUnit::MPS);</div>
+<div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span>  }</div>
+<div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span> </div>
+<div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span>  <span class="comment">/**</span></div>
+<div class="line"><span class="lineno">  225</span><span class="comment">   * @brief Trigger sending messages for distance and speed.</span></div>
+<div class="line"><span class="lineno">  226</span><span class="comment">   *</span></div>
+<div class="line"><span class="lineno">  227</span><span class="comment">   * Sends the current distance and speed as messages.</span></div>
+<div class="line"><span class="lineno">  228</span><span class="comment">   */</span></div>
+<div class="line"><a id="l00229" name="l00229"></a><span class="lineno">  229</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classtinyrobotics_1_1WheelEncoder.html#abffb3f33e85a42e2cc8b6def1d454c08">sendMessage</a>() {</div>
+<div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span>    <span class="keywordflow">for</span> (size_t i = 0; i &lt; numWheels; ++i) {</div>
+<div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span>      Message&lt;<span class="keywordtype">float</span>&gt; msg(MessageContent::Distance, getDistanceM(i),</div>
+<div class="line"><a id="l00232" name="l00232"></a><span class="lineno">  232</span>                         Unit::Meters);</div>
+<div class="line"><a id="l00233" name="l00233"></a><span class="lineno">  233</span>      msg.origin = MessageOrigin::Sensor;</div>
+<div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span>      MessageSource::sendMessage(msg);</div>
+<div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span> </div>
+<div class="line"><a id="l00236" name="l00236"></a><span class="lineno">  236</span>      Message&lt;<span class="keywordtype">float</span>&gt; speedMsg(MessageContent::Speed, getSpeedMPS(i),</div>
+<div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span>                              Unit::MetersPerSecond);</div>
+<div class="line"><a id="l00238" name="l00238"></a><span class="lineno">  238</span>      speedMsg.origin = MessageOrigin::Sensor;</div>
+<div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span>      MessageSource::sendMessage(speedMsg);</div>
+<div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span>    }</div>
+<div class="line"><a id="l00241" name="l00241"></a><span class="lineno">  241</span>  }</div>
+<div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span> </div>
+<div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span>  <span class="comment">/**</span></div>
+<div class="line"><span class="lineno">  244</span><span class="comment">   * @brief Set the slip correction factor.</span></div>
+<div class="line"><span class="lineno">  245</span><span class="comment">   *</span></div>
+<div class="line"><span class="lineno">  246</span><span class="comment">   * The slip factor is used to correct encoder-based distance and speed</span></div>
+<div class="line"><span class="lineno">  247</span><span class="comment">   * estimates. It should be set to (actual_distance / encoder_distance) after</span></div>
+<div class="line"><span class="lineno">  248</span><span class="comment">   * calibration. Default is 1.0 (no slip).</span></div>
+<div class="line"><span class="lineno">  249</span><span class="comment">   * @param slipFactor The slip correction factor (typically &lt;= 1.0).</span></div>
+<div class="line"><span class="lineno">  250</span><span class="comment">   */</span></div>
+<div class="line"><a id="l00251" name="l00251"></a><span class="lineno">  251</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classtinyrobotics_1_1WheelEncoder.html#a11f103c03c7e0fda74b6f2c8cdd60029">setSlipFactor</a>(<span class="keywordtype">float</span> slipFactor) { <span class="keyword">this</span>-&gt;slipFactor = slipFactor; }</div>
+<div class="line"><a id="l00252" name="l00252"></a><span class="lineno">  252</span> </div>
+<div class="line"><a id="l00253" name="l00253"></a><span class="lineno">  253</span>  <span class="comment">/**</span></div>
+<div class="line"><span class="lineno">  254</span><span class="comment">   * @brief Calibrate slip by providing a known actual distance.</span></div>
+<div class="line"><span class="lineno">  255</span><span class="comment">   *</span></div>
+<div class="line"><span class="lineno">  256</span><span class="comment">   * Call this after moving the robot a known distance and accumulating encoder</span></div>
+<div class="line"><span class="lineno">  257</span><span class="comment">   * ticks. The slip factor will be set to (actual_distance / encoder_distance).</span></div>
+<div class="line"><span class="lineno">  258</span><span class="comment">   * @param actualDistanceM The actual distance traveled in meters.</span></div>
+<div class="line"><span class="lineno">  259</span><span class="comment">   */</span></div>
+<div class="line"><a id="l00260" name="l00260"></a><span class="lineno">  260</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classtinyrobotics_1_1WheelEncoder.html#ad56a0ccb97a9351685d8bb924a913a72">calibrateSlip</a>(<span class="keywordtype">float</span> actualDistanceM) {</div>
+<div class="line"><a id="l00261" name="l00261"></a><span class="lineno">  261</span>    <span class="keywordtype">float</span> encoderDistance = getRawDistanceM();</div>
+<div class="line"><a id="l00262" name="l00262"></a><span class="lineno">  262</span>    <span class="keywordflow">if</span> (encoderDistance &gt; 0) {</div>
+<div class="line"><a id="l00263" name="l00263"></a><span class="lineno">  263</span>      slipFactor = actualDistanceM / encoderDistance;</div>
+<div class="line"><a id="l00264" name="l00264"></a><span class="lineno">  264</span>    }</div>
+<div class="line"><a id="l00265" name="l00265"></a><span class="lineno">  265</span>  }</div>
+<div class="line"><a id="l00266" name="l00266"></a><span class="lineno">  266</span> </div>
+<div class="line"><a id="l00267" name="l00267"></a><span class="lineno">  267</span>  <span class="comment">/**</span></div>
+<div class="line"><span class="lineno">  268</span><span class="comment">   * @brief Get the slip correction factor.</span></div>
+<div class="line"><span class="lineno">  269</span><span class="comment">   * @return The slip factor (1.0 = no slip, &lt;1.0 = slip present).</span></div>
+<div class="line"><span class="lineno">  270</span><span class="comment">   */</span></div>
+<div class="line"><a id="l00271" name="l00271"></a><span class="lineno">  271</span>  <span class="keywordtype">float</span> <a class="code hl_function" href="classtinyrobotics_1_1WheelEncoder.html#a65ae7d69340a4dfd73267c6cf7f76935">getSlipFactor</a>() <span class="keyword">const</span> { <span class="keywordflow">return</span> slipFactor; }</div>
+<div class="line"><a id="l00272" name="l00272"></a><span class="lineno">  272</span> </div>
+<div class="line"><a id="l00273" name="l00273"></a><span class="lineno">  273</span>  <span class="comment">/**</span></div>
+<div class="line"><span class="lineno">  274</span><span class="comment">   * @brief Get the raw (uncorrected) distance in meters from the encoder.</span></div>
+<div class="line"><span class="lineno">  275</span><span class="comment">   * @return Raw encoder distance in meters.</span></div>
+<div class="line"><span class="lineno">  276</span><span class="comment">   */</span></div>
+<div class="line"><a id="l00277" name="l00277"></a><span class="lineno">  277</span>  <span class="keywordtype">float</span> <a class="code hl_function" href="classtinyrobotics_1_1WheelEncoder.html#a8f3f4c53f8f40fc5a16411b6e2ef63b0">getRawDistanceM</a>(size_t motor = 0) <span class="keyword">const</span> {</div>
+<div class="line"><a id="l00278" name="l00278"></a><span class="lineno">  278</span>    <span class="keywordflow">if</span> (motor &gt;= numWheels) <span class="keywordflow">return</span> 0.0f;</div>
+<div class="line"><a id="l00279" name="l00279"></a><span class="lineno">  279</span>    <span class="keywordflow">return</span> distanceM[motor];</div>
+<div class="line"><a id="l00280" name="l00280"></a><span class="lineno">  280</span>  }</div>
+<div class="line"><a id="l00281" name="l00281"></a><span class="lineno">  281</span> </div>
+<div class="line"><a id="l00282" name="l00282"></a><span class="lineno">  282</span>  <span class="comment">/// Not used</span></div>
+<div class="line"><a id="l00283" name="l00283"></a><span class="lineno">  283</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classtinyrobotics_1_1WheelEncoder.html#a746f9eb7ef7d8ade5a65dbb0798f5b10">setThrottlePercent</a>(<span class="keywordtype">float</span> value, uint8_t motor = 0) <span class="keyword">override</span> {}</div>
+<div class="line"><a id="l00284" name="l00284"></a><span class="lineno">  284</span> </div>
+<div class="line"><a id="l00285" name="l00285"></a><span class="lineno">  285</span> <span class="keyword">protected</span>:</div>
+<div class="line"><a id="l00286" name="l00286"></a><span class="lineno">  286</span>  std::vector&lt;<span class="keywordtype">float</span>&gt; speedMPS;</div>
+<div class="line"><a id="l00287" name="l00287"></a><span class="lineno">  287</span>  std::vector&lt;<span class="keywordtype">float</span>&gt; distanceM;</div>
+<div class="line"><a id="l00288" name="l00288"></a><span class="lineno">  288</span>  <span class="comment">// Returns the distance for a specific motor (default 0)</span></div>
+<div class="line"><a id="l00289" name="l00289"></a><span class="lineno">  289</span>  <a class="code hl_class" href="classtinyrobotics_1_1Distance.html">Distance</a> getDistance(size_t motor = 0) <span class="keyword">const</span> {</div>
+<div class="line"><a id="l00290" name="l00290"></a><span class="lineno">  290</span>    <span class="keywordflow">if</span> (motor &gt;= numWheels) <span class="keywordflow">return</span> <a class="code hl_class" href="classtinyrobotics_1_1Distance.html">Distance</a>(0.0f, <a class="code hl_enumeration" href="group__units.html#ga4c67a7b952f3804e2bd056cf95c4161a">DistanceUnit</a>::M);</div>
+<div class="line"><a id="l00291" name="l00291"></a><span class="lineno">  291</span>    <span class="keywordflow">return</span> Distance(distanceM[motor], DistanceUnit::M);</div>
+<div class="line"><a id="l00292" name="l00292"></a><span class="lineno">  292</span>  }</div>
+<div class="line"><a id="l00293" name="l00293"></a><span class="lineno">  293</span>  <span class="keywordtype">float</span> wheelDiameterM = 0.0f;</div>
+<div class="line"><a id="l00294" name="l00294"></a><span class="lineno">  294</span>  <span class="keywordtype">float</span> distancePerTickM = 0.0f;</div>
+<div class="line"><a id="l00295" name="l00295"></a><span class="lineno">  295</span>  std::vector&lt;<span class="keywordtype">float</span>&gt; lastDistanceM;</div>
+<div class="line"><a id="l00296" name="l00296"></a><span class="lineno">  296</span>  <span class="keywordtype">float</span> slipFactor = 1.0f;</div>
+<div class="line"><a id="l00297" name="l00297"></a><span class="lineno">  297</span>  uint32_t ticksPerRevolution = 0;</div>
+<div class="line"><a id="l00298" name="l00298"></a><span class="lineno">  298</span>  std::vector&lt;uint32_t&gt; lastSpeedCalcTimeMs;</div>
+<div class="line"><a id="l00299" name="l00299"></a><span class="lineno">  299</span>  <a class="code hl_class" href="classtinyrobotics_1_1Scheduler.html">Scheduler</a> reportingScheduler;</div>
+<div class="line"><a id="l00300" name="l00300"></a><span class="lineno">  300</span>  size_t numWheels = 1;</div>
+<div class="line"><a id="l00301" name="l00301"></a><span class="lineno">  301</span> </div>
+<div class="line"><a id="l00302" name="l00302"></a><span class="lineno">  302</span>  <span class="comment">/**</span></div>
+<div class="line"><span class="lineno">  303</span><span class="comment">   * @brief Static callback for the reporting scheduler to send messages.</span></div>
+<div class="line"><span class="lineno">  304</span><span class="comment">   * @param ref Pointer to the WheelEncoder instance.</span></div>
+<div class="line"><span class="lineno">  305</span><span class="comment">   */</span></div>
+<div class="line"><a id="l00306" name="l00306"></a><span class="lineno">  306</span>  <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classtinyrobotics_1_1WheelEncoder.html#a1a3971195a9893edc5ed9e0532110c33">sendMessageCB</a>(<span class="keywordtype">void</span>* ref) {</div>
+<div class="line"><a id="l00307" name="l00307"></a><span class="lineno">  307</span>    <a class="code hl_class" href="classtinyrobotics_1_1WheelEncoder.html">WheelEncoder</a>* encoder = <span class="keyword">static_cast</span>&lt;<a class="code hl_class" href="classtinyrobotics_1_1WheelEncoder.html">WheelEncoder</a>*&gt;(ref);</div>
+<div class="line"><a id="l00308" name="l00308"></a><span class="lineno">  308</span>    encoder<a class="code hl_function" href="classtinyrobotics_1_1WheelEncoder.html#abffb3f33e85a42e2cc8b6def1d454c08">-&gt;</a><a class="code hl_function" href="classtinyrobotics_1_1WheelEncoder.html#abffb3f33e85a42e2cc8b6def1d454c08">sendMessage</a><a class="code hl_function" href="classtinyrobotics_1_1WheelEncoder.html#abffb3f33e85a42e2cc8b6def1d454c08">(</a><a class="code hl_function" href="classtinyrobotics_1_1WheelEncoder.html#abffb3f33e85a42e2cc8b6def1d454c08">)</a>;</div>
+<div class="line"><a id="l00309" name="l00309"></a><span class="lineno">  309</span>  }</div>
+<div class="line"><a id="l00310" name="l00310"></a><span class="lineno">  310</span> </div>
+<div class="line"><a id="l00311" name="l00311"></a><span class="lineno">  311</span>  <span class="comment">/**</span></div>
+<div class="line"><span class="lineno">  312</span><span class="comment">   * @brief Calculate speed in meters per second based on distance traveled</span></div>
+<div class="line"><span class="lineno">  313</span><span class="comment">   * since last calculation and elapsed time.</span></div>
+<div class="line"><span class="lineno">  314</span><span class="comment">   * @return Speed in meters per second.</span></div>
+<div class="line"><span class="lineno">  315</span><span class="comment">   */</span></div>
+<div class="line"><a id="l00316" name="l00316"></a><span class="lineno">  316</span>  <span class="keywordtype">float</span> <a class="code hl_function" href="classtinyrobotics_1_1WheelEncoder.html#ab0cd5c0f2065ab4fced00cf900d61f0d">getSpeedMPS</a>(size_t motor = 0) {</div>
+<div class="line"><a id="l00317" name="l00317"></a><span class="lineno">  317</span>    <span class="keywordflow">if</span> (motor &gt;= numWheels) <span class="keywordflow">return</span> 0.0f;</div>
+<div class="line"><a id="l00318" name="l00318"></a><span class="lineno">  318</span>    speedMPS[motor] = 0;</div>
+<div class="line"><a id="l00319" name="l00319"></a><span class="lineno">  319</span>    uint32_t currentTimeMs = millis();</div>
+<div class="line"><a id="l00320" name="l00320"></a><span class="lineno">  320</span>    uint32_t elapsedTimeMs = currentTimeMs - lastSpeedCalcTimeMs[motor];</div>
+<div class="line"><a id="l00321" name="l00321"></a><span class="lineno">  321</span>    <span class="keywordflow">if</span> (elapsedTimeMs &gt; 0) {</div>
+<div class="line"><a id="l00322" name="l00322"></a><span class="lineno">  322</span>      <span class="keywordtype">float</span> distanceTraveledM =</div>
+<div class="line"><a id="l00323" name="l00323"></a><span class="lineno">  323</span>          (distanceM[motor] - lastDistanceM[motor]) * slipFactor;</div>
+<div class="line"><a id="l00324" name="l00324"></a><span class="lineno">  324</span>      speedMPS[motor] = distanceTraveledM / (elapsedTimeMs / 1000.0f);</div>
+<div class="line"><a id="l00325" name="l00325"></a><span class="lineno">  325</span>      lastSpeedCalcTimeMs[motor] = currentTimeMs;</div>
+<div class="line"><a id="l00326" name="l00326"></a><span class="lineno">  326</span>      lastDistanceM[motor] = distanceM[motor];</div>
+<div class="line"><a id="l00327" name="l00327"></a><span class="lineno">  327</span>    }</div>
+<div class="line"><a id="l00328" name="l00328"></a><span class="lineno">  328</span>    <span class="keywordflow">return</span> speedMPS[motor];</div>
+<div class="line"><a id="l00329" name="l00329"></a><span class="lineno">  329</span>  }</div>
+<div class="line"><a id="l00330" name="l00330"></a><span class="lineno">  330</span>};</div>
+<div class="line"><a id="l00331" name="l00331"></a><span class="lineno">  331</span> </div>
+<div class="line"><a id="l00332" name="l00332"></a><span class="lineno">  332</span>}  <span class="comment">// namespace tinyrobotics</span></div>
 <div class="ttc" id="aclasstinyrobotics_1_1Distance_html"><div class="ttname"><a href="classtinyrobotics_1_1Distance.html">tinyrobotics::Distance</a></div><div class="ttdoc">Represents a distance measurement with unit conversion support.</div><div class="ttdef"><b>Definition:</b> Distance.h:40</div></div>
+<div class="ttc" id="aclasstinyrobotics_1_1ISpeedSource_html"><div class="ttname"><a href="classtinyrobotics_1_1ISpeedSource.html">tinyrobotics::ISpeedSource</a></div><div class="ttdoc">Interface for speed sources.</div><div class="ttdef"><b>Definition:</b> ISpeedSource.h:9</div></div>
 <div class="ttc" id="aclasstinyrobotics_1_1MessageSource_html"><div class="ttname"><a href="classtinyrobotics_1_1MessageSource.html">tinyrobotics::MessageSource</a></div><div class="ttdoc">Base class for message sources in the TinyRobotics communication framework.</div><div class="ttdef"><b>Definition:</b> MessageSource.h:34</div></div>
 <div class="ttc" id="aclasstinyrobotics_1_1Scheduler_html"><div class="ttname"><a href="classtinyrobotics_1_1Scheduler.html">tinyrobotics::Scheduler</a></div><div class="ttdoc">Simple periodic task scheduler for embedded and Arduino environments.</div><div class="ttdef"><b>Definition:</b> Scheduler.h:57</div></div>
-<div class="ttc" id="aclasstinyrobotics_1_1WheelEncoder_html"><div class="ttname"><a href="classtinyrobotics_1_1WheelEncoder.html">tinyrobotics::WheelEncoder</a></div><div class="ttdoc">Measures wheel rotation and computes distance and speed using encoder ticks for mobile robots.</div><div class="ttdef"><b>Definition:</b> WheelEncoder.h:57</div></div>
-<div class="ttc" id="aclasstinyrobotics_1_1WheelEncoder_html_a08d4be1757831ea093bea7725e3239c1"><div class="ttname"><a href="classtinyrobotics_1_1WheelEncoder.html#a08d4be1757831ea093bea7725e3239c1">tinyrobotics::WheelEncoder::getDistance</a></div><div class="ttdeci">float getDistance(DistanceUnit unit) const</div><div class="ttdoc">Get the total distance traveled in the specified unit.</div><div class="ttdef"><b>Definition:</b> WheelEncoder.h:129</div></div>
-<div class="ttc" id="aclasstinyrobotics_1_1WheelEncoder_html_a11f103c03c7e0fda74b6f2c8cdd60029"><div class="ttname"><a href="classtinyrobotics_1_1WheelEncoder.html#a11f103c03c7e0fda74b6f2c8cdd60029">tinyrobotics::WheelEncoder::setSlipFactor</a></div><div class="ttdeci">void setSlipFactor(float slipFactor)</div><div class="ttdoc">Set the slip correction factor.</div><div class="ttdef"><b>Definition:</b> WheelEncoder.h:226</div></div>
-<div class="ttc" id="aclasstinyrobotics_1_1WheelEncoder_html_a15be2bec6f6c3a6f140f53ab16193a6b"><div class="ttname"><a href="classtinyrobotics_1_1WheelEncoder.html#a15be2bec6f6c3a6f140f53ab16193a6b">tinyrobotics::WheelEncoder::setTick</a></div><div class="ttdeci">void setTick()</div><div class="ttdoc">To be called by the pin interrupt handler when a tick is detected.</div><div class="ttdef"><b>Definition:</b> WheelEncoder.h:195</div></div>
-<div class="ttc" id="aclasstinyrobotics_1_1WheelEncoder_html_a1a3971195a9893edc5ed9e0532110c33"><div class="ttname"><a href="classtinyrobotics_1_1WheelEncoder.html#a1a3971195a9893edc5ed9e0532110c33">tinyrobotics::WheelEncoder::sendMessageCB</a></div><div class="ttdeci">static void sendMessageCB(void *ref)</div><div class="ttdoc">Static callback for the reporting scheduler to send messages.</div><div class="ttdef"><b>Definition:</b> WheelEncoder.h:268</div></div>
-<div class="ttc" id="aclasstinyrobotics_1_1WheelEncoder_html_a1d6725717d5442ca2b6c0598e7a0b175"><div class="ttname"><a href="classtinyrobotics_1_1WheelEncoder.html#a1d6725717d5442ca2b6c0598e7a0b175">tinyrobotics::WheelEncoder::getSpeedMPS</a></div><div class="ttdeci">float getSpeedMPS()</div><div class="ttdoc">Calculate speed in meters per second based on distance traveled since last calculation and elapsed ti...</div><div class="ttdef"><b>Definition:</b> WheelEncoder.h:160</div></div>
-<div class="ttc" id="aclasstinyrobotics_1_1WheelEncoder_html_a2650795023fb6de0f481d3d28a13dab1"><div class="ttname"><a href="classtinyrobotics_1_1WheelEncoder.html#a2650795023fb6de0f481d3d28a13dab1">tinyrobotics::WheelEncoder::getRawDistanceM</a></div><div class="ttdeci">float getRawDistanceM() const</div><div class="ttdoc">Get the raw (uncorrected) distance in meters from the encoder.</div><div class="ttdef"><b>Definition:</b> WheelEncoder.h:252</div></div>
-<div class="ttc" id="aclasstinyrobotics_1_1WheelEncoder_html_a2bdb4c9f4afb748ea1399788427e5a03"><div class="ttname"><a href="classtinyrobotics_1_1WheelEncoder.html#a2bdb4c9f4afb748ea1399788427e5a03">tinyrobotics::WheelEncoder::getDistanceM</a></div><div class="ttdeci">float getDistanceM() const</div><div class="ttdoc">Get the total distance traveled in meters.</div><div class="ttdef"><b>Definition:</b> WheelEncoder.h:122</div></div>
-<div class="ttc" id="aclasstinyrobotics_1_1WheelEncoder_html_a2fe8fb3046c31aa501d149d05b91e279"><div class="ttname"><a href="classtinyrobotics_1_1WheelEncoder.html#a2fe8fb3046c31aa501d149d05b91e279">tinyrobotics::WheelEncoder::setWheelDiameter</a></div><div class="ttdeci">void setWheelDiameter(float diameter, DistanceUnit unit=DistanceUnit::M)</div><div class="ttdoc">Set the wheel diameter using a float value and unit.</div><div class="ttdef"><b>Definition:</b> WheelEncoder.h:90</div></div>
-<div class="ttc" id="aclasstinyrobotics_1_1WheelEncoder_html_a43948159b2c7344eedf0bc94c8cb4a5d"><div class="ttname"><a href="classtinyrobotics_1_1WheelEncoder.html#a43948159b2c7344eedf0bc94c8cb4a5d">tinyrobotics::WheelEncoder::WheelEncoder</a></div><div class="ttdeci">WheelEncoder()=default</div><div class="ttdoc">Default constructor. Wheel diameter and ticks per revolution must be set before use.</div></div>
-<div class="ttc" id="aclasstinyrobotics_1_1WheelEncoder_html_a601fb7cf1fc15db50c71a826f084f934"><div class="ttname"><a href="classtinyrobotics_1_1WheelEncoder.html#a601fb7cf1fc15db50c71a826f084f934">tinyrobotics::WheelEncoder::begin</a></div><div class="ttdeci">bool begin()</div><div class="ttdoc">Resets the encoder counts and distance.</div><div class="ttdef"><b>Definition:</b> WheelEncoder.h:180</div></div>
-<div class="ttc" id="aclasstinyrobotics_1_1WheelEncoder_html_a65ae7d69340a4dfd73267c6cf7f76935"><div class="ttname"><a href="classtinyrobotics_1_1WheelEncoder.html#a65ae7d69340a4dfd73267c6cf7f76935">tinyrobotics::WheelEncoder::getSlipFactor</a></div><div class="ttdeci">float getSlipFactor() const</div><div class="ttdoc">Get the slip correction factor.</div><div class="ttdef"><b>Definition:</b> WheelEncoder.h:246</div></div>
-<div class="ttc" id="aclasstinyrobotics_1_1WheelEncoder_html_a753a8644e4aa9513a8c359a4f2bb56d9"><div class="ttname"><a href="classtinyrobotics_1_1WheelEncoder.html#a753a8644e4aa9513a8c359a4f2bb56d9">tinyrobotics::WheelEncoder::WheelEncoder</a></div><div class="ttdeci">WheelEncoder(Distance wheelDiameterM, int ticksPerRevolution=1)</div><div class="ttdoc">Constructor with wheel diameter and ticks per revolution.</div><div class="ttdef"><b>Definition:</b> WheelEncoder.h:71</div></div>
-<div class="ttc" id="aclasstinyrobotics_1_1WheelEncoder_html_a7dc8d23f1fcaeeb69211f7b92ef5584a"><div class="ttname"><a href="classtinyrobotics_1_1WheelEncoder.html#a7dc8d23f1fcaeeb69211f7b92ef5584a">tinyrobotics::WheelEncoder::setReportingFrequencyMs</a></div><div class="ttdeci">void setReportingFrequencyMs(uint16_t ms)</div><div class="ttdoc">Defines the reporint frequency for distance and speed messages.</div><div class="ttdef"><b>Definition:</b> WheelEncoder.h:108</div></div>
-<div class="ttc" id="aclasstinyrobotics_1_1WheelEncoder_html_a887add573faa2f87f33de7cce9087561"><div class="ttname"><a href="classtinyrobotics_1_1WheelEncoder.html#a887add573faa2f87f33de7cce9087561">tinyrobotics::WheelEncoder::getDistanceForTicks</a></div><div class="ttdeci">float getDistanceForTicks(size_t ticks, DistanceUnit unit) const</div><div class="ttdoc">Get the distance for a given number of ticks in the specified unit.</div><div class="ttdef"><b>Definition:</b> WheelEncoder.h:150</div></div>
-<div class="ttc" id="aclasstinyrobotics_1_1WheelEncoder_html_ab192863d4018b5b215425b01bb0c025f"><div class="ttname"><a href="classtinyrobotics_1_1WheelEncoder.html#ab192863d4018b5b215425b01bb0c025f">tinyrobotics::WheelEncoder::getDistanceForTicksM</a></div><div class="ttdeci">float getDistanceForTicksM(size_t ticks) const</div><div class="ttdoc">Get the distance corresponding to a given number of ticks (in meters).</div><div class="ttdef"><b>Definition:</b> WheelEncoder.h:140</div></div>
-<div class="ttc" id="aclasstinyrobotics_1_1WheelEncoder_html_abffb3f33e85a42e2cc8b6def1d454c08"><div class="ttname"><a href="classtinyrobotics_1_1WheelEncoder.html#abffb3f33e85a42e2cc8b6def1d454c08">tinyrobotics::WheelEncoder::sendMessage</a></div><div class="ttdeci">void sendMessage()</div><div class="ttdoc">Trigger sending messages for distance and speed.</div><div class="ttdef"><b>Definition:</b> WheelEncoder.h:205</div></div>
-<div class="ttc" id="aclasstinyrobotics_1_1WheelEncoder_html_ac1f5b4274e3f63f7abf79ed301a8dfc1"><div class="ttname"><a href="classtinyrobotics_1_1WheelEncoder.html#ac1f5b4274e3f63f7abf79ed301a8dfc1">tinyrobotics::WheelEncoder::setTicksPerRevolution</a></div><div class="ttdeci">void setTicksPerRevolution(int ticks)</div><div class="ttdoc">Set the number of encoder ticks per wheel revolution.</div><div class="ttdef"><b>Definition:</b> WheelEncoder.h:98</div></div>
-<div class="ttc" id="aclasstinyrobotics_1_1WheelEncoder_html_ad56a0ccb97a9351685d8bb924a913a72"><div class="ttname"><a href="classtinyrobotics_1_1WheelEncoder.html#ad56a0ccb97a9351685d8bb924a913a72">tinyrobotics::WheelEncoder::calibrateSlip</a></div><div class="ttdeci">void calibrateSlip(float actualDistanceM)</div><div class="ttdoc">Calibrate slip by providing a known actual distance.</div><div class="ttdef"><b>Definition:</b> WheelEncoder.h:235</div></div>
-<div class="ttc" id="aclasstinyrobotics_1_1WheelEncoder_html_adee886ee12b8cc045d18bf1e31b72e5c"><div class="ttname"><a href="classtinyrobotics_1_1WheelEncoder.html#adee886ee12b8cc045d18bf1e31b72e5c">tinyrobotics::WheelEncoder::setWheelDiameter</a></div><div class="ttdeci">void setWheelDiameter(Distance wheelDiameter)</div><div class="ttdoc">Set the wheel diameter using a Distance object.</div><div class="ttdef"><b>Definition:</b> WheelEncoder.h:81</div></div>
-<div class="ttc" id="aclasstinyrobotics_1_1WheelEncoder_html_ae4404fee813c423e582760dbaf687c8f"><div class="ttname"><a href="classtinyrobotics_1_1WheelEncoder.html#ae4404fee813c423e582760dbaf687c8f">tinyrobotics::WheelEncoder::getDistance</a></div><div class="ttdeci">Distance getDistance() const</div><div class="ttdoc">Get the total distance traveled since last reset.</div><div class="ttdef"><b>Definition:</b> WheelEncoder.h:116</div></div>
+<div class="ttc" id="aclasstinyrobotics_1_1Speed_html"><div class="ttname"><a href="classtinyrobotics_1_1Speed.html">tinyrobotics::Speed</a></div><div class="ttdoc">Represents a speed measurement with unit conversion support.</div><div class="ttdef"><b>Definition:</b> Speed.h:40</div></div>
+<div class="ttc" id="aclasstinyrobotics_1_1WheelEncoder_html"><div class="ttname"><a href="classtinyrobotics_1_1WheelEncoder.html">tinyrobotics::WheelEncoder</a></div><div class="ttdoc">Measures wheel rotation and computes per-wheel distance and speed using encoder ticks for mobile robo...</div><div class="ttdef"><b>Definition:</b> WheelEncoder.h:69</div></div>
+<div class="ttc" id="aclasstinyrobotics_1_1WheelEncoder_html_a11f103c03c7e0fda74b6f2c8cdd60029"><div class="ttname"><a href="classtinyrobotics_1_1WheelEncoder.html#a11f103c03c7e0fda74b6f2c8cdd60029">tinyrobotics::WheelEncoder::setSlipFactor</a></div><div class="ttdeci">void setSlipFactor(float slipFactor)</div><div class="ttdoc">Set the slip correction factor.</div><div class="ttdef"><b>Definition:</b> WheelEncoder.h:251</div></div>
+<div class="ttc" id="aclasstinyrobotics_1_1WheelEncoder_html_a1a3971195a9893edc5ed9e0532110c33"><div class="ttname"><a href="classtinyrobotics_1_1WheelEncoder.html#a1a3971195a9893edc5ed9e0532110c33">tinyrobotics::WheelEncoder::sendMessageCB</a></div><div class="ttdeci">static void sendMessageCB(void *ref)</div><div class="ttdoc">Static callback for the reporting scheduler to send messages.</div><div class="ttdef"><b>Definition:</b> WheelEncoder.h:306</div></div>
+<div class="ttc" id="aclasstinyrobotics_1_1WheelEncoder_html_a2f62b093c6daa6551c3595b50ab3da3d"><div class="ttname"><a href="classtinyrobotics_1_1WheelEncoder.html#a2f62b093c6daa6551c3595b50ab3da3d">tinyrobotics::WheelEncoder::getDistanceM</a></div><div class="ttdeci">float getDistanceM(size_t motor=0) const</div><div class="ttdoc">Get the total distance traveled since last reset.</div><div class="ttdef"><b>Definition:</b> WheelEncoder.h:140</div></div>
+<div class="ttc" id="aclasstinyrobotics_1_1WheelEncoder_html_a2f67e48d474a61b1d8e03be174d735a9"><div class="ttname"><a href="classtinyrobotics_1_1WheelEncoder.html#a2f67e48d474a61b1d8e03be174d735a9">tinyrobotics::WheelEncoder::getDistance</a></div><div class="ttdeci">float getDistance(DistanceUnit unit, size_t motor=0) const</div><div class="ttdoc">Get the total distance traveled in the specified unit.</div><div class="ttdef"><b>Definition:</b> WheelEncoder.h:150</div></div>
+<div class="ttc" id="aclasstinyrobotics_1_1WheelEncoder_html_a2fe8fb3046c31aa501d149d05b91e279"><div class="ttname"><a href="classtinyrobotics_1_1WheelEncoder.html#a2fe8fb3046c31aa501d149d05b91e279">tinyrobotics::WheelEncoder::setWheelDiameter</a></div><div class="ttdeci">void setWheelDiameter(float diameter, DistanceUnit unit=DistanceUnit::M)</div><div class="ttdoc">Set the wheel diameter using a float value and unit.</div><div class="ttdef"><b>Definition:</b> WheelEncoder.h:108</div></div>
+<div class="ttc" id="aclasstinyrobotics_1_1WheelEncoder_html_a4af186736e1a1c607eff8551f98d490b"><div class="ttname"><a href="classtinyrobotics_1_1WheelEncoder.html#a4af186736e1a1c607eff8551f98d490b">tinyrobotics::WheelEncoder::WheelEncoder</a></div><div class="ttdeci">WheelEncoder(Distance wheelDiameterM, int ticksPerRevolution=1, size_t numWheels=1)</div><div class="ttdoc">Constructor with wheel diameter and ticks per revolution.</div><div class="ttdef"><b>Definition:</b> WheelEncoder.h:88</div></div>
+<div class="ttc" id="aclasstinyrobotics_1_1WheelEncoder_html_a601fb7cf1fc15db50c71a826f084f934"><div class="ttname"><a href="classtinyrobotics_1_1WheelEncoder.html#a601fb7cf1fc15db50c71a826f084f934">tinyrobotics::WheelEncoder::begin</a></div><div class="ttdeci">bool begin()</div><div class="ttdoc">Resets the encoder counts and distance.</div><div class="ttdef"><b>Definition:</b> WheelEncoder.h:183</div></div>
+<div class="ttc" id="aclasstinyrobotics_1_1WheelEncoder_html_a65ae7d69340a4dfd73267c6cf7f76935"><div class="ttname"><a href="classtinyrobotics_1_1WheelEncoder.html#a65ae7d69340a4dfd73267c6cf7f76935">tinyrobotics::WheelEncoder::getSlipFactor</a></div><div class="ttdeci">float getSlipFactor() const</div><div class="ttdoc">Get the slip correction factor.</div><div class="ttdef"><b>Definition:</b> WheelEncoder.h:271</div></div>
+<div class="ttc" id="aclasstinyrobotics_1_1WheelEncoder_html_a6ed21154d02ecabbb30349c57489e86d"><div class="ttname"><a href="classtinyrobotics_1_1WheelEncoder.html#a6ed21154d02ecabbb30349c57489e86d">tinyrobotics::WheelEncoder::getSpeed</a></div><div class="ttdeci">Speed getSpeed(uint8_t motor=0) const override</div><div class="ttdoc">Get the current speed.</div><div class="ttdef"><b>Definition:</b> WheelEncoder.h:211</div></div>
+<div class="ttc" id="aclasstinyrobotics_1_1WheelEncoder_html_a746f9eb7ef7d8ade5a65dbb0798f5b10"><div class="ttname"><a href="classtinyrobotics_1_1WheelEncoder.html#a746f9eb7ef7d8ade5a65dbb0798f5b10">tinyrobotics::WheelEncoder::setThrottlePercent</a></div><div class="ttdeci">void setThrottlePercent(float value, uint8_t motor=0) override</div><div class="ttdoc">Not used.</div><div class="ttdef"><b>Definition:</b> WheelEncoder.h:283</div></div>
+<div class="ttc" id="aclasstinyrobotics_1_1WheelEncoder_html_a7dc8d23f1fcaeeb69211f7b92ef5584a"><div class="ttname"><a href="classtinyrobotics_1_1WheelEncoder.html#a7dc8d23f1fcaeeb69211f7b92ef5584a">tinyrobotics::WheelEncoder::setReportingFrequencyMs</a></div><div class="ttdeci">void setReportingFrequencyMs(uint16_t ms)</div><div class="ttdoc">Defines the reporint frequency for distance and speed messages.</div><div class="ttdef"><b>Definition:</b> WheelEncoder.h:126</div></div>
+<div class="ttc" id="aclasstinyrobotics_1_1WheelEncoder_html_a80ef031e116658585424a3f8ae51eb12"><div class="ttname"><a href="classtinyrobotics_1_1WheelEncoder.html#a80ef031e116658585424a3f8ae51eb12">tinyrobotics::WheelEncoder::updateSpeed</a></div><div class="ttdeci">Speed updateSpeed(uint32_t deltaTimeMs, uint8_t motor=0) override</div><div class="ttdoc">Just provide the last reported speed without inertia modeling.</div><div class="ttdef"><b>Definition:</b> WheelEncoder.h:219</div></div>
+<div class="ttc" id="aclasstinyrobotics_1_1WheelEncoder_html_a887add573faa2f87f33de7cce9087561"><div class="ttname"><a href="classtinyrobotics_1_1WheelEncoder.html#a887add573faa2f87f33de7cce9087561">tinyrobotics::WheelEncoder::getDistanceForTicks</a></div><div class="ttdeci">float getDistanceForTicks(size_t ticks, DistanceUnit unit) const</div><div class="ttdoc">Get the distance for a given number of ticks in the specified unit.</div><div class="ttdef"><b>Definition:</b> WheelEncoder.h:171</div></div>
+<div class="ttc" id="aclasstinyrobotics_1_1WheelEncoder_html_a8f3f4c53f8f40fc5a16411b6e2ef63b0"><div class="ttname"><a href="classtinyrobotics_1_1WheelEncoder.html#a8f3f4c53f8f40fc5a16411b6e2ef63b0">tinyrobotics::WheelEncoder::getRawDistanceM</a></div><div class="ttdeci">float getRawDistanceM(size_t motor=0) const</div><div class="ttdoc">Get the raw (uncorrected) distance in meters from the encoder.</div><div class="ttdef"><b>Definition:</b> WheelEncoder.h:277</div></div>
+<div class="ttc" id="aclasstinyrobotics_1_1WheelEncoder_html_ab0cd5c0f2065ab4fced00cf900d61f0d"><div class="ttname"><a href="classtinyrobotics_1_1WheelEncoder.html#ab0cd5c0f2065ab4fced00cf900d61f0d">tinyrobotics::WheelEncoder::getSpeedMPS</a></div><div class="ttdeci">float getSpeedMPS(size_t motor=0)</div><div class="ttdoc">Calculate speed in meters per second based on distance traveled since last calculation and elapsed ti...</div><div class="ttdef"><b>Definition:</b> WheelEncoder.h:316</div></div>
+<div class="ttc" id="aclasstinyrobotics_1_1WheelEncoder_html_ab192863d4018b5b215425b01bb0c025f"><div class="ttname"><a href="classtinyrobotics_1_1WheelEncoder.html#ab192863d4018b5b215425b01bb0c025f">tinyrobotics::WheelEncoder::getDistanceForTicksM</a></div><div class="ttdeci">float getDistanceForTicksM(size_t ticks) const</div><div class="ttdoc">Get the distance corresponding to a given number of ticks (in meters).</div><div class="ttdef"><b>Definition:</b> WheelEncoder.h:161</div></div>
+<div class="ttc" id="aclasstinyrobotics_1_1WheelEncoder_html_abcb0dbb59323a95666dc3ab4b6c1eabf"><div class="ttname"><a href="classtinyrobotics_1_1WheelEncoder.html#abcb0dbb59323a95666dc3ab4b6c1eabf">tinyrobotics::WheelEncoder::setTick</a></div><div class="ttdeci">void setTick(size_t motor=0)</div><div class="ttdoc">To be called by the pin interrupt handler when a tick is detected.</div><div class="ttdef"><b>Definition:</b> WheelEncoder.h:205</div></div>
+<div class="ttc" id="aclasstinyrobotics_1_1WheelEncoder_html_abffb3f33e85a42e2cc8b6def1d454c08"><div class="ttname"><a href="classtinyrobotics_1_1WheelEncoder.html#abffb3f33e85a42e2cc8b6def1d454c08">tinyrobotics::WheelEncoder::sendMessage</a></div><div class="ttdeci">void sendMessage()</div><div class="ttdoc">Trigger sending messages for distance and speed.</div><div class="ttdef"><b>Definition:</b> WheelEncoder.h:229</div></div>
+<div class="ttc" id="aclasstinyrobotics_1_1WheelEncoder_html_ac1f5b4274e3f63f7abf79ed301a8dfc1"><div class="ttname"><a href="classtinyrobotics_1_1WheelEncoder.html#ac1f5b4274e3f63f7abf79ed301a8dfc1">tinyrobotics::WheelEncoder::setTicksPerRevolution</a></div><div class="ttdeci">void setTicksPerRevolution(int ticks)</div><div class="ttdoc">Set the number of encoder ticks per wheel revolution.</div><div class="ttdef"><b>Definition:</b> WheelEncoder.h:116</div></div>
+<div class="ttc" id="aclasstinyrobotics_1_1WheelEncoder_html_ad56a0ccb97a9351685d8bb924a913a72"><div class="ttname"><a href="classtinyrobotics_1_1WheelEncoder.html#ad56a0ccb97a9351685d8bb924a913a72">tinyrobotics::WheelEncoder::calibrateSlip</a></div><div class="ttdeci">void calibrateSlip(float actualDistanceM)</div><div class="ttdoc">Calibrate slip by providing a known actual distance.</div><div class="ttdef"><b>Definition:</b> WheelEncoder.h:260</div></div>
+<div class="ttc" id="aclasstinyrobotics_1_1WheelEncoder_html_adee886ee12b8cc045d18bf1e31b72e5c"><div class="ttname"><a href="classtinyrobotics_1_1WheelEncoder.html#adee886ee12b8cc045d18bf1e31b72e5c">tinyrobotics::WheelEncoder::setWheelDiameter</a></div><div class="ttdeci">void setWheelDiameter(Distance wheelDiameter)</div><div class="ttdoc">Set the wheel diameter using a Distance object.</div><div class="ttdef"><b>Definition:</b> WheelEncoder.h:99</div></div>
+<div class="ttc" id="aclasstinyrobotics_1_1WheelEncoder_html_ae74f348057d294351e0d8a33cfdc950b"><div class="ttname"><a href="classtinyrobotics_1_1WheelEncoder.html#ae74f348057d294351e0d8a33cfdc950b">tinyrobotics::WheelEncoder::WheelEncoder</a></div><div class="ttdeci">WheelEncoder(size_t numWheels=1)</div><div class="ttdoc">Default constructor. Wheel diameter and ticks per revolution must be set before use.</div><div class="ttdef"><b>Definition:</b> WheelEncoder.h:75</div></div>
 <div class="ttc" id="agroup__units_html_ga4c67a7b952f3804e2bd056cf95c4161a"><div class="ttname"><a href="group__units.html#ga4c67a7b952f3804e2bd056cf95c4161a">tinyrobotics::DistanceUnit</a></div><div class="ttdeci">DistanceUnit</div><div class="ttdoc">Supported distance units for conversion and representation.</div><div class="ttdef"><b>Definition:</b> Distance.h:10</div></div>
-<div class="ttc" id="astructtinyrobotics_1_1Message_html"><div class="ttname"><a href="structtinyrobotics_1_1Message.html">tinyrobotics::Message</a></div><div class="ttdoc">Generic message structure for communication, parameterized by value type.</div><div class="ttdef"><b>Definition:</b> Message.h:66</div></div>
+<div class="ttc" id="agroup__units_html_ga877e4fdbe9d3581dfa3431b6436b1615"><div class="ttname"><a href="group__units.html#ga877e4fdbe9d3581dfa3431b6436b1615">tinyrobotics::SpeedUnit</a></div><div class="ttdeci">SpeedUnit</div><div class="ttdoc">Supported speed units for conversion and representation.</div><div class="ttdef"><b>Definition:</b> Speed.h:10</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

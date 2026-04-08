@@ -2,7 +2,7 @@ var searchData=
 [
   ['waypointandspeed_0',['WayPointAndSpeed',['../classtinyrobotics_1_1WayPointAndSpeed.html',1,'tinyrobotics']]],
   ['wheel_1',['WHEEL',['../group__utils.html#ggae63373b1147a2e480cea6083c3f9dc6ca0f0dd2bcb848ba94248d660bada66b34',1,'tinyrobotics']]],
-  ['wheelencoder_2',['WheelEncoder',['../classtinyrobotics_1_1WheelEncoder.html',1,'WheelEncoder'],['../classtinyrobotics_1_1WheelEncoder.html#a43948159b2c7344eedf0bc94c8cb4a5d',1,'tinyrobotics::WheelEncoder::WheelEncoder()=default'],['../classtinyrobotics_1_1WheelEncoder.html#a753a8644e4aa9513a8c359a4f2bb56d9',1,'tinyrobotics::WheelEncoder::WheelEncoder(Distance wheelDiameterM, int ticksPerRevolution=1)']]],
+  ['wheelencoder_2',['WheelEncoder',['../classtinyrobotics_1_1WheelEncoder.html',1,'WheelEncoder'],['../classtinyrobotics_1_1WheelEncoder.html#ae74f348057d294351e0d8a33cfdc950b',1,'tinyrobotics::WheelEncoder::WheelEncoder(size_t numWheels=1)'],['../classtinyrobotics_1_1WheelEncoder.html#a4af186736e1a1c607eff8551f98d490b',1,'tinyrobotics::WheelEncoder::WheelEncoder(Distance wheelDiameterM, int ticksPerRevolution=1, size_t numWheels=1)']]],
   ['wifi_5fmode_3',['wifi_mode',['../structtinyrobotics_1_1ESPNowStreamConfig.html#a14d88572ae50a8d21f3e6605e6f059e8',1,'tinyrobotics::ESPNowStreamConfig']]],
   ['world_4',['WORLD',['../group__utils.html#ggae63373b1147a2e480cea6083c3f9dc6ca5289492cf082446ca4a6eec9f72f1ec3',1,'tinyrobotics']]],
   ['worldtocell_5',['worldToCell',['../classtinyrobotics_1_1GridMap.html#ad5381dd829c793395157e22121029e67',1,'tinyrobotics::GridMap']]],

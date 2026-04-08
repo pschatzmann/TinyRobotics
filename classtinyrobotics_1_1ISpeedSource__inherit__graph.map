@@ -1,0 +1,6 @@
+<map id="ISpeedSource" name="ISpeedSource">
+<area shape="rect" id="node1" title="Interface for speed sources." alt="" coords="137,5,247,31"/>
+<area shape="rect" id="node2" href="$classtinyrobotics_1_1SpeedFromThrottle.html" title="Estimates vehicle speed from throttle percentage using calibration data." alt="" coords="41,79,188,104"/>
+<area shape="rect" id="node4" href="$classtinyrobotics_1_1WheelEncoder.html" title="Measures wheel rotation and computes per&#45;wheel distance and speed using encoder ticks for mobile robo..." alt="" coords="212,79,327,104"/>
+<area shape="rect" id="node3" href="$classtinyrobotics_1_1SpeedFromThrottleWithInertia.html" title="Estimates speed from throttle with acceleration/inertia modeling (for boats, etc)." alt="" coords="5,152,224,177"/>
+</map>

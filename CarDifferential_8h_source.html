@@ -235,7 +235,7 @@ $(function() {
 <div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>    <span class="comment">// publish motor speeds as messages for telemetry</span></div>
 <div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; 4; ++i) {</div>
 <div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>      <a class="code hl_class" href="structtinyrobotics_1_1Message.html">Message</a>&lt;<span class="keywordtype">float</span>&gt; msg(MessageContent::MotorSpeed, speed[i], Unit::Percent);</div>
-<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>      msg.origin = MessageOrigin::Motor;</div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>      msg.origin = MessageOrigin::Vehicle;</div>
 <div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span>      msg.origin_id = i;  <span class="comment">// Motor index</span></div>
 <div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>      sendMessage(msg);</div>
 <div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span>    }</div>
@@ -257,7 +257,7 @@ $(function() {
 <div class="ttc" id="aclasstinyrobotics_1_1Vehicle_html"><div class="ttname"><a href="classtinyrobotics_1_1Vehicle.html">tinyrobotics::Vehicle</a></div><div class="ttdoc">Abstract base class for all vehicle types.</div><div class="ttdef"><b>Definition:</b> Vehicle.h:24</div></div>
 <div class="ttc" id="aclasstinyrobotics_1_1Vehicle_html_a7307472891b867761641aee21bb38b29"><div class="ttname"><a href="classtinyrobotics_1_1Vehicle.html#a7307472891b867761641aee21bb38b29">tinyrobotics::Vehicle::getSpeedFactor</a></div><div class="ttdeci">float getSpeedFactor() const</div><div class="ttdoc">Get the speed factor (scaling for speed commands).</div><div class="ttdef"><b>Definition:</b> Vehicle.h:47</div></div>
 <div class="ttc" id="agroup__units_html_ga70ab36d1d4920fdd314279845af152c5"><div class="ttname"><a href="group__units.html#ga70ab36d1d4920fdd314279845af152c5">tinyrobotics::AngleUnit</a></div><div class="ttdeci">AngleUnit</div><div class="ttdoc">Supported angle units for conversion and representation.</div><div class="ttdef"><b>Definition:</b> Angle.h:11</div></div>
-<div class="ttc" id="astructtinyrobotics_1_1Message_html"><div class="ttname"><a href="structtinyrobotics_1_1Message.html">tinyrobotics::Message</a></div><div class="ttdoc">Generic message structure for communication, parameterized by value type.</div><div class="ttdef"><b>Definition:</b> Message.h:66</div></div>
+<div class="ttc" id="astructtinyrobotics_1_1Message_html"><div class="ttname"><a href="structtinyrobotics_1_1Message.html">tinyrobotics::Message</a></div><div class="ttdoc">Generic message structure for communication, parameterized by value type.</div><div class="ttdef"><b>Definition:</b> Message.h:67</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

@@ -13,5 +13,7 @@ var searchData=
   ['imotionstate2d_10',['IMotionState2D',['../classtinyrobotics_1_1IMotionState2D.html',1,'tinyrobotics']]],
   ['imotionstate3d_11',['IMotionState3D',['../classtinyrobotics_1_1IMotionState3D.html',1,'tinyrobotics']]],
   ['imu2d_12',['IMU2D',['../classtinyrobotics_1_1IMU2D.html',1,'tinyrobotics']]],
-  ['imu3d_13',['IMU3D',['../classtinyrobotics_1_1IMU3D.html',1,'tinyrobotics']]]
+  ['imu3d_13',['IMU3D',['../classtinyrobotics_1_1IMU3D.html',1,'tinyrobotics']]],
+  ['iodometryheadingmodel2d_14',['IOdometryHeadingModel2D',['../classtinyrobotics_1_1IOdometryHeadingModel2D.html',1,'tinyrobotics']]],
+  ['ispeedsource_15',['ISpeedSource',['../classtinyrobotics_1_1ISpeedSource.html',1,'tinyrobotics']]]
 ];

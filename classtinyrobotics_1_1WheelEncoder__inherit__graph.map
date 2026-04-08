@@ -1,4 +1,5 @@
 <map id="WheelEncoder" name="WheelEncoder">
-<area shape="rect" id="node1" title="Measures wheel rotation and computes distance and speed using encoder ticks for mobile robots." alt="" coords="10,79,125,104"/>
+<area shape="rect" id="node1" title="Measures wheel rotation and computes per&#45;wheel distance and speed using encoder ticks for mobile robo..." alt="" coords="81,79,195,104"/>
 <area shape="rect" id="node2" href="$classtinyrobotics_1_1MessageSource.html" title="Base class for message sources in the TinyRobotics communication framework." alt="" coords="5,5,129,31"/>
+<area shape="rect" id="node3" href="$classtinyrobotics_1_1ISpeedSource.html" title="Interface for speed sources." alt="" coords="153,5,264,31"/>
 </map>
