@@ -135,7 +135,7 @@ Public Attributes</h2></td></tr>
 <div class="textblock"><div class="compoundTemplParams">template&lt;size_t NX, size_t NZ&gt;<br />
 class tinyrobotics::KalmanFilter&lt; NX, NZ &gt;</div><p>A lightweight, fixed-size Kalman Filter for embedded state estimation. </p>
 <p>This template class implements a discrete-time, linear Kalman Filter for real-time state estimation in embedded and robotics applications. It is designed for efficiency and simplicity, using static, fixed-size matrices and minimal dynamic memory. The filter estimates the internal state of a process given noisy measurements and a mathematical model of the system dynamics.</p>
-<h2><a class="anchor" id="autotoc_md27"></a>
+<h2><a class="anchor" id="autotoc_md28"></a>
 Features</h2>
 <ul>
 <li>Fixed-size, stack-allocated matrices for predictable memory usage</li>
@@ -143,7 +143,7 @@ Features</h2>
 <li>Supports arbitrary state and measurement dimensions via template parameters</li>
 <li>Simple API: <code>predict()</code> for time update, <code>update(z)</code> for measurement update</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md28"></a>
+<h2><a class="anchor" id="autotoc_md29"></a>
 Mathematical Model</h2>
 <p>The Kalman Filter models the system as:</p>
 <p>x_k = F * x_{k-1} + w (state transition) z_k = H * x_k + v (measurement)</p>
@@ -156,7 +156,7 @@ Mathematical Model</h2>
 <li>R: measurement noise covariance (NZ x NZ)</li>
 <li>w, v: process and measurement noise (zero-mean, Gaussian)</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md29"></a>
+<h2><a class="anchor" id="autotoc_md30"></a>
 Usage Example</h2>
 <div class="fragment"><div class="line"><a class="code hl_class" href="classtinyrobotics_1_1KalmanFilter.html">KalmanFilter&lt;2, 1&gt;</a> kf;</div>
 <div class="line">kf.Fmat = ...; <span class="comment">// set state transition</span></div>
@@ -168,7 +168,7 @@ Usage Example</h2>
 <div class="line">kf.predict();</div>
 <div class="line">kf.update(z);</div>
 <div class="ttc" id="aclasstinyrobotics_1_1KalmanFilter_html"><div class="ttname"><a href="classtinyrobotics_1_1KalmanFilter.html">tinyrobotics::KalmanFilter</a></div><div class="ttdoc">A lightweight, fixed-size Kalman Filter for embedded state estimation.</div><div class="ttdef"><b>Definition:</b> KalmanFilter.h:167</div></div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md30"></a>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md31"></a>
 Template Parameters</h2>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
@@ -177,7 +177,7 @@ Template Parameters</h2>
   </table>
   </dd>
 </dl>
-<h2><a class="anchor" id="autotoc_md31"></a>
+<h2><a class="anchor" id="autotoc_md32"></a>
 Members</h2>
 <ul>
 <li>x: State estimate vector (NX x 1)</li>
@@ -188,13 +188,13 @@ Members</h2>
 <li>R: Measurement noise covariance (NZ x NZ)</li>
 <li>I: Identity matrix (NX x NX)</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md32"></a>
+<h2><a class="anchor" id="autotoc_md33"></a>
 Methods</h2>
 <ul>
 <li>predict(): Performs the time update (prediction) step</li>
 <li>update(z): Performs the measurement update (correction) step</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md33"></a>
+<h2><a class="anchor" id="autotoc_md34"></a>
 Applications</h2>
 <ul>
 <li>Sensor fusion (IMU, GPS, encoders)</li>

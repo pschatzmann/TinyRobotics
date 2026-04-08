@@ -72,7 +72,7 @@ $(function() {
   <div class="headertitle"><div class="title">TinyRobotics Motors Module </div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><h1><a class="anchor" id="autotoc_md108"></a>
+<div class="textblock"><h1><a class="anchor" id="autotoc_md110"></a>
 Overview</h1>
 <p>The TinyRobotics Motors module is a flexible and extensible framework for controlling a wide variety of motor types in embedded and Arduino environments. It provides unified abstractions and drivers for:</p>
 <ul>
@@ -93,7 +93,7 @@ Overview</h1>
 <li>Provides template for defining the numeric type for the speed (default float)</li>
 </ul>
 <p>The module is designed for portability and can be configured to use or avoid external libraries as needed. All motor drivers inherit from a common base class, making it easy to swap implementations or extend functionality for new hardware.</p>
-<h1><a class="anchor" id="autotoc_md109"></a>
+<h1><a class="anchor" id="autotoc_md111"></a>
 Motor Configuration (utils/Config.h)</h1>
 <p>Motor-specific settings can be adjusted in <code><a class="el" href="Config_8h_source.html">src/TinyRobotics/utils/Config.h</a></code>:</p>
 <ul>
@@ -106,7 +106,7 @@ Motor Configuration (utils/Config.h)</h1>
 <div class="fragment"><div class="line"><span class="preprocessor">#define USE_SERVO_LIBRARY false</span></div>
 <div class="line"><span class="preprocessor">#include &lt;<a class="code" href="TinyRobotics_8h.html">TinyRobotics.h</a>&gt;</span></div>
 <div class="ttc" id="aTinyRobotics_8h_html"><div class="ttname"><a href="TinyRobotics_8h.html">TinyRobotics.h</a></div></div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md110"></a>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md112"></a>
 Motor Classes</h1>
 <ul>
 <li><code>Motor</code>: Abstract base class for all motor types. Defines the common interface for all motors.</li>
@@ -116,9 +116,14 @@ Motor Classes</h1>
 <li><code>StepperMotor</code>: Interface for stepper motors (uses FastAccelStepper library if enabled).</li>
 <li><code>GenericMotor</code>: Flexible abstraction for integrating custom/external motor drivers using callbacks.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md111"></a>
+<h1><a class="anchor" id="autotoc_md113"></a>
+Class Documentation</h1>
+<ul>
+<li><a href="https://pschatzmann.github.io/TinyRobotics/group__motors.html">motors</a></li>
+</ul>
+<h1><a class="anchor" id="autotoc_md114"></a>
 Example Usage</h1>
-<h2><a class="anchor" id="autotoc_md112"></a>
+<h2><a class="anchor" id="autotoc_md115"></a>
 DC Motor (H-Bridge)</h2>
 <div class="fragment"><div class="line"><span class="preprocessor">#include &lt;<a class="code" href="TinyRobotics_8h.html">TinyRobotics.h</a>&gt;</span></div>
 <div class="line"> </div>
@@ -135,7 +140,7 @@ DC Motor (H-Bridge)</h2>
 <div class="line"><span class="keywordtype">void</span> loop() {</div>
 <div class="line">  <span class="comment">// Your control logic here</span></div>
 <div class="line">}</div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md113"></a>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md116"></a>
 Servo Motor</h2>
 <div class="fragment"><div class="line"><span class="preprocessor">#include &lt;<a class="code" href="TinyRobotics_8h.html">TinyRobotics.h</a>&gt;</span></div>
 <div class="line"> </div>
@@ -153,7 +158,7 @@ Servo Motor</h2>
 <div class="line"><span class="keywordtype">void</span> loop() {</div>
 <div class="line">  <span class="comment">// Your control logic here</span></div>
 <div class="line">}</div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md114"></a>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md117"></a>
 Stepper Motor (if enabled)</h2>
 <div class="fragment"><div class="line"><span class="preprocessor">#include &lt;<a class="code" href="TinyRobotics_8h.html">TinyRobotics.h</a>&gt;</span></div>
 <div class="line"> </div>
@@ -167,7 +172,7 @@ Stepper Motor (if enabled)</h2>
 <div class="line">  motor.setValuePercent(-50.0f); <span class="comment">// Half speed reverse</span></div>
 <div class="line">  stepper.end();</div>
 <div class="line">}</div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md115"></a>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md118"></a>
 Generic Motor (Custom Driver)</h2>
 <div class="fragment"><div class="line"><span class="preprocessor">#include &lt;<a class="code" href="TinyRobotics_8h.html">TinyRobotics.h</a>&gt;</span></div>
 <div class="line"> </div>
@@ -191,10 +196,10 @@ Generic Motor (Custom Driver)</h2>
 <div class="line">  motor.setValuePercent(-50.0f); <span class="comment">// Half speed reverse</span></div>
 <div class="line">  motor.end();</div>
 <div class="line">}</div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md116"></a>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md119"></a>
 Generic Motor Implementation Approaches</h1>
 <p>You can use a platform specifc motor control library to implement the callbacks. Alternatively you can just the PWM functionality provided by your platform:</p>
-<h2><a class="anchor" id="autotoc_md117"></a>
+<h2><a class="anchor" id="autotoc_md120"></a>
 H-Bridge (DC motor control) Logic (e.g using L298N)</h2>
 <ul>
 <li>PWM Frequency: ~5 kHz – 20 kHz<ul>
@@ -204,7 +209,7 @@ H-Bridge (DC motor control) Logic (e.g using L298N)</h2>
 </li>
 <li>Speed is driven by Duty cycle: 0–100% on EN pins</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md118"></a>
+<h2><a class="anchor" id="autotoc_md121"></a>
 Servo Motor Logic</h2>
 <ul>
 <li>Fixed PWM frequency: ~50 Hz (20 ms period)</li>
@@ -215,7 +220,7 @@ Servo Motor Logic</h2>
 </ul>
 </li>
 </ul>
-<h2><a class="anchor" id="autotoc_md119"></a>
+<h2><a class="anchor" id="autotoc_md122"></a>
 Brushed Motor Logic</h2>
 <ul>
 <li>Fixed PWM frequency</li>
@@ -228,7 +233,7 @@ Brushed Motor Logic</h2>
 </ul>
 </li>
 </ul>
-<h2><a class="anchor" id="autotoc_md120"></a>
+<h2><a class="anchor" id="autotoc_md123"></a>
 Stepper Motor Logic (e.g. using L298N driver)</h2>
 <ul>
 <li>One pulse is one step, so we can drive the motor speed by the pwm frequency: just keep the duty at 50%.</li>
@@ -237,7 +242,7 @@ Stepper Motor Logic (e.g. using L298N driver)</h2>
 <li>Common sweet spot: 200 Hz – 1000 Hz</li>
 <li>Fast operation: 2 kHz – 10 kHz</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md121"></a>
+<h2><a class="anchor" id="autotoc_md124"></a>
 Stepper Motor Logic (e.g. using L298N driver)</h2>
 <ul>
 <li>You need to drive the following pins in steps: in1, in2, in3, in4:<ul>
@@ -250,14 +255,14 @@ Stepper Motor Logic (e.g. using L298N driver)</h2>
 <li>The speed is determined by the speed in which you switch the steps.</li>
 <li>Leave EN pins enabled!</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md122"></a>
+<h1><a class="anchor" id="autotoc_md125"></a>
 Dependencies</h1>
 <ul>
 <li><a href="https://github.com/jkb-git/ESP32Servo">ESP32Servo</a></li>
 <li><a href="https://docs.arduino.cc/libraries/servo/">Servo</a></li>
 <li><a href="https://github.com/ESP32DIYer/FastAccelStepper">FastAccelStepper</a> (for StepperMotor support)</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md123"></a>
+<h1><a class="anchor" id="autotoc_md126"></a>
 See Also</h1>
 <ul>
 <li><a class="el" href="md_src_TinyRobotics_control_README.html">Control Module</a></li>

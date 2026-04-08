@@ -201,7 +201,7 @@ float&#160;</td><td class="memItemRight" valign="bottom"><b>maxYawRate</b></td><
 <li>Elevator (degrees, typically -45..45): Sets pitch rate as a fraction of maxPitchRate.</li>
 <li>Rudder (degrees, typically -45..45): Sets yaw rate as a fraction of maxYawRate.</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md125"></a>
+<h2><a class="anchor" id="autotoc_md128"></a>
 Features</h2>
 <ul>
 <li>Maps control surface deflections and throttle to body-frame velocities for odometry integration.</li>
@@ -209,7 +209,7 @@ Features</h2>
 <li>All input values are clamped to safe ranges.</li>
 <li>Suitable for simulation, estimation, or as a reference model for real-time control.</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md126"></a>
+<h2><a class="anchor" id="autotoc_md129"></a>
 Usage Example</h2>
 <div class="fragment"><div class="line"><a class="code hl_class" href="classtinyrobotics_1_1AirplaneOdometryModel3D.html">AirplaneOdometryModel3D</a> model;</div>
 <div class="line">model.setThrottle(80);      <span class="comment">// 80% throttle</span></div>
@@ -223,7 +223,7 @@ Usage Example</h2>
 <div class="ttc" id="aclasstinyrobotics_1_1AirplaneOdometryModel3D_html"><div class="ttname"><a href="classtinyrobotics_1_1AirplaneOdometryModel3D.html">tinyrobotics::AirplaneOdometryModel3D</a></div><div class="ttdoc">IOdometryModel3D implementation for fixed-wing airplanes using control surface and throttle inputs.</div><div class="ttdef"><b>Definition:</b> AirplaneOdometryModel3D.h:57</div></div>
 <div class="ttc" id="aclasstinyrobotics_1_1AirplaneOdometryModel3D_html_a3bd28a4abe190acabd547f69d1c452f2"><div class="ttname"><a href="classtinyrobotics_1_1AirplaneOdometryModel3D.html#a3bd28a4abe190acabd547f69d1c452f2">tinyrobotics::AirplaneOdometryModel3D::getAngularVelocity</a></div><div class="ttdeci">void getAngularVelocity(float &amp;wx, float &amp;wy, float &amp;wz) const override</div><div class="ttdoc">Get the current angular velocity (wx, wy, wz) in rad/s (robot frame).</div><div class="ttdef"><b>Definition:</b> AirplaneOdometryModel3D.h:150</div></div>
 <div class="ttc" id="aclasstinyrobotics_1_1AirplaneOdometryModel3D_html_aa5aea76e6c1b0f392b55d95f939eaccf"><div class="ttname"><a href="classtinyrobotics_1_1AirplaneOdometryModel3D.html#aa5aea76e6c1b0f392b55d95f939eaccf">tinyrobotics::AirplaneOdometryModel3D::getLinearVelocity</a></div><div class="ttdeci">void getLinearVelocity(float &amp;vx, float &amp;vy, float &amp;vz) const override</div><div class="ttdoc">Get the current linear velocity (vx, vy, vz) in m/s (robot frame).</div><div class="ttdef"><b>Definition:</b> AirplaneOdometryModel3D.h:143</div></div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md127"></a>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md130"></a>
 Message Integration</h2>
 <p>The model can be updated from messages (e.g., from an RC receiver or autopilot): </p><div class="fragment"><div class="line"><a class="code hl_class" href="structtinyrobotics_1_1Message.html">Message&lt;float&gt;</a> msg;</div>
 <div class="line">msg.<a class="code hl_variable" href="structtinyrobotics_1_1Message.html#a8e68387e210029af6bdfa6404d29f30f">content</a> = MessageContent::Throttle;</div>
