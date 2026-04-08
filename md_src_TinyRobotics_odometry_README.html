@@ -77,11 +77,11 @@ $(function() {
 Key Concepts</h1>
 <ul>
 <li><b>Odometry2D</b>: Tracks 2D position and orientation using modular heading models and speed sources. Supports Ackermann, differential drive, and custom kinematics.</li>
-<li><b>OdometryHeadingModel2D / OdometryDifferentialDriveModel</b>: Pluggable models implementing the <code>IOdometryHeadingModel2D</code> interface for heading (theta) integration.</li>
+<li><b>OdometryModel2D / OdometryDifferentialDriveModel</b>: Pluggable models implementing the <code>IOdometryModel2D</code> interface for heading (theta) integration.</li>
 <li><b>WheelEncoder</b>: Multi-wheel, vectorized encoder for per-wheel distance and speed measurement, modular and ISpeedSource-compliant.</li>
 <li><b>SpeedFromThrottle</b>: Estimates speed from throttle percentage using calibration data.</li>
 <li><b>Message-driven</b>: Odometry can subscribe to vehicle/motor messages for speed and steering updates.</li>
-<li><b>Extensible</b>: Add your own heading models by implementing <code>IOdometryHeadingModel2D</code>.</li>
+<li><b>Extensible</b>: Add your own heading models by implementing <code>IOdometryModel2D</code>.</li>
 </ul>
 <hr  />
 <h1><a class="anchor" id="autotoc_md142"></a>
@@ -89,13 +89,13 @@ Odometry2D</h1>
 <p>Tracks the 2D position (x, y) and orientation (theta) of a robot using velocity and steering angle inputs. The kinematic model is injected via the constructor, allowing for Ackermann, differential drive, or custom models.</p>
 <p><b>Features:</b></p><ul>
 <li>Integrates speed and steering angle to estimate robot pose</li>
-<li>Modular: accepts any <code>IOdometryHeadingModel2D</code> implementation</li>
+<li>Modular: accepts any <code>IOdometryModel2D</code> implementation</li>
 <li>Message-driven: can subscribe to vehicle/motor messages for updates</li>
 <li>Provides access to position, orientation, velocity, distance traveled, and last update delta</li>
 <li>Allows resetting and setting the odometry state</li>
 </ul>
 <p><b>Key Methods:</b></p><ul>
-<li><code>Odometry2D(MessageSource&amp; vehicle, ISpeedSource&amp; speedSource, IOdometryHeadingModel2D&amp; model)</code>: Constructor</li>
+<li><code>Odometry2D(MessageSource&amp; vehicle, ISpeedSource&amp; speedSource, IOdometryModel2D&amp; model)</code>: Constructor</li>
 <li><code>begin(initialPosition, initialTheta, wheelBase)</code>: Initialize odometry state</li>
 <li><code>update()</code>: Integrates pose using the latest speed/steering (set via setters or messages)</li>
 <li><code>getPosition()</code>, <code>getTheta()</code>, <code>getLinearVelocity()</code>, <code>getAngularVelocity()</code>, <code>getTotalDistance()</code>, <code>getLastDelta()</code></li>
@@ -104,7 +104,7 @@ Odometry2D</h1>
 <p><b>Example (Ackermann):</b> </p><div class="fragment"><div class="line"><span class="preprocessor">#include &lt;<a class="code" href="TinyRobotics_8h.html">TinyRobotics.h</a>&gt;</span></div>
 <div class="line">CarAckerman car;</div>
 <div class="line">Distance wheelBase(0.3f, DistanceUnit::M);</div>
-<div class="line">OdometryHeadingModel2D odomModel(wheelBase);</div>
+<div class="line">OdometryModel2D odomModel(wheelBase);</div>
 <div class="line">SpeedFromThrottle speedEstimator(Speed(5, SpeedUnit::KPH));</div>
 <div class="line">Odometry2D odometry(car, speedEstimator, odomModel);</div>
 <div class="line"> </div>
@@ -131,7 +131,7 @@ Odometry2D</h1>
 <h1><a class="anchor" id="autotoc_md144"></a>
 Modular Heading Models</h1>
 <h2><a class="anchor" id="autotoc_md145"></a>
-IOdometryHeadingModel2D (Interface)</h2>
+IOdometryModel2D (Interface)</h2>
 <p>Defines the interface for heading (theta) integration models. Implement this to add custom kinematics and is automatically updated by Odometry2D.</p>
 <p><b>Key Methods:</b></p><ul>
 <li><code>computeDeltaTheta(uint16_t deltaTimeMs)</code>: Returns heading change for the time interval</li>
@@ -140,7 +140,7 @@ IOdometryHeadingModel2D (Interface)</h2>
 <li><code>setSteeringAngle(Angle angle)</code></li>
 </ul>
 <h2><a class="anchor" id="autotoc_md146"></a>
-OdometryHeadingModel2D (Ackermann/Boat/Default)</h2>
+OdometryModel2D (Ackermann/Boat/Default)</h2>
 <p>Implements Ackermann and default (steering as angular velocity) kinematics. Use for car-like robots or boats.</p>
 <h2><a class="anchor" id="autotoc_md147"></a>
 OdometryDifferentialDriveModel</h2>
@@ -211,7 +211,7 @@ Usage Notes</h1>
 Advanced Topics</h1>
 <ul>
 <li><b>Message Integration:</b> Odometry2D can subscribe to messages from vehicles/motors for automatic speed/steering updates.</li>
-<li><b>Custom Models:</b> Implement <code>IOdometryHeadingModel2D</code> for holonomic, omnidirectional, or other robot types.</li>
+<li><b>Custom Models:</b> Implement <code>IOdometryModel2D</code> for holonomic, omnidirectional, or other robot types.</li>
 <li><b>3D Odometry:</b> See <code>Odometry3D</code> for drones, underwater, or aerial robots (not covered in detail here).</li>
 </ul>
 <hr  />

@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.6"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>TinyRobotics: IOdometryHeadingModel2D Class Reference</title>
+<title>TinyRobotics: IOdometryModel2D Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -69,29 +69,29 @@ $(function() {
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><b>tinyrobotics</b></li><li class="navelem"><a class="el" href="classtinyrobotics_1_1IOdometryHeadingModel2D.html">IOdometryHeadingModel2D</a></li>  </ul>
+<li class="navelem"><b>tinyrobotics</b></li><li class="navelem"><a class="el" href="classtinyrobotics_1_1IOdometryModel2D.html">IOdometryModel2D</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
-<a href="classtinyrobotics_1_1IOdometryHeadingModel2D-members.html">List of all members</a>  </div>
-  <div class="headertitle"><div class="title">IOdometryHeadingModel2D Class Reference<span class="mlabels"><span class="mlabel">abstract</span></span></div></div>
+<a href="classtinyrobotics_1_1IOdometryModel2D-members.html">List of all members</a>  </div>
+  <div class="headertitle"><div class="title">IOdometryModel2D Class Reference<span class="mlabels"><span class="mlabel">abstract</span></span></div></div>
 </div><!--header-->
 <div class="contents">
 
 <p>Abstract interface for 2D odometry models.  
- <a href="classtinyrobotics_1_1IOdometryHeadingModel2D.html#details">More...</a></p>
+ <a href="classtinyrobotics_1_1IOdometryModel2D.html#details">More...</a></p>
 
-<p><code>#include &lt;<a class="el" href="IOdometryHeadingModel2D_8h_source.html">IOdometryHeadingModel2D.h</a>&gt;</code></p>
+<p><code>#include &lt;<a class="el" href="IOdometryModel2D_8h_source.html">IOdometryModel2D.h</a>&gt;</code></p>
 <div class="dynheader">
-Inheritance diagram for IOdometryHeadingModel2D:</div>
+Inheritance diagram for IOdometryModel2D:</div>
 <div class="dyncontent">
-<div class="center"><img src="classtinyrobotics_1_1IOdometryHeadingModel2D__inherit__graph.png" border="0" usemap="#aIOdometryHeadingModel2D_inherit__map" alt="Inheritance graph"/></div>
-<map name="aIOdometryHeadingModel2D_inherit__map" id="aIOdometryHeadingModel2D_inherit__map">
-<area shape="rect" title="Abstract interface for 2D odometry models." alt="" coords="112,5,315,31"/>
+<div class="center"><img src="classtinyrobotics_1_1IOdometryModel2D__inherit__graph.png" border="0" usemap="#aIOdometryModel2D_inherit__map" alt="Inheritance graph"/></div>
+<map name="aIOdometryModel2D_inherit__map" id="aIOdometryModel2D_inherit__map">
+<area shape="rect" title="Abstract interface for 2D odometry models." alt="" coords="125,5,275,31"/>
 <area shape="rect" href="classtinyrobotics_1_1OdometryDifferentialDriveModel.html" title="Odometry model for differential drive robots." alt="" coords="5,79,200,119"/>
-<area shape="rect" href="classtinyrobotics_1_1OdometryHeadingModel2D.html" title=" " alt="" coords="225,86,423,111"/>
+<area shape="rect" href="classtinyrobotics_1_1OdometryModel2D.html" title=" " alt="" coords="225,86,370,111"/>
 </map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
@@ -106,10 +106,10 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>setSpeed</b> 
 <tr class="memitem:a090bb8070e38a077fcf4ba4acdcf8803"><td class="memItemLeft" align="right" valign="top"><a id="a090bb8070e38a077fcf4ba4acdcf8803" name="a090bb8070e38a077fcf4ba4acdcf8803"></a>
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>setSteeringAngle</b> (<a class="el" href="classtinyrobotics_1_1Angle.html">Angle</a> angle)=0</td></tr>
 <tr class="separator:a090bb8070e38a077fcf4ba4acdcf8803"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2ba308e94636a66ec31921322b5b320f"><td class="memItemLeft" align="right" valign="top">virtual float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1IOdometryHeadingModel2D.html#a2ba308e94636a66ec31921322b5b320f">computeDeltaTheta</a> (uint16_t deltaTimeMs) const =0</td></tr>
+<tr class="memitem:a2ba308e94636a66ec31921322b5b320f"><td class="memItemLeft" align="right" valign="top">virtual float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1IOdometryModel2D.html#a2ba308e94636a66ec31921322b5b320f">computeDeltaTheta</a> (uint16_t deltaTimeMs) const =0</td></tr>
 <tr class="memdesc:a2ba308e94636a66ec31921322b5b320f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute heading change (deltaTheta) for odometry kinematics.  <br /></td></tr>
 <tr class="separator:a2ba308e94636a66ec31921322b5b320f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:add10733cade5d04c7a4d5da4a95a9ddb"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1IOdometryHeadingModel2D.html#add10733cade5d04c7a4d5da4a95a9ddb">computeDeltaXY</a> (float theta, uint32_t deltaTimeMs, float &amp;deltaX, float &amp;deltaY) const =0</td></tr>
+<tr class="memitem:add10733cade5d04c7a4d5da4a95a9ddb"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1IOdometryModel2D.html#add10733cade5d04c7a4d5da4a95a9ddb">computeDeltaXY</a> (float theta, uint32_t deltaTimeMs, float &amp;deltaX, float &amp;deltaY) const =0</td></tr>
 <tr class="memdesc:add10733cade5d04c7a4d5da4a95a9ddb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute position change (deltaX, deltaY) for odometry kinematics.  <br /></td></tr>
 <tr class="separator:add10733cade5d04c7a4d5da4a95a9ddb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
@@ -151,7 +151,7 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>setSteeringAn
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Change in heading (radians) </dd></dl>
 
-<p>Implemented in <a class="el" href="classtinyrobotics_1_1OdometryDifferentialDriveModel.html#a3772e7dbf64be18c627767b6e4d987ee">OdometryDifferentialDriveModel</a>, and <a class="el" href="classtinyrobotics_1_1OdometryHeadingModel2D.html#a3772e7dbf64be18c627767b6e4d987ee">OdometryHeadingModel2D</a>.</p>
+<p>Implemented in <a class="el" href="classtinyrobotics_1_1OdometryDifferentialDriveModel.html#a3772e7dbf64be18c627767b6e4d987ee">OdometryDifferentialDriveModel</a>, and <a class="el" href="classtinyrobotics_1_1OdometryModel2D.html#a3772e7dbf64be18c627767b6e4d987ee">OdometryModel2D</a>.</p>
 
 </div>
 </div>
@@ -213,12 +213,12 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>setSteeringAn
   </dd>
 </dl>
 
-<p>Implemented in <a class="el" href="classtinyrobotics_1_1OdometryDifferentialDriveModel.html#a0bafeaaa13eb00e7f4e8eaa6f3dfe4f8">OdometryDifferentialDriveModel</a>, and <a class="el" href="classtinyrobotics_1_1OdometryHeadingModel2D.html#a0bafeaaa13eb00e7f4e8eaa6f3dfe4f8">OdometryHeadingModel2D</a>.</p>
+<p>Implemented in <a class="el" href="classtinyrobotics_1_1OdometryDifferentialDriveModel.html#a0bafeaaa13eb00e7f4e8eaa6f3dfe4f8">OdometryDifferentialDriveModel</a>, and <a class="el" href="classtinyrobotics_1_1OdometryModel2D.html#a0bafeaaa13eb00e7f4e8eaa6f3dfe4f8">OdometryModel2D</a>.</p>
 
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>src/TinyRobotics/odometry/<a class="el" href="IOdometryHeadingModel2D_8h_source.html">IOdometryHeadingModel2D.h</a></li>
+<li>src/TinyRobotics/odometry/<a class="el" href="IOdometryModel2D_8h_source.html">IOdometryModel2D.h</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
