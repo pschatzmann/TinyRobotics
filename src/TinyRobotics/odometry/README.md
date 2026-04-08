@@ -7,6 +7,7 @@ This module provides a flexible, extensible framework for estimating the positio
 
 - **Odometry2D**: Tracks 2D position and orientation using modular heading models and speed sources. Supports Ackermann, differential drive, and custom kinematics.
 - **OdometryHeadingModel / OdometryDifferentialDriveModel**: Pluggable models implementing the `IOdometryHeadingModel2D` interface for heading (theta) integration.
+- **WheelEncoder**: Multi-wheel, vectorized encoder for per-wheel distance and speed measurement, modular and ISpeedSource-compliant.
 - **SpeedFromThrottle**: Estimates speed from throttle percentage using calibration data.
 - **Message-driven**: Odometry can subscribe to vehicle/motor messages for speed and steering updates.
 - **Extensible**: Add your own heading models by implementing `IOdometryHeadingModel2D`.
@@ -41,9 +42,6 @@ SpeedFromThrottle speedEstimator(Speed(5, SpeedUnit::KPH));
 Odometry2D odometry(car, speedEstimator, odomModel);
 
 void loop() {
-	float speed = speedEstimator.getSpeedMPS(controller.getThrottlePercent());
-	odomModel.setSpeed(Speed(speed, SpeedUnit::MPS));
-	odomModel.setSteeringAngle(controller.getSteeringAngle());
 	odometry.update();
 	auto pos = odometry.getPosition();
 	float heading = odometry.getTheta();
@@ -59,7 +57,6 @@ OdometryDifferentialDriveModel diffModel(wheelBase);
 Odometry2D odometry(vehicle, leftEncoder, diffModel);
 
 void loop() {
-	diffModel.setSpeed(leftEncoder.getSpeed(), rightEncoder.getSpeed());
 	odometry.update();
 }
 ```
@@ -69,7 +66,7 @@ void loop() {
 ## Modular Heading Models
 
 ### IOdometryHeadingModel2D (Interface)
-Defines the interface for heading (theta) integration models. Implement this to add custom kinematics.
+Defines the interface for heading (theta) integration models. Implement this to add custom kinematics and is automatically updated by Odometry2D.
 
 **Key Methods:**
 - `computeDeltaTheta(uint16_t deltaTimeMs)`: Returns heading change for the time interval
@@ -82,6 +79,50 @@ Implements Ackermann and default (steering as angular velocity) kinematics. Use 
 
 ### OdometryDifferentialDriveModel
 Implements differential drive kinematics using left/right wheel speeds.
+
+---
+
+
+## WheelEncoder
+
+The `WheelEncoder` class provides robust, multi-wheel support for measuring wheel rotation and computing per-wheel distance and speed using encoder ticks. It is designed for modular integration with odometry pipelines and supports any number of wheels (differential, skid-steer, etc.).
+
+**Features:**
+- Supports any number of wheels (configurable at construction)
+- Vectorized state for distance, speed, and tick timing per wheel
+- Interface-compliant with `ISpeedSource` for modular odometry integration
+- Configurable wheel diameter and ticks per revolution for accurate distance estimation
+- Periodic reporting of distance and speed via the `MessageSource` interface
+- Slip calibration support to compensate for wheel slip or surface effects
+- Designed for use with interrupt-driven tick updates (call `setTick(motor)` in your ISR)
+
+**Key Methods:**
+- `WheelEncoder(size_t numWheels = 1)`: Construct for N wheels
+- `setWheelDiameter(Distance diameter)` / `setWheelDiameter(float, DistanceUnit)`
+- `setTicksPerRevolution(int ticks)`
+- `begin()`: Reset and start reporting
+- `setTick(size_t motor = 0)`: Call in your encoder ISR for each wheel
+- `getDistanceM(size_t motor = 0)`, `getSpeedMPS(size_t motor = 0)`, `getDistance(DistanceUnit, size_t motor = 0)`
+- `setSlipFactor(float)`, `calibrateSlip(float actualDistanceM)`
+
+**Example (Differential Drive):**
+```cpp
+#include <TinyRobotics.h>
+WheelEncoder encoder(2); // Two wheels
+encoder.setWheelDiameter(0.065); // 65mm wheel
+encoder.setTicksPerRevolution(20);
+encoder.begin();
+// In your interrupt:
+encoder.setTick(0); // Left wheel
+encoder.setTick(1); // Right wheel
+// In your main loop:
+float leftDistance = encoder.getDistanceM(0);
+float rightDistance = encoder.getDistanceM(1);
+float leftSpeed = encoder.getSpeedMPS(0);
+float rightSpeed = encoder.getSpeedMPS(1);
+```
+
+This class is intended for embedded robotics applications (Arduino, ESP32, etc.) and integrates with the TinyRobotics messaging framework. It is suitable for use as a modular speed/distance source in extensible odometry pipelines.
 
 ---
 
@@ -99,7 +140,6 @@ Estimates vehicle speed from throttle percentage using calibration data. Useful 
 **Key Methods:**
 - `SpeedFromThrottle(maxSpeedMps)`
 - `addSpeedCalibration(throttle, speed)`
-- `getSpeedMPS(throttle)`
 - `getSpeed(throttle)`
 
 ---
