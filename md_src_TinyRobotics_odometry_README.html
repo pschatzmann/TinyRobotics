@@ -77,7 +77,7 @@ $(function() {
 Key Concepts</h1>
 <ul>
 <li><b>Odometry2D</b>: Tracks 2D position and orientation using modular heading models and speed sources. Supports Ackermann, differential drive, and custom kinematics.</li>
-<li><b>OdometryHeadingModel / OdometryDifferentialDriveModel</b>: Pluggable models implementing the <code>IOdometryHeadingModel2D</code> interface for heading (theta) integration.</li>
+<li><b>OdometryHeadingModel2D / OdometryDifferentialDriveModel</b>: Pluggable models implementing the <code>IOdometryHeadingModel2D</code> interface for heading (theta) integration.</li>
 <li><b>WheelEncoder</b>: Multi-wheel, vectorized encoder for per-wheel distance and speed measurement, modular and ISpeedSource-compliant.</li>
 <li><b>SpeedFromThrottle</b>: Estimates speed from throttle percentage using calibration data.</li>
 <li><b>Message-driven</b>: Odometry can subscribe to vehicle/motor messages for speed and steering updates.</li>
@@ -104,7 +104,7 @@ Odometry2D</h1>
 <p><b>Example (Ackermann):</b> </p><div class="fragment"><div class="line"><span class="preprocessor">#include &lt;<a class="code" href="TinyRobotics_8h.html">TinyRobotics.h</a>&gt;</span></div>
 <div class="line">CarAckerman car;</div>
 <div class="line">Distance wheelBase(0.3f, DistanceUnit::M);</div>
-<div class="line">OdometryHeadingModel odomModel(wheelBase);</div>
+<div class="line">OdometryHeadingModel2D odomModel(wheelBase);</div>
 <div class="line">SpeedFromThrottle speedEstimator(Speed(5, SpeedUnit::KPH));</div>
 <div class="line">Odometry2D odometry(car, speedEstimator, odomModel);</div>
 <div class="line"> </div>
@@ -140,7 +140,7 @@ IOdometryHeadingModel2D (Interface)</h2>
 <li><code>setSteeringAngle(Angle angle)</code></li>
 </ul>
 <h2><a class="anchor" id="autotoc_md146"></a>
-OdometryHeadingModel (Ackermann/Boat/Default)</h2>
+OdometryHeadingModel2D (Ackermann/Boat/Default)</h2>
 <p>Implements Ackermann and default (steering as angular velocity) kinematics. Use for car-like robots or boats.</p>
 <h2><a class="anchor" id="autotoc_md147"></a>
 OdometryDifferentialDriveModel</h2>

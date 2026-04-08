@@ -1,5 +1,5 @@
 <map id="IOdometryHeadingModel2D" name="IOdometryHeadingModel2D">
-<area shape="rect" id="node1" title="Abstract interface for 2D odometry models." alt="" coords="107,5,309,31"/>
+<area shape="rect" id="node1" title="Abstract interface for 2D odometry models." alt="" coords="112,5,315,31"/>
 <area shape="rect" id="node2" href="$classtinyrobotics_1_1OdometryDifferentialDriveModel.html" title="Odometry model for differential drive robots." alt="" coords="5,79,200,119"/>
-<area shape="rect" id="node3" href="$classtinyrobotics_1_1OdometryHeadingModel.html" title=" " alt="" coords="224,86,405,111"/>
+<area shape="rect" id="node3" href="$classtinyrobotics_1_1OdometryHeadingModel2D.html" title=" " alt="" coords="225,86,423,111"/>
 </map>
