@@ -20,6 +20,11 @@ This directory contains classes and utilities for representing and manipulating 
   Manages a hierarchy of 3D coordinate frames (e.g., world, robot base, sensors) and enables SE(3) transforms and GPS conversion.  
   Features: frame tree management, quaternion-based transform computation, and conversion to GPS coordinates in 3D.
 
+## Class Documentation
+
+- [coordinates](https://pschatzmann.github.io/TinyRobotics/group__coordinates.html)
+
+
 ## Typical Usage
 
 - Represent robot, sensor, or world positions in 2D/3D space.

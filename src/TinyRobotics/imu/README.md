@@ -13,10 +13,9 @@ This module provides dead-reckoning integration for 2D and 3D Inertial Measureme
 - 3D support: orientation (yaw, pitch, roll), 3D position, 3D velocity
 - Designed for embedded and Arduino environments
 
-## Key Classes
+## Class Documentation
 
-- `IMU2D`: 2D IMU dead-reckoning integration
-- `IMU3D`: 3D IMU dead-reckoning integration (yaw, pitch, roll, 3D position/velocity)
+- [imu](https://pschatzmann.github.io/TinyRobotics/group__imu.html)
 
 
 ## Example Usage

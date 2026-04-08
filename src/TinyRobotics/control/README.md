@@ -22,7 +22,10 @@ This module provides essential classes for implementing control algorithms and s
 - **MotionController3D**
 	- A 3D motion and path controller for drones, robots, and vehicles. Uses independent PID controllers for each axis (x, y, z) and orientation (yaw, pitch, roll). Supports 3D path following, configurable on-goal actions (Stop, HoldPosition, Circle), and real-time feedback from an IMotionState3D implementation. Circle mode enables continuous circular motion around the last goal. Highly extensible and configurable for advanced 3D navigation and control.
 
----
+
+## Class Documentation
+
+- [control](https://pschatzmann.github.io/TinyRobotics/group__control.html)
 
 
 ## See Examples

@@ -24,6 +24,11 @@ This directory contains classes and utilities for representing spatial maps and 
   Callback-driven neighbor generation for pathfinding and navigation.  
   Features: configurable neighbor distance and count, runtime validity callback, on-demand neighbor computation.
 
+## Class Documentation
+
+- [maps](https://pschatzmann.github.io/TinyRobotics/group__maps.html)
+
+
 ## Typical Usage
 
 - Model environments as occupancy grids for mapping and localization.

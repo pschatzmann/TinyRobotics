@@ -48,6 +48,11 @@ Example:
 - `StepperMotor`: Interface for stepper motors (uses FastAccelStepper library if enabled).
 - `GenericMotor`: Flexible abstraction for integrating custom/external motor drivers using callbacks.
 
+## Class Documentation
+
+- [motors](https://pschatzmann.github.io/TinyRobotics/group__motors.html)
+
+
 ## Example Usage
 
 ### DC Motor (H-Bridge)

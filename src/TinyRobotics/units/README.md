@@ -25,6 +25,12 @@ This directory provides strongly-typed units for distance, angle, speed, and tim
 - **AngularVelocity3D**  
   Represents a 3D angular velocity vector with unit support. Provides methods to retrieve each component in any supported unit.
 
+## Class Documentation
+
+- [units of measure](https://pschatzmann.github.io/TinyRobotics/group__units.html)
+
+
+
 ## Typical Usage
 
 - Represent and convert distances, angles, speeds, and times in a type-safe way.

@@ -10,6 +10,10 @@ This module provides high-level abstractions for controlling various types of ro
 - **AirPlane**: Fixed-wing airplane with motor (throttle), rudder, elevator, and ailerons.
 - **MotorBoat**: Boat with a single drive motor and a rudder for steering.
 
+## Class Documentation
+
+- [vehicles](https://pschatzmann.github.io/TinyRobotics/group__vehicles.html)
+
 ## Example Usage
 
 ```cpp
@@ -63,14 +67,6 @@ boat.setThrottle(80);
 boat.setRudder(25);
 boat.end();
 ```
-
-## File Overview
-
-- `Car4WD.h`      — Four-wheel drive car
-- `CarAckerman.h` — Ackerman steering car
-- `Quadrotor.h`   — Quadcopter
-- `AirPlane.h`    — Fixed-wing airplane
-- `MotorBoat.h`   — Motor boat
 
 ## Notes
 

@@ -20,6 +20,10 @@ This directory contains algorithms and utilities for path planning, motion plann
   Generic frontier-based exploration utility for autonomous mapping and SLAM.  
   Features: supports multiple selection strategies (random, nearest, farthest, first, last, custom), works with any grid/occupancy map, and provides flexible integration for exploration tasks.
 
+## Class Documentation
+
+- [planning](https://pschatzmann.github.io/TinyRobotics/group__planning.html)
+
 
 ## Typical Usage
 

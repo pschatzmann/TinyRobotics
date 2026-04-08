@@ -53,6 +53,11 @@ if (slam.getNextFrontier(next)) {
 - `Frame2D`, `FrameMgr2D`: Frame transforms
 - `FrontierExplorer<T>`, `IFrontierExplorer<T>`: Autonomous exploration
 
+## Class Documentation
+
+- [slam](https://pschatzmann.github.io/TinyRobotics/group__localization.html)
+
+
 ## See Examples
 
 - [Pointcloud A* Example](../../../examples/maps&planning/pointcloud-astar/pointcloud-astar.ino)

@@ -19,14 +19,10 @@ The Concurrency module in TinyRobotics provides thread-safe data structures and 
   - Classes and utilities designed to leverage FreeRTOS primitives when available, with fallbacks for non-RTOS systems.
 
 
-## Files
+## Class Documentation
 
-- `SynchronizedQueue.h` — Mutex-protected FIFO queue
-- `SynchronizedBuffer.h` — Mutex-protected buffer
-- `Mutex.h`, `LockGuard.h` — Mutex and lock abstractions
-- `RTOS/QueueRTOS.h` — FreeRTOS-based queue
-- `RTOS/Task.h` — Abstraction for FreeRTOS task/thread management
-- `RTOS/BufferRTOS.h` — FreeRTOS-based buffer
+- [concurrency](https://pschatzmann.github.io/TinyRobotics/group__concurrency.html)
+
 
 ## When to Use
 
@@ -60,8 +56,6 @@ sourceTask.start();
 sinkTask.start();
 
 ```
-
-
 
 ## See Examples
 

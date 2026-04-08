@@ -67,6 +67,9 @@ Detects motion or changes between consecutive grayscale camera images.
 - [Range Sensor](../../../examples/sensors/RangeSensor/RangeSensor.ino)
 - [Wheel Encoder](../../../examples/sensors/WheelEncoder/WheelEncoder.ino)
 
+## Class Documentation
+
+- [sensors](https://pschatzmann.github.io/TinyRobotics/group__sensors.html)
 
 ## Notes
 

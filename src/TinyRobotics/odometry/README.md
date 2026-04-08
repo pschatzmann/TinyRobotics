@@ -88,7 +88,6 @@ Implements differential drive kinematics using left/right wheel speeds.
 
 ---
 
-
 ## WheelEncoder
 
 The `WheelEncoder` class provides robust, multi-wheel support for measuring wheel rotation and computing per-wheel distance and speed using encoder ticks. It is designed for modular integration with odometry pipelines and supports any number of wheels (differential, skid-steer, etc.).
@@ -250,6 +249,9 @@ Implements `IOdometryModel3D` for quadcopters/drones using per-motor percentage 
 - `onMessage(const Message<float>& msg)`: Handle incoming motor speed messages
 - `registerCallback(void (*callback)(void*), void* userData)`: Register callback for input changes
 
+## Class Documentation
+
+- [odometry](https://pschatzmann.github.io/TinyRobotics/group__odometry.html)
 
 ## See Also
 

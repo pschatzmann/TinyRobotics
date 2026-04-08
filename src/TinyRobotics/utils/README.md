@@ -19,6 +19,12 @@ This directory contains utility classes and helpers that support the core roboti
 - **Utils.h**  
   General-purpose utility functions and helpers.
 
+## Class Documentation
+
+- [utilities](https://pschatzmann.github.io/TinyRobotics/group__utils.html)
+
+
+
 ## Typical Usage
 
 - Logging messages and errors during development or runtime.

@@ -51,6 +51,10 @@ The following external libraries are supported or recommended for advanced commu
 
 These libraries can be integrated with TinyRobotics communication classes to extend protocol support for robotics and drone applications.
 
+## Class Documentation
+
+- [communication](https://pschatzmann.github.io/TinyRobotics/group__communication.html)
+
 ## See Examples
 
 - [ESPNow Receive](../../../examples/communication/integration/ESPNow-receive/ESPNow-receive.ino)

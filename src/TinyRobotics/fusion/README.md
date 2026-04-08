@@ -78,7 +78,10 @@ Speed speed = fusion.getSpeed();
 Angle heading = fusion.getHeading();
 ```
 
----
+## Class Documentation
+
+- [fusion](https://pschatzmann.github.io/TinyRobotics/group__fusion.html)
+
 
 ## Notes
 
@@ -89,13 +92,4 @@ Angle heading = fusion.getHeading();
 * **GPS** corrects position independently.
 * Can run with any subset of sensors.
 
----
-
-## Example Initialization
-
-```cpp
-Fusion2D fusion;
-fusion.reset(0);                     // reset covariance and time
-fusion.setState(0.0f, 0.0f, 0.0f);  // start at origin with heading=0
-```
 
