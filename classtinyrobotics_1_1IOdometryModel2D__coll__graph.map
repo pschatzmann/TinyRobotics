@@ -1,0 +1,4 @@
+<map id="IOdometryModel2D" name="IOdometryModel2D">
+<area shape="rect" id="node1" title="Abstract interface for 2D odometry models." alt="" coords="5,79,155,104"/>
+<area shape="rect" id="node2" href="$classtinyrobotics_1_1MessageHandler.html" title="Interface for handling messages in the TinyRobotics framework." alt="" coords="15,5,145,31"/>
+</map>

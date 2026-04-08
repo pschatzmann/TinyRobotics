@@ -172,6 +172,8 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a746f9eb7ef7d8ade5a65dbb0798f5b10"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1WheelEncoder.html#a746f9eb7ef7d8ade5a65dbb0798f5b10">setThrottlePercent</a> (float value, uint8_t motor=0) override</td></tr>
 <tr class="memdesc:a746f9eb7ef7d8ade5a65dbb0798f5b10"><td class="mdescLeft">&#160;</td><td class="mdescRight">Not used.  <br /></td></tr>
 <tr class="separator:a746f9eb7ef7d8ade5a65dbb0798f5b10"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1b8b5b43bd5468ce3c207352a1040c17"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1WheelEncoder.html#a1b8b5b43bd5468ce3c207352a1040c17">getMotorCount</a> () const override</td></tr>
+<tr class="separator:a1b8b5b43bd5468ce3c207352a1040c17"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classtinyrobotics_1_1MessageSource"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classtinyrobotics_1_1MessageSource')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classtinyrobotics_1_1MessageSource.html">MessageSource</a></td></tr>
 <tr class="memitem:ac3cabbec9037e5565dff2a698aa8dc8c inherit pub_methods_classtinyrobotics_1_1MessageSource"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1MessageSource.html#ac3cabbec9037e5565dff2a698aa8dc8c">subscribe</a> (<a class="el" href="classtinyrobotics_1_1MessageHandler.html">MessageHandler</a> &amp;handler, MessageOrigin origin=MessageOrigin::Undefined, MessageContent content=MessageContent::Undefined)</td></tr>
 <tr class="memdesc:ac3cabbec9037e5565dff2a698aa8dc8c inherit pub_methods_classtinyrobotics_1_1MessageSource"><td class="mdescLeft">&#160;</td><td class="mdescRight">Subscribe a message handler to this source, with optional filtering.  <br /></td></tr>
@@ -198,6 +200,9 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>unsubscribeAll</b> ()
 <tr class="memitem:a5f0b385a8d63b7df60a0895c8519fbc0"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classtinyrobotics_1_1Speed.html">Speed</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1ISpeedSource.html#a5f0b385a8d63b7df60a0895c8519fbc0">updateSpeed</a> (uint32_t deltaTimeMs, uint8_t motor=0)=0</td></tr>
 <tr class="memdesc:a5f0b385a8d63b7df60a0895c8519fbc0"><td class="mdescLeft">&#160;</td><td class="mdescRight">For sources with inertia, call this in your main loop with the elapsed time (in milliseconds) to update the speed estimate for a specific motor.  <br /></td></tr>
 <tr class="separator:a5f0b385a8d63b7df60a0895c8519fbc0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaa9696842a23129ecc48c7d8ed70b17f"><td class="memItemLeft" align="right" valign="top"><a id="aaa9696842a23129ecc48c7d8ed70b17f" name="aaa9696842a23129ecc48c7d8ed70b17f"></a>
+virtual size_t&#160;</td><td class="memItemRight" valign="bottom"><b>getMotorCount</b> () const =0</td></tr>
+<tr class="separator:aaa9696842a23129ecc48c7d8ed70b17f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-methods" name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
@@ -552,6 +557,33 @@ std::vector&lt; <a class="el" href="structtinyrobotics_1_1MessageSource_1_1Messa
 <p>Get the total distance traveled since last reset. </p>
 <dl class="section return"><dt>Returns</dt><dd><a class="el" href="classtinyrobotics_1_1Distance.html" title="Represents a distance measurement with unit conversion support.">Distance</a> object representing the traveled distance in meters.</dd></dl>
 <p>Get the total distance traveled in meters. </p><dl class="section return"><dt>Returns</dt><dd><a class="el" href="classtinyrobotics_1_1Distance.html" title="Represents a distance measurement with unit conversion support.">Distance</a> in meters. </dd></dl>
+
+</div>
+</div>
+<a id="a1b8b5b43bd5468ce3c207352a1040c17" name="a1b8b5b43bd5468ce3c207352a1040c17"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1b8b5b43bd5468ce3c207352a1040c17">&#9670;&#160;</a></span>getMotorCount()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">size_t getMotorCount </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="classtinyrobotics_1_1ISpeedSource.html">ISpeedSource</a>.</p>
 
 </div>
 </div>

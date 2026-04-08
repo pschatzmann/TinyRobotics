@@ -84,43 +84,72 @@ $(function() {
 <div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment">/**</span></div>
 <div class="line"><span class="lineno">    7</span><span class="comment"> * @brief Abstract interface for 2D odometry models.</span></div>
 <div class="line"><span class="lineno">    8</span><span class="comment"> */</span></div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="keyword">class</span> <a class="code hl_class" href="classtinyrobotics_1_1IOdometryModel2D.html">IOdometryModel2D</a> {</div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="keyword">class</span> <a class="code hl_class" href="classtinyrobotics_1_1IOdometryModel2D.html">IOdometryModel2D</a> : <span class="keyword">public</span> <a class="code hl_class" href="classtinyrobotics_1_1IOdometryModel2D.html">MessageHandler</a> {</div>
 <div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> <span class="keyword">public</span>:</div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>  <span class="keyword">virtual</span> ~IOdometryModel2D() = <span class="keywordflow">default</span>;</div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>  <span class="keyword">virtual</span> <span class="keywordtype">void</span> setSpeed(<a class="code hl_class" href="classtinyrobotics_1_1Speed.html">Speed</a> speed)  = 0;</div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>  <span class="keyword">virtual</span> <span class="keywordtype">void</span> setSpeed(<a class="code hl_class" href="classtinyrobotics_1_1Speed.html">Speed</a> speedLeft, <a class="code hl_class" href="classtinyrobotics_1_1Speed.html">Speed</a> speedRight)  = 0;</div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>  <span class="keyword">virtual</span> <span class="keywordtype">void</span> setSteeringAngle(<a class="code hl_class" href="classtinyrobotics_1_1Angle.html">Angle</a> angle) = 0;</div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>  <span class="comment">/**</span></div>
-<div class="line"><span class="lineno">   16</span><span class="comment">   * @brief Register a callback to be invoked on relevant events (e.g., input change, update).</span></div>
-<div class="line"><span class="lineno">   17</span><span class="comment">   * @param callback Function pointer with signature void callback(void* userData)</span></div>
-<div class="line"><span class="lineno">   18</span><span class="comment">   * @param userData User-provided pointer passed to the callback</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>  <span class="comment">/**</span></div>
+<div class="line"><span class="lineno">   12</span><span class="comment">   * @brief Virtual destructor for interface.</span></div>
+<div class="line"><span class="lineno">   13</span><span class="comment">   */</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>  <span class="keyword">virtual</span> ~<a class="code hl_function" href="classtinyrobotics_1_1IOdometryModel2D.html#a59300ff3189f9e7bb319191beb473c3c">IOdometryModel2D</a>() = <span class="keywordflow">default</span>;</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>  <span class="comment">/**</span></div>
+<div class="line"><span class="lineno">   17</span><span class="comment">   * @brief Get the current speed of the vehicle.</span></div>
+<div class="line"><span class="lineno">   18</span><span class="comment">   * @return Speed of the vehicle (meters/second)</span></div>
 <div class="line"><span class="lineno">   19</span><span class="comment">   */</span></div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>  <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classtinyrobotics_1_1IOdometryModel2D.html#afaf61cb0386265ae8f1ebccbe995bba1">registerCallback</a>(<span class="keywordtype">void</span> (*callback)(<span class="keywordtype">void</span>*), <span class="keywordtype">void</span>* userData) = 0;</div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>  <span class="comment">/**</span></div>
-<div class="line"><span class="lineno">   22</span><span class="comment">   * @brief Compute heading change (deltaTheta) for odometry kinematics.</span></div>
-<div class="line"><span class="lineno">   23</span><span class="comment">   * @param speed Speed of the vehicle (meters/second)</span></div>
-<div class="line"><span class="lineno">   24</span><span class="comment">   * @param steeringAngle Steering angle (radians)</span></div>
-<div class="line"><span class="lineno">   25</span><span class="comment">   * @param deltaTimeMs Time interval (milliseconds)</span></div>
-<div class="line"><span class="lineno">   26</span><span class="comment">   * @return Change in heading (radians)</span></div>
-<div class="line"><span class="lineno">   27</span><span class="comment">   */</span></div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>  <span class="keyword">virtual</span> <span class="keywordtype">float</span> <a class="code hl_function" href="classtinyrobotics_1_1IOdometryModel2D.html#a2ba308e94636a66ec31921322b5b320f">computeDeltaTheta</a>(uint16_t deltaTimeMs) <span class="keyword">const</span> = 0;</div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>  <span class="comment">/**</span></div>
-<div class="line"><span class="lineno">   30</span><span class="comment">   * @brief Compute position change (deltaX, deltaY) for odometry kinematics.</span></div>
-<div class="line"><span class="lineno">   31</span><span class="comment">   * @param speed Speed of the vehicle (meters/second)</span></div>
-<div class="line"><span class="lineno">   32</span><span class="comment">   * @param theta Heading (radians)</span></div>
-<div class="line"><span class="lineno">   33</span><span class="comment">   * @param deltaTimeMs Time interval (milliseconds)</span></div>
-<div class="line"><span class="lineno">   34</span><span class="comment">   * @param[out] deltaX Change in X position (meters)</span></div>
-<div class="line"><span class="lineno">   35</span><span class="comment">   * @param[out] deltaY Change in Y position (meters)</span></div>
-<div class="line"><span class="lineno">   36</span><span class="comment">   */</span></div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>  <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classtinyrobotics_1_1IOdometryModel2D.html#add10733cade5d04c7a4d5da4a95a9ddb">computeDeltaXY</a>(<span class="keywordtype">float</span> theta, uint32_t deltaTimeMs, <span class="keywordtype">float</span>&amp; deltaX, <span class="keywordtype">float</span>&amp; deltaY) <span class="keyword">const</span> = 0;</div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>};</div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span> </div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>} <span class="comment">// namespace tinyrobotics</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>  <span class="keyword">virtual</span> <a class="code hl_class" href="classtinyrobotics_1_1Speed.html">Speed</a> <a class="code hl_function" href="classtinyrobotics_1_1IOdometryModel2D.html#aa9c1360776fea5ef46be0b4f9a073346">getSpeed</a>() <span class="keyword">const</span> = 0;</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>  <span class="comment">/**</span></div>
+<div class="line"><span class="lineno">   23</span><span class="comment">   * @brief Get the current steering angle of the vehicle.</span></div>
+<div class="line"><span class="lineno">   24</span><span class="comment">   * @return Steering angle (radians)</span></div>
+<div class="line"><span class="lineno">   25</span><span class="comment">   */</span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>  <span class="keyword">virtual</span> <a class="code hl_class" href="classtinyrobotics_1_1Angle.html">Angle</a> <a class="code hl_function" href="classtinyrobotics_1_1IOdometryModel2D.html#a562d31a943b2271730be43a904092440">getSteeringAngle</a>() <span class="keyword">const</span> = 0;</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span> </div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>  <span class="comment">/**</span></div>
+<div class="line"><span class="lineno">   29</span><span class="comment">   * @brief Update the speed estimate based on elapsed time.</span></div>
+<div class="line"><span class="lineno">   30</span><span class="comment">   * @param deltaTimeMs Time interval (milliseconds)</span></div>
+<div class="line"><span class="lineno">   31</span><span class="comment">   */</span></div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>  <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classtinyrobotics_1_1IOdometryModel2D.html#ae24e2ee17e5741963c31828850845d1b">updateSpeed</a>(uint32_t deltaTimeMs) = 0;</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span> </div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>  <span class="comment">/**</span></div>
+<div class="line"><span class="lineno">   35</span><span class="comment">   * @brief Set the speed source (e.g., encoder, estimator) for this model.</span></div>
+<div class="line"><span class="lineno">   36</span><span class="comment">   * @param speedSource Reference to an ISpeedSource implementation</span></div>
+<div class="line"><span class="lineno">   37</span><span class="comment">   */</span></div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>  <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classtinyrobotics_1_1IOdometryModel2D.html#afb22e2e4127b0948ee2c7a88e9bf535c">setSpeedSource</a>(ISpeedSource&amp; speedSource) = 0;</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>  <span class="comment">/**</span></div>
+<div class="line"><span class="lineno">   40</span><span class="comment">   * @brief Register a callback to be invoked on relevant events (e.g., input change, update).</span></div>
+<div class="line"><span class="lineno">   41</span><span class="comment">   * @param callback Function pointer with signature void callback(void* userData)</span></div>
+<div class="line"><span class="lineno">   42</span><span class="comment">   * @param userData User-provided pointer passed to the callback</span></div>
+<div class="line"><span class="lineno">   43</span><span class="comment">   */</span></div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>  <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classtinyrobotics_1_1IOdometryModel2D.html#afaf61cb0386265ae8f1ebccbe995bba1">registerCallback</a>(<span class="keywordtype">void</span> (*callback)(<span class="keywordtype">void</span>*), <span class="keywordtype">void</span>* userData) = 0;</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>  <span class="comment">/**</span></div>
+<div class="line"><span class="lineno">   46</span><span class="comment">   * @brief Compute heading change (deltaTheta) for odometry kinematics.</span></div>
+<div class="line"><span class="lineno">   47</span><span class="comment">   * @param speed Speed of the vehicle (meters/second)</span></div>
+<div class="line"><span class="lineno">   48</span><span class="comment">   * @param steeringAngle Steering angle (radians)</span></div>
+<div class="line"><span class="lineno">   49</span><span class="comment">   * @param deltaTimeMs Time interval (milliseconds)</span></div>
+<div class="line"><span class="lineno">   50</span><span class="comment">   * @return Change in heading (radians)</span></div>
+<div class="line"><span class="lineno">   51</span><span class="comment">   */</span></div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>  <span class="keyword">virtual</span> <span class="keywordtype">float</span> <a class="code hl_function" href="classtinyrobotics_1_1IOdometryModel2D.html#a2ba308e94636a66ec31921322b5b320f">computeDeltaTheta</a>(uint16_t deltaTimeMs) <span class="keyword">const</span> = 0;</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>  <span class="comment">/**</span></div>
+<div class="line"><span class="lineno">   54</span><span class="comment">   * @brief Compute position change (deltaX, deltaY) for odometry kinematics.</span></div>
+<div class="line"><span class="lineno">   55</span><span class="comment">   * @param speed Speed of the vehicle (meters/second)</span></div>
+<div class="line"><span class="lineno">   56</span><span class="comment">   * @param theta Heading (radians)</span></div>
+<div class="line"><span class="lineno">   57</span><span class="comment">   * @param deltaTimeMs Time interval (milliseconds)</span></div>
+<div class="line"><span class="lineno">   58</span><span class="comment">   * @param[out] deltaX Change in X position (meters)</span></div>
+<div class="line"><span class="lineno">   59</span><span class="comment">   * @param[out] deltaY Change in Y position (meters)</span></div>
+<div class="line"><span class="lineno">   60</span><span class="comment">   */</span></div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>  <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classtinyrobotics_1_1IOdometryModel2D.html#add10733cade5d04c7a4d5da4a95a9ddb">computeDeltaXY</a>(<span class="keywordtype">float</span> theta, uint32_t deltaTimeMs, <span class="keywordtype">float</span>&amp; deltaX, <span class="keywordtype">float</span>&amp; deltaY) <span class="keyword">const</span> = 0;</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>};</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span> </div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>} <span class="comment">// namespace tinyrobotics</span></div>
 <div class="ttc" id="aclasstinyrobotics_1_1Angle_html"><div class="ttname"><a href="classtinyrobotics_1_1Angle.html">tinyrobotics::Angle</a></div><div class="ttdoc">Represents an angle with unit conversion and wrap-around support.</div><div class="ttdef"><b>Definition:</b> Angle.h:42</div></div>
 <div class="ttc" id="aclasstinyrobotics_1_1IOdometryModel2D_html"><div class="ttname"><a href="classtinyrobotics_1_1IOdometryModel2D.html">tinyrobotics::IOdometryModel2D</a></div><div class="ttdoc">Abstract interface for 2D odometry models.</div><div class="ttdef"><b>Definition:</b> IOdometryModel2D.h:9</div></div>
 <div class="ttc" id="aclasstinyrobotics_1_1IOdometryModel2D_html_a2ba308e94636a66ec31921322b5b320f"><div class="ttname"><a href="classtinyrobotics_1_1IOdometryModel2D.html#a2ba308e94636a66ec31921322b5b320f">tinyrobotics::IOdometryModel2D::computeDeltaTheta</a></div><div class="ttdeci">virtual float computeDeltaTheta(uint16_t deltaTimeMs) const =0</div><div class="ttdoc">Compute heading change (deltaTheta) for odometry kinematics.</div></div>
+<div class="ttc" id="aclasstinyrobotics_1_1IOdometryModel2D_html_a562d31a943b2271730be43a904092440"><div class="ttname"><a href="classtinyrobotics_1_1IOdometryModel2D.html#a562d31a943b2271730be43a904092440">tinyrobotics::IOdometryModel2D::getSteeringAngle</a></div><div class="ttdeci">virtual Angle getSteeringAngle() const =0</div><div class="ttdoc">Get the current steering angle of the vehicle.</div></div>
+<div class="ttc" id="aclasstinyrobotics_1_1IOdometryModel2D_html_a59300ff3189f9e7bb319191beb473c3c"><div class="ttname"><a href="classtinyrobotics_1_1IOdometryModel2D.html#a59300ff3189f9e7bb319191beb473c3c">tinyrobotics::IOdometryModel2D::~IOdometryModel2D</a></div><div class="ttdeci">virtual ~IOdometryModel2D()=default</div><div class="ttdoc">Virtual destructor for interface.</div></div>
+<div class="ttc" id="aclasstinyrobotics_1_1IOdometryModel2D_html_aa9c1360776fea5ef46be0b4f9a073346"><div class="ttname"><a href="classtinyrobotics_1_1IOdometryModel2D.html#aa9c1360776fea5ef46be0b4f9a073346">tinyrobotics::IOdometryModel2D::getSpeed</a></div><div class="ttdeci">virtual Speed getSpeed() const =0</div><div class="ttdoc">Get the current speed of the vehicle.</div></div>
 <div class="ttc" id="aclasstinyrobotics_1_1IOdometryModel2D_html_add10733cade5d04c7a4d5da4a95a9ddb"><div class="ttname"><a href="classtinyrobotics_1_1IOdometryModel2D.html#add10733cade5d04c7a4d5da4a95a9ddb">tinyrobotics::IOdometryModel2D::computeDeltaXY</a></div><div class="ttdeci">virtual void computeDeltaXY(float theta, uint32_t deltaTimeMs, float &amp;deltaX, float &amp;deltaY) const =0</div><div class="ttdoc">Compute position change (deltaX, deltaY) for odometry kinematics.</div></div>
+<div class="ttc" id="aclasstinyrobotics_1_1IOdometryModel2D_html_ae24e2ee17e5741963c31828850845d1b"><div class="ttname"><a href="classtinyrobotics_1_1IOdometryModel2D.html#ae24e2ee17e5741963c31828850845d1b">tinyrobotics::IOdometryModel2D::updateSpeed</a></div><div class="ttdeci">virtual void updateSpeed(uint32_t deltaTimeMs)=0</div><div class="ttdoc">Update the speed estimate based on elapsed time.</div></div>
 <div class="ttc" id="aclasstinyrobotics_1_1IOdometryModel2D_html_afaf61cb0386265ae8f1ebccbe995bba1"><div class="ttname"><a href="classtinyrobotics_1_1IOdometryModel2D.html#afaf61cb0386265ae8f1ebccbe995bba1">tinyrobotics::IOdometryModel2D::registerCallback</a></div><div class="ttdeci">virtual void registerCallback(void(*callback)(void *), void *userData)=0</div><div class="ttdoc">Register a callback to be invoked on relevant events (e.g., input change, update).</div></div>
+<div class="ttc" id="aclasstinyrobotics_1_1IOdometryModel2D_html_afb22e2e4127b0948ee2c7a88e9bf535c"><div class="ttname"><a href="classtinyrobotics_1_1IOdometryModel2D.html#afb22e2e4127b0948ee2c7a88e9bf535c">tinyrobotics::IOdometryModel2D::setSpeedSource</a></div><div class="ttdeci">virtual void setSpeedSource(ISpeedSource &amp;speedSource)=0</div><div class="ttdoc">Set the speed source (e.g., encoder, estimator) for this model.</div></div>
 <div class="ttc" id="aclasstinyrobotics_1_1Speed_html"><div class="ttname"><a href="classtinyrobotics_1_1Speed.html">tinyrobotics::Speed</a></div><div class="ttdoc">Represents a speed measurement with unit conversion support.</div><div class="ttdef"><b>Definition:</b> Speed.h:40</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->

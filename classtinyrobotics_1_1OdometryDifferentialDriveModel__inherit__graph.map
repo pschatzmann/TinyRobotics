@@ -1,4 +1,5 @@
 <map id="OdometryDifferentialDriveModel" name="OdometryDifferentialDriveModel">
-<area shape="rect" id="node1" title="Odometry model for differential drive robots." alt="" coords="5,79,200,119"/>
-<area shape="rect" id="node2" href="$classtinyrobotics_1_1IOdometryModel2D.html" title="Abstract interface for 2D odometry models." alt="" coords="28,5,177,31"/>
+<area shape="rect" id="node1" title="Odometry model for differential drive robots." alt="" coords="5,152,200,192"/>
+<area shape="rect" id="node2" href="$classtinyrobotics_1_1IOdometryModel2D.html" title="Abstract interface for 2D odometry models." alt="" coords="28,79,177,104"/>
+<area shape="rect" id="node3" href="$classtinyrobotics_1_1MessageHandler.html" title="Interface for handling messages in the TinyRobotics framework." alt="" coords="37,5,168,31"/>
 </map>

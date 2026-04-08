@@ -1,5 +1,6 @@
 <map id="IOdometryModel2D" name="IOdometryModel2D">
-<area shape="rect" id="node1" title="Abstract interface for 2D odometry models." alt="" coords="125,5,275,31"/>
-<area shape="rect" id="node2" href="$classtinyrobotics_1_1OdometryDifferentialDriveModel.html" title="Odometry model for differential drive robots." alt="" coords="5,79,200,119"/>
-<area shape="rect" id="node3" href="$classtinyrobotics_1_1OdometryModel2D.html" title=" " alt="" coords="225,86,370,111"/>
+<area shape="rect" id="node1" title="Abstract interface for 2D odometry models." alt="" coords="125,79,275,104"/>
+<area shape="rect" id="node3" href="$classtinyrobotics_1_1OdometryDifferentialDriveModel.html" title="Odometry model for differential drive robots." alt="" coords="5,152,200,192"/>
+<area shape="rect" id="node4" href="$classtinyrobotics_1_1OdometryModel2D.html" title=" " alt="" coords="225,159,370,185"/>
+<area shape="rect" id="node2" href="$classtinyrobotics_1_1MessageHandler.html" title="Interface for handling messages in the TinyRobotics framework." alt="" coords="135,5,265,31"/>
 </map>

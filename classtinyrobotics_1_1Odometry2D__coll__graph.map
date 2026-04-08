@@ -1,14 +1,12 @@
 <map id="Odometry2D" name="Odometry2D">
-<area shape="rect" id="node1" title="Tracks 2D position and orientation of a robot using velocity and steering data from external sources." alt="" coords="473,235,579,261"/>
-<area shape="rect" id="node2" href="$classtinyrobotics_1_1IMotionState2D.html" title="Interface for representing the navigation state of a robot in 2D space." alt="" coords="193,62,316,87"/>
-<area shape="rect" id="node3" href="$classtinyrobotics_1_1MessageSource.html" title="Base class for message sources in the TinyRobotics communication framework." alt="" coords="5,18,129,43"/>
-<area shape="rect" id="node4" href="$classtinyrobotics_1_1MessageHandler.html" title="Interface for handling messages in the TinyRobotics framework." alt="" coords="189,111,320,137"/>
-<area shape="rect" id="node5" href="$classtinyrobotics_1_1Coordinate.html" title=" " alt="" coords="179,161,331,186"/>
-<area shape="rect" id="node6" href="$classtinyrobotics_1_1Serializable.html" title="This class defines an interface for serializable objects that can be converted to and from a string r..." alt="" coords="18,161,117,186"/>
-<area shape="rect" id="node7" href="$structtinyrobotics_1_1Delta2D.html" title="Represents a 2D incremental motion update (dx, dy, dtheta)." alt="" coords="217,210,292,235"/>
-<area shape="rect" id="node8" href="$classtinyrobotics_1_1Angle.html" title="Represents an angle with unit conversion and wrap&#45;around support." alt="" coords="225,259,284,285"/>
-<area shape="rect" id="node9" href="$classtinyrobotics_1_1Speed.html" title="Represents a speed measurement with unit conversion support." alt="" coords="223,309,286,334"/>
-<area shape="rect" id="node10" href="$classtinyrobotics_1_1Distance.html" title="Represents a distance measurement with unit conversion support." alt="" coords="215,358,294,383"/>
-<area shape="rect" id="node11" href="$classtinyrobotics_1_1IOdometryModel2D.html" title="Abstract interface for 2D odometry models." alt="" coords="180,407,329,433"/>
-<area shape="rect" id="node12" href="$classtinyrobotics_1_1ISpeedSource.html" title="Interface for speed sources." alt="" coords="199,457,310,482"/>
+<area shape="rect" id="node1" title="Tracks 2D position and orientation of a robot using velocity and steering data from external sources." alt="" coords="473,149,579,174"/>
+<area shape="rect" id="node2" href="$classtinyrobotics_1_1IMotionState2D.html" title="Interface for representing the navigation state of a robot in 2D space." alt="" coords="200,50,323,75"/>
+<area shape="rect" id="node3" href="$classtinyrobotics_1_1MessageSource.html" title="Base class for message sources in the TinyRobotics communication framework." alt="" coords="9,19,133,45"/>
+<area shape="rect" id="node4" href="$classtinyrobotics_1_1Coordinate.html" title=" " alt="" coords="185,99,337,125"/>
+<area shape="rect" id="node5" href="$classtinyrobotics_1_1Serializable.html" title="This class defines an interface for serializable objects that can be converted to and from a string r..." alt="" coords="21,99,120,125"/>
+<area shape="rect" id="node6" href="$structtinyrobotics_1_1Delta2D.html" title="Represents a 2D incremental motion update (dx, dy, dtheta)." alt="" coords="224,149,299,174"/>
+<area shape="rect" id="node7" href="$classtinyrobotics_1_1Distance.html" title="Represents a distance measurement with unit conversion support." alt="" coords="222,198,301,223"/>
+<area shape="rect" id="node8" href="$classtinyrobotics_1_1IOdometryModel2D.html" title="Abstract interface for 2D odometry models." alt="" coords="187,247,336,273"/>
+<area shape="rect" id="node9" href="$classtinyrobotics_1_1MessageHandler.html" title="Interface for handling messages in the TinyRobotics framework." alt="" coords="5,247,136,273"/>
+<area shape="rect" id="node10" href="$classtinyrobotics_1_1ISpeedSource.html" title="Interface for speed sources." alt="" coords="206,297,317,322"/>
 </map>
