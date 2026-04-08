@@ -78,6 +78,7 @@ Key Concepts</h1>
 <ul>
 <li><b>Odometry2D</b>: Tracks 2D position and orientation using modular heading models and speed sources. Supports Ackermann, differential drive, and custom kinematics.</li>
 <li><b>OdometryHeadingModel / OdometryDifferentialDriveModel</b>: Pluggable models implementing the <code>IOdometryHeadingModel2D</code> interface for heading (theta) integration.</li>
+<li><b>WheelEncoder</b>: Multi-wheel, vectorized encoder for per-wheel distance and speed measurement, modular and ISpeedSource-compliant.</li>
 <li><b>SpeedFromThrottle</b>: Estimates speed from throttle percentage using calibration data.</li>
 <li><b>Message-driven</b>: Odometry can subscribe to vehicle/motor messages for speed and steering updates.</li>
 <li><b>Extensible</b>: Add your own heading models by implementing <code>IOdometryHeadingModel2D</code>.</li>
@@ -108,9 +109,6 @@ Odometry2D</h1>
 <div class="line">Odometry2D odometry(car, speedEstimator, odomModel);</div>
 <div class="line"> </div>
 <div class="line"><span class="keywordtype">void</span> loop() {</div>
-<div class="line">    <span class="keywordtype">float</span> speed = speedEstimator.getSpeedMPS(controller.getThrottlePercent());</div>
-<div class="line">    odomModel.setSpeed(Speed(speed, SpeedUnit::MPS));</div>
-<div class="line">    odomModel.setSteeringAngle(controller.getSteeringAngle());</div>
 <div class="line">    odometry.update();</div>
 <div class="line">    <span class="keyword">auto</span> pos = odometry.getPosition();</div>
 <div class="line">    <span class="keywordtype">float</span> heading = odometry.getTheta();</div>
@@ -126,7 +124,6 @@ Odometry2D</h1>
 <div class="line">Odometry2D odometry(vehicle, leftEncoder, diffModel);</div>
 <div class="line"> </div>
 <div class="line"><span class="keywordtype">void</span> loop() {</div>
-<div class="line">    diffModel.setSpeed(leftEncoder.getSpeed(), rightEncoder.getSpeed());</div>
 <div class="line">    odometry.update();</div>
 <div class="line">}</div>
 <div class="ttc" id="aTinyRobotics_8h_html"><div class="ttname"><a href="TinyRobotics_8h.html">TinyRobotics.h</a></div></div>
@@ -135,7 +132,7 @@ Odometry2D</h1>
 Modular Heading Models</h1>
 <h2><a class="anchor" id="autotoc_md145"></a>
 IOdometryHeadingModel2D (Interface)</h2>
-<p>Defines the interface for heading (theta) integration models. Implement this to add custom kinematics.</p>
+<p>Defines the interface for heading (theta) integration models. Implement this to add custom kinematics and is automatically updated by Odometry2D.</p>
 <p><b>Key Methods:</b></p><ul>
 <li><code>computeDeltaTheta(uint16_t deltaTimeMs)</code>: Returns heading change for the time interval</li>
 <li><code>setSpeed(Speed speed)</code></li>
@@ -150,6 +147,42 @@ OdometryDifferentialDriveModel</h2>
 <p>Implements differential drive kinematics using left/right wheel speeds.</p>
 <hr  />
 <h1><a class="anchor" id="autotoc_md149"></a>
+WheelEncoder</h1>
+<p>The <code>WheelEncoder</code> class provides robust, multi-wheel support for measuring wheel rotation and computing per-wheel distance and speed using encoder ticks. It is designed for modular integration with odometry pipelines and supports any number of wheels (differential, skid-steer, etc.).</p>
+<p><b>Features:</b></p><ul>
+<li>Supports any number of wheels (configurable at construction)</li>
+<li>Vectorized state for distance, speed, and tick timing per wheel</li>
+<li>Interface-compliant with <code>ISpeedSource</code> for modular odometry integration</li>
+<li>Configurable wheel diameter and ticks per revolution for accurate distance estimation</li>
+<li>Periodic reporting of distance and speed via the <code>MessageSource</code> interface</li>
+<li>Slip calibration support to compensate for wheel slip or surface effects</li>
+<li>Designed for use with interrupt-driven tick updates (call <code>setTick(motor)</code> in your ISR)</li>
+</ul>
+<p><b>Key Methods:</b></p><ul>
+<li><code>WheelEncoder(size_t numWheels = 1)</code>: Construct for N wheels</li>
+<li><code>setWheelDiameter(Distance diameter)</code> / <code>setWheelDiameter(float, DistanceUnit)</code></li>
+<li><code>setTicksPerRevolution(int ticks)</code></li>
+<li><code>begin()</code>: Reset and start reporting</li>
+<li><code>setTick(size_t motor = 0)</code>: Call in your encoder ISR for each wheel</li>
+<li><code>getDistanceM(size_t motor = 0)</code>, <code>getSpeedMPS(size_t motor = 0)</code>, <code>getDistance(DistanceUnit, size_t motor = 0)</code></li>
+<li><code>setSlipFactor(float)</code>, <code>calibrateSlip(float actualDistanceM)</code></li>
+</ul>
+<p><b>Example (Differential Drive):</b> </p><div class="fragment"><div class="line"><span class="preprocessor">#include &lt;<a class="code" href="TinyRobotics_8h.html">TinyRobotics.h</a>&gt;</span></div>
+<div class="line">WheelEncoder encoder(2); <span class="comment">// Two wheels</span></div>
+<div class="line">encoder.setWheelDiameter(0.065); <span class="comment">// 65mm wheel</span></div>
+<div class="line">encoder.setTicksPerRevolution(20);</div>
+<div class="line">encoder.begin();</div>
+<div class="line"><span class="comment">// In your interrupt:</span></div>
+<div class="line">encoder.setTick(0); <span class="comment">// Left wheel</span></div>
+<div class="line">encoder.setTick(1); <span class="comment">// Right wheel</span></div>
+<div class="line"><span class="comment">// In your main loop:</span></div>
+<div class="line"><span class="keywordtype">float</span> leftDistance = encoder.getDistanceM(0);</div>
+<div class="line"><span class="keywordtype">float</span> rightDistance = encoder.getDistanceM(1);</div>
+<div class="line"><span class="keywordtype">float</span> leftSpeed = encoder.getSpeedMPS(0);</div>
+<div class="line"><span class="keywordtype">float</span> rightSpeed = encoder.getSpeedMPS(1);</div>
+</div><!-- fragment --><p>This class is intended for embedded robotics applications (Arduino, ESP32, etc.) and integrates with the TinyRobotics messaging framework. It is suitable for use as a modular speed/distance source in extensible odometry pipelines.</p>
+<hr  />
+<h1><a class="anchor" id="autotoc_md151"></a>
 SpeedFromThrottle</h1>
 <p>Estimates vehicle speed from throttle percentage using calibration data. Useful when direct speed measurement is unavailable or unreliable.</p>
 <p><b>Features:</b></p><ul>
@@ -162,11 +195,10 @@ SpeedFromThrottle</h1>
 <p><b>Key Methods:</b></p><ul>
 <li><code>SpeedFromThrottle(maxSpeedMps)</code></li>
 <li><code>addSpeedCalibration(throttle, speed)</code></li>
-<li><code>getSpeedMPS(throttle)</code></li>
 <li><code>getSpeed(throttle)</code></li>
 </ul>
 <hr  />
-<h1><a class="anchor" id="autotoc_md151"></a>
+<h1><a class="anchor" id="autotoc_md153"></a>
 Usage Notes</h1>
 <ul>
 <li>For Ackermann vehicles, set the wheelbase using the model constructor.</li>
@@ -175,7 +207,7 @@ Usage Notes</h1>
 <li>The module is designed for extensibility—implement your own heading model for custom kinematics.</li>
 </ul>
 <hr  />
-<h1><a class="anchor" id="autotoc_md153"></a>
+<h1><a class="anchor" id="autotoc_md155"></a>
 Advanced Topics</h1>
 <ul>
 <li><b>Message Integration:</b> Odometry2D can subscribe to messages from vehicles/motors for automatic speed/steering updates.</li>
@@ -183,13 +215,13 @@ Advanced Topics</h1>
 <li><b>3D Odometry:</b> See <code>Odometry3D</code> for drones, underwater, or aerial robots (not covered in detail here).</li>
 </ul>
 <hr  />
-<h1><a class="anchor" id="autotoc_md155"></a>
+<h1><a class="anchor" id="autotoc_md157"></a>
 See Also</h1>
 <ul>
 <li><code>CarAckerman</code>, <code>GenericMotor</code>, <code>MotionController2D</code>, <code>Frame2D</code>, <code>Coordinate</code>, <code>Angle</code>, <code>Speed</code>, <code>Distance</code></li>
 <li>Example sketches in the <code>examples/</code> folder for real-world usage patterns.</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md156"></a>
+<h2><a class="anchor" id="autotoc_md158"></a>
 Odometry3D</h2>
 <p>Tracks the 3D position (x, y, z) and orientation (yaw, pitch, roll) of a robot using linear and angular velocity inputs. Suitable for drones, underwater vehicles, and robots operating in 3D environments.</p>
 <p><b>Features:</b></p><ul>
