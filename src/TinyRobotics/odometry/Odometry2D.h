@@ -73,12 +73,19 @@ namespace tinyrobotics {
  * @date 2026-03-30
  */
 
-class Odometry2D : public IMotionState2D, public MessageHandler {
+class Odometry2D : public IMotionState2D {
  public:
   Odometry2D(MessageSource& vehicle, ISpeedSource& speedSource,
              IOdometryModel2D& model)
       : vehicle(vehicle), speedSource(speedSource), model(model) {
-    vehicle.subscribe(*this);
+    model.setSpeedSource(speedSource);
+    vehicle.subscribe(model);
+    model.registerCallback(
+        [](void* userData) {
+          Odometry2D* odometry = static_cast<Odometry2D*>(userData);
+          odometry->update();
+        },
+        this);
   }
 
   /**
@@ -116,8 +123,6 @@ class Odometry2D : public IMotionState2D, public MessageHandler {
    * @return true on success
    */
   bool begin(const Frame2D& frame) {
-    // Ensure speed vector is initialized
-    speed.resize(1);
     // Extract position and orientation from the frame's transform
     auto tf = frame.getTransform();
     // tf.translation is a Coordinate<float>, convert to Coordinate<DistanceM>
@@ -140,18 +145,20 @@ class Odometry2D : public IMotionState2D, public MessageHandler {
   /// @brief Get the current 2D position (meters)
   Coordinate<DistanceM> getPosition() const { return position; }
   /// @brief Get the current steering angle (radians or angular velocity)
-  Angle getSteeringAngle() const { return steeringAngle; }
+  Angle getSteeringAngle() const { return model.getSteeringAngle(); }
   /// @brief Get the current heading as an Angle (radians)
   Angle getHeading() const { return Angle(theta, AngleUnit::RAD); }
   /// @brief Get the current speed (meters/second)
-  Speed getSpeed() const { return speedAvg; }
+  Speed getSpeed() const { return model.getSpeed(); }
   /// @brief Get the current orientation (radians)
   float getTheta() const { return theta; }
   /// @brief Get the current linear velocity (meters/second)
-  float getLinearVelocity() const { return speedAvg.getValue(SpeedUnit::MPS); }
+  float getLinearVelocity() const {
+    return getSpeed().getValue(SpeedUnit::MPS);
+  }
   /// @brief Get the current angular velocity (radians/second)
   float getAngularVelocity() const {
-    return steeringAngle.getValue(AngleUnit::RAD);
+    return getSteeringAngle().getValue(AngleUnit::RAD);
   }
   /// @brief Get the total distance traveled
   Distance getTotalDistance() const {
@@ -170,66 +177,12 @@ class Odometry2D : public IMotionState2D, public MessageHandler {
     return Transform2D(position, getHeading().getValue(AngleUnit::DEG));
   }
 
-  bool onMessage(const Message<float>& msg) {
-    if (msg.origin != MessageOrigin::Vehicle &&
-        msg.origin != MessageOrigin::Motor)
-      return false;
-    //  update speed and steering angle from messages
-    switch (msg.content) {
-      case MessageContent::MotorSpeed:
-        if (msg.unit != Unit::Percent) return false;
-        speedSource.setThrottlePercent(msg.value, msg.origin_id);
-        if (msg.origin == MessageOrigin::Motor) {
-          // differential motor with left = 0 and right = 1
-          is_differential = true;
-          if (speed.size() != 2) speed.resize(2);
-          switch (msg.origin_id) {
-            case 0:
-              speed[0] = speedSource.getSpeed(0);
-              break;
-            case 1:
-              speed[1] = speedSource.getSpeed(1);
-              update();
-              break;
-            default:
-              // ignore other motors
-              break;
-          }
-          // We just consider the first 2 motors
-          if (msg.origin_id < 2) {
-            speed[msg.origin_id] = speedSource.getSpeed(msg.origin_id);
-            if (msg.origin_id == 1) update();
-          }
-        } else {
-          // regular motor
-          is_differential = false;
-          update();
-        }
-        return true;
-      case MessageContent::Speed:
-        if (msg.unit != Unit::MetersPerSecond) return false;
-        speedAvg = Speed(msg.value, SpeedUnit::MPS);
-        update();
-        return true;
-      case MessageContent::SteeringAngle:
-        if (msg.unit != Unit::AngleRadian) return false;
-        steeringAngle = Angle(msg.value, AngleUnit::RAD);
-        update();
-        return true;
-      default:
-        return false;  // Unhandled message content
-    }
-  }
-
  protected:
   Coordinate<float> position;
   float theta = 0.0f;
   float totalDistance = 0.0f;
   Delta2D lastDelta = {0.0f, 0.0f, 0.0f};  // (dx, dy, dtheta)
   uint32_t lastUpdateTimeMs = 0;
-  Angle steeringAngle;
-  std::vector<Speed> speed;
-  Speed speedAvg;
   Distance wheelBase;
   IOdometryModel2D& model;
   ISpeedSource& speedSource;
@@ -251,15 +204,10 @@ class Odometry2D : public IMotionState2D, public MessageHandler {
     sendMessage(msgHeading);
 
     // Publish speed as float (meters/second)
-    int id = 0;
-    for (auto& s : speed) {
-      Message<float> msgSpeed{MessageContent::Speed, s.getValue(SpeedUnit::MPS),
-                              Unit::MetersPerSecond};
-      msgSpeed.origin = MessageOrigin::System;
-      msgSpeed.origin_id = id;
-      sendMessage(msgSpeed);
-      id++;
-    }
+    Message<float> msgSpeed{MessageContent::Speed, getSpeed().getValue(SpeedUnit::MPS),
+                            Unit::MetersPerSecond};
+    msgSpeed.origin = MessageOrigin::System;
+    sendMessage(msgSpeed);
   }
 
   /**
@@ -276,19 +224,10 @@ class Odometry2D : public IMotionState2D, public MessageHandler {
    * velocity) * deltaTime
    */
   void update(uint32_t deltaTimeMs) {
-    // handle inertial modelling e.g. for boats
-    float speedMps = 0;
-    for (int j = 0; j < speed.size(); j++) {
-      speed[j] = speedSource.updateSpeed(deltaTimeMs, j);
-    }
-    speedAvg = calculateAverageSpeed();
-    float steeringAngleRad = steeringAngle.getValue(AngleUnit::RAD);
+    // Update speed from the speed source (if it has inertia)
+    model.updateSpeed(deltaTimeMs);
+    float steeringAngleRad = model.getSteeringAngle().getValue(AngleUnit::RAD);
     float deltaTheta = 0.0f;
-    // for Ackermann/boat kinematics, we set the speed and steering angle in the
-    // model
-    model.setSpeed(speedAvg);
-    model.setSpeed(speed[0], speed[1]);
-    model.setSteeringAngle(steeringAngle);
     deltaTheta = model.computeDeltaTheta(deltaTimeMs);
     theta += deltaTheta;
     // Normalize theta to [-pi, pi)
@@ -301,18 +240,6 @@ class Odometry2D : public IMotionState2D, public MessageHandler {
     totalDistance += std::sqrt(deltaX * deltaX + deltaY * deltaY);
 
     publish();
-  }
-
-  /// @brief Calculate the average speed from the speed vector
-  Speed calculateAverageSpeed() {
-    Speed speedAvg{};
-    for (const auto& s : speed) {
-      speedAvg += s;
-    }
-    if (!speed.empty()) {
-      speedAvg /= speed.size();
-    }
-    return speedAvg;
   }
 };
 

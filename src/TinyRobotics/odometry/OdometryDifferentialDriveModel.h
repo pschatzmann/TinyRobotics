@@ -1,6 +1,8 @@
 #pragma once
 #include <cmath>
 
+#include "ISpeedSource.h"
+#include "TinyRobotics/communication/Message.h"
 #include "TinyRobotics/odometry/IOdometryModel2D.h"
 #include "TinyRobotics/units/Units.h"
 #include "stdint.h"
@@ -18,12 +20,10 @@ class OdometryDifferentialDriveModel : public IOdometryModel2D {
  public:
   OdometryDifferentialDriveModel(Distance wheelBase) : wheelBase(wheelBase) {}
 
-  void setSpeed(Speed left, Speed right) {
-    leftSpeed = left;
-    rightSpeed = right;
+  virtual void updateSpeed(uint32_t deltaTimeMs) {
+    leftSpeed = p_speedSource->updateSpeed(deltaTimeMs, 0);
+    rightSpeed = p_speedSource->updateSpeed(deltaTimeMs, 1);
   }
-
-  void setSpeed(Speed speed) {}
 
   /**
    * @brief Compute heading change (deltaTheta) for differential drive.
@@ -48,11 +48,61 @@ class OdometryDifferentialDriveModel : public IOdometryModel2D {
     deltaX = v * std::cos(theta) * dt;
     deltaY = v * std::sin(theta) * dt;
   }
+  bool onMessage(const Message<float>& msg) {
+    if (msg.origin != MessageOrigin::Vehicle &&
+        msg.origin != MessageOrigin::Motor)
+      return false;
+    //  update speed and steering angle from messages
+    switch (msg.content) {
+      case MessageContent::SteeringAngle:
+        if (msg.unit != Unit::AngleRadian) return false;
+        steeringAngle = Angle(msg.value, AngleUnit::RAD);
+        return true;
+      case MessageContent::MotorSpeed:
+        if (msg.unit != Unit::Percent) return false;
+        // differential motor with left = 0 and right = 1
+        switch (msg.origin_id) {
+          case 0:
+            p_speedSource->setThrottlePercent(msg.value, 0);
+            leftSpeed = p_speedSource->getSpeed(0);
+            break;
+          case 1:
+            p_speedSource->setThrottlePercent(msg.value, 1);
+            rightSpeed = p_speedSource->getSpeed(1);
+            if (callback) {
+              callback(userData);
+            }
+            break;
+          default:
+            // ignore other motors
+            break;
+        }
+        return true;
+      default:
+        return false;  // Unhandled message content
+    }
+  }
+
+  void setCallback(void (*callback)(void*), void* userData) {
+    this->callback = callback;
+    this->userData = userData;
+  }
+
+  void setSpeedSource(ISpeedSource& speedSource) {
+    p_speedSource = &speedSource;
+  }
+
+  Speed getSpeed() const override { return (leftSpeed + rightSpeed) / 2; }
+  Angle getSteeringAngle() const override { return steeringAngle; }
 
  private:
   Distance wheelBase;
+  ISpeedSource* p_speedSource = nullptr;
   Speed leftSpeed;
   Speed rightSpeed;
+  Angle steeringAngle;
+  void (*callback)(void*) = nullptr;
+  void* userData = nullptr;
 };
 
 }  // namespace tinyrobotics

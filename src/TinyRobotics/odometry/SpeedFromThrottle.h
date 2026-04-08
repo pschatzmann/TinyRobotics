@@ -125,7 +125,9 @@ class SpeedFromThrottle : public MessageSource,
     return Speed(speedMps[motor], SpeedUnit::MPS);
   }
 
- protected:
+  size_t getMotorCount() const override { return numMotors; }
+
+  protected:
   std::vector<std::pair<float, float>> calibrationData;
   std::vector<float> speedMps;
   uint8_t numMotors = 1;

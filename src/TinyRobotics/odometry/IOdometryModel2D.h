@@ -6,12 +6,36 @@ namespace tinyrobotics {
 /**
  * @brief Abstract interface for 2D odometry models.
  */
-class IOdometryModel2D {
+class IOdometryModel2D : public MessageHandler {
  public:
+  /**
+   * @brief Virtual destructor for interface.
+   */
   virtual ~IOdometryModel2D() = default;
-  virtual void setSpeed(Speed speed)  = 0;
-  virtual void setSpeed(Speed speedLeft, Speed speedRight)  = 0;
-  virtual void setSteeringAngle(Angle angle) = 0;
+
+  /**
+   * @brief Get the current speed of the vehicle.
+   * @return Speed of the vehicle (meters/second)
+   */
+  virtual Speed getSpeed() const = 0;
+
+  /**
+   * @brief Get the current steering angle of the vehicle.
+   * @return Steering angle (radians)
+   */
+  virtual Angle getSteeringAngle() const = 0;
+
+  /**
+   * @brief Update the speed estimate based on elapsed time.
+   * @param deltaTimeMs Time interval (milliseconds)
+   */
+  virtual void updateSpeed(uint32_t deltaTimeMs) = 0;
+
+  /**
+   * @brief Set the speed source (e.g., encoder, estimator) for this model.
+   * @param speedSource Reference to an ISpeedSource implementation
+   */
+  virtual void setSpeedSource(ISpeedSource& speedSource) = 0;
   /**
    * @brief Register a callback to be invoked on relevant events (e.g., input change, update).
    * @param callback Function pointer with signature void callback(void* userData)

@@ -23,6 +23,8 @@ class ISpeedSource {
 
   /// For sources with inertia, call this in your main loop with the elapsed time (in milliseconds) to update the speed estimate for a specific motor.
   virtual Speed updateSpeed(uint32_t deltaTimeMs, uint8_t motor = 0) = 0;
+
+  virtual size_t getMotorCount() const = 0;
 };
 
 } // namespace tinyrobotics

@@ -282,6 +282,8 @@ class WheelEncoder : public MessageSource, public ISpeedSource {
   /// Not used
   void setThrottlePercent(float value, uint8_t motor = 0) override {}
 
+  size_t getMotorCount() const override { return numWheels; }
+
  protected:
   std::vector<float> speedMPS;
   std::vector<float> distanceM;
