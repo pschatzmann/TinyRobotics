@@ -94,20 +94,13 @@ class Odometry2D : public IMotionState2D {
    * @param initialPosition The starting position of the robot (x, y) in meters.
    * @param initialTheta The starting orientation (heading/yaw) in radians.
    * Default is 0.0.
-   * @param wheelBase The wheelbase (distance between axles for Ackermann, or
-   * length to rudder for boats) in meters. Default is 0 (differential drive).
    * @return true on success
-   *
-   * If wheelBase is set (>0), Ackermann or boat kinematics are used for heading
-   * updates. If wheelBase is zero, differential drive kinematics are used.
    */
-  bool begin(Coordinate<DistanceM> initialPosition, float initialTheta = 0.0f,
-             Distance wheelBase = Distance()) {
+  bool begin(Coordinate<DistanceM> initialPosition, float initialTheta = 0.0f) {
     position = initialPosition;
     theta = initialTheta;
     totalDistance = 0.0f;
     lastUpdateTimeMs = 0;
-    this->wheelBase = wheelBase;
     return true;
   }
 
@@ -119,14 +112,13 @@ class Odometry2D : public IMotionState2D {
    * @brief Initialize the odometry state from a Frame2D.
    *
    * @param frame The Frame2D containing the initial position and orientation.
-   * @param wheelBase The wheelbase (optional, default 0).
    * @return true on success
    */
   bool begin(const Frame2D& frame) {
     // Extract position and orientation from the frame's transform
     auto tf = frame.getTransform();
     // tf.translation is a Coordinate<float>, convert to Coordinate<DistanceM>
-    return begin(tf.pos, tf.getHeading(AngleUnit::RAD), wheelBase);
+    return begin(tf.pos, tf.getHeading(AngleUnit::RAD));
   }
 
   void end() {}
@@ -183,7 +175,6 @@ class Odometry2D : public IMotionState2D {
   float totalDistance = 0.0f;
   Delta2D lastDelta = {0.0f, 0.0f, 0.0f};  // (dx, dy, dtheta)
   uint32_t lastUpdateTimeMs = 0;
-  Distance wheelBase;
   IOdometryModel2D& model;
   ISpeedSource& speedSource;
   MessageSource& vehicle;
@@ -218,10 +209,6 @@ class Odometry2D : public IMotionState2D {
    * Ackermann/rudder, or angular velocity for differential drive).
    * @param deltaTimeMs Time since last update in milliseconds.
    *
-   * If wheelBase is set (>0), uses Ackermann/boat kinematics for heading
-   * update: omega = v * tan(steeringAngle) / wheelBase If wheelBase is zero,
-   * uses differential drive kinematics: deltaTheta = steeringAngle (angular
-   * velocity) * deltaTime
    */
   void update(uint32_t deltaTimeMs) {
     // Update speed from the speed source (if it has inertia)

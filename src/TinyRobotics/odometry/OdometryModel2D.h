@@ -8,7 +8,7 @@
 namespace tinyrobotics {
 
 /**
- * @class OdometryModelAckerman
+ * @class OdometryModel2D
  * @ingroup odometry
  * @brief Odometry model for Ackermann, differential drive, and boat kinematics.
  *
@@ -56,6 +56,7 @@ class OdometryModel2D : public IOdometryModel2D {
   }
 
   virtual void updateSpeed(uint32_t deltaTimeMs) {
+    assert(p_speedSource != nullptr);
     speed = p_speedSource->updateSpeed(deltaTimeMs);
   }
 
@@ -94,8 +95,7 @@ class OdometryModel2D : public IOdometryModel2D {
             p_speedSource->getSpeed());  // Assuming single motor for simplicity
         return true;
       case MessageContent::SteeringAngle:
-        if (msg.unit != Unit::AngleRadian) return false;
-        steeringAngle = Angle(msg.value, AngleUnit::RAD);
+        steeringAngle = Angle(msg.value, msg.unit == Unit::AngleRadian ? AngleUnit::RAD : AngleUnit::DEG);
         return true;
       default:
         return false;  // Unhandled message content
@@ -114,7 +114,7 @@ class OdometryModel2D : public IOdometryModel2D {
   Distance wheelBase;
   Speed speed;
   Angle steeringAngle;
-  ISpeedSource* p_speedSource;
+  ISpeedSource* p_speedSource = nullptr;;
   void (*callback)(void*) = nullptr;
   void* userData = nullptr;
 };

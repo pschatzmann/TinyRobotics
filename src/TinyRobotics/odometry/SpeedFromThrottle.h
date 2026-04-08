@@ -61,6 +61,8 @@ class SpeedFromThrottle : public MessageSource,
   SpeedFromThrottle(float maxSpeedMps, uint8_t numMotors = 1) {
     this->numMotors = numMotors;
     this->maxSpeedMps = maxSpeedMps;
+    speedMps.resize(numMotors, 0.0f);
+    init();
   }
 
   SpeedFromThrottle(Speed maxSpeed, uint8_t numMotors = 1)
@@ -68,17 +70,7 @@ class SpeedFromThrottle : public MessageSource,
 
   void setMaxSpeed(Speed speed) {
     this->maxSpeedMps = speed.getValue(SpeedUnit::MPS);
-  }
-
-  // Overload for multi-motor begin
-  bool begin() {
-    speedMps.resize(numMotors, 0.0f);
-    calibrationData.clear();
-    addSpeedCalibration(0.0f, 0.0f);           // 0% throttle = 0 m/s
-    addSpeedCalibration(100.0f, maxSpeedMps);  // 100% throttle = max speed
-    addSpeedCalibration(-100.0f,
-                        maxSpeedMps);  // -100% throttle = max reverse speed
-    return true;
+    init();
   }
 
   /// Handle Throttle messages to update speed
@@ -133,8 +125,17 @@ class SpeedFromThrottle : public MessageSource,
   uint8_t numMotors = 1;
   float maxSpeedMps = 0.0f;
 
+  // Overload for multi-motor begin
+  bool init() {
+    calibrationData.clear();
+    addSpeedCalibration(0.0f, 0.0f);           // 0% throttle = 0 m/s
+    addSpeedCalibration(100.0f, maxSpeedMps);  // 100% throttle = max speed
+    addSpeedCalibration(-100.0f,
+                        maxSpeedMps);  // -100% throttle = max reverse speed
+    return true;
+  }
   void sendSpeedMessage(uint8_t motor = 0) {
-    if (motor >= numMotors) return;
+    assert(motor < numMotors);
     Message<float> msg(MessageContent::Speed, speedMps[motor],
                        Unit::MetersPerSecond, MessageOrigin::System);
     msg.origin_id = motor;
