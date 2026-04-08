@@ -73,7 +73,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><p>This module provides a flexible, extensible framework for estimating the position and orientation (pose) of a robot in 2D or 3D space using odometry. Odometry is essential for mobile robots to track their movement over time based on wheel encoders, velocity commands, or steering data. The architecture supports modular kinematic models, message-driven integration, and is suitable for both simple and advanced robots.</p>
-<h1><a class="anchor" id="autotoc_md140"></a>
+<h1><a class="anchor" id="autotoc_md146"></a>
 Key Concepts</h1>
 <ul>
 <li><b>Odometry2D</b>: Tracks 2D position and orientation using modular heading models and speed sources. Supports Ackermann, differential drive, and custom kinematics.</li>
@@ -83,8 +83,16 @@ Key Concepts</h1>
 <li><b>Message-driven</b>: Odometry can subscribe to vehicle/motor messages for speed and steering updates.</li>
 <li><b>Extensible</b>: Add your own heading models by implementing <code>IOdometryModel2D</code>.</li>
 </ul>
+<h2><a class="anchor" id="autotoc_md147"></a>
+3D Odometry Key Concepts</h2>
+<ul>
+<li><b>Odometry3D</b>: Tracks 3D position and orientation (yaw, pitch, roll) using modular 3D kinematic models. Suitable for drones, airplanes, and underwater robots.</li>
+<li><b>IOdometryModel3D</b>: Interface for 3D kinematic models. Implement this to define custom 3D vehicle kinematics for use with Odometry3D.</li>
+<li><b>AirplaneOdometryModel3D</b>: Implements IOdometryModel3D for fixed-wing airplanes using throttle and control surface inputs (aileron, elevator, rudder).</li>
+<li><b>DroneOdometryModel3D</b>: Implements IOdometryModel3D for quadcopters/drones using per-motor percentage inputs. Maps motor outputs to 3D velocities and angular rates.</li>
+</ul>
 <hr  />
-<h1><a class="anchor" id="autotoc_md142"></a>
+<h1><a class="anchor" id="autotoc_md149"></a>
 Odometry2D</h1>
 <p>Tracks the 2D position (x, y) and orientation (theta) of a robot using velocity and steering angle inputs. The kinematic model is injected via the constructor, allowing for Ackermann, differential drive, or custom models.</p>
 <p><b>Features:</b></p><ul>
@@ -128,9 +136,9 @@ Odometry2D</h1>
 <div class="line">}</div>
 <div class="ttc" id="aTinyRobotics_8h_html"><div class="ttname"><a href="TinyRobotics_8h.html">TinyRobotics.h</a></div></div>
 </div><!-- fragment --><hr  />
-<h1><a class="anchor" id="autotoc_md144"></a>
+<h1><a class="anchor" id="autotoc_md151"></a>
 Modular Heading Models</h1>
-<h2><a class="anchor" id="autotoc_md145"></a>
+<h2><a class="anchor" id="autotoc_md152"></a>
 IOdometryModel2D (Interface)</h2>
 <p>Defines the interface for heading (theta) integration models. Implement this to add custom kinematics and is automatically updated by Odometry2D.</p>
 <p><b>Key Methods:</b></p><ul>
@@ -139,14 +147,14 @@ IOdometryModel2D (Interface)</h2>
 <li><code>setSpeed(Speed left, Speed right)</code></li>
 <li><code>setSteeringAngle(Angle angle)</code></li>
 </ul>
-<h2><a class="anchor" id="autotoc_md146"></a>
+<h2><a class="anchor" id="autotoc_md153"></a>
 OdometryModel2D (Ackermann/Boat/Default)</h2>
 <p>Implements Ackermann and default (steering as angular velocity) kinematics. Use for car-like robots or boats.</p>
-<h2><a class="anchor" id="autotoc_md147"></a>
+<h2><a class="anchor" id="autotoc_md154"></a>
 OdometryDifferentialDriveModel</h2>
 <p>Implements differential drive kinematics using left/right wheel speeds.</p>
 <hr  />
-<h1><a class="anchor" id="autotoc_md149"></a>
+<h1><a class="anchor" id="autotoc_md156"></a>
 WheelEncoder</h1>
 <p>The <code>WheelEncoder</code> class provides robust, multi-wheel support for measuring wheel rotation and computing per-wheel distance and speed using encoder ticks. It is designed for modular integration with odometry pipelines and supports any number of wheels (differential, skid-steer, etc.).</p>
 <p><b>Features:</b></p><ul>
@@ -182,7 +190,7 @@ WheelEncoder</h1>
 <div class="line"><span class="keywordtype">float</span> rightSpeed = encoder.getSpeedMPS(1);</div>
 </div><!-- fragment --><p>This class is intended for embedded robotics applications (Arduino, ESP32, etc.) and integrates with the TinyRobotics messaging framework. It is suitable for use as a modular speed/distance source in extensible odometry pipelines.</p>
 <hr  />
-<h1><a class="anchor" id="autotoc_md151"></a>
+<h1><a class="anchor" id="autotoc_md158"></a>
 SpeedFromThrottle</h1>
 <p>Estimates vehicle speed from throttle percentage using calibration data. Useful when direct speed measurement is unavailable or unreliable.</p>
 <p><b>Features:</b></p><ul>
@@ -198,7 +206,7 @@ SpeedFromThrottle</h1>
 <li><code>getSpeed(throttle)</code></li>
 </ul>
 <hr  />
-<h1><a class="anchor" id="autotoc_md153"></a>
+<h1><a class="anchor" id="autotoc_md160"></a>
 Usage Notes</h1>
 <ul>
 <li>For Ackermann vehicles, set the wheelbase using the model constructor.</li>
@@ -207,63 +215,97 @@ Usage Notes</h1>
 <li>The module is designed for extensibility—implement your own heading model for custom kinematics.</li>
 </ul>
 <hr  />
-<h1><a class="anchor" id="autotoc_md155"></a>
+<h1><a class="anchor" id="autotoc_md162"></a>
 Advanced Topics</h1>
 <ul>
-<li><b>Message Integration:</b> Odometry2D can subscribe to messages from vehicles/motors for automatic speed/steering updates.</li>
-<li><b>Custom Models:</b> Implement <code>IOdometryModel2D</code> for holonomic, omnidirectional, or other robot types.</li>
-<li><b>3D Odometry:</b> See <code>Odometry3D</code> for drones, underwater, or aerial robots (not covered in detail here).</li>
+<li><b>Message Integration:</b> Odometry2D and Odometry3D can subscribe to messages from vehicles/motors for automatic speed, steering, or control updates.</li>
+<li><b>Custom Models:</b> Implement <code>IOdometryModel2D</code> or <code>IOdometryModel3D</code> for holonomic, omnidirectional, airplane, drone, or other robot types.</li>
 </ul>
 <hr  />
-<h1><a class="anchor" id="autotoc_md157"></a>
-See Also</h1>
-<ul>
-<li><code>CarAckerman</code>, <code>GenericMotor</code>, <code>MotionController2D</code>, <code>Frame2D</code>, <code>Coordinate</code>, <code>Angle</code>, <code>Speed</code>, <code>Distance</code></li>
-<li>Example sketches in the <code>examples/</code> folder for real-world usage patterns.</li>
-</ul>
-<h2><a class="anchor" id="autotoc_md158"></a>
+<h1><a class="anchor" id="autotoc_md164"></a>
+3D Odometry and Kinematic Models</h1>
+<h2><a class="anchor" id="autotoc_md165"></a>
 Odometry3D</h2>
-<p>Tracks the 3D position (x, y, z) and orientation (yaw, pitch, roll) of a robot using linear and angular velocity inputs. Suitable for drones, underwater vehicles, and robots operating in 3D environments.</p>
+<p>Tracks the 3D position (x, y, z) and orientation (yaw, pitch, roll) of a robot using linear and angular velocity inputs. Suitable for drones, airplanes, underwater vehicles, and robots operating in 3D environments.</p>
 <p><b>Features:</b></p><ul>
 <li>Integrates 3D linear and angular velocities to estimate robot pose</li>
-<li>Uses an Orientation3D object for modular orientation handling</li>
+<li>Uses an <code>Orientation3D</code> object for modular orientation handling</li>
+<li>Pluggable kinematic model via <code>IOdometryModel3D</code> (see below)</li>
+<li>Message-driven: can subscribe to control/velocity messages for updates</li>
 <li>Provides access to position, orientation, distance traveled, and last update delta</li>
 <li>Allows resetting and setting the odometry state</li>
 </ul>
 <p><b>Key Methods:</b></p><ul>
+<li><code>Odometry3D(MessageSource&amp; vehicle, IOdometryModel3D&amp; model)</code>: Constructor with message-driven integration</li>
 <li><code>begin(initialPosition, initialOrientation)</code>: Initialize odometry state with position and orientation</li>
-<li><code>update(vx, vy, vz, wx, wy, wz, deltaTimeMs)</code>: Update pose with new velocities (optionally with time delta)</li>
-<li><code>update(vx, vy, vz, wx, wy, wz)</code>: Update pose using automatic time delta (uses millis())</li>
+<li><code>update()</code>: Integrates pose using the latest velocities from the model</li>
 <li><code>getPosition()</code>: Get current position (x, y, z)</li>
-<li><code>getOrientation()</code>: Get current orientation as Orientation3D</li>
+<li><code>getOrientation()</code>: Get current orientation as <code>Orientation3D</code></li>
 <li><code>getTotalDistance()</code>: Get total distance traveled</li>
 <li><code>getLastDelta()</code>: Get last (dx, dy, dz) update</li>
 </ul>
 <p><b>Example:</b> </p><div class="fragment"><div class="line"><span class="preprocessor">#include &lt;<a class="code" href="TinyRobotics_8h.html">TinyRobotics.h</a>&gt;</span></div>
-<div class="line"><span class="keyword">using namespace </span>tinyrobotics;</div>
 <div class="line"> </div>
-<div class="line"><a class="code hl_class" href="classtinyrobotics_1_1Odometry3D.html">Odometry3D</a> odom3d;</div>
+<div class="line">DroneOdometryModel3D droneModel;</div>
+<div class="line">Odometry3D odom3d(vehicle, droneModel);</div>
 <div class="line"><span class="keywordtype">void</span> setup() {</div>
-<div class="line">    <a class="code hl_class" href="classtinyrobotics_1_1Coordinate.html">Coordinate&lt;float&gt;</a> startPos(0, 0, 0);</div>
-<div class="line">    <a class="code hl_class" href="classtinyrobotics_1_1Orientation3D.html">Orientation3D</a> startOri(0.0f, 0.0f, 0.0f); <span class="comment">// yaw, pitch, roll in radians</span></div>
-<div class="line">    odom3d.<a class="code hl_function" href="classtinyrobotics_1_1Odometry3D.html#a38ce6a1b681ffb4dbd4f1ccacde103e1">begin</a>(startPos, startOri);</div>
+<div class="line">    Coordinate&lt;float&gt; startPos(0, 0, 0);</div>
+<div class="line">    Orientation3D startOri(0.0f, 0.0f, 0.0f); <span class="comment">// yaw, pitch, roll in radians</span></div>
+<div class="line">    odom3d.begin(startPos, startOri);</div>
 <div class="line">}</div>
 <div class="line"><span class="keywordtype">void</span> loop() {</div>
-<div class="line">    <span class="comment">// Example velocities (vx, vy, vz, wx, wy, wz)</span></div>
-<div class="line">    odom3d.<a class="code hl_function" href="classtinyrobotics_1_1Odometry3D.html#a798366ddb5bf884bdd3c5333654fa7f6">update</a>(0.1, 0, 0, 0, 0, 0); <span class="comment">// Move forward</span></div>
-<div class="line">    <span class="keyword">auto</span> pos = odom3d.<a class="code hl_function" href="classtinyrobotics_1_1Odometry3D.html#a8a21a18c6779b0bd2f03fafda64050b0">getPosition</a>();</div>
-<div class="line">    <span class="keyword">auto</span> ori = odom3d.<a class="code hl_function" href="classtinyrobotics_1_1Odometry3D.html#aa55ecc7018a3c7f9ca2cb0038e68df12">getOrientation</a>();</div>
+<div class="line">    <span class="comment">// Update odometry (message-driven or direct input)</span></div>
+<div class="line">    odom3d.update();</div>
+<div class="line">    <span class="keyword">auto</span> pos = odom3d.getPosition();</div>
+<div class="line">    <span class="keyword">auto</span> ori = odom3d.getOrientation();</div>
 <div class="line">    Serial.printf(<span class="stringliteral">&quot;x=%.2f, y=%.2f, z=%.2f, yaw=%.2f, pitch=%.2f, roll=%.2f\n&quot;</span>,</div>
 <div class="line">        pos.x, pos.y, pos.z, ori.yaw, ori.pitch, ori.roll);</div>
 <div class="line">}</div>
-<div class="ttc" id="aclasstinyrobotics_1_1Coordinate_html"><div class="ttname"><a href="classtinyrobotics_1_1Coordinate.html">tinyrobotics::Coordinate</a></div><div class="ttdoc">A generic 3D coordinate class for robotics, navigation, and spatial calculations.</div><div class="ttdef"><b>Definition:</b> Coordinate.h:57</div></div>
-<div class="ttc" id="aclasstinyrobotics_1_1Odometry3D_html"><div class="ttname"><a href="classtinyrobotics_1_1Odometry3D.html">tinyrobotics::Odometry3D</a></div><div class="ttdoc">Tracks 3D position and orientation of a robot using velocity and angular rates.</div><div class="ttdef"><b>Definition:</b> Odometry3D.h:39</div></div>
-<div class="ttc" id="aclasstinyrobotics_1_1Odometry3D_html_a38ce6a1b681ffb4dbd4f1ccacde103e1"><div class="ttname"><a href="classtinyrobotics_1_1Odometry3D.html#a38ce6a1b681ffb4dbd4f1ccacde103e1">tinyrobotics::Odometry3D::begin</a></div><div class="ttdeci">bool begin(Coordinate&lt; float &gt; initialPosition={0, 0, 0}, Orientation3D initialOrientation=Orientation3D())</div><div class="ttdoc">Initialize the odometry state.</div><div class="ttdef"><b>Definition:</b> Odometry3D.h:50</div></div>
-<div class="ttc" id="aclasstinyrobotics_1_1Odometry3D_html_a798366ddb5bf884bdd3c5333654fa7f6"><div class="ttname"><a href="classtinyrobotics_1_1Odometry3D.html#a798366ddb5bf884bdd3c5333654fa7f6">tinyrobotics::Odometry3D::update</a></div><div class="ttdeci">void update(float vx, float vy, float vz, float wx, float wy, float wz, uint32_t deltaTimeMs)</div><div class="ttdoc">Update the odometry state with new velocities and angular rates.</div><div class="ttdef"><b>Definition:</b> Odometry3D.h:69</div></div>
-<div class="ttc" id="aclasstinyrobotics_1_1Odometry3D_html_a8a21a18c6779b0bd2f03fafda64050b0"><div class="ttname"><a href="classtinyrobotics_1_1Odometry3D.html#a8a21a18c6779b0bd2f03fafda64050b0">tinyrobotics::Odometry3D::getPosition</a></div><div class="ttdeci">Coordinate&lt; float &gt; getPosition() const</div><div class="ttdoc">Get the current 3D position (meters)</div><div class="ttdef"><b>Definition:</b> Odometry3D.h:126</div></div>
-<div class="ttc" id="aclasstinyrobotics_1_1Odometry3D_html_aa55ecc7018a3c7f9ca2cb0038e68df12"><div class="ttname"><a href="classtinyrobotics_1_1Odometry3D.html#aa55ecc7018a3c7f9ca2cb0038e68df12">tinyrobotics::Odometry3D::getOrientation</a></div><div class="ttdeci">Orientation3D getOrientation() const</div><div class="ttdoc">Get the current orientation as Orientation3D (yaw, pitch, roll in radians)</div><div class="ttdef"><b>Definition:</b> Odometry3D.h:129</div></div>
-<div class="ttc" id="aclasstinyrobotics_1_1Orientation3D_html"><div class="ttname"><a href="classtinyrobotics_1_1Orientation3D.html">tinyrobotics::Orientation3D</a></div><div class="ttdoc">Simple 3D orientation class (yaw, pitch, roll in radians)</div><div class="ttdef"><b>Definition:</b> Orientation3D.h:13</div></div>
-</div><!-- fragment --> </div></div><!-- contents -->
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md166"></a>
+IOdometryModel3D (Interface)</h2>
+<p>Defines the interface for 3D kinematic models. Implement this to add custom 3D kinematics for drones, airplanes, or other vehicles. Used by <code>Odometry3D</code> for pose integration.</p>
+<p><b>Key Methods:</b></p><ul>
+<li><code>getLinearVelocity(float&amp; vx, float&amp; vy, float&amp; vz)</code>: Returns current linear velocity (m/s)</li>
+<li><code>getAngularVelocity(float&amp; wx, float&amp; wy, float&amp; wz)</code>: Returns current angular velocity (rad/s)</li>
+<li><code>registerCallback(void (*callback)(void*), void* userData)</code>: Register a callback for input changes (optional)</li>
+</ul>
+<hr  />
+<h2><a class="anchor" id="autotoc_md168"></a>
+AirplaneOdometryModel3D</h2>
+<p>Implements <code>IOdometryModel3D</code> for fixed-wing airplanes using throttle and control surface inputs (aileron, elevator, rudder).</p>
+<p><b>Features:</b></p><ul>
+<li>Maps throttle (0–100%) and control surface deflections (degrees) to body-frame velocities</li>
+<li>Supports message-driven control (handles <code>MessageContent::Throttle</code>, <code>::Roll</code>, <code>::Pitch</code>, <code>::Yaw</code>)</li>
+<li>All input values are clamped to safe ranges</li>
+<li>Suitable for simulation, estimation, or as a reference model for real-time control</li>
+</ul>
+<p><b>Key Methods:</b></p><ul>
+<li><code>setThrottle(float percent)</code>: Set throttle (0–100%)</li>
+<li><code>setAileron(float deg)</code>, <code>setElevator(float deg)</code>, <code>setRudder(float deg)</code>: Set control surfaces (degrees)</li>
+<li><code>onMessage(const Message&lt;float&gt;&amp; msg)</code>: Handle incoming control messages</li>
+<li><code>registerCallback(void (*callback)(void*), void* userData)</code>: Register callback for input changes</li>
+</ul>
+<h2><a class="anchor" id="autotoc_md169"></a>
+DroneOdometryModel3D</h2>
+<p>Implements <code>IOdometryModel3D</code> for quadcopters/drones using per-motor percentage inputs.</p>
+<p><b>Features:</b></p><ul>
+<li>Maps motor percentages (0–100%) for four motors to body-frame velocities</li>
+<li>Supports message-driven control (handles <code>MessageContent::MotorSpeed</code> with <code>origin_id</code> 0..3)</li>
+<li>All input values are clamped to 0–100%</li>
+<li>Suitable for simulation, estimation, or as a reference model for real-time control</li>
+</ul>
+<p><b>Key Methods:</b></p><ul>
+<li><code>setMotorPercent(int motor, float percent)</code>: Set percentage for a given motor (0..3)</li>
+<li><code>onMessage(const Message&lt;float&gt;&amp; msg)</code>: Handle incoming motor speed messages</li>
+<li><code>registerCallback(void (*callback)(void*), void* userData)</code>: Register callback for input changes</li>
+</ul>
+<h1><a class="anchor" id="autotoc_md170"></a>
+See Also</h1>
+<ul>
+<li><code>CarAckerman</code>, <code>GenericMotor</code>, <code>MotionController2D</code>, <code>Frame2D</code>, <code>Coordinate</code>, <code>Angle</code>, <code>Speed</code>, <code>Distance</code>, <code>Orientation3D</code></li>
+<li>Example sketches in the <code>examples/</code> folder for real-world usage patterns. </li>
+</ul>
+</div></div><!-- contents -->
 </div><!-- PageDoc -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

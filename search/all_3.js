@@ -12,5 +12,6 @@ var searchData=
   ['distance_9',['Distance',['../classtinyrobotics_1_1Distance.html',1,'tinyrobotics']]],
   ['distance3d_10',['Distance3D',['../classtinyrobotics_1_1Distance3D.html',1,'tinyrobotics']]],
   ['distancem_11',['distanceM',['../classtinyrobotics_1_1Coordinate.html#a0a7729d24c327a219566dbf2e01bf214',1,'tinyrobotics::Coordinate::distanceM()'],['../classtinyrobotics_1_1GPSCoordinate.html#ad0d0b3c37a21dcefc9a66eb44d2c6f19',1,'tinyrobotics::GPSCoordinate::distanceM()']]],
-  ['distanceunit_12',['DistanceUnit',['../group__units.html#ga4c67a7b952f3804e2bd056cf95c4161a',1,'tinyrobotics']]]
+  ['distanceunit_12',['DistanceUnit',['../group__units.html#ga4c67a7b952f3804e2bd056cf95c4161a',1,'tinyrobotics']]],
+  ['droneodometrymodel3d_13',['DroneOdometryModel3D',['../classtinyrobotics_1_1DroneOdometryModel3D.html#a99461ae29d7484be9926b05398d97d80',1,'tinyrobotics::DroneOdometryModel3D::DroneOdometryModel3D()'],['../classtinyrobotics_1_1DroneOdometryModel3D.html',1,'DroneOdometryModel3D']]]
 ];

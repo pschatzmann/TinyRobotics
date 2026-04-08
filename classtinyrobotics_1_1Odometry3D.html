@@ -90,32 +90,29 @@ Collaboration diagram for Odometry3D:</div>
 <div class="dyncontent">
 <div class="center"><img src="classtinyrobotics_1_1Odometry3D__coll__graph.png" border="0" usemap="#aOdometry3D_coll__map" alt="Collaboration graph"/></div>
 <map name="aOdometry3D_coll__map" id="aOdometry3D_coll__map">
-<area shape="rect" title="Tracks 3D position and orientation of a robot using velocity and angular rates." alt="" coords="186,168,291,193"/>
-<area shape="rect" href="classtinyrobotics_1_1Coordinate.html" title=" " alt="" coords="5,80,157,105"/>
-<area shape="rect" href="classtinyrobotics_1_1Serializable.html" title="This class defines an interface for serializable objects that can be converted to and from a string r..." alt="" coords="32,5,131,31"/>
-<area shape="rect" href="classtinyrobotics_1_1Orientation3D.html" title="Simple 3D orientation class (yaw, pitch, roll in radians)" alt="" coords="182,80,295,105"/>
-<area shape="rect" href="classtinyrobotics_1_1Distance3D.html" title="Represents a 3D distance or position vector with unit support." alt="" coords="319,80,417,105"/>
+<area shape="rect" title="Tracks 3D position and orientation of a robot using velocity and angular rates." alt="" coords="351,168,456,193"/>
+<area shape="rect" href="classtinyrobotics_1_1MessageSource.html" title="Base class for message sources in the TinyRobotics communication framework." alt="" coords="5,80,129,105"/>
+<area shape="rect" href="classtinyrobotics_1_1IOdometryModel3D.html" title="Abstract interface for 3D odometry models. Provides access to current linear and angular velocities f..." alt="" coords="154,80,303,105"/>
+<area shape="rect" href="classtinyrobotics_1_1MessageHandler.html" title="Interface for handling messages in the TinyRobotics framework." alt="" coords="163,5,294,31"/>
+<area shape="rect" href="classtinyrobotics_1_1Coordinate.html" title=" " alt="" coords="327,80,479,105"/>
+<area shape="rect" href="classtinyrobotics_1_1Serializable.html" title="This class defines an interface for serializable objects that can be converted to and from a string r..." alt="" coords="354,5,453,31"/>
+<area shape="rect" href="classtinyrobotics_1_1Orientation3D.html" title="Simple 3D orientation class (yaw, pitch, roll in radians)" alt="" coords="504,80,617,105"/>
+<area shape="rect" href="classtinyrobotics_1_1Distance3D.html" title="Represents a 3D distance or position vector with unit support." alt="" coords="641,80,739,105"/>
 </map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
+<tr class="memitem:a18efdb5fe2f6a0e1594b86cc401841e3"><td class="memItemLeft" align="right" valign="top"><a id="a18efdb5fe2f6a0e1594b86cc401841e3" name="a18efdb5fe2f6a0e1594b86cc401841e3"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>Odometry3D</b> (<a class="el" href="classtinyrobotics_1_1MessageSource.html">MessageSource</a> &amp;vehicle, <a class="el" href="classtinyrobotics_1_1IOdometryModel3D.html">IOdometryModel3D</a> &amp;model)</td></tr>
+<tr class="separator:a18efdb5fe2f6a0e1594b86cc401841e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a38ce6a1b681ffb4dbd4f1ccacde103e1"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1Odometry3D.html#a38ce6a1b681ffb4dbd4f1ccacde103e1">begin</a> (<a class="el" href="classtinyrobotics_1_1Coordinate.html">Coordinate</a>&lt; float &gt; initialPosition={0, 0, 0}, <a class="el" href="classtinyrobotics_1_1Orientation3D.html">Orientation3D</a> initialOrientation=<a class="el" href="classtinyrobotics_1_1Orientation3D.html">Orientation3D</a>())</td></tr>
 <tr class="memdesc:a38ce6a1b681ffb4dbd4f1ccacde103e1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize the odometry state.  <br /></td></tr>
 <tr class="separator:a38ce6a1b681ffb4dbd4f1ccacde103e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a798366ddb5bf884bdd3c5333654fa7f6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1Odometry3D.html#a798366ddb5bf884bdd3c5333654fa7f6">update</a> (float vx, float vy, float vz, float wx, float wy, float wz, uint32_t deltaTimeMs)</td></tr>
-<tr class="memdesc:a798366ddb5bf884bdd3c5333654fa7f6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Update the odometry state with new velocities and angular rates.  <br /></td></tr>
-<tr class="separator:a798366ddb5bf884bdd3c5333654fa7f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a616a9292bacf960348331019998ae193"><td class="memItemLeft" align="right" valign="top"><a id="a616a9292bacf960348331019998ae193" name="a616a9292bacf960348331019998ae193"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>update</b> (<a class="el" href="classtinyrobotics_1_1Velocity3D.html">Velocity3D</a> velocity, <a class="el" href="classtinyrobotics_1_1AngularVelocity3D.html">AngularVelocity3D</a> angularVelocity, uint32_t deltaTimeMs)</td></tr>
-<tr class="separator:a616a9292bacf960348331019998ae193"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad5a56456eccf3248eaadf3bfc55fb5f6"><td class="memItemLeft" align="right" valign="top"><a id="ad5a56456eccf3248eaadf3bfc55fb5f6" name="ad5a56456eccf3248eaadf3bfc55fb5f6"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>update</b> (float vx, float vy, float vz, float wx, float wy, float wz)</td></tr>
-<tr class="memdesc:ad5a56456eccf3248eaadf3bfc55fb5f6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Update with automatic time delta (uses millis()). <br /></td></tr>
-<tr class="separator:ad5a56456eccf3248eaadf3bfc55fb5f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1acff981a45adb9a0a50f2d2fbbd2711"><td class="memItemLeft" align="right" valign="top"><a id="a1acff981a45adb9a0a50f2d2fbbd2711" name="a1acff981a45adb9a0a50f2d2fbbd2711"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>update</b> (<a class="el" href="classtinyrobotics_1_1Velocity3D.html">Velocity3D</a> velocity, <a class="el" href="classtinyrobotics_1_1AngularVelocity3D.html">AngularVelocity3D</a> angularVelocity)</td></tr>
-<tr class="separator:a1acff981a45adb9a0a50f2d2fbbd2711"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac5c54df7ed3b930268c8d7752c101725"><td class="memItemLeft" align="right" valign="top"><a id="ac5c54df7ed3b930268c8d7752c101725" name="ac5c54df7ed3b930268c8d7752c101725"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>update</b> ()</td></tr>
+<tr class="memdesc:ac5c54df7ed3b930268c8d7752c101725"><td class="mdescLeft">&#160;</td><td class="mdescRight">Update the odometry state with new velocities and angular rates. <br /></td></tr>
+<tr class="separator:ac5c54df7ed3b930268c8d7752c101725"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8a21a18c6779b0bd2f03fafda64050b0"><td class="memItemLeft" align="right" valign="top"><a id="a8a21a18c6779b0bd2f03fafda64050b0" name="a8a21a18c6779b0bd2f03fafda64050b0"></a>
 <a class="el" href="classtinyrobotics_1_1Coordinate.html">Coordinate</a>&lt; float &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>getPosition</b> () const</td></tr>
 <tr class="memdesc:a8a21a18c6779b0bd2f03fafda64050b0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the current 3D position (meters) <br /></td></tr>
@@ -135,6 +132,12 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>update</b> (<a class=
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
+<tr class="memitem:afdc0bdd1384348756400ad7d711c5574"><td class="memItemLeft" align="right" valign="top"><a id="afdc0bdd1384348756400ad7d711c5574" name="afdc0bdd1384348756400ad7d711c5574"></a>
+<a class="el" href="classtinyrobotics_1_1MessageSource.html">MessageSource</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>vehicle</b></td></tr>
+<tr class="separator:afdc0bdd1384348756400ad7d711c5574"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6acdf4aade5d93b874746e5a31794fa2"><td class="memItemLeft" align="right" valign="top"><a id="a6acdf4aade5d93b874746e5a31794fa2" name="a6acdf4aade5d93b874746e5a31794fa2"></a>
+<a class="el" href="classtinyrobotics_1_1IOdometryModel3D.html">IOdometryModel3D</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>model</b></td></tr>
+<tr class="separator:a6acdf4aade5d93b874746e5a31794fa2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a09149e9444ab864fd1c73cab72129f84"><td class="memItemLeft" align="right" valign="top"><a id="a09149e9444ab864fd1c73cab72129f84" name="a09149e9444ab864fd1c73cab72129f84"></a>
 <a class="el" href="classtinyrobotics_1_1Coordinate.html">Coordinate</a>&lt; float &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>position</b></td></tr>
 <tr class="separator:a09149e9444ab864fd1c73cab72129f84"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -154,20 +157,20 @@ uint32_t&#160;</td><td class="memItemRight" valign="bottom"><b>lastUpdateTimeMs<
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Tracks 3D position and orientation of a robot using velocity and angular rates. </p>
 <p>This class provides simple 3D odometry for mobile robots, such as drones or underwater vehicles. It integrates linear velocity and angular velocity over time to estimate the robot's position (x, y, z) and orientation (yaw, pitch, roll) in meters and radians.</p>
-<h2><a class="anchor" id="autotoc_md134"></a>
+<h2><a class="anchor" id="autotoc_md140"></a>
 Inputs</h2>
 <ul>
 <li>Linear velocity (vx, vy, vz) in m/s (robot frame)</li>
 <li>Angular velocity (wx, wy, wz) in rad/s (robot frame)</li>
 <li><a class="el" href="classtinyrobotics_1_1Time.html" title="Represents a time duration with a specific unit (seconds, milliseconds, microseconds,...">Time</a> delta (in milliseconds, or uses millis() if not provided)</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md135"></a>
+<h2><a class="anchor" id="autotoc_md141"></a>
 Outputs</h2>
 <ul>
 <li>3D position (x, y, z) in meters</li>
 <li>3D orientation (yaw, pitch, roll) in radians</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md136"></a>
+<h2><a class="anchor" id="autotoc_md142"></a>
 Limitations</h2>
 <ul>
 <li>Assumes no slip or drift</li>
@@ -219,86 +222,6 @@ Limitations</h2>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>true on success </dd></dl>
-
-</div>
-</div>
-<a id="a798366ddb5bf884bdd3c5333654fa7f6" name="a798366ddb5bf884bdd3c5333654fa7f6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a798366ddb5bf884bdd3c5333654fa7f6">&#9670;&#160;</a></span>update()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void update </td>
-          <td>(</td>
-          <td class="paramtype">float&#160;</td>
-          <td class="paramname"><em>vx</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">float&#160;</td>
-          <td class="paramname"><em>vy</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">float&#160;</td>
-          <td class="paramname"><em>vz</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">float&#160;</td>
-          <td class="paramname"><em>wx</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">float&#160;</td>
-          <td class="paramname"><em>wy</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">float&#160;</td>
-          <td class="paramname"><em>wz</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">uint32_t&#160;</td>
-          <td class="paramname"><em>deltaTimeMs</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Update the odometry state with new velocities and angular rates. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">vx</td><td>Linear velocity in x (m/s, robot frame) </td></tr>
-    <tr><td class="paramname">vy</td><td>Linear velocity in y (m/s, robot frame) </td></tr>
-    <tr><td class="paramname">vz</td><td>Linear velocity in z (m/s, robot frame) </td></tr>
-    <tr><td class="paramname">wx</td><td>Angular velocity in x (rad/s, robot frame) </td></tr>
-    <tr><td class="paramname">wy</td><td>Angular velocity in y (rad/s, robot frame) </td></tr>
-    <tr><td class="paramname">wz</td><td>Angular velocity in z (rad/s, robot frame) </td></tr>
-    <tr><td class="paramname">deltaTimeMs</td><td><a class="el" href="classtinyrobotics_1_1Time.html" title="Represents a time duration with a specific unit (seconds, milliseconds, microseconds,...">Time</a> since last update in milliseconds </td></tr>
-  </table>
-  </dd>
-</dl>
 
 </div>
 </div>

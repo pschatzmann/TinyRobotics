@@ -1,0 +1,5 @@
+<map id="AirplaneOdometryModel3D" name="AirplaneOdometryModel3D">
+<area shape="rect" id="node1" title="IOdometryModel3D implementation for fixed&#45;wing airplanes using control surface and throttle inputs." alt="" coords="5,152,204,177"/>
+<area shape="rect" id="node2" href="$classtinyrobotics_1_1IOdometryModel3D.html" title="Abstract interface for 3D odometry models. Provides access to current linear and angular velocities f..." alt="" coords="30,79,179,104"/>
+<area shape="rect" id="node3" href="$classtinyrobotics_1_1MessageHandler.html" title="Interface for handling messages in the TinyRobotics framework." alt="" coords="39,5,170,31"/>
+</map>

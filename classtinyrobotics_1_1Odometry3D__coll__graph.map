@@ -1,7 +1,10 @@
 <map id="Odometry3D" name="Odometry3D">
-<area shape="rect" id="node1" title="Tracks 3D position and orientation of a robot using velocity and angular rates." alt="" coords="186,168,291,193"/>
-<area shape="rect" id="node2" href="$classtinyrobotics_1_1Coordinate.html" title=" " alt="" coords="5,80,157,105"/>
-<area shape="rect" id="node3" href="$classtinyrobotics_1_1Serializable.html" title="This class defines an interface for serializable objects that can be converted to and from a string r..." alt="" coords="32,5,131,31"/>
-<area shape="rect" id="node4" href="$classtinyrobotics_1_1Orientation3D.html" title="Simple 3D orientation class (yaw, pitch, roll in radians)" alt="" coords="182,80,295,105"/>
-<area shape="rect" id="node5" href="$classtinyrobotics_1_1Distance3D.html" title="Represents a 3D distance or position vector with unit support." alt="" coords="319,80,417,105"/>
+<area shape="rect" id="node1" title="Tracks 3D position and orientation of a robot using velocity and angular rates." alt="" coords="351,168,456,193"/>
+<area shape="rect" id="node2" href="$classtinyrobotics_1_1MessageSource.html" title="Base class for message sources in the TinyRobotics communication framework." alt="" coords="5,80,129,105"/>
+<area shape="rect" id="node3" href="$classtinyrobotics_1_1IOdometryModel3D.html" title="Abstract interface for 3D odometry models. Provides access to current linear and angular velocities f..." alt="" coords="154,80,303,105"/>
+<area shape="rect" id="node4" href="$classtinyrobotics_1_1MessageHandler.html" title="Interface for handling messages in the TinyRobotics framework." alt="" coords="163,5,294,31"/>
+<area shape="rect" id="node5" href="$classtinyrobotics_1_1Coordinate.html" title=" " alt="" coords="327,80,479,105"/>
+<area shape="rect" id="node6" href="$classtinyrobotics_1_1Serializable.html" title="This class defines an interface for serializable objects that can be converted to and from a string r..." alt="" coords="354,5,453,31"/>
+<area shape="rect" id="node7" href="$classtinyrobotics_1_1Orientation3D.html" title="Simple 3D orientation class (yaw, pitch, roll in radians)" alt="" coords="504,80,617,105"/>
+<area shape="rect" id="node8" href="$classtinyrobotics_1_1Distance3D.html" title="Represents a 3D distance or position vector with unit support." alt="" coords="641,80,739,105"/>
 </map>
