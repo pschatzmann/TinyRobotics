@@ -165,10 +165,18 @@ float&#160;</td><td class="memItemRight" valign="bottom"><b>getAngularVelocity</
 <a class="el" href="structtinyrobotics_1_1Delta2D.html">Delta2D</a>&#160;</td><td class="memItemRight" valign="bottom"><b>getLastDelta</b> () const</td></tr>
 <tr class="memdesc:a7420c8f2000b43f8b27d93365a81e809"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the last delta update (dx, dy, dtheta) <br /></td></tr>
 <tr class="separator:a7420c8f2000b43f8b27d93365a81e809"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0b44b117a3f804a44c7e3accedc034ec"><td class="memItemLeft" align="right" valign="top"><a id="a0b44b117a3f804a44c7e3accedc034ec" name="a0b44b117a3f804a44c7e3accedc034ec"></a>
+<a class="el" href="classtinyrobotics_1_1Velocity3D.html">Speed3D</a>&#160;</td><td class="memItemRight" valign="bottom"><b>getSpeed3D</b> () const</td></tr>
+<tr class="memdesc:a0b44b117a3f804a44c7e3accedc034ec"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the current speed as a Speed3D (x, y in world frame, z: 0) <br /></td></tr>
+<tr class="separator:a0b44b117a3f804a44c7e3accedc034ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3a25a164c9d15a2765493132e62cc337"><td class="memItemLeft" align="right" valign="top"><a id="a3a25a164c9d15a2765493132e62cc337" name="a3a25a164c9d15a2765493132e62cc337"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>setState</b> (<a class="el" href="classtinyrobotics_1_1Coordinate.html">Coordinate</a>&lt; DistanceM &gt; pos, float th)</td></tr>
 <tr class="memdesc:a3a25a164c9d15a2765493132e62cc337"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the odometry state (position and orientation) <br /></td></tr>
 <tr class="separator:a3a25a164c9d15a2765493132e62cc337"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a40959d68cf7c419ff0513551b97f4b59"><td class="memItemLeft" align="right" valign="top"><a id="a40959d68cf7c419ff0513551b97f4b59" name="a40959d68cf7c419ff0513551b97f4b59"></a>
+<a class="el" href="classtinyrobotics_1_1MotionState3D.html">MotionState3D</a>&#160;</td><td class="memItemRight" valign="bottom"><b>getMotionState</b> () const</td></tr>
+<tr class="memdesc:a40959d68cf7c419ff0513551b97f4b59"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the current motion state as a <a class="el" href="classtinyrobotics_1_1MotionState3D.html" title="Represents the full 3D motion state of a robot or vehicle.">MotionState3D</a> (with z=0 and pitch/roll=0) <br /></td></tr>
+<tr class="separator:a40959d68cf7c419ff0513551b97f4b59"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae63e20badc13068c0cd8ba72e7515316"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classtinyrobotics_1_1Transform2D.html">Transform2D</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1Odometry2D.html#ae63e20badc13068c0cd8ba72e7515316">getTransform</a> () const</td></tr>
 <tr class="separator:ae63e20badc13068c0cd8ba72e7515316"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a78e717a30265e658d53cbc5f07dc1119"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classtinyrobotics_1_1Coordinate.html">Coordinate</a>&lt; DistanceM &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1IMotionState2D.html#a78e717a30265e658d53cbc5f07dc1119">getPosition</a> () const =0</td></tr>
@@ -203,6 +211,10 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>unsubscribeAll</b> ()
 <tr class="memitem:a8c365effddc5ffc78b8a3532b01047b3 inherit pub_methods_classtinyrobotics_1_1MessageSource"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1MessageSource.html#a8c365effddc5ffc78b8a3532b01047b3">sendMessage</a> (const <a class="el" href="structtinyrobotics_1_1Message.html">Message</a>&lt; <a class="el" href="classtinyrobotics_1_1GPSCoordinate.html">GPSCoordinate</a> &gt; &amp;msg)</td></tr>
 <tr class="memdesc:a8c365effddc5ffc78b8a3532b01047b3 inherit pub_methods_classtinyrobotics_1_1MessageSource"><td class="mdescLeft">&#160;</td><td class="mdescRight">Publish a message to all registered handlers.  <br /></td></tr>
 <tr class="separator:a8c365effddc5ffc78b8a3532b01047b3 inherit pub_methods_classtinyrobotics_1_1MessageSource"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0d0cf158f02528dfceae4defe553ed64 inherit pub_methods_classtinyrobotics_1_1MessageSource"><td class="memItemLeft" align="right" valign="top"><a id="a0d0cf158f02528dfceae4defe553ed64" name="a0d0cf158f02528dfceae4defe553ed64"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>sendMessage</b> (const <a class="el" href="structtinyrobotics_1_1Message.html">Message</a>&lt; <a class="el" href="classtinyrobotics_1_1MotionState3D.html">MotionState3D</a> &gt; &amp;msg)</td></tr>
+<tr class="memdesc:a0d0cf158f02528dfceae4defe553ed64 inherit pub_methods_classtinyrobotics_1_1MessageSource"><td class="mdescLeft">&#160;</td><td class="mdescRight">Overload for <a class="el" href="classtinyrobotics_1_1MotionState3D.html" title="Represents the full 3D motion state of a robot or vehicle.">MotionState3D</a> messages. <br /></td></tr>
+<tr class="separator:a0d0cf158f02528dfceae4defe553ed64 inherit pub_methods_classtinyrobotics_1_1MessageSource"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-methods" name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>

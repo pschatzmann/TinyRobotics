@@ -143,6 +143,10 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>unsubscribeAll</b> ()
 <tr class="memitem:a8c365effddc5ffc78b8a3532b01047b3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1MessageSource.html#a8c365effddc5ffc78b8a3532b01047b3">sendMessage</a> (const <a class="el" href="structtinyrobotics_1_1Message.html">Message</a>&lt; <a class="el" href="classtinyrobotics_1_1GPSCoordinate.html">GPSCoordinate</a> &gt; &amp;msg)</td></tr>
 <tr class="memdesc:a8c365effddc5ffc78b8a3532b01047b3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Publish a message to all registered handlers.  <br /></td></tr>
 <tr class="separator:a8c365effddc5ffc78b8a3532b01047b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0d0cf158f02528dfceae4defe553ed64"><td class="memItemLeft" align="right" valign="top"><a id="a0d0cf158f02528dfceae4defe553ed64" name="a0d0cf158f02528dfceae4defe553ed64"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>sendMessage</b> (const <a class="el" href="structtinyrobotics_1_1Message.html">Message</a>&lt; <a class="el" href="classtinyrobotics_1_1MotionState3D.html">MotionState3D</a> &gt; &amp;msg)</td></tr>
+<tr class="memdesc:a0d0cf158f02528dfceae4defe553ed64"><td class="mdescLeft">&#160;</td><td class="mdescRight">Overload for <a class="el" href="classtinyrobotics_1_1MotionState3D.html" title="Represents the full 3D motion state of a robot or vehicle.">MotionState3D</a> messages. <br /></td></tr>
+<tr class="separator:a0d0cf158f02528dfceae4defe553ed64"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
@@ -157,9 +161,9 @@ std::vector&lt; <a class="el" href="structtinyrobotics_1_1MessageSource_1_1Messa
 <div class="line">source.<a class="code hl_function" href="classtinyrobotics_1_1MessageSource.html#ac3cabbec9037e5565dff2a698aa8dc8c">subscribe</a>(handler1);</div>
 <div class="line">source.<a class="code hl_function" href="classtinyrobotics_1_1MessageSource.html#ac3cabbec9037e5565dff2a698aa8dc8c">subscribe</a>(handler2);</div>
 <div class="line">source.<a class="code hl_function" href="classtinyrobotics_1_1MessageSource.html#a98c36b84c000f803e27b164c09d96260">sendMessage</a>(msg); <span class="comment">// Forwards to all handlers</span></div>
-<div class="ttc" id="aclasstinyrobotics_1_1MessageSource_html"><div class="ttname"><a href="classtinyrobotics_1_1MessageSource.html">tinyrobotics::MessageSource</a></div><div class="ttdoc">Base class for message sources in the TinyRobotics communication framework.</div><div class="ttdef"><b>Definition:</b> MessageSource.h:34</div></div>
-<div class="ttc" id="aclasstinyrobotics_1_1MessageSource_html_a98c36b84c000f803e27b164c09d96260"><div class="ttname"><a href="classtinyrobotics_1_1MessageSource.html#a98c36b84c000f803e27b164c09d96260">tinyrobotics::MessageSource::sendMessage</a></div><div class="ttdeci">void sendMessage(Message&lt; float &gt; &amp;msg)</div><div class="ttdoc">Publish a message to all registered handlers.</div><div class="ttdef"><b>Definition:</b> MessageSource.h:71</div></div>
-<div class="ttc" id="aclasstinyrobotics_1_1MessageSource_html_ac3cabbec9037e5565dff2a698aa8dc8c"><div class="ttname"><a href="classtinyrobotics_1_1MessageSource.html#ac3cabbec9037e5565dff2a698aa8dc8c">tinyrobotics::MessageSource::subscribe</a></div><div class="ttdeci">void subscribe(MessageHandler &amp;handler, MessageOrigin origin=MessageOrigin::Undefined, MessageContent content=MessageContent::Undefined)</div><div class="ttdoc">Subscribe a message handler to this source, with optional filtering.</div><div class="ttdef"><b>Definition:</b> MessageSource.h:54</div></div>
+<div class="ttc" id="aclasstinyrobotics_1_1MessageSource_html"><div class="ttname"><a href="classtinyrobotics_1_1MessageSource.html">tinyrobotics::MessageSource</a></div><div class="ttdoc">Base class for message sources in the TinyRobotics communication framework.</div><div class="ttdef"><b>Definition:</b> MessageSource.h:35</div></div>
+<div class="ttc" id="aclasstinyrobotics_1_1MessageSource_html_a98c36b84c000f803e27b164c09d96260"><div class="ttname"><a href="classtinyrobotics_1_1MessageSource.html#a98c36b84c000f803e27b164c09d96260">tinyrobotics::MessageSource::sendMessage</a></div><div class="ttdeci">void sendMessage(Message&lt; float &gt; &amp;msg)</div><div class="ttdoc">Publish a message to all registered handlers.</div><div class="ttdef"><b>Definition:</b> MessageSource.h:77</div></div>
+<div class="ttc" id="aclasstinyrobotics_1_1MessageSource_html_ac3cabbec9037e5565dff2a698aa8dc8c"><div class="ttname"><a href="classtinyrobotics_1_1MessageSource.html#ac3cabbec9037e5565dff2a698aa8dc8c">tinyrobotics::MessageSource::subscribe</a></div><div class="ttdeci">void subscribe(MessageHandler &amp;handler, MessageOrigin origin=MessageOrigin::Undefined, MessageContent content=MessageContent::Undefined)</div><div class="ttdoc">Subscribe a message handler to this source, with optional filtering.</div><div class="ttdef"><b>Definition:</b> MessageSource.h:59</div></div>
 </div><!-- fragment --><p>Extend this class to implement custom message-producing components (e.g., sensors, controllers) that need to broadcast messages to other system parts. </p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="acca83780d0920c0777c5ed4801644878" name="acca83780d0920c0777c5ed4801644878"></a>
@@ -314,9 +318,10 @@ std::vector&lt; <a class="el" href="structtinyrobotics_1_1MessageSource_1_1Messa
   </table>
   </dd>
 </dl>
-<p>Example: </p><div class="fragment"><div class="line">source.subscribe(handler); <span class="comment">// Receives all messages</span></div>
-<div class="line">source.subscribe(handler, MessageOrigin::RemoteControl); <span class="comment">// Only messages from remote control</span></div>
-<div class="line">source.subscribe(handler, MessageOrigin::Undefined, MessageContent::Throttle); <span class="comment">// Only throttle messages</span></div>
+<p>Example: </p><div class="fragment"><div class="line">  source.subscribe(handler); <span class="comment">// Receives all messages</span></div>
+<div class="line">  source.subscribe(handler, MessageOrigin::RemoteControl); <span class="comment">// Only messages</span></div>
+<div class="line">from remote control source.subscribe(handler, MessageOrigin::Undefined,</div>
+<div class="line">MessageContent::Throttle); <span class="comment">// Only throttle messages</span></div>
 </div><!-- fragment --> 
 </div>
 </div>

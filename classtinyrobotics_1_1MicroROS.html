@@ -75,6 +75,7 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pro-methods">Protected Member Functions</a> &#124;
 <a href="#pro-attribs">Protected Attributes</a> &#124;
 <a href="classtinyrobotics_1_1MicroROS-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">MicroROS Class Reference<div class="ingroups"><a class="el" href="group__main.html">TinyRobotics</a> &raquo; <a class="el" href="group__communication.html">Communication</a></div></div></div>
@@ -85,6 +86,24 @@ $(function() {
  <a href="classtinyrobotics_1_1MicroROS.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="MicroROS_8h_source.html">MicroROS.h</a>&gt;</code></p>
+<div class="dynheader">
+Inheritance diagram for MicroROS:</div>
+<div class="dyncontent">
+<div class="center"><img src="classtinyrobotics_1_1MicroROS__inherit__graph.png" border="0" usemap="#aMicroROS_inherit__map" alt="Inheritance graph"/></div>
+<map name="aMicroROS_inherit__map" id="aMicroROS_inherit__map">
+<area shape="rect" title="micro&#45;ROS interface for vehicle control and odometry on Arduino/ESP32." alt="" coords="28,79,113,104"/>
+<area shape="rect" href="classtinyrobotics_1_1MessageHandler.html" title="Interface for handling messages in the TinyRobotics framework." alt="" coords="5,5,136,31"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
+<div class="dynheader">
+Collaboration diagram for MicroROS:</div>
+<div class="dyncontent">
+<div class="center"><img src="classtinyrobotics_1_1MicroROS__coll__graph.png" border="0" usemap="#aMicroROS_coll__map" alt="Collaboration graph"/></div>
+<map name="aMicroROS_coll__map" id="aMicroROS_coll__map">
+<area shape="rect" title="micro&#45;ROS interface for vehicle control and odometry on Arduino/ESP32." alt="" coords="28,79,113,104"/>
+<area shape="rect" href="classtinyrobotics_1_1MessageHandler.html" title="Interface for handling messages in the TinyRobotics framework." alt="" coords="5,5,136,31"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -109,9 +128,39 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>sendOdometry</b> (con
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>sendOdometry</b> (<a class="el" href="classtinyrobotics_1_1Coordinate.html">Coordinate</a>&lt; DistanceM &gt; position, <a class="el" href="classtinyrobotics_1_1Orientation3D.html">Orientation3D</a> orientation)</td></tr>
 <tr class="memdesc:a7a2757bb46332b87ca5b7421e9d6e135"><td class="mdescLeft">&#160;</td><td class="mdescRight">Publish odometry message. <br /></td></tr>
 <tr class="separator:a7a2757bb46332b87ca5b7421e9d6e135"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a07ebc012d544c8b20a5e11b63f777215"><td class="memItemLeft" align="right" valign="top"><a id="a07ebc012d544c8b20a5e11b63f777215" name="a07ebc012d544c8b20a5e11b63f777215"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>sendPoint</b> (const geometry_msgs__msg__Point32 &amp;msg)</td></tr>
+<tr class="memdesc:a07ebc012d544c8b20a5e11b63f777215"><td class="mdescLeft">&#160;</td><td class="mdescRight">Publish Point32 (occupancy grid map message not available in micro-ROS) <br /></td></tr>
+<tr class="separator:a07ebc012d544c8b20a5e11b63f777215"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a77a46caba1baf8bec564068d7b363d29"><td class="memItemLeft" align="right" valign="top"><a id="a77a46caba1baf8bec564068d7b363d29" name="a77a46caba1baf8bec564068d7b363d29"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>sendCoordinate</b> (const <a class="el" href="classtinyrobotics_1_1Coordinate.html">Coordinate</a>&lt; DistanceM &gt; &amp;coordinate)</td></tr>
+<tr class="separator:a77a46caba1baf8bec564068d7b363d29"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa9d524e5f42d04cbe046c60d323dbc17"><td class="memTemplParams" colspan="2"><a id="aa9d524e5f42d04cbe046c60d323dbc17" name="aa9d524e5f42d04cbe046c60d323dbc17"></a>
+template&lt;typename T &gt; </td></tr>
+<tr class="memitem:aa9d524e5f42d04cbe046c60d323dbc17"><td class="memTemplItemLeft" align="right" valign="top">bool&#160;</td><td class="memTemplItemRight" valign="bottom"><b>sendMap</b> (<a class="el" href="classtinyrobotics_1_1IMap.html">IMap</a>&lt; T &gt; &amp;entry)</td></tr>
+<tr class="memdesc:aa9d524e5f42d04cbe046c60d323dbc17"><td class="mdescLeft">&#160;</td><td class="mdescRight">Publish Point32 (occupancy grid map message not available in micro-ROS) <br /></td></tr>
+<tr class="separator:aa9d524e5f42d04cbe046c60d323dbc17"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3d7084984fe6f6f43fa5658134b5904c"><td class="memItemLeft" align="right" valign="top"><a id="a3d7084984fe6f6f43fa5658134b5904c" name="a3d7084984fe6f6f43fa5658134b5904c"></a>
 rclc_executor_t &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getExecutor</b> ()</td></tr>
 <tr class="separator:a3d7084984fe6f6f43fa5658134b5904c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_classtinyrobotics_1_1MessageHandler"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classtinyrobotics_1_1MessageHandler')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classtinyrobotics_1_1MessageHandler.html">MessageHandler</a></td></tr>
+<tr class="memitem:ad4db64cdd50701eba69a319785dac84b inherit pub_methods_classtinyrobotics_1_1MessageHandler"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1MessageHandler.html#ad4db64cdd50701eba69a319785dac84b">onMessage</a> (const <a class="el" href="structtinyrobotics_1_1Message.html">Message</a>&lt; float &gt; &amp;msg)=0</td></tr>
+<tr class="memdesc:ad4db64cdd50701eba69a319785dac84b inherit pub_methods_classtinyrobotics_1_1MessageHandler"><td class="mdescLeft">&#160;</td><td class="mdescRight">Handle an incoming message (pure virtual).  <br /></td></tr>
+<tr class="separator:ad4db64cdd50701eba69a319785dac84b inherit pub_methods_classtinyrobotics_1_1MessageHandler"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4af96c354ff0dd13a830c90ee4e21eef inherit pub_methods_classtinyrobotics_1_1MessageHandler"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1MessageHandler.html#a4af96c354ff0dd13a830c90ee4e21eef">onMessage</a> (const <a class="el" href="structtinyrobotics_1_1Message.html">Message</a>&lt; <a class="el" href="classtinyrobotics_1_1Coordinate.html">Coordinate</a>&lt; float &gt; &gt; &amp;msg)</td></tr>
+<tr class="separator:a4af96c354ff0dd13a830c90ee4e21eef inherit pub_methods_classtinyrobotics_1_1MessageHandler"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3bcbb37bf9779c6df8b71a20f2aa5edd inherit pub_methods_classtinyrobotics_1_1MessageHandler"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1MessageHandler.html#a3bcbb37bf9779c6df8b71a20f2aa5edd">onMessage</a> (const <a class="el" href="structtinyrobotics_1_1Message.html">Message</a>&lt; <a class="el" href="classtinyrobotics_1_1GPSCoordinate.html">GPSCoordinate</a> &gt; &amp;msg)</td></tr>
+<tr class="separator:a3bcbb37bf9779c6df8b71a20f2aa5edd inherit pub_methods_classtinyrobotics_1_1MessageHandler"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeb44e667bf3959f42b837c0f2fea6fa8 inherit pub_methods_classtinyrobotics_1_1MessageHandler"><td class="memItemLeft" align="right" valign="top"><a id="aeb44e667bf3959f42b837c0f2fea6fa8" name="aeb44e667bf3959f42b837c0f2fea6fa8"></a>
+virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>onMessage</b> (const <a class="el" href="structtinyrobotics_1_1Message.html">Message</a>&lt; <a class="el" href="classtinyrobotics_1_1MotionState3D.html">MotionState3D</a> &gt; &amp;msg)</td></tr>
+<tr class="separator:aeb44e667bf3959f42b837c0f2fea6fa8 inherit pub_methods_classtinyrobotics_1_1MessageHandler"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-methods" name="pro-methods"></a>
+Protected Member Functions</h2></td></tr>
+<tr class="memitem:a528be9019f5d80db8e6038e677e00301"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1MicroROS.html#a528be9019f5d80db8e6038e677e00301">onMessage</a> (const <a class="el" href="structtinyrobotics_1_1Message.html">Message</a>&lt; <a class="el" href="classtinyrobotics_1_1MotionState3D.html">MotionState3D</a> &gt; &amp;msg) override</td></tr>
+<tr class="separator:a528be9019f5d80db8e6038e677e00301"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aacc6e0533831133db562e7918b468b04"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1MicroROS.html#aacc6e0533831133db562e7918b468b04">onMessage</a> (const <a class="el" href="structtinyrobotics_1_1Message.html">Message</a>&lt; <a class="el" href="classtinyrobotics_1_1Coordinate.html">Coordinate</a>&lt; float &gt; &gt; &amp;msg)</td></tr>
+<tr class="separator:aacc6e0533831133db562e7918b468b04"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
@@ -139,19 +188,21 @@ rcl_allocator_t&#160;</td><td class="memItemRight" valign="bottom"><b>allocator<
 <tr class="memitem:ad81a88cae17296cea06aabd91451262a"><td class="memItemLeft" align="right" valign="top"><a id="ad81a88cae17296cea06aabd91451262a" name="ad81a88cae17296cea06aabd91451262a"></a>
 rcl_subscription_t&#160;</td><td class="memItemRight" valign="bottom"><b>sub_cmd</b></td></tr>
 <tr class="separator:ad81a88cae17296cea06aabd91451262a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5ef92ae77dcdd4e6dc377c59c7153ffb"><td class="memItemLeft" align="right" valign="top"><a id="a5ef92ae77dcdd4e6dc377c59c7153ffb" name="a5ef92ae77dcdd4e6dc377c59c7153ffb"></a>
-rcl_publisher_t&#160;</td><td class="memItemRight" valign="bottom"><b>pub_odom</b></td></tr>
-<tr class="separator:a5ef92ae77dcdd4e6dc377c59c7153ffb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8ffa76516285452da809edea3a85870f"><td class="memItemLeft" align="right" valign="top"><a id="a8ffa76516285452da809edea3a85870f" name="a8ffa76516285452da809edea3a85870f"></a>
+rcl_publisher_t&#160;</td><td class="memItemRight" valign="bottom"><b>publisher</b></td></tr>
+<tr class="separator:a8ffa76516285452da809edea3a85870f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aef4c7dcc6b46eb48ad4003d9137da168"><td class="memItemLeft" align="right" valign="top"><a id="aef4c7dcc6b46eb48ad4003d9137da168" name="aef4c7dcc6b46eb48ad4003d9137da168"></a>
 geometry_msgs__msg__Twist&#160;</td><td class="memItemRight" valign="bottom"><b>cmd_msg</b></td></tr>
 <tr class="separator:aef4c7dcc6b46eb48ad4003d9137da168"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>micro-ROS interface for vehicle control and odometry on Arduino/ESP32. </p>
+<dl class="section note"><dt>Note</dt><dd>Install the micro_ros_arduino library</dd></dl>
 <p>This class sets up a micro-ROS node e.g. for an Ackermann steering robot, subscribing to velocity commands (geometry_msgs/Twist on /cmd_vel) and publishing odometry (nav_msgs/Odometry on /odom).</p>
 <p>Features:</p><ul>
 <li>Receives velocity commands e.g. to converts them to Ackermann steering and speed.</li>
-<li>Publishes odometry received.</li>
+<li>Publishes odometry</li>
+<li>Publishes occupancy grid maps from <a class="el" href="classtinyrobotics_1_1IMap.html" title="Abstract interface for 2D grid maps and occupancy maps in TinyRobotics.">IMap</a> interface received.</li>
 <li>Uses micro-ROS Arduino library for communication.</li>
 <li>User provides a callback for handling incoming Twist messages.</li>
 </ul>
@@ -163,7 +214,64 @@ geometry_msgs__msg__Twist&#160;</td><td class="memItemRight" valign="bottom"><b>
 <dl class="section note"><dt>Note</dt><dd>optional functionality: include "TinyRobotics/communication/MicroROS.h" </dd></dl>
 <dl class="section author"><dt>Author</dt><dd>Phil Schatzmann </dd></dl>
 <dl class="section date"><dt>Date</dt><dd>2026-03-30 </dd></dl>
-</div><hr/>The documentation for this class was generated from the following file:<ul>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="aacc6e0533831133db562e7918b468b04" name="aacc6e0533831133db562e7918b468b04"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aacc6e0533831133db562e7918b468b04">&#9670;&#160;</a></span>onMessage() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool onMessage </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structtinyrobotics_1_1Message.html">Message</a>&lt; <a class="el" href="classtinyrobotics_1_1Coordinate.html">Coordinate</a>&lt; float &gt; &gt; &amp;&#160;</td>
+          <td class="paramname"><em>msg</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Reimplemented from <a class="el" href="classtinyrobotics_1_1MessageHandler.html">MessageHandler</a>.</p>
+
+</div>
+</div>
+<a id="a528be9019f5d80db8e6038e677e00301" name="a528be9019f5d80db8e6038e677e00301"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a528be9019f5d80db8e6038e677e00301">&#9670;&#160;</a></span>onMessage() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool onMessage </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structtinyrobotics_1_1Message.html">Message</a>&lt; <a class="el" href="classtinyrobotics_1_1MotionState3D.html">MotionState3D</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>msg</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">override</span><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Reimplemented from <a class="el" href="classtinyrobotics_1_1MessageHandler.html">MessageHandler</a>.</p>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following file:<ul>
 <li>src/TinyRobotics/communication/<a class="el" href="MicroROS_8h_source.html">MicroROS.h</a></li>
 </ul>
 </div><!-- contents -->
