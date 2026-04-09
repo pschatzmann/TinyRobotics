@@ -17,6 +17,7 @@ class CallbackMessageHandler : public MessageHandler {
       std::function<bool(const Message<Coordinate<float>>&, void*)>;
   using GPSCoordinateCallback =
       std::function<bool(const Message<GPSCoordinate>&, void*)>;
+  using MotionStateCallback = std::function<bool(const Message<MotionState3D>&, void*)>;
 
   CallbackMessageHandler() = default;
 
@@ -34,6 +35,12 @@ class CallbackMessageHandler : public MessageHandler {
     if (gpsCoordinateCallback_) return gpsCoordinateCallback_(msg, ref);
     return false;
   }
+  
+
+  bool onMessage(const Message<MotionState3D>& msg) override {
+    if (motionStateCallback_) return motionStateCallback_(msg, ref);
+    return false;
+  }
 
   void setValueCallback(ValueCallback cb, void* reference) {
     valueCallback_ = cb;
@@ -48,11 +55,17 @@ class CallbackMessageHandler : public MessageHandler {
     ref = reference;
   }
 
- protected:
+  void setMotionStateCallback(MotionStateCallback cb, void* reference) {
+    motionStateCallback_ = cb;
+    ref = reference;
+  }
+
+protected:
   void* ref = nullptr;
   ValueCallback valueCallback_;
   CoordinateCallback coordinateCallback_;
   GPSCoordinateCallback gpsCoordinateCallback_;
+  MotionStateCallback motionStateCallback_;
 
 };
 

@@ -26,16 +26,18 @@ constexpr const char* messageContentStr[] = {
     "Temperature",    // 14
     "Error",          // 15
     "Density"         // 16
+    "MotionState"      // 17
 };
 
 // from enum class Unit in Common.h - update this array to match all values in
 // the Unit enum
 constexpr const char* unitStr[] = {
-    "Percent",           // 0
-    "MetersPerSecond",   // 1
-    "RadiansPerSecond",  // 2
-    "Meters",            // 3
-    "Centimeters",       // 4
+    "Undefined",         // 0
+    "Percent",           // 1
+    "MetersPerSecond",   // 2
+    "RadiansPerSecond",  // 3
+    "Meters",            // 4
+    "Centimeters",       // 5
     "Millimeters",       // 5
     "AngleDegree",       // 6
     "AngleRadian",       // 7
@@ -61,7 +63,10 @@ constexpr const char* originStr[] = {
   "LIDAR",          // 11
   "Camera",         // 12
   "GPS",            // 13
-  "Vehicle"         // 14
+  "Vehicle",        // 14
+  "Odometry",       // 15
+  "Navigation",     // 16
+  "User"            // 17
 };
 
 /**
@@ -97,6 +102,11 @@ class MessageHandlerBinary : public MessageHandler {
   }
 
   bool onMessage(const Message<GPSCoordinate>& msg) override {
+    size_t written = printer_.write((const uint8_t*)&msg, sizeof(msg));
+    return written == sizeof(msg);
+  }
+
+  bool onMessage(const Message<MotionState3D>& msg) override {
     size_t written = printer_.write((const uint8_t*)&msg, sizeof(msg));
     return written == sizeof(msg);
   }
@@ -171,6 +181,40 @@ class MessageHandlerPrint : public MessageHandler {
     printer_.print(", Source: ");
     printer_.println(originStr[static_cast<int>(msg.origin)]);
     return true;  // Indicate that the message was handled
+  }
+
+  bool onMessage(const Message<MotionState3D>& msg) override {
+    printer_.print("[Message] Type: MotionState3D");
+    printer_.print(", Pos: (");
+    printer_.print(msg.value.getPosition().x);
+    printer_.print(", ");
+    printer_.print(msg.value.getPosition().y);
+    printer_.print(", ");
+    printer_.print(msg.value.getPosition().z);
+    printer_.print(")");
+    printer_.print(", Orientation: (");
+    printer_.print(msg.value.getOrientation().roll);
+    printer_.print(", ");
+    printer_.print(msg.value.getOrientation().pitch);
+    printer_.print(", ");
+    printer_.print(msg.value.getOrientation().yaw);
+    printer_.print(")");
+    printer_.print(", Speed: (");
+    printer_.print(msg.value.getSpeed().x);
+    printer_.print(", ");
+    printer_.print(msg.value.getSpeed().y);
+    printer_.print(", ");
+    printer_.print(msg.value.getSpeed().z);
+    printer_.print(")");
+    printer_.print(", AngularVel: (");
+    printer_.print(msg.value.getAngularVelocity().x);
+    printer_.print(", ");
+    printer_.print(msg.value.getAngularVelocity().y);
+    printer_.print(", ");
+    printer_.print(msg.value.getAngularVelocity().z);
+    printer_.print(")");
+    printer_.println("");
+    return true;
   }
 
  protected:
@@ -248,6 +292,36 @@ class MessageHandlerPrintXML : public MessageHandler {
     return true;
   }
 
+  bool onMessage(const Message<MotionState3D>& msg) override {
+    printer_.print("<Message type=\"MotionState3D\"");
+    printer_.print(" pos=\"");
+    printer_.print(msg.value.getPosition().x);
+    printer_.print(",");
+    printer_.print(msg.value.getPosition().y);
+    printer_.print(",");
+    printer_.print(msg.value.getPosition().z);
+    printer_.print("\" orientation=\"");
+    printer_.print(msg.value.getOrientation().roll);
+    printer_.print(",");
+    printer_.print(msg.value.getOrientation().pitch);
+    printer_.print(",");
+    printer_.print(msg.value.getOrientation().yaw);
+    printer_.print("\" speed=\"");
+    printer_.print(msg.value.getSpeed().x);
+    printer_.print(",");
+    printer_.print(msg.value.getSpeed().y);
+    printer_.print(",");
+    printer_.print(msg.value.getSpeed().z);
+    printer_.print("\" angularVel=\"");
+    printer_.print(msg.value.getAngularVelocity().x);
+    printer_.print(",");
+    printer_.print(msg.value.getAngularVelocity().y);
+    printer_.print(",");
+    printer_.print(msg.value.getAngularVelocity().z);
+    printer_.println("\"/>");
+    return true;
+  }
+
  protected:
   Print& printer_;
 };
@@ -320,6 +394,36 @@ class MessageHandlerPrintJSON : public MessageHandler {
     printer_.print("\",\"source\":\"");
     printer_.print(originStr[static_cast<int>(msg.origin)]);
     printer_.println("\"}");
+    return true;
+  }
+
+  bool onMessage(const Message<MotionState3D>& msg) override {
+    printer_.print("{\"type\":\"MotionState3D\"");
+    printer_.print(",\"pos\":[");
+    printer_.print(msg.value.getPosition().x);
+    printer_.print(",");
+    printer_.print(msg.value.getPosition().y);
+    printer_.print(",");
+    printer_.print(msg.value.getPosition().z);
+    printer_.print("],\"orientation\":[");
+    printer_.print(msg.value.getOrientation().roll);
+    printer_.print(",");
+    printer_.print(msg.value.getOrientation().pitch);
+    printer_.print(",");
+    printer_.print(msg.value.getOrientation().yaw);
+    printer_.print("],\"speed\":[");
+    printer_.print(msg.value.getSpeed().x);
+    printer_.print(",");
+    printer_.print(msg.value.getSpeed().y);
+    printer_.print(",");
+    printer_.print(msg.value.getSpeed().z);
+    printer_.print("],\"angularVel\":[");
+    printer_.print(msg.value.getAngularVelocity().x);
+    printer_.print(",");
+    printer_.print(msg.value.getAngularVelocity().y);
+    printer_.print(",");
+    printer_.print(msg.value.getAngularVelocity().z);
+    printer_.println("]}");
     return true;
   }
 

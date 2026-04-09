@@ -25,6 +25,9 @@ enum class MessageOrigin {
   Camera,    ///< Message from a camera or vision sensor
   GPS,       ///< Message from a GPS module
   Vehicle,   ///< Message from the vehicle itself (e.g., for telemetry or state updates)
+  Odometry,   ///< Message from the odometry system (e.g., position updates)
+  Navigation, ///< Message from the navigation system (e.g., waypoint updates)
+  User       ///< Message from a user-defined source (e.g., custom module)
 };
 
 /**
@@ -49,7 +52,8 @@ enum class MessageContent {
   Distance,       ///< Distance measurement (e.g., from a range sensor)
   Temperature,    ///< Temperature reading (e.g., from a temperature sensor)
   Error,          ///< Error value (e.g., for PID control)
-  Density         ///< Density value (e.g., for obstacle detection)
+  Density,         ///< Density value (e.g., for obstacle detection)
+  MotionState,
 };
 
 /**

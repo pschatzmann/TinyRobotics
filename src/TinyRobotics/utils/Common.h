@@ -43,6 +43,7 @@ using AngleDeg = DEFAULT_TYPE;
  * @brief Units for message values.
  */
 enum class Unit {
+  Undefined,
   Percent,           ///< Percentage (0-100)
   MetersPerSecond,   ///< Speed in meters per second
   RadiansPerSecond,  ///< Angular speed in radians per second

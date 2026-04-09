@@ -159,10 +159,27 @@ class Odometry2D : public IMotionState2D {
   /// @brief Get the last delta update (dx, dy, dtheta)
   Delta2D getLastDelta() const { return lastDelta; }
 
+  /// @brief Get the current speed as a Speed3D (x, y in world frame, z: 0)
+  Speed3D getSpeed3D() const {
+    float v = getSpeed().getValue(SpeedUnit::MPS);
+    float vx = v * std::cos(theta);
+    float vy = v * std::sin(theta);
+    return Speed3D(vx, vy, 0.0f, SpeedUnit::MPS);
+  }
+
   /// @brief Set the odometry state (position and orientation)
   void setState(Coordinate<DistanceM> pos, float th) {
     position = pos;
     theta = th;
+  }
+
+  /// @brief Get the current motion state as a MotionState3D (with z=0 and
+  /// pitch/roll=0)
+  MotionState3D getMotionState() const {
+    return MotionState3D(Coordinate<float>(position.x, position.y, 0),
+                         Orientation3D(theta, 0, 0), getSpeed3D(),
+                         AngularVelocity3D(0.0f, 0.0f, getAngularVelocity(),
+                                           AngularVelocityUnit::RadPerSec));
   }
 
   Transform2D getTransform() const {
@@ -185,20 +202,27 @@ class Odometry2D : public IMotionState2D {
     Message<Coordinate<float>> msgPos{MessageContent::Position,
                                       Coordinate<float>(position.x, position.y),
                                       Unit::Meters};
-    msgPos.origin = MessageOrigin::System;
+    msgPos.origin = MessageOrigin::Odometry;
     sendMessage(msgPos);
 
     // Publish heading as float (radians)
     Message<float> msgHeading{MessageContent::Heading, theta,
                               Unit::AngleRadian};
-    msgHeading.origin = MessageOrigin::System;
+    msgHeading.origin = MessageOrigin::Odometry;
     sendMessage(msgHeading);
 
     // Publish speed as float (meters/second)
-    Message<float> msgSpeed{MessageContent::Speed, getSpeed().getValue(SpeedUnit::MPS),
+    Message<float> msgSpeed{MessageContent::Speed,
+                            getSpeed().getValue(SpeedUnit::MPS),
                             Unit::MetersPerSecond};
-    msgSpeed.origin = MessageOrigin::System;
+    msgSpeed.origin = MessageOrigin::Odometry;
     sendMessage(msgSpeed);
+
+    // Publish the full motion state as a MotionState3D message
+    Message<MotionState3D> msgState{MessageContent::MotionState,
+                    getMotionState(), Unit::Undefined};
+    msgState.origin = MessageOrigin::Odometry;
+    vehicle.sendMessage(msgState);
   }
 
   /**

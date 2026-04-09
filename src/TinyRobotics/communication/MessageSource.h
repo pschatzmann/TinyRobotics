@@ -3,6 +3,7 @@
 
 #include "Message.h"
 #include "MessageHandler.h"
+#include "TinyRobotics/control/MotionState3D.h"
 #include "TinyRobotics/coordinates/Coordinates.h"
 #include "TinyRobotics/coordinates/GPSCoordinate.h"
 
@@ -36,24 +37,29 @@ class MessageSource {
   /**
    * @brief Subscribe a message handler to this source, with optional filtering.
    *
-   * Registers a MessageHandler to receive messages published by this source. Optionally, you can specify
-   * a filter for message origin and content. Only messages matching the filter (or with filter set to Undefined)
-   * will be delivered to the handler.
+   * Registers a MessageHandler to receive messages published by this source.
+   * Optionally, you can specify a filter for message origin and content. Only
+   * messages matching the filter (or with filter set to Undefined) will be
+   * delivered to the handler.
    *
    * @param handler Reference to a MessageHandler to add.
-   * @param origin  (Optional) Only deliver messages with this origin. Use MessageOrigin::Undefined to accept all origins.
-   * @param content (Optional) Only deliver messages with this content type. Use MessageContent::Undefined to accept all content types.
+   * @param origin  (Optional) Only deliver messages with this origin. Use
+   * MessageOrigin::Undefined to accept all origins.
+   * @param content (Optional) Only deliver messages with this content type. Use
+   * MessageContent::Undefined to accept all content types.
    *
    * Example:
    * @code
    *   source.subscribe(handler); // Receives all messages
-   *   source.subscribe(handler, MessageOrigin::RemoteControl); // Only messages from remote control
-   *   source.subscribe(handler, MessageOrigin::Undefined, MessageContent::Throttle); // Only throttle messages
+   *   source.subscribe(handler, MessageOrigin::RemoteControl); // Only messages
+   * from remote control source.subscribe(handler, MessageOrigin::Undefined,
+   * MessageContent::Throttle); // Only throttle messages
    * @endcode
    */
-  void subscribe(MessageHandler& handler, MessageOrigin origin = MessageOrigin::Undefined,
+  void subscribe(MessageHandler& handler,
+                 MessageOrigin origin = MessageOrigin::Undefined,
                  MessageContent content = MessageContent::Undefined) {
-    MessageHandlerEntry entry{handler, origin, content};               
+    MessageHandlerEntry entry{handler, origin, content};
     messageHandlers_.push_back(entry);
   }
 
@@ -71,8 +77,10 @@ class MessageSource {
   void sendMessage(Message<float>& msg) {
     for (auto& entry : messageHandlers_) {
       if (!entry.handler) continue;
-      if ((entry.origin == MessageOrigin::Undefined || entry.origin == msg.origin) &&
-          (entry.content == MessageContent::Undefined || entry.content == msg.content)) {
+      if ((entry.origin == MessageOrigin::Undefined ||
+           entry.origin == msg.origin) &&
+          (entry.content == MessageContent::Undefined ||
+           entry.content == msg.content)) {
         entry.handler->onMessage(msg);
       }
     }
@@ -87,8 +95,10 @@ class MessageSource {
   void sendMessage(const Message<Coordinate<float>>& msg) {
     for (auto& entry : messageHandlers_) {
       if (!entry.handler) continue;
-      if ((entry.origin == MessageOrigin::Undefined || entry.origin == msg.origin) &&
-          (entry.content == MessageContent::Undefined || entry.content == msg.content)) {
+      if ((entry.origin == MessageOrigin::Undefined ||
+           entry.origin == msg.origin) &&
+          (entry.content == MessageContent::Undefined ||
+           entry.content == msg.content)) {
         entry.handler->onMessage(msg);
       }
     }
@@ -103,25 +113,43 @@ class MessageSource {
   void sendMessage(const Message<GPSCoordinate>& msg) {
     for (auto& entry : messageHandlers_) {
       if (!entry.handler) continue;
-      if ((entry.origin == MessageOrigin::Undefined || entry.origin == msg.origin) &&
-          (entry.content == MessageContent::Undefined || entry.content == msg.content)) {
+      if ((entry.origin == MessageOrigin::Undefined ||
+           entry.origin == msg.origin) &&
+          (entry.content == MessageContent::Undefined ||
+           entry.content == msg.content)) {
         entry.handler->onMessage(msg);
       }
     }
   }
 
-protected:
+  /// Overload for MotionState3D messages
+  void sendMessage(const Message<MotionState3D>& msg) {
+    for (auto& entry : messageHandlers_) {
+      if (!entry.handler) continue;
+      if ((entry.origin == MessageOrigin::Undefined ||
+           entry.origin == msg.origin) &&
+          (entry.content == MessageContent::Undefined ||
+           entry.content == msg.content)) {
+        entry.handler->onMessage(msg);
+      }
+    }
+  }
+
+ protected:
   struct MessageHandlerEntry {
     MessageHandler* handler = nullptr;
-    MessageOrigin origin = MessageOrigin::Undefined;  // origin filter
-    MessageContent content = MessageContent::Undefined; // content filter
+    MessageOrigin origin = MessageOrigin::Undefined;     // origin filter
+    MessageContent content = MessageContent::Undefined;  // content filter
 
     MessageHandlerEntry() = default;
-    MessageHandlerEntry(MessageHandler& h, MessageOrigin o = MessageOrigin::Undefined, MessageContent c = MessageContent::Undefined)
-      : handler(&h), origin(o), content(c) {}
+    MessageHandlerEntry(MessageHandler& h,
+                        MessageOrigin o = MessageOrigin::Undefined,
+                        MessageContent c = MessageContent::Undefined)
+        : handler(&h), origin(o), content(c) {}
 
     bool operator==(const MessageHandlerEntry& other) const {
-      return handler == other.handler && origin == other.origin && content == other.content;
+      return handler == other.handler && origin == other.origin &&
+             content == other.content;
     }
   };
   std::vector<MessageHandlerEntry> messageHandlers_;

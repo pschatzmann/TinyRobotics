@@ -1,8 +1,10 @@
 #pragma once
 #include <vector>
+
 #include "Message.h"
 #include "TinyRobotics/coordinates/Coordinates.h"
 #include "TinyRobotics/coordinates/GPSCoordinate.h"
+#include "TinyRobotics/control/MotionState3D.h"
 
 namespace tinyrobotics {
 
@@ -32,7 +34,12 @@ class MessageHandler {
     TRLogger.warn("MessageHandler: Received unhandled GPSCoordinate message");
     return false;  // Default implementation does not handle Coordinate messages
   };
-};
 
+  virtual bool onMessage(const Message<MotionState3D>& msg) {
+    TRLogger.warn("MessageHandler: Received unhandled MotionState3D message");
+    return false;  // Default implementation does not handle MotionState3D
+                   // messages
+  }
+};
 
 }  // namespace tinyrobotics
