@@ -5,6 +5,7 @@
 #include "TinyRobotics/communication/MessageSource.h"
 #include "TinyRobotics/coordinates/Coordinate.h"
 #include "TinyRobotics/coordinates/FrameMgr2D.h"
+#include "TinyRobotics/sensors/IObstacleDetector.h"
 #include "TinyRobotics/units/Distance.h"
 #include "TinyRobotics/utils/LoggerClass.h"
 
@@ -66,7 +67,7 @@ namespace tinyrobotics {
 
  */
 template <typename T = DistanceM>
-class RangeSensor : public MessageSource {
+class RangeSensor : public MessageSource, public IObstacleDetector {
  public:
   RangeSensor(const Transform2D& tf, float obstacleDegree = 0) {
     setObstacleDirectionDegree(obstacleDegree);
@@ -76,23 +77,45 @@ class RangeSensor : public MessageSource {
     setObstacleDirectionDegree(obstacleDegree);
   }
 
+  /// Start the sensor (e.g., initialize hardware)
   bool begin() {
-    // In a real implementation, this might initialize hardware or start a task
     is_active_ = true;
     return true;
   }
 
+  /// Update the sensor with angle (deg) and distance (m)
+  void update(float angleDeg, float distanceM) {
+    setObstacleDirectionDegree(angleDeg);
+    setObstacleDistance(distanceM);
+  }
+
+  /// Update the sensor with angle and distance objects
+  void update(Angle angle, Distance distance) {
+    setObstacleDirection(angle);
+    setObstacleDistance(distance);
+  }
+
+  /// Stop the sensor
   void end() { is_active_ = false; }
 
   /// Defines the angle to the obstacle in degrees: 0 means forward
+  /// Set the angle to the obstacle in degrees (0 = forward)
   void setObstacleDirectionDegree(float deg) { obstacle_deg_ = deg; }
+
+  /// Set the obstacle direction using an Angle object
+  void setObstacleDirection(Angle angle) {
+    setObstacleDirectionDegree(angle.getValue(AngleUnit::DEG));
+  }
 
   /// Get the angle of the obstacle relative to the sensor's forward direction
   /// in degrees.
+  /// Get the angle of the obstacle relative to the sensor's forward direction
+  /// in degrees
   float getObstacleDirectionDegree() const { return obstacle_deg_; }
 
   /// Set the distance measured by the sensor. Make sure that the
   /// ObstacleDegree is defined
+  /// Set the distance measured by the sensor (using Distance type)
   bool setObstacleDistance(Distance dist) {
     return setObstacleDistance(dist.getValue(DistanceUnit::M));
   }
@@ -102,6 +125,12 @@ class RangeSensor : public MessageSource {
   bool setObstacleDistance(float distanceM) {
     if (!is_active_) return false;
     this->distanceM = distanceM;
+
+    // If an obstacle is detected (distance > alertDistance), call the callback
+    if (callback_ && distanceM > alertDistanceM_ &&
+        std::abs(obstacle_deg_) <= alertAngleDeg_) {
+      callback_(Distance(distanceM, DistanceUnit::M), userData_);
+    }
 
     // Publish messages for distance, angle, and obstacle coordinate if valid
     Coordinate<T> obstacle;
@@ -126,17 +155,46 @@ class RangeSensor : public MessageSource {
     return true;
   }
 
+  /**
+   * @brief Set a callback to be invoked when an obstacle is detected.
+   * @param cb Callback function pointer with signature void(Distance, void*)
+   * @param userData User-provided pointer passed to the callback
+   */
+  void setObstacleDetectedCallback(void (*cb)(Distance, void*),
+                                   void* userData) override {
+    callback_ = cb;
+    userData_ = userData;
+  }
+
+  /// Set the alert angle threshold for obstacle detection
+  void setObstacleAlertAngle(Angle deg) {
+    alertAngleDeg_ = deg.getValue(AngleUnit::DEG);
+  }
+
+  /// Set the alert distance threshold for obstacle detection
+  void setObstacleAlertDistance(Distance dist) {
+    alertDistanceM_ = dist.getValue(DistanceUnit::M);
+  }
+
+ protected:
+  void (*callback_)(Distance, void*) = nullptr;
+  void* userData_ = nullptr;
+  float alertAngleDeg_ = 5;      // Default to 5 degrees
+  float alertDistanceM_ = 1.0f;  // Default to 1 meter
+
   /// Provide the distance measured by the sensor. In a real implementation,
   /// this would
   float getObstacleDistance() const { return distanceM; }
 
   /// Convenience method to set both the obstacle bearing and distance at once.
+  /// Set both the obstacle bearing and distance at once
   void setObstacle(float degree, float distance) {
     setObstacleDirectionDegree(degree);
     setObstacleDistance(distance);
   }
 
   /// Define the lidar to world transform
+  /// Set the sensor-to-world transform
   void setTransform(const Transform2D& tf) {
     lidar_to_world_tf = tf;
     has_transform_ = true;
@@ -159,11 +217,14 @@ class RangeSensor : public MessageSource {
   }
 
   /// Check if the sensor reading is valid (distance > 0)
+  /// Return true if the sensor reading is valid (distance > 0)
   operator bool() const { return distanceM > 0; }  // Valid if distance is set
 
   /// Return true if there is an obstacle detected (distance > 0)
+  /// Return true if there is an obstacle detected (distance > 0)
   bool hasObstacle() const { return distanceM > 0; }
 
+  /// Compute a speed factor (0.0 to 1.0) based on the distance to the obstacle
   /// Compute a speed factor (0.0 to 1.0) based on the distance to the obstacle
   float getSpeedFactor(Distance breakingDistance) const {
     if (distanceM <= 0) return 1.0f;  // No obstacle, full speed

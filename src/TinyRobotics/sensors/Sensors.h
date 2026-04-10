@@ -1,10 +1,11 @@
 #pragma once
- /**
+/**
  * @defgroup sensors Sensors
  * @ingroup main
  * @brief Sensor abstraction and integration
  */
 
+#include "AccelerometerObstacleDetector.h"
 #include "CameraEdgeFollower.h"
 #include "CameraImageDiff.h"
 #include "CameraLineFollower.h"
