@@ -53,7 +53,8 @@ enum class MessageContent {
   Temperature,    ///< Temperature reading (e.g., from a temperature sensor)
   Error,          ///< Error value (e.g., for PID control)
   Density,         ///< Density value (e.g., for obstacle detection)
-  MotionState,
+  MotionState,   ///< Full motion state (e.g., for publishing a MotionState3D struct)
+  Obstacle,       ///< Obstacle detected (e.g., for publishing obstacle coordinates or status)
 };
 
 /**

@@ -85,8 +85,7 @@ class CameraObstacleDetector : public MessageSource {
     float density = (total > 0) ? (float)hits / total : 0.0f;
 
     // publish angle to direction of movement
-    Message<float> msgError(MessageContent::Density, density * 100.0f, Unit::Percent);
-    msgError.origin = MessageOrigin::Camera;
+    Message<float> msgError(MessageContent::Obstacle, density * 100.0f, Unit::Percent, MessageOrigin::Camera);
     sendMessage(msgError);
 
     return {density > _trigger, density};

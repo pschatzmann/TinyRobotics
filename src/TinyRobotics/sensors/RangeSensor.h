@@ -5,7 +5,6 @@
 #include "TinyRobotics/communication/MessageSource.h"
 #include "TinyRobotics/coordinates/Coordinate.h"
 #include "TinyRobotics/coordinates/FrameMgr2D.h"
-#include "TinyRobotics/sensors/IObstacleDetector.h"
 #include "TinyRobotics/units/Distance.h"
 #include "TinyRobotics/utils/LoggerClass.h"
 
@@ -67,7 +66,7 @@ namespace tinyrobotics {
 
  */
 template <typename T = DistanceM>
-class RangeSensor : public MessageSource, public IObstacleDetector {
+class RangeSensor : public MessageSource {
  public:
   RangeSensor(const Transform2D& tf, float obstacleDegree = 0) {
     setObstacleDirectionDegree(obstacleDegree);
@@ -126,10 +125,12 @@ class RangeSensor : public MessageSource, public IObstacleDetector {
     if (!is_active_) return false;
     this->distanceM = distanceM;
 
-    // If an obstacle is detected (distance > alertDistance), call the callback
-    if (callback_ && distanceM > alertDistanceM_ &&
+    // If an obstacle is detected (distance > alertDistance), send message
+    if (distanceM >= alertDistanceM_ &&
         std::abs(obstacle_deg_) <= alertAngleDeg_) {
-      callback_(Distance(distanceM, DistanceUnit::M), userData_);
+      Message<float> msg(MessageContent::Obstacle, distanceM, Unit::Meters);
+      msg.origin = MessageOrigin::LIDAR;
+      sendMessage(msg);
     }
 
     // Publish messages for distance, angle, and obstacle coordinate if valid
@@ -155,17 +156,6 @@ class RangeSensor : public MessageSource, public IObstacleDetector {
     return true;
   }
 
-  /**
-   * @brief Set a callback to be invoked when an obstacle is detected.
-   * @param cb Callback function pointer with signature void(Distance, void*)
-   * @param userData User-provided pointer passed to the callback
-   */
-  void setObstacleDetectedCallback(void (*cb)(Distance, void*),
-                                   void* userData) override {
-    callback_ = cb;
-    userData_ = userData;
-  }
-
   /// Set the alert angle threshold for obstacle detection
   void setObstacleAlertAngle(Angle deg) {
     alertAngleDeg_ = deg.getValue(AngleUnit::DEG);
@@ -177,8 +167,6 @@ class RangeSensor : public MessageSource, public IObstacleDetector {
   }
 
  protected:
-  void (*callback_)(Distance, void*) = nullptr;
-  void* userData_ = nullptr;
   float alertAngleDeg_ = 5;      // Default to 5 degrees
   float alertDistanceM_ = 1.0f;  // Default to 1 meter
 

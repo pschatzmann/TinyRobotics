@@ -27,6 +27,7 @@ constexpr const char* messageContentStr[] = {
     "Error",          // 15
     "Density"         // 16
     "MotionState"      // 17
+    "Obstacle"         // 18
 };
 
 // from enum class Unit in Common.h - update this array to match all values in
