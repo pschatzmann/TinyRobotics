@@ -83,201 +83,273 @@ $(function() {
 <div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#</span><span class="preprocessor">include</span> <span class="preprocessor">&quot;TinyRobotics/communication/MessageSource.h&quot;</span></div>
 <div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#</span><span class="preprocessor">include</span> <span class="preprocessor">&quot;TinyRobotics/coordinates/Coordinate.h&quot;</span></div>
 <div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#</span><span class="preprocessor">include</span> <span class="preprocessor">&quot;TinyRobotics/coordinates/FrameMgr2D.h&quot;</span></div>
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#</span><span class="preprocessor">include</span> <span class="preprocessor">&quot;TinyRobotics/units/Distance.h&quot;</span></div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#</span><span class="preprocessor">include</span> <span class="preprocessor">&quot;TinyRobotics/utils/LoggerClass.h&quot;</span></div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="keyword">namespace</span> tinyrobotics {</div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="comment">/**</span></div>
-<div class="line"><span class="lineno">   14</span><span class="comment"> * @class RangeSensor</span></div>
-<div class="line"><span class="lineno">   15</span><span class="comment"> * @ingroup sensors</span></div>
-<div class="line"><span class="lineno">   16</span><span class="comment"> * @brief Generic range sensor abstraction for LIDAR, ultrasonic, or similar</span></div>
-<div class="line"><span class="lineno">   17</span><span class="comment"> * sensors.</span></div>
-<div class="line"><span class="lineno">   18</span><span class="comment"> *</span></div>
-<div class="line"><span class="lineno">   19</span><span class="comment"> * This template class models a simple range sensor, such as a LIDAR or</span></div>
-<div class="line"><span class="lineno">   20</span><span class="comment"> * ultrasonic sensor, for robotics applications. It tracks the measured distance</span></div>
-<div class="line"><span class="lineno">   21</span><span class="comment"> * to an obstacle, the angle (bearing) of the obstacle relative to the sensor,</span></div>
-<div class="line"><span class="lineno">   22</span><span class="comment"> * and the transform from the sensor&#39;s local frame to the world frame. The class</span></div>
-<div class="line"><span class="lineno">   23</span><span class="comment"> * provides methods to set and retrieve the measured distance and bearing,</span></div>
-<div class="line"><span class="lineno">   24</span><span class="comment"> * update the sensor-to-world transform, and compute the world-frame coordinates</span></div>
-<div class="line"><span class="lineno">   25</span><span class="comment"> * of detected obstacles.</span></div>
-<div class="line"><span class="lineno">   26</span><span class="comment"> *</span></div>
-<div class="line"><span class="lineno">   27</span><span class="comment"> * ## Features</span></div>
-<div class="line"><span class="lineno">   28</span><span class="comment"> * - Supports any distance unit via template parameter (default: meters)</span></div>
-<div class="line"><span class="lineno">   29</span><span class="comment"> * - Publishes distance, angle, and obstacle position as messages (for</span></div>
-<div class="line"><span class="lineno">   30</span><span class="comment"> * integration with messaging framework)</span></div>
-<div class="line"><span class="lineno">   31</span><span class="comment"> * - Computes obstacle coordinates in the world frame using a 2D transform</span></div>
-<div class="line"><span class="lineno">   32</span><span class="comment"> * - Validity checks for sensor readings (distance &gt; 0)</span></div>
-<div class="line"><span class="lineno">   33</span><span class="comment"> * - Can be used for navigation, mapping, and obstacle avoidance</span></div>
-<div class="line"><span class="lineno">   34</span><span class="comment"> *</span></div>
-<div class="line"><span class="lineno">   35</span><span class="comment"> * ## Usage Example</span></div>
-<div class="line"><span class="lineno">   36</span><span class="comment"> * @code</span></div>
-<div class="line"><span class="lineno">   37</span><span class="comment"> *   Transform2D tf = ...; // Sensor-to-world transform</span></div>
-<div class="line"><span class="lineno">   38</span><span class="comment"> *   RangeSensor&lt;&gt; sensor(tf, 0.0f); // 0 degrees = forward</span></div>
-<div class="line"><span class="lineno">   39</span><span class="comment"> *   sensor.begin();</span></div>
-<div class="line"><span class="lineno">   40</span><span class="comment"> *   sensor.setObstacleDistance(1.5f); // Set measured distance</span></div>
-<div class="line"><span class="lineno">   41</span><span class="comment"> *   if (sensor) {</span></div>
-<div class="line"><span class="lineno">   42</span><span class="comment"> *     Coordinate&lt;DistanceM&gt; obs;</span></div>
-<div class="line"><span class="lineno">   43</span><span class="comment"> *     if (sensor.getObstacleCoordinate(obs)) {</span></div>
-<div class="line"><span class="lineno">   44</span><span class="comment"> *       // Use obs for navigation</span></div>
-<div class="line"><span class="lineno">   45</span><span class="comment"> *     }</span></div>
-<div class="line"><span class="lineno">   46</span><span class="comment"> *   }</span></div>
-<div class="line"><span class="lineno">   47</span><span class="comment"> * @endcode</span></div>
-<div class="line"><span class="lineno">   48</span><span class="comment"> *</span></div>
-<div class="line"><span class="lineno">   49</span><span class="comment"> * ## Template Parameters</span></div>
-<div class="line"><span class="lineno">   50</span><span class="comment"> * @tparam T Distance type (default: DistanceM)</span></div>
-<div class="line"><span class="lineno">   51</span><span class="comment"> *</span></div>
-<div class="line"><span class="lineno">   52</span><span class="comment"> * ## Methods</span></div>
-<div class="line"><span class="lineno">   53</span><span class="comment"> * - setObstacleDirectionDegree(deg): Set obstacle bearing in degrees</span></div>
-<div class="line"><span class="lineno">   54</span><span class="comment"> * - setObstacleDistance(distance): Set measured distance</span></div>
-<div class="line"><span class="lineno">   55</span><span class="comment"> * - setObstacle(degree, distance): Set both bearing and distance</span></div>
-<div class="line"><span class="lineno">   56</span><span class="comment"> * - setTransform(tf): Set sensor-to-world transform</span></div>
-<div class="line"><span class="lineno">   57</span><span class="comment"> * - getObstacleCoordinate(result): Compute world-frame obstacle coordinate</span></div>
-<div class="line"><span class="lineno">   58</span><span class="comment"> * - hasObstacle(): True if a valid obstacle is detected</span></div>
-<div class="line"><span class="lineno">   59</span><span class="comment"> *</span></div>
-<div class="line"><span class="lineno">   60</span><span class="comment"> * ## Applications</span></div>
-<div class="line"><span class="lineno">   61</span><span class="comment"> * - LIDAR, ultrasonic, or IR range sensing</span></div>
-<div class="line"><span class="lineno">   62</span><span class="comment"> * - Robot navigation and mapping</span></div>
-<div class="line"><span class="lineno">   63</span><span class="comment"> * - Obstacle detection and avoidance</span></div>
-<div class="line"><span class="lineno">   64</span><span class="comment"> *</span></div>
-<div class="line"><span class="lineno">   65</span><span class="comment"> * @author Phil Schatzmann</span></div>
-<div class="line"><span class="lineno">   66</span><span class="comment"></span> </div>
-<div class="line"><span class="lineno">   67</span><span class="comment"> */</span></div>
-<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T = DistanceM&gt;</div>
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span><span class="keyword">class</span> <a class="code hl_class" href="classtinyrobotics_1_1RangeSensor.html">RangeSensor</a> : <span class="keyword">public</span> <a class="code hl_class" href="classtinyrobotics_1_1MessageSource.html">MessageSource</a> {</div>
-<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span> <span class="keyword">public</span>:</div>
-<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>  RangeSensor(<span class="keyword">const</span> <a class="code hl_class" href="classtinyrobotics_1_1Transform2D.html">Transform2D</a>&amp; tf, <span class="keywordtype">float</span> obstacleDegree = 0) {</div>
-<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>    <a class="code hl_function" href="classtinyrobotics_1_1RangeSensor.html#a8cfea93a53f2c0e8ba38af3e4b4a1997">setObstacleDirectionDegree</a><a class="code hl_function" href="classtinyrobotics_1_1RangeSensor.html#a8cfea93a53f2c0e8ba38af3e4b4a1997">(</a>obstacleDegree<a class="code hl_function" href="classtinyrobotics_1_1RangeSensor.html#a8cfea93a53f2c0e8ba38af3e4b4a1997">)</a>;</div>
-<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>    <a class="code hl_function" href="classtinyrobotics_1_1RangeSensor.html#a1273f9d38eaafcdb618cc9e32efd2be3">setTransform</a><a class="code hl_function" href="classtinyrobotics_1_1RangeSensor.html#a1273f9d38eaafcdb618cc9e32efd2be3">(</a>tf<a class="code hl_function" href="classtinyrobotics_1_1RangeSensor.html#a1273f9d38eaafcdb618cc9e32efd2be3">)</a>;</div>
-<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>  }</div>
-<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>  RangeSensor(<span class="keywordtype">float</span> obstacleDegree = 0) {</div>
-<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>    <a class="code hl_function" href="classtinyrobotics_1_1RangeSensor.html#a8cfea93a53f2c0e8ba38af3e4b4a1997">setObstacleDirectionDegree</a><a class="code hl_function" href="classtinyrobotics_1_1RangeSensor.html#a8cfea93a53f2c0e8ba38af3e4b4a1997">(</a>obstacleDegree<a class="code hl_function" href="classtinyrobotics_1_1RangeSensor.html#a8cfea93a53f2c0e8ba38af3e4b4a1997">)</a>;</div>
-<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>  }</div>
-<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span> </div>
-<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>  <span class="keywordtype">bool</span> begin() {</div>
-<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>    <span class="comment">// In a real implementation, this might initialize hardware or start a task</span></div>
-<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>    is_active_ = <span class="keyword">true</span>;</div>
-<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>  }</div>
-<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span> </div>
-<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>  <span class="keywordtype">void</span> end() { is_active_ = <span class="keyword">false</span>; }</div>
-<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span> </div>
-<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>  <span class="comment">/// Defines the angle to the obstacle in degrees: 0 means forward</span></div>
-<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classtinyrobotics_1_1RangeSensor.html#a8cfea93a53f2c0e8ba38af3e4b4a1997">setObstacleDirectionDegree</a>(<span class="keywordtype">float</span> deg) { obstacle_deg_ = deg; }</div>
-<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span> </div>
-<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>  <span class="comment">/// Get the angle of the obstacle relative to the sensor&#39;s forward direction</span></div>
-<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>  <span class="comment">/// in degrees.</span></div>
-<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>  <span class="keywordtype">float</span> <a class="code hl_function" href="classtinyrobotics_1_1RangeSensor.html#ac902aa5c03242814bf3ac2ea6bf435f0">getObstacleDirectionDegree</a>() <span class="keyword">const</span> { <span class="keywordflow">return</span> obstacle_deg_; }</div>
-<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span> </div>
-<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>  <span class="comment">/// Set the distance measured by the sensor. Make sure that the</span></div>
-<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>  <span class="comment">/// ObstacleDegree is defined</span></div>
-<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>  <span class="keywordtype">bool</span> <a class="code hl_function" href="classtinyrobotics_1_1RangeSensor.html#aa7dcb4c181746ce7c717b6a5f1f719f0">setObstacleDistance</a>(<a class="code hl_class" href="classtinyrobotics_1_1Distance.html">Distance</a> dist) {</div>
-<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>    <span class="keywordflow">return</span> setObstacleDistance(dist.getValue(<a class="code hl_enumeration" href="group__units.html#ga4c67a7b952f3804e2bd056cf95c4161a">DistanceUnit</a>::M));</div>
-<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>  }</div>
-<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span> </div>
-<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>  <span class="comment">/// Set the distance measured by the sensor. Make sure that the</span></div>
-<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>  <span class="comment">/// ObstacleDegree is defined</span></div>
-<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>  <span class="keywordtype">bool</span> <a class="code hl_function" href="classtinyrobotics_1_1RangeSensor.html#a2eb9abe11e28c5cbfff6845970815889">setObstacleDistance</a>(<span class="keywordtype">float</span> distanceM) {</div>
-<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>    <span class="keywordflow">if</span> (!is_active_) <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>    <span class="keyword">this</span>-&gt;distanceM = distanceM;</div>
-<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span> </div>
-<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>    <span class="comment">// Publish messages for distance, angle, and obstacle coordinate if valid</span></div>
-<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>    <a class="code hl_class" href="classtinyrobotics_1_1Coordinate.html">Coordinate</a>&lt;T&gt; obstacle;</div>
-<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>    <span class="keywordflow">if</span> (<a class="code hl_function" href="classtinyrobotics_1_1RangeSensor.html#a6f84e0a0f915a9306faec3154b8e4fb4">getObstacleCoordinate</a><a class="code hl_function" href="classtinyrobotics_1_1RangeSensor.html#a6f84e0a0f915a9306faec3154b8e4fb4">(</a>obstacle<a class="code hl_function" href="classtinyrobotics_1_1RangeSensor.html#a6f84e0a0f915a9306faec3154b8e4fb4">)</a>) {</div>
-<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>      <span class="comment">// publish distance</span></div>
-<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>      <a class="code hl_class" href="structtinyrobotics_1_1Message.html">Message</a>&lt;T&gt; msgDistance(MessageContent::Distance, distanceM, <a class="code hl_enumeration" href="group__utils.html#gabceb2331ad056e3c5ad27894199a49ed">Unit</a><a class="code hl_enumvalue" href="group__utils.html#ggabceb2331ad056e3c5ad27894199a49eda80b4a3eed88aed8a1c7d8a4418b7f469">::</a><a class="code hl_enumvalue" href="group__utils.html#ggabceb2331ad056e3c5ad27894199a49eda80b4a3eed88aed8a1c7d8a4418b7f469">Meters</a>);</div>
-<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>      msgDistance.origin = MessageOrigin::LIDAR;</div>
-<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>      sendMessage(msgDistance);</div>
-<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span> </div>
-<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>      <span class="comment">// publish angle to direction of movement</span></div>
-<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>      <a class="code hl_class" href="structtinyrobotics_1_1Message.html">Message</a>&lt;T&gt; msgAngle(MessageContent::Angle, obstacle_deg_,</div>
-<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>                          <a class="code hl_enumeration" href="group__utils.html#gabceb2331ad056e3c5ad27894199a49ed">Unit</a><a class="code hl_enumvalue" href="group__utils.html#ggabceb2331ad056e3c5ad27894199a49eda4309434b386f3609b2c68a2077704127">::</a><a class="code hl_enumvalue" href="group__utils.html#ggabceb2331ad056e3c5ad27894199a49eda4309434b386f3609b2c68a2077704127">AngleDegree</a>);</div>
-<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>      msgAngle.origin = MessageOrigin::LIDAR;</div>
-<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>      sendMessage(msgAngle);</div>
-<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span> </div>
-<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>      <span class="comment">// publish obstacle coordinate</span></div>
-<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>      <a class="code hl_class" href="structtinyrobotics_1_1Message.html">Message</a>&lt;<a class="code hl_class" href="classtinyrobotics_1_1Coordinate.html">Coordinate</a>&lt;T&gt;&gt; msgLocation(MessageContent::Position, obstacle,</div>
-<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>                                         <a class="code hl_enumeration" href="group__utils.html#gabceb2331ad056e3c5ad27894199a49ed">Unit</a><a class="code hl_enumvalue" href="group__utils.html#ggabceb2331ad056e3c5ad27894199a49eda80b4a3eed88aed8a1c7d8a4418b7f469">::</a><a class="code hl_enumvalue" href="group__utils.html#ggabceb2331ad056e3c5ad27894199a49eda80b4a3eed88aed8a1c7d8a4418b7f469">Meters</a>);</div>
-<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>      msgLocation.origin = MessageOrigin::LIDAR;</div>
-<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>      sendMessage(msgLocation);</div>
-<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>    }</div>
-<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>  }</div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#</span><span class="preprocessor">include</span> <span class="preprocessor">&quot;TinyRobotics/sensors/IObstacleDetector.h&quot;</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#</span><span class="preprocessor">include</span> <span class="preprocessor">&quot;TinyRobotics/units/Distance.h&quot;</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#</span><span class="preprocessor">include</span> <span class="preprocessor">&quot;TinyRobotics/utils/LoggerClass.h&quot;</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span> </div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="keyword">namespace</span> tinyrobotics {</div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span> </div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="comment">/**</span></div>
+<div class="line"><span class="lineno">   15</span><span class="comment"> * @class RangeSensor</span></div>
+<div class="line"><span class="lineno">   16</span><span class="comment"> * @ingroup sensors</span></div>
+<div class="line"><span class="lineno">   17</span><span class="comment"> * @brief Generic range sensor abstraction for LIDAR, ultrasonic, or similar</span></div>
+<div class="line"><span class="lineno">   18</span><span class="comment"> * sensors.</span></div>
+<div class="line"><span class="lineno">   19</span><span class="comment"> *</span></div>
+<div class="line"><span class="lineno">   20</span><span class="comment"> * This template class models a simple range sensor, such as a LIDAR or</span></div>
+<div class="line"><span class="lineno">   21</span><span class="comment"> * ultrasonic sensor, for robotics applications. It tracks the measured distance</span></div>
+<div class="line"><span class="lineno">   22</span><span class="comment"> * to an obstacle, the angle (bearing) of the obstacle relative to the sensor,</span></div>
+<div class="line"><span class="lineno">   23</span><span class="comment"> * and the transform from the sensor&#39;s local frame to the world frame. The class</span></div>
+<div class="line"><span class="lineno">   24</span><span class="comment"> * provides methods to set and retrieve the measured distance and bearing,</span></div>
+<div class="line"><span class="lineno">   25</span><span class="comment"> * update the sensor-to-world transform, and compute the world-frame coordinates</span></div>
+<div class="line"><span class="lineno">   26</span><span class="comment"> * of detected obstacles.</span></div>
+<div class="line"><span class="lineno">   27</span><span class="comment"> *</span></div>
+<div class="line"><span class="lineno">   28</span><span class="comment"> * ## Features</span></div>
+<div class="line"><span class="lineno">   29</span><span class="comment"> * - Supports any distance unit via template parameter (default: meters)</span></div>
+<div class="line"><span class="lineno">   30</span><span class="comment"> * - Publishes distance, angle, and obstacle position as messages (for</span></div>
+<div class="line"><span class="lineno">   31</span><span class="comment"> * integration with messaging framework)</span></div>
+<div class="line"><span class="lineno">   32</span><span class="comment"> * - Computes obstacle coordinates in the world frame using a 2D transform</span></div>
+<div class="line"><span class="lineno">   33</span><span class="comment"> * - Validity checks for sensor readings (distance &gt; 0)</span></div>
+<div class="line"><span class="lineno">   34</span><span class="comment"> * - Can be used for navigation, mapping, and obstacle avoidance</span></div>
+<div class="line"><span class="lineno">   35</span><span class="comment"> *</span></div>
+<div class="line"><span class="lineno">   36</span><span class="comment"> * ## Usage Example</span></div>
+<div class="line"><span class="lineno">   37</span><span class="comment"> * @code</span></div>
+<div class="line"><span class="lineno">   38</span><span class="comment"> *   Transform2D tf = ...; // Sensor-to-world transform</span></div>
+<div class="line"><span class="lineno">   39</span><span class="comment"> *   RangeSensor&lt;&gt; sensor(tf, 0.0f); // 0 degrees = forward</span></div>
+<div class="line"><span class="lineno">   40</span><span class="comment"> *   sensor.begin();</span></div>
+<div class="line"><span class="lineno">   41</span><span class="comment"> *   sensor.setObstacleDistance(1.5f); // Set measured distance</span></div>
+<div class="line"><span class="lineno">   42</span><span class="comment"> *   if (sensor) {</span></div>
+<div class="line"><span class="lineno">   43</span><span class="comment"> *     Coordinate&lt;DistanceM&gt; obs;</span></div>
+<div class="line"><span class="lineno">   44</span><span class="comment"> *     if (sensor.getObstacleCoordinate(obs)) {</span></div>
+<div class="line"><span class="lineno">   45</span><span class="comment"> *       // Use obs for navigation</span></div>
+<div class="line"><span class="lineno">   46</span><span class="comment"> *     }</span></div>
+<div class="line"><span class="lineno">   47</span><span class="comment"> *   }</span></div>
+<div class="line"><span class="lineno">   48</span><span class="comment"> * @endcode</span></div>
+<div class="line"><span class="lineno">   49</span><span class="comment"> *</span></div>
+<div class="line"><span class="lineno">   50</span><span class="comment"> * ## Template Parameters</span></div>
+<div class="line"><span class="lineno">   51</span><span class="comment"> * @tparam T Distance type (default: DistanceM)</span></div>
+<div class="line"><span class="lineno">   52</span><span class="comment"> *</span></div>
+<div class="line"><span class="lineno">   53</span><span class="comment"> * ## Methods</span></div>
+<div class="line"><span class="lineno">   54</span><span class="comment"> * - setObstacleDirectionDegree(deg): Set obstacle bearing in degrees</span></div>
+<div class="line"><span class="lineno">   55</span><span class="comment"> * - setObstacleDistance(distance): Set measured distance</span></div>
+<div class="line"><span class="lineno">   56</span><span class="comment"> * - setObstacle(degree, distance): Set both bearing and distance</span></div>
+<div class="line"><span class="lineno">   57</span><span class="comment"> * - setTransform(tf): Set sensor-to-world transform</span></div>
+<div class="line"><span class="lineno">   58</span><span class="comment"> * - getObstacleCoordinate(result): Compute world-frame obstacle coordinate</span></div>
+<div class="line"><span class="lineno">   59</span><span class="comment"> * - hasObstacle(): True if a valid obstacle is detected</span></div>
+<div class="line"><span class="lineno">   60</span><span class="comment"> *</span></div>
+<div class="line"><span class="lineno">   61</span><span class="comment"> * ## Applications</span></div>
+<div class="line"><span class="lineno">   62</span><span class="comment"> * - LIDAR, ultrasonic, or IR range sensing</span></div>
+<div class="line"><span class="lineno">   63</span><span class="comment"> * - Robot navigation and mapping</span></div>
+<div class="line"><span class="lineno">   64</span><span class="comment"> * - Obstacle detection and avoidance</span></div>
+<div class="line"><span class="lineno">   65</span><span class="comment"> *</span></div>
+<div class="line"><span class="lineno">   66</span><span class="comment"> * @author Phil Schatzmann</span></div>
+<div class="line"><span class="lineno">   67</span><span class="comment"></span> </div>
+<div class="line"><span class="lineno">   68</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T = DistanceM&gt;</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span><span class="keyword">class</span> <a class="code hl_class" href="classtinyrobotics_1_1RangeSensor.html">RangeSensor</a> : <span class="keyword">public</span> <a class="code hl_class" href="classtinyrobotics_1_1MessageSource.html">MessageSource</a>, <span class="keyword">public</span> <a class="code hl_class" href="classtinyrobotics_1_1IObstacleDetector.html">IObstacleDetector</a> {</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span> <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>  RangeSensor(<span class="keyword">const</span> <a class="code hl_class" href="classtinyrobotics_1_1Transform2D.html">Transform2D</a>&amp; tf, <span class="keywordtype">float</span> obstacleDegree = 0) {</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>    <a class="code hl_function" href="classtinyrobotics_1_1RangeSensor.html#a8cfea93a53f2c0e8ba38af3e4b4a1997">setObstacleDirectionDegree</a><a class="code hl_function" href="classtinyrobotics_1_1RangeSensor.html#a8cfea93a53f2c0e8ba38af3e4b4a1997">(</a>obstacleDegree<a class="code hl_function" href="classtinyrobotics_1_1RangeSensor.html#a8cfea93a53f2c0e8ba38af3e4b4a1997">)</a>;</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>    <a class="code hl_function" href="classtinyrobotics_1_1RangeSensor.html#a1273f9d38eaafcdb618cc9e32efd2be3">setTransform</a><a class="code hl_function" href="classtinyrobotics_1_1RangeSensor.html#a1273f9d38eaafcdb618cc9e32efd2be3">(</a>tf<a class="code hl_function" href="classtinyrobotics_1_1RangeSensor.html#a1273f9d38eaafcdb618cc9e32efd2be3">)</a>;</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>  }</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>  RangeSensor(<span class="keywordtype">float</span> obstacleDegree = 0) {</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>    <a class="code hl_function" href="classtinyrobotics_1_1RangeSensor.html#a8cfea93a53f2c0e8ba38af3e4b4a1997">setObstacleDirectionDegree</a><a class="code hl_function" href="classtinyrobotics_1_1RangeSensor.html#a8cfea93a53f2c0e8ba38af3e4b4a1997">(</a>obstacleDegree<a class="code hl_function" href="classtinyrobotics_1_1RangeSensor.html#a8cfea93a53f2c0e8ba38af3e4b4a1997">)</a>;</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>  }</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span> </div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>  <span class="comment">/// Start the sensor (e.g., initialize hardware)</span></div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>  <span class="keywordtype">bool</span> <a class="code hl_function" href="classtinyrobotics_1_1RangeSensor.html#a601fb7cf1fc15db50c71a826f084f934">begin</a>() {</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>    is_active_ = <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>  }</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span> </div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>  <span class="comment">/// Update the sensor with angle (deg) and distance (m)</span></div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classtinyrobotics_1_1RangeSensor.html#a7aae50cacb34b4322cd16ffc16b0692b">update</a>(<span class="keywordtype">float</span> angleDeg, <span class="keywordtype">float</span> distanceM) {</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>    <a class="code hl_function" href="classtinyrobotics_1_1RangeSensor.html#a8cfea93a53f2c0e8ba38af3e4b4a1997">setObstacleDirectionDegree</a><a class="code hl_function" href="classtinyrobotics_1_1RangeSensor.html#a8cfea93a53f2c0e8ba38af3e4b4a1997">(</a>angleDeg<a class="code hl_function" href="classtinyrobotics_1_1RangeSensor.html#a8cfea93a53f2c0e8ba38af3e4b4a1997">)</a>;</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>    setObstacleDistance(distanceM);</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>  }</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span> </div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>  <span class="comment">/// Update the sensor with angle and distance objects</span></div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classtinyrobotics_1_1RangeSensor.html#a3e5a4d75a68fe4e7e8ae2fb0ebfd70d2">update</a>(<a class="code hl_class" href="classtinyrobotics_1_1Angle.html">Angle</a> angle, <a class="code hl_class" href="classtinyrobotics_1_1Distance.html">Distance</a> distance) {</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>    <a class="code hl_function" href="classtinyrobotics_1_1RangeSensor.html#ab09220d158b57bdb644d542a839be526">setObstacleDirection</a><a class="code hl_function" href="classtinyrobotics_1_1RangeSensor.html#ab09220d158b57bdb644d542a839be526">(</a>angle<a class="code hl_function" href="classtinyrobotics_1_1RangeSensor.html#ab09220d158b57bdb644d542a839be526">)</a>;</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>    setObstacleDistance(distance);</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>  }</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span> </div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>  <span class="comment">/// Stop the sensor</span></div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classtinyrobotics_1_1RangeSensor.html#aaf81d3fdaf258088d7692fa70cece087">end</a>() { is_active_ = <span class="keyword">false</span>; }</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span> </div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>  <span class="comment">/// Defines the angle to the obstacle in degrees: 0 means forward</span></div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>  <span class="comment">/// Set the angle to the obstacle in degrees (0 = forward)</span></div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classtinyrobotics_1_1RangeSensor.html#a8cfea93a53f2c0e8ba38af3e4b4a1997">setObstacleDirectionDegree</a>(<span class="keywordtype">float</span> deg) { obstacle_deg_ = deg; }</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span> </div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>  <span class="comment">/// Set the obstacle direction using an Angle object</span></div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classtinyrobotics_1_1RangeSensor.html#ab09220d158b57bdb644d542a839be526">setObstacleDirection</a>(<a class="code hl_class" href="classtinyrobotics_1_1Angle.html">Angle</a> angle) {</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>    <a class="code hl_function" href="classtinyrobotics_1_1RangeSensor.html#a8cfea93a53f2c0e8ba38af3e4b4a1997">setObstacleDirectionDegree</a><a class="code hl_function" href="classtinyrobotics_1_1RangeSensor.html#a8cfea93a53f2c0e8ba38af3e4b4a1997">(</a>angle.getValue(<a class="code hl_enumeration" href="group__units.html#ga70ab36d1d4920fdd314279845af152c5">AngleUnit</a>::DEG)<a class="code hl_function" href="classtinyrobotics_1_1RangeSensor.html#a8cfea93a53f2c0e8ba38af3e4b4a1997">)</a>;</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>  }</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span> </div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>  <span class="comment">/// Get the angle of the obstacle relative to the sensor&#39;s forward direction</span></div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>  <span class="comment">/// in degrees.</span></div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>  <span class="comment">/// Get the angle of the obstacle relative to the sensor&#39;s forward direction</span></div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>  <span class="comment">/// in degrees</span></div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>  <span class="keywordtype">float</span> <a class="code hl_function" href="classtinyrobotics_1_1RangeSensor.html#ac902aa5c03242814bf3ac2ea6bf435f0">getObstacleDirectionDegree</a>() <span class="keyword">const</span> { <span class="keywordflow">return</span> obstacle_deg_; }</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span> </div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>  <span class="comment">/// Set the distance measured by the sensor. Make sure that the</span></div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>  <span class="comment">/// ObstacleDegree is defined</span></div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>  <span class="comment">/// Set the distance measured by the sensor (using Distance type)</span></div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>  <span class="keywordtype">bool</span> <a class="code hl_function" href="classtinyrobotics_1_1RangeSensor.html#aa7dcb4c181746ce7c717b6a5f1f719f0">setObstacleDistance</a>(<a class="code hl_class" href="classtinyrobotics_1_1Distance.html">Distance</a> dist) {</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>    <span class="keywordflow">return</span> setObstacleDistance(dist.getValue(<a class="code hl_enumeration" href="group__units.html#ga4c67a7b952f3804e2bd056cf95c4161a">DistanceUnit</a>::M));</div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>  }</div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span> </div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>  <span class="comment">/// Set the distance measured by the sensor. Make sure that the</span></div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>  <span class="comment">/// ObstacleDegree is defined</span></div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>  <span class="keywordtype">bool</span> <a class="code hl_function" href="classtinyrobotics_1_1RangeSensor.html#a2eb9abe11e28c5cbfff6845970815889">setObstacleDistance</a>(<span class="keywordtype">float</span> distanceM) {</div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>    <span class="keywordflow">if</span> (!is_active_) <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>    <span class="keyword">this</span>-&gt;distanceM = distanceM;</div>
 <div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span> </div>
-<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>  <span class="comment">/// Provide the distance measured by the sensor. In a real implementation,</span></div>
-<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>  <span class="comment">/// this would</span></div>
-<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>  <span class="keywordtype">float</span> <a class="code hl_function" href="classtinyrobotics_1_1RangeSensor.html#ad8a7a8ac373708c5f13184c3d029c154">getObstacleDistance</a>() <span class="keyword">const</span> { <span class="keywordflow">return</span> distanceM; }</div>
-<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span> </div>
-<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>  <span class="comment">/// Convenience method to set both the obstacle bearing and distance at once.</span></div>
-<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classtinyrobotics_1_1RangeSensor.html#af15d6750706dd85b8287ab611e8136ea">setObstacle</a>(<span class="keywordtype">float</span> degree, <span class="keywordtype">float</span> distance) {</div>
-<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>    <a class="code hl_function" href="classtinyrobotics_1_1RangeSensor.html#a8cfea93a53f2c0e8ba38af3e4b4a1997">setObstacleDirectionDegree</a><a class="code hl_function" href="classtinyrobotics_1_1RangeSensor.html#a8cfea93a53f2c0e8ba38af3e4b4a1997">(</a>degree<a class="code hl_function" href="classtinyrobotics_1_1RangeSensor.html#a8cfea93a53f2c0e8ba38af3e4b4a1997">)</a>;</div>
-<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>    setObstacleDistance(distance);</div>
-<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>  }</div>
-<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span> </div>
-<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>  <span class="comment">/// Define the lidar to world transform</span></div>
-<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classtinyrobotics_1_1RangeSensor.html#a1273f9d38eaafcdb618cc9e32efd2be3">setTransform</a>(<span class="keyword">const</span> <a class="code hl_class" href="classtinyrobotics_1_1Transform2D.html">Transform2D</a>&amp; tf) {</div>
-<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span>    lidar_to_world_tf = tf;</div>
-<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span>    has_transform_ = <span class="keyword">true</span>;</div>
-<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span>  }</div>
-<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span> </div>
-<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span>  <span class="comment">/// Get the obstacle coordinate in world frame based on the current distance</span></div>
-<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>  <span class="comment">/// and transform.</span></div>
-<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>  <span class="keywordtype">bool</span> <a class="code hl_function" href="classtinyrobotics_1_1RangeSensor.html#a6f84e0a0f915a9306faec3154b8e4fb4">getObstacleCoordinate</a>(<a class="code hl_class" href="classtinyrobotics_1_1Coordinate.html">Coordinate</a>&lt;T&gt;&amp; result) {</div>
-<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>    <span class="keywordflow">if</span> (!has_transform_) {</div>
-<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>      <span class="comment">// Optionally log error</span></div>
-<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>      TRLogger.error(</div>
-<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>          <span class="stringliteral">&quot;RangeSensor: No transform set, cannot compute obstacle coordinate&quot;</span>);</div>
-<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>      <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>    }</div>
-<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>    <span class="keywordtype">float</span> theta = obstacle_deg_ * <span class="keyword">static_cast</span>&lt;<span class="keywordtype">float</span>&gt;(M_PI) / 180.0f;</div>
-<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>    <a class="code hl_class" href="classtinyrobotics_1_1Coordinate.html">Coordinate</a>&lt;T&gt; obstacle_lidar(distanceM * std::cos(theta),</div>
-<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>                                 distanceM * std::sin(theta));</div>
-<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>    result = lidar_to_world_tf.apply(obstacle_lidar);</div>
-<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>  }</div>
-<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span> </div>
-<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span>  <span class="comment">/// Check if the sensor reading is valid (distance &gt; 0)</span></div>
-<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>  <a class="code hl_function" href="classtinyrobotics_1_1RangeSensor.html#a67b76affb3b5d35fa419ac234144038b">operator</a> <span class="keywordtype">bool</span>() <span class="keyword">const</span> { <span class="keywordflow">return</span> distanceM &gt; 0; }  <span class="comment">// Valid if distance is set</span></div>
-<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span> </div>
-<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span>  <span class="comment">/// Return true if there is an obstacle detected (distance &gt; 0)</span></div>
-<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span>  <span class="keywordtype">bool</span> <a class="code hl_function" href="classtinyrobotics_1_1RangeSensor.html#aae8c80f0ed7b82ca0360e1342a3ac103">hasObstacle</a>() <span class="keyword">const</span> { <span class="keywordflow">return</span> distanceM &gt; 0; }</div>
-<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span> </div>
-<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span>  <span class="comment">/// Compute a speed factor (0.0 to 1.0) based on the distance to the obstacle</span></div>
-<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span>  <span class="keywordtype">float</span> <a class="code hl_function" href="classtinyrobotics_1_1RangeSensor.html#ad1d5577abbacbd91c976c687533de5ab">getSpeedFactor</a>(<a class="code hl_class" href="classtinyrobotics_1_1Distance.html">Distance</a> breakingDistance) <span class="keyword">const</span> {</div>
-<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span>    <span class="keywordflow">if</span> (distanceM &lt;= 0) <span class="keywordflow">return</span> 1.0f;  <span class="comment">// No obstacle, full speed</span></div>
-<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span>    <span class="keywordflow">if</span> (distanceM &gt;= breakingDistance.getValue(<a class="code hl_enumeration" href="group__units.html#ga4c67a7b952f3804e2bd056cf95c4161a">DistanceUnit</a>::M))</div>
-<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span>      <span class="keywordflow">return</span> 1.0f;  <span class="comment">// Beyond breaking distance, full speed</span></div>
-<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span>    <span class="comment">// Linearly scale speed factor based on distance to obstacle</span></div>
-<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span>    <span class="keywordtype">float</span> factor = distanceM / breakingDistance.getValue(<a class="code hl_enumeration" href="group__units.html#ga4c67a7b952f3804e2bd056cf95c4161a">DistanceUnit</a>::M);</div>
-<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span>    <span class="keywordflow">return</span> constrain(factor, 0.0f, 1.0f);</div>
-<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span>  }</div>
-<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span> </div>
-<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span> <span class="keyword">protected</span>:</div>
-<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span>  <span class="keywordtype">float</span> obstacle_deg_ = 0;</div>
-<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span>  <span class="keywordtype">float</span> distanceM = 0;</div>
-<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span>  <a class="code hl_class" href="classtinyrobotics_1_1Transform2D.html">Transform2D</a> lidar_to_world_tf;</div>
-<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span>  <span class="keywordtype">bool</span> has_transform_ = <span class="keyword">false</span>;</div>
-<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span>  <span class="keywordtype">bool</span> is_active_ = <span class="keyword">false</span>;</div>
-<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span>};</div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>    <span class="comment">// If an obstacle is detected (distance &gt; alertDistance), call the callback</span></div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>    <span class="keywordflow">if</span> (callback_ &amp;&amp; distanceM &gt; alertDistanceM_ &amp;&amp;</div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>        std::abs(obstacle_deg_) &lt;= alertAngleDeg_) {</div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>      callback_(<a class="code hl_class" href="classtinyrobotics_1_1Distance.html">Distance</a>(distanceM, <a class="code hl_enumeration" href="group__units.html#ga4c67a7b952f3804e2bd056cf95c4161a">DistanceUnit</a>::M), userData_);</div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>    }</div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span> </div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>    <span class="comment">// Publish messages for distance, angle, and obstacle coordinate if valid</span></div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>    <a class="code hl_class" href="classtinyrobotics_1_1Coordinate.html">Coordinate</a>&lt;T&gt; obstacle;</div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>    <span class="keywordflow">if</span> (<a class="code hl_function" href="classtinyrobotics_1_1RangeSensor.html#a6f84e0a0f915a9306faec3154b8e4fb4">getObstacleCoordinate</a><a class="code hl_function" href="classtinyrobotics_1_1RangeSensor.html#a6f84e0a0f915a9306faec3154b8e4fb4">(</a>obstacle<a class="code hl_function" href="classtinyrobotics_1_1RangeSensor.html#a6f84e0a0f915a9306faec3154b8e4fb4">)</a>) {</div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>      <span class="comment">// publish distance</span></div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>      <a class="code hl_class" href="structtinyrobotics_1_1Message.html">Message</a>&lt;T&gt; msgDistance(MessageContent::Distance, distanceM, <a class="code hl_enumeration" href="group__utils.html#gabceb2331ad056e3c5ad27894199a49ed">Unit</a><a class="code hl_enumvalue" href="group__utils.html#ggabceb2331ad056e3c5ad27894199a49eda80b4a3eed88aed8a1c7d8a4418b7f469">::</a><a class="code hl_enumvalue" href="group__utils.html#ggabceb2331ad056e3c5ad27894199a49eda80b4a3eed88aed8a1c7d8a4418b7f469">Meters</a>);</div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span>      msgDistance.origin = MessageOrigin::LIDAR;</div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span>      sendMessage(msgDistance);</div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span> </div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span>      <span class="comment">// publish angle to direction of movement</span></div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span>      <a class="code hl_class" href="structtinyrobotics_1_1Message.html">Message</a>&lt;T&gt; msgAngle(MessageContent::Angle, obstacle_deg_,</div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span>                          <a class="code hl_enumeration" href="group__utils.html#gabceb2331ad056e3c5ad27894199a49ed">Unit</a><a class="code hl_enumvalue" href="group__utils.html#ggabceb2331ad056e3c5ad27894199a49eda4309434b386f3609b2c68a2077704127">::</a><a class="code hl_enumvalue" href="group__utils.html#ggabceb2331ad056e3c5ad27894199a49eda4309434b386f3609b2c68a2077704127">AngleDegree</a>);</div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>      msgAngle.origin = MessageOrigin::LIDAR;</div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>      sendMessage(msgAngle);</div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span> </div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>      <span class="comment">// publish obstacle coordinate</span></div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>      <a class="code hl_class" href="structtinyrobotics_1_1Message.html">Message</a>&lt;<a class="code hl_class" href="classtinyrobotics_1_1Coordinate.html">Coordinate</a>&lt;T&gt;&gt; msgLocation(MessageContent::Position, obstacle,</div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>                                         <a class="code hl_enumeration" href="group__utils.html#gabceb2331ad056e3c5ad27894199a49ed">Unit</a><a class="code hl_enumvalue" href="group__utils.html#ggabceb2331ad056e3c5ad27894199a49eda80b4a3eed88aed8a1c7d8a4418b7f469">::</a><a class="code hl_enumvalue" href="group__utils.html#ggabceb2331ad056e3c5ad27894199a49eda80b4a3eed88aed8a1c7d8a4418b7f469">Meters</a>);</div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>      msgLocation.origin = MessageOrigin::LIDAR;</div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>      sendMessage(msgLocation);</div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>    }</div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>  }</div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span> </div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>  <span class="comment">/**</span></div>
+<div class="line"><span class="lineno">  159</span><span class="comment">   * @brief Set a callback to be invoked when an obstacle is detected.</span></div>
+<div class="line"><span class="lineno">  160</span><span class="comment">   * @param cb Callback function pointer with signature void(Distance, void*)</span></div>
+<div class="line"><span class="lineno">  161</span><span class="comment">   * @param userData User-provided pointer passed to the callback</span></div>
+<div class="line"><span class="lineno">  162</span><span class="comment">   */</span></div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classtinyrobotics_1_1RangeSensor.html#a3da485826018ea1e58d57b41d98a39af">setObstacleDetectedCallback</a>(<span class="keywordtype">void</span> (*cb)(<a class="code hl_class" href="classtinyrobotics_1_1Distance.html">Distance</a>, <span class="keywordtype">void</span>*),</div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span>                                   <span class="keywordtype">void</span>* userData) <span class="keyword">override</span> {</div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span>    callback_ = cb;</div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span>    userData_ = userData;</div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span>  }</div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span> </div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span>  <span class="comment">/// Set the alert angle threshold for obstacle detection</span></div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classtinyrobotics_1_1RangeSensor.html#a9c16131df993573650579380ae54fedb">setObstacleAlertAngle</a>(<a class="code hl_class" href="classtinyrobotics_1_1Angle.html">Angle</a> deg) {</div>
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span>    alertAngleDeg_ = deg.getValue(<a class="code hl_enumeration" href="group__units.html#ga70ab36d1d4920fdd314279845af152c5">AngleUnit</a>::DEG);</div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span>  }</div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span> </div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span>  <span class="comment">/// Set the alert distance threshold for obstacle detection</span></div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classtinyrobotics_1_1RangeSensor.html#af2aa22c782d321c178b5e11ef7d4758f">setObstacleAlertDistance</a>(<a class="code hl_class" href="classtinyrobotics_1_1Distance.html">Distance</a> dist) {</div>
+<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span>    alertDistanceM_ = dist.getValue(<a class="code hl_enumeration" href="group__units.html#ga4c67a7b952f3804e2bd056cf95c4161a">DistanceUnit</a>::M);</div>
+<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span>  }</div>
+<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span> </div>
+<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span> <span class="keyword">protected</span>:</div>
+<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span>  <span class="keywordtype">void</span> (*callback_)(<a class="code hl_class" href="classtinyrobotics_1_1Distance.html">Distance</a>, <span class="keywordtype">void</span>*) = <span class="keywordtype">nullptr</span>;</div>
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span>  <span class="keywordtype">void</span>* userData_ = <span class="keywordtype">nullptr</span>;</div>
+<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span>  <span class="keywordtype">float</span> alertAngleDeg_ = 5;      <span class="comment">// Default to 5 degrees</span></div>
+<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span>  <span class="keywordtype">float</span> alertDistanceM_ = 1.0f;  <span class="comment">// Default to 1 meter</span></div>
 <div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span> </div>
-<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span>}  <span class="comment">// namespace tinyrobotics</span></div>
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span>  <span class="comment">/// Provide the distance measured by the sensor. In a real implementation,</span></div>
+<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span>  <span class="comment">/// this would</span></div>
+<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span>  <span class="keywordtype">float</span> <a class="code hl_function" href="classtinyrobotics_1_1RangeSensor.html#ad8a7a8ac373708c5f13184c3d029c154">getObstacleDistance</a>() <span class="keyword">const</span> { <span class="keywordflow">return</span> distanceM; }</div>
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span> </div>
+<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span>  <span class="comment">/// Convenience method to set both the obstacle bearing and distance at once.</span></div>
+<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span>  <span class="comment">/// Set both the obstacle bearing and distance at once</span></div>
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classtinyrobotics_1_1RangeSensor.html#af15d6750706dd85b8287ab611e8136ea">setObstacle</a>(<span class="keywordtype">float</span> degree, <span class="keywordtype">float</span> distance) {</div>
+<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span>    <a class="code hl_function" href="classtinyrobotics_1_1RangeSensor.html#a8cfea93a53f2c0e8ba38af3e4b4a1997">setObstacleDirectionDegree</a><a class="code hl_function" href="classtinyrobotics_1_1RangeSensor.html#a8cfea93a53f2c0e8ba38af3e4b4a1997">(</a>degree<a class="code hl_function" href="classtinyrobotics_1_1RangeSensor.html#a8cfea93a53f2c0e8ba38af3e4b4a1997">)</a>;</div>
+<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span>    setObstacleDistance(distance);</div>
+<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span>  }</div>
+<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span> </div>
+<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span>  <span class="comment">/// Define the lidar to world transform</span></div>
+<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span>  <span class="comment">/// Set the sensor-to-world transform</span></div>
+<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classtinyrobotics_1_1RangeSensor.html#a1273f9d38eaafcdb618cc9e32efd2be3">setTransform</a>(<span class="keyword">const</span> <a class="code hl_class" href="classtinyrobotics_1_1Transform2D.html">Transform2D</a>&amp; tf) {</div>
+<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span>    lidar_to_world_tf = tf;</div>
+<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span>    has_transform_ = <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span>  }</div>
+<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span> </div>
+<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span>  <span class="comment">/// Get the obstacle coordinate in world frame based on the current distance</span></div>
+<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span>  <span class="comment">/// and transform.</span></div>
+<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span>  <span class="keywordtype">bool</span> <a class="code hl_function" href="classtinyrobotics_1_1RangeSensor.html#a6f84e0a0f915a9306faec3154b8e4fb4">getObstacleCoordinate</a>(<a class="code hl_class" href="classtinyrobotics_1_1Coordinate.html">Coordinate</a>&lt;T&gt;&amp; result) {</div>
+<div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span>    <span class="keywordflow">if</span> (!has_transform_) {</div>
+<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span>      <span class="comment">// Optionally log error</span></div>
+<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span>      TRLogger.error(</div>
+<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span>          <span class="stringliteral">&quot;RangeSensor: No transform set, cannot compute obstacle coordinate&quot;</span>);</div>
+<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span>      <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span>    }</div>
+<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span>    <span class="keywordtype">float</span> theta = obstacle_deg_ * <span class="keyword">static_cast</span>&lt;<span class="keywordtype">float</span>&gt;(M_PI) / 180.0f;</div>
+<div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span>    <a class="code hl_class" href="classtinyrobotics_1_1Coordinate.html">Coordinate</a>&lt;T&gt; obstacle_lidar(distanceM * std::cos(theta),</div>
+<div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span>                                 distanceM * std::sin(theta));</div>
+<div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span>    result = lidar_to_world_tf.apply(obstacle_lidar);</div>
+<div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span>    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span>  }</div>
+<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span> </div>
+<div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span>  <span class="comment">/// Check if the sensor reading is valid (distance &gt; 0)</span></div>
+<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span>  <span class="comment">/// Return true if the sensor reading is valid (distance &gt; 0)</span></div>
+<div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span>  <a class="code hl_function" href="classtinyrobotics_1_1RangeSensor.html#a67b76affb3b5d35fa419ac234144038b">operator</a> <span class="keywordtype">bool</span>() <span class="keyword">const</span> { <span class="keywordflow">return</span> distanceM &gt; 0; }  <span class="comment">// Valid if distance is set</span></div>
+<div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span> </div>
+<div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span>  <span class="comment">/// Return true if there is an obstacle detected (distance &gt; 0)</span></div>
+<div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span>  <span class="comment">/// Return true if there is an obstacle detected (distance &gt; 0)</span></div>
+<div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span>  <span class="keywordtype">bool</span> <a class="code hl_function" href="classtinyrobotics_1_1RangeSensor.html#aae8c80f0ed7b82ca0360e1342a3ac103">hasObstacle</a>() <span class="keyword">const</span> { <span class="keywordflow">return</span> distanceM &gt; 0; }</div>
+<div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span> </div>
+<div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span>  <span class="comment">/// Compute a speed factor (0.0 to 1.0) based on the distance to the obstacle</span></div>
+<div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span>  <span class="comment">/// Compute a speed factor (0.0 to 1.0) based on the distance to the obstacle</span></div>
+<div class="line"><a id="l00229" name="l00229"></a><span class="lineno">  229</span>  <span class="keywordtype">float</span> <a class="code hl_function" href="classtinyrobotics_1_1RangeSensor.html#ad1d5577abbacbd91c976c687533de5ab">getSpeedFactor</a>(<a class="code hl_class" href="classtinyrobotics_1_1Distance.html">Distance</a> breakingDistance) <span class="keyword">const</span> {</div>
+<div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span>    <span class="keywordflow">if</span> (distanceM &lt;= 0) <span class="keywordflow">return</span> 1.0f;  <span class="comment">// No obstacle, full speed</span></div>
+<div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span>    <span class="keywordflow">if</span> (distanceM &gt;= breakingDistance.getValue(<a class="code hl_enumeration" href="group__units.html#ga4c67a7b952f3804e2bd056cf95c4161a">DistanceUnit</a>::M))</div>
+<div class="line"><a id="l00232" name="l00232"></a><span class="lineno">  232</span>      <span class="keywordflow">return</span> 1.0f;  <span class="comment">// Beyond breaking distance, full speed</span></div>
+<div class="line"><a id="l00233" name="l00233"></a><span class="lineno">  233</span>    <span class="comment">// Linearly scale speed factor based on distance to obstacle</span></div>
+<div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span>    <span class="keywordtype">float</span> factor = distanceM / breakingDistance.getValue(<a class="code hl_enumeration" href="group__units.html#ga4c67a7b952f3804e2bd056cf95c4161a">DistanceUnit</a>::M);</div>
+<div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span>    <span class="keywordflow">return</span> constrain(factor, 0.0f, 1.0f);</div>
+<div class="line"><a id="l00236" name="l00236"></a><span class="lineno">  236</span>  }</div>
+<div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span> </div>
+<div class="line"><a id="l00238" name="l00238"></a><span class="lineno">  238</span> <span class="keyword">protected</span>:</div>
+<div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span>  <span class="keywordtype">float</span> obstacle_deg_ = 0;</div>
+<div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span>  <span class="keywordtype">float</span> distanceM = 0;</div>
+<div class="line"><a id="l00241" name="l00241"></a><span class="lineno">  241</span>  <a class="code hl_class" href="classtinyrobotics_1_1Transform2D.html">Transform2D</a> lidar_to_world_tf;</div>
+<div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span>  <span class="keywordtype">bool</span> has_transform_ = <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span>  <span class="keywordtype">bool</span> is_active_ = <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00244" name="l00244"></a><span class="lineno">  244</span>};</div>
+<div class="line"><a id="l00245" name="l00245"></a><span class="lineno">  245</span> </div>
+<div class="line"><a id="l00246" name="l00246"></a><span class="lineno">  246</span>}  <span class="comment">// namespace tinyrobotics</span></div>
+<div class="ttc" id="aclasstinyrobotics_1_1Angle_html"><div class="ttname"><a href="classtinyrobotics_1_1Angle.html">tinyrobotics::Angle</a></div><div class="ttdoc">Represents an angle with unit conversion and wrap-around support.</div><div class="ttdef"><b>Definition:</b> Angle.h:42</div></div>
 <div class="ttc" id="aclasstinyrobotics_1_1Coordinate_html"><div class="ttname"><a href="classtinyrobotics_1_1Coordinate.html">tinyrobotics::Coordinate</a></div><div class="ttdoc">A generic 3D coordinate class for robotics, navigation, and spatial calculations.</div><div class="ttdef"><b>Definition:</b> Coordinate.h:57</div></div>
 <div class="ttc" id="aclasstinyrobotics_1_1Distance_html"><div class="ttname"><a href="classtinyrobotics_1_1Distance.html">tinyrobotics::Distance</a></div><div class="ttdoc">Represents a distance measurement with unit conversion support.</div><div class="ttdef"><b>Definition:</b> Distance.h:40</div></div>
+<div class="ttc" id="aclasstinyrobotics_1_1IObstacleDetector_html"><div class="ttname"><a href="classtinyrobotics_1_1IObstacleDetector.html">tinyrobotics::IObstacleDetector</a></div><div class="ttdoc">Interface for obstacle detectors.</div><div class="ttdef"><b>Definition:</b> IObstacleDetector.h:14</div></div>
 <div class="ttc" id="aclasstinyrobotics_1_1MessageSource_html"><div class="ttname"><a href="classtinyrobotics_1_1MessageSource.html">tinyrobotics::MessageSource</a></div><div class="ttdoc">Base class for message sources in the TinyRobotics communication framework.</div><div class="ttdef"><b>Definition:</b> MessageSource.h:35</div></div>
-<div class="ttc" id="aclasstinyrobotics_1_1RangeSensor_html"><div class="ttname"><a href="classtinyrobotics_1_1RangeSensor.html">tinyrobotics::RangeSensor</a></div><div class="ttdoc">Generic range sensor abstraction for LIDAR, ultrasonic, or similar sensors.</div><div class="ttdef"><b>Definition:</b> RangeSensor.h:69</div></div>
-<div class="ttc" id="aclasstinyrobotics_1_1RangeSensor_html_a1273f9d38eaafcdb618cc9e32efd2be3"><div class="ttname"><a href="classtinyrobotics_1_1RangeSensor.html#a1273f9d38eaafcdb618cc9e32efd2be3">tinyrobotics::RangeSensor::setTransform</a></div><div class="ttdeci">void setTransform(const Transform2D &amp;tf)</div><div class="ttdoc">Define the lidar to world transform.</div><div class="ttdef"><b>Definition:</b> RangeSensor.h:140</div></div>
-<div class="ttc" id="aclasstinyrobotics_1_1RangeSensor_html_a2eb9abe11e28c5cbfff6845970815889"><div class="ttname"><a href="classtinyrobotics_1_1RangeSensor.html#a2eb9abe11e28c5cbfff6845970815889">tinyrobotics::RangeSensor::setObstacleDistance</a></div><div class="ttdeci">bool setObstacleDistance(float distanceM)</div><div class="ttdef"><b>Definition:</b> RangeSensor.h:102</div></div>
-<div class="ttc" id="aclasstinyrobotics_1_1RangeSensor_html_a67b76affb3b5d35fa419ac234144038b"><div class="ttname"><a href="classtinyrobotics_1_1RangeSensor.html#a67b76affb3b5d35fa419ac234144038b">tinyrobotics::RangeSensor::operator bool</a></div><div class="ttdeci">operator bool() const</div><div class="ttdoc">Check if the sensor reading is valid (distance &gt; 0)</div><div class="ttdef"><b>Definition:</b> RangeSensor.h:162</div></div>
-<div class="ttc" id="aclasstinyrobotics_1_1RangeSensor_html_a6f84e0a0f915a9306faec3154b8e4fb4"><div class="ttname"><a href="classtinyrobotics_1_1RangeSensor.html#a6f84e0a0f915a9306faec3154b8e4fb4">tinyrobotics::RangeSensor::getObstacleCoordinate</a></div><div class="ttdeci">bool getObstacleCoordinate(Coordinate&lt; T &gt; &amp;result)</div><div class="ttdef"><b>Definition:</b> RangeSensor.h:147</div></div>
-<div class="ttc" id="aclasstinyrobotics_1_1RangeSensor_html_a8cfea93a53f2c0e8ba38af3e4b4a1997"><div class="ttname"><a href="classtinyrobotics_1_1RangeSensor.html#a8cfea93a53f2c0e8ba38af3e4b4a1997">tinyrobotics::RangeSensor::setObstacleDirectionDegree</a></div><div class="ttdeci">void setObstacleDirectionDegree(float deg)</div><div class="ttdoc">Defines the angle to the obstacle in degrees: 0 means forward.</div><div class="ttdef"><b>Definition:</b> RangeSensor.h:88</div></div>
-<div class="ttc" id="aclasstinyrobotics_1_1RangeSensor_html_aa7dcb4c181746ce7c717b6a5f1f719f0"><div class="ttname"><a href="classtinyrobotics_1_1RangeSensor.html#aa7dcb4c181746ce7c717b6a5f1f719f0">tinyrobotics::RangeSensor::setObstacleDistance</a></div><div class="ttdeci">bool setObstacleDistance(Distance dist)</div><div class="ttdef"><b>Definition:</b> RangeSensor.h:96</div></div>
-<div class="ttc" id="aclasstinyrobotics_1_1RangeSensor_html_aae8c80f0ed7b82ca0360e1342a3ac103"><div class="ttname"><a href="classtinyrobotics_1_1RangeSensor.html#aae8c80f0ed7b82ca0360e1342a3ac103">tinyrobotics::RangeSensor::hasObstacle</a></div><div class="ttdeci">bool hasObstacle() const</div><div class="ttdoc">Return true if there is an obstacle detected (distance &gt; 0)</div><div class="ttdef"><b>Definition:</b> RangeSensor.h:165</div></div>
-<div class="ttc" id="aclasstinyrobotics_1_1RangeSensor_html_ac902aa5c03242814bf3ac2ea6bf435f0"><div class="ttname"><a href="classtinyrobotics_1_1RangeSensor.html#ac902aa5c03242814bf3ac2ea6bf435f0">tinyrobotics::RangeSensor::getObstacleDirectionDegree</a></div><div class="ttdeci">float getObstacleDirectionDegree() const</div><div class="ttdef"><b>Definition:</b> RangeSensor.h:92</div></div>
-<div class="ttc" id="aclasstinyrobotics_1_1RangeSensor_html_ad1d5577abbacbd91c976c687533de5ab"><div class="ttname"><a href="classtinyrobotics_1_1RangeSensor.html#ad1d5577abbacbd91c976c687533de5ab">tinyrobotics::RangeSensor::getSpeedFactor</a></div><div class="ttdeci">float getSpeedFactor(Distance breakingDistance) const</div><div class="ttdoc">Compute a speed factor (0.0 to 1.0) based on the distance to the obstacle.</div><div class="ttdef"><b>Definition:</b> RangeSensor.h:168</div></div>
-<div class="ttc" id="aclasstinyrobotics_1_1RangeSensor_html_ad8a7a8ac373708c5f13184c3d029c154"><div class="ttname"><a href="classtinyrobotics_1_1RangeSensor.html#ad8a7a8ac373708c5f13184c3d029c154">tinyrobotics::RangeSensor::getObstacleDistance</a></div><div class="ttdeci">float getObstacleDistance() const</div><div class="ttdef"><b>Definition:</b> RangeSensor.h:131</div></div>
-<div class="ttc" id="aclasstinyrobotics_1_1RangeSensor_html_af15d6750706dd85b8287ab611e8136ea"><div class="ttname"><a href="classtinyrobotics_1_1RangeSensor.html#af15d6750706dd85b8287ab611e8136ea">tinyrobotics::RangeSensor::setObstacle</a></div><div class="ttdeci">void setObstacle(float degree, float distance)</div><div class="ttdoc">Convenience method to set both the obstacle bearing and distance at once.</div><div class="ttdef"><b>Definition:</b> RangeSensor.h:134</div></div>
+<div class="ttc" id="aclasstinyrobotics_1_1RangeSensor_html"><div class="ttname"><a href="classtinyrobotics_1_1RangeSensor.html">tinyrobotics::RangeSensor</a></div><div class="ttdoc">Generic range sensor abstraction for LIDAR, ultrasonic, or similar sensors.</div><div class="ttdef"><b>Definition:</b> RangeSensor.h:70</div></div>
+<div class="ttc" id="aclasstinyrobotics_1_1RangeSensor_html_a1273f9d38eaafcdb618cc9e32efd2be3"><div class="ttname"><a href="classtinyrobotics_1_1RangeSensor.html#a1273f9d38eaafcdb618cc9e32efd2be3">tinyrobotics::RangeSensor::setTransform</a></div><div class="ttdeci">void setTransform(const Transform2D &amp;tf)</div><div class="ttdef"><b>Definition:</b> RangeSensor.h:198</div></div>
+<div class="ttc" id="aclasstinyrobotics_1_1RangeSensor_html_a2eb9abe11e28c5cbfff6845970815889"><div class="ttname"><a href="classtinyrobotics_1_1RangeSensor.html#a2eb9abe11e28c5cbfff6845970815889">tinyrobotics::RangeSensor::setObstacleDistance</a></div><div class="ttdeci">bool setObstacleDistance(float distanceM)</div><div class="ttdef"><b>Definition:</b> RangeSensor.h:125</div></div>
+<div class="ttc" id="aclasstinyrobotics_1_1RangeSensor_html_a3da485826018ea1e58d57b41d98a39af"><div class="ttname"><a href="classtinyrobotics_1_1RangeSensor.html#a3da485826018ea1e58d57b41d98a39af">tinyrobotics::RangeSensor::setObstacleDetectedCallback</a></div><div class="ttdeci">void setObstacleDetectedCallback(void(*cb)(Distance, void *), void *userData) override</div><div class="ttdoc">Set a callback to be invoked when an obstacle is detected.</div><div class="ttdef"><b>Definition:</b> RangeSensor.h:163</div></div>
+<div class="ttc" id="aclasstinyrobotics_1_1RangeSensor_html_a3e5a4d75a68fe4e7e8ae2fb0ebfd70d2"><div class="ttname"><a href="classtinyrobotics_1_1RangeSensor.html#a3e5a4d75a68fe4e7e8ae2fb0ebfd70d2">tinyrobotics::RangeSensor::update</a></div><div class="ttdeci">void update(Angle angle, Distance distance)</div><div class="ttdoc">Update the sensor with angle and distance objects.</div><div class="ttdef"><b>Definition:</b> RangeSensor.h:93</div></div>
+<div class="ttc" id="aclasstinyrobotics_1_1RangeSensor_html_a601fb7cf1fc15db50c71a826f084f934"><div class="ttname"><a href="classtinyrobotics_1_1RangeSensor.html#a601fb7cf1fc15db50c71a826f084f934">tinyrobotics::RangeSensor::begin</a></div><div class="ttdeci">bool begin()</div><div class="ttdoc">Start the sensor (e.g., initialize hardware)</div><div class="ttdef"><b>Definition:</b> RangeSensor.h:81</div></div>
+<div class="ttc" id="aclasstinyrobotics_1_1RangeSensor_html_a67b76affb3b5d35fa419ac234144038b"><div class="ttname"><a href="classtinyrobotics_1_1RangeSensor.html#a67b76affb3b5d35fa419ac234144038b">tinyrobotics::RangeSensor::operator bool</a></div><div class="ttdeci">operator bool() const</div><div class="ttdef"><b>Definition:</b> RangeSensor.h:221</div></div>
+<div class="ttc" id="aclasstinyrobotics_1_1RangeSensor_html_a6f84e0a0f915a9306faec3154b8e4fb4"><div class="ttname"><a href="classtinyrobotics_1_1RangeSensor.html#a6f84e0a0f915a9306faec3154b8e4fb4">tinyrobotics::RangeSensor::getObstacleCoordinate</a></div><div class="ttdeci">bool getObstacleCoordinate(Coordinate&lt; T &gt; &amp;result)</div><div class="ttdef"><b>Definition:</b> RangeSensor.h:205</div></div>
+<div class="ttc" id="aclasstinyrobotics_1_1RangeSensor_html_a7aae50cacb34b4322cd16ffc16b0692b"><div class="ttname"><a href="classtinyrobotics_1_1RangeSensor.html#a7aae50cacb34b4322cd16ffc16b0692b">tinyrobotics::RangeSensor::update</a></div><div class="ttdeci">void update(float angleDeg, float distanceM)</div><div class="ttdoc">Update the sensor with angle (deg) and distance (m)</div><div class="ttdef"><b>Definition:</b> RangeSensor.h:87</div></div>
+<div class="ttc" id="aclasstinyrobotics_1_1RangeSensor_html_a8cfea93a53f2c0e8ba38af3e4b4a1997"><div class="ttname"><a href="classtinyrobotics_1_1RangeSensor.html#a8cfea93a53f2c0e8ba38af3e4b4a1997">tinyrobotics::RangeSensor::setObstacleDirectionDegree</a></div><div class="ttdeci">void setObstacleDirectionDegree(float deg)</div><div class="ttdef"><b>Definition:</b> RangeSensor.h:103</div></div>
+<div class="ttc" id="aclasstinyrobotics_1_1RangeSensor_html_a9c16131df993573650579380ae54fedb"><div class="ttname"><a href="classtinyrobotics_1_1RangeSensor.html#a9c16131df993573650579380ae54fedb">tinyrobotics::RangeSensor::setObstacleAlertAngle</a></div><div class="ttdeci">void setObstacleAlertAngle(Angle deg)</div><div class="ttdoc">Set the alert angle threshold for obstacle detection.</div><div class="ttdef"><b>Definition:</b> RangeSensor.h:170</div></div>
+<div class="ttc" id="aclasstinyrobotics_1_1RangeSensor_html_aa7dcb4c181746ce7c717b6a5f1f719f0"><div class="ttname"><a href="classtinyrobotics_1_1RangeSensor.html#aa7dcb4c181746ce7c717b6a5f1f719f0">tinyrobotics::RangeSensor::setObstacleDistance</a></div><div class="ttdeci">bool setObstacleDistance(Distance dist)</div><div class="ttdef"><b>Definition:</b> RangeSensor.h:119</div></div>
+<div class="ttc" id="aclasstinyrobotics_1_1RangeSensor_html_aae8c80f0ed7b82ca0360e1342a3ac103"><div class="ttname"><a href="classtinyrobotics_1_1RangeSensor.html#aae8c80f0ed7b82ca0360e1342a3ac103">tinyrobotics::RangeSensor::hasObstacle</a></div><div class="ttdeci">bool hasObstacle() const</div><div class="ttdef"><b>Definition:</b> RangeSensor.h:225</div></div>
+<div class="ttc" id="aclasstinyrobotics_1_1RangeSensor_html_aaf81d3fdaf258088d7692fa70cece087"><div class="ttname"><a href="classtinyrobotics_1_1RangeSensor.html#aaf81d3fdaf258088d7692fa70cece087">tinyrobotics::RangeSensor::end</a></div><div class="ttdeci">void end()</div><div class="ttdoc">Stop the sensor.</div><div class="ttdef"><b>Definition:</b> RangeSensor.h:99</div></div>
+<div class="ttc" id="aclasstinyrobotics_1_1RangeSensor_html_ab09220d158b57bdb644d542a839be526"><div class="ttname"><a href="classtinyrobotics_1_1RangeSensor.html#ab09220d158b57bdb644d542a839be526">tinyrobotics::RangeSensor::setObstacleDirection</a></div><div class="ttdeci">void setObstacleDirection(Angle angle)</div><div class="ttdoc">Set the obstacle direction using an Angle object.</div><div class="ttdef"><b>Definition:</b> RangeSensor.h:106</div></div>
+<div class="ttc" id="aclasstinyrobotics_1_1RangeSensor_html_ac902aa5c03242814bf3ac2ea6bf435f0"><div class="ttname"><a href="classtinyrobotics_1_1RangeSensor.html#ac902aa5c03242814bf3ac2ea6bf435f0">tinyrobotics::RangeSensor::getObstacleDirectionDegree</a></div><div class="ttdeci">float getObstacleDirectionDegree() const</div><div class="ttdef"><b>Definition:</b> RangeSensor.h:114</div></div>
+<div class="ttc" id="aclasstinyrobotics_1_1RangeSensor_html_ad1d5577abbacbd91c976c687533de5ab"><div class="ttname"><a href="classtinyrobotics_1_1RangeSensor.html#ad1d5577abbacbd91c976c687533de5ab">tinyrobotics::RangeSensor::getSpeedFactor</a></div><div class="ttdeci">float getSpeedFactor(Distance breakingDistance) const</div><div class="ttdef"><b>Definition:</b> RangeSensor.h:229</div></div>
+<div class="ttc" id="aclasstinyrobotics_1_1RangeSensor_html_ad8a7a8ac373708c5f13184c3d029c154"><div class="ttname"><a href="classtinyrobotics_1_1RangeSensor.html#ad8a7a8ac373708c5f13184c3d029c154">tinyrobotics::RangeSensor::getObstacleDistance</a></div><div class="ttdeci">float getObstacleDistance() const</div><div class="ttdef"><b>Definition:</b> RangeSensor.h:187</div></div>
+<div class="ttc" id="aclasstinyrobotics_1_1RangeSensor_html_af15d6750706dd85b8287ab611e8136ea"><div class="ttname"><a href="classtinyrobotics_1_1RangeSensor.html#af15d6750706dd85b8287ab611e8136ea">tinyrobotics::RangeSensor::setObstacle</a></div><div class="ttdeci">void setObstacle(float degree, float distance)</div><div class="ttdef"><b>Definition:</b> RangeSensor.h:191</div></div>
+<div class="ttc" id="aclasstinyrobotics_1_1RangeSensor_html_af2aa22c782d321c178b5e11ef7d4758f"><div class="ttname"><a href="classtinyrobotics_1_1RangeSensor.html#af2aa22c782d321c178b5e11ef7d4758f">tinyrobotics::RangeSensor::setObstacleAlertDistance</a></div><div class="ttdeci">void setObstacleAlertDistance(Distance dist)</div><div class="ttdoc">Set the alert distance threshold for obstacle detection.</div><div class="ttdef"><b>Definition:</b> RangeSensor.h:175</div></div>
 <div class="ttc" id="aclasstinyrobotics_1_1Transform2D_html"><div class="ttname"><a href="classtinyrobotics_1_1Transform2D.html">tinyrobotics::Transform2D</a></div><div class="ttdoc">Represents a 2D rigid body transform (SE(2)): translation and rotation.</div><div class="ttdef"><b>Definition:</b> FrameMgr2D.h:42</div></div>
 <div class="ttc" id="agroup__units_html_ga4c67a7b952f3804e2bd056cf95c4161a"><div class="ttname"><a href="group__units.html#ga4c67a7b952f3804e2bd056cf95c4161a">tinyrobotics::DistanceUnit</a></div><div class="ttdeci">DistanceUnit</div><div class="ttdoc">Supported distance units for conversion and representation.</div><div class="ttdef"><b>Definition:</b> Distance.h:10</div></div>
+<div class="ttc" id="agroup__units_html_ga70ab36d1d4920fdd314279845af152c5"><div class="ttname"><a href="group__units.html#ga70ab36d1d4920fdd314279845af152c5">tinyrobotics::AngleUnit</a></div><div class="ttdeci">AngleUnit</div><div class="ttdoc">Supported angle units for conversion and representation.</div><div class="ttdef"><b>Definition:</b> Angle.h:11</div></div>
 <div class="ttc" id="agroup__utils_html_gabceb2331ad056e3c5ad27894199a49ed"><div class="ttname"><a href="group__utils.html#gabceb2331ad056e3c5ad27894199a49ed">tinyrobotics::Unit</a></div><div class="ttdeci">Unit</div><div class="ttdoc">Units for message values.</div><div class="ttdef"><b>Definition:</b> Common.h:45</div></div>
 <div class="ttc" id="agroup__utils_html_ggabceb2331ad056e3c5ad27894199a49eda4309434b386f3609b2c68a2077704127"><div class="ttname"><a href="group__utils.html#ggabceb2331ad056e3c5ad27894199a49eda4309434b386f3609b2c68a2077704127">tinyrobotics::Unit::AngleDegree</a></div><div class="ttdeci">@ AngleDegree</div><div class="ttdoc">Angle in degrees.</div></div>
 <div class="ttc" id="agroup__utils_html_ggabceb2331ad056e3c5ad27894199a49eda80b4a3eed88aed8a1c7d8a4418b7f469"><div class="ttname"><a href="group__utils.html#ggabceb2331ad056e3c5ad27894199a49eda80b4a3eed88aed8a1c7d8a4418b7f469">tinyrobotics::Unit::Meters</a></div><div class="ttdeci">@ Meters</div><div class="ttdoc">Distance in meters.</div></div>

@@ -14,7 +14,8 @@ var searchData=
   ['imotionstate3d_11',['IMotionState3D',['../classtinyrobotics_1_1IMotionState3D.html',1,'tinyrobotics']]],
   ['imu2d_12',['IMU2D',['../classtinyrobotics_1_1IMU2D.html',1,'tinyrobotics']]],
   ['imu3d_13',['IMU3D',['../classtinyrobotics_1_1IMU3D.html',1,'tinyrobotics']]],
-  ['iodometrymodel2d_14',['IOdometryModel2D',['../classtinyrobotics_1_1IOdometryModel2D.html',1,'tinyrobotics']]],
-  ['iodometrymodel3d_15',['IOdometryModel3D',['../classtinyrobotics_1_1IOdometryModel3D.html',1,'tinyrobotics']]],
-  ['ispeedsource_16',['ISpeedSource',['../classtinyrobotics_1_1ISpeedSource.html',1,'tinyrobotics']]]
+  ['iobstacledetector_14',['IObstacleDetector',['../classtinyrobotics_1_1IObstacleDetector.html',1,'tinyrobotics']]],
+  ['iodometrymodel2d_15',['IOdometryModel2D',['../classtinyrobotics_1_1IOdometryModel2D.html',1,'tinyrobotics']]],
+  ['iodometrymodel3d_16',['IOdometryModel3D',['../classtinyrobotics_1_1IOdometryModel3D.html',1,'tinyrobotics']]],
+  ['ispeedsource_17',['ISpeedSource',['../classtinyrobotics_1_1ISpeedSource.html',1,'tinyrobotics']]]
 ];

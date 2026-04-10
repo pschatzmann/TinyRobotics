@@ -1,0 +1,5 @@
+<map id="IObstacleDetector" name="IObstacleDetector">
+<area shape="rect" id="node1" title="Interface for obstacle detectors." alt="" coords="93,5,231,31"/>
+<area shape="rect" id="node2" href="$classtinyrobotics_1_1RangeSensor.html" title=" " alt="" coords="5,79,151,104"/>
+<area shape="rect" id="node3" href="$classtinyrobotics_1_1RangeSensor.html" title="Generic range sensor abstraction for LIDAR, ultrasonic, or similar sensors." alt="" coords="175,79,320,104"/>
+</map>
