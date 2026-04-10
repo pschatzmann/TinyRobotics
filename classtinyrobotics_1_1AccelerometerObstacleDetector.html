@@ -85,15 +85,30 @@ $(function() {
  <a href="classtinyrobotics_1_1AccelerometerObstacleDetector.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="AccelerometerObstacleDetector_8h_source.html">AccelerometerObstacleDetector.h</a>&gt;</code></p>
+<div class="dynheader">
+Inheritance diagram for AccelerometerObstacleDetector:</div>
+<div class="dyncontent">
+<div class="center"><img src="classtinyrobotics_1_1AccelerometerObstacleDetector__inherit__graph.png" border="0" usemap="#aAccelerometerObstacleDetector_inherit__map" alt="Inheritance graph"/></div>
+<map name="aAccelerometerObstacleDetector_inherit__map" id="aAccelerometerObstacleDetector_inherit__map">
+<area shape="rect" title="Simple obstacle detector using accelerometer data." alt="" coords="5,79,236,104"/>
+<area shape="rect" href="classtinyrobotics_1_1MessageSource.html" title="Base class for message sources in the TinyRobotics communication framework." alt="" coords="59,5,183,31"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
+<div class="dynheader">
+Collaboration diagram for AccelerometerObstacleDetector:</div>
+<div class="dyncontent">
+<div class="center"><img src="classtinyrobotics_1_1AccelerometerObstacleDetector__coll__graph.png" border="0" usemap="#aAccelerometerObstacleDetector_coll__map" alt="Collaboration graph"/></div>
+<map name="aAccelerometerObstacleDetector_coll__map" id="aAccelerometerObstacleDetector_coll__map">
+<area shape="rect" title="Simple obstacle detector using accelerometer data." alt="" coords="5,79,236,104"/>
+<area shape="rect" href="classtinyrobotics_1_1MessageSource.html" title="Base class for message sources in the TinyRobotics communication framework." alt="" coords="59,5,183,31"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a04e2fd691b358fdeb4dfae97c0c3eadc"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1AccelerometerObstacleDetector.html#a04e2fd691b358fdeb4dfae97c0c3eadc">AccelerometerObstacleDetector</a> (float threshold=3.0f)</td></tr>
 <tr class="memdesc:a04e2fd691b358fdeb4dfae97c0c3eadc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct with a deceleration threshold.  <br /></td></tr>
 <tr class="separator:a04e2fd691b358fdeb4dfae97c0c3eadc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa7c4da8a1fcc3dd7c3aa63ad509e9961"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1AccelerometerObstacleDetector.html#aa7c4da8a1fcc3dd7c3aa63ad509e9961">setObstacleDetectedCallback</a> (void(*cb)(<a class="el" href="classtinyrobotics_1_1Distance.html">Distance</a>, void *), void *userData)</td></tr>
-<tr class="memdesc:aa7c4da8a1fcc3dd7c3aa63ad509e9961"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set a callback to be invoked when an obstacle is detected.  <br /></td></tr>
-<tr class="separator:aa7c4da8a1fcc3dd7c3aa63ad509e9961"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0ffa1845dd1ecbb4cd18eec2de50d754"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1AccelerometerObstacleDetector.html#a0ffa1845dd1ecbb4cd18eec2de50d754">update</a> (float ax, float ay, float az)</td></tr>
 <tr class="memdesc:a0ffa1845dd1ecbb4cd18eec2de50d754"><td class="mdescLeft">&#160;</td><td class="mdescRight">Update the detector with new acceleration values. Checks for sudden deceleration.  <br /></td></tr>
 <tr class="separator:a0ffa1845dd1ecbb4cd18eec2de50d754"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -101,6 +116,27 @@ Public Member Functions</h2></td></tr>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>setThreshold</b> (float t)</td></tr>
 <tr class="memdesc:a090c0d379348f821a8b05d7958aea8de"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the deceleration threshold (m/s^2). <br /></td></tr>
 <tr class="separator:a090c0d379348f821a8b05d7958aea8de"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_classtinyrobotics_1_1MessageSource"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classtinyrobotics_1_1MessageSource')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classtinyrobotics_1_1MessageSource.html">MessageSource</a></td></tr>
+<tr class="memitem:ac3cabbec9037e5565dff2a698aa8dc8c inherit pub_methods_classtinyrobotics_1_1MessageSource"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1MessageSource.html#ac3cabbec9037e5565dff2a698aa8dc8c">subscribe</a> (<a class="el" href="classtinyrobotics_1_1MessageHandler.html">MessageHandler</a> &amp;handler, MessageOrigin origin=MessageOrigin::Undefined, MessageContent content=MessageContent::Undefined)</td></tr>
+<tr class="memdesc:ac3cabbec9037e5565dff2a698aa8dc8c inherit pub_methods_classtinyrobotics_1_1MessageSource"><td class="mdescLeft">&#160;</td><td class="mdescRight">Subscribe a message handler to this source, with optional filtering.  <br /></td></tr>
+<tr class="separator:ac3cabbec9037e5565dff2a698aa8dc8c inherit pub_methods_classtinyrobotics_1_1MessageSource"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a452ef8a62219e36235175becfc72dc61 inherit pub_methods_classtinyrobotics_1_1MessageSource"><td class="memItemLeft" align="right" valign="top"><a id="a452ef8a62219e36235175becfc72dc61" name="a452ef8a62219e36235175becfc72dc61"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>unsubscribeAll</b> ()</td></tr>
+<tr class="memdesc:a452ef8a62219e36235175becfc72dc61 inherit pub_methods_classtinyrobotics_1_1MessageSource"><td class="mdescLeft">&#160;</td><td class="mdescRight">Remove all registered message handlers. <br /></td></tr>
+<tr class="separator:a452ef8a62219e36235175becfc72dc61 inherit pub_methods_classtinyrobotics_1_1MessageSource"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a98c36b84c000f803e27b164c09d96260 inherit pub_methods_classtinyrobotics_1_1MessageSource"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1MessageSource.html#a98c36b84c000f803e27b164c09d96260">sendMessage</a> (<a class="el" href="structtinyrobotics_1_1Message.html">Message</a>&lt; float &gt; &amp;msg)</td></tr>
+<tr class="memdesc:a98c36b84c000f803e27b164c09d96260 inherit pub_methods_classtinyrobotics_1_1MessageSource"><td class="mdescLeft">&#160;</td><td class="mdescRight">Publish a message to all registered handlers.  <br /></td></tr>
+<tr class="separator:a98c36b84c000f803e27b164c09d96260 inherit pub_methods_classtinyrobotics_1_1MessageSource"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acca83780d0920c0777c5ed4801644878 inherit pub_methods_classtinyrobotics_1_1MessageSource"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1MessageSource.html#acca83780d0920c0777c5ed4801644878">sendMessage</a> (const <a class="el" href="structtinyrobotics_1_1Message.html">Message</a>&lt; <a class="el" href="classtinyrobotics_1_1Coordinate.html">Coordinate</a>&lt; float &gt; &gt; &amp;msg)</td></tr>
+<tr class="memdesc:acca83780d0920c0777c5ed4801644878 inherit pub_methods_classtinyrobotics_1_1MessageSource"><td class="mdescLeft">&#160;</td><td class="mdescRight">Publish a message to all registered handlers.  <br /></td></tr>
+<tr class="separator:acca83780d0920c0777c5ed4801644878 inherit pub_methods_classtinyrobotics_1_1MessageSource"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8c365effddc5ffc78b8a3532b01047b3 inherit pub_methods_classtinyrobotics_1_1MessageSource"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1MessageSource.html#a8c365effddc5ffc78b8a3532b01047b3">sendMessage</a> (const <a class="el" href="structtinyrobotics_1_1Message.html">Message</a>&lt; <a class="el" href="classtinyrobotics_1_1GPSCoordinate.html">GPSCoordinate</a> &gt; &amp;msg)</td></tr>
+<tr class="memdesc:a8c365effddc5ffc78b8a3532b01047b3 inherit pub_methods_classtinyrobotics_1_1MessageSource"><td class="mdescLeft">&#160;</td><td class="mdescRight">Publish a message to all registered handlers.  <br /></td></tr>
+<tr class="separator:a8c365effddc5ffc78b8a3532b01047b3 inherit pub_methods_classtinyrobotics_1_1MessageSource"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0d0cf158f02528dfceae4defe553ed64 inherit pub_methods_classtinyrobotics_1_1MessageSource"><td class="memItemLeft" align="right" valign="top"><a id="a0d0cf158f02528dfceae4defe553ed64" name="a0d0cf158f02528dfceae4defe553ed64"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>sendMessage</b> (const <a class="el" href="structtinyrobotics_1_1Message.html">Message</a>&lt; <a class="el" href="classtinyrobotics_1_1MotionState3D.html">MotionState3D</a> &gt; &amp;msg)</td></tr>
+<tr class="memdesc:a0d0cf158f02528dfceae4defe553ed64 inherit pub_methods_classtinyrobotics_1_1MessageSource"><td class="mdescLeft">&#160;</td><td class="mdescRight">Overload for <a class="el" href="classtinyrobotics_1_1MotionState3D.html" title="Represents the full 3D motion state of a robot or vehicle.">MotionState3D</a> messages. <br /></td></tr>
+<tr class="separator:a0d0cf158f02528dfceae4defe553ed64 inherit pub_methods_classtinyrobotics_1_1MessageSource"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
@@ -110,12 +146,10 @@ float&#160;</td><td class="memItemRight" valign="bottom"><b>threshold</b></td></
 <tr class="memitem:a17a89aa0eeeb31ee87a88ec3a4693d6e"><td class="memItemLeft" align="right" valign="top"><a id="a17a89aa0eeeb31ee87a88ec3a4693d6e" name="a17a89aa0eeeb31ee87a88ec3a4693d6e"></a>
 float&#160;</td><td class="memItemRight" valign="bottom"><b>lastMagnitude</b> = 0.0f</td></tr>
 <tr class="separator:a17a89aa0eeeb31ee87a88ec3a4693d6e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4a754e0e62a5ab4276b1ab03bbc63bb1"><td class="memItemLeft" align="right" valign="top"><a id="a4a754e0e62a5ab4276b1ab03bbc63bb1" name="a4a754e0e62a5ab4276b1ab03bbc63bb1"></a>
-void(*&#160;</td><td class="memItemRight" valign="bottom"><b>callback</b> )(<a class="el" href="classtinyrobotics_1_1Distance.html">Distance</a>, void *) = nullptr</td></tr>
-<tr class="separator:a4a754e0e62a5ab4276b1ab03bbc63bb1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2e294dd14122c554baa0665072b4ca7a"><td class="memItemLeft" align="right" valign="top"><a id="a2e294dd14122c554baa0665072b4ca7a" name="a2e294dd14122c554baa0665072b4ca7a"></a>
-void *&#160;</td><td class="memItemRight" valign="bottom"><b>userData</b> = nullptr</td></tr>
-<tr class="separator:a2e294dd14122c554baa0665072b4ca7a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pro_attribs_classtinyrobotics_1_1MessageSource"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_classtinyrobotics_1_1MessageSource')"><img src="closed.png" alt="-"/>&#160;Protected Attributes inherited from <a class="el" href="classtinyrobotics_1_1MessageSource.html">MessageSource</a></td></tr>
+<tr class="memitem:a61506a2328621ddeb80f3c83146db0d8 inherit pro_attribs_classtinyrobotics_1_1MessageSource"><td class="memItemLeft" align="right" valign="top"><a id="a61506a2328621ddeb80f3c83146db0d8" name="a61506a2328621ddeb80f3c83146db0d8"></a>
+std::vector&lt; <a class="el" href="structtinyrobotics_1_1MessageSource_1_1MessageHandlerEntry.html">MessageHandlerEntry</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>messageHandlers_</b></td></tr>
+<tr class="separator:a61506a2328621ddeb80f3c83146db0d8 inherit pro_attribs_classtinyrobotics_1_1MessageSource"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Simple obstacle detector using accelerometer data. </p>
@@ -123,9 +157,8 @@ void *&#160;</td><td class="memItemRight" valign="bottom"><b>userData</b> = null
 <h2><a class="anchor" id="autotoc_md183"></a>
 Usage Example</h2>
 <div class="fragment"><div class="line"><a class="code hl_class" href="classtinyrobotics_1_1AccelerometerObstacleDetector.html">AccelerometerObstacleDetector</a> detector(3.0f); <span class="comment">// 3 m/s^2 threshold</span></div>
-<div class="line">detector.setObstacleDetectedCallback([](<span class="keywordtype">void</span>* ctx){ Serial.println(<span class="stringliteral">&quot;Obstacle detected!&quot;</span>); }, <span class="keyword">nullptr</span>);</div>
-<div class="line"><span class="keywordtype">void</span> loop() { detector.update(ax, ay, az); }</div>
-<div class="ttc" id="aclasstinyrobotics_1_1AccelerometerObstacleDetector_html"><div class="ttname"><a href="classtinyrobotics_1_1AccelerometerObstacleDetector.html">tinyrobotics::AccelerometerObstacleDetector</a></div><div class="ttdoc">Simple obstacle detector using accelerometer data.</div><div class="ttdef"><b>Definition:</b> AccelerometerObstacleDetector.h:23</div></div>
+<div class="line">detected!<span class="stringliteral">&quot;); }, nullptr); void loop() { detector.update(ax, ay, az); }</span></div>
+<div class="ttc" id="aclasstinyrobotics_1_1AccelerometerObstacleDetector_html"><div class="ttname"><a href="classtinyrobotics_1_1AccelerometerObstacleDetector.html">tinyrobotics::AccelerometerObstacleDetector</a></div><div class="ttdoc">Simple obstacle detector using accelerometer data.</div><div class="ttdef"><b>Definition:</b> AccelerometerObstacleDetector.h:26</div></div>
 </div><!-- fragment --> </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a04e2fd691b358fdeb4dfae97c0c3eadc" name="a04e2fd691b358fdeb4dfae97c0c3eadc"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a04e2fd691b358fdeb4dfae97c0c3eadc">&#9670;&#160;</a></span>AccelerometerObstacleDetector()</h2>
@@ -162,51 +195,6 @@ Usage Example</h2>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="aa7c4da8a1fcc3dd7c3aa63ad509e9961" name="aa7c4da8a1fcc3dd7c3aa63ad509e9961"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa7c4da8a1fcc3dd7c3aa63ad509e9961">&#9670;&#160;</a></span>setObstacleDetectedCallback()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void setObstacleDetectedCallback </td>
-          <td>(</td>
-          <td class="paramtype">void(*)(<a class="el" href="classtinyrobotics_1_1Distance.html">Distance</a>, void *)&#160;</td>
-          <td class="paramname"><em>cb</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">void *&#160;</td>
-          <td class="paramname"><em>userData</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Set a callback to be invoked when an obstacle is detected. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">cb</td><td>Callback function pointer with signature void(void*) </td></tr>
-    <tr><td class="paramname">userData</td><td>User-provided pointer passed to the callback </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
 <a id="a0ffa1845dd1ecbb4cd18eec2de50d754" name="a0ffa1845dd1ecbb4cd18eec2de50d754"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a0ffa1845dd1ecbb4cd18eec2de50d754">&#9670;&#160;</a></span>update()</h2>
 

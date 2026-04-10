@@ -77,82 +77,76 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 <div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#</span><span class="preprocessor">pragma</span> <span class="preprocessor">once</span></div>
-<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#</span><span class="preprocessor">include</span> <span class="preprocessor">&lt;</span><span class="preprocessor">functional</span><span class="preprocessor">&gt;</span></div>
-<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#</span><span class="preprocessor">include</span> <span class="preprocessor">&lt;</span><span class="preprocessor">cmath</span><span class="preprocessor">&gt;</span></div>
-<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#</span><span class="preprocessor">include</span> <span class="preprocessor">&quot;TinyRobotics/units/Distance.h&quot;</span></div>
-<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span> </div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="keyword">namespace</span> tinyrobotics {</div>
-<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment">/**</span></div>
-<div class="line"><span class="lineno">    9</span><span class="comment"> * @class AccelerometerObstacleDetector</span></div>
-<div class="line"><span class="lineno">   10</span><span class="comment"> * @ingroup sensors</span></div>
-<div class="line"><span class="lineno">   11</span><span class="comment"> * @brief Simple obstacle detector using accelerometer data.</span></div>
-<div class="line"><span class="lineno">   12</span><span class="comment"> *</span></div>
-<div class="line"><span class="lineno">   13</span><span class="comment"> * Detects sudden deceleration (collision/obstacle) events by monitoring the X/Y/Z acceleration.</span></div>
-<div class="line"><span class="lineno">   14</span><span class="comment"> * When a deceleration above a threshold is detected, a callback (with user data) or message is triggered.</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#</span><span class="preprocessor">include</span> <span class="preprocessor">&lt;</span><span class="preprocessor">cmath</span><span class="preprocessor">&gt;</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#</span><span class="preprocessor">include</span> <span class="preprocessor">&lt;</span><span class="preprocessor">functional</span><span class="preprocessor">&gt;</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span> </div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#</span><span class="preprocessor">include</span> <span class="preprocessor">&quot;TinyRobotics/communication/Message.h&quot;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#</span><span class="preprocessor">include</span> <span class="preprocessor">&quot;TinyRobotics/communication/MessageSource.h&quot;</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#</span><span class="preprocessor">include</span> <span class="preprocessor">&quot;TinyRobotics/units/Distance.h&quot;</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="keyword">namespace</span> tinyrobotics {</div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="comment">/**</span></div>
+<div class="line"><span class="lineno">   12</span><span class="comment"> * @class AccelerometerObstacleDetector</span></div>
+<div class="line"><span class="lineno">   13</span><span class="comment"> * @ingroup sensors</span></div>
+<div class="line"><span class="lineno">   14</span><span class="comment"> * @brief Simple obstacle detector using accelerometer data.</span></div>
 <div class="line"><span class="lineno">   15</span><span class="comment"> *</span></div>
-<div class="line"><span class="lineno">   16</span><span class="comment"> * ## Usage Example</span></div>
-<div class="line"><span class="lineno">   17</span><span class="comment"> * @code</span></div>
-<div class="line"><span class="lineno">   18</span><span class="comment"> * AccelerometerObstacleDetector detector(3.0f); // 3 m/s^2 threshold</span></div>
-<div class="line"><span class="lineno">   19</span><span class="comment"> * detector.setObstacleDetectedCallback([](void* ctx){ Serial.println(&quot;Obstacle detected!&quot;); }, nullptr);</span></div>
-<div class="line"><span class="lineno">   20</span><span class="comment"> * void loop() { detector.update(ax, ay, az); }</span></div>
-<div class="line"><span class="lineno">   21</span><span class="comment"> * @endcode</span></div>
-<div class="line"><span class="lineno">   22</span><span class="comment"> */</span></div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="keyword">class</span> <a class="code hl_class" href="classtinyrobotics_1_1AccelerometerObstacleDetector.html">AccelerometerObstacleDetector</a>  {</div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span> <span class="keyword">public</span>:</div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span> </div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>  <span class="comment">/**</span></div>
-<div class="line"><span class="lineno">   27</span><span class="comment">   * @brief Construct with a deceleration threshold.</span></div>
-<div class="line"><span class="lineno">   28</span><span class="comment">   * @param threshold Deceleration threshold (m/s^2)</span></div>
-<div class="line"><span class="lineno">   29</span><span class="comment">   */</span></div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>  <a class="code hl_function" href="classtinyrobotics_1_1AccelerometerObstacleDetector.html#a04e2fd691b358fdeb4dfae97c0c3eadc">AccelerometerObstacleDetector</a>(<span class="keywordtype">float</span> threshold = 3.0f)</div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    : threshold(threshold) {}</div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span> </div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>  <span class="comment">/**</span></div>
-<div class="line"><span class="lineno">   34</span><span class="comment">   * @brief Set a callback to be invoked when an obstacle is detected.</span></div>
-<div class="line"><span class="lineno">   35</span><span class="comment">   * @param cb Callback function pointer with signature void(void*)</span></div>
-<div class="line"><span class="lineno">   36</span><span class="comment">   * @param userData User-provided pointer passed to the callback</span></div>
-<div class="line"><span class="lineno">   37</span><span class="comment">   */</span></div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classtinyrobotics_1_1AccelerometerObstacleDetector.html#aa7c4da8a1fcc3dd7c3aa63ad509e9961">setObstacleDetectedCallback</a>(<span class="keywordtype">void</span> (*cb)(<a class="code hl_class" href="classtinyrobotics_1_1Distance.html">Distance</a>, <span class="keywordtype">void</span>*), <span class="keywordtype">void</span>* userData) {</div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    callback = cb;</div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    <span class="keyword">this</span>-&gt;userData = userData;</div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>  }</div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span> </div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>  <span class="comment">/**</span></div>
-<div class="line"><span class="lineno">   44</span><span class="comment">   * @brief Update the detector with new acceleration values. Checks for sudden deceleration.</span></div>
-<div class="line"><span class="lineno">   45</span><span class="comment">   * @param ax Acceleration in X (m/s^2)</span></div>
-<div class="line"><span class="lineno">   46</span><span class="comment">   * @param ay Acceleration in Y (m/s^2)</span></div>
-<div class="line"><span class="lineno">   47</span><span class="comment">   * @param az Acceleration in Z (m/s^2)</span></div>
-<div class="line"><span class="lineno">   48</span><span class="comment">   */</span></div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classtinyrobotics_1_1AccelerometerObstacleDetector.html#a0ffa1845dd1ecbb4cd18eec2de50d754">update</a>(<span class="keywordtype">float</span> ax, <span class="keywordtype">float</span> ay, <span class="keywordtype">float</span> az) {</div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    <span class="keywordtype">float</span> magnitude = std::sqrt(ax*ax + ay*ay + az*az);</div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    <span class="keywordtype">float</span> delta = lastMagnitude - magnitude;</div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    <span class="keywordflow">if</span> (delta &gt; threshold) {</div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>      <span class="keywordflow">if</span> (callback) callback(<a class="code hl_class" href="classtinyrobotics_1_1Distance.html">Distance</a>(), userData);</div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>    }</div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    lastMagnitude = magnitude;</div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>  }</div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span> </div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>  <span class="comment">/**</span></div>
-<div class="line"><span class="lineno">   59</span><span class="comment">   * @brief Set the deceleration threshold (m/s^2).</span></div>
-<div class="line"><span class="lineno">   60</span><span class="comment">   */</span></div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classtinyrobotics_1_1AccelerometerObstacleDetector.html#a090c0d379348f821a8b05d7958aea8de">setThreshold</a>(<span class="keywordtype">float</span> t) { threshold = t; }</div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span> </div>
-<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span> <span class="keyword">protected</span>:</div>
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>  <span class="comment">// No accelerometer reference needed</span></div>
-<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>  <span class="keywordtype">float</span> threshold;</div>
-<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>  <span class="keywordtype">float</span> lastMagnitude = 0.0f;</div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>  <span class="keywordtype">void</span> (*callback)(<a class="code hl_class" href="classtinyrobotics_1_1Distance.html">Distance</a>, <span class="keywordtype">void</span>*) = <span class="keywordtype">nullptr</span>;</div>
-<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>  <span class="keywordtype">void</span>* userData = <span class="keywordtype">nullptr</span>;</div>
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>};</div>
-<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span> </div>
-<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>} <span class="comment">// namespace tinyrobotics</span></div>
-<div class="ttc" id="aclasstinyrobotics_1_1AccelerometerObstacleDetector_html"><div class="ttname"><a href="classtinyrobotics_1_1AccelerometerObstacleDetector.html">tinyrobotics::AccelerometerObstacleDetector</a></div><div class="ttdoc">Simple obstacle detector using accelerometer data.</div><div class="ttdef"><b>Definition:</b> AccelerometerObstacleDetector.h:23</div></div>
-<div class="ttc" id="aclasstinyrobotics_1_1AccelerometerObstacleDetector_html_a04e2fd691b358fdeb4dfae97c0c3eadc"><div class="ttname"><a href="classtinyrobotics_1_1AccelerometerObstacleDetector.html#a04e2fd691b358fdeb4dfae97c0c3eadc">tinyrobotics::AccelerometerObstacleDetector::AccelerometerObstacleDetector</a></div><div class="ttdeci">AccelerometerObstacleDetector(float threshold=3.0f)</div><div class="ttdoc">Construct with a deceleration threshold.</div><div class="ttdef"><b>Definition:</b> AccelerometerObstacleDetector.h:30</div></div>
-<div class="ttc" id="aclasstinyrobotics_1_1AccelerometerObstacleDetector_html_a090c0d379348f821a8b05d7958aea8de"><div class="ttname"><a href="classtinyrobotics_1_1AccelerometerObstacleDetector.html#a090c0d379348f821a8b05d7958aea8de">tinyrobotics::AccelerometerObstacleDetector::setThreshold</a></div><div class="ttdeci">void setThreshold(float t)</div><div class="ttdoc">Set the deceleration threshold (m/s^2).</div><div class="ttdef"><b>Definition:</b> AccelerometerObstacleDetector.h:61</div></div>
-<div class="ttc" id="aclasstinyrobotics_1_1AccelerometerObstacleDetector_html_a0ffa1845dd1ecbb4cd18eec2de50d754"><div class="ttname"><a href="classtinyrobotics_1_1AccelerometerObstacleDetector.html#a0ffa1845dd1ecbb4cd18eec2de50d754">tinyrobotics::AccelerometerObstacleDetector::update</a></div><div class="ttdeci">void update(float ax, float ay, float az)</div><div class="ttdoc">Update the detector with new acceleration values. Checks for sudden deceleration.</div><div class="ttdef"><b>Definition:</b> AccelerometerObstacleDetector.h:49</div></div>
-<div class="ttc" id="aclasstinyrobotics_1_1AccelerometerObstacleDetector_html_aa7c4da8a1fcc3dd7c3aa63ad509e9961"><div class="ttname"><a href="classtinyrobotics_1_1AccelerometerObstacleDetector.html#aa7c4da8a1fcc3dd7c3aa63ad509e9961">tinyrobotics::AccelerometerObstacleDetector::setObstacleDetectedCallback</a></div><div class="ttdeci">void setObstacleDetectedCallback(void(*cb)(Distance, void *), void *userData)</div><div class="ttdoc">Set a callback to be invoked when an obstacle is detected.</div><div class="ttdef"><b>Definition:</b> AccelerometerObstacleDetector.h:38</div></div>
-<div class="ttc" id="aclasstinyrobotics_1_1Distance_html"><div class="ttname"><a href="classtinyrobotics_1_1Distance.html">tinyrobotics::Distance</a></div><div class="ttdoc">Represents a distance measurement with unit conversion support.</div><div class="ttdef"><b>Definition:</b> Distance.h:40</div></div>
+<div class="line"><span class="lineno">   16</span><span class="comment"> * Detects sudden deceleration (collision/obstacle) events by monitoring the</span></div>
+<div class="line"><span class="lineno">   17</span><span class="comment"> * X/Y/Z acceleration. When a deceleration above a threshold is detected, a</span></div>
+<div class="line"><span class="lineno">   18</span><span class="comment"> * callback (with user data) or message is triggered.</span></div>
+<div class="line"><span class="lineno">   19</span><span class="comment"> *</span></div>
+<div class="line"><span class="lineno">   20</span><span class="comment"> * ## Usage Example</span></div>
+<div class="line"><span class="lineno">   21</span><span class="comment"> * @code</span></div>
+<div class="line"><span class="lineno">   22</span><span class="comment"> * AccelerometerObstacleDetector detector(3.0f); // 3 m/s^2 threshold</span></div>
+<div class="line"><span class="lineno">   23</span><span class="comment"> * detected!&quot;); }, nullptr); void loop() { detector.update(ax, ay, az); }</span></div>
+<div class="line"><span class="lineno">   24</span><span class="comment"> * @endcode</span></div>
+<div class="line"><span class="lineno">   25</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="keyword">class</span> <a class="code hl_class" href="classtinyrobotics_1_1AccelerometerObstacleDetector.html">AccelerometerObstacleDetector</a> : <span class="keyword">public</span> <a class="code hl_class" href="classtinyrobotics_1_1MessageSource.html">MessageSource</a> {</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span> <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>  <span class="comment">/**</span></div>
+<div class="line"><span class="lineno">   29</span><span class="comment">   * @brief Construct with a deceleration threshold.</span></div>
+<div class="line"><span class="lineno">   30</span><span class="comment">   * @param threshold Deceleration threshold (m/s^2)</span></div>
+<div class="line"><span class="lineno">   31</span><span class="comment">   */</span></div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>  <a class="code hl_function" href="classtinyrobotics_1_1AccelerometerObstacleDetector.html#a04e2fd691b358fdeb4dfae97c0c3eadc">AccelerometerObstacleDetector</a>(<span class="keywordtype">float</span> threshold = 3.0f)</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>      : threshold(threshold) {}</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span> </div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span> </div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>  <span class="comment">/**</span></div>
+<div class="line"><span class="lineno">   37</span><span class="comment">   * @brief Update the detector with new acceleration values. Checks for sudden</span></div>
+<div class="line"><span class="lineno">   38</span><span class="comment">   * deceleration.</span></div>
+<div class="line"><span class="lineno">   39</span><span class="comment">   * @param ax Acceleration in X (m/s^2)</span></div>
+<div class="line"><span class="lineno">   40</span><span class="comment">   * @param ay Acceleration in Y (m/s^2)</span></div>
+<div class="line"><span class="lineno">   41</span><span class="comment">   * @param az Acceleration in Z (m/s^2)</span></div>
+<div class="line"><span class="lineno">   42</span><span class="comment">   */</span></div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classtinyrobotics_1_1AccelerometerObstacleDetector.html#a0ffa1845dd1ecbb4cd18eec2de50d754">update</a>(<span class="keywordtype">float</span> ax, <span class="keywordtype">float</span> ay, <span class="keywordtype">float</span> az) {</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    <span class="keywordtype">float</span> magnitude = std::sqrt(ax * ax + ay * ay + az * az);</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    <span class="keywordtype">float</span> delta = lastMagnitude - magnitude;</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    <span class="keywordflow">if</span> (delta &gt; threshold) {</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>      <a class="code hl_class" href="structtinyrobotics_1_1Message.html">Message</a>&lt;<span class="keywordtype">float</span>&gt; msg(MessageContent::Obstacle, 0.0f, Unit::Meters);</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>      msg.origin = MessageOrigin::IMU;</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>      sendMessage(msg);</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    }</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    lastMagnitude = magnitude;</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>  }</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span> </div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>  <span class="comment">/**</span></div>
+<div class="line"><span class="lineno">   55</span><span class="comment">   * @brief Set the deceleration threshold (m/s^2).</span></div>
+<div class="line"><span class="lineno">   56</span><span class="comment">   */</span></div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classtinyrobotics_1_1AccelerometerObstacleDetector.html#a090c0d379348f821a8b05d7958aea8de">setThreshold</a>(<span class="keywordtype">float</span> t) { threshold = t; }</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span> </div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span> <span class="keyword">protected</span>:</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>  <span class="comment">// No accelerometer reference needed</span></div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>  <span class="keywordtype">float</span> threshold;</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>  <span class="keywordtype">float</span> lastMagnitude = 0.0f;</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>};</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span> </div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>}  <span class="comment">// namespace tinyrobotics</span></div>
+<div class="ttc" id="aclasstinyrobotics_1_1AccelerometerObstacleDetector_html"><div class="ttname"><a href="classtinyrobotics_1_1AccelerometerObstacleDetector.html">tinyrobotics::AccelerometerObstacleDetector</a></div><div class="ttdoc">Simple obstacle detector using accelerometer data.</div><div class="ttdef"><b>Definition:</b> AccelerometerObstacleDetector.h:26</div></div>
+<div class="ttc" id="aclasstinyrobotics_1_1AccelerometerObstacleDetector_html_a04e2fd691b358fdeb4dfae97c0c3eadc"><div class="ttname"><a href="classtinyrobotics_1_1AccelerometerObstacleDetector.html#a04e2fd691b358fdeb4dfae97c0c3eadc">tinyrobotics::AccelerometerObstacleDetector::AccelerometerObstacleDetector</a></div><div class="ttdeci">AccelerometerObstacleDetector(float threshold=3.0f)</div><div class="ttdoc">Construct with a deceleration threshold.</div><div class="ttdef"><b>Definition:</b> AccelerometerObstacleDetector.h:32</div></div>
+<div class="ttc" id="aclasstinyrobotics_1_1AccelerometerObstacleDetector_html_a090c0d379348f821a8b05d7958aea8de"><div class="ttname"><a href="classtinyrobotics_1_1AccelerometerObstacleDetector.html#a090c0d379348f821a8b05d7958aea8de">tinyrobotics::AccelerometerObstacleDetector::setThreshold</a></div><div class="ttdeci">void setThreshold(float t)</div><div class="ttdoc">Set the deceleration threshold (m/s^2).</div><div class="ttdef"><b>Definition:</b> AccelerometerObstacleDetector.h:57</div></div>
+<div class="ttc" id="aclasstinyrobotics_1_1AccelerometerObstacleDetector_html_a0ffa1845dd1ecbb4cd18eec2de50d754"><div class="ttname"><a href="classtinyrobotics_1_1AccelerometerObstacleDetector.html#a0ffa1845dd1ecbb4cd18eec2de50d754">tinyrobotics::AccelerometerObstacleDetector::update</a></div><div class="ttdeci">void update(float ax, float ay, float az)</div><div class="ttdoc">Update the detector with new acceleration values. Checks for sudden deceleration.</div><div class="ttdef"><b>Definition:</b> AccelerometerObstacleDetector.h:43</div></div>
+<div class="ttc" id="aclasstinyrobotics_1_1MessageSource_html"><div class="ttname"><a href="classtinyrobotics_1_1MessageSource.html">tinyrobotics::MessageSource</a></div><div class="ttdoc">Base class for message sources in the TinyRobotics communication framework.</div><div class="ttdef"><b>Definition:</b> MessageSource.h:35</div></div>
+<div class="ttc" id="astructtinyrobotics_1_1Message_html"><div class="ttname"><a href="structtinyrobotics_1_1Message.html">tinyrobotics::Message</a></div><div class="ttdoc">Generic message structure for communication, parameterized by value type.</div><div class="ttdef"><b>Definition:</b> Message.h:72</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

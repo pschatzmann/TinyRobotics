@@ -91,9 +91,8 @@ Inheritance diagram for RangeSensor&lt; T &gt;:</div>
 <div class="dyncontent">
 <div class="center"><img src="classtinyrobotics_1_1RangeSensor__inherit__graph.png" border="0" usemap="#aRangeSensor_3_01T_01_4_inherit__map" alt="Inheritance graph"/></div>
 <map name="aRangeSensor_3_01T_01_4_inherit__map" id="aRangeSensor_3_01T_01_4_inherit__map">
-<area shape="rect" title="Generic range sensor abstraction for LIDAR, ultrasonic, or similar sensors." alt="" coords="72,79,217,104"/>
-<area shape="rect" href="classtinyrobotics_1_1MessageSource.html" title="Base class for message sources in the TinyRobotics communication framework." alt="" coords="5,5,129,31"/>
-<area shape="rect" href="classtinyrobotics_1_1IObstacleDetector.html" title="Interface for obstacle detectors." alt="" coords="154,5,293,31"/>
+<area shape="rect" title="Generic range sensor abstraction for LIDAR, ultrasonic, or similar sensors." alt="" coords="5,79,151,104"/>
+<area shape="rect" href="classtinyrobotics_1_1MessageSource.html" title="Base class for message sources in the TinyRobotics communication framework." alt="" coords="16,5,140,31"/>
 </map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <div class="dynheader">
@@ -101,12 +100,11 @@ Collaboration diagram for RangeSensor&lt; T &gt;:</div>
 <div class="dyncontent">
 <div class="center"><img src="classtinyrobotics_1_1RangeSensor__coll__graph.png" border="0" usemap="#aRangeSensor_3_01T_01_4_coll__map" alt="Collaboration graph"/></div>
 <map name="aRangeSensor_3_01T_01_4_coll__map" id="aRangeSensor_3_01T_01_4_coll__map">
-<area shape="rect" title="Generic range sensor abstraction for LIDAR, ultrasonic, or similar sensors." alt="" coords="151,256,296,281"/>
+<area shape="rect" title="Generic range sensor abstraction for LIDAR, ultrasonic, or similar sensors." alt="" coords="40,256,185,281"/>
 <area shape="rect" href="classtinyrobotics_1_1MessageSource.html" title="Base class for message sources in the TinyRobotics communication framework." alt="" coords="5,168,129,193"/>
-<area shape="rect" href="classtinyrobotics_1_1IObstacleDetector.html" title="Interface for obstacle detectors." alt="" coords="154,168,293,193"/>
-<area shape="rect" href="classtinyrobotics_1_1Transform2D.html" title="Represents a 2D rigid body transform (SE(2)): translation and rotation." alt="" coords="317,168,423,193"/>
-<area shape="rect" href="classtinyrobotics_1_1Coordinate.html" title=" " alt="" coords="274,80,466,105"/>
-<area shape="rect" href="classtinyrobotics_1_1Serializable.html" title="This class defines an interface for serializable objects that can be converted to and from a string r..." alt="" coords="321,5,419,31"/>
+<area shape="rect" href="classtinyrobotics_1_1Transform2D.html" title="Represents a 2D rigid body transform (SE(2)): translation and rotation." alt="" coords="153,168,259,193"/>
+<area shape="rect" href="classtinyrobotics_1_1Coordinate.html" title=" " alt="" coords="110,80,302,105"/>
+<area shape="rect" href="classtinyrobotics_1_1Serializable.html" title="This class defines an interface for serializable objects that can be converted to and from a string r..." alt="" coords="157,5,255,31"/>
 </map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
@@ -146,9 +144,6 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>setObstacleDirection<
 <tr class="separator:aa7dcb4c181746ce7c717b6a5f1f719f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2eb9abe11e28c5cbfff6845970815889"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1RangeSensor.html#a2eb9abe11e28c5cbfff6845970815889">setObstacleDistance</a> (float distanceM)</td></tr>
 <tr class="separator:a2eb9abe11e28c5cbfff6845970815889"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3da485826018ea1e58d57b41d98a39af"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1RangeSensor.html#a3da485826018ea1e58d57b41d98a39af">setObstacleDetectedCallback</a> (void(*cb)(<a class="el" href="classtinyrobotics_1_1Distance.html">Distance</a>, void *), void *userData) override</td></tr>
-<tr class="memdesc:a3da485826018ea1e58d57b41d98a39af"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set a callback to be invoked when an obstacle is detected.  <br /></td></tr>
-<tr class="separator:a3da485826018ea1e58d57b41d98a39af"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9c16131df993573650579380ae54fedb"><td class="memItemLeft" align="right" valign="top"><a id="a9c16131df993573650579380ae54fedb" name="a9c16131df993573650579380ae54fedb"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>setObstacleAlertAngle</b> (<a class="el" href="classtinyrobotics_1_1Angle.html">Angle</a> deg)</td></tr>
 <tr class="memdesc:a9c16131df993573650579380ae54fedb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the alert angle threshold for obstacle detection. <br /></td></tr>
@@ -178,9 +173,6 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>unsubscribeAll</b> ()
 void&#160;</td><td class="memItemRight" valign="bottom"><b>sendMessage</b> (const <a class="el" href="structtinyrobotics_1_1Message.html">Message</a>&lt; <a class="el" href="classtinyrobotics_1_1MotionState3D.html">MotionState3D</a> &gt; &amp;msg)</td></tr>
 <tr class="memdesc:a0d0cf158f02528dfceae4defe553ed64 inherit pub_methods_classtinyrobotics_1_1MessageSource"><td class="mdescLeft">&#160;</td><td class="mdescRight">Overload for <a class="el" href="classtinyrobotics_1_1MotionState3D.html" title="Represents the full 3D motion state of a robot or vehicle.">MotionState3D</a> messages. <br /></td></tr>
 <tr class="separator:a0d0cf158f02528dfceae4defe553ed64 inherit pub_methods_classtinyrobotics_1_1MessageSource"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4c85f52cd4e5efbbff7ef7e9d7456c7a"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1IObstacleDetector.html#a4c85f52cd4e5efbbff7ef7e9d7456c7a">setObstacleDetectedCallback</a> (void(*cb)(<a class="el" href="classtinyrobotics_1_1Distance.html">Distance</a>, void *), void *userData)=0</td></tr>
-<tr class="memdesc:a4c85f52cd4e5efbbff7ef7e9d7456c7a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set a callback to be invoked when an obstacle is detected.  <br /></td></tr>
-<tr class="separator:a4c85f52cd4e5efbbff7ef7e9d7456c7a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-methods" name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
@@ -201,12 +193,6 @@ Protected Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
-<tr class="memitem:a41ddaa4a1b3cbb581e7da3be1d5aa772"><td class="memItemLeft" align="right" valign="top"><a id="a41ddaa4a1b3cbb581e7da3be1d5aa772" name="a41ddaa4a1b3cbb581e7da3be1d5aa772"></a>
-void(*&#160;</td><td class="memItemRight" valign="bottom"><b>callback_</b> )(<a class="el" href="classtinyrobotics_1_1Distance.html">Distance</a>, void *) = nullptr</td></tr>
-<tr class="separator:a41ddaa4a1b3cbb581e7da3be1d5aa772"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3cb3a38b33b8615972095d4e6afe2184"><td class="memItemLeft" align="right" valign="top"><a id="a3cb3a38b33b8615972095d4e6afe2184" name="a3cb3a38b33b8615972095d4e6afe2184"></a>
-void *&#160;</td><td class="memItemRight" valign="bottom"><b>userData_</b> = nullptr</td></tr>
-<tr class="separator:a3cb3a38b33b8615972095d4e6afe2184"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab89afc5982c8758401eb003095a706a2"><td class="memItemLeft" align="right" valign="top"><a id="ab89afc5982c8758401eb003095a706a2" name="ab89afc5982c8758401eb003095a706a2"></a>
 float&#160;</td><td class="memItemRight" valign="bottom"><b>alertAngleDeg_</b> = 5</td></tr>
 <tr class="separator:ab89afc5982c8758401eb003095a706a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -259,7 +245,7 @@ Usage Example</h2>
 <div class="line">  }</div>
 <div class="line">}</div>
 <div class="ttc" id="aclasstinyrobotics_1_1Coordinate_html"><div class="ttname"><a href="classtinyrobotics_1_1Coordinate.html">tinyrobotics::Coordinate</a></div><div class="ttdoc">A generic 3D coordinate class for robotics, navigation, and spatial calculations.</div><div class="ttdef"><b>Definition:</b> Coordinate.h:57</div></div>
-<div class="ttc" id="aclasstinyrobotics_1_1RangeSensor_html"><div class="ttname"><a href="classtinyrobotics_1_1RangeSensor.html">tinyrobotics::RangeSensor</a></div><div class="ttdoc">Generic range sensor abstraction for LIDAR, ultrasonic, or similar sensors.</div><div class="ttdef"><b>Definition:</b> RangeSensor.h:70</div></div>
+<div class="ttc" id="aclasstinyrobotics_1_1RangeSensor_html"><div class="ttname"><a href="classtinyrobotics_1_1RangeSensor.html">tinyrobotics::RangeSensor</a></div><div class="ttdoc">Generic range sensor abstraction for LIDAR, ultrasonic, or similar sensors.</div><div class="ttdef"><b>Definition:</b> RangeSensor.h:69</div></div>
 <div class="ttc" id="aclasstinyrobotics_1_1Transform2D_html"><div class="ttname"><a href="classtinyrobotics_1_1Transform2D.html">tinyrobotics::Transform2D</a></div><div class="ttdoc">Represents a 2D rigid body transform (SE(2)): translation and rotation.</div><div class="ttdef"><b>Definition:</b> FrameMgr2D.h:42</div></div>
 </div><!-- fragment --><h2><a class="anchor" id="autotoc_md186"></a>
 Template Parameters</h2>
@@ -480,53 +466,6 @@ Applications</h2>
 </table>
 </div><div class="memdoc">
 <p>Convenience method to set both the obstacle bearing and distance at once. Set both the obstacle bearing and distance at once </p>
-
-</div>
-</div>
-<a id="a3da485826018ea1e58d57b41d98a39af" name="a3da485826018ea1e58d57b41d98a39af"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3da485826018ea1e58d57b41d98a39af">&#9670;&#160;</a></span>setObstacleDetectedCallback()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void setObstacleDetectedCallback </td>
-          <td>(</td>
-          <td class="paramtype">void(*)(<a class="el" href="classtinyrobotics_1_1Distance.html">Distance</a>, void *)&#160;</td>
-          <td class="paramname"><em>cb</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">void *&#160;</td>
-          <td class="paramname"><em>userData</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Set a callback to be invoked when an obstacle is detected. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">cb</td><td>Callback function pointer with signature void(Distance, void*) </td></tr>
-    <tr><td class="paramname">userData</td><td>User-provided pointer passed to the callback </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p>Implements <a class="el" href="classtinyrobotics_1_1IObstacleDetector.html#a4c85f52cd4e5efbbff7ef7e9d7456c7a">IObstacleDetector</a>.</p>
 
 </div>
 </div>

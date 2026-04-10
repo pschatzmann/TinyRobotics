@@ -1,8 +1,7 @@
 <map id="RangeSensor&lt; T &gt;" name="RangeSensor&lt; T &gt;">
-<area shape="rect" id="node1" title="Generic range sensor abstraction for LIDAR, ultrasonic, or similar sensors." alt="" coords="151,256,296,281"/>
+<area shape="rect" id="node1" title="Generic range sensor abstraction for LIDAR, ultrasonic, or similar sensors." alt="" coords="40,256,185,281"/>
 <area shape="rect" id="node2" href="$classtinyrobotics_1_1MessageSource.html" title="Base class for message sources in the TinyRobotics communication framework." alt="" coords="5,168,129,193"/>
-<area shape="rect" id="node3" href="$classtinyrobotics_1_1IObstacleDetector.html" title="Interface for obstacle detectors." alt="" coords="154,168,293,193"/>
-<area shape="rect" id="node4" href="$classtinyrobotics_1_1Transform2D.html" title="Represents a 2D rigid body transform (SE(2)): translation and rotation." alt="" coords="317,168,423,193"/>
-<area shape="rect" id="node5" href="$classtinyrobotics_1_1Coordinate.html" title=" " alt="" coords="274,80,466,105"/>
-<area shape="rect" id="node6" href="$classtinyrobotics_1_1Serializable.html" title="This class defines an interface for serializable objects that can be converted to and from a string r..." alt="" coords="321,5,419,31"/>
+<area shape="rect" id="node3" href="$classtinyrobotics_1_1Transform2D.html" title="Represents a 2D rigid body transform (SE(2)): translation and rotation." alt="" coords="153,168,259,193"/>
+<area shape="rect" id="node4" href="$classtinyrobotics_1_1Coordinate.html" title=" " alt="" coords="110,80,302,105"/>
+<area shape="rect" id="node5" href="$classtinyrobotics_1_1Serializable.html" title="This class defines an interface for serializable objects that can be converted to and from a string r..." alt="" coords="157,5,255,31"/>
 </map>

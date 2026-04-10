@@ -1,3 +1,7 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$classtinyrobotics_1_1BaseBuffer.html" title=" " alt="" coords="5,5,173,31"/>
+<area shape="rect" id="node1" href="$classtinyrobotics_1_1BaseBuffer.html" title=" " alt="" coords="5,80,136,105"/>
+<area shape="rect" id="node2" href="$classtinyrobotics_1_1SingleBuffer.html" title=" " alt="" coords="218,5,357,31"/>
+<area shape="rect" id="node3" href="$classtinyrobotics_1_1BufferRP2040T.html" title="Buffer implementation which is based on a RP2040 queue. This class is intended to be used to exchange..." alt="" coords="209,55,365,80"/>
+<area shape="rect" id="node4" href="$classtinyrobotics_1_1BufferRTOS.html" title="Buffer implementation which is using a FreeRTOS StreamBuffer. The default allocator uses psram is ava..." alt="" coords="184,104,391,129"/>
+<area shape="rect" id="node5" href="$classtinyrobotics_1_1SynchronizedBuffer.html" title="Wrapper class that can turn any Buffer into a thread save implementation." alt="" coords="194,153,381,179"/>
 </map>
