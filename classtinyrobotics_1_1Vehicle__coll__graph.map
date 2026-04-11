@@ -1,5 +1,5 @@
-<map id="Vehicle" name="Vehicle">
-<area shape="rect" id="node1" title="Abstract base class for all vehicle types." alt="" coords="112,79,181,104"/>
+<map id="Vehicle&lt; MotorT &gt;" name="Vehicle&lt; MotorT &gt;">
+<area shape="rect" id="node1" title="Abstract base class for all vehicle types." alt="" coords="74,79,219,104"/>
 <area shape="rect" id="node2" href="$classtinyrobotics_1_1MessageHandler.html" title="Interface for handling messages in the TinyRobotics framework." alt="" coords="5,5,136,31"/>
 <area shape="rect" id="node3" href="$classtinyrobotics_1_1MessageSource.html" title="Base class for message sources in the TinyRobotics communication framework." alt="" coords="161,5,285,31"/>
 </map>

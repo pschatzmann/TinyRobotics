@@ -109,8 +109,8 @@ $(function() {
 <div class="line"><span class="lineno">   31</span><span class="comment"> * @endcode</span></div>
 <div class="line"><span class="lineno">   32</span><span class="comment"> */</span></div>
 <div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span> </div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span><span class="keyword">template</span> &lt;size_t N = 4, <span class="keyword">typename</span> MotorMT = <a class="code hl_class" href="classtinyrobotics_1_1BrushedMotor.html">BrushedMotor</a>&lt;<span class="keywordtype">float</span>&gt;&gt;</div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span><span class="keyword">class</span> <a class="code hl_class" href="classtinyrobotics_1_1CarDifferential.html">CarDifferential</a> : <span class="keyword">public</span> <a class="code hl_class" href="classtinyrobotics_1_1Vehicle.html">Vehicle</a> {</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span><span class="keyword">template</span> &lt;size_t N = 4, <span class="keyword">typename</span> T=<span class="keywordtype">float</span>, <span class="keyword">typename</span> MotorMT = <a class="code hl_class" href="classtinyrobotics_1_1BrushedMotor.html">BrushedMotor</a>&lt;T&gt;&gt;</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span><span class="keyword">class</span> <a class="code hl_class" href="classtinyrobotics_1_1CarDifferential.html">CarDifferential</a> : <span class="keyword">public</span> <a class="code hl_class" href="classtinyrobotics_1_1Vehicle.html">Vehicle</a>&lt;T&gt; {</div>
 <div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span> <span class="keyword">public</span>:</div>
 <div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>  CarDifferential() : speed_(0), turn_(0) {}</div>
 <div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span> </div>
@@ -130,7 +130,7 @@ $(function() {
 <div class="line"><span class="lineno">   52</span><span class="comment">   * Positive = forward, negative = reverse.</span></div>
 <div class="line"><span class="lineno">   53</span><span class="comment">   */</span></div>
 <div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classtinyrobotics_1_1CarDifferential.html#a1a045d56b0e9a52b45615962d9f93a07">setSpeed</a>(<span class="keywordtype">float</span> percent) {</div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    speed_ = constrain(percent * <a class="code hl_function" href="classtinyrobotics_1_1Vehicle.html#a7307472891b867761641aee21bb38b29">getSpeedFactor</a><a class="code hl_function" href="classtinyrobotics_1_1Vehicle.html#a7307472891b867761641aee21bb38b29">(</a><a class="code hl_function" href="classtinyrobotics_1_1Vehicle.html#a7307472891b867761641aee21bb38b29">)</a>, -100, 100);</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    speed_ = constrain(percent * <a class="code hl_class" href="classtinyrobotics_1_1Vehicle.html">Vehicle</a>&lt;T&gt;::getSpeedFactor(), -100, 100);</div>
 <div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>    <a class="code hl_function" href="classtinyrobotics_1_1CarDifferential.html#a807a87c5df438fde21c1e8213906695b">updateMotors</a><a class="code hl_function" href="classtinyrobotics_1_1CarDifferential.html#a807a87c5df438fde21c1e8213906695b">(</a><a class="code hl_function" href="classtinyrobotics_1_1CarDifferential.html#a807a87c5df438fde21c1e8213906695b">)</a>;</div>
 <div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>  }</div>
 <div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span> </div>
@@ -152,112 +152,120 @@ $(function() {
 <div class="line"><span class="lineno">   74</span><span class="comment">   * @brief Stop all motors and reset speed and turn state.</span></div>
 <div class="line"><span class="lineno">   75</span><span class="comment">   */</span></div>
 <div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classtinyrobotics_1_1CarDifferential.html#a64e9fa75beda50a9e8400ee0d4e61984">end</a>() <span class="keyword">override</span> {</div>
-<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; 4; ++i) {</div>
-<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>      motors_[i].end();</div>
-<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>    }</div>
-<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>    speed_ = 0;</div>
-<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>    turn_ = 0;</div>
-<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>  }</div>
-<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span> </div>
-<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>  <span class="comment">/**</span></div>
-<div class="line"><span class="lineno">   85</span><span class="comment">   * @brief Set a calibration gain for a specific motor (default 1.0).</span></div>
-<div class="line"><span class="lineno">   86</span><span class="comment">   * @param motor Motor index (0=front left, 1=front right, 2=rear left, 3=rear</span></div>
-<div class="line"><span class="lineno">   87</span><span class="comment">   * right)</span></div>
-<div class="line"><span class="lineno">   88</span><span class="comment">   * @param gain  Gain factor (e.g., 1.05 for +5% output)</span></div>
-<div class="line"><span class="lineno">   89</span><span class="comment">   */</span></div>
-<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classtinyrobotics_1_1CarDifferential.html#a509647828107548a136623c082d7d674">setMotorGain</a>(<span class="keywordtype">int</span> motor, <span class="keywordtype">float</span> gain) {</div>
-<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>    <span class="keywordflow">if</span> (motor &gt;= 0 &amp;&amp; motor &lt; 4) {</div>
-<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>      motorGain_[motor] = gain;</div>
-<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>    }</div>
-<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>  }</div>
-<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span> </div>
-<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>  <span class="keywordtype">bool</span> <a class="code hl_function" href="classtinyrobotics_1_1CarDifferential.html#aab121fc05ce8562504b0970668fe3f3f">isPinsSet</a>() <span class="keyword">const</span> {</div>
-<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; 4; ++i) {</div>
-<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>      <span class="keywordflow">if</span> (!motors_[i].isPinsSet()) <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>    }</div>
-<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>  }</div>
-<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span> </div>
-<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>  <span class="keywordtype">bool</span> <a class="code hl_function" href="classtinyrobotics_1_1CarDifferential.html#ab78c06b51db5e63c8f7a84c54baf3842">onMessage</a>(<span class="keyword">const</span> <a class="code hl_class" href="structtinyrobotics_1_1Message.html">Message</a>&lt;<span class="keywordtype">float</span>&gt;&amp; msg) <span class="keyword">override</span> {</div>
-<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>    <span class="keywordflow">switch</span> (msg.content) {</div>
-<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>      <span class="keywordflow">case</span> MessageContent::Throttle:</div>
-<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>        <span class="keywordflow">if</span> (msg.unit != Unit::Percent) <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>        setSpeed(<span class="keyword">static_cast</span>&lt;<span class="keywordtype">int</span>&gt;(msg.value));</div>
-<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>      <span class="keywordflow">case</span> MessageContent::SteeringAngle:</div>
-<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>        <span class="keywordtype">float</span> angle = msg.value;</div>
-<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>        <span class="keywordflow">if</span> (!toAngleDegree(angle, msg.unit, angle))</div>
-<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>          <span class="keywordflow">return</span> <span class="keyword">false</span>;  <span class="comment">// Invalid unit</span></div>
-<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>        <span class="keyword">this</span>-&gt;setSteeringAgle(angle);</div>
-<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>      <span class="keywordflow">case</span> MessageContent::Obstacle:</div>
-<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>        setSpeedFactor(0);</div>
-<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>      <span class="keywordflow">default</span>:</div>
-<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>        <span class="keywordflow">return</span> <span class="keyword">false</span>;  <span class="comment">// Unhandled message content</span></div>
-<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>    }</div>
-<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>  }</div>
-<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span> </div>
-<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>  std::vector&lt;MessageContent&gt; getControls() <span class="keyword">const</span> <span class="keyword">override</span> {</div>
-<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>    <span class="keywordflow">return</span> {MessageContent::Throttle, MessageContent::SteeringAngle};</div>
-<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>  }</div>
-<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span> </div>
-<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>  MotorMT&amp; getMotor(size_t index) { <span class="keywordflow">return</span> motors_[index % N]; }</div>
-<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span> </div>
-<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span> <span class="keyword">protected</span>:</div>
-<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>  MotorMT motors_[N];</div>
-<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>  <span class="keywordtype">float</span> motorGain_[N] = {1.0f, 1.0f, 1.0f, 1.0f};</div>
-<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>  <span class="keywordtype">float</span> speed_, turn_;</div>
-<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span> </div>
-<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>  <span class="comment">/**</span></div>
-<div class="line"><span class="lineno">  135</span><span class="comment">   * @brief Update all motors based on speed and turn.</span></div>
-<div class="line"><span class="lineno">  136</span><span class="comment">   *</span></div>
-<div class="line"><span class="lineno">  137</span><span class="comment">   * - m1: front left</span></div>
-<div class="line"><span class="lineno">  138</span><span class="comment">   * - m2: front right</span></div>
-<div class="line"><span class="lineno">  139</span><span class="comment">   * - m3: rear left</span></div>
-<div class="line"><span class="lineno">  140</span><span class="comment">   * - m4: rear right</span></div>
-<div class="line"><span class="lineno">  141</span><span class="comment">   *</span></div>
-<div class="line"><span class="lineno">  142</span><span class="comment">   * To turn right, left motors go slower, right motors go faster (and vice</span></div>
-<div class="line"><span class="lineno">  143</span><span class="comment">   * versa).</span></div>
-<div class="line"><span class="lineno">  144</span><span class="comment">   */</span></div>
-<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classtinyrobotics_1_1CarDifferential.html#a807a87c5df438fde21c1e8213906695b">updateMotors</a>() {</div>
-<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>    <span class="keywordtype">int</span> left = speed_ - turn_;</div>
-<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>    <span class="keywordtype">int</span> right = speed_ + turn_;</div>
-<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>    <span class="keywordtype">float</span> speed[4];</div>
-<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; 4; ++i) {</div>
-<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>      speed[i] = (i % 2 == 0) ? left * motorGain_[i] : right * motorGain_[i];</div>
-<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>      speed[i] = constrain(speed[i], -100, 100);</div>
-<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>    }</div>
-<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span> </div>
-<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>    <span class="comment">// update speed</span></div>
-<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; 4; ++i) {</div>
-<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>      motors_[i].setSpeedPercent(speed[i]);</div>
-<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>    }</div>
-<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span> </div>
-<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>    <span class="comment">// publish motor speeds as messages for telemetry</span></div>
-<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; 4; ++i) {</div>
-<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span>      <a class="code hl_class" href="structtinyrobotics_1_1Message.html">Message</a>&lt;<span class="keywordtype">float</span>&gt; msg(MessageContent::MotorSpeed, speed[i], Unit::Percent);</div>
-<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>      msg.origin = MessageOrigin::Vehicle;</div>
-<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span>      msg.origin_id = i;  <span class="comment">// Motor index</span></div>
-<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span>      sendMessage(msg);</div>
-<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span>    }</div>
-<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span>  }</div>
-<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span>};</div>
-<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span> </div>
-<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span>}  <span class="comment">// namespace tinyrobotics</span></div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>    <a class="code hl_function" href="classtinyrobotics_1_1CarDifferential.html#a1a045d56b0e9a52b45615962d9f93a07">setSpeed</a><a class="code hl_function" href="classtinyrobotics_1_1CarDifferential.html#a1a045d56b0e9a52b45615962d9f93a07">(</a>0<a class="code hl_function" href="classtinyrobotics_1_1CarDifferential.html#a1a045d56b0e9a52b45615962d9f93a07">)</a>;</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>    <a class="code hl_function" href="classtinyrobotics_1_1CarDifferential.html#a7c9ee44f22dce03631c328ad91fb32c2">setSteeringAgle</a><a class="code hl_function" href="classtinyrobotics_1_1CarDifferential.html#a7c9ee44f22dce03631c328ad91fb32c2">(</a>0<a class="code hl_function" href="classtinyrobotics_1_1CarDifferential.html#a7c9ee44f22dce03631c328ad91fb32c2">)</a>;</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>     <span class="comment">// stop all motors</span></div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; 4; ++i) {</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>      motors_[i].end();</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>    }</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>  }</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span> </div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>  <span class="comment">/**</span></div>
+<div class="line"><span class="lineno">   86</span><span class="comment">   * @brief Set a calibration gain for a specific motor (default 1.0).</span></div>
+<div class="line"><span class="lineno">   87</span><span class="comment">   * @param motor Motor index (0=front left, 1=front right, 2=rear left, 3=rear</span></div>
+<div class="line"><span class="lineno">   88</span><span class="comment">   * right)</span></div>
+<div class="line"><span class="lineno">   89</span><span class="comment">   * @param gain  Gain factor (e.g., 1.05 for +5% output)</span></div>
+<div class="line"><span class="lineno">   90</span><span class="comment">   */</span></div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classtinyrobotics_1_1CarDifferential.html#a509647828107548a136623c082d7d674">setMotorGain</a>(<span class="keywordtype">int</span> motor, <span class="keywordtype">float</span> gain) {</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>    <span class="keywordflow">if</span> (motor &gt;= 0 &amp;&amp; motor &lt; 4) {</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>      motorGain_[motor] = gain;</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>    }</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>  }</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span> </div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>  <span class="keywordtype">bool</span> <a class="code hl_function" href="classtinyrobotics_1_1CarDifferential.html#aab121fc05ce8562504b0970668fe3f3f">isPinsSet</a>() <span class="keyword">const</span> {</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; 4; ++i) {</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>      <span class="keywordflow">if</span> (!motors_[i].isPinsSet()) <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>    }</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>  }</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span> </div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>  <span class="keywordtype">bool</span> <a class="code hl_function" href="classtinyrobotics_1_1CarDifferential.html#ab78c06b51db5e63c8f7a84c54baf3842">onMessage</a>(<span class="keyword">const</span> <a class="code hl_class" href="structtinyrobotics_1_1Message.html">Message</a>&lt;<span class="keywordtype">float</span>&gt;&amp; msg) <span class="keyword">override</span> {</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>    <span class="keywordflow">switch</span> (msg.content) {</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>      <span class="keywordflow">case</span> MessageContent::Throttle:</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>        <span class="keywordflow">if</span> (msg.unit != Unit::Percent) <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>        setSpeed(<span class="keyword">static_cast</span>&lt;<span class="keywordtype">int</span>&gt;(msg.value));</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>      <span class="keywordflow">case</span> MessageContent::SteeringAngle:</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>        <span class="keywordtype">float</span> angle = msg.value;</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>        <span class="keywordflow">if</span> (!toAngleDegree(angle, msg.unit, angle))</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>          <span class="keywordflow">return</span> <span class="keyword">false</span>;  <span class="comment">// Invalid unit</span></div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>        <span class="keyword">this</span>-&gt;setSteeringAgle(angle);</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>      <span class="keywordflow">case</span> MessageContent::Obstacle:</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>        Vehicle&lt;T&gt;::setSpeedFactor(0);</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>      <span class="keywordflow">default</span>:</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>        <span class="keywordflow">return</span> <span class="keyword">false</span>;  <span class="comment">// Unhandled message content</span></div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>    }</div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>  }</div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span> </div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>  std::vector&lt;MessageContent&gt; getControls() <span class="keyword">const</span> <span class="keyword">override</span> {</div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>    <span class="keywordflow">return</span> {MessageContent::Throttle, MessageContent::SteeringAngle};</div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>  }</div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span> </div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>  MotorMT&amp; getMotor(size_t index) { <span class="keywordflow">return</span> motors_[index % N]; }</div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span> </div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>  std::vector&lt;IMotor&lt;T&gt;*&gt; getMotors() <span class="keyword">override</span> {</div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>    std::vector&lt;IMotor&lt;T&gt;*&gt; motors;</div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; N; ++i) {</div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>      motors.push_back(&amp;motors_[i]);</div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>    }</div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>    <span class="keywordflow">return</span> motors;</div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>  }</div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span> </div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span> <span class="keyword">protected</span>:</div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>  MotorMT motors_[N];</div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span>  <span class="keywordtype">float</span> motorGain_[N] = {1.0f, 1.0f, 1.0f, 1.0f};</div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span>  <span class="keywordtype">float</span> speed_, turn_;</div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span> </div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span>  <span class="comment">/**</span></div>
+<div class="line"><span class="lineno">  144</span><span class="comment">   * @brief Update all motors based on speed and turn.</span></div>
+<div class="line"><span class="lineno">  145</span><span class="comment">   *</span></div>
+<div class="line"><span class="lineno">  146</span><span class="comment">   * - m1: front left</span></div>
+<div class="line"><span class="lineno">  147</span><span class="comment">   * - m2: front right</span></div>
+<div class="line"><span class="lineno">  148</span><span class="comment">   * - m3: rear left</span></div>
+<div class="line"><span class="lineno">  149</span><span class="comment">   * - m4: rear right</span></div>
+<div class="line"><span class="lineno">  150</span><span class="comment">   *</span></div>
+<div class="line"><span class="lineno">  151</span><span class="comment">   * To turn right, left motors go slower, right motors go faster (and vice</span></div>
+<div class="line"><span class="lineno">  152</span><span class="comment">   * versa).</span></div>
+<div class="line"><span class="lineno">  153</span><span class="comment">   */</span></div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classtinyrobotics_1_1CarDifferential.html#a807a87c5df438fde21c1e8213906695b">updateMotors</a>() {</div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>    <span class="keywordtype">int</span> left = speed_ - turn_;</div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>    <span class="keywordtype">int</span> right = speed_ + turn_;</div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>    <span class="keywordtype">float</span> speed[4];</div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; 4; ++i) {</div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>      speed[i] = (i % 2 == 0) ? left * motorGain_[i] : right * motorGain_[i];</div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>      speed[i] = constrain(speed[i], -100, 100);</div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span>    }</div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span> </div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span>    <span class="comment">// update speed</span></div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; 4; ++i) {</div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span>      motors_[i].setSpeedPercent(speed[i]);</div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span>    }</div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span> </div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span>    <span class="comment">// publish motor speeds as messages for telemetry</span></div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; 4; ++i) {</div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span>      <a class="code hl_class" href="structtinyrobotics_1_1Message.html">Message</a>&lt;<span class="keywordtype">float</span>&gt; msg(MessageContent::MotorSpeed, speed[i], Unit::Percent);</div>
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span>      msg.origin = MessageOrigin::Vehicle;</div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span>      msg.origin_id = i;  <span class="comment">// Motor index</span></div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span>      Vehicle&lt;T&gt;::sendMessage(msg);</div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span>    }</div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span>  }</div>
+<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span>};</div>
+<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span> </div>
+<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span>}  <span class="comment">// namespace tinyrobotics</span></div>
 <div class="ttc" id="aclasstinyrobotics_1_1Angle_html"><div class="ttname"><a href="classtinyrobotics_1_1Angle.html">tinyrobotics::Angle</a></div><div class="ttdoc">Represents an angle with unit conversion and wrap-around support.</div><div class="ttdef"><b>Definition:</b> Angle.h:42</div></div>
 <div class="ttc" id="aclasstinyrobotics_1_1BrushedMotor_html"><div class="ttname"><a href="classtinyrobotics_1_1BrushedMotor.html">tinyrobotics::BrushedMotor</a></div><div class="ttdoc">High-level H-Bridge motor driver class for bidirectional DC motor control.</div><div class="ttdef"><b>Definition:</b> BrushedMotor.h:36</div></div>
 <div class="ttc" id="aclasstinyrobotics_1_1CarDifferential_html"><div class="ttname"><a href="classtinyrobotics_1_1CarDifferential.html">tinyrobotics::CarDifferential</a></div><div class="ttdoc">Car model with differential drive. The direction is controlled by adjusting the speed of the motors....</div><div class="ttdef"><b>Definition:</b> CarDifferential.h:35</div></div>
 <div class="ttc" id="aclasstinyrobotics_1_1CarDifferential_html_a1a045d56b0e9a52b45615962d9f93a07"><div class="ttname"><a href="classtinyrobotics_1_1CarDifferential.html#a1a045d56b0e9a52b45615962d9f93a07">tinyrobotics::CarDifferential::setSpeed</a></div><div class="ttdeci">void setSpeed(float percent)</div><div class="ttdoc">Set forward/reverse speed for all motors (percent, -100 to 100). Positive = forward,...</div><div class="ttdef"><b>Definition:</b> CarDifferential.h:54</div></div>
-<div class="ttc" id="aclasstinyrobotics_1_1CarDifferential_html_a509647828107548a136623c082d7d674"><div class="ttname"><a href="classtinyrobotics_1_1CarDifferential.html#a509647828107548a136623c082d7d674">tinyrobotics::CarDifferential::setMotorGain</a></div><div class="ttdeci">void setMotorGain(int motor, float gain)</div><div class="ttdoc">Set a calibration gain for a specific motor (default 1.0).</div><div class="ttdef"><b>Definition:</b> CarDifferential.h:90</div></div>
+<div class="ttc" id="aclasstinyrobotics_1_1CarDifferential_html_a509647828107548a136623c082d7d674"><div class="ttname"><a href="classtinyrobotics_1_1CarDifferential.html#a509647828107548a136623c082d7d674">tinyrobotics::CarDifferential::setMotorGain</a></div><div class="ttdeci">void setMotorGain(int motor, float gain)</div><div class="ttdoc">Set a calibration gain for a specific motor (default 1.0).</div><div class="ttdef"><b>Definition:</b> CarDifferential.h:91</div></div>
 <div class="ttc" id="aclasstinyrobotics_1_1CarDifferential_html_a64e9fa75beda50a9e8400ee0d4e61984"><div class="ttname"><a href="classtinyrobotics_1_1CarDifferential.html#a64e9fa75beda50a9e8400ee0d4e61984">tinyrobotics::CarDifferential::end</a></div><div class="ttdeci">void end() override</div><div class="ttdoc">Stop all motors and reset speed and turn state.</div><div class="ttdef"><b>Definition:</b> CarDifferential.h:76</div></div>
 <div class="ttc" id="aclasstinyrobotics_1_1CarDifferential_html_a7c9ee44f22dce03631c328ad91fb32c2"><div class="ttname"><a href="classtinyrobotics_1_1CarDifferential.html#a7c9ee44f22dce03631c328ad91fb32c2">tinyrobotics::CarDifferential::setSteeringAgle</a></div><div class="ttdeci">void setSteeringAgle(float angle)</div><div class="ttdoc">Set turn (percent, -100 to 100). Positive = right, negative = left. This slows down the motors on one...</div><div class="ttdef"><b>Definition:</b> CarDifferential.h:63</div></div>
-<div class="ttc" id="aclasstinyrobotics_1_1CarDifferential_html_a807a87c5df438fde21c1e8213906695b"><div class="ttname"><a href="classtinyrobotics_1_1CarDifferential.html#a807a87c5df438fde21c1e8213906695b">tinyrobotics::CarDifferential::updateMotors</a></div><div class="ttdeci">void updateMotors()</div><div class="ttdoc">Update all motors based on speed and turn.</div><div class="ttdef"><b>Definition:</b> CarDifferential.h:145</div></div>
-<div class="ttc" id="aclasstinyrobotics_1_1CarDifferential_html_aab121fc05ce8562504b0970668fe3f3f"><div class="ttname"><a href="classtinyrobotics_1_1CarDifferential.html#aab121fc05ce8562504b0970668fe3f3f">tinyrobotics::CarDifferential::isPinsSet</a></div><div class="ttdeci">bool isPinsSet() const</div><div class="ttdoc">Check if the necessary pins for the vehicle's actuators have been set (pure virtual).</div><div class="ttdef"><b>Definition:</b> CarDifferential.h:96</div></div>
-<div class="ttc" id="aclasstinyrobotics_1_1CarDifferential_html_ab78c06b51db5e63c8f7a84c54baf3842"><div class="ttname"><a href="classtinyrobotics_1_1CarDifferential.html#ab78c06b51db5e63c8f7a84c54baf3842">tinyrobotics::CarDifferential::onMessage</a></div><div class="ttdeci">bool onMessage(const Message&lt; float &gt; &amp;msg) override</div><div class="ttdoc">Handle an incoming message (pure virtual).</div><div class="ttdef"><b>Definition:</b> CarDifferential.h:103</div></div>
+<div class="ttc" id="aclasstinyrobotics_1_1CarDifferential_html_a807a87c5df438fde21c1e8213906695b"><div class="ttname"><a href="classtinyrobotics_1_1CarDifferential.html#a807a87c5df438fde21c1e8213906695b">tinyrobotics::CarDifferential::updateMotors</a></div><div class="ttdeci">void updateMotors()</div><div class="ttdoc">Update all motors based on speed and turn.</div><div class="ttdef"><b>Definition:</b> CarDifferential.h:154</div></div>
+<div class="ttc" id="aclasstinyrobotics_1_1CarDifferential_html_aab121fc05ce8562504b0970668fe3f3f"><div class="ttname"><a href="classtinyrobotics_1_1CarDifferential.html#aab121fc05ce8562504b0970668fe3f3f">tinyrobotics::CarDifferential::isPinsSet</a></div><div class="ttdeci">bool isPinsSet() const</div><div class="ttdoc">Check if the necessary pins for the vehicle's actuators have been set (pure virtual).</div><div class="ttdef"><b>Definition:</b> CarDifferential.h:97</div></div>
+<div class="ttc" id="aclasstinyrobotics_1_1CarDifferential_html_ab78c06b51db5e63c8f7a84c54baf3842"><div class="ttname"><a href="classtinyrobotics_1_1CarDifferential.html#ab78c06b51db5e63c8f7a84c54baf3842">tinyrobotics::CarDifferential::onMessage</a></div><div class="ttdeci">bool onMessage(const Message&lt; float &gt; &amp;msg) override</div><div class="ttdoc">Handle an incoming message (pure virtual).</div><div class="ttdef"><b>Definition:</b> CarDifferential.h:104</div></div>
 <div class="ttc" id="aclasstinyrobotics_1_1CarDifferential_html_afa87aa19e9bc521b9867702fd66cf628"><div class="ttname"><a href="classtinyrobotics_1_1CarDifferential.html#afa87aa19e9bc521b9867702fd66cf628">tinyrobotics::CarDifferential::setPins</a></div><div class="ttdeci">void setPins(int motor, int in1, int in2)</div><div class="ttdoc">Set the pins for a specific motor (0=front left, 1=front right, 2=rear left, 3=rear right)</div><div class="ttdef"><b>Definition:</b> CarDifferential.h:43</div></div>
-<div class="ttc" id="aclasstinyrobotics_1_1Vehicle_html"><div class="ttname"><a href="classtinyrobotics_1_1Vehicle.html">tinyrobotics::Vehicle</a></div><div class="ttdoc">Abstract base class for all vehicle types.</div><div class="ttdef"><b>Definition:</b> Vehicle.h:24</div></div>
-<div class="ttc" id="aclasstinyrobotics_1_1Vehicle_html_a7307472891b867761641aee21bb38b29"><div class="ttname"><a href="classtinyrobotics_1_1Vehicle.html#a7307472891b867761641aee21bb38b29">tinyrobotics::Vehicle::getSpeedFactor</a></div><div class="ttdeci">float getSpeedFactor() const</div><div class="ttdoc">Get the speed factor (scaling for speed commands).</div><div class="ttdef"><b>Definition:</b> Vehicle.h:42</div></div>
+<div class="ttc" id="aclasstinyrobotics_1_1Vehicle_html"><div class="ttname"><a href="classtinyrobotics_1_1Vehicle.html">tinyrobotics::Vehicle</a></div><div class="ttdoc">Abstract base class for all vehicle types.</div><div class="ttdef"><b>Definition:</b> Vehicle.h:26</div></div>
 <div class="ttc" id="agroup__units_html_ga70ab36d1d4920fdd314279845af152c5"><div class="ttname"><a href="group__units.html#ga70ab36d1d4920fdd314279845af152c5">tinyrobotics::AngleUnit</a></div><div class="ttdeci">AngleUnit</div><div class="ttdoc">Supported angle units for conversion and representation.</div><div class="ttdef"><b>Definition:</b> Angle.h:11</div></div>
 <div class="ttc" id="astructtinyrobotics_1_1Message_html"><div class="ttname"><a href="structtinyrobotics_1_1Message.html">tinyrobotics::Message</a></div><div class="ttdoc">Generic message structure for communication, parameterized by value type.</div><div class="ttdef"><b>Definition:</b> Message.h:72</div></div>
 </div><!-- fragment --></div><!-- contents -->

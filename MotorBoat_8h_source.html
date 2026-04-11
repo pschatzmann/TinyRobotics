@@ -102,8 +102,8 @@ $(function() {
 <div class="line"><span class="lineno">   24</span><span class="comment"> * @endcode</span></div>
 <div class="line"><span class="lineno">   25</span><span class="comment"> */</span></div>
 <div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> MotorMT = <a class="code hl_class" href="classtinyrobotics_1_1BrushedMotor.html">BrushedMotor</a>&lt;<span class="keywordtype">float</span>&gt;, <span class="keyword">typename</span> ServoMT = <a class="code hl_class" href="classtinyrobotics_1_1ServoMotor.html">ServoMotor</a>&lt;<span class="keywordtype">float</span>&gt;&gt;</div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="keyword">class</span> <a class="code hl_class" href="classtinyrobotics_1_1MotorBoat.html">MotorBoat</a> : <span class="keyword">public</span> <a class="code hl_class" href="classtinyrobotics_1_1Vehicle.html">Vehicle</a> {</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T=<span class="keywordtype">float</span>, <span class="keyword">typename</span> MotorMT = <a class="code hl_class" href="classtinyrobotics_1_1BrushedMotor.html">BrushedMotor</a>&lt;T&gt;, <span class="keyword">typename</span> ServoMT = <a class="code hl_class" href="classtinyrobotics_1_1ServoMotor.html">ServoMotor</a>&lt;T&gt;&gt;</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="keyword">class</span> <a class="code hl_class" href="classtinyrobotics_1_1MotorBoat.html">MotorBoat</a> : <span class="keyword">public</span> <a class="code hl_class" href="classtinyrobotics_1_1Vehicle.html">Vehicle</a>&lt;T&gt; {</div>
 <div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span> <span class="keyword">public</span>:</div>
 <div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>  MotorBoat() = <span class="keywordflow">default</span>;</div>
 <div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
@@ -125,7 +125,7 @@ $(function() {
 <div class="line"><span class="lineno">   47</span><span class="comment">   * @param percent Speed percentage (-100 to 100)</span></div>
 <div class="line"><span class="lineno">   48</span><span class="comment">   */</span></div>
 <div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classtinyrobotics_1_1MotorBoat.html#a1a045d56b0e9a52b45615962d9f93a07">setSpeed</a>(<span class="keywordtype">float</span> percent) {</div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    <a class="code hl_function" href="classtinyrobotics_1_1MotorBoat.html#a62e98f7d05dd30e83c8bdd4010e5a186">setThrottle</a><a class="code hl_function" href="classtinyrobotics_1_1MotorBoat.html#a62e98f7d05dd30e83c8bdd4010e5a186">(</a>percent*<a class="code hl_function" href="classtinyrobotics_1_1Vehicle.html#a7307472891b867761641aee21bb38b29">getSpeedFactor</a><a class="code hl_function" href="classtinyrobotics_1_1Vehicle.html#a7307472891b867761641aee21bb38b29">(</a><a class="code hl_function" href="classtinyrobotics_1_1Vehicle.html#a7307472891b867761641aee21bb38b29">)</a><a class="code hl_function" href="classtinyrobotics_1_1MotorBoat.html#a62e98f7d05dd30e83c8bdd4010e5a186">)</a>;</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    <a class="code hl_function" href="classtinyrobotics_1_1MotorBoat.html#a62e98f7d05dd30e83c8bdd4010e5a186">setThrottle</a><a class="code hl_function" href="classtinyrobotics_1_1MotorBoat.html#a62e98f7d05dd30e83c8bdd4010e5a186">(</a>percent*<a class="code hl_class" href="classtinyrobotics_1_1Vehicle.html">Vehicle</a>&lt;T&gt;::getSpeedFactor()<a class="code hl_function" href="classtinyrobotics_1_1MotorBoat.html#a62e98f7d05dd30e83c8bdd4010e5a186">)</a>;</div>
 <div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>  }</div>
 <div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span> </div>
 <div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>  <span class="comment">/**</span></div>
@@ -136,7 +136,7 @@ $(function() {
 <div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>    <span class="comment">// publish throttle as message for telemetry</span></div>
 <div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>    <a class="code hl_class" href="structtinyrobotics_1_1Message.html">Message</a>&lt;<span class="keywordtype">float</span>&gt; msg(MessageContent::MotorSpeed, percent, Unit::Percent);</div>
 <div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    msg.origin = MessageOrigin::Vehicle;</div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>    sendMessage(msg);</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>    Vehicle&lt;T&gt;::sendMessage(msg);</div>
 <div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>  }</div>
 <div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span> </div>
 <div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>  <span class="comment">/**</span></div>
@@ -147,7 +147,7 @@ $(function() {
 <div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>    <span class="comment">// publish rudder angle as message for telemetry</span></div>
 <div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>    <a class="code hl_class" href="structtinyrobotics_1_1Message.html">Message</a>&lt;<span class="keywordtype">float</span>&gt; msg(MessageContent::SteeringAngle, angle, Unit::AngleDegree);</div>
 <div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>    msg.origin = MessageOrigin::Vehicle;</div>
-<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>    sendMessage(msg);</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>    Vehicle&lt;T&gt;::sendMessage(msg);</div>
 <div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>  }</div>
 <div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span> </div>
 <div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>  <span class="keywordtype">void</span> setRudder(<a class="code hl_class" href="classtinyrobotics_1_1Angle.html">Angle</a> angle){</div>
@@ -157,44 +157,57 @@ $(function() {
 <div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classtinyrobotics_1_1MotorBoat.html#aaf81d3fdaf258088d7692fa70cece087">end</a>() {</div>
 <div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>    motor_.setSpeedPercent(0);  <span class="comment">// stop motor</span></div>
 <div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>    rudder_.setAngle(0);        <span class="comment">// center rudder</span></div>
-<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>  }</div>
-<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span> </div>
-<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>  <span class="keywordtype">bool</span> <a class="code hl_function" href="classtinyrobotics_1_1MotorBoat.html#aab121fc05ce8562504b0970668fe3f3f">isPinsSet</a>() <span class="keyword">const</span> { <span class="keywordflow">return</span> motor_.isPinsSet() &amp;&amp; rudder_.isPinsSet(); }</div>
-<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span> </div>
-<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>  <span class="keywordtype">bool</span> <a class="code hl_function" href="classtinyrobotics_1_1MotorBoat.html#ab78c06b51db5e63c8f7a84c54baf3842">onMessage</a>(<span class="keyword">const</span> <a class="code hl_class" href="structtinyrobotics_1_1Message.html">Message</a>&lt;<span class="keywordtype">float</span>&gt;&amp; msg) <span class="keyword">override</span> {</div>
-<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>    <span class="keywordtype">float</span> angle;</div>
-<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>    <span class="keywordflow">switch</span> (msg.content) {</div>
-<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>      <span class="keywordflow">case</span> MessageContent::Throttle:</div>
-<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>        <span class="keywordflow">if</span> (msg.unit != Unit::Percent) <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>        setThrottle(<span class="keyword">static_cast</span>&lt;<span class="keywordtype">int</span>&gt;(msg.value));</div>
-<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>      <span class="keywordflow">case</span> MessageContent::SteeringAngle:</div>
-<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>        angle = msg.value;</div>
-<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>        <span class="keywordflow">if</span> (!toAngleDegree(angle, msg.unit, angle))</div>
-<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>          <span class="keywordflow">return</span> <span class="keyword">false</span>;  <span class="comment">// Invalid unit</span></div>
-<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>        setRudder(<span class="keyword">static_cast</span>&lt;<span class="keywordtype">int</span>&gt;(msg.value));</div>
-<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>      <span class="keywordflow">case</span> MessageContent::Obstacle:</div>
-<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>        setSpeedFactor(0);</div>
-<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>      <span class="keywordflow">default</span>:</div>
-<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>        <span class="keywordflow">return</span> <span class="keyword">false</span>;  <span class="comment">// Unhandled message content</span></div>
-<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>    }</div>
-<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>  }</div>
-<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span> </div>
-<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>  std::vector&lt;MessageContent&gt; getControls() <span class="keyword">const</span> <span class="keyword">override</span> {</div>
-<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>    <span class="keywordflow">return</span> {MessageContent::Throttle, MessageContent::SteeringAngle};</div>
-<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>  }</div>
-<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span> </div>
-<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>  MotorMT&amp; getMotor() { <span class="keywordflow">return</span> motor_; }</div>
-<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>  ServoMT&amp; getServo() { <span class="keywordflow">return</span> rudder_; }</div>
-<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span> </div>
-<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span> <span class="keyword">protected</span>:</div>
-<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>  MotorMT motor_;</div>
-<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>  ServoMT rudder_;</div>
-<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>};</div>
-<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span> </div>
-<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>}  <span class="comment">// namespace tinyrobotics</span></div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>    <span class="comment">// stop all motors</span></div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>    <span class="keywordflow">for</span> (<span class="keyword">auto</span>&amp; motor : getMotors()) {</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>      motor.end();</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>    }</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span> </div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>  }</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span> </div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>  <span class="keywordtype">bool</span> <a class="code hl_function" href="classtinyrobotics_1_1MotorBoat.html#aab121fc05ce8562504b0970668fe3f3f">isPinsSet</a>() <span class="keyword">const</span> { <span class="keywordflow">return</span> motor_.isPinsSet() &amp;&amp; rudder_.isPinsSet(); }</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span> </div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>  <span class="keywordtype">bool</span> <a class="code hl_function" href="classtinyrobotics_1_1MotorBoat.html#ab78c06b51db5e63c8f7a84c54baf3842">onMessage</a>(<span class="keyword">const</span> <a class="code hl_class" href="structtinyrobotics_1_1Message.html">Message</a>&lt;<span class="keywordtype">float</span>&gt;&amp; msg) <span class="keyword">override</span> {</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>    <span class="keywordtype">float</span> angle;</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>    <span class="keywordflow">switch</span> (msg.content) {</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>      <span class="keywordflow">case</span> MessageContent::Throttle:</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>        <span class="keywordflow">if</span> (msg.unit != Unit::Percent) <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>        setThrottle(<span class="keyword">static_cast</span>&lt;<span class="keywordtype">int</span>&gt;(msg.value));</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>      <span class="keywordflow">case</span> MessageContent::SteeringAngle:</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>        angle = msg.value;</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>        <span class="keywordflow">if</span> (!toAngleDegree(angle, msg.unit, angle))</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>          <span class="keywordflow">return</span> <span class="keyword">false</span>;  <span class="comment">// Invalid unit</span></div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>        setRudder(<span class="keyword">static_cast</span>&lt;<span class="keywordtype">int</span>&gt;(msg.value));</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>      <span class="keywordflow">case</span> MessageContent::Obstacle:</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>        Vehicle&lt;T&gt;::setSpeedFactor(0);</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>      <span class="keywordflow">default</span>:</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>        <span class="keywordflow">return</span> <span class="keyword">false</span>;  <span class="comment">// Unhandled message content</span></div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>    }</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>  }</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span> </div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>  std::vector&lt;MessageContent&gt; getControls() <span class="keyword">const</span> <span class="keyword">override</span> {</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>    <span class="keywordflow">return</span> {MessageContent::Throttle, MessageContent::SteeringAngle};</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>  }</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span> </div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>  MotorMT&amp; getMotor() { <span class="keywordflow">return</span> motor_; }</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span> </div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>  ServoMT&amp; getServo() { <span class="keywordflow">return</span> rudder_; }</div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span> </div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>  std::vector&lt;IMotor&lt;T&gt;*&gt; getMotors() <span class="keyword">override</span> {</div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>    std::vector&lt;IMotor&lt;T&gt;*&gt; motors;</div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>    motors.push_back(&amp;motor_);</div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>    motors.push_back(&amp;rudder_);</div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>    <span class="keywordflow">return</span> motors;</div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>  }</div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span> </div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span> <span class="keyword">protected</span>:</div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>  MotorMT motor_;</div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>  ServoMT rudder_;</div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>};</div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span> </div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>}  <span class="comment">// namespace tinyrobotics</span></div>
 <div class="ttc" id="aclasstinyrobotics_1_1Angle_html"><div class="ttname"><a href="classtinyrobotics_1_1Angle.html">tinyrobotics::Angle</a></div><div class="ttdoc">Represents an angle with unit conversion and wrap-around support.</div><div class="ttdef"><b>Definition:</b> Angle.h:42</div></div>
 <div class="ttc" id="aclasstinyrobotics_1_1BrushedMotor_html"><div class="ttname"><a href="classtinyrobotics_1_1BrushedMotor.html">tinyrobotics::BrushedMotor</a></div><div class="ttdoc">High-level H-Bridge motor driver class for bidirectional DC motor control.</div><div class="ttdef"><b>Definition:</b> BrushedMotor.h:36</div></div>
 <div class="ttc" id="aclasstinyrobotics_1_1MotorBoat_html"><div class="ttname"><a href="classtinyrobotics_1_1MotorBoat.html">tinyrobotics::MotorBoat</a></div><div class="ttdoc">Motor boat with 1 drive motor and 1 rudder servo.</div><div class="ttdef"><b>Definition:</b> MotorBoat.h:28</div></div>
@@ -202,12 +215,11 @@ $(function() {
 <div class="ttc" id="aclasstinyrobotics_1_1MotorBoat_html_a62e98f7d05dd30e83c8bdd4010e5a186"><div class="ttname"><a href="classtinyrobotics_1_1MotorBoat.html#a62e98f7d05dd30e83c8bdd4010e5a186">tinyrobotics::MotorBoat::setThrottle</a></div><div class="ttdeci">void setThrottle(float percent)</div><div class="ttdoc">Set throttle (percent, -100 to 100). Positive = forward.</div><div class="ttdef"><b>Definition:</b> MotorBoat.h:56</div></div>
 <div class="ttc" id="aclasstinyrobotics_1_1MotorBoat_html_a71d8c1ab6db846ec90c71575f2c133aa"><div class="ttname"><a href="classtinyrobotics_1_1MotorBoat.html#a71d8c1ab6db846ec90c71575f2c133aa">tinyrobotics::MotorBoat::setRudder</a></div><div class="ttdeci">void setRudder(float angle)</div><div class="ttdoc">Set rudder angle (degrees, left positive, right negative).</div><div class="ttdef"><b>Definition:</b> MotorBoat.h:67</div></div>
 <div class="ttc" id="aclasstinyrobotics_1_1MotorBoat_html_aa8a3b4d4f1ea8db6f12225e2abddab95"><div class="ttname"><a href="classtinyrobotics_1_1MotorBoat.html#aa8a3b4d4f1ea8db6f12225e2abddab95">tinyrobotics::MotorBoat::setPins</a></div><div class="ttdeci">void setPins(int in1, int in2, int rudderPin)</div><div class="ttdoc">Set the pins for the drive motor and rudder servo.</div><div class="ttdef"><b>Definition:</b> MotorBoat.h:39</div></div>
-<div class="ttc" id="aclasstinyrobotics_1_1MotorBoat_html_aab121fc05ce8562504b0970668fe3f3f"><div class="ttname"><a href="classtinyrobotics_1_1MotorBoat.html#aab121fc05ce8562504b0970668fe3f3f">tinyrobotics::MotorBoat::isPinsSet</a></div><div class="ttdeci">bool isPinsSet() const</div><div class="ttdoc">Check if the necessary pins for the vehicle's actuators have been set (pure virtual).</div><div class="ttdef"><b>Definition:</b> MotorBoat.h:84</div></div>
+<div class="ttc" id="aclasstinyrobotics_1_1MotorBoat_html_aab121fc05ce8562504b0970668fe3f3f"><div class="ttname"><a href="classtinyrobotics_1_1MotorBoat.html#aab121fc05ce8562504b0970668fe3f3f">tinyrobotics::MotorBoat::isPinsSet</a></div><div class="ttdeci">bool isPinsSet() const</div><div class="ttdoc">Check if the necessary pins for the vehicle's actuators have been set (pure virtual).</div><div class="ttdef"><b>Definition:</b> MotorBoat.h:89</div></div>
 <div class="ttc" id="aclasstinyrobotics_1_1MotorBoat_html_aaf81d3fdaf258088d7692fa70cece087"><div class="ttname"><a href="classtinyrobotics_1_1MotorBoat.html#aaf81d3fdaf258088d7692fa70cece087">tinyrobotics::MotorBoat::end</a></div><div class="ttdeci">void end()</div><div class="ttdoc">Reset the vehicle to a safe or neutral state (pure virtual).</div><div class="ttdef"><b>Definition:</b> MotorBoat.h:79</div></div>
-<div class="ttc" id="aclasstinyrobotics_1_1MotorBoat_html_ab78c06b51db5e63c8f7a84c54baf3842"><div class="ttname"><a href="classtinyrobotics_1_1MotorBoat.html#ab78c06b51db5e63c8f7a84c54baf3842">tinyrobotics::MotorBoat::onMessage</a></div><div class="ttdeci">bool onMessage(const Message&lt; float &gt; &amp;msg) override</div><div class="ttdoc">Handle an incoming message (pure virtual).</div><div class="ttdef"><b>Definition:</b> MotorBoat.h:86</div></div>
+<div class="ttc" id="aclasstinyrobotics_1_1MotorBoat_html_ab78c06b51db5e63c8f7a84c54baf3842"><div class="ttname"><a href="classtinyrobotics_1_1MotorBoat.html#ab78c06b51db5e63c8f7a84c54baf3842">tinyrobotics::MotorBoat::onMessage</a></div><div class="ttdeci">bool onMessage(const Message&lt; float &gt; &amp;msg) override</div><div class="ttdoc">Handle an incoming message (pure virtual).</div><div class="ttdef"><b>Definition:</b> MotorBoat.h:91</div></div>
 <div class="ttc" id="aclasstinyrobotics_1_1ServoMotor_html"><div class="ttname"><a href="classtinyrobotics_1_1ServoMotor.html">tinyrobotics::ServoMotor</a></div><div class="ttdoc">High-level wrapper for Arduino Servo control (RC servo motors).</div><div class="ttdef"><b>Definition:</b> ServoMotor.h:40</div></div>
-<div class="ttc" id="aclasstinyrobotics_1_1Vehicle_html"><div class="ttname"><a href="classtinyrobotics_1_1Vehicle.html">tinyrobotics::Vehicle</a></div><div class="ttdoc">Abstract base class for all vehicle types.</div><div class="ttdef"><b>Definition:</b> Vehicle.h:24</div></div>
-<div class="ttc" id="aclasstinyrobotics_1_1Vehicle_html_a7307472891b867761641aee21bb38b29"><div class="ttname"><a href="classtinyrobotics_1_1Vehicle.html#a7307472891b867761641aee21bb38b29">tinyrobotics::Vehicle::getSpeedFactor</a></div><div class="ttdeci">float getSpeedFactor() const</div><div class="ttdoc">Get the speed factor (scaling for speed commands).</div><div class="ttdef"><b>Definition:</b> Vehicle.h:42</div></div>
+<div class="ttc" id="aclasstinyrobotics_1_1Vehicle_html"><div class="ttname"><a href="classtinyrobotics_1_1Vehicle.html">tinyrobotics::Vehicle</a></div><div class="ttdoc">Abstract base class for all vehicle types.</div><div class="ttdef"><b>Definition:</b> Vehicle.h:26</div></div>
 <div class="ttc" id="agroup__units_html_ga70ab36d1d4920fdd314279845af152c5"><div class="ttname"><a href="group__units.html#ga70ab36d1d4920fdd314279845af152c5">tinyrobotics::AngleUnit</a></div><div class="ttdeci">AngleUnit</div><div class="ttdoc">Supported angle units for conversion and representation.</div><div class="ttdef"><b>Definition:</b> Angle.h:11</div></div>
 <div class="ttc" id="astructtinyrobotics_1_1Message_html"><div class="ttname"><a href="structtinyrobotics_1_1Message.html">tinyrobotics::Message</a></div><div class="ttdoc">Generic message structure for communication, parameterized by value type.</div><div class="ttdef"><b>Definition:</b> Message.h:72</div></div>
 </div><!-- fragment --></div><!-- contents -->

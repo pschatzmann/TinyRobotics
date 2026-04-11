@@ -12,9 +12,11 @@ var searchData=
   ['imapneighbors_3c_20t_20_3e_9',['IMapNeighbors&lt; T &gt;',['../classtinyrobotics_1_1IMapNeighbors.html',1,'tinyrobotics']]],
   ['imotionstate2d_10',['IMotionState2D',['../classtinyrobotics_1_1IMotionState2D.html',1,'tinyrobotics']]],
   ['imotionstate3d_11',['IMotionState3D',['../classtinyrobotics_1_1IMotionState3D.html',1,'tinyrobotics']]],
-  ['imu2d_12',['IMU2D',['../classtinyrobotics_1_1IMU2D.html',1,'tinyrobotics']]],
-  ['imu3d_13',['IMU3D',['../classtinyrobotics_1_1IMU3D.html',1,'tinyrobotics']]],
-  ['iodometrymodel2d_14',['IOdometryModel2D',['../classtinyrobotics_1_1IOdometryModel2D.html',1,'tinyrobotics']]],
-  ['iodometrymodel3d_15',['IOdometryModel3D',['../classtinyrobotics_1_1IOdometryModel3D.html',1,'tinyrobotics']]],
-  ['ispeedsource_16',['ISpeedSource',['../classtinyrobotics_1_1ISpeedSource.html',1,'tinyrobotics']]]
+  ['imotor_12',['IMotor',['../classtinyrobotics_1_1IMotor.html',1,'tinyrobotics']]],
+  ['imotor_3c_20float_20_3e_13',['IMotor&lt; float &gt;',['../classtinyrobotics_1_1IMotor.html',1,'tinyrobotics']]],
+  ['imu2d_14',['IMU2D',['../classtinyrobotics_1_1IMU2D.html',1,'tinyrobotics']]],
+  ['imu3d_15',['IMU3D',['../classtinyrobotics_1_1IMU3D.html',1,'tinyrobotics']]],
+  ['iodometrymodel2d_16',['IOdometryModel2D',['../classtinyrobotics_1_1IOdometryModel2D.html',1,'tinyrobotics']]],
+  ['iodometrymodel3d_17',['IOdometryModel3D',['../classtinyrobotics_1_1IOdometryModel3D.html',1,'tinyrobotics']]],
+  ['ispeedsource_18',['ISpeedSource',['../classtinyrobotics_1_1ISpeedSource.html',1,'tinyrobotics']]]
 ];

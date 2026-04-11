@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.6"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>TinyRobotics: Quadrotor&lt; DriverT &gt; Class Template Reference</title>
+<title>TinyRobotics: Quadrotor&lt; T, DriverT &gt; Class Template Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -78,7 +78,7 @@ $(function() {
 <a href="#pro-methods">Protected Member Functions</a> &#124;
 <a href="#pro-attribs">Protected Attributes</a> &#124;
 <a href="classtinyrobotics_1_1Quadrotor-members.html">List of all members</a>  </div>
-  <div class="headertitle"><div class="title">Quadrotor&lt; DriverT &gt; Class Template Reference<div class="ingroups"><a class="el" href="group__main.html">TinyRobotics</a> &raquo; <a class="el" href="group__vehicles.html">Vehicles</a></div></div></div>
+  <div class="headertitle"><div class="title">Quadrotor&lt; T, DriverT &gt; Class Template Reference<div class="ingroups"><a class="el" href="group__main.html">TinyRobotics</a> &raquo; <a class="el" href="group__vehicles.html">Vehicles</a></div></div></div>
 </div><!--header-->
 <div class="contents">
 
@@ -87,27 +87,27 @@ $(function() {
 
 <p><code>#include &lt;<a class="el" href="Quadrotor_8h_source.html">Quadrotor.h</a>&gt;</code></p>
 <div class="dynheader">
-Inheritance diagram for Quadrotor&lt; DriverT &gt;:</div>
+Inheritance diagram for Quadrotor&lt; T, DriverT &gt;:</div>
 <div class="dyncontent">
-<div class="center"><img src="classtinyrobotics_1_1Quadrotor__inherit__graph.png" border="0" usemap="#aQuadrotor_3_01DriverT_01_4_inherit__map" alt="Inheritance graph"/></div>
-<map name="aQuadrotor_3_01DriverT_01_4_inherit__map" id="aQuadrotor_3_01DriverT_01_4_inherit__map">
-<area shape="rect" title="Simple quadrotor (quadcopter) model with 4&#45;motor control." alt="" coords="64,152,229,177"/>
-<area shape="rect" href="classtinyrobotics_1_1Vehicle.html" title="Abstract base class for all vehicle types." alt="" coords="112,79,181,104"/>
+<div class="center"><img src="classtinyrobotics_1_1Quadrotor__inherit__graph.png" border="0" usemap="#aQuadrotor_3_01T_00_01DriverT_01_4_inherit__map" alt="Inheritance graph"/></div>
+<map name="aQuadrotor_3_01T_00_01DriverT_01_4_inherit__map" id="aQuadrotor_3_01T_00_01DriverT_01_4_inherit__map">
+<area shape="rect" title="Simple quadrotor (quadcopter) model with 4&#45;motor control." alt="" coords="56,152,237,177"/>
+<area shape="rect" href="classtinyrobotics_1_1Vehicle.html" title="Abstract base class for all vehicle types." alt="" coords="74,79,219,104"/>
 <area shape="rect" href="classtinyrobotics_1_1MessageHandler.html" title="Interface for handling messages in the TinyRobotics framework." alt="" coords="5,5,136,31"/>
 <area shape="rect" href="classtinyrobotics_1_1MessageSource.html" title="Base class for message sources in the TinyRobotics communication framework." alt="" coords="161,5,285,31"/>
 </map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <div class="dynheader">
-Collaboration diagram for Quadrotor&lt; DriverT &gt;:</div>
+Collaboration diagram for Quadrotor&lt; T, DriverT &gt;:</div>
 <div class="dyncontent">
-<div class="center"><img src="classtinyrobotics_1_1Quadrotor__coll__graph.png" border="0" usemap="#aQuadrotor_3_01DriverT_01_4_coll__map" alt="Collaboration graph"/></div>
-<map name="aQuadrotor_3_01DriverT_01_4_coll__map" id="aQuadrotor_3_01DriverT_01_4_coll__map">
-<area shape="rect" title="Simple quadrotor (quadcopter) model with 4&#45;motor control." alt="" coords="207,168,372,193"/>
-<area shape="rect" href="classtinyrobotics_1_1Vehicle.html" title="Abstract base class for all vehicle types." alt="" coords="183,80,252,105"/>
+<div class="center"><img src="classtinyrobotics_1_1Quadrotor__coll__graph.png" border="0" usemap="#aQuadrotor_3_01T_00_01DriverT_01_4_coll__map" alt="Collaboration graph"/></div>
+<map name="aQuadrotor_3_01T_00_01DriverT_01_4_coll__map" id="aQuadrotor_3_01T_00_01DriverT_01_4_coll__map">
+<area shape="rect" title="Simple quadrotor (quadcopter) model with 4&#45;motor control." alt="" coords="200,168,381,193"/>
+<area shape="rect" href="classtinyrobotics_1_1Vehicle.html" title="Abstract base class for all vehicle types." alt="" coords="127,80,273,105"/>
 <area shape="rect" href="classtinyrobotics_1_1MessageHandler.html" title="Interface for handling messages in the TinyRobotics framework." alt="" coords="5,5,136,31"/>
 <area shape="rect" href="classtinyrobotics_1_1MessageSource.html" title="Base class for message sources in the TinyRobotics communication framework." alt="" coords="161,5,285,31"/>
-<area shape="rect" href="classtinyrobotics_1_1BrushedMotor.html" title=" " alt="" coords="277,80,449,105"/>
-<area shape="rect" href="classtinyrobotics_1_1Motor.html" title="Abstract base class for all motor driver types." alt="" coords="313,5,412,31"/>
+<area shape="rect" href="classtinyrobotics_1_1BrushedMotor.html" title=" " alt="" coords="297,80,469,105"/>
+<area shape="rect" href="classtinyrobotics_1_1IMotor.html" title=" " alt="" coords="331,5,434,31"/>
 </map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
@@ -125,8 +125,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>setPins</b> (Quadroto
 <tr class="separator:a08155589d23b2e2e088d1527f11ae8f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a81205da36e33c7091000c15288f6b165"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1Quadrotor.html#a81205da36e33c7091000c15288f6b165">setYaw</a> (float percent)</td></tr>
 <tr class="separator:a81205da36e33c7091000c15288f6b165"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aaf81d3fdaf258088d7692fa70cece087"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1Quadrotor.html#aaf81d3fdaf258088d7692fa70cece087">end</a> ()</td></tr>
-<tr class="separator:aaf81d3fdaf258088d7692fa70cece087"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a64e9fa75beda50a9e8400ee0d4e61984"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1Quadrotor.html#a64e9fa75beda50a9e8400ee0d4e61984">end</a> () override</td></tr>
+<tr class="separator:a64e9fa75beda50a9e8400ee0d4e61984"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a125c12f0c08f0128268587dc8f83274e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1Quadrotor.html#a125c12f0c08f0128268587dc8f83274e">setMotorGain</a> (QuadrotorMotorNo motor, float gain)</td></tr>
 <tr class="memdesc:a125c12f0c08f0128268587dc8f83274e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set a calibration gain for a specific motor (default 1.0).  <br /></td></tr>
 <tr class="separator:a125c12f0c08f0128268587dc8f83274e"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -141,7 +141,12 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>setPins</b> (Quadroto
 <tr class="memitem:ae3cbf1d15d52a353705de4398e9fbd86"><td class="memItemLeft" align="right" valign="top"><a id="ae3cbf1d15d52a353705de4398e9fbd86" name="ae3cbf1d15d52a353705de4398e9fbd86"></a>
 DriverT &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getMotor</b> (QuadrotorMotorNo motor)</td></tr>
 <tr class="separator:ae3cbf1d15d52a353705de4398e9fbd86"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="inherit_header pub_methods_classtinyrobotics_1_1Vehicle"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classtinyrobotics_1_1Vehicle')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classtinyrobotics_1_1Vehicle.html">Vehicle</a></td></tr>
+<tr class="memitem:a01cba01e04655c4395def636b70db6a4"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="classtinyrobotics_1_1IMotor.html">IMotor</a>&lt; T &gt; * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1Quadrotor.html#a01cba01e04655c4395def636b70db6a4">getMotors</a> () override</td></tr>
+<tr class="separator:a01cba01e04655c4395def636b70db6a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_classtinyrobotics_1_1Vehicle"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classtinyrobotics_1_1Vehicle')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classtinyrobotics_1_1Vehicle.html">Vehicle&lt; MotorT &gt;</a></td></tr>
+<tr class="memitem:a601fb7cf1fc15db50c71a826f084f934 inherit pub_methods_classtinyrobotics_1_1Vehicle"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1Vehicle.html#a601fb7cf1fc15db50c71a826f084f934">begin</a> ()</td></tr>
+<tr class="memdesc:a601fb7cf1fc15db50c71a826f084f934 inherit pub_methods_classtinyrobotics_1_1Vehicle"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize the vehicle.  <br /></td></tr>
+<tr class="separator:a601fb7cf1fc15db50c71a826f084f934 inherit pub_methods_classtinyrobotics_1_1Vehicle"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa540e86022c1f72380d1014d98f38f43 inherit pub_methods_classtinyrobotics_1_1Vehicle"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1Vehicle.html#aa540e86022c1f72380d1014d98f38f43">end</a> ()=0</td></tr>
 <tr class="memdesc:aa540e86022c1f72380d1014d98f38f43 inherit pub_methods_classtinyrobotics_1_1Vehicle"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reset the vehicle to a safe or neutral state (pure virtual).  <br /></td></tr>
 <tr class="separator:aa540e86022c1f72380d1014d98f38f43 inherit pub_methods_classtinyrobotics_1_1Vehicle"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -159,6 +164,9 @@ float&#160;</td><td class="memItemRight" valign="bottom"><b>getSpeedFactor</b> (
 void&#160;</td><td class="memItemRight" valign="bottom"><b>setSpeedFactor</b> (float factor)</td></tr>
 <tr class="memdesc:a9d7e12e385f6a4978831ff0a4a66c14d inherit pub_methods_classtinyrobotics_1_1Vehicle"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the speed factor (scaling for speed commands). <br /></td></tr>
 <tr class="separator:a9d7e12e385f6a4978831ff0a4a66c14d inherit pub_methods_classtinyrobotics_1_1Vehicle"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6d0a6fb16104dea7731a47782aa900c8 inherit pub_methods_classtinyrobotics_1_1Vehicle"><td class="memItemLeft" align="right" valign="top"><a id="a6d0a6fb16104dea7731a47782aa900c8" name="a6d0a6fb16104dea7731a47782aa900c8"></a>
+virtual std::vector&lt; <a class="el" href="classtinyrobotics_1_1IMotor.html">IMotor</a>&lt; MotorT &gt; * &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>getMotors</b> ()=0</td></tr>
+<tr class="separator:a6d0a6fb16104dea7731a47782aa900c8 inherit pub_methods_classtinyrobotics_1_1Vehicle"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classtinyrobotics_1_1MessageHandler"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classtinyrobotics_1_1MessageHandler')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classtinyrobotics_1_1MessageHandler.html">MessageHandler</a></td></tr>
 <tr class="memitem:ad4db64cdd50701eba69a319785dac84b inherit pub_methods_classtinyrobotics_1_1MessageHandler"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1MessageHandler.html#ad4db64cdd50701eba69a319785dac84b">onMessage</a> (const <a class="el" href="structtinyrobotics_1_1Message.html">Message</a>&lt; float &gt; &amp;msg)=0</td></tr>
 <tr class="memdesc:ad4db64cdd50701eba69a319785dac84b inherit pub_methods_classtinyrobotics_1_1MessageHandler"><td class="mdescLeft">&#160;</td><td class="mdescRight">Handle an incoming message (pure virtual).  <br /></td></tr>
@@ -218,7 +226,7 @@ float&#160;</td><td class="memItemRight" valign="bottom"><b>pitch_</b> = 0</td><
 <tr class="memitem:a2f9d6748030f5104b25f3aa0484b656f"><td class="memItemLeft" align="right" valign="top"><a id="a2f9d6748030f5104b25f3aa0484b656f" name="a2f9d6748030f5104b25f3aa0484b656f"></a>
 float&#160;</td><td class="memItemRight" valign="bottom"><b>yaw_</b> = 0</td></tr>
 <tr class="separator:a2f9d6748030f5104b25f3aa0484b656f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="inherit_header pro_attribs_classtinyrobotics_1_1Vehicle"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_classtinyrobotics_1_1Vehicle')"><img src="closed.png" alt="-"/>&#160;Protected Attributes inherited from <a class="el" href="classtinyrobotics_1_1Vehicle.html">Vehicle</a></td></tr>
+<tr class="inherit_header pro_attribs_classtinyrobotics_1_1Vehicle"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_classtinyrobotics_1_1Vehicle')"><img src="closed.png" alt="-"/>&#160;Protected Attributes inherited from <a class="el" href="classtinyrobotics_1_1Vehicle.html">Vehicle&lt; MotorT &gt;</a></td></tr>
 <tr class="memitem:a0ccde9cc3dd4315f6151731264a0639f inherit pro_attribs_classtinyrobotics_1_1Vehicle"><td class="memItemLeft" align="right" valign="top"><a id="a0ccde9cc3dd4315f6151731264a0639f" name="a0ccde9cc3dd4315f6151731264a0639f"></a>
 float&#160;</td><td class="memItemRight" valign="bottom"><b>speedFactor_</b> = 1.0f</td></tr>
 <tr class="separator:a0ccde9cc3dd4315f6151731264a0639f inherit pro_attribs_classtinyrobotics_1_1Vehicle"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -228,8 +236,8 @@ std::vector&lt; <a class="el" href="structtinyrobotics_1_1MessageSource_1_1Messa
 <tr class="separator:a61506a2328621ddeb80f3c83146db0d8 inherit pro_attribs_classtinyrobotics_1_1MessageSource"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><div class="compoundTemplParams">template&lt;typename DriverT = BrushedMotor&lt;float&gt;&gt;<br />
-class tinyrobotics::Quadrotor&lt; DriverT &gt;</div><p>Simple quadrotor (quadcopter) model with 4-motor control. </p>
+<div class="textblock"><div class="compoundTemplParams">template&lt;typename T = float, typename DriverT = BrushedMotor&lt;T&gt;&gt;<br />
+class tinyrobotics::Quadrotor&lt; T, DriverT &gt;</div><p>Simple quadrotor (quadcopter) model with 4-motor control. </p>
 <p>This class abstracts the control of a basic quadcopter:</p><ul>
 <li>4 motors (front left, front right, rear left, rear right) via HBridge</li>
 <li>Throttle, roll, pitch, and yaw control</li>
@@ -250,8 +258,8 @@ class tinyrobotics::Quadrotor&lt; DriverT &gt;</div><p>Simple quadrotor (quadcop
 <div class="ttc" id="aclasstinyrobotics_1_1Quadrotor_html_a81205da36e33c7091000c15288f6b165"><div class="ttname"><a href="classtinyrobotics_1_1Quadrotor.html#a81205da36e33c7091000c15288f6b165">tinyrobotics::Quadrotor::setYaw</a></div><div class="ttdeci">void setYaw(float percent)</div><div class="ttdef"><b>Definition:</b> Quadrotor.h:73</div></div>
 <div class="ttc" id="aclasstinyrobotics_1_1Quadrotor_html_ad91d41352cda006f6554507bdd3c0a5c"><div class="ttname"><a href="classtinyrobotics_1_1Quadrotor.html#ad91d41352cda006f6554507bdd3c0a5c">tinyrobotics::Quadrotor::setPins</a></div><div class="ttdeci">void setPins(QuadrotorMotorNo motor, int in1, int in2)</div><div class="ttdoc">Set the pins for a specific motor (0=front left, 1=front right, 2=rear left, 3=rear right)</div><div class="ttdef"><b>Definition:</b> Quadrotor.h:49</div></div>
 </div><!-- fragment --> </div><h2 class="groupheader">Member Function Documentation</h2>
-<a id="aaf81d3fdaf258088d7692fa70cece087" name="aaf81d3fdaf258088d7692fa70cece087"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aaf81d3fdaf258088d7692fa70cece087">&#9670;&#160;</a></span>end()</h2>
+<a id="a64e9fa75beda50a9e8400ee0d4e61984" name="a64e9fa75beda50a9e8400ee0d4e61984"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a64e9fa75beda50a9e8400ee0d4e61984">&#9670;&#160;</a></span>end()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -268,13 +276,13 @@ class tinyrobotics::Quadrotor&lt; DriverT &gt;</div><p>Simple quadrotor (quadcop
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 <p>Stop all motors and reset state </p>
 
-<p>Implements <a class="el" href="classtinyrobotics_1_1Vehicle.html#aa540e86022c1f72380d1014d98f38f43">Vehicle</a>.</p>
+<p>Implements <a class="el" href="classtinyrobotics_1_1Vehicle.html#aa540e86022c1f72380d1014d98f38f43">Vehicle&lt; MotorT &gt;</a>.</p>
 
 </div>
 </div>
@@ -301,7 +309,34 @@ class tinyrobotics::Quadrotor&lt; DriverT &gt;</div><p>Simple quadrotor (quadcop
 </table>
 </div><div class="memdoc">
 
-<p>Implements <a class="el" href="classtinyrobotics_1_1Vehicle.html">Vehicle</a>.</p>
+<p>Implements <a class="el" href="classtinyrobotics_1_1Vehicle.html">Vehicle&lt; MotorT &gt;</a>.</p>
+
+</div>
+</div>
+<a id="a01cba01e04655c4395def636b70db6a4" name="a01cba01e04655c4395def636b70db6a4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a01cba01e04655c4395def636b70db6a4">&#9670;&#160;</a></span>getMotors()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt; <a class="el" href="classtinyrobotics_1_1IMotor.html">IMotor</a>&lt; T &gt; * &gt; getMotors </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="classtinyrobotics_1_1Vehicle.html">Vehicle&lt; MotorT &gt;</a>.</p>
 
 </div>
 </div>
@@ -330,7 +365,7 @@ class tinyrobotics::Quadrotor&lt; DriverT &gt;</div><p>Simple quadrotor (quadcop
 
 <p>Check if the necessary pins for the vehicle's actuators have been set (pure virtual). </p>
 
-<p>Implements <a class="el" href="classtinyrobotics_1_1Vehicle.html#ae86cd58c8b7fe96c6d1ca5dd3c2834da">Vehicle</a>.</p>
+<p>Implements <a class="el" href="classtinyrobotics_1_1Vehicle.html#ae86cd58c8b7fe96c6d1ca5dd3c2834da">Vehicle&lt; MotorT &gt;</a>.</p>
 
 </div>
 </div>
@@ -408,7 +443,7 @@ class tinyrobotics::Quadrotor&lt; DriverT &gt;</div><p>Simple quadrotor (quadcop
 <p>Set a calibration gain for a specific motor (default 1.0). </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">motor</td><td><a class="el" href="classtinyrobotics_1_1Motor.html" title="Abstract base class for all motor driver types.">Motor</a> index (QuadrotorMotorNo) </td></tr>
+    <tr><td class="paramname">motor</td><td><a class="el" href="classMotor.html" title="Abstract base class for all motor driver types.">Motor</a> index (QuadrotorMotorNo) </td></tr>
     <tr><td class="paramname">gain</td><td>Gain factor (e.g., 1.05 for +5% output) </td></tr>
   </table>
   </dd>

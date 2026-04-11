@@ -1,3 +1,10 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$classtinyrobotics_1_1LockGuard.html" title="RAII implementaion using a Mutex: Only a few microcontrollers provide lock guards,..." alt="" coords="5,5,96,31"/>
+<area shape="rect" id="node1" href="$classtinyrobotics_1_1IMotor.html" title=" " alt="" coords="5,153,108,179"/>
+<area shape="rect" id="node2" href="$classtinyrobotics_1_1BrushedMotor.html" title=" " alt="" coords="156,5,328,31"/>
+<area shape="rect" id="node3" href="$classtinyrobotics_1_1ServoMotor.html" title=" " alt="" coords="164,55,320,80"/>
+<area shape="rect" id="node4" href="$classtinyrobotics_1_1BrushedMotor.html" title="High&#45;level H&#45;Bridge motor driver class for bidirectional DC motor control." alt="" coords="167,104,317,129"/>
+<area shape="rect" id="node5" href="$classtinyrobotics_1_1BrushlessMotor.html" title="Simple brushless DC motor (ESC) driver using Servo library for Arduino/ESP32." alt="" coords="161,153,323,179"/>
+<area shape="rect" id="node6" href="$classtinyrobotics_1_1GenericMotor.html" title="Motor abstraction for integrating external/custom motor drivers using callbacks." alt="" coords="168,203,316,228"/>
+<area shape="rect" id="node7" href="$classtinyrobotics_1_1ServoMotor.html" title="High&#45;level wrapper for Arduino Servo control (RC servo motors)." alt="" coords="175,252,309,277"/>
+<area shape="rect" id="node8" href="$classtinyrobotics_1_1StepperMotor.html" title="Stepper motor driver using FastAccelStepper for Arduino." alt="" coords="168,301,316,327"/>
 </map>

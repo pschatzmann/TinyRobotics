@@ -1,4 +1,4 @@
 <map id="ServoMotor&lt; T &gt;" name="ServoMotor&lt; T &gt;">
 <area shape="rect" id="node1" title="High&#45;level wrapper for Arduino Servo control (RC servo motors)." alt="" coords="5,79,140,104"/>
-<area shape="rect" id="node2" href="$classtinyrobotics_1_1Motor.html" title="Abstract base class for all motor driver types." alt="" coords="23,5,122,31"/>
+<area shape="rect" id="node2" href="$classtinyrobotics_1_1IMotor.html" title=" " alt="" coords="21,5,124,31"/>
 </map>
