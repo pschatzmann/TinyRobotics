@@ -104,6 +104,7 @@ class Angle {
     } else {
       angle /= scalar;
     }
+    normalize();
     return *this;
   }
 
@@ -111,7 +112,7 @@ class Angle {
   float angle = 0.0f;
   AngleUnit unit = AngleUnit::DEG;
 
-  void normalize() {
+  inline void normalize() {
     switch (unit) {
       case AngleUnit::DEG:
         angle = normalizeAngleDeg(angle);

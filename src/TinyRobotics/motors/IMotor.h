@@ -1,10 +1,11 @@
 #pragma once
+
 #include "TinyRobotics/utils/Config.h"
 
 namespace tinyrobotics {
 
 /**
- * @class Motor
+ * @class IMotor
  * @ingroup motors
  * @brief Abstract base class for all motor driver types.
  *
