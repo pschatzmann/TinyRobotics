@@ -9,11 +9,11 @@ TinyRobotics is a modular, header-only C++ library for Arduino and embedded syst
 
 The following __base functionality__ is automatically available:
 
-- [**Coordinate Systems**](src/TinyRobotics/coordinates/README.md): 2D/3D coordinates, GPS coordinates, NMEA sentence parsing, local cartesian frames, and hierarchical frame management (SE(2)/SE(3)).
-- [**Path Planning**](src/TinyRobotics/planning/README.md): Generic A* and Dijkstra algorithm, path representation, and planning utilities for navigation and obstacle avoidance.
-- [**Mapping**](src/TinyRobotics/maps/README.md): Grid maps (occupancy/value), path maps (graph-based), and 3D point clouds for environment modeling and SLAM.
-- [**Control**](src/TinyRobotics/control/README.md): Core control algorithms including PID controllers, Kalman filters, moving averages, schedulers, and the MotionController for path following and vehicle control.
 - [**Units**](src/TinyRobotics/units/README.md): Strongly-typed units for distance, time, speed, and angle to ensure type safety and clarity.
+- [**Coordinate Systems**](src/TinyRobotics/coordinates/README.md): 2D/3D coordinates, GPS coordinates, NMEA sentence parsing, local cartesian frames, and hierarchical frame management (SE(2)/SE(3)).
+- [**Mapping**](src/TinyRobotics/maps/README.md): Grid maps (occupancy/value), path maps (graph-based), and 3D point clouds for environment modeling and SLAM.
+- [**Path Planning**](src/TinyRobotics/planning/README.md): Generic A* and Dijkstra algorithm, path representation, and planning utilities for navigation and obstacle avoidance.
+- [**Control**](src/TinyRobotics/control/README.md): Core control algorithms including PID controllers, Kalman filters, moving averages, schedulers, and the MotionController for path following and vehicle control.
 - [**Sensors**](src/TinyRobotics/sensors/README.md): RangeSensor abstraction, Camera scenarios and WheelEncoder
 - [**Odometry**](src/TinyRobotics/odometry/README.md): 2D and 3D odometry modules for incremental position, orientation, and distance estimation. Provides robust pose tracking for mobile robots and vehicles.
 - [**IMU**](src/TinyRobotics/imu/README.md): 2D and 3D Inertial Measurement Unit (IMU) abstraction for embedded robotics. Provides real-time access to orientation, acceleration, and angular velocity. Integrates seamlessly with control, navigation, and SLAM modules for feedback and state estimation.
