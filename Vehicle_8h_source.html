@@ -114,31 +114,26 @@ $(function() {
 <div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span> </div>
 <div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>  <span class="keyword">virtual</span> std::vector&lt;MessageContent&gt; getControls() <span class="keyword">const</span> = 0;</div>
 <div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span> </div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>  <span class="keywordtype">bool</span> isValidMessageSource(MessageOrigin origin) <span class="keyword">const</span> {</div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    <span class="keywordflow">return</span> origin == MessageOrigin::RemoteControl ||</div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>           origin == MessageOrigin::Autonomy;</div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>  }</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>  <span class="comment">/**</span></div>
+<div class="line"><span class="lineno">   40</span><span class="comment">   * @brief Get the speed factor (scaling for speed commands).</span></div>
+<div class="line"><span class="lineno">   41</span><span class="comment">   */</span></div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>  <span class="keywordtype">float</span> <a class="code hl_function" href="classtinyrobotics_1_1Vehicle.html#a7307472891b867761641aee21bb38b29">getSpeedFactor</a>() <span class="keyword">const</span> { <span class="keywordflow">return</span> speedFactor_; }</div>
 <div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span> </div>
 <div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>  <span class="comment">/**</span></div>
-<div class="line"><span class="lineno">   45</span><span class="comment">   * @brief Get the speed factor (scaling for speed commands).</span></div>
+<div class="line"><span class="lineno">   45</span><span class="comment">   * @brief Set the speed factor (scaling for speed commands).</span></div>
 <div class="line"><span class="lineno">   46</span><span class="comment">   */</span></div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>  <span class="keywordtype">float</span> <a class="code hl_function" href="classtinyrobotics_1_1Vehicle.html#a7307472891b867761641aee21bb38b29">getSpeedFactor</a>() <span class="keyword">const</span> { <span class="keywordflow">return</span> speedFactor_; }</div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span> </div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>  <span class="comment">/**</span></div>
-<div class="line"><span class="lineno">   50</span><span class="comment">   * @brief Set the speed factor (scaling for speed commands).</span></div>
-<div class="line"><span class="lineno">   51</span><span class="comment">   */</span></div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classtinyrobotics_1_1Vehicle.html#a9d7e12e385f6a4978831ff0a4a66c14d">setSpeedFactor</a>(<span class="keywordtype">float</span> factor) { speedFactor_ = factor; }</div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span> <span class="keyword">protected</span>:</div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>  <span class="keywordtype">float</span> speedFactor_ = 1.0f;</div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span> </div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>};</div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span> </div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>}  <span class="comment">// namespace tinyrobotics</span></div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classtinyrobotics_1_1Vehicle.html#a9d7e12e385f6a4978831ff0a4a66c14d">setSpeedFactor</a>(<span class="keywordtype">float</span> factor) { speedFactor_ = factor; }</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span> <span class="keyword">protected</span>:</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>  <span class="keywordtype">float</span> speedFactor_ = 1.0f;</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span> </div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>};</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span> </div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>}  <span class="comment">// namespace tinyrobotics</span></div>
 <div class="ttc" id="aclasstinyrobotics_1_1MessageHandler_html"><div class="ttname"><a href="classtinyrobotics_1_1MessageHandler.html">tinyrobotics::MessageHandler</a></div><div class="ttdoc">Interface for handling messages in the TinyRobotics framework.</div><div class="ttdef"><b>Definition:</b> MessageHandler.h:18</div></div>
 <div class="ttc" id="aclasstinyrobotics_1_1MessageSource_html"><div class="ttname"><a href="classtinyrobotics_1_1MessageSource.html">tinyrobotics::MessageSource</a></div><div class="ttdoc">Base class for message sources in the TinyRobotics communication framework.</div><div class="ttdef"><b>Definition:</b> MessageSource.h:35</div></div>
 <div class="ttc" id="aclasstinyrobotics_1_1Vehicle_html"><div class="ttname"><a href="classtinyrobotics_1_1Vehicle.html">tinyrobotics::Vehicle</a></div><div class="ttdoc">Abstract base class for all vehicle types.</div><div class="ttdef"><b>Definition:</b> Vehicle.h:24</div></div>
-<div class="ttc" id="aclasstinyrobotics_1_1Vehicle_html_a7307472891b867761641aee21bb38b29"><div class="ttname"><a href="classtinyrobotics_1_1Vehicle.html#a7307472891b867761641aee21bb38b29">tinyrobotics::Vehicle::getSpeedFactor</a></div><div class="ttdeci">float getSpeedFactor() const</div><div class="ttdoc">Get the speed factor (scaling for speed commands).</div><div class="ttdef"><b>Definition:</b> Vehicle.h:47</div></div>
-<div class="ttc" id="aclasstinyrobotics_1_1Vehicle_html_a9d7e12e385f6a4978831ff0a4a66c14d"><div class="ttname"><a href="classtinyrobotics_1_1Vehicle.html#a9d7e12e385f6a4978831ff0a4a66c14d">tinyrobotics::Vehicle::setSpeedFactor</a></div><div class="ttdeci">void setSpeedFactor(float factor)</div><div class="ttdoc">Set the speed factor (scaling for speed commands).</div><div class="ttdef"><b>Definition:</b> Vehicle.h:52</div></div>
+<div class="ttc" id="aclasstinyrobotics_1_1Vehicle_html_a7307472891b867761641aee21bb38b29"><div class="ttname"><a href="classtinyrobotics_1_1Vehicle.html#a7307472891b867761641aee21bb38b29">tinyrobotics::Vehicle::getSpeedFactor</a></div><div class="ttdeci">float getSpeedFactor() const</div><div class="ttdoc">Get the speed factor (scaling for speed commands).</div><div class="ttdef"><b>Definition:</b> Vehicle.h:42</div></div>
+<div class="ttc" id="aclasstinyrobotics_1_1Vehicle_html_a9d7e12e385f6a4978831ff0a4a66c14d"><div class="ttname"><a href="classtinyrobotics_1_1Vehicle.html#a9d7e12e385f6a4978831ff0a4a66c14d">tinyrobotics::Vehicle::setSpeedFactor</a></div><div class="ttdeci">void setSpeedFactor(float factor)</div><div class="ttdoc">Set the speed factor (scaling for speed commands).</div><div class="ttdef"><b>Definition:</b> Vehicle.h:47</div></div>
 <div class="ttc" id="aclasstinyrobotics_1_1Vehicle_html_aa540e86022c1f72380d1014d98f38f43"><div class="ttname"><a href="classtinyrobotics_1_1Vehicle.html#aa540e86022c1f72380d1014d98f38f43">tinyrobotics::Vehicle::end</a></div><div class="ttdeci">virtual void end()=0</div><div class="ttdoc">Reset the vehicle to a safe or neutral state (pure virtual).</div></div>
 <div class="ttc" id="aclasstinyrobotics_1_1Vehicle_html_ae86cd58c8b7fe96c6d1ca5dd3c2834da"><div class="ttname"><a href="classtinyrobotics_1_1Vehicle.html#ae86cd58c8b7fe96c6d1ca5dd3c2834da">tinyrobotics::Vehicle::isPinsSet</a></div><div class="ttdeci">virtual bool isPinsSet() const =0</div><div class="ttdoc">Check if the necessary pins for the vehicle's actuators have been set (pure virtual).</div></div>
 </div><!-- fragment --></div><!-- contents -->
