@@ -104,8 +104,6 @@ class Quadrotor : public Vehicle {
 
   bool onMessage(const Message<float>& msg) override {
     float angle;
-    if (msg.origin != MessageOrigin::RemoteControl)
-      return false;  // Only handle RC messages
     switch (msg.content) {
       case MessageContent::Throttle:
         if (msg.unit != Unit::Percent) return false;

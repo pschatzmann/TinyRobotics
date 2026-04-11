@@ -36,11 +36,6 @@ class Vehicle : public MessageHandler, public MessageSource {
 
   virtual std::vector<MessageContent> getControls() const = 0;
 
-  bool isValidMessageSource(MessageOrigin origin) const {
-    return origin == MessageOrigin::RemoteControl ||
-           origin == MessageOrigin::Autonomy;
-  }
-
   /**
    * @brief Get the speed factor (scaling for speed commands).
    */

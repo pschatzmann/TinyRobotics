@@ -101,7 +101,6 @@ class CarDifferential : public Vehicle {
   }
 
   bool onMessage(const Message<float>& msg) override {
-    if (!isValidMessageSource(msg.origin)) return false;
     switch (msg.content) {
       case MessageContent::Throttle:
         if (msg.unit != Unit::Percent) return false;
@@ -112,6 +111,9 @@ class CarDifferential : public Vehicle {
         if (!toAngleDegree(angle, msg.unit, angle))
           return false;  // Invalid unit
         this->setSteeringAgle(angle);
+        return true;
+      case MessageContent::Obstacle:
+        setSpeedFactor(0); 
         return true;
       default:
         return false;  // Unhandled message content

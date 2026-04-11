@@ -155,7 +155,6 @@ class AirPlane : public Vehicle {
 
   bool onMessage(const Message<float>& msg) override {
     float angle;
-    if (!isValidMessageSource(msg.origin)) return false;
     switch (msg.content) {
       case MessageContent::Throttle:
         if (msg.unit != Unit::Percent) return false;

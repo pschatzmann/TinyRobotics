@@ -86,7 +86,6 @@ class CarAckerman : public Vehicle {
 
   bool onMessage(const Message<float>& msg) override {
     float angle;
-    if (!isValidMessageSource(msg.origin)) return false;
     switch (msg.content) {
       case MessageContent::Throttle:
         if (msg.unit != Unit::Percent) return false;
@@ -97,6 +96,9 @@ class CarAckerman : public Vehicle {
         if (!toAngleDegree(angle, msg.unit, angle))
           return false;  // Invalid unit
         setSteeringAngle(angle);
+        return true;
+      case MessageContent::Obstacle:
+        setSpeedFactor(0); 
         return true;
       default:
         return false;  // Unhandled message content

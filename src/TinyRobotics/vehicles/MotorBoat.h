@@ -85,7 +85,6 @@ class MotorBoat : public Vehicle {
 
   bool onMessage(const Message<float>& msg) override {
     float angle;
-    if (!isValidMessageSource(msg.origin)) return false;  
     switch (msg.content) {
       case MessageContent::Throttle:
         if (msg.unit != Unit::Percent) return false;
@@ -96,6 +95,9 @@ class MotorBoat : public Vehicle {
         if (!toAngleDegree(angle, msg.unit, angle))
           return false;  // Invalid unit
         setRudder(static_cast<int>(msg.value));
+        return true;
+      case MessageContent::Obstacle:
+        setSpeedFactor(0); 
         return true;
       default:
         return false;  // Unhandled message content

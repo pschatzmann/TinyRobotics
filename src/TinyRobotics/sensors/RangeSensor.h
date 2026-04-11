@@ -98,7 +98,6 @@ class RangeSensor : public MessageSource {
   void end() { is_active_ = false; }
 
   /// Defines the angle to the obstacle in degrees: 0 means forward
-  /// Set the angle to the obstacle in degrees (0 = forward)
   void setObstacleDirectionDegree(float deg) { obstacle_deg_ = deg; }
 
   /// Set the obstacle direction using an Angle object
@@ -108,13 +107,10 @@ class RangeSensor : public MessageSource {
 
   /// Get the angle of the obstacle relative to the sensor's forward direction
   /// in degrees.
-  /// Get the angle of the obstacle relative to the sensor's forward direction
-  /// in degrees
   float getObstacleDirectionDegree() const { return obstacle_deg_; }
 
   /// Set the distance measured by the sensor. Make sure that the
   /// ObstacleDegree is defined
-  /// Set the distance measured by the sensor (using Distance type)
   bool setObstacleDistance(Distance dist) {
     return setObstacleDistance(dist.getValue(DistanceUnit::M));
   }
@@ -175,13 +171,11 @@ class RangeSensor : public MessageSource {
   float getObstacleDistance() const { return distanceM; }
 
   /// Convenience method to set both the obstacle bearing and distance at once.
-  /// Set both the obstacle bearing and distance at once
   void setObstacle(float degree, float distance) {
     setObstacleDirectionDegree(degree);
     setObstacleDistance(distance);
   }
 
-  /// Define the lidar to world transform
   /// Set the sensor-to-world transform
   void setTransform(const Transform2D& tf) {
     lidar_to_world_tf = tf;
@@ -205,14 +199,11 @@ class RangeSensor : public MessageSource {
   }
 
   /// Check if the sensor reading is valid (distance > 0)
-  /// Return true if the sensor reading is valid (distance > 0)
   operator bool() const { return distanceM > 0; }  // Valid if distance is set
 
   /// Return true if there is an obstacle detected (distance > 0)
-  /// Return true if there is an obstacle detected (distance > 0)
   bool hasObstacle() const { return distanceM > 0; }
 
-  /// Compute a speed factor (0.0 to 1.0) based on the distance to the obstacle
   /// Compute a speed factor (0.0 to 1.0) based on the distance to the obstacle
   float getSpeedFactor(Distance breakingDistance) const {
     if (distanceM <= 0) return 1.0f;  // No obstacle, full speed
