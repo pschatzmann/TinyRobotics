@@ -7,5 +7,6 @@ var searchData=
   ['vehicles_4',['Vehicles',['../group__vehicles.html',1,'']]],
   ['vehicles_20module_5',['Vehicles Module',['../md_src_TinyRobotics_vehicles_README.html',1,'']]],
   ['velocity3d_6',['Velocity3D',['../classtinyrobotics_1_1Velocity3D.html',1,'tinyrobotics']]],
-  ['vz_7',['vz',['../structtinyrobotics_1_1Fusion3D_1_1State3D.html#a2dc1a0fcac235a430dd8c493502e09e1',1,'tinyrobotics::Fusion3D::State3D']]]
+  ['velocityunit_7',['VelocityUnit',['../group__units.html#ga06af390d312039c70363a84cb1d358fa',1,'tinyrobotics']]],
+  ['vz_8',['vz',['../structtinyrobotics_1_1Fusion3D_1_1State3D.html#a2dc1a0fcac235a430dd8c493502e09e1',1,'tinyrobotics::Fusion3D::State3D']]]
 ];
