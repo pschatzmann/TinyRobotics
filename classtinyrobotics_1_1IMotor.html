@@ -77,15 +77,20 @@ $(function() {
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pro-attribs">Protected Attributes</a> &#124;
 <a href="classtinyrobotics_1_1IMotor-members.html">List of all members</a>  </div>
-  <div class="headertitle"><div class="title">IMotor&lt; T &gt; Class Template Reference<span class="mlabels"><span class="mlabel">abstract</span></span></div></div>
+  <div class="headertitle"><div class="title">IMotor&lt; T &gt; Class Template Reference<span class="mlabels"><span class="mlabel">abstract</span></span><div class="ingroups"><a class="el" href="group__main.html">TinyRobotics</a> &raquo; <a class="el" href="group__motors.html">Motors</a></div></div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Abstract base class for all motor driver types.  
+ <a href="classtinyrobotics_1_1IMotor.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="IMotor_8h_source.html">IMotor.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for IMotor&lt; T &gt;:</div>
 <div class="dyncontent">
 <div class="center"><img src="classtinyrobotics_1_1IMotor__inherit__graph.png" border="0" usemap="#aIMotor_3_01T_01_4_inherit__map" alt="Inheritance graph"/></div>
 <map name="aIMotor_3_01T_01_4_inherit__map" id="aIMotor_3_01T_01_4_inherit__map">
-<area shape="rect" title=" " alt="" coords="5,153,108,179"/>
+<area shape="rect" title="Abstract base class for all motor driver types." alt="" coords="5,153,108,179"/>
 <area shape="rect" href="classtinyrobotics_1_1BrushedMotor.html" title=" " alt="" coords="156,5,328,31"/>
 <area shape="rect" href="classtinyrobotics_1_1ServoMotor.html" title=" " alt="" coords="164,55,320,80"/>
 <area shape="rect" href="classtinyrobotics_1_1BrushedMotor.html" title="High&#45;level H&#45;Bridge motor driver class for bidirectional DC motor control." alt="" coords="167,104,317,129"/>
@@ -121,7 +126,15 @@ Protected Attributes</h2></td></tr>
 uint8_t&#160;</td><td class="memItemRight" valign="bottom"><b>id</b> = 0</td></tr>
 <tr class="separator:a1e6927fa1486224044e568f9c370519b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Member Function Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><div class="compoundTemplParams">template&lt;typename T = float&gt;<br />
+class tinyrobotics::IMotor&lt; T &gt;</div><p>Abstract base class for all motor driver types. </p>
+<p>The Motor class defines a common interface for all motor drivers in the library. It enforces the implementation of:</p><ul>
+<li>end(): to safely stop or release the motor hardware</li>
+<li>isPinsSet(): to check if the required pins have been configured</li>
+</ul>
+<p>All specific motor driver classes (e.g., HBridge, <a class="el" href="classtinyrobotics_1_1ServoMotor.html" title="High-level wrapper for Arduino Servo control (RC servo motors).">ServoMotor</a>) should inherit from Motor. </p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="ae8a0d9ca63f8bb3de100e347c3f3bca4" name="ae8a0d9ca63f8bb3de100e347c3f3bca4"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ae8a0d9ca63f8bb3de100e347c3f3bca4">&#9670;&#160;</a></span>begin()</h2>
 

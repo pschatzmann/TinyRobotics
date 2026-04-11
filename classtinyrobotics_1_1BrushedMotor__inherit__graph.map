@@ -1,4 +1,4 @@
 <map id="BrushedMotor&lt; T &gt;" name="BrushedMotor&lt; T &gt;">
 <area shape="rect" id="node1" title="High&#45;level H&#45;Bridge motor driver class for bidirectional DC motor control." alt="" coords="5,79,156,104"/>
-<area shape="rect" id="node2" href="$classtinyrobotics_1_1IMotor.html" title=" " alt="" coords="29,5,132,31"/>
+<area shape="rect" id="node2" href="$classtinyrobotics_1_1IMotor.html" title="Abstract base class for all motor driver types." alt="" coords="29,5,132,31"/>
 </map>
