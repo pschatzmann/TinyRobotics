@@ -101,8 +101,7 @@ void setup() {
   car.subscribe(printer);
 
   // Initialize odometry
-  odom.begin(Coordinate<DistanceM>(0, 0), 0.0f,
-             Distance(wheelbase, DistanceUnit::M));
+  odom.begin(Coordinate<DistanceM>(0, 0), 0.0f);
 
   // publish odometry
   scheduler.begin(10, sendOdometryToROS);

@@ -162,10 +162,6 @@ class RangeSensor : public MessageSource {
     alertDistanceM_ = dist.getValue(DistanceUnit::M);
   }
 
- protected:
-  float alertAngleDeg_ = 5;      // Default to 5 degrees
-  float alertDistanceM_ = 1.0f;  // Default to 1 meter
-
   /// Provide the distance measured by the sensor. In a real implementation,
   /// this would
   float getObstacleDistance() const { return distanceM; }
@@ -220,6 +216,9 @@ class RangeSensor : public MessageSource {
   Transform2D lidar_to_world_tf;
   bool has_transform_ = false;
   bool is_active_ = false;
+  float alertAngleDeg_ = 5;      // Default to 5 degrees
+  float alertDistanceM_ = 1.0f;  // Default to 1 meter
+
 };
 
 }  // namespace tinyrobotics

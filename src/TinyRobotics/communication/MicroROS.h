@@ -195,6 +195,11 @@ class MicroROS : public MessageHandler {
   rcl_publisher_t publisher;
   geometry_msgs__msg__Twist cmd_msg;
 
+  bool onMessage(const Message<float>& msg) override {
+    // This can be used to handle custom messages if needed
+    return false;  // Not handled here
+  }
+
   bool onMessage(const Message<MotionState3D>& msg) override {
     sendOdometry(msg.value);
     return true;
