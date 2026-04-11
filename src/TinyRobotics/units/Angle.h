@@ -47,6 +47,7 @@ class Angle {
   void setValue(float newAngle, AngleUnit newUnit) {
     angle = newAngle;
     unit = newUnit;
+    normalize();
   }
 
   float getValue(AngleUnit desiredUnit) const {
@@ -62,9 +63,7 @@ class Angle {
     return -1;  // Invalid conversion
   }
 
-  Angle operator*(float scalar) const {
-    return Angle(angle * scalar, unit);
-  }
+  Angle operator*(float scalar) const { return Angle(angle * scalar, unit); }
 
   Angle operator/(float scalar) const {
     if (scalar == 0) return Angle(0, unit);
@@ -95,6 +94,7 @@ class Angle {
 
   Angle& operator*=(float scalar) {
     angle *= scalar;
+    normalize();
     return *this;
   }
 
@@ -111,9 +111,7 @@ class Angle {
   float angle = 0.0f;
   AngleUnit unit = AngleUnit::DEG;
 
-  void add(Angle other) {
-    float otherAngle = other.getValue(unit);
-    angle += otherAngle;
+  void normalize() {
     switch (unit) {
       case AngleUnit::DEG:
         angle = normalizeAngleDeg(angle);
@@ -122,22 +120,19 @@ class Angle {
         angle = normalizeAngleRad(angle);
         break;
     }
+  }
+
+  void add(Angle other) {
+    float otherAngle = other.getValue(unit);
+    angle += otherAngle;
+    normalize();
   }
 
   void subtract(Angle other) {
     float otherAngle = other.getValue(unit);
     angle -= otherAngle;
-    switch (unit) {
-      case AngleUnit::DEG:
-        angle = normalizeAngleDeg(angle);
-        break;
-      case AngleUnit::RAD:
-        angle = normalizeAngleRad(angle);
-        break;
-    }
+    normalize();
   }
-
-
 };
 
 }  // namespace tinyrobotics
