@@ -1,5 +1,5 @@
 #pragma once
-#include "Motor.h"
+#include "IMotor.h"
 #include "stdint.h"
 #include "assert.h"
 
@@ -42,7 +42,7 @@ namespace tinyrobotics {
  */
 
 template <typename T = float>
-class GenericMotor : public Motor<T> {
+class GenericMotor : public IMotor<T> {
  public:
   GenericMotor() = default;
   GenericMotor(uint8_t id, void* driver = nullptr) {

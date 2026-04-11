@@ -8,7 +8,7 @@
 #include <Servo.h>
 #endif
 
-#include "Motor.h"
+#include "IMotor.h"
 
 namespace tinyrobotics {
 
@@ -45,7 +45,7 @@ namespace tinyrobotics {
  */
 
 template <typename T = float>
-class BrushlessMotor : public Motor<T> {
+class BrushlessMotor : public IMotor<T> {
  public:
   BrushlessMotor(uint8_t id = 0) { this->setID(id); }
 

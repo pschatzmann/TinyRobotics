@@ -39,6 +39,8 @@ void setup() {
 
   // Forward data to ip address on port 9999
   udpStream.begin(ip, port);
+  car.begin();
+  sensor.begin();
 
   // Register message destinations (handlers)  with the bus
   bus.add(json_printer);

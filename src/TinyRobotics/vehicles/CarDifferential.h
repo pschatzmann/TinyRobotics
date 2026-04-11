@@ -31,8 +31,8 @@ namespace tinyrobotics {
  * @endcode
  */
 
-template <size_t N = 4, typename MotorMT = BrushedMotor<float>>
-class CarDifferential : public Vehicle {
+template <size_t N = 4, typename T=float, typename MotorMT = BrushedMotor<T>>
+class CarDifferential : public Vehicle<T> {
  public:
   CarDifferential() : speed_(0), turn_(0) {}
 
@@ -52,7 +52,7 @@ class CarDifferential : public Vehicle {
    * Positive = forward, negative = reverse.
    */
   void setSpeed(float percent) {
-    speed_ = constrain(percent * getSpeedFactor(), -100, 100);
+    speed_ = constrain(percent * Vehicle<T>::getSpeedFactor(), -100, 100);
     updateMotors();
   }
 
@@ -74,11 +74,12 @@ class CarDifferential : public Vehicle {
    * @brief Stop all motors and reset speed and turn state.
    */
   void end() override {
+    setSpeed(0);
+    setSteeringAgle(0);
+     // stop all motors
     for (int i = 0; i < 4; ++i) {
       motors_[i].end();
     }
-    speed_ = 0;
-    turn_ = 0;
   }
 
   /**
@@ -113,7 +114,7 @@ class CarDifferential : public Vehicle {
         this->setSteeringAgle(angle);
         return true;
       case MessageContent::Obstacle:
-        setSpeedFactor(0); 
+        Vehicle<T>::setSpeedFactor(0); 
         return true;
       default:
         return false;  // Unhandled message content
@@ -125,6 +126,14 @@ class CarDifferential : public Vehicle {
   }
 
   MotorMT& getMotor(size_t index) { return motors_[index % N]; }
+
+  std::vector<IMotor<T>*> getMotors() override {
+    std::vector<IMotor<T>*> motors;
+    for (int i = 0; i < N; ++i) {
+      motors.push_back(&motors_[i]);
+    }
+    return motors;
+  }
 
  protected:
   MotorMT motors_[N];
@@ -161,7 +170,7 @@ class CarDifferential : public Vehicle {
       Message<float> msg(MessageContent::MotorSpeed, speed[i], Unit::Percent);
       msg.origin = MessageOrigin::Vehicle;
       msg.origin_id = i;  // Motor index
-      sendMessage(msg);
+      Vehicle<T>::sendMessage(msg);
     }
   }
 };

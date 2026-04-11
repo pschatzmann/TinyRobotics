@@ -4,7 +4,7 @@
 #ifdef AVR
 #include "AVRStepperPins.h"  // Only required for AVR controllers
 #endif
-#include "Motor.h"
+#include "IMotor.h"
 
 namespace tinyrobotics {
 
@@ -75,7 +75,7 @@ namespace tinyrobotics {
  * @endcode
  */
 template <typename T = float>
-class StepperMotor : public Motor<T> {
+class StepperMotor : public IMotor<T> {
  public:
   StepperMotor(uint8_t id = 0) { setID(id); }
   StepperMotor(uint8_t id, uint16_t stepsPerRevolution,

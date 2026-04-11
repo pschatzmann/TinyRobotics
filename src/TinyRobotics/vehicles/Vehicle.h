@@ -5,6 +5,7 @@
 #include "TinyRobotics/communication/Message.h"
 #include "TinyRobotics/communication/MessageHandler.h"
 #include "TinyRobotics/communication/MessageSource.h"
+#include "TinyRobotics/motors/IMotor.h"
 
 namespace tinyrobotics {
 
@@ -21,8 +22,26 @@ namespace tinyrobotics {
  * All vehicle classes (e.g., Car4WD, Quadrotor, AirPlane, MotorBoat) should
  * inherit from Vehicle.
  */
+template <typename  MotorT = float>
 class Vehicle : public MessageHandler, public MessageSource {
  public:
+
+ /**
+  * @brief Initialize the vehicle. 
+  * 
+  * @return true 
+  * @return false 
+  */
+
+  bool begin() {
+    end();
+    // start all motors
+    for (auto* motor : getMotors()) {
+      if (motor) motor->begin();
+    }
+    speedFactor_ = 1.0f;
+    return true;
+  }
   /**
    * @brief Reset the vehicle to a safe or neutral state (pure virtual).
    */
@@ -45,6 +64,9 @@ class Vehicle : public MessageHandler, public MessageSource {
    * @brief Set the speed factor (scaling for speed commands).
    */
   void setSpeedFactor(float factor) { speedFactor_ = factor; }
+
+  virtual std::vector<IMotor<MotorT>*> getMotors() = 0;
+
  protected:
   float speedFactor_ = 1.0f;
 

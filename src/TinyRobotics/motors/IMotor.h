@@ -17,9 +17,9 @@ namespace tinyrobotics {
  * from Motor.
  */
 template <typename T = float>
-class Motor {
+class IMotor {
  public:
-  Motor() = default;
+  IMotor() = default;
   virtual bool begin() = 0;
   virtual void end() = 0;
   virtual bool isPinsSet() const = 0;

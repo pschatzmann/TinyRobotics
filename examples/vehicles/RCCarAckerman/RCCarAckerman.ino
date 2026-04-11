@@ -64,6 +64,7 @@ void setup() {
 
   // Set up the car pins (example for 1 drive motor and 1 steering servo)
   car.setPins(5, 6, 9);         // in1, in2, steeringPin
+  car.begin();
   rcSource.subscribe(car);  // Connect the car to the RC message source
 
   // Start the RC gamepad message source

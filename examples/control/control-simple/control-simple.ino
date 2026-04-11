@@ -74,6 +74,7 @@ void setup() {
 
   car.setPins(4, 5, 6);      // int in1, int in2, int steeringPin
   car.subscribe(json_printer);  // subscribe to car messages for telemetry
+  car.begin();
 
   // update every 100ms (adjust as needed)
   scheduler.begin(100, updateController);

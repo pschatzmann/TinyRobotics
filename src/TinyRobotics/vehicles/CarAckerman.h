@@ -24,9 +24,9 @@ namespace tinyrobotics {
  * @endcode
  */
 
-template <typename MotorMT = BrushedMotor<float>,
-          typename ServoMT = ServoMotor<float>>
-class CarAckerman : public Vehicle {
+template <typename T=float, typename MotorMT = BrushedMotor<T>,
+          typename ServoMT = ServoMotor<T>>
+class CarAckerman : public Vehicle<T> {
  public:
   CarAckerman() = default;
 
@@ -46,12 +46,12 @@ class CarAckerman : public Vehicle {
    * @brief Set drive speed (percent, -100 to 100). Positive = forward.
    */
   void setSpeed(float percent) {
-    speed_ = constrain(percent * getSpeedFactor(), -100.0f, 100.0f);
+    speed_ = constrain(percent * Vehicle<T>::getSpeedFactor(), -100.0f, 100.0f);
     motor_.setValuePercent(speed_);
     // publish speed as message for telemetry
     Message<float> msg(MessageContent::MotorSpeed, percent, Unit::Percent);
     msg.origin = MessageOrigin::Vehicle;
-    sendMessage(msg);
+    Vehicle<T>::sendMessage(msg);
   }
 
   /**
@@ -63,7 +63,7 @@ class CarAckerman : public Vehicle {
     // publish steering angle as message for telemetry
     Message<float> msg(MessageContent::SteeringAngle, angle, Unit::AngleDegree);
     msg.origin = MessageOrigin::Vehicle;
-    sendMessage(msg);
+    Vehicle<T>::sendMessage(msg);
   }
 
   void setSteeringAngle(Angle angle) {
@@ -75,11 +75,13 @@ class CarAckerman : public Vehicle {
   float getSpeed() const { return speed_; }
 
   /** Stop the car (brake motor) */
-  void end() {
+  void end() override {
     setSpeed(0);
     setSteeringAngle(0);
-    motor_.end();
-    steering_.end();
+    // stop all motors
+    for (auto* motor : getMotors()) {
+      if (motor) motor->end();
+    }
   }
 
   bool isPinsSet() const { return motor_.isPinsSet() && steering_.isPinsSet(); }
@@ -98,7 +100,7 @@ class CarAckerman : public Vehicle {
         setSteeringAngle(angle);
         return true;
       case MessageContent::Obstacle:
-        setSpeedFactor(0); 
+        Vehicle<T>::setSpeedFactor(0); 
         return true;
       default:
         return false;  // Unhandled message content
@@ -111,6 +113,14 @@ class CarAckerman : public Vehicle {
 
   MotorMT& getMotor() { return motor_; }
   ServoMT& getServo() { return steering_; }
+
+  std::vector<IMotor<T>*> getMotors() override {
+    std::vector<IMotor<T>*> motors;
+    motors.push_back(&motor_);
+    motors.push_back(&steering_);
+    return motors;
+  }
+
 
  protected:
   MotorMT motor_;

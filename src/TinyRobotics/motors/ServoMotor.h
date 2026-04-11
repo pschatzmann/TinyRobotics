@@ -6,7 +6,7 @@
 #include <Servo.h>
 #endif
 
-#include "Motor.h"
+#include "IMotor.h"
 
 namespace tinyrobotics {
 
@@ -37,7 +37,7 @@ namespace tinyrobotics {
  * @note Requires the Arduino Servo library.
  */
 template <typename T = float>
-class ServoMotor : public Motor<T> {
+class ServoMotor : public IMotor<T> {
  public:
   ServoMotor(uint8_t id = 0) { this->setID(id); }
 

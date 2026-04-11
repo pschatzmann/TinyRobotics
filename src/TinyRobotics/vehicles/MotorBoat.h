@@ -24,8 +24,8 @@ namespace tinyrobotics {
  * @endcode
  */
 
-template <typename MotorMT = BrushedMotor<float>, typename ServoMT = ServoMotor<float>>
-class MotorBoat : public Vehicle {
+template <typename T=float, typename MotorMT = BrushedMotor<T>, typename ServoMT = ServoMotor<T>>
+class MotorBoat : public Vehicle<T> {
  public:
   MotorBoat() = default;
 
@@ -47,7 +47,7 @@ class MotorBoat : public Vehicle {
    * @param percent Speed percentage (-100 to 100)
    */
   void setSpeed(float percent) {
-    setThrottle(percent*getSpeedFactor());
+    setThrottle(percent*Vehicle<T>::getSpeedFactor());
   }
 
   /**
@@ -58,7 +58,7 @@ class MotorBoat : public Vehicle {
     // publish throttle as message for telemetry
     Message<float> msg(MessageContent::MotorSpeed, percent, Unit::Percent);
     msg.origin = MessageOrigin::Vehicle;
-    sendMessage(msg);
+    Vehicle<T>::sendMessage(msg);
   }
 
   /**
@@ -69,7 +69,7 @@ class MotorBoat : public Vehicle {
     // publish rudder angle as message for telemetry
     Message<float> msg(MessageContent::SteeringAngle, angle, Unit::AngleDegree);
     msg.origin = MessageOrigin::Vehicle;
-    sendMessage(msg);
+    Vehicle<T>::sendMessage(msg);
   }
 
   void setRudder(Angle angle){
@@ -79,6 +79,11 @@ class MotorBoat : public Vehicle {
   void end() {
     motor_.setSpeedPercent(0);  // stop motor
     rudder_.setAngle(0);        // center rudder
+    // stop all motors
+    for (auto& motor : getMotors()) {
+      motor.end();  
+    }
+
   }
 
   bool isPinsSet() const { return motor_.isPinsSet() && rudder_.isPinsSet(); }
@@ -97,7 +102,7 @@ class MotorBoat : public Vehicle {
         setRudder(static_cast<int>(msg.value));
         return true;
       case MessageContent::Obstacle:
-        setSpeedFactor(0); 
+        Vehicle<T>::setSpeedFactor(0); 
         return true;
       default:
         return false;  // Unhandled message content
@@ -109,7 +114,15 @@ class MotorBoat : public Vehicle {
   }
 
   MotorMT& getMotor() { return motor_; }
+
   ServoMT& getServo() { return rudder_; }
+
+  std::vector<IMotor<T>*> getMotors() override {
+    std::vector<IMotor<T>*> motors;
+    motors.push_back(&motor_);
+    motors.push_back(&rudder_);
+    return motors;
+  }
 
  protected:
   MotorMT motor_;

@@ -5,6 +5,7 @@
  * @brief Motor drivers and abstractions (DC, stepper, servo)
  */
 
+#include "IMotor.h"
 #include "GenericMotor.h"
 #include "BrushedMotor.h"
 #if (USE_SERVO_LIBRARY)

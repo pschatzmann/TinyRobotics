@@ -37,8 +37,8 @@ enum QuadrotorMotorNo {
  * @endcode
  */
 
-template <typename DriverT = BrushedMotor<float>>
-class Quadrotor : public Vehicle {
+template <typename T=float, typename DriverT = BrushedMotor<T>>
+class Quadrotor : public Vehicle<T> {
  public:
   Quadrotor() = default;
 
@@ -76,14 +76,15 @@ class Quadrotor : public Vehicle {
   }
 
   /** Stop all motors and reset state */
-  void end() {
-    for (int i = 0; i < 4; ++i) {
-      motors_[i].end();
+  void end() override {
+    setThrottle(0);
+    setRoll(0);
+    setPitch(0);
+    setYaw(0);
+    // stop all motors
+    for (auto& motor : getMotors()) {
+      motor.end();  
     }
-    throttle_ = 0.0f;
-    roll_ = 0.0f;
-    pitch_ = 0.0f;
-    yaw_ = 0.0f;
   }
 
   /**
@@ -133,11 +134,19 @@ class Quadrotor : public Vehicle {
   }
 
   std::vector<MessageContent> getControls() const override {
-    return {MessageContent::Throttle, MessageContent::Pitch, MessageContent::Roll,
-            MessageContent::Yaw};
+    return {MessageContent::Throttle, MessageContent::Pitch,
+            MessageContent::Roll, MessageContent::Yaw};
   }
 
   DriverT& getMotor(QuadrotorMotorNo motor) { return motors_[motor]; }
+
+  std::vector<IMotor<T>*> getMotors() override {
+    std::vector<IMotor<T>*> motors;
+    for (int i = 0; i < 4; ++i) {
+      motors.push_back(&motors_[i]);
+    }
+    return motors;
+  }
 
  protected:
   DriverT motors_[4];
@@ -174,7 +183,7 @@ class Quadrotor : public Vehicle {
       Message<float> msg(MessageContent::MotorSpeed, m[i], Unit::Percent);
       msg.origin = MessageOrigin::Motor;
       msg.origin_id = i;  // Motor index
-      sendMessage(msg);
+      Vehicle<T>::sendMessage(msg);
     }
   }
 };

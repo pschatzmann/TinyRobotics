@@ -31,8 +31,8 @@ namespace tinyrobotics {
  * @endcode
  */
 
-template <typename MotorMT = BrushedMotor<float>, typename ServoMT = ServoMotor<float>>
-class AirPlane : public Vehicle {
+template <typename T=float, typename MotorMT = BrushedMotor<T>, typename ServoMT = ServoMotor<T>>
+class AirPlane : public Vehicle<T> {
  public:
   enum ControlSurface {
     Rudder = 0,
@@ -91,7 +91,7 @@ class AirPlane : public Vehicle {
     // publish motor speed as message for telemetry
     Message<float> msg(MessageContent::MotorSpeed, percent, Unit::Percent);
     msg.origin = MessageOrigin::Motor;
-    sendMessage(msg);
+    Vehicle<T>::sendMessage(msg);
   }
 
   /** Set rudder angle (degrees, -30 to 30 typical) */
@@ -100,7 +100,7 @@ class AirPlane : public Vehicle {
     // publish rudder update as message for telemetry
     Message<float> msg(MessageContent::Yaw, angle, Unit::AngleDegree);
     msg.origin = MessageOrigin::Rudder;
-    sendMessage(msg);
+    Vehicle<T>::sendMessage(msg);
   }
 
   /** Set elevator angle (degrees, -30 to 30 typical) */
@@ -109,7 +109,7 @@ class AirPlane : public Vehicle {
     // publish elevator update as message for telemetry
     Message<float> msg(MessageContent::Pitch, angle, Unit::AngleDegree);
     msg.origin = MessageOrigin::Elevator;
-    sendMessage(msg);
+    Vehicle<T>::sendMessage(msg);
   }
 
   /** Set aileron angles (degrees, left and right) */
@@ -120,12 +120,12 @@ class AirPlane : public Vehicle {
     Message<float> msgLeft(MessageContent::Roll, leftAngle, Unit::AngleDegree);
     msgLeft.origin = MessageOrigin::Aileron;
     msgLeft.origin_id = 0;  // Left aileron
-    sendMessage(msgLeft);
+    Vehicle<T>::sendMessage(msgLeft);
     Message<float> msgRight(MessageContent::Roll, rightAngle,
                             Unit::AngleDegree);
     msgRight.origin = MessageOrigin::Aileron;
     msgRight.origin_id = 1;  // Right aileron
-    sendMessage(msgRight);
+    Vehicle<T>::sendMessage(msgRight);
   }
 
   /** Reset state of all controls */
@@ -134,6 +134,10 @@ class AirPlane : public Vehicle {
     setRudder(0);
     setElevator(0);
     setAilerons(0, 0);
+    // stop all motors
+    for (auto& motor : getMotors()) {
+      motor.end();  
+    }
   }
 
   bool isPinsSet() const {
@@ -190,6 +194,15 @@ class AirPlane : public Vehicle {
 
   MotorMT& getMotor() { return motor_; }
   ServoMT& getServo(ControlSurface surface) { return servos_[surface]; }
+
+  std::vector<IMotor<T>*> getMotors() override {
+    std::vector<IMotor<T>*> motors;
+    motors.push_back(&motor_);
+    for (auto& s : servos_) {
+      motors.push_back(&s);
+    }
+    return motors;
+  }
 
  protected:
   MotorMT motor_;

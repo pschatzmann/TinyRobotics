@@ -2,7 +2,7 @@
 #pragma once
 #include <Arduino.h>
 
-#include "Motor.h"
+#include "IMotor.h"
 
 namespace tinyrobotics {
 
@@ -33,7 +33,7 @@ namespace tinyrobotics {
  * frequency will be used.
  */
 template <typename T = float>
-class BrushedMotor : public Motor<T> {
+class BrushedMotor : public IMotor<T> {
  public:
   /**
    * @brief Empty constructor for late pin assignment.

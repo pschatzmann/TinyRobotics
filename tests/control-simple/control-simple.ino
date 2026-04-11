@@ -72,6 +72,8 @@ void setup() {
   controller.begin();
   controller.subscribe(
       json_printer);  // subscribe to controller messages for telemetry
+
+  car.begin();
   car.subscribe(json_printer);  // subscribe to car messages for telemetry
 
   // update every 100ms (adjust as needed)

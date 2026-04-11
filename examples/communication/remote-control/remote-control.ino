@@ -31,6 +31,7 @@ void setup() {
   TRLogger.info("TinyRobotics Messaging Example");
 
   // Log received commands
+  car.begin();
   car.subscribe(printer);
 
   // Initialize the message dispatcher

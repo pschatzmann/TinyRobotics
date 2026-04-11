@@ -47,10 +47,11 @@ void setup() {
   car.setPins(4, 5, 6);  // int in1, int in2, int steeringPin
   odometry.subscribe(json_printer);
   odometry.begin(base);
+  car.begin();
   car.subscribe(json_printer);
   car.setSpeed(50);
   car.setSteeringAngle(30);  // 30 degrees steering angle for circular path
-
+  
   scheduler.begin(100, update);  // Update every 50 ms
 }
 

@@ -97,6 +97,7 @@ void setup() {
   ros.begin();
 
   // Log received commands
+  car.begin();
   car.subscribe(printer);
 
   // Initialize odometry
