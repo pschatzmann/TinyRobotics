@@ -16,6 +16,70 @@ enum class AngularVelocityUnit { RadPerSec, DegPerSec };
  * @brief Represents a 1D angular velocity with unit support.
  */
 class AngularVelocity {
+  AngularVelocity operator+(const AngularVelocity& other) const {
+    float otherValue = other.getValue(unit);
+    return AngularVelocity(angularVelocity + otherValue, unit);
+  }
+
+  AngularVelocity operator-(const AngularVelocity& other) const {
+    float otherValue = other.getValue(unit);
+    return AngularVelocity(angularVelocity - otherValue, unit);
+  }
+
+  AngularVelocity operator*(float scalar) const {
+    return AngularVelocity(angularVelocity * scalar, unit);
+  }
+
+  AngularVelocity operator/(float scalar) const {
+    if (scalar == 0) return AngularVelocity(0, unit);
+    return AngularVelocity(angularVelocity / scalar, unit);
+  }
+
+  bool operator==(const AngularVelocity& other) const {
+    return angularVelocity == other.getValue(unit);
+  }
+
+  bool operator!=(const AngularVelocity& other) const { return !(*this == other); }
+
+  bool operator<(const AngularVelocity& other) const {
+    return angularVelocity < other.getValue(unit);
+  }
+
+  bool operator<=(const AngularVelocity& other) const {
+    return angularVelocity <= other.getValue(unit);
+  }
+
+  bool operator>(const AngularVelocity& other) const {
+    return angularVelocity > other.getValue(unit);
+  }
+
+  bool operator>=(const AngularVelocity& other) const {
+    return angularVelocity >= other.getValue(unit);
+  }
+
+  AngularVelocity& operator+=(const AngularVelocity& other) {
+    angularVelocity += other.getValue(unit);
+    return *this;
+  }
+
+  AngularVelocity& operator-=(const AngularVelocity& other) {
+    angularVelocity -= other.getValue(unit);
+    return *this;
+  }
+
+  AngularVelocity& operator*=(float scalar) {
+    angularVelocity *= scalar;
+    return *this;
+  }
+
+  AngularVelocity& operator/=(float scalar) {
+    if (scalar == 0) {
+      angularVelocity = 0;
+    } else {
+      angularVelocity /= scalar;
+    }
+    return *this;
+  }
  public:
   float angularVelocity = 0.0f;
   AngularVelocityUnit unit = AngularVelocityUnit::RadPerSec;

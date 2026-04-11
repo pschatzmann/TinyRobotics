@@ -62,25 +62,48 @@ class Angle {
     return -1;  // Invalid conversion
   }
 
-  Angle operator+(const Angle& other) const {
-    Angle result = *this;
-    result.add(other);
-    return result;
+  Angle operator*(float scalar) const {
+    return Angle(angle * scalar, unit);
   }
 
-  Angle operator-(const Angle& other) const {
-    Angle result = *this;
-    result.subtract(other);
-    return result;
+  Angle operator/(float scalar) const {
+    if (scalar == 0) return Angle(0, unit);
+    return Angle(angle / scalar, unit);
   }
 
-  Angle& operator+=(const Angle& other) {
-    this->add(other);
+  bool operator==(const Angle& other) const {
+    return angle == other.getValue(unit);
+  }
+
+  bool operator!=(const Angle& other) const { return !(*this == other); }
+
+  bool operator<(const Angle& other) const {
+    return angle < other.getValue(unit);
+  }
+
+  bool operator<=(const Angle& other) const {
+    return angle <= other.getValue(unit);
+  }
+
+  bool operator>(const Angle& other) const {
+    return angle > other.getValue(unit);
+  }
+
+  bool operator>=(const Angle& other) const {
+    return angle >= other.getValue(unit);
+  }
+
+  Angle& operator*=(float scalar) {
+    angle *= scalar;
     return *this;
   }
 
-  Angle& operator-=(const Angle& other) {
-    this->subtract(other);
+  Angle& operator/=(float scalar) {
+    if (scalar == 0) {
+      angle = 0;
+    } else {
+      angle /= scalar;
+    }
     return *this;
   }
 

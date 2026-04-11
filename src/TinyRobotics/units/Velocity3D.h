@@ -3,6 +3,11 @@
 
 namespace tinyrobotics {
 
+/**
+ * @typedef VelocityUnit
+ * @brief Alias for SpeedUnit to represent velocity units.
+ * @ingroup units
+ */
 using VelocityUnit = SpeedUnit;
 
 /**
@@ -25,6 +30,76 @@ using VelocityUnit = SpeedUnit;
  * @endcode
  */
 class Velocity3D {
+  Velocity3D operator+(const Velocity3D& other) const {
+    return Velocity3D(x + other.getX(unit), y + other.getY(unit), z + other.getZ(unit), unit);
+  }
+
+  Velocity3D operator-(const Velocity3D& other) const {
+    return Velocity3D(x - other.getX(unit), y - other.getY(unit), z - other.getZ(unit), unit);
+  }
+
+  Velocity3D operator*(float scalar) const {
+    return Velocity3D(x * scalar, y * scalar, z * scalar, unit);
+  }
+
+  Velocity3D operator/(float scalar) const {
+    if (scalar == 0) return Velocity3D(0, 0, 0, unit);
+    return Velocity3D(x / scalar, y / scalar, z / scalar, unit);
+  }
+
+  bool operator==(const Velocity3D& other) const {
+    return x == other.getX(unit) && y == other.getY(unit) && z == other.getZ(unit);
+  }
+
+  bool operator!=(const Velocity3D& other) const { return !(*this == other); }
+
+  bool operator<(const Velocity3D& other) const {
+    return (x < other.getX(unit)) && (y < other.getY(unit)) && (z < other.getZ(unit));
+  }
+
+  bool operator<=(const Velocity3D& other) const {
+    return (x <= other.getX(unit)) && (y <= other.getY(unit)) && (z <= other.getZ(unit));
+  }
+
+  bool operator>(const Velocity3D& other) const {
+    return (x > other.getX(unit)) && (y > other.getY(unit)) && (z > other.getZ(unit));
+  }
+
+  bool operator>=(const Velocity3D& other) const {
+    return (x >= other.getX(unit)) && (y >= other.getY(unit)) && (z >= other.getZ(unit));
+  }
+
+  Velocity3D& operator+=(const Velocity3D& other) {
+    x += other.getX(unit);
+    y += other.getY(unit);
+    z += other.getZ(unit);
+    return *this;
+  }
+
+  Velocity3D& operator-=(const Velocity3D& other) {
+    x -= other.getX(unit);
+    y -= other.getY(unit);
+    z -= other.getZ(unit);
+    return *this;
+  }
+
+  Velocity3D& operator*=(float scalar) {
+    x *= scalar;
+    y *= scalar;
+    z *= scalar;
+    return *this;
+  }
+
+  Velocity3D& operator/=(float scalar) {
+    if (scalar == 0) {
+      x = y = z = 0;
+    } else {
+      x /= scalar;
+      y /= scalar;
+      z /= scalar;
+    }
+    return *this;
+  }
  public:
   float x = 0.0f;
   float y = 0.0f;

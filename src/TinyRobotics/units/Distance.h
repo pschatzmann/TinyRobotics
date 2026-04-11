@@ -74,10 +74,74 @@ class Distance {
     return -1;  // Invalid conversion
   }
 
+  Distance operator+(const Distance& other) const {
+    float otherDistance = other.getValue(unit);
+    return Distance(distance + otherDistance, unit);
+  }
+
+  Distance operator-(const Distance& other) const {
+    float otherDistance = other.getValue(unit);
+    return Distance(distance - otherDistance, unit);
+  }
+
+  Distance operator*(float scalar) const {
+    return Distance(distance * scalar, unit);
+  }
+
+  Distance operator/(float scalar) const {
+    if (scalar == 0) return Distance(0, unit);
+    return Distance(distance / scalar, unit);
+  }
+
+  bool operator==(const Distance& other) const {
+    return distance == other.getValue(unit);
+  }
+
+  bool operator!=(const Distance& other) const { return !(*this == other); }
+
+  bool operator<(const Distance& other) const {
+    return distance < other.getValue(unit);
+  }
+
+  bool operator<=(const Distance& other) const {
+    return distance <= other.getValue(unit);
+  }
+
+  bool operator>(const Distance& other) const {
+    return distance > other.getValue(unit);
+  }
+
+  bool operator>=(const Distance& other) const {
+    return distance >= other.getValue(unit);
+  }
+
+  Distance& operator+=(const Distance& other) {
+    distance += other.getValue(unit);
+    return *this;
+  }
+
+  Distance& operator-=(const Distance& other) {
+    distance -= other.getValue(unit);
+    return *this;
+  }
+
+  Distance& operator*=(float scalar) {
+    distance *= scalar;
+    return *this;
+  }
+
+  Distance& operator/=(float scalar) {
+    if (scalar == 0) {
+      distance = 0;
+    } else {
+      distance /= scalar;
+    }
+    return *this;
+  }
+
  protected:
   float distance = 0.0f;
-  DistanceUnit unit =
-      DistanceUnit::M;  ///< Unit of the distance. @see DistanceUnit
+  DistanceUnit unit = DistanceUnit::M;  ///< Unit of the distance. @see DistanceUnit
 };
 
 /**

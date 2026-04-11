@@ -12,18 +12,22 @@ enum class TimeUnit { S, MS, US, MIN, HOUR };
 /**
  * @class Time
  * @ingroup units
- * @brief Represents a time duration with a specific unit (seconds, milliseconds, microseconds, minutes, or hours).
+ * @brief Represents a time duration with a specific unit (seconds,
+ * milliseconds, microseconds, minutes, or hours).
  *
- * Provides methods to set and get the time in different units, as well as handle unit conversion when
- * retrieving the time in a desired unit. The internal representation of the time is stored in the unit
- * specified at construction, and all operations ensure that the time can be accurately converted between
- * supported units.
+ * Provides methods to set and get the time in different units, as well as
+ * handle unit conversion when retrieving the time in a desired unit. The
+ * internal representation of the time is stored in the unit specified at
+ * construction, and all operations ensure that the time can be accurately
+ * converted between supported units.
  *
- * This class can be used for various applications such as navigation, robotics, or any scenario that requires
- * time representation and manipulation. The getValue method allows for easy retrieval of the time in the desired
- * unit, while the setValue method allows for updating the time measurement with a new value and unit. The class
- * is designed to be simple and efficient for use in embedded systems, with basic unit conversion logic that covers
- * common time units.
+ * This class can be used for various applications such as navigation, robotics,
+ * or any scenario that requires time representation and manipulation. The
+ * getValue method allows for easy retrieval of the time in the desired unit,
+ * while the setValue method allows for updating the time measurement with a new
+ * value and unit. The class is designed to be simple and efficient for use in
+ * embedded systems, with basic unit conversion logic that covers common time
+ * units.
  */
 class Time {
  public:
@@ -70,6 +74,69 @@ class Time {
         break;
     }
     return -1;  // Invalid conversion
+  }
+
+  Time operator+(const Time& other) const {
+    float otherTime = other.getValue(unit);
+    return Time(time + otherTime, unit);
+  }
+
+  Time operator-(const Time& other) const {
+    float otherTime = other.getValue(unit);
+    return Time(time - otherTime, unit);
+  }
+
+  Time operator*(float scalar) const { return Time(time * scalar, unit); }
+
+  Time operator/(float scalar) const {
+    if (scalar == 0) return Time(0, unit);
+    return Time(time / scalar, unit);
+  }
+
+  bool operator==(const Time& other) const {
+    return time == other.getValue(unit);
+  }
+
+  bool operator!=(const Time& other) const { return !(*this == other); }
+
+  bool operator<(const Time& other) const {
+    return time < other.getValue(unit);
+  }
+
+  bool operator<=(const Time& other) const {
+    return time <= other.getValue(unit);
+  }
+
+  bool operator>(const Time& other) const {
+    return time > other.getValue(unit);
+  }
+
+  bool operator>=(const Time& other) const {
+    return time >= other.getValue(unit);
+  }
+
+  Time& operator+=(const Time& other) {
+    time += other.getValue(unit);
+    return *this;
+  }
+
+  Time& operator-=(const Time& other) {
+    time -= other.getValue(unit);
+    return *this;
+  }
+
+  Time& operator*=(float scalar) {
+    time *= scalar;
+    return *this;
+  }
+
+  Time& operator/=(float scalar) {
+    if (scalar == 0) {
+      time = 0;
+    } else {
+      time /= scalar;
+    }
+    return *this;
   }
 
  protected:
