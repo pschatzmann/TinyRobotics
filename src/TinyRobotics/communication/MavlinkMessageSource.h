@@ -45,7 +45,9 @@ public:
   void update() {
     if (!is_active_) return;
     drone.loop();
-    publishScenario();
+    if (drone.isArmed()) {
+      publishScenario();
+    }
   }
 
   /// @brief  Defines the max steering ange in degrees: default 45 

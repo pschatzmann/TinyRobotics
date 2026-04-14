@@ -48,7 +48,7 @@ class SpektrumSatelliteMessageSource : public MessageSource {
 
   /// call in your loop to process incoming satellite messages and publish to
   /// handlers
-  void run() {
+  void update() {
     if (satellite.getFrame()) {
       float rollDegrees = toDegrees(satellite.getAileron());
       float pitchDegrees = toDegrees(satellite.getElevator());
