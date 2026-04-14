@@ -1,10 +1,9 @@
 #pragma once
 #include <SimpleMavlinkDrone.h>  // https://github.com/pschatzmann/ArduinoMavlinkDrone
 #include "MessageSource.h"
+#include "TinyRobotics/utils/Common.h"
 
 namespace tinyrobotics {
-
-enum class ControlScenario { Car, Boat, Drone, Plane };
 
 /**
  * @class MavlinkMessageSource

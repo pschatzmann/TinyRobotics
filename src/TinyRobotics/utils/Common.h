@@ -57,6 +57,18 @@ enum class Unit {
   Pixel,             ///< Pixel units (e.g., for image processing)
 };
 
+/**
+ * @enum ControlScenario
+ * @ingroup utils
+ * @brief Control scenario types for remote control vehicles.
+ *
+ * Used to select the control mapping for different vehicle types.
+ */
+
+enum class ControlScenario { Car, Boat, Drone, Plane };
+
+
+
 /// Convert a value from the given unit to degrees.
 inline bool toAngleDegree(DEFAULT_TYPE in, Unit unit, AngleDeg& out) {
   switch (unit) {
