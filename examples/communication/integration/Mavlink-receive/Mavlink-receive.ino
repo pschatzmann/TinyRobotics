@@ -24,9 +24,9 @@
 
 const int port = 14550;
 const char* ssid = "ssid";
-const char* password = "na";
+const char* password = "password";
 SimpleUDP udp;  // WiFiUDP udp;
-SimpleMavlinkDrone drone(&udp);
+SimpleMavlinkDrone drone(udp);
 MavlinkMessageSource mav(drone);
 CarAckerman car;
 
