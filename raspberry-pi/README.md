@@ -26,7 +26,7 @@ We can use the Arduino Emulator to run TinyRobotics sketches on a Raspberry Pi.
 2. Create a build directory and configure with CMake:
    ```sh
    mkdir build && cd build
-   cmake -DUSE_PI=ON ..
+   cmake -DBUILD_PI=ON ..
 
    ```
 3. Build the project:
