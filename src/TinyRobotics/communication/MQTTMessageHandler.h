@@ -45,34 +45,46 @@ namespace tinyrobotics {
 
 class MQTTMessageHandler : public MessageHandler {
  public:
+
+  /// Construct a handler for publishing messages via MQTT.
   MQTTMessageHandler(PubSubClient& client,
                      const std::string& baseTopic = "tinyrobotics/")
       : mqttClient_(client), baseTopic_(baseTopic) {}
 
+
+  /// Publish a Message<float> as binary to MQTT.
   bool onMessage(const Message<float>& msg) override {
     // Send as binary (full Message struct)
     const char* data = reinterpret_cast<const char*>(&msg);
     return publishMessageBinary("value", data, sizeof(msg));
   }
 
+
+  /// Publish a Message<Coordinate<float>> as binary to MQTT.
   bool onMessage(const Message<Coordinate<float>>& msg) override {
     // Send as binary (full Message struct)
     const char* data = reinterpret_cast<const char*>(&msg);
     return publishMessageBinary("coordinate", data, sizeof(msg));
   }
 
+
+  /// Publish a Message<GPSCoordinate> as binary to MQTT.
   bool onMessage(const Message<GPSCoordinate>& msg) override {
     // Send as binary (full Message struct)
     const char* data = reinterpret_cast<const char*>(&msg);
     return publishMessageBinary("gps", data, sizeof(msg));
   }
 
+
+  /// Publish a Message<MotionState3D> as binary to MQTT.
   bool onMessage(const Message<MotionState3D>& msg) override {
     // Send as binary (full Message struct)
     const char* data = reinterpret_cast<const char*>(&msg);
     return publishMessageBinary("motionstate", data, sizeof(msg));
   }
 
+
+  /// Set the base MQTT topic for publishing messages.
   void setBaseTopic(const std::string& topic) { baseTopic_ = topic; }
 
  protected:

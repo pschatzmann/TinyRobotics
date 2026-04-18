@@ -29,6 +29,8 @@ namespace tinyrobotics {
  */
 class MQTTMessageReceiver {
  public:
+
+  /// Construct a receiver for MQTT messages and dispatch to handler.
   MQTTMessageReceiver(PubSubClient& client, MessageHandler& handler,
                       const std::string& baseTopic = "tinyrobotics/")
       : mqttClient_(client), handler_(handler), baseTopic_(baseTopic) {
@@ -38,13 +40,17 @@ class MQTTMessageReceiver {
     instance_ = this;
   }
 
+
+  /// Subscribe to all supported MQTT topics (call before use).
   bool begin() {
     subscribeAll();
     return true;
   }
 
+  /// Unsubscribe from all MQTT topics.
   void end() { unsubscribeAll(); }
 
+  /// Set the base MQTT topic for receiving messages.
   void setBaseTopic(const std::string& topic) { baseTopic_ = topic; }
 
  protected:
