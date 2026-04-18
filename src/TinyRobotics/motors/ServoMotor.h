@@ -1,9 +1,9 @@
 #pragma once
-#include <Arduino.h>
+#include "Arduino.h"
 #ifdef ESP32
-#include <ESP32Servo.h>
+#include "ESP32Servo.h"
 #else
-#include <Servo.h>
+#include "Servo.h"
 #endif
 
 #include "IMotor.h"
@@ -96,7 +96,7 @@ class ServoMotor : public IMotor<T> {
   bool isPinsSet() const { return is_pin_asssigned; }
 
  protected:
-  ::Servo servo;
+  Servo servo;
   int pin = -1;
   int minAngle = -90;
   int maxAngle = 90;
