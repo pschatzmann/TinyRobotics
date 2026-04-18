@@ -14,9 +14,6 @@ endif()
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-# Disable treating macro redefinition as an error (works around duplicate -DUSE_RPI definitions)
-add_compile_options($<$<COMPILE_LANGUAGE:CXX>:-Wno-error=macro-redefined>)
-
 add_library(TinyRobotics INTERFACE)
 target_include_directories(TinyRobotics INTERFACE ${CMAKE_CURRENT_SOURCE_DIR}/src ${CMAKE_CURRENT_SOURCE_DIR}/src/TinyRobotics/arduino)
 # target_compile_options(TinyRobotics INTERFACE -DUSE_TR_ARDUINO_EMULATION -DUSE_EXTERNAL_MOTOR_LIBRARIES=0 -DUSE_DUMMY_PIN_FUNCTIONS=1 -DUSE_MILLIS_CHRONO=1 -DUSE_PRINT_CHAR=1)
@@ -28,7 +25,7 @@ add_subdirectory(tests)
 endif()
 
 # Optionally, if you want to build examples:
-option(BUILD_RPI "Build Tests" ON)
-if(BUILD_RPI)
+option(BUILD_RI "Build Tests" ON)
+if(BUILD_PI)
 add_subdirectory(raspberry-pi)
 endif()
