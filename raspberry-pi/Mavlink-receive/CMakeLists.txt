@@ -5,6 +5,7 @@ FetchContent_Declare(
   ArduinoMavlinkDrone
   GIT_REPOSITORY https://github.com/pschatzmann/ArduinoMavlinkDrone.git
   GIT_TAG        master
+  GIT_CLONE_TIMEOUT 600  # Timeout in seconds (e.g., 5 minutes)
 )
 FetchContent_MakeAvailable(ArduinoMavlinkDrone)
 
@@ -13,7 +14,7 @@ include(FetchContent)
 FetchContent_GetProperties(arduinoemulator)
 
 set_source_files_properties(Mavlink-receive.ino PROPERTIES LANGUAGE CXX)
-add_library(MavlinkReceiveLib STATIC Mavlink-receive.ino)
+add_executable(MavlinkReceiveLib STATIC Mavlink-receive.ino)
 
 target_include_directories(MavlinkReceiveLib PUBLIC
     ${CMAKE_CURRENT_SOURCE_DIR}
