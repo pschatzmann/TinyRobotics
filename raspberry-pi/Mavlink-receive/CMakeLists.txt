@@ -1,27 +1,7 @@
 # CMakeLists.txt for Mavlink-receive subdirectory
 
-include(FetchContent)
-FetchContent_Declare(
-  ArduinoMavlinkDrone
-  GIT_REPOSITORY https://github.com/pschatzmann/ArduinoMavlinkDrone.git
-  GIT_TAG        master
-  GIT_CLONE_TIMEOUT 600  # Timeout in seconds (e.g., 5 minutes)
-)
-FetchContent_MakeAvailable(ArduinoMavlinkDrone)
+arduino_library(ArduinoMavlinkDrone https://github.com/pschatzmann/ArduinoMavlinkDrone.git TAG main)
+arduino_sketch(MavlinkReceive Mavlink-receive.ino LIBRARIES arduino_emulator TinyRobotics ArduinoMavlinkDrone)
 
-# Add Arduino-Emulator include directory for WiFiUdp.h
-include(FetchContent)
-FetchContent_GetProperties(arduinoemulator)
+target_compile_options(MavlinkReceive PUBLIC -DUSE_EXTERNAL_MOTOR_LIBRARIES=false -DUSE_TR_NAMESPACE=true)
 
-set_source_files_properties(Mavlink-receive.ino PROPERTIES LANGUAGE CXX)
-add_executable(MavlinkReceiveLib STATIC Mavlink-receive.ino)
-
-target_include_directories(MavlinkReceiveLib PUBLIC
-    ${CMAKE_CURRENT_SOURCE_DIR}
-    ${arduinomavlinkdrone_SOURCE_DIR}/src
-    ${arduinoemulator_SOURCE_DIR}/ArduinoCore-Linux/cores/arduino
-    ${arduinoemulator_SOURCE_DIR}/ArduinoCore-API
-)
-
-target_compile_options(MavlinkReceiveLib PRIVATE -x c++ -DUSE_EXTERNAL_MOTOR_LIBRARIES=false -DUSE_TR_NAMESPACE=true)
-target_link_libraries(MavlinkReceiveLib ArduinoEmulator TinyRobotics ArduinoMavlinkDrone)
