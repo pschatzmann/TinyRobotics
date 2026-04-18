@@ -26,7 +26,8 @@ We can use the Arduino Emulator to run TinyRobotics sketches on a Raspberry Pi.
 2. Create a build directory and configure with CMake:
    ```sh
    mkdir build && cd build
-   cmake ..
+   cmake -DUSE_RPI=ON ..
+
    ```
 3. Build the project:
    ```sh
@@ -41,13 +42,6 @@ The `raspberry-pi/Mavlink-receive` directory contains an example that:
 - Receives MAVLink messages and controls a simulated Ackerman car
 - Optionally starts a camera stream using `rpicam-vid` and `v4l2rtspserver`
 
-To build just this example:
-```sh
-cd raspberry-pi
-mkdir build && cd build
-cmake ..
-make
-```
 
 ## Dependencies
 - [Arduino-Emulator](https://github.com/pschatzmann/Arduino-Emulator) (fetched automatically by CMake)
