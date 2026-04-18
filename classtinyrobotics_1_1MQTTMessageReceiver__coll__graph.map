@@ -1,0 +1,5 @@
+<map id="MQTTMessageReceiver" name="MQTTMessageReceiver">
+<area shape="rect" id="node1" title=" " alt="" coords="5,181,180,207"/>
+<area shape="rect" id="node2" href="$classtinyrobotics_1_1MessageHandler.html" title="Interface for handling messages in the TinyRobotics framework." alt="" coords="27,5,158,31"/>
+<area shape="rect" id="node3" href="$classtinyrobotics_1_1MQTTMessageReceiver.html" title=" " alt="" coords="157,93,332,119"/>
+</map>
