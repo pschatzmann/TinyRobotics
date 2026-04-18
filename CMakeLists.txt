@@ -25,7 +25,7 @@ add_subdirectory(tests)
 endif()
 
 # Optionally, if you want to build examples:
-option(BUILD_RI "Build Tests" ON)
+option(BUILD_PI "Build Tests" ON)
 if(BUILD_PI)
 add_subdirectory(raspberry-pi)
 endif()
