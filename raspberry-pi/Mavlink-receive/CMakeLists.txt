@@ -4,5 +4,6 @@ arduino_library(ArduinoMavlinkDrone https://github.com/pschatzmann/ArduinoMavlin
 arduino_sketch(MavlinkReceive Mavlink-receive.ino LIBRARIES arduino_emulator TinyRobotics ArduinoMavlinkDrone)
 
 target_compile_options(MavlinkReceive PUBLIC  -DUSE_RPI=true -DUSE_TR_NAMESPACE=true)
-target_link_libraries(MavlinkReceive arduino_emulator ArduinoMavlinkDrone TinyRobotics)
+target_compile_options(ArduinoMavlinkDrone PUBLIC  -DUSE_RPI=true -DUSE_TR_NAMESPACE=true)
+target_compile_options(arduino_emulator PUBLIC  -DUSE_RPI=true)
 
