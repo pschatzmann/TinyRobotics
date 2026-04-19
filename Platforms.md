@@ -17,7 +17,7 @@ However, it might happen that motor libraries are not supported. In this case yo
 - #define __USE_FASTACCEL_STEPPER__ false
 - #define __USE_SERVO_LIBRARY__ false
 
-This library uses the tinyrobotics namespace. If you want to access the functionality of this library w/o specifiying the namespace you can use the following define:
+This library uses the tinyrobotics namespace. If you want to access the functionality of this library outside of Arduino w/o specifiying the namespace you can use the following define:
 
 - #define __USE_TR_NAMESPACE__: if defined we do not need to define the namespace in the Arduino Sketch.
 
