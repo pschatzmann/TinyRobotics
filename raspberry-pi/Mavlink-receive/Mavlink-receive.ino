@@ -53,7 +53,7 @@ void connectToWifi() {
 // installed. It starts a camera stream that can be accessed via RTSP (e.g.,
 // rtsp://<pi_ip>:8554/stream).
 void startCameraStream() {
-  system("rpicam-vid -t 0 --inline -o - | v4l2rtspserver - - &");
+  system("rpicam-vid -t 0 --inline -o - | gst-launch-1.0 fdsrc ! h264parse ! rtph264pay config-interval=1 pt=96 ! udpsink host=192.168.1.39 port=5600");
 }
 
 void setup() {
