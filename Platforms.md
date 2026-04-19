@@ -17,6 +17,11 @@ However, it might happen that motor libraries are not supported. In this case yo
 - #define __USE_FASTACCEL_STEPPER__ false
 - #define __USE_SERVO_LIBRARY__ false
 
+This library uses the tinyrobotics namespace. If you want to access the functionality of this library w/o specifiying the namespace you can use the following define:
+
+- #define __USE_TR_NAMESPACE__: if defined we do not need to define the namespace in the Arduino Sketch.
+
+
 ### Others
 
 You can compile this project on the __desktop__, __single-board computers__ (e.g. Raspbery PI) or for other __microcontroller frameworks__ e.g. ESP32 IDF, Zephyr, STM32 Cube IDC, etc using CMAKE.
