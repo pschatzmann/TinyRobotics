@@ -1,4 +1,4 @@
-# TinyRobotics Arduino Emulation Layer
+# TinyRobotics Internal Arduino Emulation Layer
 
 This folder contains minimal Arduino compatibility headers and stubs to enable building and testing the TinyRobotics library on non-Arduino (native/desktop) platforms or other non Arduino based microcontroller platforms.
 

@@ -20,3 +20,15 @@ However, it might happen that motor libraries are not supported. In this case yo
 ### Others
 
 You can compile this project on the __desktop__, __single-board computers__ (e.g. Raspbery PI) or for other __microcontroller frameworks__ e.g. ESP32 IDF, Zephyr, STM32 Cube IDC, etc using CMAKE.
+
+### Internal Emulator
+
+This library contains a simple Arduino Stream/Print emulattion that can be used to build this library locally with the help of cmake.
+
+Further info can be found in the [TinyRobotics/arduino](src/TinyRobotics/arduino/README.md) folder
+
+### External Arduino Emulator
+
+To have access to the complete Arduino functionality you can use my [Arduino-Emulator](https://github.com/pschatzmann/Arduino-Emulator). 
+
+Further info on how to use this functionality (on a Raspberry PI) can be found in the [raspberry-pi](raspberry-pi/README.md) folder.
