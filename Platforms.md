@@ -22,7 +22,7 @@ This library uses the tinyrobotics namespace. If you want to access the function
 - #define __USE_TR_NAMESPACE__: if defined we do not need to define the namespace in the Arduino Sketch.
 
 
-### Others
+## Other Platforms (using cmake)
 
 You can compile this project on the __desktop__, __single-board computers__ (e.g. Raspbery PI) or for other __microcontroller frameworks__ e.g. ESP32 IDF, Zephyr, STM32 Cube IDC, etc using CMAKE.
 
@@ -34,6 +34,6 @@ Further info can be found in the [TinyRobotics/arduino](src/TinyRobotics/arduino
 
 ### External Arduino Emulator
 
-To have access to the complete Arduino functionality you can use my [Arduino-Emulator](https://github.com/pschatzmann/Arduino-Emulator). 
+To have access to the complete Arduino functionality you can use my [Arduino-Emulator](https://github.com/pschatzmann/Arduino-Emulator) that is supporting Linux, macOS and Windows.
 
 Further info on how to use this functionality (on a Raspberry PI) can be found in the [raspberry-pi](raspberry-pi/README.md) folder.
