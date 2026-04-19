@@ -5,6 +5,8 @@ cmake_minimum_required(VERSION 3.14)
 # Enable FetchContent module
 include(FetchContent)
 
+set(FETCHCONTENT_QUIET OFF)
+
 # Fetch Arduino-Emulator from GitHub
 FetchContent_Declare(
   arduino_emulator
