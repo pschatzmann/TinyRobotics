@@ -1,9 +1,9 @@
 var searchData=
 [
   ['tinyrobotics_0',['TinyRobotics',['../md_README.html',1,'']]],
-  ['tinyrobotics_20arduino_20emulation_20layer_1',['TinyRobotics Arduino Emulation Layer',['../md_src_TinyRobotics_arduino_README.html',1,'']]],
-  ['tinyrobotics_20coordinates_20module_2',['TinyRobotics Coordinates Module',['../md_src_TinyRobotics_coordinates_README.html',1,'']]],
-  ['tinyrobotics_20imu_20module_3',['TinyRobotics IMU Module',['../md_src_TinyRobotics_imu_README.html',1,'']]],
+  ['tinyrobotics_20coordinates_20module_1',['TinyRobotics Coordinates Module',['../md_src_TinyRobotics_coordinates_README.html',1,'']]],
+  ['tinyrobotics_20imu_20module_2',['TinyRobotics IMU Module',['../md_src_TinyRobotics_imu_README.html',1,'']]],
+  ['tinyrobotics_20internal_20arduino_20emulation_20layer_3',['TinyRobotics Internal Arduino Emulation Layer',['../md_src_TinyRobotics_arduino_README.html',1,'']]],
   ['tinyrobotics_20maps_20module_4',['TinyRobotics Maps Module',['../md_src_TinyRobotics_maps_README.html',1,'']]],
   ['tinyrobotics_20motors_20module_5',['TinyRobotics Motors Module',['../md_src_TinyRobotics_motors_README.html',1,'']]],
   ['tinyrobotics_20odometry_20module_6',['TinyRobotics Odometry Module',['../md_src_TinyRobotics_odometry_README.html',1,'']]],
