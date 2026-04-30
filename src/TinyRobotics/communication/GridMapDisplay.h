@@ -15,23 +15,40 @@ namespace tinyrobotics {
  * @note Dependency: https://pschatzmann.github.io/TinyGPU
  */
 
-template <typename TRGB = RGB565, typename StateT = CellState,
+template <typename RGB_T = RGB565, typename StateT = CellState,
           typename T = DistanceM>
 class GridMapDisplay {
  public:
-  GridMapDisplay(GridMap<StateT, T> map, uint32_t widthPixels,
+  GridMapDisplay(GridMap<StateT, T>& map, uint32_t widthPixels,
                  uint32_t heightPixels)
-      : p_gridMap(&map), widthPixels(widthPixels), heightPixels(heightPixels) {
+      : p_gridMap(&map),
+        widthPixels(widthPixels),
+        heightPixels(heightPixels),
+        deltaXPixels(0),
+        deltaYPixels(0),
+        getColorCB(nullptr),
+        p_sprite_info(nullptr) {
     deltaXPixels = widthPixels / map.getXCount();
     deltaYPixels = heightPixels / map.getYCount();
   }
 
   /// Initialize the GPU and set up callbacks
   bool begin() {
+    framebuffer.setFont(font);
     framebuffer.resize(widthPixels, heightPixels);
     if (!framebuffer.begin()) {
       // Serial.println("Failed to initialize TinyGPU framebuffer");
       return false;
+    }
+
+    // setup sprite for the vehicle (default is a simple arrow shape)
+    if (vehicleSprite.getWidth() == 0 || vehicleSprite.getHeight() == 0) {
+      vehicleSprite.resize(8, 9);  // Default size for the vehicle sprite
+      vehicleSprite.begin();
+      vehicleSprite.drawLine(3, 1, 4, 1, spriteColor);
+      vehicleSprite.drawLine(2, 2, 5, 2, spriteColor);
+      vehicleSprite.drawLine(1, 3, 6, 3, spriteColor);
+      vehicleSprite.fillRect(3, 4, 2, 4, spriteColor);
     }
 
     // Set the callback to update the GPU whenever a cell state changes
@@ -62,8 +79,8 @@ class GridMapDisplay {
     float pixelX = (posX + 0.5f) * deltaXPixels;
     float pixelY = (posY + 0.5f) * deltaYPixels;
     if (p_sprite_info == nullptr) {
-      p_sprite_info = &framebuffer.addSprite(pixelX, pixelY, vehicleSprite,
-                                      getColorForState(CellState::OCCUPIED));
+      p_sprite_info = &framebuffer.addSprite(
+          pixelX, pixelY, vehicleSprite, getColorForState(CellState::OCCUPIED));
     } else {
       p_sprite_info->setPosition(pixelX, pixelY);
     }
@@ -71,10 +88,10 @@ class GridMapDisplay {
   }
 
   /// Define a custom color mapping for cell states (optional)
-  void setColorCallback(TRGB (*cb)(StateT state)) { getColorCB = cb; }
+  void setColorCallback(RGB_T (*cb)(StateT state)) { getColorCB = cb; }
 
   /// Define a custom sprite for the vehicle (optional)
-  void setSprite(const Sprite<TRGB>& newSprite) {
+  void setSprite(const Sprite<RGB_T>& newSprite) {
     vehicleSprite = newSprite;
     // If the sprite is already on the GPU, update it
     if (p_sprite_info != nullptr) {
@@ -82,38 +99,31 @@ class GridMapDisplay {
       float y = p_sprite_info->getY();
       float angle = p_sprite_info->getRotation();
       framebuffer.removeSprite(p_sprite_info);
-      p_sprite_info = &framebuffer.addSprite(x, y, vehicleSprite,
-                                      getColorForState(CellState::OCCUPIED));
+      p_sprite_info = &framebuffer.addSprite(
+          x, y, vehicleSprite, getColorForState(CellState::OCCUPIED));
       p_sprite_info->setRotation(angle);
     }
   }
+  /// Defines the color used for the vehicle sprite (optional)
+  void setSpriteColor(RGB_T color) { spriteColor = color; }
 
   /// Access the underlying TinyGPU framebuffer for direct drawing (optional)
-  FrameBuffer<TRGB>& getFrameBuffer() { return framebuffer; }
+  FrameBuffer<RGB_T>& getFrameBuffer() { return framebuffer; }
 
  protected:
+  BitmapFont<RGB_T> font;
   GridMap<StateT, T>* p_gridMap;
-  FrameBuffer<TRGB> framebuffer;
-  int widthPixels = 0;        // Display width in pixels
-  int heightPixels = 0;       // Display height in pixels
-  uint32_t deltaXPixels = 0;  // Pixels per grid cell in X direction
-  uint32_t deltaYPixels = 0;  // Pixels per grid cell in Y direction
-  TRGB (*getColorCB)(StateT state) = nullptr;
-  Sprite<TRGB> vehicleSprite = Sprite<TRGB>(8, 9,
-                                            {
-                                                0b00000000,
-                                                0b00011000,
-                                                0b00111100,
-                                                0b01111110,
-                                                0b00011000,
-                                                0b00011000,
-                                                0b00011000,
-                                                0b00011000,
-                                                0b00000000,
-                                            });
-  FrameBuffer<TRGB>::SpriteInfo* p_sprite_info = nullptr;
+  FrameBuffer<RGB_T> framebuffer;
+  uint32_t widthPixels;   // Display width in pixels
+  uint32_t heightPixels;  // Display height in pixels
+  uint32_t deltaXPixels;  // Pixels per grid cell in X direction
+  uint32_t deltaYPixels;  // Pixels per grid cell in Y direction
+  RGB_T (*getColorCB)(StateT state);
+  RGB_T spriteColor{0, 0, 0};  // Default sprite color (black)
+  Sprite<RGB_T> vehicleSprite;
+  FrameBuffer<RGB_T>::SpriteInfo* p_sprite_info;
 
-  TRGB getColorForState(StateT state) {
+  RGB_T getColorForState(StateT state) {
     // If a custom color callback is set, use it to get the color for the state
     if (getColorCB != nullptr) {
       return getColorCB(state);
@@ -122,13 +132,13 @@ class GridMapDisplay {
     if constexpr (std::is_same<StateT, CellState>::value) {
       switch (state) {
         case CellState::FREE:
-          return TRGB(0, 255, 0);  // Green
+          return RGB_T(0, 255, 0);  // Green
         case CellState::OCCUPIED:
-          return TRGB(255, 0, 0);  // Red
+          return RGB_T(255, 0, 0);  // Red
         case CellState::UNKNOWN:
-          return TRGB(128, 128, 128);  // Gray
+          return RGB_T(128, 128, 128);  // Gray
         default:
-          return TRGB(0, 0, 0);  // Black for invalid state
+          return RGB_T(0, 0, 0);  // Black for invalid state
       }
     }
   }
@@ -149,13 +159,13 @@ class GridMapDisplay {
   /// Callback function to update the GPU when a cell state changes
   void updateGridMap(GridMap<StateT, T>& map, int cx, int cy,
                      const Coordinate<T>& coord, CellState state) {
-    TRGB color = getColorForState(state);
+    RGB_T color = getColorForState(state);
     int px = cx * deltaXPixels;
     int py = cy * deltaYPixels;
     // Fill the cell with the appropriate color
     framebuffer.fillRect(px, py, deltaXPixels, deltaYPixels, color);
     // Draw border (black)
-    framebuffer.drawRect(px, py, deltaXPixels, deltaYPixels, TRGB(0, 0, 0));
+    framebuffer.drawRect(px, py, deltaXPixels, deltaYPixels, RGB_T(0, 0, 0));
   }
 };
 
