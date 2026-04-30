@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['velocityunit_0',['VelocityUnit',['../group__units.html#ga06af390d312039c70363a84cb1d358fa',1,'tinyrobotics']]]
+  ['synchronizedbufferrtos_0',['SynchronizedBufferRTOS',['../group__concurrency.html#gaf8c8076294cfef1804d5857a9e506492',1,'tinyrobotics']]]
 ];

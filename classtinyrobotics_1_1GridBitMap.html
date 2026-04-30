@@ -75,6 +75,7 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
+<a href="#pub-types">Public Types</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pro-methods">Protected Member Functions</a> &#124;
 <a href="#pro-attribs">Protected Attributes</a> &#124;
@@ -102,7 +103,7 @@ Collaboration diagram for GridBitMap&lt; T &gt;:</div>
 <div class="dyncontent">
 <div class="center"><img src="classtinyrobotics_1_1GridBitMap__coll__graph.png" border="0" usemap="#aGridBitMap_3_01T_01_4_coll__map" alt="Collaboration graph"/></div>
 <map name="aGridBitMap_3_01T_01_4_coll__map" id="aGridBitMap_3_01T_01_4_coll__map">
-<area shape="rect" title="A grid map using two bit vectors to represent CellState efficiently." alt="" coords="519,55,652,80"/>
+<area shape="rect" title="A grid map using two bit vectors to represent CellState efficiently." alt="" coords="579,55,712,80"/>
 <area shape="rect" href="classtinyrobotics_1_1IMap.html" title="Abstract interface for 2D grid maps and occupancy maps in TinyRobotics." alt="" coords="263,5,355,31"/>
 <area shape="rect" href="classtinyrobotics_1_1IMapNeighbors.html" title="Abstract interface for neighbor queries in map&#45;like data structures." alt="" coords="5,5,164,31"/>
 <area shape="rect" href="classtinyrobotics_1_1Coordinate.html" title=" " alt="" coords="213,55,405,80"/>
@@ -115,6 +116,13 @@ Collaboration diagram for GridBitMap&lt; T &gt;:</div>
 Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtinyrobotics_1_1GridBitMap_1_1Cell.html">Cell</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-types" name="pub-types"></a>
+Public Types</h2></td></tr>
+<tr class="memitem:a9c8a30d2d55d1b3880ebf9ebe0e968b6"><td class="memItemLeft" align="right" valign="top"><a id="a9c8a30d2d55d1b3880ebf9ebe0e968b6" name="a9c8a30d2d55d1b3880ebf9ebe0e968b6"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><b>CellUpdateCallback</b> = void(*)(<a class="el" href="classtinyrobotics_1_1GridBitMap.html">GridBitMap</a>&lt; T &gt; &amp;map, int cx, int cy, const <a class="el" href="classtinyrobotics_1_1Coordinate.html">Coordinate</a>&lt; T &gt; &amp;coord, <a class="el" href="group__utils.html#ga8787c656e38c35a93bccad5fe9a8d7d9">CellState</a> state)</td></tr>
+<tr class="memdesc:a9c8a30d2d55d1b3880ebf9ebe0e968b6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Callback type for cell updates. <br /></td></tr>
+<tr class="separator:a9c8a30d2d55d1b3880ebf9ebe0e968b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -145,6 +153,10 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>cellToWorld</b> (int 
 <tr class="memitem:ab57a7882fcd2f8d19986301651585bb1"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1GridBitMap.html#ab57a7882fcd2f8d19986301651585bb1">getCell</a> (int cx, int cy, <a class="el" href="group__utils.html#ga8787c656e38c35a93bccad5fe9a8d7d9">CellState</a> &amp;result) const</td></tr>
 <tr class="memdesc:ab57a7882fcd2f8d19986301651585bb1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the state of a cell by integer indices.  <br /></td></tr>
 <tr class="separator:ab57a7882fcd2f8d19986301651585bb1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a75f82bf0e61947cd19b4588bcc46f26e"><td class="memItemLeft" align="right" valign="top"><a id="a75f82bf0e61947cd19b4588bcc46f26e" name="a75f82bf0e61947cd19b4588bcc46f26e"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>setCell</b> (<a class="el" href="structtinyrobotics_1_1GridBitMap_1_1Cell.html">Cell</a> &amp;cell, <a class="el" href="group__utils.html#ga8787c656e38c35a93bccad5fe9a8d7d9">CellState</a> value)</td></tr>
+<tr class="memdesc:a75f82bf0e61947cd19b4588bcc46f26e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set cell state (for initialization or manual updates) <br /></td></tr>
+<tr class="separator:a75f82bf0e61947cd19b4588bcc46f26e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aeba2bb947e5cf26beb7a3760ee0f6ccd"><td class="memItemLeft" align="right" valign="top"><a id="aeba2bb947e5cf26beb7a3760ee0f6ccd" name="aeba2bb947e5cf26beb7a3760ee0f6ccd"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>setCell</b> (int cx, int cy, <a class="el" href="group__utils.html#ga8787c656e38c35a93bccad5fe9a8d7d9">CellState</a> value)</td></tr>
 <tr class="separator:aeba2bb947e5cf26beb7a3760ee0f6ccd"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -154,6 +166,10 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>getCell</b> (const <a
 <tr class="memitem:a66dee39ae0a4a1fa7d3ada2975348aed"><td class="memItemLeft" align="right" valign="top"><a id="a66dee39ae0a4a1fa7d3ada2975348aed" name="a66dee39ae0a4a1fa7d3ada2975348aed"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>setCell</b> (const <a class="el" href="classtinyrobotics_1_1Coordinate.html">Coordinate</a>&lt; T &gt; &amp;coord, <a class="el" href="group__utils.html#ga8787c656e38c35a93bccad5fe9a8d7d9">CellState</a> value)</td></tr>
 <tr class="separator:a66dee39ae0a4a1fa7d3ada2975348aed"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa7a83b5c8f37176c2cd07c89403b8e88"><td class="memItemLeft" align="right" valign="top"><a id="aa7a83b5c8f37176c2cd07c89403b8e88" name="aa7a83b5c8f37176c2cd07c89403b8e88"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>setCellUpdateCallback</b> (<a class="el" href="classtinyrobotics_1_1GridBitMap.html#a9c8a30d2d55d1b3880ebf9ebe0e968b6">CellUpdateCallback</a> cb)</td></tr>
+<tr class="memdesc:aa7a83b5c8f37176c2cd07c89403b8e88"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set callback invoked whenever a cell state changes. <br /></td></tr>
+<tr class="separator:aa7a83b5c8f37176c2cd07c89403b8e88"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9b4f9b3b725e8271910f59f5f39870f5"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1GridBitMap.html#a9b4f9b3b725e8271910f59f5f39870f5">isValid</a> (const <a class="el" href="classtinyrobotics_1_1Coordinate.html">Coordinate</a>&lt; T &gt; &amp;coord) const</td></tr>
 <tr class="memdesc:a9b4f9b3b725e8271910f59f5f39870f5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if a coordinate is within the map bounds.  <br /></td></tr>
 <tr class="separator:a9b4f9b3b725e8271910f59f5f39870f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -195,6 +211,10 @@ size_t&#160;</td><td class="memItemRight" valign="bottom"><b>readFrom</b> (Strea
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-methods" name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
+<tr class="memitem:ab355df32e630934f6ec641d90c644315"><td class="memItemLeft" align="right" valign="top"><a id="ab355df32e630934f6ec641d90c644315" name="ab355df32e630934f6ec641d90c644315"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>notifyCellUpdate</b> (int cx, int cy, <a class="el" href="group__utils.html#ga8787c656e38c35a93bccad5fe9a8d7d9">CellState</a> state)</td></tr>
+<tr class="memdesc:ab355df32e630934f6ec641d90c644315"><td class="mdescLeft">&#160;</td><td class="mdescRight">Notify callback listeners about a changed cell. <br /></td></tr>
+<tr class="separator:ab355df32e630934f6ec641d90c644315"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac22bba7dbbec9ef5204d5f28e2298674"><td class="memItemLeft" align="right" valign="top"><a id="ac22bba7dbbec9ef5204d5f28e2298674" name="ac22bba7dbbec9ef5204d5f28e2298674"></a>
 std::vector&lt; <a class="el" href="structtinyrobotics_1_1GridBitMap_1_1Cell.html">Cell</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>getNeighborCells</b> (const <a class="el" href="classtinyrobotics_1_1Coordinate.html">Coordinate</a>&lt; T &gt; from) const</td></tr>
 <tr class="memdesc:ac22bba7dbbec9ef5204d5f28e2298674"><td class="mdescLeft">&#160;</td><td class="mdescRight">Determine all neighboring cells (8-connected) for a given cell coordinate. <br /></td></tr>
@@ -220,6 +240,9 @@ std::vector&lt; bool &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>
 <tr class="memitem:a104a89e79826313fa123ae5b23e52c34"><td class="memItemLeft" align="right" valign="top"><a id="a104a89e79826313fa123ae5b23e52c34" name="a104a89e79826313fa123ae5b23e52c34"></a>
 std::vector&lt; bool &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>free</b></td></tr>
 <tr class="separator:a104a89e79826313fa123ae5b23e52c34"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae801822d9c090154460ce56736287efb"><td class="memItemLeft" align="right" valign="top"><a id="ae801822d9c090154460ce56736287efb" name="ae801822d9c090154460ce56736287efb"></a>
+<a class="el" href="classtinyrobotics_1_1GridBitMap.html#a9c8a30d2d55d1b3880ebf9ebe0e968b6">CellUpdateCallback</a>&#160;</td><td class="memItemRight" valign="bottom"><b>on_cell_update_cb</b> = nullptr</td></tr>
+<tr class="separator:ae801822d9c090154460ce56736287efb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1fd7f8f6d5d42ca326e5761194e369d7"><td class="memItemLeft" align="right" valign="top"><a id="a1fd7f8f6d5d42ca326e5761194e369d7" name="a1fd7f8f6d5d42ca326e5761194e369d7"></a>
 <a class="el" href="classtinyrobotics_1_1GridMapSerializer.html">GridMapSerializer</a>&lt; <a class="el" href="classtinyrobotics_1_1GridBitMap.html">GridBitMap</a>, <a class="el" href="group__utils.html#ga8787c656e38c35a93bccad5fe9a8d7d9">CellState</a>, T &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>serializer</b></td></tr>
 <tr class="separator:a1fd7f8f6d5d42ca326e5761194e369d7"><td class="memSeparator" colspan="2">&#160;</td></tr>

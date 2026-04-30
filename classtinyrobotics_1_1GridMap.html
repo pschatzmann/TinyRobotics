@@ -75,7 +75,9 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
+<a href="#pub-types">Public Types</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pro-methods">Protected Member Functions</a> &#124;
 <a href="#pro-static-methods">Static Protected Member Functions</a> &#124;
 <a href="#pro-attribs">Protected Attributes</a> &#124;
 <a href="classtinyrobotics_1_1GridMap-members.html">List of all members</a>  </div>
@@ -102,7 +104,7 @@ Collaboration diagram for GridMap&lt; StateT, T &gt;:</div>
 <div class="dyncontent">
 <div class="center"><img src="classtinyrobotics_1_1GridMap__coll__graph.png" border="0" usemap="#aGridMap_3_01StateT_00_01T_01_4_coll__map" alt="Collaboration graph"/></div>
 <map name="aGridMap_3_01StateT_00_01T_01_4_coll__map" id="aGridMap_3_01StateT_00_01T_01_4_coll__map">
-<area shape="rect" title="A grid map for spatial representation, navigation, and planning." alt="" coords="519,55,684,80"/>
+<area shape="rect" title="A grid map for spatial representation, navigation, and planning." alt="" coords="579,55,744,80"/>
 <area shape="rect" href="classtinyrobotics_1_1IMap.html" title="Abstract interface for 2D grid maps and occupancy maps in TinyRobotics." alt="" coords="263,5,355,31"/>
 <area shape="rect" href="classtinyrobotics_1_1IMapNeighbors.html" title="Abstract interface for neighbor queries in map&#45;like data structures." alt="" coords="5,5,164,31"/>
 <area shape="rect" href="classtinyrobotics_1_1Coordinate.html" title=" " alt="" coords="213,55,405,80"/>
@@ -116,6 +118,13 @@ Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtinyrobotics_1_1GridMap_1_1Cell.html">Cell</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="structtinyrobotics_1_1GridMap_1_1Cell.html" title="Cell structure to represent grid cell indices.">Cell</a> structure to represent grid cell indices.  <a href="structtinyrobotics_1_1GridMap_1_1Cell.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-types" name="pub-types"></a>
+Public Types</h2></td></tr>
+<tr class="memitem:ab75c808bec03a3d759c2c60ad8346cbc"><td class="memItemLeft" align="right" valign="top"><a id="ab75c808bec03a3d759c2c60ad8346cbc" name="ab75c808bec03a3d759c2c60ad8346cbc"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><b>CellUpdateCallback</b> = void(*)(<a class="el" href="classtinyrobotics_1_1GridMap.html">GridMap</a>&lt; StateT, T &gt; &amp;map, int cx, int cy, const <a class="el" href="classtinyrobotics_1_1Coordinate.html">Coordinate</a>&lt; T &gt; &amp;coord, <a class="el" href="group__utils.html#ga8787c656e38c35a93bccad5fe9a8d7d9">CellState</a> state)</td></tr>
+<tr class="memdesc:ab75c808bec03a3d759c2c60ad8346cbc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Callback type for cell updates. <br /></td></tr>
+<tr class="separator:ab75c808bec03a3d759c2c60ad8346cbc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -155,7 +164,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>getCell</b> (<a class
 <tr class="separator:af2e2f19e5247d0922e4ceab0629673a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a75f82bf0e61947cd19b4588bcc46f26e"><td class="memItemLeft" align="right" valign="top"><a id="a75f82bf0e61947cd19b4588bcc46f26e" name="a75f82bf0e61947cd19b4588bcc46f26e"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>setCell</b> (<a class="el" href="structtinyrobotics_1_1GridMap_1_1Cell.html">Cell</a> &amp;cell, <a class="el" href="group__utils.html#ga8787c656e38c35a93bccad5fe9a8d7d9">CellState</a> value)</td></tr>
-<tr class="memdesc:a75f82bf0e61947cd19b4588bcc46f26e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Provide access to cell state by coordinate. <br /></td></tr>
+<tr class="memdesc:a75f82bf0e61947cd19b4588bcc46f26e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set cell state (for initialization or manual updates) <br /></td></tr>
 <tr class="separator:a75f82bf0e61947cd19b4588bcc46f26e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aeba2bb947e5cf26beb7a3760ee0f6ccd"><td class="memItemLeft" align="right" valign="top"><a id="aeba2bb947e5cf26beb7a3760ee0f6ccd" name="aeba2bb947e5cf26beb7a3760ee0f6ccd"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>setCell</b> (int cx, int cy, <a class="el" href="group__utils.html#ga8787c656e38c35a93bccad5fe9a8d7d9">CellState</a> value)</td></tr>
@@ -200,6 +209,10 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>setCellStateCallback<
 void&#160;</td><td class="memItemRight" valign="bottom"><b>setValidityCallback</b> (bool(*cb)(int cx, int cy, void *ref))</td></tr>
 <tr class="memdesc:a279a5467a4cfeeba8820538ffe6e6272"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the callback for cell validity checking. <br /></td></tr>
 <tr class="separator:a279a5467a4cfeeba8820538ffe6e6272"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa7a83b5c8f37176c2cd07c89403b8e88"><td class="memItemLeft" align="right" valign="top"><a id="aa7a83b5c8f37176c2cd07c89403b8e88" name="aa7a83b5c8f37176c2cd07c89403b8e88"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>setCellUpdateCallback</b> (<a class="el" href="classtinyrobotics_1_1GridMap.html#ab75c808bec03a3d759c2c60ad8346cbc">CellUpdateCallback</a> cb)</td></tr>
+<tr class="memdesc:aa7a83b5c8f37176c2cd07c89403b8e88"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set callback invoked whenever a cell state changes. <br /></td></tr>
+<tr class="separator:aa7a83b5c8f37176c2cd07c89403b8e88"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a99d57924ad8bf6c8765005de08b3a214"><td class="memItemLeft" align="right" valign="top"><a id="a99d57924ad8bf6c8765005de08b3a214" name="a99d57924ad8bf6c8765005de08b3a214"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>setReference</b> (void *ref)</td></tr>
 <tr class="memdesc:a99d57924ad8bf6c8765005de08b3a214"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the reference pointer passed to callbacks. <br /></td></tr>
@@ -234,6 +247,13 @@ size_t&#160;</td><td class="memItemRight" valign="bottom"><b>readFrom</b> (Strea
 <tr class="memdesc:a8cca770e0c35b859947e290845dbe071"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if a coordinate is inside the map bounds.  <br /></td></tr>
 <tr class="separator:a8cca770e0c35b859947e290845dbe071"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-methods" name="pro-methods"></a>
+Protected Member Functions</h2></td></tr>
+<tr class="memitem:ab355df32e630934f6ec641d90c644315"><td class="memItemLeft" align="right" valign="top"><a id="ab355df32e630934f6ec641d90c644315" name="ab355df32e630934f6ec641d90c644315"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>notifyCellUpdate</b> (int cx, int cy, <a class="el" href="group__utils.html#ga8787c656e38c35a93bccad5fe9a8d7d9">CellState</a> state)</td></tr>
+<tr class="memdesc:ab355df32e630934f6ec641d90c644315"><td class="mdescLeft">&#160;</td><td class="mdescRight">Notify callback listeners about a changed cell. <br /></td></tr>
+<tr class="separator:ab355df32e630934f6ec641d90c644315"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-static-methods" name="pro-static-methods"></a>
 Static Protected Member Functions</h2></td></tr>
 <tr class="memitem:ae11b334c4503548f7889ddf65ba16e00"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1GridMap.html#ae11b334c4503548f7889ddf65ba16e00">isValid</a> (int cx, int cy, void *ref)</td></tr>
@@ -262,12 +282,15 @@ bool(*&#160;</td><td class="memItemRight" valign="bottom"><b>is_valid_cb</b> )(i
 <tr class="memitem:a114177013be87f5e3ea9904bbdc6eb0f"><td class="memItemLeft" align="right" valign="top"><a id="a114177013be87f5e3ea9904bbdc6eb0f" name="a114177013be87f5e3ea9904bbdc6eb0f"></a>
 <a class="el" href="group__utils.html#ga8787c656e38c35a93bccad5fe9a8d7d9">CellState</a>(*&#160;</td><td class="memItemRight" valign="bottom"><b>get_cellstate_cb</b> )(const StateT &amp;, void *ref) = nullptr</td></tr>
 <tr class="separator:a114177013be87f5e3ea9904bbdc6eb0f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae801822d9c090154460ce56736287efb"><td class="memItemLeft" align="right" valign="top"><a id="ae801822d9c090154460ce56736287efb" name="ae801822d9c090154460ce56736287efb"></a>
+<a class="el" href="classtinyrobotics_1_1GridMap.html#ab75c808bec03a3d759c2c60ad8346cbc">CellUpdateCallback</a>&#160;</td><td class="memItemRight" valign="bottom"><b>on_cell_update_cb</b> = nullptr</td></tr>
+<tr class="separator:ae801822d9c090154460ce56736287efb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac33701bceb6f549cdc4e0238d4a21307"><td class="memItemLeft" align="right" valign="top"><a id="ac33701bceb6f549cdc4e0238d4a21307" name="ac33701bceb6f549cdc4e0238d4a21307"></a>
 std::vector&lt; StateT, <a class="el" href="classtinyrobotics_1_1AllocatorPSRAM.html">AllocatorPSRAM</a>&lt; StateT &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>data</b></td></tr>
 <tr class="separator:ac33701bceb6f549cdc4e0238d4a21307"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6f7ab7048f1049260865bb4d237f4381"><td class="memItemLeft" align="right" valign="top"><a id="a6f7ab7048f1049260865bb4d237f4381" name="a6f7ab7048f1049260865bb4d237f4381"></a>
+<tr class="memitem:abfff6f2d8f0e8ff44bb6add9dc48bb76"><td class="memItemLeft" align="right" valign="top"><a id="abfff6f2d8f0e8ff44bb6add9dc48bb76" name="abfff6f2d8f0e8ff44bb6add9dc48bb76"></a>
 <a class="el" href="classtinyrobotics_1_1GridMapSerializer.html">GridMapSerializer</a>&lt; <a class="el" href="classtinyrobotics_1_1GridMap.html">GridMap</a>&lt; StateT &gt;, StateT, T &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>serializer</b></td></tr>
-<tr class="separator:a6f7ab7048f1049260865bb4d237f4381"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="separator:abfff6f2d8f0e8ff44bb6add9dc48bb76"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><div class="compoundTemplParams">template&lt;typename StateT = CellState, typename T = DistanceM&gt;<br />
@@ -308,7 +331,7 @@ class tinyrobotics::GridMap&lt; StateT, T &gt;</div><p>A grid map for spatial re
 <div class="line">  <span class="keywordflow">return</span> v &gt; 0.5f ? CellState::OCCUPIED : CellState::FREE;</div>
 <div class="line">});</div>
 <div class="ttc" id="aclasstinyrobotics_1_1Coordinate_html"><div class="ttname"><a href="classtinyrobotics_1_1Coordinate.html">tinyrobotics::Coordinate</a></div><div class="ttdoc">A generic 3D coordinate class for robotics, navigation, and spatial calculations.</div><div class="ttdef"><b>Definition:</b> Coordinate.h:57</div></div>
-<div class="ttc" id="aclasstinyrobotics_1_1GridMap_html"><div class="ttname"><a href="classtinyrobotics_1_1GridMap.html">tinyrobotics::GridMap</a></div><div class="ttdoc">A grid map for spatial representation, navigation, and planning.</div><div class="ttdef"><b>Definition:</b> GridMap.h:71</div></div>
+<div class="ttc" id="aclasstinyrobotics_1_1GridMap_html"><div class="ttname"><a href="classtinyrobotics_1_1GridMap.html">tinyrobotics::GridMap</a></div><div class="ttdoc">A grid map for spatial representation, navigation, and planning.</div><div class="ttdef"><b>Definition:</b> GridMap.h:72</div></div>
 </div><!-- fragment --><dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
     <tr><td class="paramname">StateType</td><td>The type stored in each cell (e.g., occupancy, height) </td></tr>
