@@ -169,7 +169,7 @@ You can use a platform specifc motor control library to implement the callbacks.
   - 16 – 25 kHz Above human hearing
   - 25 – 100 kHz Less common, more switching loss
 
-### Stepper Motor Logic (e.g. using L298N driver)
+### Stepper Motor Logic (e.g. using A4988 driver)
 
 - One pulse is one step, so we can drive the motor speed by the pwm frequency: just keep the duty at 50%.
 - Very slow motion: ~1 Hz – 50 Hz

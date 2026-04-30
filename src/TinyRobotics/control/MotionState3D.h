@@ -51,7 +51,8 @@ class IMotionState3D {
  *
  */
 class MotionState3D : public IMotionState3D {
- public:
+public:
+  MotionState3D() = default;
   MotionState3D(const Coordinate<DistanceM>& position,
                 const Orientation3D& orientation, const Speed3D& speed,
                 const AngularVelocity3D& angularVelocity)

@@ -1,8 +1,8 @@
 # CMake configuration for TinyRobotics tests
 
-cmake_minimum_required(VERSION 3.5)
+cmake_minimum_required(VERSION 3.14)
 
-project(TinyRoboticsTests)
+project(TinyRoboticsTests LANGUAGES CXX)
 
 # Add subdirectories for each test
 add_subdirectory(circle)
