@@ -1,4 +1,6 @@
 #pragma once
+#include <TinyRobotics/serialize/MapSerializer.h>
+
 #include <cmath>
 #include <cstdint>
 #include <vector>
@@ -6,7 +8,6 @@
 #include "IMap.h"
 #include "TinyRobotics/utils/AllocatorPSRAM.h"
 #include "TinyRobotics/utils/Common.h"
-#include <TinyRobotics/serialize/MapSerializer.h>
 
 namespace tinyrobotics {
 
@@ -70,6 +71,11 @@ namespace tinyrobotics {
 template <typename StateT = CellState, typename T = DistanceM>
 class GridMap : public IMap<T> {
  public:
+  /// Callback type for cell updates
+  using CellUpdateCallback = void (*)(GridMap<StateT, T>& map, int cx, int cy,
+                                      const Coordinate<T>& coord,
+                                      CellState state);
+
   /// Cell structure to represent grid cell indices
   struct Cell {
     size_t cx;  // Cell X index
@@ -144,16 +150,19 @@ class GridMap : public IMap<T> {
     return false;  // Out of bounds
   }
 
-  /// Provide access to cell state by coordinate
+  /// Set cell state (for initialization or manual updates)
   void setCell(Cell& cell, CellState value) {
-    if (cell.cx >= 0 && cell.cx < xCount && cell.cy >= 0 && cell.cy < yCount)
-      data[cell.cy * xCount + cell.cx] = value;
+    setCell(cell.cx, cell.cy, value);
   }
 
   /// Set cell state (for initialization or manual updates)
   void setCell(int cx, int cy, CellState value) {
-    if (cx >= 0 && cx < xCount && cy >= 0 && cy < yCount)
-      data[cy * xCount + cx] = value;
+    if (cx >= 0 && cx < xCount && cy >= 0 && cy < yCount) {
+      int idx = cy * xCount + cx;
+      if (data[idx] == value) return;  // No change needed
+      data[idx] = value;
+      notifyCellUpdate(cx, cy, value);
+    }
   }
 
   /// Set cell state by coordinate (converts to cell index internally)
@@ -253,18 +262,19 @@ class GridMap : public IMap<T> {
     is_valid_cb = cb != nullptr ? cb : isValid;
   }
 
+  /// Set callback invoked whenever a cell state changes
+  void setCellUpdateCallback(CellUpdateCallback cb) {
+    on_cell_update_cb = cb;
+  }
+
   /// Set the reference pointer passed to callbacks
   void setReference(void* ref) { reference = ref; }
 
   /// Write map to output
-  size_t writeTo(Print& out) {
-    return serializer.write(*this, out);
-  }
+  size_t writeTo(Print& out) { return serializer.write(*this, out); }
 
   /// Read map from input
-  size_t readFrom(Stream& in) {
-    return serializer.read(*this, in);
-  }
+  size_t readFrom(Stream& in) { return serializer.read(*this, in); }
 
  protected:
   // Grid parameters
@@ -275,12 +285,12 @@ class GridMap : public IMap<T> {
   void* reference = this;  // Optional reference for validity callback
   bool (*is_valid_cb)(int cx, int cy, void*) = isValid;
   CellState (*get_cellstate_cb)(const StateT&, void* ref) = nullptr;
+  CellUpdateCallback on_cell_update_cb = nullptr;
 
   // Map data: e.g. 0=free, 100=occupied, -1=unknown
   std::vector<StateT, AllocatorPSRAM<StateT>> data;
   // Serialization
-  GridMapSerializer<GridMap<StateT>,StateT, T> serializer;
-
+  GridMapSerializer<GridMap<StateT>, StateT, T> serializer;
 
   /// Default validity check: a cell is valid if it's not occupied. This can be
   /// overridden with a custom callback for more complex logic (e.g., dynamic
@@ -295,6 +305,14 @@ class GridMap : public IMap<T> {
       // For non-CellState types, always return true or provide custom logic
       return true;
     }
+  }
+
+  /// Notify callback listeners about a changed cell
+  void notifyCellUpdate(int cx, int cy, CellState state) {
+    if (on_cell_update_cb == nullptr) return;
+    Coordinate<T> coord;
+    cellToWorld(cx, cy, coord.x, coord.y);
+    on_cell_update_cb(this, cx, cy, coord, state);
   }
 };
 

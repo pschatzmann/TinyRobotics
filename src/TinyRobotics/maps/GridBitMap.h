@@ -29,6 +29,11 @@ namespace tinyrobotics {
 template <typename T = DistanceM>
 class GridBitMap : public IMap<T> {
  public:
+  /// Callback type for cell updates
+  using CellUpdateCallback = void (*)(GridBitMap<T>& map, int cx, int cy,
+                                      const Coordinate<T>& coord,
+                                      CellState state);
+
   struct Cell {
     size_t cx;
     size_t cy;
@@ -86,10 +91,20 @@ class GridBitMap : public IMap<T> {
     return true;
   }
 
+  /// Set cell state (for initialization or manual updates)
+  void setCell(Cell& cell, CellState value) {
+    setCell(cell.cx, cell.cy, value);
+  }
+
   // Set cell state by index
   void setCell(int cx, int cy, CellState value) {
     if (cx < 0 || cx >= xCount || cy < 0 || cy >= yCount) return;
     size_t idx = cy * xCount + cx;
+
+    CellState current;
+    getCell(cx, cy, current);
+    if (current == value) return;  // No change needed
+
     switch (value) {
       case CellState::FREE:
         occupied[idx] = false;
@@ -104,6 +119,8 @@ class GridBitMap : public IMap<T> {
         free[idx] = false;
         break;
     }
+
+    notifyCellUpdate(cx, cy, value);
   }
 
   // Get cell state by coordinate
@@ -121,6 +138,11 @@ class GridBitMap : public IMap<T> {
     if (worldToCell(coord.x, coord.y, cell)) {
       setCell(cell.cx, cell.cy, value);
     }
+  }
+
+  /// Set callback invoked whenever a cell state changes
+  void setCellUpdateCallback(CellUpdateCallback cb) {
+    on_cell_update_cb = cb;
   }
 
   /**
@@ -171,8 +193,17 @@ class GridBitMap : public IMap<T> {
   Coordinate<T> origin;
   std::vector<bool> occupied;
   std::vector<bool> free;
+  CellUpdateCallback on_cell_update_cb = nullptr;
   // Serialization
   GridMapSerializer<GridBitMap, CellState, T> serializer;
+
+  /// Notify callback listeners about a changed cell
+  void notifyCellUpdate(int cx, int cy, CellState state) {
+    if (on_cell_update_cb == nullptr) return;
+    Coordinate<T> coord;
+    cellToWorld(cx, cy, coord.x, coord.y);
+    on_cell_update_cb(this, cx, cy, coord, state);
+  }
 
   /// Determine all neighboring cells (8-connected) for a given cell coordinate.
   std::vector<Cell> getNeighborCells(const Coordinate<T> from) const {

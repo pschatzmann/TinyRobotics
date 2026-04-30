@@ -85,6 +85,9 @@ class PointCloud : public IMapNeighbors<T> {
  public:
   using VectorT = std::vector<Point3D<T>, AllocatorPSRAM<Point3D<T>>>;
   using value_type = T;
+  using VoxelAddedCallback = void (*)(PointCloud<T>* cloud,
+                                      const Coordinate<T>& voxelCoord,
+                                      T voxelSize);
 
   PointCloud(T voxalSize, bool isliveVoxel = false) {
     setVoxalSize(voxalSize);
@@ -131,29 +134,6 @@ class PointCloud : public IMapNeighbors<T> {
   /// bounding box is updated whenever new points are added to the cloud,
   /// allowing for efficient retrieval of the spatial extent of the point cloud.
   Bounds bounds() const { return bounds_; }
-
-  // /// Simple voxel downsampling: e.g. 0.5 m to reduce number of points while
-  // /// keeping overall structure.
-  // PointCloud voxelDownsample(float voxelSize) const {
-  //   PointCloud out;
-  //   if (voxelSize <= 0.0f) return out;
-
-  //   std::unordered_map<Key, Point3D<T>, KeyHash> voxels;
-
-  //   for (const auto& p : points_) {
-  //     Key key{int(std::floor(p.x / voxelSize)),
-  //             int(std::floor(p.y / voxelSize)),
-  //             int(std::floor(p.z / voxelSize))};
-
-  //     // Keep first point per voxel (simple version)
-  //     if (voxels.find(key) == voxels.end()) voxels[key] = p;
-  //   }
-
-  //   for (const auto& kv : voxels)
-  //     out.add(kv.second.x, kv.second.y, kv.second.z);
-
-  //   return out;
-  // }
 
   /// Builds a voxel grid for fast occupancy queries: A voxel is a grid cell
   void buildVoxelGrid() {
@@ -316,12 +296,18 @@ class PointCloud : public IMapNeighbors<T> {
     resetBounds();
   }
 
+  /// Set callback invoked whenever a new voxel is added to the voxel grid
+  void setVoxelAddedCallback(VoxelAddedCallback cb) {
+    on_voxel_added_cb_ = cb;
+  }
+
  protected:
   bool is_3d = false;
   VectorT points_;
   Bounds bounds_;
   T voxelSize_ = 0.0f;
   bool liveVocelGrid_ = false;
+  VoxelAddedCallback on_voxel_added_cb_ = nullptr;
   // voxel grid preferrably is psram
   using PSRAMKeyAllocator = AllocatorPSRAM<Key>;
   std::unordered_set<Key, KeyHash, std::equal_to<Key>, PSRAMKeyAllocator>
@@ -354,7 +340,10 @@ class PointCloud : public IMapNeighbors<T> {
     if (voxelSize_ > 0.0f) {
       Key key{int(std::floor(x / voxelSize_)), int(std::floor(y / voxelSize_)),
               int(std::floor(z / voxelSize_))};
-      voxelGrid_.insert(key);
+      auto result = voxelGrid_.insert(key);
+      if (result.second && on_voxel_added_cb_ != nullptr) {
+        on_voxel_added_cb_(this, toCoordinate(key), voxelSize_);
+      }
     } else {
       TRLogger.warn("Voxel size must be > 0 to add voxels");
     }
@@ -368,6 +357,14 @@ class PointCloud : public IMapNeighbors<T> {
     T wx = (cx + 0.5f) * voxelSize_;
     T wy = (cy + 0.5f) * voxelSize_;
     T wz = 0.0f;
+    return Coordinate<T>(wx, wy, wz);
+  }
+
+  /// Convert a voxel Key to world coordinate (center of voxel)
+  Coordinate<T> toCoordinate(const Key& key) const {
+    T wx = (key.x + 0.5f) * voxelSize_;
+    T wy = (key.y + 0.5f) * voxelSize_;
+    T wz = is_3d ? (key.z + 0.5f) * voxelSize_ : 0.0f;
     return Coordinate<T>(wx, wy, wz);
   }
 
