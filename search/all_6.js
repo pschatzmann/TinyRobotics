@@ -15,7 +15,7 @@ var searchData=
   ['getdistanceforticksm_12',['getDistanceForTicksM',['../classtinyrobotics_1_1WheelEncoder.html#ab192863d4018b5b215425b01bb0c025f',1,'tinyrobotics::WheelEncoder']]],
   ['getdistancem_13',['getDistanceM',['../classtinyrobotics_1_1WheelEncoder.html#a2f62b093c6daa6551c3595b50ab3da3d',1,'tinyrobotics::WheelEncoder']]],
   ['getdriver_14',['getDriver',['../classtinyrobotics_1_1GenericMotor.html#aee24773271eea8487f122c59fa1e63cc',1,'tinyrobotics::GenericMotor']]],
-  ['getframebuffer_15',['getFrameBuffer',['../classtinyrobotics_1_1GridMapDisplay.html#aacceef08cce6f4b8a11974aee537064f',1,'tinyrobotics::GridMapDisplay']]],
+  ['getframebuffer_15',['getFrameBuffer',['../classtinyrobotics_1_1GridMapDisplay.html#ae2e23396f2902912240fc20d15ed9007',1,'tinyrobotics::GridMapDisplay']]],
   ['getgyrobias_16',['getGyroBias',['../classtinyrobotics_1_1Fusion2D.html#aa310771c648a0fe892fd321c5c7c854b',1,'tinyrobotics::Fusion2D']]],
   ['getheading_17',['getHeading',['../classtinyrobotics_1_1IMU2D.html#aa87c9152eb9af109c6050262b3bda818',1,'tinyrobotics::IMU2D::getHeading()'],['../classtinyrobotics_1_1Transform2D.html#af8a60f7a907b4ef4358ffd4792fcb69e',1,'tinyrobotics::Transform2D::getHeading()'],['../classtinyrobotics_1_1Odometry2D.html#aa87c9152eb9af109c6050262b3bda818',1,'tinyrobotics::Odometry2D::getHeading()']]],
   ['getimu_18',['getIMU',['../classtinyrobotics_1_1LocalizationAndMapping2D.html#a082e28b5b75d17b12bb991c505983ad9',1,'tinyrobotics::LocalizationAndMapping2D']]],

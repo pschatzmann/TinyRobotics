@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.6"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>TinyRobotics: GridMapDisplay&lt; TRGB, StateT, T &gt; Class Template Reference</title>
+<title>TinyRobotics: GridMapDisplay&lt; RGB_T, StateT, T &gt; Class Template Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -78,7 +78,7 @@ $(function() {
 <a href="#pro-methods">Protected Member Functions</a> &#124;
 <a href="#pro-attribs">Protected Attributes</a> &#124;
 <a href="classtinyrobotics_1_1GridMapDisplay-members.html">List of all members</a>  </div>
-  <div class="headertitle"><div class="title">GridMapDisplay&lt; TRGB, StateT, T &gt; Class Template Reference<div class="ingroups"><a class="el" href="group__main.html">TinyRobotics</a> &raquo; <a class="el" href="group__communication.html">Communication</a></div></div></div>
+  <div class="headertitle"><div class="title">GridMapDisplay&lt; RGB_T, StateT, T &gt; Class Template Reference<div class="ingroups"><a class="el" href="group__main.html">TinyRobotics</a> &raquo; <a class="el" href="group__communication.html">Communication</a></div></div></div>
 </div><!--header-->
 <div class="contents">
 
@@ -87,11 +87,11 @@ $(function() {
 
 <p><code>#include &lt;<a class="el" href="GridMapDisplay_8h_source.html">GridMapDisplay.h</a>&gt;</code></p>
 <div class="dynheader">
-Collaboration diagram for GridMapDisplay&lt; TRGB, StateT, T &gt;:</div>
+Collaboration diagram for GridMapDisplay&lt; RGB_T, StateT, T &gt;:</div>
 <div class="dyncontent">
-<div class="center"><img src="classtinyrobotics_1_1GridMapDisplay__coll__graph.png" border="0" usemap="#aGridMapDisplay_3_01TRGB_00_01StateT_00_01T_01_4_coll__map" alt="Collaboration graph"/></div>
-<map name="aGridMapDisplay_3_01TRGB_00_01StateT_00_01T_01_4_coll__map" id="aGridMapDisplay_3_01TRGB_00_01StateT_00_01T_01_4_coll__map">
-<area shape="rect" title="A class that visualizes a GridMap using the TinyGPU display API. This class provides a way to visuali..." alt="" coords="795,47,976,87"/>
+<div class="center"><img src="classtinyrobotics_1_1GridMapDisplay__coll__graph.png" border="0" usemap="#aGridMapDisplay_3_01RGB__T_00_01StateT_00_01T_01_4_coll__map" alt="Collaboration graph"/></div>
+<map name="aGridMapDisplay_3_01RGB__T_00_01StateT_00_01T_01_4_coll__map" id="aGridMapDisplay_3_01RGB__T_00_01StateT_00_01T_01_4_coll__map">
+<area shape="rect" title="A class that visualizes a GridMap using the TinyGPU display API. This class provides a way to visuali..." alt="" coords="795,47,964,87"/>
 <area shape="rect" href="classtinyrobotics_1_1GridMap.html" title=" " alt="" coords="519,47,673,87"/>
 <area shape="rect" href="classtinyrobotics_1_1IMap.html" title="Abstract interface for 2D grid maps and occupancy maps in TinyRobotics." alt="" coords="263,5,355,31"/>
 <area shape="rect" href="classtinyrobotics_1_1IMapNeighbors.html" title="Abstract interface for neighbor queries in map&#45;like data structures." alt="" coords="5,5,164,31"/>
@@ -103,9 +103,9 @@ Collaboration diagram for GridMapDisplay&lt; TRGB, StateT, T &gt;:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a85ca7f5a60f21c3f9909f0cbdb98014f"><td class="memItemLeft" align="right" valign="top"><a id="a85ca7f5a60f21c3f9909f0cbdb98014f" name="a85ca7f5a60f21c3f9909f0cbdb98014f"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>GridMapDisplay</b> (<a class="el" href="classtinyrobotics_1_1GridMap.html">GridMap</a>&lt; StateT, T &gt; map, uint32_t widthPixels, uint32_t heightPixels)</td></tr>
-<tr class="separator:a85ca7f5a60f21c3f9909f0cbdb98014f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a69a7bba34bbd7984b49f50a8109f53fe"><td class="memItemLeft" align="right" valign="top"><a id="a69a7bba34bbd7984b49f50a8109f53fe" name="a69a7bba34bbd7984b49f50a8109f53fe"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>GridMapDisplay</b> (<a class="el" href="classtinyrobotics_1_1GridMap.html">GridMap</a>&lt; StateT, T &gt; &amp;map, uint32_t widthPixels, uint32_t heightPixels)</td></tr>
+<tr class="separator:a69a7bba34bbd7984b49f50a8109f53fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a601fb7cf1fc15db50c71a826f084f934"><td class="memItemLeft" align="right" valign="top"><a id="a601fb7cf1fc15db50c71a826f084f934" name="a601fb7cf1fc15db50c71a826f084f934"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>begin</b> ()</td></tr>
 <tr class="memdesc:a601fb7cf1fc15db50c71a826f084f934"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize the GPU and set up callbacks. <br /></td></tr>
@@ -118,24 +118,28 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>end</b> ()</td></tr>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>displayVehicleAt</b> (T x, T y, float angleDegrees)</td></tr>
 <tr class="memdesc:ad937cdf0669d34ea7004fdc94f7b9277"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the position and orientation of the vehicle on the grid map. <br /></td></tr>
 <tr class="separator:ad937cdf0669d34ea7004fdc94f7b9277"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad8e52dae953bf091b29e88e455dd04e9"><td class="memItemLeft" align="right" valign="top"><a id="ad8e52dae953bf091b29e88e455dd04e9" name="ad8e52dae953bf091b29e88e455dd04e9"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setColorCallback</b> (TRGB(*cb)(StateT state))</td></tr>
-<tr class="memdesc:ad8e52dae953bf091b29e88e455dd04e9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Define a custom color mapping for cell states (optional) <br /></td></tr>
-<tr class="separator:ad8e52dae953bf091b29e88e455dd04e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3b4a14397fd0cc2e2ff4053a204a57bd"><td class="memItemLeft" align="right" valign="top"><a id="a3b4a14397fd0cc2e2ff4053a204a57bd" name="a3b4a14397fd0cc2e2ff4053a204a57bd"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setSprite</b> (const Sprite&lt; TRGB &gt; &amp;newSprite)</td></tr>
-<tr class="memdesc:a3b4a14397fd0cc2e2ff4053a204a57bd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Define a custom sprite for the vehicle (optional) <br /></td></tr>
-<tr class="separator:a3b4a14397fd0cc2e2ff4053a204a57bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aacceef08cce6f4b8a11974aee537064f"><td class="memItemLeft" align="right" valign="top"><a id="aacceef08cce6f4b8a11974aee537064f" name="aacceef08cce6f4b8a11974aee537064f"></a>
-FrameBuffer&lt; TRGB &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getFrameBuffer</b> ()</td></tr>
-<tr class="memdesc:aacceef08cce6f4b8a11974aee537064f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Access the underlying TinyGPU framebuffer for direct drawing (optional) <br /></td></tr>
-<tr class="separator:aacceef08cce6f4b8a11974aee537064f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a166f945a675686f537cb7b03aa777680"><td class="memItemLeft" align="right" valign="top"><a id="a166f945a675686f537cb7b03aa777680" name="a166f945a675686f537cb7b03aa777680"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>setColorCallback</b> (RGB_T(*cb)(StateT state))</td></tr>
+<tr class="memdesc:a166f945a675686f537cb7b03aa777680"><td class="mdescLeft">&#160;</td><td class="mdescRight">Define a custom color mapping for cell states (optional) <br /></td></tr>
+<tr class="separator:a166f945a675686f537cb7b03aa777680"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa5dc2f36d16ab21ccc26c7a87ab5478d"><td class="memItemLeft" align="right" valign="top"><a id="aa5dc2f36d16ab21ccc26c7a87ab5478d" name="aa5dc2f36d16ab21ccc26c7a87ab5478d"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>setSprite</b> (const Sprite&lt; RGB_T &gt; &amp;newSprite)</td></tr>
+<tr class="memdesc:aa5dc2f36d16ab21ccc26c7a87ab5478d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Define a custom sprite for the vehicle (optional) <br /></td></tr>
+<tr class="separator:aa5dc2f36d16ab21ccc26c7a87ab5478d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8ef26eeab612f9942b4e8678cdbc9b2e"><td class="memItemLeft" align="right" valign="top"><a id="a8ef26eeab612f9942b4e8678cdbc9b2e" name="a8ef26eeab612f9942b4e8678cdbc9b2e"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>setSpriteColor</b> (RGB_T color)</td></tr>
+<tr class="memdesc:a8ef26eeab612f9942b4e8678cdbc9b2e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Defines the color used for the vehicle sprite (optional) <br /></td></tr>
+<tr class="separator:a8ef26eeab612f9942b4e8678cdbc9b2e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae2e23396f2902912240fc20d15ed9007"><td class="memItemLeft" align="right" valign="top"><a id="ae2e23396f2902912240fc20d15ed9007" name="ae2e23396f2902912240fc20d15ed9007"></a>
+FrameBuffer&lt; RGB_T &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getFrameBuffer</b> ()</td></tr>
+<tr class="memdesc:ae2e23396f2902912240fc20d15ed9007"><td class="mdescLeft">&#160;</td><td class="mdescRight">Access the underlying TinyGPU framebuffer for direct drawing (optional) <br /></td></tr>
+<tr class="separator:ae2e23396f2902912240fc20d15ed9007"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-methods" name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
-<tr class="memitem:ae03880680d1ef57875cb9fa2cd397589"><td class="memItemLeft" align="right" valign="top"><a id="ae03880680d1ef57875cb9fa2cd397589" name="ae03880680d1ef57875cb9fa2cd397589"></a>
-TRGB&#160;</td><td class="memItemRight" valign="bottom"><b>getColorForState</b> (StateT state)</td></tr>
-<tr class="separator:ae03880680d1ef57875cb9fa2cd397589"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a36a20ca90107fe0cdf590c37860ad9a0"><td class="memItemLeft" align="right" valign="top"><a id="a36a20ca90107fe0cdf590c37860ad9a0" name="a36a20ca90107fe0cdf590c37860ad9a0"></a>
+RGB_T&#160;</td><td class="memItemRight" valign="bottom"><b>getColorForState</b> (StateT state)</td></tr>
+<tr class="separator:a36a20ca90107fe0cdf590c37860ad9a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1f5109a974dbe339cd7c70ca2963ddb9"><td class="memItemLeft" align="right" valign="top"><a id="a1f5109a974dbe339cd7c70ca2963ddb9" name="a1f5109a974dbe339cd7c70ca2963ddb9"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>updateGPU</b> ()</td></tr>
 <tr class="memdesc:a1f5109a974dbe339cd7c70ca2963ddb9"><td class="mdescLeft">&#160;</td><td class="mdescRight">update the entire GPU grid map based on the current state of the <a class="el" href="classtinyrobotics_1_1GridMap.html" title="A grid map for spatial representation, navigation, and planning.">GridMap</a> <br /></td></tr>
@@ -147,73 +151,45 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>updateGridMap</b> (<a
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
+<tr class="memitem:a5141ff648d7f94fffced2cefbf7db797"><td class="memItemLeft" align="right" valign="top"><a id="a5141ff648d7f94fffced2cefbf7db797" name="a5141ff648d7f94fffced2cefbf7db797"></a>
+BitmapFont&lt; RGB_T &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>font</b></td></tr>
+<tr class="separator:a5141ff648d7f94fffced2cefbf7db797"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab81675d2c372fe158c7ea906b51c1421"><td class="memItemLeft" align="right" valign="top"><a id="ab81675d2c372fe158c7ea906b51c1421" name="ab81675d2c372fe158c7ea906b51c1421"></a>
 <a class="el" href="classtinyrobotics_1_1GridMap.html">GridMap</a>&lt; StateT, T &gt; *&#160;</td><td class="memItemRight" valign="bottom"><b>p_gridMap</b></td></tr>
 <tr class="separator:ab81675d2c372fe158c7ea906b51c1421"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8e189e84084fe6501b1c338b0b34fad4"><td class="memItemLeft" align="right" valign="top"><a id="a8e189e84084fe6501b1c338b0b34fad4" name="a8e189e84084fe6501b1c338b0b34fad4"></a>
-FrameBuffer&lt; TRGB &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>framebuffer</b></td></tr>
-<tr class="separator:a8e189e84084fe6501b1c338b0b34fad4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afdc947342dc3b5d7fecf27088c3a8278"><td class="memItemLeft" align="right" valign="top"><a id="afdc947342dc3b5d7fecf27088c3a8278" name="afdc947342dc3b5d7fecf27088c3a8278"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>widthPixels</b> = 0</td></tr>
-<tr class="separator:afdc947342dc3b5d7fecf27088c3a8278"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a64a5a334478b9e8adf1bf6e6acdf7d89"><td class="memItemLeft" align="right" valign="top"><a id="a64a5a334478b9e8adf1bf6e6acdf7d89" name="a64a5a334478b9e8adf1bf6e6acdf7d89"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>heightPixels</b> = 0</td></tr>
-<tr class="separator:a64a5a334478b9e8adf1bf6e6acdf7d89"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a587c67097f36d91c4e0de2a860224785"><td class="memItemLeft" align="right" valign="top"><a id="a587c67097f36d91c4e0de2a860224785" name="a587c67097f36d91c4e0de2a860224785"></a>
+FrameBuffer&lt; RGB_T &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>framebuffer</b></td></tr>
+<tr class="separator:a587c67097f36d91c4e0de2a860224785"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a536afef430e780cd0bad176110a7a4cf"><td class="memItemLeft" align="right" valign="top"><a id="a536afef430e780cd0bad176110a7a4cf" name="a536afef430e780cd0bad176110a7a4cf"></a>
+uint32_t&#160;</td><td class="memItemRight" valign="bottom"><b>widthPixels</b></td></tr>
+<tr class="separator:a536afef430e780cd0bad176110a7a4cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad409cd4984fdc83eea5650a90226e952"><td class="memItemLeft" align="right" valign="top"><a id="ad409cd4984fdc83eea5650a90226e952" name="ad409cd4984fdc83eea5650a90226e952"></a>
+uint32_t&#160;</td><td class="memItemRight" valign="bottom"><b>heightPixels</b></td></tr>
+<tr class="separator:ad409cd4984fdc83eea5650a90226e952"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a764afacb49521b28d01772fbbfc648e0"><td class="memItemLeft" align="right" valign="top"><a id="a764afacb49521b28d01772fbbfc648e0" name="a764afacb49521b28d01772fbbfc648e0"></a>
-uint32_t&#160;</td><td class="memItemRight" valign="bottom"><b>deltaXPixels</b> = 0</td></tr>
+uint32_t&#160;</td><td class="memItemRight" valign="bottom"><b>deltaXPixels</b></td></tr>
 <tr class="separator:a764afacb49521b28d01772fbbfc648e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2547bd35acca1e55861e40db5e10dc87"><td class="memItemLeft" align="right" valign="top"><a id="a2547bd35acca1e55861e40db5e10dc87" name="a2547bd35acca1e55861e40db5e10dc87"></a>
-uint32_t&#160;</td><td class="memItemRight" valign="bottom"><b>deltaYPixels</b> = 0</td></tr>
+uint32_t&#160;</td><td class="memItemRight" valign="bottom"><b>deltaYPixels</b></td></tr>
 <tr class="separator:a2547bd35acca1e55861e40db5e10dc87"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2cdb8581315a2f2ad700fcfa6e4fe149"><td class="memItemLeft" align="right" valign="top"><a id="a2cdb8581315a2f2ad700fcfa6e4fe149" name="a2cdb8581315a2f2ad700fcfa6e4fe149"></a>
-TRGB(*&#160;</td><td class="memItemRight" valign="bottom"><b>getColorCB</b> )(StateT state) = nullptr</td></tr>
-<tr class="separator:a2cdb8581315a2f2ad700fcfa6e4fe149"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a899e63727bd59920e480b5401e29415c"><td class="memItemLeft" align="right" valign="top">Sprite&lt; TRGB &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtinyrobotics_1_1GridMapDisplay.html#a899e63727bd59920e480b5401e29415c">vehicleSprite</a></td></tr>
-<tr class="separator:a899e63727bd59920e480b5401e29415c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2bf3b368a0eb137dc8f7ff27aa3865a1"><td class="memItemLeft" align="right" valign="top"><a id="a2bf3b368a0eb137dc8f7ff27aa3865a1" name="a2bf3b368a0eb137dc8f7ff27aa3865a1"></a>
-FrameBuffer&lt; TRGB &gt;::SpriteInfo *&#160;</td><td class="memItemRight" valign="bottom"><b>p_sprite_info</b> = nullptr</td></tr>
-<tr class="separator:a2bf3b368a0eb137dc8f7ff27aa3865a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae247569f9fba3d56cef8f5ad7f398c19"><td class="memItemLeft" align="right" valign="top"><a id="ae247569f9fba3d56cef8f5ad7f398c19" name="ae247569f9fba3d56cef8f5ad7f398c19"></a>
+RGB_T(*&#160;</td><td class="memItemRight" valign="bottom"><b>getColorCB</b> )(StateT state)</td></tr>
+<tr class="separator:ae247569f9fba3d56cef8f5ad7f398c19"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae323b9785914fee8fe4d6d7c3d6ac365"><td class="memItemLeft" align="right" valign="top"><a id="ae323b9785914fee8fe4d6d7c3d6ac365" name="ae323b9785914fee8fe4d6d7c3d6ac365"></a>
+RGB_T&#160;</td><td class="memItemRight" valign="bottom"><b>spriteColor</b> {0, 0, 0}</td></tr>
+<tr class="separator:ae323b9785914fee8fe4d6d7c3d6ac365"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab23a69d5107c66323472aff4dd71253c"><td class="memItemLeft" align="right" valign="top"><a id="ab23a69d5107c66323472aff4dd71253c" name="ab23a69d5107c66323472aff4dd71253c"></a>
+Sprite&lt; RGB_T &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>vehicleSprite</b></td></tr>
+<tr class="separator:ab23a69d5107c66323472aff4dd71253c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a757ee6937649d38bf76dfd6edef45825"><td class="memItemLeft" align="right" valign="top"><a id="a757ee6937649d38bf76dfd6edef45825" name="a757ee6937649d38bf76dfd6edef45825"></a>
+FrameBuffer&lt; RGB_T &gt;::SpriteInfo *&#160;</td><td class="memItemRight" valign="bottom"><b>p_sprite_info</b></td></tr>
+<tr class="separator:a757ee6937649d38bf76dfd6edef45825"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><div class="compoundTemplParams">template&lt;typename TRGB = RGB565, typename StateT = CellState, typename T = DistanceM&gt;<br />
-class tinyrobotics::GridMapDisplay&lt; TRGB, StateT, T &gt;</div><p>A class that visualizes a <a class="el" href="classtinyrobotics_1_1GridMap.html" title="A grid map for spatial representation, navigation, and planning.">GridMap</a> using the TinyGPU display API. This class provides a way to visualize the state of a <a class="el" href="classtinyrobotics_1_1GridMap.html" title="A grid map for spatial representation, navigation, and planning.">GridMap</a> on a TinyGPU display. It sets up a callback to update the display whenever a cell state changes, and allows for customization of the color mapping and vehicle sprite. </p>
+<div class="textblock"><div class="compoundTemplParams">template&lt;typename RGB_T = RGB565, typename StateT = CellState, typename T = DistanceM&gt;<br />
+class tinyrobotics::GridMapDisplay&lt; RGB_T, StateT, T &gt;</div><p>A class that visualizes a <a class="el" href="classtinyrobotics_1_1GridMap.html" title="A grid map for spatial representation, navigation, and planning.">GridMap</a> using the TinyGPU display API. This class provides a way to visualize the state of a <a class="el" href="classtinyrobotics_1_1GridMap.html" title="A grid map for spatial representation, navigation, and planning.">GridMap</a> on a TinyGPU display. It sets up a callback to update the display whenever a cell state changes, and allows for customization of the color mapping and vehicle sprite. </p>
 <dl class="section note"><dt>Note</dt><dd>Dependency: <a href="https://pschatzmann.github.io/TinyGPU">https://pschatzmann.github.io/TinyGPU</a> </dd></dl>
-</div><h2 class="groupheader">Member Data Documentation</h2>
-<a id="a899e63727bd59920e480b5401e29415c" name="a899e63727bd59920e480b5401e29415c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a899e63727bd59920e480b5401e29415c">&#9670;&#160;</a></span>vehicleSprite</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">Sprite&lt;TRGB&gt; vehicleSprite</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<b>Initial value:</b><div class="fragment"><div class="line">= Sprite&lt;TRGB&gt;(8, 9,</div>
-<div class="line">                                            {</div>
-<div class="line">                                                0b00000000,</div>
-<div class="line">                                                0b00011000,</div>
-<div class="line">                                                0b00111100,</div>
-<div class="line">                                                0b01111110,</div>
-<div class="line">                                                0b00011000,</div>
-<div class="line">                                                0b00011000,</div>
-<div class="line">                                                0b00011000,</div>
-<div class="line">                                                0b00011000,</div>
-<div class="line">                                                0b00000000,</div>
-<div class="line">                                            })</div>
-</div><!-- fragment -->
-</div>
-</div>
-<hr/>The documentation for this class was generated from the following file:<ul>
+</div><hr/>The documentation for this class was generated from the following file:<ul>
 <li>src/TinyRobotics/communication/<a class="el" href="GridMapDisplay_8h_source.html">GridMapDisplay.h</a></li>
 </ul>
 </div><!-- contents -->
