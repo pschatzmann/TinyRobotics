@@ -1,8 +1,8 @@
 <map id="CarDifferential&lt; N, T, MotorMT &gt;" name="CarDifferential&lt; N, T, MotorMT &gt;">
-<area shape="rect" id="node1" title="Car model with differential drive. The direction is controlled by adjusting the speed of the motors...." alt="" coords="217,168,364,208"/>
-<area shape="rect" id="node2" href="$classtinyrobotics_1_1Vehicle.html" title="Abstract base class for all vehicle types." alt="" coords="127,80,273,105"/>
-<area shape="rect" id="node3" href="$classtinyrobotics_1_1MessageHandler.html" title="Interface for handling messages in the TinyRobotics framework." alt="" coords="5,5,136,31"/>
-<area shape="rect" id="node4" href="$classtinyrobotics_1_1MessageSource.html" title="Base class for message sources in the TinyRobotics communication framework." alt="" coords="161,5,285,31"/>
-<area shape="rect" id="node5" href="$classtinyrobotics_1_1BrushedMotor.html" title=" " alt="" coords="297,80,469,105"/>
-<area shape="rect" id="node6" href="$classtinyrobotics_1_1IMotor.html" title="Abstract base class for all motor driver types." alt="" coords="331,5,434,31"/>
+<area shape="rect" id="node1" title="Car model with differential drive. The direction is controlled by adjusting the speed of the motors...." alt="" coords="215,175,360,220"/>
+<area shape="rect" id="node2" href="$classtinyrobotics_1_1Vehicle.html" title="Abstract base class for all vehicle types." alt="" coords="126,82,271,110"/>
+<area shape="rect" id="node3" href="$classtinyrobotics_1_1MessageHandler.html" title="Interface for handling messages in the TinyRobotics framework." alt="" coords="5,5,136,33"/>
+<area shape="rect" id="node4" href="$classtinyrobotics_1_1MessageSource.html" title="Base class for message sources in the TinyRobotics communication framework." alt="" coords="160,5,283,33"/>
+<area shape="rect" id="node5" href="$classtinyrobotics_1_1BrushedMotor.html" title=" " alt="" coords="294,82,466,110"/>
+<area shape="rect" id="node6" href="$classtinyrobotics_1_1IMotor.html" title="Abstract base class for all motor driver types." alt="" coords="329,5,430,33"/>
 </map>

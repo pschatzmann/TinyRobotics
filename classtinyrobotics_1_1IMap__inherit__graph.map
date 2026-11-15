@@ -1,8 +1,8 @@
 <map id="IMap&lt; T &gt;" name="IMap&lt; T &gt;">
-<area shape="rect" id="node1" title="Abstract interface for 2D grid maps and occupancy maps in TinyRobotics." alt="" coords="212,95,304,121"/>
-<area shape="rect" id="node3" href="$classtinyrobotics_1_1GridMap.html" title=" " alt="" coords="357,5,512,45"/>
-<area shape="rect" id="node4" href="$classtinyrobotics_1_1CallbackMap.html" title="A map&#45;like utility for generating and validating neighbor coordinates in a configurable pattern." alt="" coords="363,70,507,95"/>
-<area shape="rect" id="node5" href="$classtinyrobotics_1_1GridBitMap.html" title="A grid map using two bit vectors to represent CellState efficiently." alt="" coords="368,119,501,145"/>
-<area shape="rect" id="node6" href="$classtinyrobotics_1_1GridMap.html" title="A grid map for spatial representation, navigation, and planning." alt="" coords="352,169,517,194"/>
-<area shape="rect" id="node2" href="$classtinyrobotics_1_1IMapNeighbors.html" title="Abstract interface for neighbor queries in map&#45;like data structures." alt="" coords="5,95,164,121"/>
+<area shape="rect" id="node1" title="Abstract interface for 2D grid maps and occupancy maps in TinyRobotics." alt="" coords="211,100,302,128"/>
+<area shape="rect" id="node3" href="$classtinyrobotics_1_1GridMap.html" title=" " alt="" coords="355,5,509,50"/>
+<area shape="rect" id="node4" href="$classtinyrobotics_1_1CallbackMap.html" title="A map&#45;like utility for generating and validating neighbor coordinates in a configurable pattern." alt="" coords="360,74,504,102"/>
+<area shape="rect" id="node5" href="$classtinyrobotics_1_1GridBitMap.html" title="A grid map using two bit vectors to represent CellState efficiently." alt="" coords="366,126,498,154"/>
+<area shape="rect" id="node6" href="$classtinyrobotics_1_1GridMap.html" title="A grid map for spatial representation, navigation, and planning." alt="" coords="350,178,514,206"/>
+<area shape="rect" id="node2" href="$classtinyrobotics_1_1IMapNeighbors.html" title="Abstract interface for neighbor queries in map&#45;like data structures." alt="" coords="5,100,163,128"/>
 </map>
