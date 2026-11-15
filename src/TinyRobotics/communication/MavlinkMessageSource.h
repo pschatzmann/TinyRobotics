@@ -1,5 +1,5 @@
 #pragma once
-#include <SimpleMavlinkDrone.h>  // https://github.com/pschatzmann/ArduinoMavlinkDrone
+#include "Mavlink.h"  // https://github.com/pschatzmann/ArduinoMavlink
 #include "MessageSource.h"
 #include "TinyRobotics/utils/Common.h"
 
@@ -8,10 +8,10 @@ namespace tinyrobotics {
 /**
  * @class MavlinkMessageSource
  * @ingroup communication
- * @brief Message source for MAVLink integration using ArduinoMavlinkDrone.
+ * @brief Message source for MAVLink integration using ArduinoMavlink.
  *
- * @note This class depends on the ArduinoMavlinkDrone library:
- *       https://github.com/pschatzmann/ArduinoMavlinkDrone
+ * @note This class depends on the ArduinoMavlink library:
+ *       https://github.com/pschatzmann/ArduinoMavlink
  *
  * This class connects to a MAVLink drone and translates MAVLink telemetry and
  * control messages into TinyRobotics Message objects. It can be used to bridge
@@ -26,7 +26,7 @@ namespace tinyrobotics {
  */
 class MavlinkMessageSource : public MessageSource {
 public:
-  MavlinkMessageSource(SimpleMavlinkDrone& drone,
+  MavlinkMessageSource(mavlink_controller::MavlinkController& drone,
                        ControlScenario scenario = ControlScenario::Car)
       : drone(drone), scenario(scenario) {}
 
@@ -57,7 +57,7 @@ public:
   }
 
  protected:
-  SimpleMavlinkDrone& drone;
+  mavlink_controller::MavlinkController& drone;
   ControlScenario scenario;
   bool is_active_ = false;
   float max_steering_deg = 45.0f;

@@ -45,7 +45,7 @@ Example:
 - `BrushedMotor`: High-level H-Bridge DC motor driver for bidirectional DC motors (L298N, L293D, TB6612FNG, etc.).
 - `BrushlessMotor`: Interface for brushless DC motors (ESC-based, uses servo signal).
 - `ServoMotor`: High-level wrapper for standard RC servo motors (uses Arduino Servo or ESP32Servo library).
-- `StepperMotor`: Interface for stepper motors (uses FastAccelStepper library if enabled).
+- `StepperMotor`: Interface for stepper motors. Uses FastAccelStepper if enabled (microcontrollers). On Raspberry Pi (`USE_RPI`) it uses `StepperMotorLinux`, which supports continuous speed only, via hardware PWM step pulses on pins 12, 13, 18 and 19 (two shared PWM channels). Counted moves and acceleration ramps are not supported on Linux.
 - `GenericMotor`: Flexible abstraction for integrating custom/external motor drivers using callbacks.
 
 ## Class Documentation

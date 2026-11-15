@@ -1,6 +1,28 @@
 #pragma once
-#include "FastAccelStepper.h"
 #include "TinyRobotics/utils/Config.h"
+
+// USE_FASTACCEL_STEPPER (default false) is defined in utils/Config.h.
+// Enabling it without the FastAccelStepper library installed is an error.
+#if USE_FASTACCEL_STEPPER
+// FastAccelStepper only supports these architectures
+#if !(defined(ARDUINO_ARCH_AVR) || defined(ARDUINO_ARCH_ESP32) ||             \
+      defined(ARDUINO_ARCH_SAM) || defined(ARDUINO_ARCH_SAMD) ||              \
+      defined(ARDUINO_ARCH_RP2040) || defined(PICO_RP2350) ||                 \
+      defined(TEENSYDUINO))
+#error \
+    "USE_FASTACCEL_STEPPER is true, but FastAccelStepper does not support this platform (supported: AVR, ESP32, SAM, SAMD, RP2040/RP2350, Teensy)"
+#endif
+#if defined(__has_include)
+#if !__has_include("FastAccelStepper.h")
+#error \
+    "USE_FASTACCEL_STEPPER is true, but the FastAccelStepper library is not installed"
+#endif
+#endif
+#endif
+
+#if USE_FASTACCEL_STEPPER
+
+#include "FastAccelStepper.h"
 #ifdef AVR
 #include "AVRStepperPins.h"  // Only required for AVR controllers
 #endif
@@ -77,10 +99,10 @@ namespace tinyrobotics {
 template <typename T = float>
 class StepperMotor : public IMotor<T> {
  public:
-  StepperMotor(uint8_t id = 0) { setID(id); }
+  StepperMotor(uint8_t id = 0) { this->setID(id); }
   StepperMotor(uint8_t id, uint16_t stepsPerRevolution,
                float maxSpeedStepsPerSec, uint16_t accelerationMs) {
-    setID(id);
+    this->setID(id);
     setMaxSpeed(maxSpeedStepsPerSec);
     setAccelerationMs(accelerationMs);
     setStepsPerRevolution(stepsPerRevolution);
@@ -211,3 +233,23 @@ class StepperMotor : public IMotor<T> {
 
 };
 }  // namespace tinyrobotics
+
+#elif defined(USE_RPI)  // Raspberry Pi / Linux: continuous speed via hardware PWM
+
+#include "StepperMotorLinux.h"
+
+namespace tinyrobotics {
+template <typename T = float>
+using StepperMotor = StepperMotorLinux<T>;
+}  // namespace tinyrobotics
+
+#else  // !USE_FASTACCEL_STEPPER: keep the StepperMotor name available
+
+#include "GenericMotor.h"
+
+namespace tinyrobotics {
+template <typename T = float>
+using StepperMotor = GenericMotor<T>;
+}  // namespace tinyrobotics
+
+#endif  // USE_FASTACCEL_STEPPER

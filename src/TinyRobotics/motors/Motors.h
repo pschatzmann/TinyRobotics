@@ -22,11 +22,4 @@ using ServoMotor = GenericMotor<T>;
 
 }
 #endif
-#if (USE_FASTACCEL_STEPPER)
-#include "StepperMotor.h"
-#else
-namespace tinyrobotics {
-template <typename T = float>
-using StepperMotor = GenericMotor<T>;
-}
-#endif
+#include "StepperMotor.h"  // handles the USE_FASTACCEL_STEPPER fallback itself

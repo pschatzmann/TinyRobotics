@@ -21,8 +21,8 @@
 
 #include <cstdlib>
 
-#include "SimpleMavlinkDrone.h"
-#include "SimpleUDP.h"
+#include "Mavlink.h"
+#include "Mavlink/SimpleUDP.h"
 #include "TinyRobotics.h"
 #include "TinyRobotics/communication/MavlinkMessageSource.h"
 #include "WiFi.h"
@@ -30,8 +30,8 @@
 const int port = 14550;
 const char* ssid = "ssid";
 const char* password = "password";
-SimpleUDP udp;  // WiFiUDP udp;
-SimpleMavlinkDrone drone(udp);
+mavlink_controller::SimpleUDP udp;  // WiFiUDP udp;
+mavlink_controller::MavlinkController drone(udp);
 MavlinkMessageSource mav(drone);
 CarAckerman car;
 
