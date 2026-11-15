@@ -1,6 +1,6 @@
-#include <algorithm>
 #pragma once
 #include <Arduino.h>
+#include <algorithm>
 
 #include "IMotor.h"
 
