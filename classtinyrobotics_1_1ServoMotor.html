@@ -173,24 +173,26 @@ uint8_t&#160;</td><td class="memItemRight" valign="bottom"><b>id</b> = 0</td></t
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><div class="compoundTemplParams">template&lt;typename T = float&gt;<br />
 class tinyrobotics::ServoMotor&lt; T &gt;</div><p>High-level wrapper for Arduino Servo control (RC servo motors). </p>
-<p>This class provides an easy interface for controlling standard RC servo motors using the Arduino Servo library. It allows you to:</p><ul>
-<li>Attach/detach a servo to a digital pin</li>
+<p>This class provides an easy interface for controlling standard RC servo motors using the servo library selected in <a class="el" href="ServoLibrary_8h.html" title="Central selection of the servo implementation used by the motor drivers.">ServoLibrary.h</a>. It allows you to:</p><ul>
+<li>Attach (setPin + begin) and detach (end) a servo to a digital pin</li>
 <li>Set the servo angle in degrees (using ROS right-handed convention: 0 is forward, +left, -right)</li>
 <li>Set the servo position by pulse width (microseconds)</li>
 <li>Read back the last set angle (in degrees)</li>
 <li>Constrain the allowed angle range for safety or mechanical limits</li>
 </ul>
 <p>Usage Example: </p><div class="fragment"><div class="line"><a class="code hl_class" href="classtinyrobotics_1_1ServoMotor.html">ServoMotor</a> servo;</div>
-<div class="line">servo.attach(9);           <span class="comment">// Attach to pin 9</span></div>
+<div class="line">servo.<a class="code hl_function" href="classtinyrobotics_1_1ServoMotor.html#a2360066b15117341cd2fcb2f47e41801">setPin</a>(9);           <span class="comment">// Pin 9</span></div>
+<div class="line">servo.begin();             <span class="comment">// Attach the servo to the pin</span></div>
 <div class="line">servo.<a class="code hl_function" href="classtinyrobotics_1_1ServoMotor.html#a45ae9b8e37c4c25dbacc230772bed168">setConstraints</a>(-45, 45); <span class="comment">// Limit range to -45..45 degrees</span></div>
 <div class="line">servo.<a class="code hl_function" href="classtinyrobotics_1_1ServoMotor.html#a7103642ee5456bfc478e19dd33eaa52e">setAngle</a>(45);        <span class="comment">// Set to 45 degrees left</span></div>
 <div class="line"><span class="keywordtype">int</span> angle = servo.<a class="code hl_function" href="classtinyrobotics_1_1ServoMotor.html#a36459042a0cf20a8c10c020370e7f4ae">getAngle</a>(); <span class="comment">// Read last angle</span></div>
-<div class="line">servo.detach();            <span class="comment">// Detach when done</span></div>
-<div class="ttc" id="aclasstinyrobotics_1_1ServoMotor_html"><div class="ttname"><a href="classtinyrobotics_1_1ServoMotor.html">tinyrobotics::ServoMotor</a></div><div class="ttdoc">High-level wrapper for Arduino Servo control (RC servo motors).</div><div class="ttdef"><b>Definition:</b> ServoMotor.h:36</div></div>
-<div class="ttc" id="aclasstinyrobotics_1_1ServoMotor_html_a36459042a0cf20a8c10c020370e7f4ae"><div class="ttname"><a href="classtinyrobotics_1_1ServoMotor.html#a36459042a0cf20a8c10c020370e7f4ae">tinyrobotics::ServoMotor::getAngle</a></div><div class="ttdeci">int8_t getAngle()</div><div class="ttdef"><b>Definition:</b> ServoMotor.h:59</div></div>
-<div class="ttc" id="aclasstinyrobotics_1_1ServoMotor_html_a45ae9b8e37c4c25dbacc230772bed168"><div class="ttname"><a href="classtinyrobotics_1_1ServoMotor.html#a45ae9b8e37c4c25dbacc230772bed168">tinyrobotics::ServoMotor::setConstraints</a></div><div class="ttdeci">void setConstraints(int minAngle, int maxAngle)</div><div class="ttdef"><b>Definition:</b> ServoMotor.h:82</div></div>
-<div class="ttc" id="aclasstinyrobotics_1_1ServoMotor_html_a7103642ee5456bfc478e19dd33eaa52e"><div class="ttname"><a href="classtinyrobotics_1_1ServoMotor.html#a7103642ee5456bfc478e19dd33eaa52e">tinyrobotics::ServoMotor::setAngle</a></div><div class="ttdeci">void setAngle(int8_t rosAngleDegrees)</div><div class="ttdef"><b>Definition:</b> ServoMotor.h:50</div></div>
-</div><!-- fragment --><dl class="section note"><dt>Note</dt><dd>Requires the Arduino Servo library. </dd></dl>
+<div class="line">servo.end();               <span class="comment">// Detach when done</span></div>
+<div class="ttc" id="aclasstinyrobotics_1_1ServoMotor_html"><div class="ttname"><a href="classtinyrobotics_1_1ServoMotor.html">tinyrobotics::ServoMotor</a></div><div class="ttdoc">High-level wrapper for Arduino Servo control (RC servo motors).</div><div class="ttdef"><b>Definition:</b> ServoMotor.h:38</div></div>
+<div class="ttc" id="aclasstinyrobotics_1_1ServoMotor_html_a2360066b15117341cd2fcb2f47e41801"><div class="ttname"><a href="classtinyrobotics_1_1ServoMotor.html#a2360066b15117341cd2fcb2f47e41801">tinyrobotics::ServoMotor::setPin</a></div><div class="ttdeci">void setPin(int pin)</div><div class="ttdef"><b>Definition:</b> ServoMotor.h:43</div></div>
+<div class="ttc" id="aclasstinyrobotics_1_1ServoMotor_html_a36459042a0cf20a8c10c020370e7f4ae"><div class="ttname"><a href="classtinyrobotics_1_1ServoMotor.html#a36459042a0cf20a8c10c020370e7f4ae">tinyrobotics::ServoMotor::getAngle</a></div><div class="ttdeci">int8_t getAngle()</div><div class="ttdef"><b>Definition:</b> ServoMotor.h:61</div></div>
+<div class="ttc" id="aclasstinyrobotics_1_1ServoMotor_html_a45ae9b8e37c4c25dbacc230772bed168"><div class="ttname"><a href="classtinyrobotics_1_1ServoMotor.html#a45ae9b8e37c4c25dbacc230772bed168">tinyrobotics::ServoMotor::setConstraints</a></div><div class="ttdeci">void setConstraints(int minAngle, int maxAngle)</div><div class="ttdef"><b>Definition:</b> ServoMotor.h:84</div></div>
+<div class="ttc" id="aclasstinyrobotics_1_1ServoMotor_html_a7103642ee5456bfc478e19dd33eaa52e"><div class="ttname"><a href="classtinyrobotics_1_1ServoMotor.html#a7103642ee5456bfc478e19dd33eaa52e">tinyrobotics::ServoMotor::setAngle</a></div><div class="ttdeci">void setAngle(int8_t rosAngleDegrees)</div><div class="ttdef"><b>Definition:</b> ServoMotor.h:52</div></div>
+</div><!-- fragment --><dl class="section note"><dt>Note</dt><dd>Uses the servo implementation selected in <a class="el" href="ServoLibrary_8h.html" title="Central selection of the servo implementation used by the motor drivers.">ServoLibrary.h</a> (ESP32Servo, Servo, or the Arduino-Emulator Servo on Raspberry Pi). </dd></dl>
 </div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="a601fb7cf1fc15db50c71a826f084f934" name="a601fb7cf1fc15db50c71a826f084f934"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a601fb7cf1fc15db50c71a826f084f934">&#9670;&#160;</a></span>begin()</h2>
