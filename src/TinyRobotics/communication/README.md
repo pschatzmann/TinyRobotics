@@ -40,8 +40,8 @@ The following external libraries are supported or recommended for advanced commu
   - Library for pulse-based communication, useful for protocols like PPM, PWM, and custom pulse encoding/decoding.
 - [SpektrumSatellite](https://github.com/pschatzmann/SpektrumSatellite):
   - Library for interfacing with Spektrum DSM2/DSMX satellite receivers, enabling wireless RC communication.
-- [ArduinoMavlinkDrone](https://github.com/pschatzmann/ArduinoMavlinkDrone):
-  - Library for MAVLink protocol support, enabling communication with ground stations, autopilots, and drones.
+- [ArduinoMavlink](https://github.com/pschatzmann/ArduinoMavlinkDrone) (repository: ArduinoMavlinkDrone):
+  - Library for MAVLink protocol support, enabling communication with ground stations, autopilots, and drones. `MavlinkMessageSource` uses its `mavlink_controller::MavlinkController` and `mavlink_controller::SimpleUDP` (header `Mavlink/SimpleUDP.h`).
 - [ESP32TransceiverIEEE802_15_4](https://github.com/pschatzmann/ESP32TransceiverIEEE802_15_4):
   - Library for IEEE 802.15.4 transceiver support on ESP32, enabling mesh and sensor network communication.
 - [RadioHead](http://www.airspayce.com/mikem/arduino/RadioHead/):
@@ -67,6 +67,7 @@ These libraries can be integrated with TinyRobotics communication classes to ext
 - [IR Send](../../../examples/communication/integration/IR-send/IR-send.ino)
 - [LORA Receive](../../../examples/communication/integration/LORA-receive/LORA-receive.ino)
 - [LORA Send](../../../examples/communication/integration/LORA-send/LORA-send.ino)
+- [Mavlink Receive](../../../examples/communication/integration/Mavlink-receive/Mavlink-receive.ino)
 - [MQTT Receive](../../../examples/communication/integration/MQTT-receive/MQTT-receive.ino)
 - [MQTT Send](../../../examples/communication/integration/MQTT-send/MQTT-send.ino)
 - [RF455MHz Receive](../../../examples/communication/integration/RF455MHz-receive/RF455MHz-receive.ino)

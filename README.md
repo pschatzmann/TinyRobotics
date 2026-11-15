@@ -20,7 +20,7 @@ The following __base functionality__ is automatically available:
 - [**IMU**](src/TinyRobotics/imu/README.md): 2D and 3D Inertial Measurement Unit (IMU) abstraction for embedded robotics. Provides real-time access to orientation, acceleration, and angular velocity. Integrates seamlessly with control, navigation, and SLAM modules for feedback and state estimation.
 - [**Fusion**](src/TinyRobotics/fusion/README.md): Sensor fusion algorithms for combining IMU, odometry, and other sensor data to estimate robot pose, velocity, and orientation in 2D and 3D.
 - [**SLAM**](src/TinyRobotics/localization/README.md): Simultaneous Localization and Mapping (SLAM) for real-time robot pose estimation and map building. Includes frame transforms, exploration, and modular integration with sensors and vehicles.
-- [**Motors**](src/TinyRobotics/motors/README.md): Drivers and abstractions for stepper, DC, and RC servo motors. .
+- [**Motors**](src/TinyRobotics/motors/README.md): Drivers and abstractions for stepper, DC, and RC servo motors, including Raspberry Pi / Linux support.
 - [**Vehicles**](src/TinyRobotics/vehicles/README.md): High-level abstractions for controlling cars (4WD, Ackerman), quadrotors, airplanes, and boats.
 - [**Utilities**](src/TinyRobotics/utils/README.md): Logger, Streams, Buffers, serialization and memory allocators for embedded systems.
 
@@ -47,6 +47,6 @@ git clone https://github.com/pschatzmann/TinyRobotics.git
 
 ## Dependencies
 
-You also need to install the follwing Arduino libraries:
-- Servo / ESP32Servo
-- FastAccelStepper 
+Depending on your platform you need the following Arduino libraries:
+- Servo (ESP32Servo on ESP32) for servo motors. Not needed on Raspberry Pi / Linux.
+- FastAccelStepper, only if you enable `USE_FASTACCEL_STEPPER` on a supported platform (see [Motors](src/TinyRobotics/motors/README.md)).

@@ -7,6 +7,7 @@ We can use the Arduino Emulator to run TinyRobotics sketches on a Raspberry Pi.
 - Use the [Arduino-Emulator](https://github.com/pschatzmann/Arduino-Emulator) to provide Arduino API compatibility
 - Integrate with additional Linux/Raspberry Pi features (e.g., camera, networking)
 - Example: Receive MAVLink messages and control a simulated Ackerman car
+- Servo and stepper motor drivers use hardware PWM on pins 12, 13, 18 and 19. The stepper driver supports continuous speed only.
 
 ## Getting Started
 
@@ -29,6 +30,10 @@ We can use the Arduino Emulator to run TinyRobotics sketches on a Raspberry Pi.
    cmake -DBUILD_PI=ON ..
 
    ```
+   To use a local copy of the Arduino-Emulator instead of fetching it from GitHub:
+   ```sh
+   cmake -DBUILD_PI=ON -DFETCHCONTENT_SOURCE_DIR_ARDUINO_EMULATOR=/path/to/Arduino-Emulator ..
+   ```
 3. Build the project:
    ```sh
    make
@@ -45,7 +50,7 @@ The `raspberry-pi/Mavlink-receive` directory contains an example that:
 
 ## Dependencies
 - [Arduino-Emulator](https://github.com/pschatzmann/Arduino-Emulator) (fetched automatically by CMake)
-- [ArduinoMavlinkDrone](https://github.com/pschatzmann/ArduinoMavlinkDrone) (fetched automatically by CMake)
+- [ArduinoMavlink](https://github.com/pschatzmann/ArduinoMavlinkDrone) (repository ArduinoMavlinkDrone; fetched automatically by CMake; provides `Mavlink.h` and `Mavlink/SimpleUDP.h`)
 - [TinyRobotics](https://github.com/pschatzmann/TinyRobotics)
 
 ## Notes

@@ -13,13 +13,15 @@ This library should be working on all Arduino platforms that provide "enough" RA
 
 However, it might happen that motor libraries are not supported. In this case you can deactivate them in __utils/Config.h__ or by using one of the following #defines before including the project:
 
-- #define __USE_EXTERNAL_MOTOR_LIBRARIES__ false
-- #define __USE_FASTACCEL_STEPPER__ false
-- #define __USE_SERVO_LIBRARY__ false
+- #define USE_EXTERNAL_MOTOR_LIBRARIES false
+- #define USE_FASTACCEL_STEPPER false (default; FastAccelStepper is only supported on AVR, ESP32, SAM, SAMD, RP2040/RP2350 and Teensy)
+- #define USE_SERVO_LIBRARY false
+
+Servo support uses ESP32Servo on ESP32, the Arduino Servo library elsewhere, and the Arduino-Emulator Servo on Raspberry Pi (`USE_RPI`). The selection is made in __src/TinyRobotics/motors/ServoLibrary.h__.
 
 This library uses the tinyrobotics namespace. If you want to access the functionality of this library outside of Arduino w/o specifiying the namespace you can use the following define:
 
-- #define __USE_TR_NAMESPACE__: if defined we do not need to define the namespace in the Arduino Sketch.
+- #define USE_TR_NAMESPACE: if defined we do not need to define the namespace in the Arduino Sketch.
 
 
 ## Other Platforms (using cmake)
@@ -36,4 +38,4 @@ Further info can be found in the [TinyRobotics/arduino](src/TinyRobotics/arduino
 
 To have access to the complete Arduino functionality you can use my [Arduino-Emulator](https://github.com/pschatzmann/Arduino-Emulator) that is supporting Linux, macOS and Windows.
 
-Further info on how to use this functionality (on a Raspberry PI) can be found in the [raspberry-pi](raspberry-pi/README.md) folder.
+Further info on how to use this functionality (on a Raspberry PI) can be found in the [raspberry-pi](raspberry-pi/README.md) folder. On a Raspberry Pi, the servo and stepper motor drivers use hardware PWM on pins 12, 13, 18 and 19.

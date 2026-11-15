@@ -12,8 +12,8 @@ namespace tinyrobotics {
  * @brief High-level wrapper for Arduino Servo control (RC servo motors).
  *
  * This class provides an easy interface for controlling standard RC servo
- * motors using the Arduino Servo library. It allows you to:
- *   - Attach/detach a servo to a digital pin
+ * motors using the servo library selected in ServoLibrary.h. It allows you to:
+ *   - Attach (setPin + begin) and detach (end) a servo to a digital pin
  *   - Set the servo angle in degrees (using ROS right-handed convention: 0 is
  * forward, +left, -right)
  *   - Set the servo position by pulse width (microseconds)
@@ -23,14 +23,16 @@ namespace tinyrobotics {
  * Usage Example:
  * @code
  * ServoMotor servo;
- * servo.attach(9);           // Attach to pin 9
+ * servo.setPin(9);           // Pin 9
+ * servo.begin();             // Attach the servo to the pin
  * servo.setConstraints(-45, 45); // Limit range to -45..45 degrees
  * servo.setAngle(45);        // Set to 45 degrees left
  * int angle = servo.getAngle(); // Read last angle
- * servo.detach();            // Detach when done
+ * servo.end();               // Detach when done
  * @endcode
  *
- * @note Requires the Arduino Servo library.
+ * @note Uses the servo implementation selected in ServoLibrary.h (ESP32Servo,
+ * Servo, or the Arduino-Emulator Servo on Raspberry Pi).
  */
 template <typename T = float>
 class ServoMotor : public IMotor<T> {

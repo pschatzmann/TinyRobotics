@@ -6,8 +6,8 @@ The TinyRobotics Motors module is a flexible and extensible framework for contro
 
 - **Brushed DC motors** (via H-Bridge drivers such as L298N, L293D, TB6612FNG)
 - **Brushless DC motors** (ESC-based, using servo signals)
-- **Standard RC servo motors** (using Arduino Servo or ESP32Servo libraries)
-- **Stepper motors** (with optional FastAccelStepper integration)
+- **Standard RC servo motors** (using Arduino Servo, ESP32Servo, or the Arduino-Emulator Servo on Raspberry Pi; selected centrally in `motors/ServoLibrary.h`)
+- **Stepper motors** (FastAccelStepper on supported microcontrollers; continuous-speed PWM driver on Raspberry Pi / Linux)
 - **Custom and external motor drivers** (via the GenericMotor class and user-defined callbacks)
 
 Key features include:
@@ -27,8 +27,9 @@ The module is designed for portability and can be configured to use or avoid ext
 Motor-specific settings can be adjusted in `src/TinyRobotics/utils/Config.h`:
 
 - `USE_EXTERNAL_MOTOR_LIBRARIES` (default: `true`): Enables use of external libraries for motor control.
-- `USE_SERVO_LIBRARY` (default: `USE_EXTERNAL_MOTOR_LIBRARIES`): Use Arduino Servo/ESP32Servo for servo motors.
-- `USE_FASTACCEL_STEPPER` (default: `USE_EXTERNAL_MOTOR_LIBRARIES`): Use FastAccelStepper for stepper motors.
+- `USE_SERVO_LIBRARY` (default: `USE_EXTERNAL_MOTOR_LIBRARIES`, `false` on Zephyr): Use the servo library. The implementation is chosen in `motors/ServoLibrary.h`: ESP32Servo on ESP32, Arduino Servo elsewhere, and the Arduino-Emulator Servo when `USE_RPI` is defined.
+- `USE_FASTACCEL_STEPPER` (default: `false`): Use FastAccelStepper for stepper motors. Only valid on AVR, ESP32, SAM, SAMD, RP2040/RP2350 and Teensy. Enabling it on another platform, or without the library installed, is a compile error.
+- `USE_RPI`: Set by the Raspberry Pi / Linux build (see [raspberry-pi](../../../raspberry-pi/README.md)). It selects `StepperMotorLinux` for `StepperMotor` when FastAccelStepper is not enabled.
 
 You can override these macros before including TinyRobotics to customize which motor drivers are enabled.
 
@@ -44,7 +45,7 @@ Example:
 - `Motor`: Abstract base class for all motor types. Defines the common interface for all motors.
 - `BrushedMotor`: High-level H-Bridge DC motor driver for bidirectional DC motors (L298N, L293D, TB6612FNG, etc.).
 - `BrushlessMotor`: Interface for brushless DC motors (ESC-based, uses servo signal).
-- `ServoMotor`: High-level wrapper for standard RC servo motors (uses Arduino Servo or ESP32Servo library).
+- `ServoMotor`: High-level wrapper for standard RC servo motors (uses the servo library selected in `ServoLibrary.h`).
 - `StepperMotor`: Interface for stepper motors. Uses FastAccelStepper if enabled (microcontrollers). On Raspberry Pi (`USE_RPI`) it uses `StepperMotorLinux`, which supports continuous speed only, via hardware PWM step pulses on pins 12, 13, 18 and 19 (two shared PWM channels). Counted moves and acceleration ramps are not supported on Linux.
 - `GenericMotor`: Flexible abstraction for integrating custom/external motor drivers using callbacks.
 
@@ -63,7 +64,7 @@ Example:
 BrushedMotor motor(1); // #1
 
 void setup() {
-  motor.setPins(5, 6, 9); // IN1=5, IN2=6, PWM=9)
+  motor.setPins(5, 6); // IN1=5, IN2=6 (optional 3rd argument: PWM frequency)
   motor.begin();
   motor.setValuePercent(50.0f); // Half speed forward
   motor.setValuePercent(-50.0f); // Half speed reverse
@@ -84,7 +85,7 @@ ServoMotor servo(2); // #2
 
 void setup() {
   servo.setPin(9);           // Attach to pin 9
-  servo.begin()
+  servo.begin();
   //servo.setConstraints(-45, 45); // Limit range to -45..45 degrees
   servo.setAngle(45.0f);        // Set to 45 degrees left
   float angle = servo.getAngle(); // Read last angle
@@ -96,19 +97,21 @@ void loop() {
 }
 ```
 
-### Stepper Motor (if enabled)
+### Stepper Motor
+
+On microcontrollers this uses FastAccelStepper and needs `USE_FASTACCEL_STEPPER` enabled. On Raspberry Pi / Linux it uses `StepperMotorLinux`, which supports continuous speed only (hardware PWM step pulses on pins 12, 13, 18 and 19).
 
 ```cpp
 #include <TinyRobotics.h>
 
 StepperMotor stepper;
 void setup() {
-  stepper.setPins(2, 3, 4);
+  stepper.setPins(2, 3, 4);  // step, direction, enable (optional)
   stepper.setMaxSpeed(1000.0f);
   stepper.setStepsPerRevolution(200);
   stepper.begin();
-  motor.setValuePercent(50.0f); // Half speed forward
-  motor.setValuePercent(-50.0f); // Half speed reverse
+  stepper.setValuePercent(50.0f); // Half speed forward
+  stepper.setValuePercent(-50.0f); // Half speed reverse
   stepper.end();
 }
 ```
@@ -190,9 +193,10 @@ You can use a platform specifc motor control library to implement the callbacks.
 
 ## Dependencies
 
-- [ESP32Servo](https://github.com/jkb-git/ESP32Servo)
-- [Servo](https://docs.arduino.cc/libraries/servo/)
-- [FastAccelStepper](https://github.com/ESP32DIYer/FastAccelStepper) (for StepperMotor support)
+- [ESP32Servo](https://github.com/jkb-git/ESP32Servo) (ESP32)
+- [Servo](https://docs.arduino.cc/libraries/servo/) (other Arduino platforms)
+- [FastAccelStepper](https://github.com/ESP32DIYer/FastAccelStepper) (only when `USE_FASTACCEL_STEPPER` is enabled; AVR, ESP32, SAM, SAMD, RP2040/RP2350, Teensy)
+- [Arduino-Emulator](https://github.com/pschatzmann/Arduino-Emulator) (Raspberry Pi / Linux: provides the Servo and GPIO/PWM used by the Linux motor drivers)
 
 ## See Also
 
