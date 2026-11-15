@@ -1,12 +1,7 @@
 #pragma once
 
 #include "Arduino.h"
-#ifdef ESP32
-#include "ESP32Servo.h"
-#else
-#include "Servo.h"
-#endif
-
+#include "ServoLibrary.h"
 #include "IMotor.h"
 
 namespace tinyrobotics {
