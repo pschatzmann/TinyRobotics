@@ -83,7 +83,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p><a class="el" href="structtinyrobotics_1_1Message.html" title="Generic message structure for communication, parameterized by value type.">Message</a> source for MAVLink integration using ArduinoMavlinkDrone.  
+<p><a class="el" href="structtinyrobotics_1_1Message.html" title="Generic message structure for communication, parameterized by value type.">Message</a> source for MAVLink integration using ArduinoMavlink.  
  <a href="classtinyrobotics_1_1MavlinkMessageSource.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="MavlinkMessageSource_8h_source.html">MavlinkMessageSource.h</a>&gt;</code></p>
@@ -92,7 +92,7 @@ Inheritance diagram for MavlinkMessageSource:</div>
 <div class="dyncontent">
 <div class="center"><img src="classtinyrobotics_1_1MavlinkMessageSource__inherit__graph.png" border="0" usemap="#aMavlinkMessageSource_inherit__map" alt="Inheritance graph"/></div>
 <map name="aMavlinkMessageSource_inherit__map" id="aMavlinkMessageSource_inherit__map">
-<area shape="rect" title="Message source for MAVLink integration using ArduinoMavlinkDrone." alt="" coords="5,81,181,109"/>
+<area shape="rect" title="Message source for MAVLink integration using ArduinoMavlink." alt="" coords="5,81,181,109"/>
 <area shape="rect" href="classtinyrobotics_1_1MessageSource.html" title="Base class for message sources in the TinyRobotics communication framework." alt="" coords="31,5,155,33"/>
 </map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
@@ -101,16 +101,16 @@ Collaboration diagram for MavlinkMessageSource:</div>
 <div class="dyncontent">
 <div class="center"><img src="classtinyrobotics_1_1MavlinkMessageSource__coll__graph.png" border="0" usemap="#aMavlinkMessageSource_coll__map" alt="Collaboration graph"/></div>
 <map name="aMavlinkMessageSource_coll__map" id="aMavlinkMessageSource_coll__map">
-<area shape="rect" title="Message source for MAVLink integration using ArduinoMavlinkDrone." alt="" coords="5,81,181,109"/>
+<area shape="rect" title="Message source for MAVLink integration using ArduinoMavlink." alt="" coords="5,81,181,109"/>
 <area shape="rect" href="classtinyrobotics_1_1MessageSource.html" title="Base class for message sources in the TinyRobotics communication framework." alt="" coords="31,5,155,33"/>
 </map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a6444ba2f3c98be1363d087fe526d896c"><td class="memItemLeft" align="right" valign="top"><a id="a6444ba2f3c98be1363d087fe526d896c" name="a6444ba2f3c98be1363d087fe526d896c"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>MavlinkMessageSource</b> (SimpleMavlinkDrone &amp;drone, <a class="el" href="group__utils.html#ga54e0752930cfaf3caf6bde26a0f14595">ControlScenario</a> scenario=ControlScenario::Car)</td></tr>
-<tr class="separator:a6444ba2f3c98be1363d087fe526d896c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0250ab833b585c0b6c80fc782c742a01"><td class="memItemLeft" align="right" valign="top"><a id="a0250ab833b585c0b6c80fc782c742a01" name="a0250ab833b585c0b6c80fc782c742a01"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>MavlinkMessageSource</b> (mavlink_controller::MavlinkController &amp;drone, <a class="el" href="group__utils.html#ga54e0752930cfaf3caf6bde26a0f14595">ControlScenario</a> scenario=ControlScenario::Car)</td></tr>
+<tr class="separator:a0250ab833b585c0b6c80fc782c742a01"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aac13d1182297a0a445778c092ef7ce28"><td class="memItemLeft" align="right" valign="top"><a id="aac13d1182297a0a445778c092ef7ce28" name="aac13d1182297a0a445778c092ef7ce28"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>begin</b> (<a class="el" href="group__utils.html#ga54e0752930cfaf3caf6bde26a0f14595">ControlScenario</a> scenario=ControlScenario::Car)</td></tr>
 <tr class="memdesc:aac13d1182297a0a445778c092ef7ce28"><td class="mdescLeft">&#160;</td><td class="mdescRight">Start the message source. <br /></td></tr>
@@ -177,9 +177,9 @@ static float&#160;</td><td class="memItemRight" valign="bottom"><b>mapFloat</b> 
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
-<tr class="memitem:ac75015b4d2d200a4a762a557feb408b3"><td class="memItemLeft" align="right" valign="top"><a id="ac75015b4d2d200a4a762a557feb408b3" name="ac75015b4d2d200a4a762a557feb408b3"></a>
-SimpleMavlinkDrone &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>drone</b></td></tr>
-<tr class="separator:ac75015b4d2d200a4a762a557feb408b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a85579e9aa99e227d89e8a9c393583263"><td class="memItemLeft" align="right" valign="top"><a id="a85579e9aa99e227d89e8a9c393583263" name="a85579e9aa99e227d89e8a9c393583263"></a>
+mavlink_controller::MavlinkController &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>drone</b></td></tr>
+<tr class="separator:a85579e9aa99e227d89e8a9c393583263"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8fe2144b9bde99adecb56149b279b5e7"><td class="memItemLeft" align="right" valign="top"><a id="a8fe2144b9bde99adecb56149b279b5e7" name="a8fe2144b9bde99adecb56149b279b5e7"></a>
 <a class="el" href="group__utils.html#ga54e0752930cfaf3caf6bde26a0f14595">ControlScenario</a>&#160;</td><td class="memItemRight" valign="bottom"><b>scenario</b></td></tr>
 <tr class="separator:a8fe2144b9bde99adecb56149b279b5e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -195,10 +195,10 @@ std::vector&lt; <a class="el" href="structtinyrobotics_1_1MessageSource_1_1Messa
 <tr class="separator:a61506a2328621ddeb80f3c83146db0d8 inherit pro_attribs_classtinyrobotics_1_1MessageSource"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p><a class="el" href="structtinyrobotics_1_1Message.html" title="Generic message structure for communication, parameterized by value type.">Message</a> source for MAVLink integration using ArduinoMavlinkDrone. </p>
-<dl class="section note"><dt>Note</dt><dd>This class depends on the ArduinoMavlinkDrone library: <a href="https://github.com/pschatzmann/ArduinoMavlinkDrone">https://github.com/pschatzmann/ArduinoMavlinkDrone</a></dd></dl>
+<div class="textblock"><p><a class="el" href="structtinyrobotics_1_1Message.html" title="Generic message structure for communication, parameterized by value type.">Message</a> source for MAVLink integration using ArduinoMavlink. </p>
+<dl class="section note"><dt>Note</dt><dd>This class depends on the ArduinoMavlink library: <a href="https://github.com/pschatzmann/ArduinoMavlink">https://github.com/pschatzmann/ArduinoMavlink</a></dd></dl>
 <p>This class connects to a MAVLink drone and translates MAVLink telemetry and control messages into TinyRobotics <a class="el" href="structtinyrobotics_1_1Message.html" title="Generic message structure for communication, parameterized by value type.">Message</a> objects. It can be used to bridge MAVLink-based vehicles with the TinyRobotics message bus and control framework.</p>
-<p>Usage: <a class="el" href="classtinyrobotics_1_1MavlinkMessageSource.html" title="Message source for MAVLink integration using ArduinoMavlinkDrone.">MavlinkMessageSource</a> mavlink(drone); mavlink.begin(); // In loop: mavlink.update(); </p>
+<p>Usage: <a class="el" href="classtinyrobotics_1_1MavlinkMessageSource.html" title="Message source for MAVLink integration using ArduinoMavlink.">MavlinkMessageSource</a> mavlink(drone); mavlink.begin(); // In loop: mavlink.update(); </p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="a29b10d9772008c0ec831e9dc9a2aef44" name="a29b10d9772008c0ec831e9dc9a2aef44"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a29b10d9772008c0ec831e9dc9a2aef44">&#9670;&#160;</a></span>setMaxSteeringAngle()</h2>

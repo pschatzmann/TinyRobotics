@@ -16,7 +16,7 @@ var searchData=
   ['spektrumsatellitemessagesource_13',['SpektrumSatelliteMessageSource',['../classtinyrobotics_1_1SpektrumSatelliteMessageSource.html',1,'tinyrobotics']]],
   ['state2d_14',['State2D',['../structtinyrobotics_1_1Fusion2D_1_1State2D.html',1,'tinyrobotics::Fusion2D']]],
   ['state3d_15',['State3D',['../structtinyrobotics_1_1Fusion3D_1_1State3D.html',1,'tinyrobotics::Fusion3D']]],
-  ['steppermotor_16',['StepperMotor',['../classtinyrobotics_1_1StepperMotor.html',1,'tinyrobotics']]],
+  ['steppermotorlinux_16',['StepperMotorLinux',['../classtinyrobotics_1_1StepperMotorLinux.html',1,'tinyrobotics']]],
   ['stream_17',['Stream',['../classtinyrobotics__arduino_1_1Stream.html',1,'tinyrobotics_arduino']]],
   ['synchronizedbuffer_18',['SynchronizedBuffer',['../classtinyrobotics_1_1SynchronizedBuffer.html',1,'tinyrobotics']]],
   ['synchronizedqueue_19',['SynchronizedQueue',['../classtinyrobotics_1_1SynchronizedQueue.html',1,'tinyrobotics']]],

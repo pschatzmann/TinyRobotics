@@ -10,7 +10,7 @@
 <area shape="rect" id="node9" href="$classtinyrobotics_1_1IMU3D.html" title="Basic 3D IMU dead&#45;reckoning class." alt="" coords="243,369,346,397"/>
 <area shape="rect" id="node10" href="$classtinyrobotics_1_1IMotionState2D.html" title="Interface for representing the navigation state of a robot in 2D space." alt="" coords="234,421,356,449"/>
 <area shape="rect" id="node15" href="$classtinyrobotics_1_1LocalizationAndMapping2D.html" title="Modular 2D Simultaneous Localization and Mapping (SLAM) system with flexible map, IMU,..." alt="" coords="177,473,413,501"/>
-<area shape="rect" id="node16" href="$classtinyrobotics_1_1MavlinkMessageSource.html" title="Message source for MAVLink integration using ArduinoMavlinkDrone." alt="" coords="207,525,382,553"/>
+<area shape="rect" id="node16" href="$classtinyrobotics_1_1MavlinkMessageSource.html" title="Message source for MAVLink integration using ArduinoMavlink." alt="" coords="207,525,382,553"/>
 <area shape="rect" id="node17" href="$classtinyrobotics_1_1MotionController2D.html" title="2D motion controller for path following and vehicle control." alt="" coords="202,577,388,605"/>
 <area shape="rect" id="node18" href="$classtinyrobotics_1_1RCGamepadMessageSource.html" title="Message source for remote control via a virtual gamepad." alt="" coords="193,629,397,657"/>
 <area shape="rect" id="node19" href="$classtinyrobotics_1_1RangeSensor.html" title="Generic range sensor abstraction for LIDAR, ultrasonic, or similar sensors." alt="" coords="223,681,367,709"/>

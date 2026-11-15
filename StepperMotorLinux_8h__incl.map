@@ -1,0 +1,8 @@
+<map id="src/TinyRobotics/motors/StepperMotorLinux.h" name="src/TinyRobotics/motors/StepperMotorLinux.h">
+<area shape="rect" id="node1" title="Stepper driver for Raspberry Pi (Linux) using hardware PWM." alt="" coords="191,5,370,50"/>
+<area shape="rect" id="node2" href="$Arduino_8h_source.html" title=" " alt="" coords="5,98,89,126"/>
+<area shape="rect" id="node3" title=" " alt="" coords="113,98,269,126"/>
+<area shape="rect" id="node4" title=" " alt="" coords="294,98,448,126"/>
+<area shape="rect" id="node5" href="$IMotor_8h_source.html" title=" " alt="" coords="472,98,547,126"/>
+<area shape="rect" id="node6" href="$Config_8h_source.html" title=" " alt="" coords="441,174,578,218"/>
+</map>

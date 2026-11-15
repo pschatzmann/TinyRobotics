@@ -37,7 +37,7 @@
 <area shape="rect" id="node36" href="$classtinyrobotics_1_1Fusion3D.html" title="3D sensor fusion EKF for position, orientation, and velocity estimation." alt="" coords="261,593,342,621"/>
 <area shape="rect" id="node37" href="$classtinyrobotics_1_1IMotionState2D.html" title="Interface for representing the navigation state of a robot in 2D space." alt="" coords="241,697,363,725"/>
 <area shape="rect" id="node42" href="$classtinyrobotics_1_1LocalizationAndMapping2D.html" title="Modular 2D Simultaneous Localization and Mapping (SLAM) system with flexible map, IMU,..." alt="" coords="184,749,420,777"/>
-<area shape="rect" id="node43" href="$classtinyrobotics_1_1MavlinkMessageSource.html" title="Message source for MAVLink integration using ArduinoMavlinkDrone." alt="" coords="214,801,390,829"/>
+<area shape="rect" id="node43" href="$classtinyrobotics_1_1MavlinkMessageSource.html" title="Message source for MAVLink integration using ArduinoMavlink." alt="" coords="214,801,390,829"/>
 <area shape="rect" id="node44" href="$classtinyrobotics_1_1MotionController2D.html" title="2D motion controller for path following and vehicle control." alt="" coords="209,853,395,881"/>
 <area shape="rect" id="node45" href="$classtinyrobotics_1_1RCGamepadMessageSource.html" title="Message source for remote control via a virtual gamepad." alt="" coords="200,161,404,189"/>
 <area shape="rect" id="node46" href="$classtinyrobotics_1_1RangeSensor.html" title="Generic range sensor abstraction for LIDAR, ultrasonic, or similar sensors." alt="" coords="230,213,374,241"/>

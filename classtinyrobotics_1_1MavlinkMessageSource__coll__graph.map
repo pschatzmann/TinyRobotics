@@ -1,4 +1,4 @@
 <map id="MavlinkMessageSource" name="MavlinkMessageSource">
-<area shape="rect" id="node1" title="Message source for MAVLink integration using ArduinoMavlinkDrone." alt="" coords="5,81,181,109"/>
+<area shape="rect" id="node1" title="Message source for MAVLink integration using ArduinoMavlink." alt="" coords="5,81,181,109"/>
 <area shape="rect" id="node2" href="$classtinyrobotics_1_1MessageSource.html" title="Base class for message sources in the TinyRobotics communication framework." alt="" coords="31,5,155,33"/>
 </map>

@@ -113,7 +113,7 @@ Motor Classes</h1>
 <li><code>BrushedMotor</code>: High-level H-Bridge DC motor driver for bidirectional DC motors (L298N, L293D, TB6612FNG, etc.).</li>
 <li><code>BrushlessMotor</code>: Interface for brushless DC motors (ESC-based, uses servo signal).</li>
 <li><code>ServoMotor</code>: High-level wrapper for standard RC servo motors (uses Arduino Servo or ESP32Servo library).</li>
-<li><code>StepperMotor</code>: Interface for stepper motors (uses FastAccelStepper library if enabled).</li>
+<li><code>StepperMotor</code>: Interface for stepper motors. Uses FastAccelStepper if enabled (microcontrollers). On Raspberry Pi (<code>USE_RPI</code>) it uses <code>StepperMotorLinux</code>, which supports continuous speed only, via hardware PWM step pulses on pins 12, 13, 18 and 19 (two shared PWM channels). Counted moves and acceleration ramps are not supported on Linux.</li>
 <li><code>GenericMotor</code>: Flexible abstraction for integrating custom/external motor drivers using callbacks.</li>
 </ul>
 <h1><a class="anchor" id="autotoc_md113"></a>

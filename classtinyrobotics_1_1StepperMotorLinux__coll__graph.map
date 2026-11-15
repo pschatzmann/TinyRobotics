@@ -1,0 +1,4 @@
+<map id="StepperMotorLinux&lt; T &gt;" name="StepperMotorLinux&lt; T &gt;">
+<area shape="rect" id="node1" title="Continuous&#45;speed stepper driver for Raspberry Pi using PWM step pulses." alt="" coords="5,81,188,109"/>
+<area shape="rect" id="node2" href="$classtinyrobotics_1_1IMotor.html" title="Abstract base class for all motor driver types." alt="" coords="46,5,147,33"/>
+</map>
